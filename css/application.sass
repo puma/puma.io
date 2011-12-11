@@ -15,6 +15,9 @@ $accent-color-4: #36353A
 $engine-yard-red: #A63724
 
 $header-color: $accent-color-2
+$normal-text-color: $accent-color-4
+$quiet-text-color: lighten($accent-color-4, 20%)
+
 $page-margin: 20px
 
 /* ************ MIXINS ************ */
@@ -77,6 +80,9 @@ $page-margin: 20px
   @else if $size == 26
     font-size: 196%
 
+=font-normal
+  font-family: "Trebuchet MS", verdana, clean, sans-serif
+
 =font-proxima-nova-semibold
   font-family: "ProximaNovaSemibold", "Trebuchet MS", verdana, clean, sans-serif
   font-weight: normal
@@ -85,6 +91,8 @@ $page-margin: 20px
   font-family: "ProximaNovaLight", "Trebuchet MS", verdana, clean, sans-serif
   font-weight: normal
 
+=font-monospace
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace
 
 
 
@@ -109,7 +117,7 @@ h3, h4, h5, h6
   +font-proxima-nova-semibold
 
 body
-  color: $accent-color-4
+  color: $normal-text-color
   a
     &:link, &:visited
       color: $accent-color-4
@@ -124,12 +132,29 @@ body
   background-color: $accent-color-4
   color: $page-background-color
   +border-radius(15px)
-  padding: 6px 30px
+  padding: 6px
+
+.code, .command
+  @extend .pill
+  +font-size(11)
+  +font-monospace
+  padding-left: 15px
+  letter-spacing: 1px
+  font-weight: normal
+  position: relative
+  span.file
+    +font-proxima-nova-light
+    text-transform: uppercase
+    position: absolute
+    letter-spacing: 2px
+    right: 15px
+    top: 7px
+    color: lighten($accent-color-4, 22%)
 
 /* ************ LAYOUT ************ */
 
 html
-  background-color: $page-background-color
+  background: $page-background-color url(/images/puma-footer.png) no-repeat right bottom
 
 #page-container
   max-width: 730px
@@ -176,7 +201,7 @@ header
     +font-proxima-nova-semibold
     font-size: 350%
     letter-spacing: 20px
-    margin: 20px 0
+    margin: 20px 0 15px
     text-transform: uppercase
   .tagline
     +font-proxima-nova-semibold
@@ -189,11 +214,13 @@ header
     display: inline
     text-transform: uppercase
     letter-spacing: 4px
+    padding-left: 30px
+    padding-right: 30px
     span.version
       color: $accent-color-3
 
 footer
-  margin-top: 80px
+  margin-top: 250px
   margin-bottom: $page-margin
   +font-size(11)
 
@@ -212,7 +239,7 @@ footer
     margin-bottom: 10px
   h4
     font-style: italic
-    margin-bottom: 0
+    margin-bottom: 10px
   #overview, #usage
     width: 46%
     float: left
