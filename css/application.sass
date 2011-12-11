@@ -12,7 +12,10 @@ $accent-color-2: #0089A5
 $accent-color-3: #F5E700
 $accent-color-4: #36353A
 
+$engine-yard-red: #A63724
+
 $header-color: $accent-color-2
+$page-margin: 20px
 
 /* ************ MIXINS ************ */
 
@@ -37,6 +40,8 @@ $header-color: $accent-color-2
 
 // Based on YUI Font Sizes
 = font-size($size)
+  @if $size == 9
+    font-size: 72%
   @if $size == 10
     font-size: 77%
   @else if $size == 11
@@ -89,10 +94,13 @@ h1
   +font-size(26)
 h2
   +font-size(21)
+  line-height: 1.8em
 h3
   +font-size(18)
+  line-height: 1.5em
 h4
   +font-size(14)
+  line-height: 1.2em
 
 h1, h2
   +font-proxima-nova-light
@@ -116,7 +124,7 @@ body
   background-color: $accent-color-4
   color: $page-background-color
   +border-radius(15px)
-  padding: 5px 20px
+  padding: 6px 30px
 
 /* ************ LAYOUT ************ */
 
@@ -126,6 +134,40 @@ html
 #page-container
   max-width: 730px
   margin: auto
+
+#global-header
+  background: white
+  border-bottom: 5px solid $engine-yard-red
+  padding: 10px $page-margin
+  #project-byline
+    position: relative
+    top: 10px
+    a
+      text-decoration: none
+  span.logo
+    display: inline-block
+    height: 29px
+    width: 97px
+    background: transparent url(/images/ey-logo.png) 0 0 no-repeat
+    text-indent: -9999px
+    vertical-align: middle
+  #ey-promo
+    +font-size(12)
+    position: absolute
+    right: 20px
+    top: 23px
+
+#external-services-container
+  text-align: right
+  margin: 20px $page-margin 60px 0
+  +font-size(11)
+  #share
+    +clearfix
+    margin: 0
+    li
+      display: inline-block
+      margin-left: 10px
+  #travis-ci-status
 
 header
   text-align: center
@@ -143,12 +185,17 @@ header
     text-transform: uppercase
   .current-release
     @extend .pill
-    +font-size(10)
+    +font-size(9)
     display: inline
     text-transform: uppercase
     letter-spacing: 4px
     span.version
       color: $accent-color-3
+
+footer
+  margin-top: 80px
+  margin-bottom: $page-margin
+  +font-size(11)
 
 
 /* ************ MARKETING PAGE ************ */
@@ -158,11 +205,14 @@ header
     color: $header-color
   h2, h3
     text-transform: uppercase
-    letter-spacing: 2px
+    letter-spacing: 3px
   h3
     +font-size(14)
+    margin-top: 40px
+    margin-bottom: 10px
   h4
     font-style: italic
+    margin-bottom: 0
   #overview, #usage
     width: 46%
     float: left
@@ -172,7 +222,6 @@ header
       font-size: 270%
       margin: 0 0 20px 0
       line-height: 1.1em
-      letter-spacing: 3px
   #usage
     #quickstart-with-bundler
       h3
