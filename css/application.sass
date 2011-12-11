@@ -1,0 +1,181 @@
+---
+---
+/* Couldn't seem to separate these into multiple files using @import
+
+
+/* ************ VARIABLES ************ */
+
+$page-background-color: #EBE7DB
+
+$accent-color-1: #CE086C
+$accent-color-2: #0089A5
+$accent-color-3: #F5E700
+$accent-color-4: #36353A
+
+$header-color: $accent-color-2
+
+/* ************ MIXINS ************ */
+
+=clearfix
+  &:after
+    clear: both
+    content: "."
+    display: block
+    height: 0
+    visibility: hidden
+
+=opacity($value)
+  filter: alpha(opacity=$value*100)
+  -moz-opacity: $value
+  -khtml-opacity: $value
+  opacity: $value
+
+=border-radius($radius)
+  -moz-border-radius: $radius
+  -webkit-border-radius: $radius
+  border-radius: $radius
+
+// Based on YUI Font Sizes
+= font-size($size)
+  @if $size == 10
+    font-size: 77%
+  @else if $size == 11
+    font-size: 85%
+  @else if $size == 12
+    font-size: 93%
+  @else if $size == 13
+    font-size: 100%
+  @else if $size == 14
+    font-size: 108%
+  @else if $size == 15
+    font-size: 116%
+  @else if $size == 16
+    font-size: 123.1%
+  @else if $size == 17
+    font-size: 131%
+  @else if $size == 18
+    font-size: 138.5%
+  @else if $size == 19
+    font-size: 146.5%
+  @else if $size == 20
+    font-size: 153.9%
+  @else if $size == 21
+    font-size: 161.6%
+  @else if $size == 22
+    font-size: 167%
+  @else if $size == 23
+    font-size: 182%
+  @else if $size == 24
+    font-size: 186%
+  @else if $size == 25
+    font-size: 189%
+  @else if $size == 26
+    font-size: 196%
+
+=font-proxima-nova-semibold
+  font-family: "ProximaNovaSemibold", "Trebuchet MS", verdana, clean, sans-serif
+  font-weight: normal
+
+=font-proxima-nova-light
+  font-family: "ProximaNovaLight", "Trebuchet MS", verdana, clean, sans-serif
+  font-weight: normal
+
+
+
+
+/* ************ BASE ************ */
+
+h1
+  +font-size(26)
+h2
+  +font-size(21)
+h3
+  +font-size(18)
+h4
+  +font-size(14)
+
+h1, h2
+  +font-proxima-nova-light
+
+h3, h4, h5, h6
+  +font-proxima-nova-semibold
+
+body
+  color: $accent-color-4
+  a
+    &:link, &:visited
+      color: $accent-color-4
+      text-decoration: underline
+    &:hover
+      color: $accent-color-1
+
+
+/* ************ UTILS ************ */
+
+.pill
+  background-color: $accent-color-4
+  color: $page-background-color
+  +border-radius(15px)
+  padding: 5px 20px
+
+/* ************ LAYOUT ************ */
+
+html
+  background-color: $page-background-color
+
+#page-container
+  max-width: 730px
+  margin: auto
+
+header
+  text-align: center
+  margin-bottom: 50px
+  h1
+    +font-proxima-nova-semibold
+    font-size: 350%
+    letter-spacing: 20px
+    margin: 20px 0
+    text-transform: uppercase
+  .tagline
+    +font-proxima-nova-semibold
+    +font-size(14)
+    letter-spacing: 3px
+    text-transform: uppercase
+  .current-release
+    @extend .pill
+    +font-size(10)
+    display: inline
+    text-transform: uppercase
+    letter-spacing: 4px
+    span.version
+      color: $accent-color-3
+
+
+/* ************ MARKETING PAGE ************ */
+
+#marketing-page
+  h1, h2, h3
+    color: $header-color
+  h2, h3
+    text-transform: uppercase
+    letter-spacing: 2px
+  h3
+    +font-size(14)
+  h4
+    font-style: italic
+  #overview, #usage
+    width: 46%
+    float: left
+  #overview
+    margin-right: 8%
+    h2
+      font-size: 270%
+      margin: 0 0 20px 0
+      line-height: 1.1em
+      letter-spacing: 3px
+  #usage
+    #quickstart-with-bundler
+      h3
+        margin-top: 0
+
+/* ************ SIMPLE PAGE ************ */

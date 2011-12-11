@@ -5,24 +5,31 @@
     {% include head.html %}
   </head>
   <body>
-    {% include ey_header.html %}
-    {% include external_services.html %}
+    <div id="page-container">
+      {% include ey_header.html %}
+      {% include external_services.html %}
 
-    <div id="page-header">
-      <p class="tagline">A Modern, Concurrent Web Server for Ruby</p>
-      <h1>Puma</h1>
+      <header>
+        <p class="tagline">A Modern, Concurrent Web Server for Ruby</p>
+        <h1>Puma</h1>
 
-      <p class="current-release">
-        Current Release: <span class="version">0.8.2</span>
-      </p>
+        <p class="current-release">
+          Current Release: <span class="version">0.8.2</span>
+        </p>
 
-      <div id="puma-symbol">
-        Puma Symbol Image
+        <div id="puma-symbol">
+          Puma Symbol Image
+        </div>
+      </header>
+
+      <div id="page-content">
+        {{ content }}
       </div>
-    </div>
 
-    <div id="page-content">
-      {{ content }}
+      <footer>
+        Puma - &copy; 2011 Evan Phoenix and Contributors. <br />
+        An Engine Yard Project
+      </footer>
     </div>
   </body>
 </html>

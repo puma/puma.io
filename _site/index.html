@@ -6,17 +6,23 @@
 <meta name="Description" content="Puma - A Modern Concurrent Web Server for Ruby. An Engine Yard project.">
 
 <meta name="author" content="Jordan Isip (@fixie) - http://jordanisip.com" />
-<link rel="stylesheet" href="/sass/screen.css" type="text/css" />
+
+<link rel="stylesheet" href="/css/reset.css" type="text/css" />
+<link rel="stylesheet" href="/css/base.css" type="text/css" />
+<link rel="stylesheet" href="/css/fonts.css" type="text/css" />
+<link rel="stylesheet" href="/css/application.css" type="text/css" />
+
 <title>A Modern, Concurrent Web Server for Ruby - Puma</title>
   </head>
   <body>
-    <div id="global-header">
+    <div id="page-container">
+      <div id="global-header">
   <div class="inner">
     <p><a href="http://engineyard.com">Project by <span class="logo">Engine Yard</span></a></p>
     <p id="ey-promo">Ready to deploy your app? <a href="http://engineyard.com">Start a free trial at Engine Yard</a></p>
   </div>
 </div>
-    <div id="external-services-container">
+      <div id="external-services-container">
   <ul id="share">
     <li>Email</li>
     <li>Twitter</li>
@@ -29,155 +35,165 @@
   </p>
 </div>
 
-    <div id="page-header">
-      <p class="tagline">A Modern, Concurrent Web Server for Ruby</p>
-      <h1>Puma</h1>
+      <header>
+        <p class="tagline">A Modern, Concurrent Web Server for Ruby</p>
+        <h1>Puma</h1>
 
-      <p class="current-release">
-        Current Release: <span class="version">0.8.2</span>
+        <p class="current-release">
+          Current Release: <span class="version">0.8.2</span>
+        </p>
+
+        <div id="puma-symbol">
+          Puma Symbol Image
+        </div>
+      </header>
+
+      <div id="page-content">
+        <div id="marketing-page">
+  <div id="overview">
+    <h2>Built for Speed & Concurrency</h2>
+    <p>
+      Unlike other Ruby Webservers, Puma was built for speed and
+      concurrency. Puma is a small library that provides a very
+      fast and concurrent HTTP 1.1 server for Ruby web applications.
+      It is designed for running rack apps only.
+    </p>
+
+    <p>
+      What makes Puma so fast is the careful use of a Ragel
+      extension to provide fast, accurate HTTP 1.1 protocol parsing.
+      This makes the server scream without too many portability
+      issues.
+    </p>
+
+    <div class="video">
+      Video goes here.
+    </div>
+  </div>
+
+  <div id="usage">
+    <div id="quickstart-with-bundler" class="quickstart">
+      <h3>Quickstart with Bundler</h3>
+      <p>
+        If you are using <a href="http://gembundler.com/">Bundler</a>,
+        just add Puma to your project's GemFile:
       </p>
 
-      <div id="puma-symbol">
-        Puma Symbol Image
+      <p class="code">
+        <span class="file">Gemfile</span>
+        Gem &Prime;puma&Prime;
+      </p>
+
+      <p>
+        Once you've installed your bundle, start Puma by running:
+      </p>
+
+      <p class="code">
+        $ puma
+      </p>
+    </div>
+
+    <div id="quickstart-without-bundler" class="quickstart">
+      <h3>Quickstart without Bundler</h3>
+      <p>
+        If you are not using <a href="http://gembundler.com/">Bundler</a>,
+        you can install Puma directly from the command line:
+      </p>
+
+      <p class="code">
+        $ gem install puma
+      </p>
+
+      <p>
+        Once installed, start Puma by running:
+      </p>
+
+      <p class="code">
+        $ puma
+      </p>
+    </div>
+
+    <div class="resources">
+      <h3>Resources</h3>
+      <ul>
+        <li class="document">
+          <a href="#">Full Documentation</a>
+        </li>
+        <li class="document">
+          <a href="#">Advanced Setup with Sinatra, Rails, & Rackup</a>
+        </li>
+        <li class="document">
+          How to Use Puma:<br />
+          <a href="#">On EngineYard</a> &bull;
+          <a href="#">On Heroku</a> &bull;
+          <a href="#">In Your Stack</a>
+        </li>
+        <li class="puma-assets">
+          <a href="#">Puma Logos and Assets</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="testimonials">
+    <div class="testimonial left">
+      <div class="testimonial-photo">
+        <img src="http://placehold.it/115x115" />
       </div>
+      <blockquote>
+        We now use Puma for all of our web applications. It’s ease of
+        use and speed is unmatched by any other ruby webserver.
+      </blockquote>
+      <p class="citation">
+        <span class="author">Charlie Conway - <a href="#">@charlieconway</a></span> (Co-Founder of PopularRubyCompany)
+      </p>
     </div>
 
-    <div id="page-content">
-      <div id="information">
-  <h2>Built for Speed & Concurrency</h2>
-  <p>
-    Unlike other Ruby Webservers, Puma was built for speed and
-    concurrency. Puma is a small library that provides a very
-    fast and concurrent HTTP 1.1 server for Ruby web applications.
-    It is designed for running rack apps only.
-  </p>
-
-  <p>
-    What makes Puma so fast is the careful use of a Ragel
-    extension to provide fast, accurate HTTP 1.1 protocol parsing.
-    This makes the server scream without too many portability
-    issues.
-  </p>
-
-  <div class="video">
-    Video goes here.
-  </div>
-</div>
-
-<div id="usage">
-  <div id="quickstart-with-bundler" class="quickstart">
-    <h3>Quickstart with Bundler</h3>
-    <p>
-      If you are using <a href="http://gembundler.com/">Bundler</a>,
-      just add Puma to your project's GemFile:
-    </p>
-
-    <p class="code">
-      <span class="file">Gemfile</span>
-      Gem &Prime;puma&Prime;
-    </p>
-
-    <p>
-      Once you've installed your bundle, start Puma by running:
-    </p>
-
-    <p class="code">
-      $ puma
-    </p>
-  </div>
-
-  <div id="quickstart-without-bundler" class="quickstart">
-    <h3>Quickstart without Bundler</h3>
-    <p>
-      If you are not using <a href="http://gembundler.com/">Bundler</a>,
-      you can install Puma directly from the command line:
-    </p>
-
-    <p class="code">
-      $ gem install puma
-    </p>
-
-    <p>
-      Once installed, start Puma by running:
-    </p>
-
-    <p class="code">
-      $ puma
-    </p>
-  </div>
-
-  <div class="resources">
-    <h3>Resources</h3>
-    <ul>
-      <li class="document">
-        <a href="#">Full Documentation</a>
-      </li>
-      <li class="document">
-        <a href="#">Advanced Setup with Sinatra, Rails, & Rackup</a>
-      </li>
-      <li class="document">
-        How to Use Puma:<br />
-        <a href="#">On EngineYard</a> &bull;
-        <a href="#">On Heroku</a> &bull;
-        <a href="#">In Your Stack</a>
-      </li>
-      <li class="puma-assets">
-        <a href="#">Puma Logos and Assets</a>
-      </li>
-    </ul>
-  </div>
-</div>
-
-<div id="testimonials">
-  <div class="testimonial left">
-    <div class="testimonial-photo">
-      <img src="http://placehold.it/115x115" />
+    <div class="testimonial right">
+      <div class="testimonial-photo">
+        <img src="http://placehold.it/115x115" />
+      </div>
+      <blockquote>
+        Puma. Is. Awesome.
+      </blockquote>
+      <p class="citation">
+        <span class="author">GordonBombay- <a href="#">@gordonbombay</a></span> (Co-Founder of PopularRubyCompany)
+      </p>
     </div>
-    <blockquote>
-      We now use Puma for all of our web applications. It’s ease of
-      use and speed is unmatched by any other ruby webserver.
-    </blockquote>
-    <p class="citation">
-      <span class="author">Charlie Conway - <a href="#">@charlieconway</a></span> (Co-Founder of PopularRubyCompany)
-    </p>
   </div>
 
-  <div class="testimonial right">
-    <div class="testimonial-photo">
-      <img src="http://placehold.it/115x115" />
-    </div>
-    <blockquote>
-      Puma. Is. Awesome.
-    </blockquote>
-    <p class="citation">
-      <span class="author">GordonBombay- <a href="#">@gordonbombay</a></span> (Co-Founder of PopularRubyCompany)
-    </p>
+  <div id="comparisons">
+    <h3>Puma Vs. Other Webservers</h3>
+
+    <h4>
+      Speed Performance Comparison
+      <span>(Showing number of requests each server can handle per second - more is better)</span>
+    </h4>
+    <p>Graph go here</p>
+
+    <h4>
+      Memory Usage Comparison
+      <span>(Showing memory usage over time - less is better)</span>
+    </h4>
+    <p>Graph go here</p>
+  </div>
+
+  <div id="history">
+    <h3>Puma History</h3>
+
+    <p>Mustache deserunt yr viral. Ut farm-to-table velit ethical put a bird on it officia, qui yr lomo. Nesciunt organic voluptate mcsweeney's, vinyl et skateboard 3 wolf moon mollit dreamcatcher blog. Consectetur accusamus sustainable thundercats, mixtape marfa aliquip. Artisan marfa high life, reprehenderit odio elit placeat aesthetic seitan salvia mcsweeney's etsy. Placeat exercitation seitan, 8-bit raw denim readymade vero brooklyn in pitchfork. 8-bit you probably haven't heard of them shoreditch enim.</p>
+    <p>American apparel fap readymade master cleanse nulla, twee vero whatever aliquip ad irure mixtape laborum messenger bag. Nulla velit iphone sunt messenger bag stumptown, sed four loko 8-bit mustache in lo-fi.</p>
+
+    <h4>Created By</h4>
+    <p>Seitan exercitation chambray, vegan mcsweeney's cosby sweater ea DIY brooklyn. Consequat aliqua officia delectus stumptown. Before they sold out magna scenester, aesthetic echo park incididunt consectetur reprehenderit PBR banh mi fugiat retro american apparel cillum. Incididunt brunch viral before they sold out, raw denim nesciunt wolf cred. Iphone before they sold out Austin farm-to-table, tofu keytar jean shorts dolore keffiyeh mollit ullamco. Cupidatat Austin scenester in put a bird on it vinyl you probably haven't heard of them.</p>
   </div>
 </div>
+      </div>
 
-<div id="comparisons">
-  <h3>Puma Vs. Other Webservers</h3>
-
-  <h4>
-    Speed Performance Comparison
-    <span>(Showing number of requests each server can handle per second - more is better)</span>
-  </h4>
-  <p>Graph go here</p>
-
-  <h4>
-    Memory Usage Comparison
-    <span>(Showing memory usage over time - less is better)</span>
-  </h4>
-  <p>Graph go here</p>
-</div>
-
-<div id="history">
-  <p>Mustache deserunt yr viral. Ut farm-to-table velit ethical put a bird on it officia, qui yr lomo. Nesciunt organic voluptate mcsweeney's, vinyl et skateboard 3 wolf moon mollit dreamcatcher blog. Consectetur accusamus sustainable thundercats, mixtape marfa aliquip. Artisan marfa high life, reprehenderit odio elit placeat aesthetic seitan salvia mcsweeney's etsy. Placeat exercitation seitan, 8-bit raw denim readymade vero brooklyn in pitchfork. 8-bit you probably haven't heard of them shoreditch enim.</p>
-  <p>American apparel fap readymade master cleanse nulla, twee vero whatever aliquip ad irure mixtape laborum messenger bag. Nulla velit iphone sunt messenger bag stumptown, sed four loko 8-bit mustache in lo-fi.</p>
-
-  <h4>Created By</h4>
-  <p>Seitan exercitation chambray, vegan mcsweeney's cosby sweater ea DIY brooklyn. Consequat aliqua officia delectus stumptown. Before they sold out magna scenester, aesthetic echo park incididunt consectetur reprehenderit PBR banh mi fugiat retro american apparel cillum. Incididunt brunch viral before they sold out, raw denim nesciunt wolf cred. Iphone before they sold out Austin farm-to-table, tofu keytar jean shorts dolore keffiyeh mollit ullamco. Cupidatat Austin scenester in put a bird on it vinyl you probably haven't heard of them.</p>
-</div>
+      <footer>
+        Puma - &copy; 2011 Evan Phoenix and Contributors. <br />
+        An Engine Yard Project
+      </footer>
     </div>
   </body>
 </html>
