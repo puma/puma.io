@@ -5,7 +5,24 @@
     {% include head.html %}
   </head>
   <body>
-    <h1><a href="/">This is a test</a></h1>
-    {{ content }}
+    {% include ey_header.html %}
+    {% include external_services.html %}
+
+    <div id="page-header">
+      <p class="tagline">A Modern, Concurrent Web Server for Ruby</p>
+      <h1>Puma</h1>
+
+      <p class="current-release">
+        Current Release: <span class="version">0.8.2</span>
+      </p>
+
+      <div id="puma-symbol">
+        Puma Symbol Image
+      </div>
+    </div>
+
+    <div id="page-content">
+      {{ content }}
+    </div>
   </body>
 </html>
