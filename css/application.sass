@@ -167,7 +167,7 @@ body
 /* ************ LAYOUT ************ */
 
 html
-  background: $page-background-color url(/images/puma-footer.jpg) no-repeat right bottom
+  background: $page-background-color url(../images/puma-footer.jpg) no-repeat right bottom
 
 #page-container
   max-width: $max-page-width
@@ -187,7 +187,7 @@ html
     display: inline-block
     height: 29px
     width: 97px
-    background: transparent url(/images/ey-logo.png) 0 0 no-repeat
+    background: transparent url(../images/ey-logo.png) 0 0 no-repeat
     text-indent: -9999px
     vertical-align: middle
   #ey-promo
@@ -207,7 +207,7 @@ html
       display: inline-block
       &.mail
         .s-ico
-          background: transparent url(/images/icons/mail.png) no-repeat 1px 2px
+          background: transparent url(../images/icons/mail.png) no-repeat 1px 2px
       &.facebook
         position: relative
         top: 1px
@@ -247,7 +247,7 @@ header
   .page-separator
     height: 30px
     margin-top: 40px
-    background: transparent url(/images/patterns/wave.png) repeat-x center center
+    background: transparent url(../images/patterns/wave.png) repeat-x center center
     img
       background: $page-background-color
       padding: 0 25px
@@ -258,7 +258,7 @@ footer
   +font-size(11)
   padding-left: 22px
   background:
-    image: url(/images/icons/puma-favicon.png)
+    image: url(../images/icons/puma-favicon.png)
     repeat: no-repeat
     position: 0 3px
 
@@ -289,7 +289,7 @@ footer
       margin: 0 0 20px 0
       line-height: 1.1em
     .video
-      margin-top: 25px
+      margin: 25px 0
   #usage
     #quickstart-with-bundler
       h3
@@ -325,12 +325,16 @@ ul.testimonials
         +font-serif
         line-height: 1.3em
         margin: 0
-        padding: 10px 10px 10px 140px
-        background: lighten($page-background-color, 5%)
+        padding: 10px 10px 10px 160px
+        background:
+          color: lighten($page-background-color, 5%)
+          image: url(../images/icons/quote-1.png)
+          repeat: no-repeat
+          position: 140px 10px
         font-style: italic
       .citation
         @extend .inner-header
-        +font-size(13)
+        +font-size(12)
         padding-top: 10px
         margin-left: 140px
         text-align: right
@@ -341,7 +345,10 @@ ul.testimonials
         right: 10px
       .quote-with-citation
         blockquote
-          padding: 10px 140px 10px 10px
+          padding: 10px 140px 10px 30px
+          background:
+            image: url(../images/icons/quote-2.png)
+            position: 10px 10px
         .citation
           text-align: left
 
@@ -360,9 +367,9 @@ ul.resources
         position: 10px 8px
         repeat: no-repeat
     &.document
-      background-image: url(/images/icons/document.png)
+      background-image: url(../images/icons/document.png)
     &.asset
-      background-image: url(/images/icons/puma-favicon.png)
+      background-image: url(../images/icons/puma-favicon.png)
 
 
 
