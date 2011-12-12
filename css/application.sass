@@ -19,7 +19,7 @@ $normal-text-color: $accent-color-4
 $quiet-text-color: lighten($accent-color-4, 20%)
 
 $page-margin: 20px
-$max-page-width: 650px
+$max-page-width: 690px
 $column-gutter: 50px
 
 /* ************ MIXINS ************ */
@@ -187,7 +187,7 @@ html
 
 #external-services-container
   text-align: right
-  margin: 20px $page-margin 60px 0
+  margin: 20px $page-margin 50px 0
   +font-size(11)
   #share
     +clearfix
@@ -198,7 +198,7 @@ html
 
 header
   text-align: center
-  margin-bottom: 50px
+  margin-bottom: 55px
   h1
     +font-proxima-nova-semibold
     font-size: 350%
@@ -220,6 +220,13 @@ header
     padding-right: 30px
     span.version
       color: $accent-color-3
+  .page-separator
+    height: 30px
+    margin-top: 50px
+    background: transparent url(/images/patterns/wave.png) repeat-x center center
+    img
+      background: $page-background-color
+      padding: 0 25px
 
 footer
   margin-top: 125px
@@ -238,7 +245,7 @@ footer
     letter-spacing: 3px
   h3
     +font-size(14)
-    margin-top: 40px
+    margin-top: 45px
     margin-bottom: 10px
   h4
     font-style: italic
@@ -246,6 +253,8 @@ footer
     span
       +font-size(10)
       font-weight: normal
+  .section
+    margin-bottom: 60px
   #overview, #usage
     width: (($max-page-width - $column-gutter) / 2)
     float: left
@@ -255,6 +264,8 @@ footer
       font-size: 260%
       margin: 0 0 20px 0
       line-height: 1.1em
+    .video
+      margin-top: 25px
   #usage
     #quickstart-with-bundler
       h3
@@ -262,6 +273,11 @@ footer
   #testimonials
     padding-top: 50px
     clear: left
+  #history
+    +font-size(12)
+    h4
+      margin-bottom: 5px
+      margin-top: 20px
 
 ul.resources
   +font-size(11)
@@ -272,7 +288,14 @@ ul.resources
     line-height: 1.1em
     margin-bottom: 1px
     background: lighten($page-background-color, 5%)
-    padding: 10px 10px 10px 30px
-
+    padding: 10px 10px 10px 33px
+    &.document, &.asset
+      background:
+        position: 10px 8px
+        repeat: no-repeat
+    &.document
+      background-image: url(/images/icons/document.png)
+    &.asset
+      background-image: url(/images/icons/puma-favicon.png)
 
 /* ************ SIMPLE PAGE ************ */
