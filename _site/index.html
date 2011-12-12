@@ -10,7 +10,11 @@
 <link rel="stylesheet" href="/css/reset.css" type="text/css" />
 <link rel="stylesheet" href="/css/base.css" type="text/css" />
 <link rel="stylesheet" href="/css/fonts.css" type="text/css" />
+<link rel="stylesheet" href="/css/share-button.css" type="text/css" />
 <link rel="stylesheet" href="/css/application.css" type="text/css" />
+
+<link href="/favicon.ico" rel="shortcut icon">
+<link href="/favicon.ico" rel="icon">
 
 <title>A Modern, Concurrent Web Server for Ruby - Puma</title>
   </head>
@@ -21,14 +25,27 @@
 </div>
     <div id="external-services-container">
   <ul id="share">
-    <li>Email</li>
-    <li>Twitter</li>
-    <li>Facebook</li>
-    <li>Watch on GitHub</li>
-    <li>Fork on GitHub</li>
+
+    <li class="twitter">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://puma.io" data-lang="en" data-via="engineyard" data-related="engineyard" data-hashtags="engineyardpuma">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </li>
+    <li class="facebook"><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fpuma.io&amp;send=false&amp;layout=button_count&amp;width=76&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=252181208127262" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:76px; height:21px;" allowTransparency="true"></iframe></li>
+    <li class="mail">
+      <span class="share-btn">
+        <a href="mailto:[insert email]?subject=Check out RailsInstaller&amp;body=Go to Puma.io" target="_blank" class="s-btn">
+          <span class="s-ico"></span>
+          <span class="s-text">Email</span>
+        </a>
+      </span>
+    </li>
+    <li class="github-watch"><iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=evanphx&repo=puma&type=watch"
+      allowtransparency="true" frameborder="0" scrolling="0" width="62px" height="20px"></iframe></li>
+    <li class="github-fork"><iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=evanphx&repo=puma&type=fork"
+      allowtransparency="true" frameborder="0" scrolling="0" width="53px" height="20px"></iframe></li>
   </ul>
   <p id="travis-ci-status">
-    <a href="#">Latest Travis CI Build [Status]</a>
+    <a href="http://travis-ci.org/#!/evanphx/puma">Latest Travis CI Build: <img src="https://secure.travis-ci.org/evanphx/puma.png" alt="[View Status]"/></a>
   </p>
 </div>
 
@@ -42,9 +59,7 @@
         </p>
 
         <div class="page-separator">
-
-            <img src="/images/logos/puma-symbol.png" />
-
+          <img src="/images/logos/puma-symbol.png" />
         </div>
       </header>
 
@@ -67,7 +82,7 @@
     </p>
 
     <div class="video">
-      <iframe src="http://player.vimeo.com/video/2979844?title=1&amp;byline=1&amp;portrait=0&amp;color=0089A5" width="320" height="240" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
     </div>
   </div>
 
@@ -135,32 +150,36 @@
     </div>
   </div>
 
-  <div id="testimonials" class="section">
-    <div class="testimonial left">
+  <ul id="testimonials" class="testimonials section">
+    <li class="testimonial left">
       <div class="testimonial-photo">
-        <img src="http://placehold.it/115x115" />
+        <img src="/images/placeholders/testimonial-photo-1.jpg" />
       </div>
-      <blockquote>
-        We now use Puma for all of our web applications. It’s ease of
-        use and speed is unmatched by any other ruby webserver.
-      </blockquote>
-      <p class="citation">
-        <span class="author">Charlie Conway - <a href="#">@charlieconway</a></span> (Co-Founder of PopularRubyCompany)
-      </p>
-    </div>
+      <div class="quote-with-citation">
+        <blockquote>
+          We now use Puma for all of our web applications. It’s ease of
+          use and speed is unmatched by any other ruby webserver.
+        </blockquote>
+        <p class="citation">
+          Charlie Conway - <a href="#">@charlieconway</a> <span>(Co-Founder of PopularRubyCompany)</span>
+        </p>
+      </div>
+    </li>
 
-    <div class="testimonial right">
+    <li class="testimonial right">
       <div class="testimonial-photo">
-        <img src="http://placehold.it/115x115" />
+        <img src="/images/placeholders/testimonial-photo-2.jpg" />
       </div>
-      <blockquote>
-        Puma. Is. Awesome.
-      </blockquote>
-      <p class="citation">
-        <span class="author">GordonBombay - <a href="#">@gordonbombay</a></span> (Co-Founder of PopularRubyCompany)
-      </p>
-    </div>
-  </div>
+      <div class="quote-with-citation">
+        <blockquote>
+          Puma. Is. Awesome.
+        </blockquote>
+        <p class="citation">
+          GordonBombay - <a href="#">@gordonbombay</a> <span>(Co-Founder of PopularRubyCompany)</span>
+        </p>
+      </div>
+    </li>
+  </ul>
 
   <div id="comparisons" class="section">
     <h3>Puma Vs. Other Webservers</h3>
@@ -169,13 +188,13 @@
       Speed Comparison
       <span>(Showing number of requests each server can handle per second - more is better)</span>
     </h4>
-    <p>Graph go here</p>
+    <p>Graph goes here</p>
 
     <h4>
       Memory Usage Comparison
       <span>(Showing memory usage over time - less is better)</span>
     </h4>
-    <p>Graph go here</p>
+    <p>Graph goes here</p>
   </div>
 
   <div id="history" class="section">

@@ -46,7 +46,7 @@ $column-gutter: 50px
 // Based on YUI Font Sizes
 = font-size($size)
   @if $size == 9
-    font-size: 72%
+    font-size: 70%
   @if $size == 10
     font-size: 77%
   @else if $size == 11
@@ -153,6 +153,15 @@ body
     top: 7px
     color: lighten($accent-color-4, 22%)
 
+.inner-header
+  +font-size(14)
+  font-style: italic
+  margin-bottom: 10px
+  line-height: 1.2em
+  span
+    +font-size(10)
+    font-weight: normal
+
 /* ************ LAYOUT ************ */
 
 html
@@ -187,14 +196,27 @@ html
 
 #external-services-container
   text-align: right
-  margin: 20px $page-margin 50px 0
-  +font-size(11)
+  margin: 20px $page-margin 20px 0
+  +font-size(10)
   #share
     +clearfix
     margin: 0
     li
       display: inline-block
-      margin-left: 10px
+      &.mail
+        .s-ico
+          background: transparent url(/images/icons/mail.png) no-repeat 1px 2px
+      &.facebook
+        position: relative
+        top: 1px
+      &.twitter iframe
+        width: 85px !important
+  #travis-ci-status
+    margin-top: 5px
+    a
+      text-decoration: none
+    img
+      vertical-align: top
 
 header
   text-align: center
@@ -203,7 +225,7 @@ header
     +font-proxima-nova-semibold
     font-size: 350%
     letter-spacing: 20px
-    margin: 20px 0 15px
+    margin: 20px 0 25px
     text-transform: uppercase
   .tagline
     +font-proxima-nova-semibold
@@ -215,14 +237,14 @@ header
     +font-size(9)
     display: inline
     text-transform: uppercase
-    letter-spacing: 4px
+    letter-spacing: 3px
     padding-left: 30px
     padding-right: 30px
     span.version
       color: $accent-color-3
   .page-separator
     height: 30px
-    margin-top: 50px
+    margin-top: 40px
     background: transparent url(/images/patterns/wave.png) repeat-x center center
     img
       background: $page-background-color
@@ -232,7 +254,11 @@ footer
   margin-top: 125px
   margin-bottom: $page-margin
   +font-size(11)
-  color: $quiet-text-color
+  padding-left: 22px
+  background:
+    image: url(/images/icons/puma-favicon.png)
+    repeat: no-repeat
+    position: 0 3px
 
 
 /* ************ MARKETING PAGE ************ */
@@ -248,11 +274,7 @@ footer
     margin-top: 45px
     margin-bottom: 10px
   h4
-    font-style: italic
-    margin-bottom: 10px
-    span
-      +font-size(10)
-      font-weight: normal
+    @extend .inner-header
   .section
     margin-bottom: 60px
   #overview, #usage
@@ -278,6 +300,46 @@ footer
     h4
       margin-bottom: 5px
       margin-top: 20px
+
+ul.testimonials
+  margin: 0
+  padding: 0
+  li
+    margin: 30px 0
+    padding: 0
+    position: relative
+    min-height: 115px
+    .testimonial-photo
+      +border-radius(5px)
+      position: absolute
+      left: 10px
+      top: -20px
+      padding: 3px
+      background-color: lighten($page-background-color, 7%)
+      line-height: 0
+    .quote-with-citation
+      blockquote
+        +font-size(12)
+        line-height: 1.3em
+        margin: 0
+        padding: 10px 10px 10px 140px
+        background: lighten($page-background-color, 5%)
+      .citation
+        @extend .inner-header
+        +font-size(13)
+        padding-top: 10px
+        margin-left: 140px
+        text-align: right
+        margin: 0 10px
+    &.right
+      .testimonial-photo
+        left: auto
+        right: 10px
+      .quote-with-citation
+        blockquote
+          padding: 10px 140px 10px 10px
+        .citation
+          text-align: left
 
 ul.resources
   +font-size(11)

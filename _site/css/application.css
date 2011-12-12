@@ -59,6 +59,15 @@ body {
     top: 7px;
     color: #6d6b75; }
 
+.inner-header, #marketing-page h4, ul.testimonials li .quote-with-citation .citation {
+  font-size: 108%;
+  font-style: italic;
+  margin-bottom: 10px;
+  line-height: 1.2em; }
+  .inner-header span, #marketing-page h4 span, ul.testimonials li .quote-with-citation .citation span {
+    font-size: 77%;
+    font-weight: normal; }
+
 /* ************ LAYOUT ************ */
 html {
   background: #ebe7db url(/images/puma-footer.png) no-repeat right bottom; }
@@ -92,8 +101,8 @@ html {
 
 #external-services-container {
   text-align: right;
-  margin: 20px 20px 50px 0;
-  font-size: 85%; }
+  margin: 20px 20px 20px 0;
+  font-size: 77%; }
   #external-services-container #share {
     margin: 0; }
     #external-services-container #share:after {
@@ -103,8 +112,20 @@ html {
       height: 0;
       visibility: hidden; }
     #external-services-container #share li {
-      display: inline-block;
-      margin-left: 10px; }
+      display: inline-block; }
+      #external-services-container #share li.mail .s-ico {
+        background: transparent url(/images/icons/mail.png) no-repeat 1px 2px; }
+      #external-services-container #share li.facebook {
+        position: relative;
+        top: 1px; }
+      #external-services-container #share li.twitter iframe {
+        width: 85px !important; }
+  #external-services-container #travis-ci-status {
+    margin-top: 5px; }
+    #external-services-container #travis-ci-status a {
+      text-decoration: none; }
+    #external-services-container #travis-ci-status img {
+      vertical-align: top; }
 
 header {
   text-align: center;
@@ -114,7 +135,7 @@ header {
     font-weight: normal;
     font-size: 350%;
     letter-spacing: 20px;
-    margin: 20px 0 15px;
+    margin: 20px 0 25px;
     text-transform: uppercase; }
   header .tagline {
     font-family: "ProximaNovaSemibold", "Trebuchet MS", verdana, clean, sans-serif;
@@ -123,17 +144,17 @@ header {
     letter-spacing: 3px;
     text-transform: uppercase; }
   header .current-release {
-    font-size: 72%;
+    font-size: 70%;
     display: inline;
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     padding-left: 30px;
     padding-right: 30px; }
     header .current-release span.version {
       color: #f5e700; }
   header .page-separator {
     height: 30px;
-    margin-top: 50px;
+    margin-top: 40px;
     background: transparent url(/images/patterns/wave.png) repeat-x center center; }
     header .page-separator img {
       background: #ebe7db;
@@ -143,7 +164,10 @@ footer {
   margin-top: 125px;
   margin-bottom: 20px;
   font-size: 85%;
-  color: #68666f; }
+  padding-left: 22px;
+  background-image: url(/images/icons/puma-favicon.png);
+  background-repeat: no-repeat;
+  background-position: 0 3px; }
 
 /* ************ MARKETING PAGE ************ */
 #marketing-page h1, #marketing-page h2, #marketing-page h3 {
@@ -155,12 +179,6 @@ footer {
   font-size: 108%;
   margin-top: 45px;
   margin-bottom: 10px; }
-#marketing-page h4 {
-  font-style: italic;
-  margin-bottom: 10px; }
-  #marketing-page h4 span {
-    font-size: 77%;
-    font-weight: normal; }
 #marketing-page .section {
   margin-bottom: 60px; }
 #marketing-page #overview, #marketing-page #usage {
@@ -184,6 +202,44 @@ footer {
   #marketing-page #history h4 {
     margin-bottom: 5px;
     margin-top: 20px; }
+
+ul.testimonials {
+  margin: 0;
+  padding: 0; }
+  ul.testimonials li {
+    margin: 30px 0;
+    padding: 0;
+    position: relative;
+    min-height: 115px; }
+    ul.testimonials li .testimonial-photo {
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      position: absolute;
+      left: 10px;
+      top: -20px;
+      padding: 3px;
+      background-color: #f8f6f2;
+      line-height: 0; }
+    ul.testimonials li .quote-with-citation blockquote {
+      font-size: 93%;
+      line-height: 1.3em;
+      margin: 0;
+      padding: 10px 10px 10px 140px;
+      background: #f4f2eb; }
+    ul.testimonials li .quote-with-citation .citation {
+      font-size: 100%;
+      padding-top: 10px;
+      margin-left: 140px;
+      text-align: right;
+      margin: 0 10px; }
+    ul.testimonials li.right .testimonial-photo {
+      left: auto;
+      right: 10px; }
+    ul.testimonials li.right .quote-with-citation blockquote {
+      padding: 10px 140px 10px 10px; }
+    ul.testimonials li.right .quote-with-citation .citation {
+      text-align: left; }
 
 ul.resources {
   font-size: 85%;
