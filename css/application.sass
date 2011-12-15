@@ -83,6 +83,8 @@ $column-gutter: 50px
     font-size: 189%
   @else if $size == 26
     font-size: 196%
+  @else if $size == 27
+    font-size: 235%
 
 =font-normal
   font-family: "Trebuchet MS", verdana, clean, sans-serif
@@ -107,7 +109,7 @@ $column-gutter: 50px
 h1
   +font-size(26)
 h2
-  +font-size(21)
+  +font-size(20)
 h3
   +font-size(18)
 h4
@@ -166,13 +168,19 @@ body
   margin-bottom: 10px
   line-height: 1.2em
   span
-    +font-size(10)
+    +font-size(11)
     font-weight: normal
+
+.page-header
+  +font-proxima-nova-light
+  color: $header-color
+  letter-spacing: 3px
+  text-transform: uppercase
 
 .blockquote
   +font-size(13)
   +font-serif
-  line-height: 1.3em
+  line-height: 1.4em
   margin: 0
   padding: 20px 10px 5px 40px
   background:
@@ -186,7 +194,8 @@ body
 
 html
   background: $page-background-color url(../images/puma-footer.jpg) no-repeat right bottom
-
+  @media only screen and (max-width: 480px)
+    background-position: center bottom
 #page-container
   max-width: $max-page-width
   padding: $page-margin
@@ -444,6 +453,8 @@ ul.resources
 /* ************ SIMPLE PAGE ************ */
 
 .simple-page
+  h1
+    @extend .page-header
   blockquote
     @extend .blockquote
     margin: 20px 0
