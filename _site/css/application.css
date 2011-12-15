@@ -28,7 +28,7 @@ body {
     color: #ce086c; }
 
 /* ************ UTILS ************ */
-.pill, .code, .command {
+.pill, .code, .command, #marketing-page #comparisons ul#speed-comparison li {
   background-color: #36353a;
   color: #ebe7db;
   -moz-border-radius: 15px;
@@ -62,12 +62,12 @@ body {
   line-height: 1.2em;
   color: #0089a5; }
 
-.inner-header, #marketing-page h4, ul.testimonials li .quote-with-citation .citation {
+.inner-header, ul.testimonials li .quote-with-citation .citation, #marketing-page h4 {
   font-size: 108%;
   font-style: italic;
   margin-bottom: 10px;
   line-height: 1.2em; }
-  .inner-header span, #marketing-page h4 span, ul.testimonials li .quote-with-citation .citation span {
+  .inner-header span, ul.testimonials li .quote-with-citation .citation span, #marketing-page h4 span {
     font-size: 85%;
     font-weight: normal; }
 
@@ -89,6 +89,81 @@ body {
   background-repeat: no-repeat;
   background-position: 20px 10px;
   font-style: italic; }
+
+ul.testimonials {
+  margin: 0;
+  padding: 0; }
+  ul.testimonials li {
+    margin: 30px 0;
+    padding: 0;
+    position: relative;
+    min-height: 115px; }
+    ul.testimonials li .testimonial-photo {
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      position: absolute;
+      left: 10px;
+      top: -20px;
+      padding: 3px;
+      background-color: #f8f6f2;
+      line-height: 0; }
+      ul.testimonials li .testimonial-photo img {
+        width: 115px;
+        height: 115px; }
+        @media only screen and (max-width: 480px) {
+          ul.testimonials li .testimonial-photo img {
+            width: 75px;
+            height: 75px; } }
+    ul.testimonials li .quote-with-citation blockquote {
+      padding-left: 160px;
+      background-position: 140px 10px; }
+      @media only screen and (max-width: 480px) {
+        ul.testimonials li .quote-with-citation blockquote {
+          padding-left: 115px;
+          background-position: 95px 10px; } }
+    ul.testimonials li .quote-with-citation .citation {
+      font-size: 93%;
+      padding-top: 10px;
+      text-align: right;
+      margin: 0 10px;
+      line-height: 1em; }
+    ul.testimonials li.right .testimonial-photo {
+      left: auto;
+      right: 10px; }
+    ul.testimonials li.right .quote-with-citation blockquote {
+      padding-left: 30px;
+      padding-right: 140px;
+      background-image: url(../images/icons/quote-2.png);
+      background-position: 10px 10px; }
+      @media only screen and (max-width: 480px) {
+        ul.testimonials li.right .quote-with-citation blockquote {
+          padding-right: 115px; } }
+    ul.testimonials li.right .quote-with-citation .citation {
+      padding-left: 0;
+      padding-right: 140px;
+      text-align: left; }
+      @media only screen and (max-width: 480px) {
+        ul.testimonials li.right .quote-with-citation .citation {
+          padding-right: 115px; } }
+
+ul.resources {
+  font-size: 85%;
+  margin: 0;
+  padding: 0; }
+  ul.resources li {
+    padding: 0;
+    line-height: 1.1em;
+    margin-bottom: 1px;
+    background: #f4f2eb;
+    padding: 10px 10px 10px 33px; }
+    ul.resources li.document, ul.resources li.asset {
+      background-position: 10px 8px;
+      background-repeat: no-repeat; }
+    ul.resources li.document {
+      background-image: url(../images/icons/document.png); }
+    ul.resources li.asset {
+      background-image: url(../images/icons/puma-favicon.png); }
 
 /* ************ LAYOUT ************ */
 html {
@@ -274,81 +349,38 @@ footer {
   #marketing-page #history h4 {
     margin-bottom: 5px;
     margin-top: 20px; }
-
-ul.testimonials {
+#marketing-page #comparisons ul#speed-comparison {
   margin: 0;
   padding: 0; }
-  ul.testimonials li {
-    margin: 30px 0;
-    padding: 0;
-    position: relative;
-    min-height: 115px; }
-    ul.testimonials li .testimonial-photo {
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
+  #marketing-page #comparisons ul#speed-comparison li {
+    font-size: 85%;
+    font-family: "ProximaNovaLight", "Trebuchet MS", verdana, clean, sans-serif;
+    font-weight: normal;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    height: 19px; }
+    #marketing-page #comparisons ul#speed-comparison li p {
+      margin-bottom: 0;
       position: absolute;
-      left: 10px;
-      top: -20px;
-      padding: 3px;
-      background-color: #f8f6f2;
-      line-height: 0; }
-      ul.testimonials li .testimonial-photo img {
-        width: 115px;
-        height: 115px; }
-        @media only screen and (max-width: 480px) {
-          ul.testimonials li .testimonial-photo img {
-            width: 75px;
-            height: 75px; } }
-    ul.testimonials li .quote-with-citation blockquote {
-      padding-left: 160px;
-      background-position: 140px 10px; }
-      @media only screen and (max-width: 480px) {
-        ul.testimonials li .quote-with-citation blockquote {
-          padding-left: 115px;
-          background-position: 95px 10px; } }
-    ul.testimonials li .quote-with-citation .citation {
-      font-size: 93%;
-      padding-top: 10px;
-      text-align: right;
-      margin: 0 10px;
-      line-height: 1em; }
-    ul.testimonials li.right .testimonial-photo {
-      left: auto;
-      right: 10px; }
-    ul.testimonials li.right .quote-with-citation blockquote {
-      padding-left: 30px;
-      padding-right: 140px;
-      background-image: url(../images/icons/quote-2.png);
-      background-position: 10px 10px; }
-      @media only screen and (max-width: 480px) {
-        ul.testimonials li.right .quote-with-citation blockquote {
-          padding-right: 115px; } }
-    ul.testimonials li.right .quote-with-citation .citation {
-      padding-left: 0;
-      padding-right: 140px;
-      text-align: left; }
-      @media only screen and (max-width: 480px) {
-        ul.testimonials li.right .quote-with-citation .citation {
-          padding-right: 115px; } }
-
-ul.resources {
-  font-size: 85%;
-  margin: 0;
-  padding: 0; }
-  ul.resources li {
-    padding: 0;
-    line-height: 1.1em;
-    margin-bottom: 1px;
-    background: #f4f2eb;
-    padding: 10px 10px 10px 33px; }
-    ul.resources li.document, ul.resources li.asset {
-      background-position: 10px 8px;
-      background-repeat: no-repeat; }
-    ul.resources li.document {
-      background-image: url(../images/icons/document.png); }
-    ul.resources li.asset {
-      background-image: url(../images/icons/puma-favicon.png); }
+      line-height: 1.7em;
+      white-space: nowrap; }
+    #marketing-page #comparisons ul#speed-comparison li span.speed {
+      font-style: italic;
+      text-transform: none;
+      letter-spacing: 0; }
+    #marketing-page #comparisons ul#speed-comparison li.competitor {
+      background-color: #d9d1ba;
+      color: #807247; }
+    #marketing-page #comparisons ul#speed-comparison li.puma-1 {
+      background-color: #a70657; }
+    #marketing-page #comparisons ul#speed-comparison li.puma-2 {
+      background-color: #00677c; }
+    #marketing-page #comparisons ul#speed-comparison li.puma-3 {
+      background-color: #ccc100; }
+    #marketing-page #comparisons ul#speed-comparison li.puma-4 {
+      background-color: #36353a; }
 
 /* ************ SIMPLE PAGE ************ */
 .simple-page blockquote {
