@@ -86,7 +86,7 @@ $column-gutter: 50px
   font-family: "Trebuchet MS", verdana, clean, sans-serif
 
 =font-proxima-nova-semibold
-  font-family: "ProximaNovaSemibold", "Trebuchet MS", verdana, clean, sans-serif
+  font-family: "ProximaNovaSemibold", verdana, clean, sans-serif
   font-weight: normal
 
 =font-proxima-nova-light
@@ -234,16 +234,6 @@ header
     +font-size(14)
     letter-spacing: 3px
     text-transform: uppercase
-  .current-release
-    @extend .pill
-    +font-size(9)
-    display: inline
-    text-transform: uppercase
-    letter-spacing: 3px
-    padding-left: 30px
-    padding-right: 30px
-    span.version
-      color: $accent-color-3
   .page-separator
     height: 30px
     margin-top: 40px
@@ -284,6 +274,13 @@ footer
     float: left
   #overview
     margin-right: $column-gutter
+    .current-release
+      span
+        +font-size(10)
+        background: lighten($page-background-color, 7%)
+        padding: 5px
+        text-transform: uppercase
+        letter-spacing: 3px
     h2
       font-size: 260%
       margin: 0 0 20px 0
