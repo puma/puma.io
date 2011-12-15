@@ -195,6 +195,8 @@ html
     position: absolute
     right: 20px
     top: 23px
+    @media only screen and (max-width: 730px)
+      position: static
 
 #external-services-container
   text-align: right
@@ -227,12 +229,22 @@ header
     +font-proxima-nova-semibold
     font-size: 350%
     letter-spacing: 20px
-    margin: 20px 0 25px
+    margin: 20px auto 25px
     text-transform: uppercase
+    img
+      width: 419px
+      height: 121px
+      @media only screen and (max-width: 480px)
+        width: 300px
+        height: 87px
+      @media only screen and (max-width: 320px)
+        width: 225px
+        height: 65px
   .tagline
     +font-proxima-nova-semibold
     +font-size(14)
     letter-spacing: 3px
+    line-height: 1.4em
     text-transform: uppercase
   .page-separator
     height: 30px
@@ -241,6 +253,12 @@ header
     img
       background: $page-background-color
       padding: 0 25px
+      width: 103px
+      height: 38px
+      @media only screen and (max-width: 480px)
+        padding: 0 10px
+        width: 88px
+        height: 32px
 
 footer
   margin-top: 125px
@@ -272,6 +290,9 @@ footer
   #overview, #usage
     width: (($max-page-width - $column-gutter) / 2)
     float: left
+    @media only screen and (max-width: 730px)
+      width: 100%
+      float: none
   #overview
     margin-right: $column-gutter
     .current-release
@@ -285,6 +306,8 @@ footer
       font-size: 260%
       margin: 0 0 20px 0
       line-height: 1.1em
+      @media only screen and (max-width: 480px)
+        font-size: 200%
     .video
       margin: 25px 0
   #usage
@@ -347,6 +370,8 @@ ul.testimonials
             image: url(../images/icons/quote-2.png)
             position: 10px 10px
         .citation
+          padding-left: 0
+          padding-right: 140px
           text-align: left
 
 ul.resources

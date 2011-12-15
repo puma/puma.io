@@ -98,6 +98,9 @@ html {
     position: absolute;
     right: 20px;
     top: 23px; }
+    @media only screen and (max-width: 730px) {
+      #global-header #ey-promo {
+        position: static; } }
 
 #external-services-container {
   text-align: right;
@@ -135,13 +138,25 @@ header {
     font-weight: normal;
     font-size: 350%;
     letter-spacing: 20px;
-    margin: 20px 0 25px;
+    margin: 20px auto 25px;
     text-transform: uppercase; }
+    header h1 img {
+      width: 419px;
+      height: 121px; }
+      @media only screen and (max-width: 480px) {
+        header h1 img {
+          width: 300px;
+          height: 87px; } }
+      @media only screen and (max-width: 320px) {
+        header h1 img {
+          width: 225px;
+          height: 65px; } }
   header .tagline {
     font-family: "ProximaNovaSemibold", verdana, clean, sans-serif;
     font-weight: normal;
     font-size: 108%;
     letter-spacing: 3px;
+    line-height: 1.4em;
     text-transform: uppercase; }
   header .page-separator {
     height: 30px;
@@ -149,7 +164,14 @@ header {
     background: transparent url(../images/patterns/wave.png) repeat-x center center; }
     header .page-separator img {
       background: #ebe7db;
-      padding: 0 25px; }
+      padding: 0 25px;
+      width: 103px;
+      height: 38px; }
+      @media only screen and (max-width: 480px) {
+        header .page-separator img {
+          padding: 0 10px;
+          width: 88px;
+          height: 32px; } }
 
 footer {
   margin-top: 125px;
@@ -175,6 +197,10 @@ footer {
 #marketing-page #overview, #marketing-page #usage {
   width: 320px;
   float: left; }
+  @media only screen and (max-width: 730px) {
+    #marketing-page #overview, #marketing-page #usage {
+      width: 100%;
+      float: none; } }
 #marketing-page #overview {
   margin-right: 50px; }
   #marketing-page #overview .current-release span {
@@ -187,6 +213,9 @@ footer {
     font-size: 260%;
     margin: 0 0 20px 0;
     line-height: 1.1em; }
+    @media only screen and (max-width: 480px) {
+      #marketing-page #overview h2 {
+        font-size: 200%; } }
   #marketing-page #overview .video {
     margin: 25px 0; }
 #marketing-page #usage #quickstart-with-bundler h3 {
@@ -243,6 +272,8 @@ ul.testimonials {
       background-image: url(../images/icons/quote-2.png);
       background-position: 10px 10px; }
     ul.testimonials li.right .quote-with-citation .citation {
+      padding-left: 0;
+      padding-right: 140px;
       text-align: left; }
 
 ul.resources {
