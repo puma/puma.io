@@ -7,6 +7,8 @@
 
 $page-background-color: #EBE7DB
 
+$border-color: lighten($page-background-color, 5%)
+
 $accent-color-1: #CE086C
 $accent-color-2: #0089A5
 $accent-color-3: #F5E700
@@ -149,6 +151,15 @@ body
     top: 7px
     color: lighten($accent-color-4, 22%)
 
+.section-header
+  text-transform: uppercase
+  letter-spacing: 3px
+  +font-size(14)
+  margin-top: 45px
+  margin-bottom: 10px
+  line-height: 1.2em
+  color: $header-color
+
 .inner-header
   +font-size(14)
   font-style: italic
@@ -157,6 +168,19 @@ body
   span
     +font-size(10)
     font-weight: normal
+
+.blockquote
+  +font-size(13)
+  +font-serif
+  line-height: 1.3em
+  margin: 0
+  padding: 20px 10px 5px 40px
+  background:
+    color: lighten($page-background-color, 5%)
+    image: url(../images/icons/quote-1.png)
+    repeat: no-repeat
+    position: 20px 10px
+  font-style: italic
 
 /* ************ LAYOUT ************ */
 
@@ -294,12 +318,11 @@ footer
     text-transform: uppercase
     letter-spacing: 3px
   h3
-    +font-size(14)
-    margin-top: 45px
-    margin-bottom: 10px
-    line-height: 1.2em
+    @extend .section-header
   h4
     @extend .inner-header
+  ul, li
+    list-style: none
   .section
     margin-bottom: 60px
   #overview, #usage
@@ -363,17 +386,10 @@ ul.testimonials
 
     .quote-with-citation
       blockquote
-        +font-size(13)
-        +font-serif
-        line-height: 1.3em
-        margin: 0
-        padding: 10px 10px 10px 160px
+        @extend .blockquote
+        padding-left: 160px
         background:
-          color: lighten($page-background-color, 5%)
-          image: url(../images/icons/quote-1.png)
-          repeat: no-repeat
           position: 140px 10px
-        font-style: italic
         @media only screen and (max-width: 480px)
           padding-left: 115px
           background-position: 95px 10px
@@ -390,7 +406,8 @@ ul.testimonials
         right: 10px
       .quote-with-citation
         blockquote
-          padding: 10px 140px 10px 30px
+          padding-left: 30px
+          padding-right: 140px
           background:
             image: url(../images/icons/quote-2.png)
             position: 10px 10px
@@ -427,3 +444,18 @@ ul.resources
 /* ************ SIMPLE PAGE ************ */
 
 .simple-page
+  blockquote
+    @extend .blockquote
+    margin: 20px 0
+  table
+    margin: 20px 0
+    width: 100%
+    th
+      background: $accent-color-4
+      +opacity(0.9)
+      color: white
+      border-bottom: 1px solid lighten($accent-color-4, 15%)
+      text-align: left
+    td
+      text-align: left
+      border-bottom: 1px solid $border-color
