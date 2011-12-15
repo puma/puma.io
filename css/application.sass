@@ -146,14 +146,14 @@ body
   letter-spacing: 1px
   font-weight: normal
   position: relative
-  span.file
-    +font-proxima-nova-light
-    text-transform: uppercase
-    position: absolute
-    letter-spacing: 2px
-    right: 15px
-    top: 7px
-    color: lighten($accent-color-4, 22%)
+  &.gemfile
+    background:
+      image: url(../images/icons/gemfile.png)
+      repeat: no-repeat
+      position: right 11px
+
+.command:before
+  content: "$ "
 
 .section-header
   text-transform: uppercase
@@ -231,7 +231,7 @@ ul.testimonials
         text-align: right
         margin: 0 10px
         line-height: 1em
-    &.right
+    &:nth-child(even)
       .testimonial-photo
         left: auto
         right: 10px
@@ -437,6 +437,11 @@ footer
         font-size: 200%
     .video
       margin: 25px 0 40px
+      @media only screen and (max-width: 480px)
+        iframe
+          width: 280px
+          height: 210px
+
   #usage
     #quickstart-with-bundler
       h3
@@ -462,6 +467,8 @@ footer
         letter-spacing: 2px
         text-transform: uppercase
         height: 19px
+        @media only screen and (max-width: 480px)
+          +font-size(10)
         p
           margin-bottom: 0
           position: absolute

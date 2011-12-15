@@ -43,15 +43,13 @@ body {
   letter-spacing: 1px;
   font-weight: normal;
   position: relative; }
-  .code span.file, .command span.file {
-    font-family: "ProximaNovaLight", "Trebuchet MS", verdana, clean, sans-serif;
-    font-weight: normal;
-    text-transform: uppercase;
-    position: absolute;
-    letter-spacing: 2px;
-    right: 15px;
-    top: 7px;
-    color: #6d6b75; }
+  .code.gemfile, .command.gemfile {
+    background-image: url(../images/icons/gemfile.png);
+    background-repeat: no-repeat;
+    background-position: right 11px; }
+
+.command:before {
+  content: "$ "; }
 
 .section-header, #marketing-page h3 {
   text-transform: uppercase;
@@ -128,23 +126,23 @@ ul.testimonials {
       text-align: right;
       margin: 0 10px;
       line-height: 1em; }
-    ul.testimonials li.right .testimonial-photo {
+    ul.testimonials li:nth-child(even) .testimonial-photo {
       left: auto;
       right: 10px; }
-    ul.testimonials li.right .quote-with-citation blockquote {
+    ul.testimonials li:nth-child(even) .quote-with-citation blockquote {
       padding-left: 30px;
       padding-right: 140px;
       background-image: url(../images/icons/quote-2.png);
       background-position: 10px 10px; }
       @media only screen and (max-width: 480px) {
-        ul.testimonials li.right .quote-with-citation blockquote {
+        ul.testimonials li:nth-child(even) .quote-with-citation blockquote {
           padding-right: 115px; } }
-    ul.testimonials li.right .quote-with-citation .citation {
+    ul.testimonials li:nth-child(even) .quote-with-citation .citation {
       padding-left: 0;
       padding-right: 140px;
       text-align: left; }
       @media only screen and (max-width: 480px) {
-        ul.testimonials li.right .quote-with-citation .citation {
+        ul.testimonials li:nth-child(even) .quote-with-citation .citation {
           padding-right: 115px; } }
 
 ul.resources {
@@ -339,6 +337,10 @@ footer {
         font-size: 200%; } }
   #marketing-page #overview .video {
     margin: 25px 0 40px; }
+    @media only screen and (max-width: 480px) {
+      #marketing-page #overview .video iframe {
+        width: 280px;
+        height: 210px; } }
 #marketing-page #usage #quickstart-with-bundler h3 {
   margin-top: 0; }
 #marketing-page #testimonials {
@@ -361,6 +363,9 @@ footer {
     letter-spacing: 2px;
     text-transform: uppercase;
     height: 19px; }
+    @media only screen and (max-width: 480px) {
+      #marketing-page #comparisons ul#speed-comparison li {
+        font-size: 77%; } }
     #marketing-page #comparisons ul#speed-comparison li p {
       margin-bottom: 0;
       position: absolute;
