@@ -225,6 +225,8 @@ html
 header
   text-align: center
   margin-bottom: 55px
+  @media only screen and (max-width: 480px)
+    margin-bottom: 40px
   h1
     +font-proxima-nova-semibold
     font-size: 350%
@@ -255,7 +257,9 @@ header
       padding: 0 25px
       width: 103px
       height: 38px
-      @media only screen and (max-width: 480px)
+    @media only screen and (max-width: 480px)
+      margin-top: 0
+      img
         padding: 0 10px
         width: 88px
         height: 32px
@@ -283,6 +287,7 @@ footer
     +font-size(14)
     margin-top: 45px
     margin-bottom: 10px
+    line-height: 1.2em
   h4
     @extend .inner-header
   .section
@@ -339,26 +344,36 @@ ul.testimonials
       padding: 3px
       background-color: lighten($page-background-color, 7%)
       line-height: 0
+      img
+        width: 115px
+        height: 115px
+        @media only screen and (max-width: 480px)
+          width: 75px
+          height: 75px
+
     .quote-with-citation
       blockquote
         +font-size(13)
         +font-serif
         line-height: 1.3em
         margin: 0
-        padding: 10px 10px 10px 160px
+        padding: 10px 10px 10px 140px
         background:
           color: lighten($page-background-color, 5%)
           image: url(../images/icons/quote-1.png)
           repeat: no-repeat
           position: 140px 10px
         font-style: italic
+        @media only screen and (max-width: 480px)
+          padding-left: 115px
+          background-position: 95px 10px
       .citation
         @extend .inner-header
         +font-size(12)
         padding-top: 10px
-        margin-left: 140px
         text-align: right
         margin: 0 10px
+        line-height: 1em
     &.right
       .testimonial-photo
         left: auto
@@ -369,10 +384,14 @@ ul.testimonials
           background:
             image: url(../images/icons/quote-2.png)
             position: 10px 10px
+          @media only screen and (max-width: 480px)
+            padding-right: 115px
         .citation
           padding-left: 0
           padding-right: 140px
           text-align: left
+          @media only screen and (max-width: 480px)
+            padding-right: 115px
 
 ul.resources
   +font-size(11)

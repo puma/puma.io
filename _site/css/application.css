@@ -133,6 +133,9 @@ html {
 header {
   text-align: center;
   margin-bottom: 55px; }
+  @media only screen and (max-width: 480px) {
+    header {
+      margin-bottom: 40px; } }
   header h1 {
     font-family: "ProximaNovaSemibold", verdana, clean, sans-serif;
     font-weight: normal;
@@ -167,7 +170,9 @@ header {
       padding: 0 25px;
       width: 103px;
       height: 38px; }
-      @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: 480px) {
+      header .page-separator {
+        margin-top: 0; }
         header .page-separator img {
           padding: 0 10px;
           width: 88px;
@@ -191,7 +196,8 @@ footer {
 #marketing-page h3 {
   font-size: 108%;
   margin-top: 45px;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  line-height: 1.2em; }
 #marketing-page .section {
   margin-bottom: 60px; }
 #marketing-page #overview, #marketing-page #usage {
@@ -247,23 +253,34 @@ ul.testimonials {
       padding: 3px;
       background-color: #f8f6f2;
       line-height: 0; }
+      ul.testimonials li .testimonial-photo img {
+        width: 115px;
+        height: 115px; }
+        @media only screen and (max-width: 480px) {
+          ul.testimonials li .testimonial-photo img {
+            width: 75px;
+            height: 75px; } }
     ul.testimonials li .quote-with-citation blockquote {
       font-size: 100%;
       font-family: "Georgia", serif;
       line-height: 1.3em;
       margin: 0;
-      padding: 10px 10px 10px 160px;
+      padding: 10px 10px 10px 140px;
       background-color: #f4f2eb;
       background-image: url(../images/icons/quote-1.png);
       background-repeat: no-repeat;
       background-position: 140px 10px;
       font-style: italic; }
+      @media only screen and (max-width: 480px) {
+        ul.testimonials li .quote-with-citation blockquote {
+          padding-left: 115px;
+          background-position: 95px 10px; } }
     ul.testimonials li .quote-with-citation .citation {
       font-size: 93%;
       padding-top: 10px;
-      margin-left: 140px;
       text-align: right;
-      margin: 0 10px; }
+      margin: 0 10px;
+      line-height: 1em; }
     ul.testimonials li.right .testimonial-photo {
       left: auto;
       right: 10px; }
@@ -271,10 +288,16 @@ ul.testimonials {
       padding: 10px 140px 10px 30px;
       background-image: url(../images/icons/quote-2.png);
       background-position: 10px 10px; }
+      @media only screen and (max-width: 480px) {
+        ul.testimonials li.right .quote-with-citation blockquote {
+          padding-right: 115px; } }
     ul.testimonials li.right .quote-with-citation .citation {
       padding-left: 0;
       padding-right: 140px;
       text-align: left; }
+      @media only screen and (max-width: 480px) {
+        ul.testimonials li.right .quote-with-citation .citation {
+          padding-right: 115px; } }
 
 ul.resources {
   font-size: 85%;
