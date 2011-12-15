@@ -106,19 +106,14 @@ h1
   +font-size(26)
 h2
   +font-size(21)
-  line-height: 1.8em
 h3
   +font-size(18)
-  line-height: 1.5em
 h4
   +font-size(14)
-  line-height: 1.2em
 
-h1, h2
-  +font-proxima-nova-light
-
-h3, h4, h5, h6
+h1, h2, h3, h4, h5, h6
   +font-proxima-nova-semibold
+  line-height: 1.2em
 
 body
   color: $normal-text-color
@@ -128,7 +123,6 @@ body
       text-decoration: underline
     &:hover
       color: $accent-color-1
-
 
 /* ************ UTILS ************ */
 
@@ -222,7 +216,7 @@ html
     img
       vertical-align: top
 
-header
+header.expanded
   text-align: center
   margin-bottom: 55px
   @media only screen and (max-width: 480px)
@@ -264,6 +258,20 @@ header
         width: 88px
         height: 32px
 
+header.condensed
+  text-align: left
+  background: transparent url(../images/patterns/wave.png) repeat-x center center
+  margin-bottom: 40px
+  h1
+    +font-proxima-nova-semibold
+    font-size: 350%
+    letter-spacing: 20px
+    margin: 0
+    text-transform: uppercase
+    img
+      background: $page-background-color
+      padding-right: 10px
+
 footer
   margin-top: 125px
   margin-bottom: $page-margin
@@ -278,6 +286,8 @@ footer
 /* ************ MARKETING PAGE ************ */
 
 #marketing-page
+  h1, h2
+    +font-proxima-nova-light
   h1, h2, h3
     color: $header-color
   h2, h3
@@ -357,7 +367,7 @@ ul.testimonials
         +font-serif
         line-height: 1.3em
         margin: 0
-        padding: 10px 10px 10px 140px
+        padding: 10px 10px 10px 160px
         background:
           color: lighten($page-background-color, 5%)
           image: url(../images/icons/quote-1.png)
@@ -415,3 +425,5 @@ ul.resources
 
 
 /* ************ SIMPLE PAGE ************ */
+
+.simple-page
