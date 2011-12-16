@@ -261,7 +261,7 @@ ul.resources
     margin-bottom: 1px
     background: lighten($page-background-color, 5%)
     padding: 10px 10px 10px 33px
-    &.document, &.asset
+    &.document, &.asset, &.twitter
       background:
         position: 10px 8px
         repeat: no-repeat
@@ -269,6 +269,10 @@ ul.resources
       background-image: url(../images/icons/document.png)
     &.asset
       background-image: url(../images/icons/puma-favicon.png)
+    &.twitter
+      background:
+        position: 8px 8px
+        image: url(../images/icons/twitter.png)
 
 /* ************ LAYOUT ************ */
 
@@ -437,7 +441,7 @@ footer
         font-size: 200%
     .video
       margin: 25px 0 40px
-      @media only screen and (max-width: 480px)
+      @media only screen and (max-width: 320px)
         iframe
           width: 280px
           height: 210px
@@ -456,19 +460,17 @@ footer
       margin-top: 20px
   #comparisons
     ul#speed-comparison
-      margin: 0
+      margin: 0 0 40px
       padding: 0
       li
         @extend .pill
-        +font-size(11)
+        +font-size(10)
         +font-proxima-nova-light
         margin-bottom: 5px
         padding-left: 10px
         letter-spacing: 2px
         text-transform: uppercase
         height: 19px
-        @media only screen and (max-width: 480px)
-          +font-size(10)
         p
           margin-bottom: 0
           position: absolute
@@ -481,9 +483,9 @@ footer
         &.competitor
           background-color: $competitor-color
         &.puma-1
-          background-color: darken($accent-color-1, 8%)
+          background-color: $accent-color-1
         &.puma-2
-          background-color: darken($accent-color-2, 8%)
+          background-color: $accent-color-2
         &.puma-3
           background-color: darken($accent-color-3, 8%)
         &.puma-4
