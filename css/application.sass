@@ -14,7 +14,10 @@ $accent-color-2: #0089A5
 $accent-color-3: #F5E700
 $accent-color-4: #36353A
 
-$competitor-color: #B1ADA4
+$competitor-color-1: desaturate(complement($accent-color-1), 50%)
+$competitor-color-2: desaturate(complement($accent-color-2), 50%)
+$competitor-color-3: desaturate(complement($accent-color-3), 50%)
+$competitor-color-4: lighten(complement($accent-color-4), 50%)
 
 $engine-yard-red: #A63724
 
@@ -115,7 +118,7 @@ h2
 h3
   +font-size(18)
 h4
-  +font-size(14)
+  +font-size(16)
 
 h1, h2, h3, h4, h5, h6
   +font-proxima-nova-semibold
@@ -129,6 +132,24 @@ body
       text-decoration: underline
     &:hover
       color: $accent-color-1
+
+table
+  margin: 20px 0
+  width: 100%
+  th, td
+    +font-size(11)
+    padding: 10px
+  th
+    background: $accent-color-4
+    +opacity(0.9)
+    color: white
+    border-bottom: 1px solid lighten($accent-color-4, 15%)
+    text-align: left
+    line-height: 1.1em
+  td
+    text-align: left
+    border-bottom: 1px solid $border-color
+
 
 /* ************ UTILS ************ */
 
@@ -460,39 +481,73 @@ footer
       margin-top: 20px
   #comparisons
     .comparison
-      margin-bottom: 60px
-    ul#speed-comparison
-      margin: 0 0 40px
-      padding: 0
-      li
-        @extend .pill
-        +font-size(10)
-        margin-bottom: 5px
-        padding-left: 10px
-        letter-spacing: 1px
-        text-transform: uppercase
-        height: 15px
-        position: relative
-        p
-          margin-bottom: 0
-          position: absolute
-          top: 6px
-          white-space: nowrap
-        span.speed
-          font-style: italic
-          text-transform: none
-          letter-spacing: 0
-        &.competitor
-          background-color: $competitor-color
-        &.puma-1
-          background-color: $accent-color-1
-        &.puma-2
-          background-color: $accent-color-2
-        &.puma-3
-          background-color: darken($accent-color-3, 8%)
-        &.puma-4
-          background-color: $accent-color-4
+      margin-bottom: 40px
+    #speed-comparison
+      ul
+        margin: 0 0 40px
+        padding: 0
+        li
+          @extend .pill
+          +font-size(10)
+          margin-bottom: 5px
+          padding-left: 10px
+          letter-spacing: 1px
+          text-transform: uppercase
+          height: 15px
+          position: relative
+          p
+            margin-bottom: 0
+            position: absolute
+            top: 6px
+            white-space: nowrap
+          span.speed
+            font-style: italic
+            text-transform: none
+            letter-spacing: 0
+          &.competitor-1
+            background-color: $competitor-color-1
+          &.competitor-2
+            background-color: $competitor-color-2
+          &.competitor-3
+            background-color: $competitor-color-3
+          &.competitor-4
+            background-color: $competitor-color-4
+          &.puma-1
+            background-color: $accent-color-1
+          &.puma-2
+            background-color: $accent-color-2
+          &.puma-3
+            background-color: darken($accent-color-3, 8%)
+          &.puma-4
+            background-color: $accent-color-4
 
+
+/* ************ JQUERY VISUALIZATION THEME ************ */
+
+.visualize
+  width: 100% !important
+  +font-size(10)
+  top: 40px
+  margin-top: 15px
+  margin-bottom: 120px
+  canvas
+    background: $page-background-color
+  .visualize-labels-y li span.line
+    border-color: darken($page-background-color, 20%)
+    border-style: dotted
+    z-index: 1
+  .visualize-labels-x li span.label
+    line-height: 1.2em
+  .visualize-info
+    background: transparent
+    border: none
+    top: -40px
+    right: auto
+    opacity: 1
+    padding: 0
+  ul.visualize-key
+    li
+      line-height: 1.3em
 
 
 /* ************ SIMPLE PAGE ************ */
@@ -503,15 +558,3 @@ footer
   blockquote
     @extend .blockquote
     margin: 20px 0
-  table
-    margin: 20px 0
-    width: 100%
-    th
-      background: $accent-color-4
-      +opacity(0.9)
-      color: white
-      border-bottom: 1px solid lighten($accent-color-4, 15%)
-      text-align: left
-    td
-      text-align: left
-      border-bottom: 1px solid $border-color
