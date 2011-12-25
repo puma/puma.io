@@ -1,4 +1,6 @@
 $(function() {
+  $('#overview').fitVids();
+
   $(window).resize(function(){
     // Redraw visualization on resize to recalcuate widths
     $('.visualize').remove();
