@@ -549,8 +549,40 @@ footer
 /* ************ SIMPLE PAGE ************ */
 
 .simple-page
+  #page-content
+    min-height: 500px
   h1
     @extend .page-header
+    margin-top: 0
+    +font-size(27)
   blockquote
     @extend .blockquote
     margin: 20px 0
+  a.back
+    +font-size(11)
+
+
+/* ************ LOGOS AND ASSETS ************ */
+ul.logos
+  margin: 0
+  padding: 0
+  li
+    list-style: none
+    margin: 0 0 20px 0
+    padding: 0
+    p
+      font-weight: bold
+      margin-bottom: 5px
+    .downloads
+      font-weight: normal
+      color: darken($page-background-color, 25%)
+      +font-size(10)
+      padding-left: 3px
+    .logo
+      padding: 10px
+      width: 260px
+      text-align: center
+      border: 1px solid $border-color
+      background: url(../images/patterns/checkerboard.png)
+      &.light
+        background-color: #333
