@@ -229,14 +229,10 @@ html {
   font-size: 77%; }
   #external-services-container #share {
     margin: 0; }
-    #external-services-container #share:after {
-      clear: both;
-      content: ".";
-      display: block;
-      height: 0;
-      visibility: hidden; }
     #external-services-container #share li {
-      display: inline-block; }
+      display: inline-block;
+      zoom: 1;
+      *display: inline; }
       #external-services-container #share li.mail .s-ico {
         background: transparent url(../images/icons/mail.png) no-repeat 1px 2px; }
       #external-services-container #share li.facebook {
@@ -251,70 +247,70 @@ html {
     #external-services-container #travis-ci-status img {
       vertical-align: top; }
 
-header.expanded {
+#page-header.expanded {
   text-align: center;
   margin-bottom: 55px; }
   @media only screen and (max-width: 480px) {
-    header.expanded {
+    #page-header.expanded {
       margin-bottom: 40px; } }
-  header.expanded h1 {
+  #page-header.expanded h1 {
     font-family: "ProximaNovaSemibold", verdana, clean, sans-serif;
     font-weight: normal;
     font-size: 350%;
     letter-spacing: 20px;
     margin: 20px auto 25px;
     text-transform: uppercase; }
-    header.expanded h1 img {
+    #page-header.expanded h1 img {
       width: 419px;
       height: 121px; }
       @media only screen and (max-width: 480px) {
-        header.expanded h1 img {
+        #page-header.expanded h1 img {
           width: 300px;
           height: 87px; } }
       @media only screen and (max-width: 320px) {
-        header.expanded h1 img {
+        #page-header.expanded h1 img {
           width: 225px;
           height: 65px; } }
-  header.expanded .tagline {
+  #page-header.expanded .tagline {
     font-family: "ProximaNovaSemibold", verdana, clean, sans-serif;
     font-weight: normal;
     font-size: 108%;
     letter-spacing: 3px;
     line-height: 1.4em;
     text-transform: uppercase; }
-  header.expanded .page-separator {
+  #page-header.expanded .page-separator {
     height: 30px;
     margin-top: 40px;
     background: transparent url(../images/patterns/wave.png) repeat-x center center; }
-    header.expanded .page-separator img {
+    #page-header.expanded .page-separator img {
       background: #ebe7db;
       padding: 0 25px;
       width: 103px;
       height: 38px; }
     @media only screen and (max-width: 480px) {
-      header.expanded .page-separator {
+      #page-header.expanded .page-separator {
         margin-top: 0; }
-        header.expanded .page-separator img {
+        #page-header.expanded .page-separator img {
           padding: 0 10px;
           width: 88px;
           height: 32px; } }
 
-header.condensed {
+#page-header.condensed {
   text-align: left;
   background: transparent url(../images/patterns/wave.png) repeat-x center center;
   margin-bottom: 40px; }
-  header.condensed h1 {
+  #page-header.condensed h1 {
     font-family: "ProximaNovaSemibold", verdana, clean, sans-serif;
     font-weight: normal;
     font-size: 350%;
     letter-spacing: 20px;
     margin: 0;
     text-transform: uppercase; }
-    header.condensed h1 img {
+    #page-header.condensed h1 img {
       background: #ebe7db;
       padding-right: 10px; }
 
-footer {
+#page-footer {
   margin-top: 125px;
   margin-bottom: 20px;
   font-size: 85%;
@@ -416,6 +412,9 @@ footer {
   top: 40px;
   margin-top: 15px;
   margin-bottom: 120px; }
+  @media only screen and (max-width: 480px) {
+    .visualize {
+      top: 60px; } }
   .visualize canvas {
     background: #ebe7db; }
   .visualize .visualize-labels-y li span.line {
@@ -431,6 +430,9 @@ footer {
     right: auto;
     opacity: 1;
     padding: 0; }
+    @media only screen and (max-width: 480px) {
+      .visualize .visualize-info {
+        top: -60px; } }
   .visualize ul.visualize-key li {
     line-height: 1.3em; }
 

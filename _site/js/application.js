@@ -14,10 +14,10 @@ $(function() {
       visualizationColors.push($(this).css('background-color'));
     });
 
-    dataTable.visualize({
-      width:visualizationWidth,
-      type:'line',
-      parseDirection:'y',
+    $('#memory-usage-comparision table').visualize({
+      width: visualizationWidth,
+      type: 'line',
+      parseDirection: 'y',
       colors: visualizationColors
     });
 
