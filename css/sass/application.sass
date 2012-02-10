@@ -14,10 +14,12 @@ $accent-color-2: #0089A5
 $accent-color-3: #F5E700
 $accent-color-4: #36353A
 
-$competitor-color-1: desaturate(complement($accent-color-1), 50%)
-$competitor-color-2: desaturate(complement($accent-color-2), 50%)
-$competitor-color-3: desaturate(complement($accent-color-3), 50%)
-$competitor-color-4: lighten(complement($accent-color-4), 50%)
+$competitor-color-1: $accent-color-2
+$competitor-color-1d: darken($competitor-color-1, 10%)
+$competitor-color-2: $accent-color-3
+$competitor-color-2d: darken($competitor-color-2, 10%)
+$competitor-color-3: $accent-color-4
+$competitor-color-3d: lighten($competitor-color-3, 25%)
 
 $engine-yard-red: #A63724
 
@@ -154,9 +156,9 @@ table
 /* ************ UTILS ************ */
 
 .pill
-  background-color: $accent-color-4
   color: $page-background-color
   +border-radius(15px)
+  box-shadow: 0 0 5px rgba(0,0,0,.2)
   padding: 6px
 
 .code, .command
@@ -479,7 +481,7 @@ html
   #comparisons
     .comparison
       margin-bottom: 40px
-    #speed-comparison
+    #memory-usage-comparison
       ul
         margin: 0 0 40px
         padding: 0
@@ -501,22 +503,32 @@ html
             font-style: italic
             text-transform: none
             letter-spacing: 0
-          &.competitor-1
-            background-color: $competitor-color-1
-          &.competitor-2
-            background-color: $competitor-color-2
-          &.competitor-3
-            background-color: $competitor-color-3
-          &.competitor-4
-            background-color: $competitor-color-4
-          &.puma-1
-            background-color: $accent-color-1
-          &.puma-2
-            background-color: $accent-color-2
-          &.puma-3
-            background-color: darken($accent-color-3, 8%)
-          &.puma-4
-            background-color: $accent-color-4
+
+
+.competitor-1
+  background-color: $competitor-color-1
+.competitor-1d
+  background-color: $competitor-color-1d
+.competitor-2
+  background-color: $competitor-color-2
+  p
+    color: black
+
+.competitor-2d
+  background-color: $competitor-color-2d
+  color: black
+.competitor-3
+  background-color: $competitor-color-3
+.competitor-3d
+  background-color: $competitor-color-3d
+.puma-1
+  background-color: $accent-color-1
+.puma-1d
+  background-color: darken($accent-color-1, 10%)
+.puma-2
+  background-color: darken($accent-color-3, 8%)
+.puma-3
+  background-color: $accent-color-4
 
 
 /* ************ JQUERY VISUALIZATION THEME ************ */
@@ -530,13 +542,14 @@ html
   @media only screen and (max-width: 480px)
     top: 60px
   canvas
-    background: $page-background-color
+    background: lighten($page-background-color, 3.5%)
   .visualize-labels-y li span.line
     border-color: darken($page-background-color, 20%)
     border-style: dotted
     z-index: 1
-  .visualize-labels-x li span.label
-    line-height: 1.2em
+  .visualize-labels-x
+    li span.label
+      line-height: 1.2em
   .visualize-info
     background: transparent
     border: none

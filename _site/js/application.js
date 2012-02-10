@@ -5,20 +5,27 @@ $(function() {
     // Redraw visualization on resize to recalcuate widths
     $('.visualize').remove();
 
-    var dataTable = $('#memory-usage-comparision table');
+    var dataTable = $('#speed-comparison table');
     var visualizationWidth = dataTable.parent().width();
     var visualizationColors = [];
 
     // Grab colors from Speed Comparison chart (defined as SASS Variables)
-    $('#speed-comparison ul li').each(function(){
+    // $('#memory-usage-comparison ul li').each(function(){
+      // visualizationColors.push($(this).css('background-color'));
+    // });
+
+    $('#speed-comparison table tbody tr').each(function(){
       visualizationColors.push($(this).css('background-color'));
     });
 
-    $('#memory-usage-comparision table').visualize({
+    $('#speed-comparison table').visualize({
       width: visualizationWidth,
       type: 'line',
-      parseDirection: 'y',
-      colors: visualizationColors
+      parseDirection: 'x',
+      colors: visualizationColors,
+      yLabelInterval: 100,
+      topValue: 17000,
+      bottomValue: 0
     });
 
     dataTable.hide();

@@ -48,12 +48,12 @@ table {
     border-bottom: 1px solid #f4f2eb; }
 
 /* ************ UTILS ************ */
-.pill, .code, .command, #marketing-page #comparisons #speed-comparison ul li {
-  background-color: #36353a;
+.pill, .code, .command, #marketing-page #comparisons #memory-usage-comparison ul li {
   color: #ebe7db;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   padding: 6px; }
 
 .code, .command {
@@ -368,10 +368,10 @@ html {
     margin-top: 20px; }
 #marketing-page #comparisons .comparison {
   margin-bottom: 40px; }
-#marketing-page #comparisons #speed-comparison ul {
+#marketing-page #comparisons #memory-usage-comparison ul {
   margin: 0 0 40px;
   padding: 0; }
-  #marketing-page #comparisons #speed-comparison ul li {
+  #marketing-page #comparisons #memory-usage-comparison ul li {
     font-size: 77%;
     margin-bottom: 5px;
     padding-left: 10px;
@@ -379,31 +379,48 @@ html {
     text-transform: uppercase;
     height: 15px;
     position: relative; }
-    #marketing-page #comparisons #speed-comparison ul li p {
+    #marketing-page #comparisons #memory-usage-comparison ul li p {
       margin-bottom: 0;
       position: absolute;
       top: 6px;
       white-space: nowrap; }
-    #marketing-page #comparisons #speed-comparison ul li span.speed {
+    #marketing-page #comparisons #memory-usage-comparison ul li span.speed {
       font-style: italic;
       text-transform: none;
       letter-spacing: 0; }
-    #marketing-page #comparisons #speed-comparison ul li.competitor-1 {
-      background-color: #3e996b; }
-    #marketing-page #comparisons #speed-comparison ul li.competitor-2 {
-      background-color: #7c3729; }
-    #marketing-page #comparisons #speed-comparison ul li.competitor-3 {
-      background-color: #3d44b8; }
-    #marketing-page #comparisons #speed-comparison ul li.competitor-4 {
-      background-color: #b9bab4; }
-    #marketing-page #comparisons #speed-comparison ul li.puma-1 {
-      background-color: #ce086c; }
-    #marketing-page #comparisons #speed-comparison ul li.puma-2 {
-      background-color: #0089a5; }
-    #marketing-page #comparisons #speed-comparison ul li.puma-3 {
-      background-color: #ccc100; }
-    #marketing-page #comparisons #speed-comparison ul li.puma-4 {
-      background-color: #36353a; }
+
+.competitor-1 {
+  background-color: #0089a5; }
+
+.competitor-1d {
+  background-color: #005f72; }
+
+.competitor-2 {
+  background-color: #f5e700; }
+  .competitor-2 p {
+    color: black; }
+
+.competitor-2d {
+  background-color: #c2b700;
+  color: black; }
+
+.competitor-3 {
+  background-color: #36353a; }
+
+.competitor-3d {
+  background-color: #74727d; }
+
+.puma-1 {
+  background-color: #ce086c; }
+
+.puma-1d {
+  background-color: #9d0652; }
+
+.puma-2 {
+  background-color: #ccc100; }
+
+.puma-3 {
+  background-color: #36353a; }
 
 /* ************ JQUERY VISUALIZATION THEME ************ */
 .visualize {
@@ -416,7 +433,7 @@ html {
     .visualize {
       top: 60px; } }
   .visualize canvas {
-    background: #ebe7db; }
+    background: #f1efe6; }
   .visualize .visualize-labels-y li span.line {
     border-color: #c7bb99;
     border-style: dotted;

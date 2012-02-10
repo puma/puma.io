@@ -27,7 +27,9 @@ $.fn.visualize = function(options, container){
 			lineWeight: 4, //for line and area - stroke weight
 			barGroupMargin: 10,
 			barMargin: 1, //space around bars in bar chart (added to both sides of bar)
-			yLabelInterval: 30 //distance between y labels
+			yLabelInterval: 30, //distance between y labels
+      topValue: false,
+      bottomValue: false,
 		},options);
 
 		//reset width, height to numbers
@@ -85,6 +87,8 @@ $.fn.visualize = function(options, container){
 					return dataSum
 				},
 				topValue: function(){
+            if(o.topValue) return o.topValue;
+
 						var topValue = 0;
 						var allData = this.allData().join(',').split(',');
 						$(allData).each(function(){
@@ -93,6 +97,8 @@ $.fn.visualize = function(options, container){
 						return topValue;
 				},
 				bottomValue: function(){
+            if(o.bottomValue) return o.bottomValue;
+
 						var bottomValue = 0;
 						var allData = this.allData().join(',').split(',');
 						$(allData).each(function(){
