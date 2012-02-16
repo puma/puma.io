@@ -91,7 +91,7 @@
       Unlike other Ruby Webservers, Puma was built for speed and
       concurrency. Puma is a small library that provides a very
       fast and concurrent HTTP 1.1 server for Ruby web applications.
-      It is designed for running rack apps only.
+      It is designed for running Rack apps only.
     </p>
 
     <p>
@@ -375,8 +375,8 @@
     <h3>Puma History</h3>
 
     <p>Puma comes from a long line of ruby webservers derived from Zed Shaw's seminal work on Mongrel. The primary element that remains is Mongrel's great HTTP parser written in ragel and executed in either C or Java, depending on the ruby implementation.</p>
-    <p>Evan Phoenix looked at Mongrel and saw a chance to take the idea and move it forward to incorporate 2 elements absent from the original work. Firstly, the ruby world has moved almost entirely to use rack as the primary interface for web apps. Mongrel was written in a pre-rack world, so the first that Puma did was cut out all the unnecessary abstractions and support the rack interface directly. Second, Puma is designed to be used on a ruby implementation that provides true concurrency, such as Rubinius and JRuby. Tuning for the capability and patterns that these implementations provide meant rethinking how requests entered the system and were handled. Incorporating these ideas, Puma was born from Mongrel and began moving forward.</p>
-    <p>Today, Puma runs on all ruby implementations, but will always run best on any implementation that provides true concurrency. It looks to provide a simple and high performance request/response pipeline to rack apps, allowing it to be used by nearly all ruby web applications.</p>
+    <p>Evan Phoenix looked at Mongrel and saw a chance to take the idea and move it forward to incorporate two elements absent from the original work. Firstly, the Ruby world has moved almost entirely to use Rack as the primary interface for web apps. Mongrel was written in a pre-Rack world, so the first thing Puma did was cut out all the unnecessary abstractions and support the Rack interface directly. Second, Puma is designed to be used on a Ruby implementation which provides true concurrency, such as Rubinius and JRuby. Tuning for the capability and patterns that these implementations provide meant rethinking how requests entered the system and were handled. Incorporating these ideas, Puma was born from Mongrel and began moving forward.</p>
+    <p>Today, Puma runs on all Ruby implementations, but will always run best on any implementation that provides true concurrency. It looks to provide a simple and high performance request/response pipeline to Rack apps, allowing it to be used by nearly all ruby web applications.</p>
 
     <h4>Created By</h4>
     <p>Puma was created by Evan Phoenix in late 2011 as a derivative of Mongrel. Most of the code that came from Mongrel, save for the parser, has been rewritten. The git history for the project provides a timeline of the evolution of the project.</p>
