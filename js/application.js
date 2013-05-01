@@ -1,4 +1,8 @@
 $(function() {
+
+  var rg= "http://rubygems.org/api/v1/versions/puma/latest.json?callback=?";
+  $.getJSON(rg).done(function(data) { $('#version').text(data['version']); });
+
   $('#overview').fitVids();
 
   $(window).resize(function(){
