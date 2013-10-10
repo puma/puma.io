@@ -1,15 +1,18 @@
 # puma.io
 
-Website for the [Puma](http://puma.io) web server for Ruby. Powered by [Jekyll](https://github.com/mojombo/jekyll) and [GitHub Pages](http://pages.github.com).
+Website for the [Puma](http://puma.io) web server for Ruby. Powered by
+[Jekyll](https://github.com/mojombo/jekyll) and [GitHub
+Pages](http://pages.github.com).
 
 ## Development
 
-To view changes to the website locally, install the jekyll gem and run it in
+To view changes to the website locally, install the github-pages gem, which
+will install the correct dependencies that GitHub Pages uses, and run it in
 server mode:
 
-    $ gem install jekyll
-    $ jekyll --serve
+    $ gem install github-pages
+    $ jekyll serve
 
 ## License
 
-Puma is copyright 2011 Evan Phoenix and contributors. It is licensed under the BSD license.
+Puma is copyright 2013 Evan Phoenix and contributors. It is licensed under the BSD license.
