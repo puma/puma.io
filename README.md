@@ -15,4 +15,4 @@ server mode:
 
 ## License
 
-Puma is copyright 2013 Evan Phoenix and contributors. It is licensed under the BSD license.
+Puma is copyright 2017 Evan Phoenix and contributors. It is licensed under the BSD license.
