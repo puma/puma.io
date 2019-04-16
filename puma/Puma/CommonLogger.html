@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Class: Puma::CommonLogger &mdash; Puma</title>
+
+<link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::CommonLogger",
+    relpath = '../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../index.html'>Puma</a> &raquo; 
+      <a href='../_index.html#alpha_C'>Index (C)</a> &raquo; 
+        <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>CommonLogger&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='class'>
+<h1>Class: Puma::CommonLogger</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id='t2_inherits' class='box_2'>Inherits:</td>
+      <td class='box_rel'>
+        <span class='inheritName'><a href="../Object.html" title="Object (class)">Object</a></span>
+      </td>
+    </tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L18'>lib/puma/commonlogger.rb</a>      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p><a href="http://httpd.apache.org/docs/1.3/logs.html#common">Rack::CommonLogger} forwards every request to the given <code>app</code>, and logs a line in the <code>common log format</a> to the {logger</code>.</p>
+
+<p>If <code>logger</code> is nil, <code>CommonLogger</code> will fall back <code>rack.errors</code>, which is an instance of <code>Rack::NullLogger</code>.</p>
+
+<p><code>logger</code> can be any class, including the standard library Logger, and is expected to have either <a href="#write-instance_method" title="Puma::CommonLogger#write (method)">#write</a> or <code><<</code> method, which accepts the <a href="#FORMAT-constant" title="Puma::CommonLogger::FORMAT (constant)">FORMAT</a>. According to the SPEC, the error stream must also respond to <code>puts</code> (which takes a single argument that responds to <code>to_s</code>), and <code>flush</code> (which is called without arguments in order to make the error appear for sure)</p>
+
+  </div>
+</div>
+</div>
+<h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
+<div>
+<ul class='constants summary full'>
+  <li>
+    <span id='CONTENT_LENGTH-constant' class='summary_signature'>CONTENT_LENGTH =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L28-L28'># File 'lib/puma/commonlogger.rb', line 28</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Content-Length</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre>
+  </li>
+  <li>
+    <span id='FORMAT-constant' class='summary_signature'>FORMAT =</span>
+    <div class='docstring'>
+  <div class='discussion'>
+    
+<p>Common Log Format: <a href="http://httpd.apache.org/docs/1.3/logs.html#common">httpd.apache.org/docs/1.3/logs.html#common</a></p>
+
+<pre class="code ruby"><code class="ruby">lilith.local - - [07/Aug/2006 23:58:02 -0400] &quot;GET / HTTP/1.1&quot; 500 -
+
+%{%s - %s [%s] &quot;%s %s%s %s&quot; %d %s\n} %
+</code></pre>
+
+  </div>
+</div>
+    <a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L24-L24'># File 'lib/puma/commonlogger.rb', line 24</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>%{</span><span class='tstring_content'>%s - %s [%s] &quot;%s %s%s %s&quot; %d %s %0.4f\n</span><span class='tstring_end'>}</span></span></pre>
+  </li>
+  <li>
+    <span id='HIJACK_FORMAT-constant' class='summary_signature'>HIJACK_FORMAT =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L26-L26'># File 'lib/puma/commonlogger.rb', line 26</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>%{</span><span class='tstring_content'>%s - %s [%s] &quot;%s %s%s %s&quot; HIJACKED -1 %0.4f\n</span><span class='tstring_end'>}</span></span></pre>
+  </li>
+  <li>
+    <span id='PATH_INFO-constant' class='summary_signature'>PATH_INFO =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L29-L29'># File 'lib/puma/commonlogger.rb', line 29</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PATH_INFO</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre>
+  </li>
+  <li>
+    <span id='QUERY_STRING-constant' class='summary_signature'>QUERY_STRING =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L30-L30'># File 'lib/puma/commonlogger.rb', line 30</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>QUERY_STRING</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre>
+  </li>
+  <li>
+    <span id='REQUEST_METHOD-constant' class='summary_signature'>REQUEST_METHOD =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L31-L31'># File 'lib/puma/commonlogger.rb', line 31</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>REQUEST_METHOD</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre>
+  </li>
+</ul>
+</div>
+
+<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#new-class_method" title=".new (class method)">.<strong>new</strong>(app, logger = nil)  &#x21d2; CommonLogger </a>
+    </span>
+    <span class='note title constructor'>constructor</span>
+  </li>
+</ul>
+</div>  <!-- class_method_summary -->
+
+<h2 class='h2_sum' id='instance_method_summary'>Instance Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#call-instance_method" title="#call (instance method)">#<strong>call</strong>(env)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#extract_content_length-instance_method" title="#extract_content_length (instance method)">#<strong>extract_content_length</strong>(headers)  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#log-instance_method" title="#log (instance method)">#<strong>log</strong>(env, status, header, began_at)  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#log_hijacking-instance_method" title="#log_hijacking (instance method)">#<strong>log_hijacking</strong>(env, status, header, began_at)  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#write-instance_method" title="#write (instance method)">#<strong>write</strong>(msg)  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+</ul>
+</div>  <!-- instance_method_summary -->
+<h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
+
+  <section class='method_details first' id="new-class_method">
+  <h3 class='signature  first'>
+    .<strong>new</strong>(app, logger = nil)  &#x21d2; <code>CommonLogger</code> 
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  
+</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L33-L36'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='33' data-end='36'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/commonlogger.rb', line 33</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_app'>app</span><span class='comma'>,</span> <span class='id identifier rubyid_logger'>logger</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='ivar'>@app</span> <span class='op'>=</span> <span class='id identifier rubyid_app'>app</span>
+  <span class='ivar'>@logger</span> <span class='op'>=</span> <span class='id identifier rubyid_logger'>logger</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Method Details</h2>
+<section class='method_details first' id="call-instance_method">
+  <h3 class='signature  first'>
+    #<strong>call</strong>(env)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L38-L52'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='38' data-end='52'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/commonlogger.rb', line 38</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_began_at'>began_at</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
+  <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_header'>header</span><span class='comma'>,</span> <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='ivar'>@app</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_header'>header</span> <span class='op'>=</span> <span class='const'><a href="Util.html" title="Puma::Util (module)">Util</a></span><span class='op'>::</span><span class='const'><a href="Util/HeaderHash.html" title="Puma::Util::HeaderHash (class)">HeaderHash</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="Util/HeaderHash.html#new-class_method" title="Puma::Util::HeaderHash.new (method)">new</a></span><span class='lparen'>(</span><span class='id identifier rubyid_header'>header</span><span class='rparen'>)</span>
+
+  <span class='comment'># If we&#39;ve been hijacked, then output a special line
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rack.hijack_io</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_log_hijacking'>log_hijacking</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HIJACK</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_header'>header</span><span class='comma'>,</span> <span class='id identifier rubyid_began_at'>began_at</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_ary'>ary</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rack.after_reply</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_ary'>ary</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_header'>header</span><span class='comma'>,</span> <span class='id identifier rubyid_began_at'>began_at</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+  <span class='lbracket'>[</span><span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_header'>header</span><span class='comma'>,</span> <span class='id identifier rubyid_body'>body</span><span class='rbracket'>]</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="extract_content_length-instance_method">
+  <h3 class='signature priv'>
+    #<strong>extract_content_length</strong>(headers)   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L103-L106'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='103' data-end='106'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/commonlogger.rb', line 103</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_extract_content_length'>extract_content_length</span><span class='lparen'>(</span><span class='id identifier rubyid_headers'>headers</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_headers'>headers</span><span class='lbracket'>[</span><span class='const'><a href="#CONTENT_LENGTH-constant" title="Puma::CommonLogger::CONTENT_LENGTH (constant)">CONTENT_LENGTH</a></span><span class='rbracket'>]</span> <span class='kw'>or</span> <span class='kw'>return</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0</span><span class='tstring_end'>&#39;</span></span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="log-instance_method">
+  <h3 class='signature priv'>
+    #<strong>log</strong>(env, status, header, began_at)   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L72-L89'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='72' data-end='89'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/commonlogger.rb', line 72</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_header'>header</span><span class='comma'>,</span> <span class='id identifier rubyid_began_at'>began_at</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_now'>now</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
+  <span class='id identifier rubyid_length'>length</span> <span class='op'>=</span> <span class='id identifier rubyid_extract_content_length'>extract_content_length</span><span class='lparen'>(</span><span class='id identifier rubyid_header'>header</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='const'><a href="#FORMAT-constant" title="Puma::CommonLogger::FORMAT (constant)">FORMAT</a></span> <span class='op'>%</span> <span class='lbracket'>[</span>
+    <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP_X_FORWARDED_FOR</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>REMOTE_ADDR</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>REMOTE_USER</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%d/%b/%Y:%H:%M:%S %z</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='const'><a href="#REQUEST_METHOD-constant" title="Puma::CommonLogger::REQUEST_METHOD (constant)">REQUEST_METHOD</a></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='const'><a href="#PATH_INFO-constant" title="Puma::CommonLogger::PATH_INFO (constant)">PATH_INFO</a></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='const'><a href="#QUERY_STRING-constant" title="Puma::CommonLogger::QUERY_STRING (constant)">QUERY_STRING</a></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>?</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='const'><a href="#QUERY_STRING-constant" title="Puma::CommonLogger::QUERY_STRING (constant)">QUERY_STRING</a></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HTTP_VERSION</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_status'>status</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='int'>3</span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_length'>length</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='id identifier rubyid_began_at'>began_at</span> <span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="log_hijacking-instance_method">
+  <h3 class='signature priv'>
+    #<strong>log_hijacking</strong>(env, status, header, began_at)   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L56-L70'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='56' data-end='70'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/commonlogger.rb', line 56</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_log_hijacking'>log_hijacking</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_header'>header</span><span class='comma'>,</span> <span class='id identifier rubyid_began_at'>began_at</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_now'>now</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
+
+  <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='const'><a href="#HIJACK_FORMAT-constant" title="Puma::CommonLogger::HIJACK_FORMAT (constant)">HIJACK_FORMAT</a></span> <span class='op'>%</span> <span class='lbracket'>[</span>
+    <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP_X_FORWARDED_FOR</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>REMOTE_ADDR</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>REMOTE_USER</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%d/%b/%Y %H:%M:%S</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='const'><a href="#REQUEST_METHOD-constant" title="Puma::CommonLogger::REQUEST_METHOD (constant)">REQUEST_METHOD</a></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='const'><a href="#PATH_INFO-constant" title="Puma::CommonLogger::PATH_INFO (constant)">PATH_INFO</a></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='const'><a href="#QUERY_STRING-constant" title="Puma::CommonLogger::QUERY_STRING (constant)">QUERY_STRING</a></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>?</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='const'><a href="#QUERY_STRING-constant" title="Puma::CommonLogger::QUERY_STRING (constant)">QUERY_STRING</a></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HTTP_VERSION</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='id identifier rubyid_began_at'>began_at</span> <span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="write-instance_method">
+  <h3 class='signature priv'>
+    #<strong>write</strong>(msg)   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/commonlogger.rb#L91-L101'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='91' data-end='101'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/commonlogger.rb', line 91</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_logger'>logger</span> <span class='op'>=</span> <span class='ivar'>@logger</span> <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rack.errors</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+
+  <span class='comment'># Standard library logger doesn&#39;t support write but it supports &lt;&lt; which actually
+</span>  <span class='comment'># calls to write on the log device without formatting
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_write'>write</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_logger'>logger</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_msg'>msg</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>

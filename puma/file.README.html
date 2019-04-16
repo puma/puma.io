@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>File: README &mdash; Puma</title>
+
+<link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "README",
+    relpath = '';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='index.html'>Puma</a> &raquo; 
+      <a href='_index.html'>Index</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>File: README&nbsp;&#x25B2;</a></span>
+          </div>
+
+    <a id='list_href' href="class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='file'>
+<p align="center">
+  <img src="http://puma.io/images/logos/puma-logo-large.png">
+</p>
+
+<h1>Puma: A Ruby Web Server Built For Concurrency</h1>
+
+<p><a href="https://gitter.im/puma/puma?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a>
+<a href="http://travis-ci.org/puma/puma"><img src="https://secure.travis-ci.org/puma/puma.svg" alt="Build Status"></a>
+<a href="https://ci.appveyor.com/project/nateberkopec/puma"><img src="https://img.shields.io/appveyor/ci/nateberkopec/puma.svg" alt="AppVeyor"></a>
+<a href="https://gemnasium.com/puma/puma"><img src="https://gemnasium.com/puma/puma.svg" alt="Dependency Status"></a>
+<a href="https://codeclimate.com/github/puma/puma"><img src="https://codeclimate.com/github/puma/puma.svg" alt="Code Climate"></a></p>
+
+<p><a href="Puma.html" title="Puma (module)">Puma</a> is a <strong>simple, fast, threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications</strong> in development and production.</p>
+
+<h2>Built For Speed &amp; Concurrency</h2>
+
+<p>Under the hood, <a href="Puma.html" title="Puma (module)">Puma</a> processes requests using a C-optimized Ragel extension (inherited from Mongrel) that provides fast, accurate HTTP 1.1 protocol parsing in a portable way. <a href="Puma.html" title="Puma (module)">Puma</a> then serves the request in a thread from an internal thread pool. Since each request is served in a separate thread, truly concurrent Ruby implementations (JRuby, Rubinius) will use all available CPU cores.</p>
+
+<p><a href="Puma.html" title="Puma (module)">Puma</a> was designed to be the go-to server for <a href="http://rubini.us">Rubinius</a>, but also works well with JRuby and MRI.</p>
+
+<p>On MRI, there is a Global VM Lock (GVL) that ensures only one thread can run Ruby code at a time. But if you&#39;re doing a lot of blocking <a href="IO.html" title="IO (class)">IO</a> (such as HTTP calls to external APIs like Twitter), <a href="Puma.html" title="Puma (module)">Puma</a> still improves MRI&#39;s throughput by allowing blocking <a href="IO.html" title="IO (class)">IO</a> to be run concurrently.</p>
+
+<h2>Quick Start</h2>
+
+<pre class="code ruby"><code class="ruby">$ gem install puma
+$ puma &lt;any rackup (*.ru) file&gt;
+</code></pre>
+
+<h2>Frameworks</h2>
+
+<h3>Rails</h3>
+
+<p>Puma is the default server for Rails, and should already be included in your Gemfile.</p>
+
+<p>Then start your server with the <code>rails</code> command:</p>
+
+<pre class="code ruby"><code class="ruby">$ rails s
+</code></pre>
+
+<p>Many configuration options are not available when using <code>rails s</code>. It is recommended that you use Puma&#39;s executable instead:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec puma
+</code></pre>
+
+<h3>Sinatra</h3>
+
+<p>You can run your Sinatra application with Puma from the command line like this:</p>
+
+<pre class="code ruby"><code class="ruby">$ ruby app.rb -s Puma
+</code></pre>
+
+<p>Or you can configure your application to always use Puma:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sinatra</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_configure'>configure</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_set'>set</span> <span class='symbeg'>:</span><span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_puma'>puma</span> <span class='rbrace'>}</span>
+</code></pre>
+
+<h2>Configuration</h2>
+
+<p>Puma provides numerous options. Consult <code>puma -h</code> (or <code>puma --help</code>) for a full list of CLI options, or see <a href="https://github.com/puma/puma/blob/master/lib/puma/dsl.rb">dsl.rb</a>.</p>
+
+<h3>Thread Pool</h3>
+
+<p>Puma uses a thread pool. You can set the minimum and maximum number of threads that are available in the pool with the <code>-t</code> (or <code>--threads</code>) flag:</p>
+
+<pre class="code ruby"><code class="ruby">$ puma -t 8:32
+</code></pre>
+
+<p>Puma will automatically scale the number of threads, from the minimum until it caps out at the maximum, based on how much traffic is present. The current default is <code>0:16</code>. Feel free to experiment, but be careful not to set the number of maximum threads to a large number, as you may exhaust resources on the system (or hit resource limits).</p>
+
+<p>Be aware that additionally Puma creates threads on its own for internal purposes (e.g. handling slow clients). So even if you specify -t 1:1, expect around 7 threads created in your application.</p>
+
+<h3>Clustered mode</h3>
+
+<p>Puma also offers &quot;clustered mode&quot;. Clustered mode <code>fork</code>s workers from a master process. Each child process still has its own thread pool. You can tune the number of workers with the <code>-w</code> (or <code>--workers</code>) flag:</p>
+
+<pre class="code ruby"><code class="ruby">$ puma -t 8:32 -w 3
+</code></pre>
+
+<p>Note that threads are still used in clustered mode, and the <code>-t</code> thread flag setting is per worker, so <code>-w 2 -t 16:16</code> will spawn 32 threads in total.</p>
+
+<p>In clustered mode, Puma may &quot;preload&quot; your application. This loads all the application code <em>prior</em> to forking. Preloading reduces total memory usage of your application via an operating system feature called <a href="https://en.wikipedia.org/wiki/Copy-on-write">copy-on-write</a> (Ruby 2.0+ only). Use the <code>--preload</code> flag from the command line:</p>
+
+<pre class="code ruby"><code class="ruby">$ puma -w 3 --preload
+</code></pre>
+
+<p>If you&#39;re using a configuration file, use the <code>preload_app!</code> method:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
+</span><span class='id identifier rubyid_workers'>workers</span> <span class='int'>3</span>
+<span class='id identifier rubyid_preload_app!'>preload_app!</span>
+</code></pre>
+
+<p>Additionally, you can specify a block in your configuration file that will be run on boot of each worker:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
+</span><span class='id identifier rubyid_on_worker_boot'>on_worker_boot</span> <span class='kw'>do</span>
+  <span class='comment'># configuration here
+</span><span class='kw'>end</span>
+</code></pre>
+
+<p>This code can be used to setup the process before booting the application, allowing
+you to do some Puma-specific things that you don&#39;t want to embed in your application.
+For instance, you could fire a log notification that a worker booted or send something to statsd.
+This can be called multiple times.</p>
+
+<p>If you&#39;re preloading your application and using ActiveRecord, it&#39;s recommended that you setup your connection pool here:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
+</span><span class='id identifier rubyid_on_worker_boot'>on_worker_boot</span> <span class='kw'>do</span>
+  <span class='const'>ActiveSupport</span><span class='period'>.</span><span class='id identifier rubyid_on_load'>on_load</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_active_record'>active_record</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='const'>ActiveRecord</span><span class='op'>::</span><span class='const'>Base</span><span class='period'>.</span><span class='id identifier rubyid_establish_connection'>establish_connection</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<p>On top of that, you can specify a block in your configuration file that will be run before workers are forked:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
+</span><span class='id identifier rubyid_before_fork'>before_fork</span> <span class='kw'>do</span>
+  <span class='comment'># configuration here
+</span><span class='kw'>end</span>
+</code></pre>
+
+<p>Preloading can’t be used with phased restart, since phased restart kills and restarts workers one-by-one, and preload_app copies the code of master into the workers.</p>
+
+<h3>Binding TCP / Sockets</h3>
+
+<p>In contrast to many other server configs which require multiple flags, Puma simply uses one URI parameter with the <code>-b</code> (or <code>--bind</code>) flag:</p>
+
+<pre class="code ruby"><code class="ruby">$ puma -b tcp://127.0.0.1:9292
+</code></pre>
+
+<p>Want to use UNIX Sockets instead of TCP (which can provide a 5-10% performance boost)?</p>
+
+<pre class="code ruby"><code class="ruby">$ puma -b unix:///var/run/puma.sock
+</code></pre>
+
+<p>If you need to change the permissions of the UNIX socket, just add a umask parameter:</p>
+
+<pre class="code ruby"><code class="ruby">$ puma -b &#39;unix:///var/run/puma.sock?umask=0111&#39;
+</code></pre>
+
+<p>Need a bit of security? Use SSL sockets:</p>
+
+<pre class="code ruby"><code class="ruby">$ puma -b &#39;ssl://127.0.0.1:9292?key=path_to_key&amp;cert=path_to_cert&#39;
+</code></pre>
+
+<h4>Controlling SSL Cipher Suites</h4>
+
+<p>Need to use or avoid specific SSL cipher suites? Use ssl_cipher_filter or ssl_cipher_list options.</p>
+
+<h5>Ruby:</h5>
+
+<pre class="code ruby"><code class="ruby">$ puma -b &#39;ssl://127.0.0.1:9292?key=path_to_key&amp;cert=path_to_cert&amp;ssl_cipher_filter=!aNULL:AES+SHA&#39;
+</code></pre>
+
+<h5>JRuby:</h5>
+
+<pre class="code ruby"><code class="ruby">$ puma -b &#39;ssl://127.0.0.1:9292?keystore=path_to_keystore&amp;keystore-pass=keystore_password&amp;ssl_cipher_list=TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA&#39;
+</code></pre>
+
+<p>See <a href="https://www.openssl.org/docs/man1.0.2/apps/ciphers.html">https://www.openssl.org/docs/man1.0.2/apps/ciphers.html</a> for cipher filter format and full list of cipher suites.</p>
+
+<h3>Control/Status Server</h3>
+
+<p>Puma has a built-in status/control app that can be used to query and control Puma itself.</p>
+
+<pre class="code ruby"><code class="ruby">$ puma --control-url tcp://127.0.0.1:9293 --control-token foo
+</code></pre>
+
+<p>Puma will start the control server on localhost port 9293. All requests to the control server will need to include <code>token=foo</code> as a query parameter. This allows for simple authentication. Check out <a href="https://github.com/puma/puma/blob/master/lib/puma/app/status.rb">status.rb</a> to see what the app has available.</p>
+
+<p>You can also interact with the control server via <code>pumactl</code>. This command will restart Puma:</p>
+
+<pre class="code ruby"><code class="ruby">$ pumactl --control-url &#39;tcp://127.0.0.1:9293&#39; --control-token foo restart
+</code></pre>
+
+<p>To see a list of <code>pumactl</code> options, use <code>pumactl --help</code>.</p>
+
+<h3>Configuration File</h3>
+
+<p>You can also provide a configuration file which Puma will use with the <code>-C</code> (or <code>--config</code>) flag:</p>
+
+<pre class="code ruby"><code class="ruby">$ puma -C /path/to/config
+</code></pre>
+
+<p>If no configuration file is specified, Puma will look for a configuration file at <code>config/puma.rb</code>. If an environment is specified, either via the <code>-e</code> and <code>--environment</code> flags, or through the <code>RACK_ENV</code> environment variable, the default file location will be <code>config/puma/environment_name.rb</code>.</p>
+
+<p>If you want to prevent Puma from looking for a configuration file in those locations, provide a dash as the argument to the <code>-C</code> (or <code>--config</code>) flag:</p>
+
+<pre class="code ruby"><code class="ruby">$ puma -C &quot;-&quot;
+</code></pre>
+
+<p>Take the following <a href="https://github.com/puma/puma/blob/master/examples/config.rb">sample configuration</a> as inspiration or check out <a href="https://github.com/puma/puma/blob/master/lib/puma/dsl.rb">dsl.rb</a> to see all available options.</p>
+
+<h2>Restart</h2>
+
+<p>Puma includes the ability to restart itself. When available (MRI, Rubinius, JRuby), Puma performs a &quot;hot restart&quot;. This is the same functionality available in <em>Unicorn</em> and <em>NGINX</em> which keep the server sockets open between restarts. This makes sure that no pending requests are dropped while the restart is taking place.</p>
+
+<p>For more, see the [restart documentation]).</p>
+
+<h2>Signals</h2>
+
+<p>Puma responds to several signals. A detailed guide to using UNIX signals with Puma can be found in the [signals documentation]).</p>
+
+<h2>Platform Constraints</h2>
+
+<p>Some platforms do not support all Puma features.</p>
+
+<ul>
+<li><strong>JRuby</strong>, <strong>Windows</strong>: server sockets are not seamless on restart, they must be closed and reopened. These platforms have no way to pass descriptors into a new process that is exposed to Ruby. Also, cluster mode is not supported due to a lack of fork(2).</li>
+<li><strong>Windows</strong>: daemon mode is not supported due to a lack of fork(2).</li>
+</ul>
+
+<h2>Known Bugs</h2>
+
+<p>For MRI versions 2.2.7, 2.2.8, 2.2.9, 2.2.10 2.3.4 and 2.4.1, you may see <code>stream closed in another thread (IOError)</code>. It may be caused by a <a href="https://bugs.ruby-lang.org/issues/13632">Ruby bug</a>. It can be fixed with the gem <a href="https://rubygems.org/gems/stopgap_13632:">https://rubygems.org/gems/stopgap_13632:</a></p>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>if</span> <span class='qwords_beg'>%w(</span><span class='tstring_content'>2.2.7</span><span class='words_sep'> </span><span class='tstring_content'>2.2.8</span><span class='words_sep'> </span><span class='tstring_content'>2.2.9</span><span class='words_sep'> </span><span class='tstring_content'>2.2.10</span><span class='words_sep'> </span><span class='tstring_content'>2.3.4</span><span class='words_sep'> </span><span class='tstring_content'>2.4.1</span><span class='tstring_end'>)</span></span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='const'>RUBY_VERSION</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>stopgap_13632</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>rescue</span> <span class='const'>LoadError</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h2>Deployment</h2>
+
+<p>Puma has support for Capistrano with an <a href="https://github.com/seuros/capistrano-puma">external gem</a>.</p>
+
+<p>It is common to use process monitors with Puma. Modern process monitors like systemd or upstart
+provide continuous monitoring and restarts for increased
+reliability in production environments:</p>
+
+<ul>
+<li><a href="https://github.com/puma/puma/tree/master/tools/jungle">tools/jungle</a> for sysvinit (init.d) and upstart</li>
+<li>[docs/systemd])</li>
+</ul>
+
+<h2>Contributing</h2>
+
+<p>To run the test suite:</p>
+
+<pre class="code bash"><code class="bash">$ bundle install
+$ bundle exec rake
+</code></pre>
+
+<h2>License</h2>
+
+<p>Puma is copyright Evan Phoenix and contributors, licensed under the BSD 3-Clause license. See the included LICENSE file for details.</p>
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>

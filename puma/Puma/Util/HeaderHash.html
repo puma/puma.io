@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Class: Puma::Util::HeaderHash &mdash; Puma</title>
+
+<link rel='stylesheet'  type='text/css' href='../../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::Util::HeaderHash",
+    relpath = '../../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../../index.html'>Puma</a> &raquo; 
+      <a href='../../_index.html#alpha_H'>Index (H)</a> &raquo; 
+        <a href="../../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+        <a href="../Util.html" title="Puma::Util (module)">Util</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>HeaderHash&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='class'>
+<h1>Class: Puma::Util::HeaderHash</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='box_h' colspan='2'>Super Chains via Extension / Inclusion / Inheritance</td></tr>
+    <tr>
+      <td colspan='2'>
+        <div class='box_2'>Class Chain:</div>
+        <div class='box_22'>
+          self,
+          Hash
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan='2'>
+        <div class='box_2'>Instance Chain:</div>
+        <div class='box_22'>
+          self,
+          Hash
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td id='t2_inherits' class='box_2 o'>Inherits:</td>
+      <td class='box_rel'>
+        <span class='inheritName'>Hash</span>
+        <ul class='fullTree'>
+          <li><a href="../../Object.html" title="Object (class)">::Object</a></li>
+          <li class='next'>Hash</li>
+          <li class='next'>Puma::Util::HeaderHash</li>
+        </ul>
+      </td>
+    </tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L63'>lib/puma/util.rb</a>      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>A case-insensitive Hash that preserves the original case of a header when set.</p>
+
+  </div>
+</div>
+</div>
+<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#new-class_method" title=".new (class method)">.<strong>new</strong>(hash = {})  &#x21d2; HeaderHash </a>
+    </span>
+    <span class='note title constructor'>constructor</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#[]-class_method" title=".[] (class method)">.<strong>[]</strong>(k)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#[]=-class_method" title=".[]= (class method)">.<strong>[]=</strong>(k, v)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#delete-class_method" title=".delete (class method)">.<strong>delete</strong>(k)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#each-class_method" title=".each (class method)">.<strong>each</strong>  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#has_key%3F-class_method" title=".has_key? (class method)">.<strong>has_key?</strong>(k)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Alias for <a href="#include%3F-instance_method" title="Puma::Util::HeaderHash#include? (method)">#include?</a>.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#include%3F-class_method" title=".include? (class method)">.<strong>include?</strong>(k)  &#x21d2; Boolean </a>
+      (also: .has_key?, .member?, .key?)
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#initialize-class_method" title=".initialize (class method)">.<strong>initialize</strong>(hash = {})  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#key%3F-class_method" title=".key? (class method)">.<strong>key?</strong>(k)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Alias for <a href="#include%3F-instance_method" title="Puma::Util::HeaderHash#include? (method)">#include?</a>.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#member%3F-class_method" title=".member? (class method)">.<strong>member?</strong>(k)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Alias for <a href="#include%3F-instance_method" title="Puma::Util::HeaderHash#include? (method)">#include?</a>.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#merge-class_method" title=".merge (class method)">.<strong>merge</strong>(other)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#merge!-class_method" title=".merge! (class method)">.<strong>merge!</strong>(other)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#replace-class_method" title=".replace (class method)">.<strong>replace</strong>(other)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#to_hash-class_method" title=".to_hash (class method)">.<strong>to_hash</strong>  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+</ul>
+</div>  <!-- class_method_summary -->
+<h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
+
+  <section class='method_details first' id="new-class_method">
+  <h3 class='signature  first'>
+    .<strong>new</strong>(hash = {})  &#x21d2; <code>HeaderHash</code> 
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  
+</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L64-L66'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='64' data-end='66'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 64</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='const'><a href="" title="Puma::Util::HeaderHash (class)">HeaderHash</a></span> <span class='op'>===</span> <span class='id identifier rubyid_hash'>hash</span> <span class='op'>?</span> <span class='id identifier rubyid_hash'>hash</span> <span class='op'>:</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Class Method Details</h2>
+<section class='method_details first' id="[]-class_method">
+  <h3 class='signature private first'>
+    .<strong>[]</strong>(k)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L86-L88'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='86' data-end='88'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 86</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='ivar'>@names</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="[]=-class_method">
+  <h3 class='signature private'>
+    .<strong>[]=</strong>(k, v)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L90-L95'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='90' data-end='95'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 90</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_canonical'>canonical</span> <span class='op'>=</span> <span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+  <span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_k'>k</span> <span class='kw'>if</span> <span class='ivar'>@names</span><span class='lbracket'>[</span><span class='id identifier rubyid_canonical'>canonical</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@names</span><span class='lbracket'>[</span><span class='id identifier rubyid_canonical'>canonical</span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='id identifier rubyid_k'>k</span> <span class='comment'># .delete is expensive, don&#39;t invoke it unless necessary
+</span>  <span class='ivar'>@names</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@names</span><span class='lbracket'>[</span><span class='id identifier rubyid_canonical'>canonical</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_k'>k</span>
+  <span class='kw'>super</span> <span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="delete-class_method">
+  <h3 class='signature private'>
+    .<strong>delete</strong>(k)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L97-L102'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='97' data-end='102'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 97</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_canonical'>canonical</span> <span class='op'>=</span> <span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>super</span> <span class='ivar'>@names</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_canonical'>canonical</span><span class='rparen'>)</span>
+  <span class='ivar'>@names</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='op'>|</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span> <span class='op'>==</span> <span class='id identifier rubyid_canonical'>canonical</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="each-class_method">
+  <h3 class='signature private'>
+    .<strong>each</strong>   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L74-L78'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='74' data-end='78'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 74</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_each'>each</span>
+  <span class='kw'>super</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+    <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_to_ary'>to_ary</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_to_ary'>to_ary</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="has_key?-class_method">
+  <h3 class='signature private'>
+    .<strong>has_key?</strong>(k)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Alias for <a href="#include%3F-instance_method" title="Puma::Util::HeaderHash#include? (method)">#include?</a>.</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L108-L108'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='108' data-end='108'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 108</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_include?'>include?</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="include?-class_method">
+  <h3 class='signature private'>
+    .<strong>include?</strong>(k)  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+    <span class='aliases'>Also known as: <span class='names'>.has_key?, .member?, .key?</span></span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  
+</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L104-L106'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='104' data-end='106'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 104</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span>
+  <span class='ivar'>@names</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='ivar'>@names</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="initialize-class_method">
+  <h3 class='signature private'>
+    .<strong>initialize</strong>(hash = {})   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L68-L72'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='68' data-end='72'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 68</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='ivar'>@names</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='kw'>self</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="key?-class_method">
+  <h3 class='signature private'>
+    .<strong>key?</strong>(k)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Alias for <a href="#include%3F-instance_method" title="Puma::Util::HeaderHash#include? (method)">#include?</a>.</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L110-L110'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='110' data-end='110'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 110</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='id identifier rubyid_key?'>key?</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_include?'>include?</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="member?-class_method">
+  <h3 class='signature private'>
+    .<strong>member?</strong>(k)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Alias for <a href="#include%3F-instance_method" title="Puma::Util::HeaderHash#include? (method)">#include?</a>.</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L109-L109'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='109' data-end='109'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 109</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='id identifier rubyid_member?'>member?</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_include?'>include?</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="merge-class_method">
+  <h3 class='signature private'>
+    .<strong>merge</strong>(other)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L117-L120'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='117' data-end='120'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 117</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='id identifier rubyid_dup'>dup</span>
+  <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span> <span class='id identifier rubyid_other'>other</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="merge!-class_method">
+  <h3 class='signature private'>
+    .<strong>merge!</strong>(other)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L112-L115'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='112' data-end='115'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 112</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='kw'>self</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span> <span class='rbrace'>}</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="replace-class_method">
+  <h3 class='signature private'>
+    .<strong>replace</strong>(other)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L122-L126'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='122' data-end='126'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 122</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_replace'>replace</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_clear'>clear</span>
+  <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='kw'>self</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span> <span class='rbrace'>}</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="to_hash-class_method">
+  <h3 class='signature private'>
+    .<strong>to_hash</strong>   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/util.rb#L80-L84'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='80' data-end='84'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 80</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_hash'>to_hash</span>
+  <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_hash'>hash</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>
