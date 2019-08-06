@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Class: Puma::Configuration &mdash; Puma</title>
+
+<link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::Configuration",
+    relpath = '../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../index.html'>Puma</a> &raquo; 
+      <a href='../_index.html#alpha_C'>Index (C)</a> &raquo; 
+        <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>Configuration&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='class'>
+<h1>Class: Puma::Configuration</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='box_h' colspan='2'>Namespace Children</td></tr>
+    <tr><td colspan='2'>
+      <div class='box_1'>Classes:</div>
+      <div class='box_11'>
+          <a href="Configuration/ConfigMiddleware.html" title="Puma::Configuration::ConfigMiddleware (class)">ConfigMiddleware</a>      </div>
+    </td></tr>
+    <tr><td class='box_h' colspan='2'>Super Chains via Extension / Inclusion / Inheritance</td></tr>
+    <tr>
+      <td colspan='2'>
+        <div class='box_2'>Instance Chain:</div>
+        <div class='box_22'>
+          self,
+          <a href="ConfigDefault.html" title="Puma::ConfigDefault (module)">ConfigDefault</a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td id='t2_inherits' class='box_2'>Inherits:</td>
+      <td class='box_rel'>
+        <span class='inheritName'><a href="../Object.html" title="Object (class)">Object</a></span>
+      </td>
+    </tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L128'>lib/puma/configuration.rb</a>      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>The main configuration class of <a href="../Puma.html" title="Puma (module)">::Puma</a>.</p>
+
+<p>It can be initialized with a set of “user” options and “default” options. Defaults will be merged with `Configuration.puma_default_options`.</p>
+
+<p>This class works together with 2 main other classes the `UserFileDefaultOptions` which stores configuration options in order so the precedence is that user set configuration wins over “file” based configuration wins over “default” configuration. These configurations are set via the `DSL` class. This class powers the <a href="../Puma.html" title="Puma (module)">::Puma</a> config file syntax and does double duty as a configuration <a href="DSL.html" title="Puma::DSL (class)">DSL</a> used by the `Puma::CLI` and <a href="../Puma.html" title="Puma (module)">::Puma</a> rack handler.</p>
+
+<p>It also handles loading plugins.</p>
+
+<p>&gt; Note: `:port` and `:host` are not valid keys. By they time they make it to the</p>
+
+<pre class="code ruby"><code class="ruby">configuration options they are expected to be incorporated into a `:binds` key.
+Under the hood the DSL maps `port` and `host` calls to `:binds`
+
+config = Configuration.new({}) do |user_config, file_config, default_config|
+  user_config.port 3003
+end
+config.load
+puts config.options[:port]
+# =&gt; 3003
+</code></pre>
+
+<p>It is expected that `load` is called on the configuration instance after setting config. This method expands any values in `config_file` and puts them into the correct configuration option hash.</p>
+
+<p>Once all configuration is complete it is expected that `clamp` will be called on the instance. This will expand any procs stored under “default” values. This is done because an environment variable may have been modified while loading configuration files.</p>
+
+  </div>
+</div>
+</div>
+<h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
+<div>
+  <h3 class='inherited'><a href="ConfigDefault.html" title="Puma::ConfigDefault (module)">ConfigDefault</a> - Included</h3>
+  <p  class='inherited'>
+    <a href="ConfigDefault.html#DefaultRackup-constant" title="Puma::ConfigDefault::DefaultRackup (constant)">DefaultRackup</a>, 
+    <a href="ConfigDefault.html#DefaultTCPHost-constant" title="Puma::ConfigDefault::DefaultTCPHost (constant)">DefaultTCPHost</a>, 
+    <a href="ConfigDefault.html#DefaultTCPPort-constant" title="Puma::ConfigDefault::DefaultTCPPort (constant)">DefaultTCPPort</a>, 
+    <a href="ConfigDefault.html#DefaultWorkerShutdownTimeout-constant" title="Puma::ConfigDefault::DefaultWorkerShutdownTimeout (constant)">DefaultWorkerShutdownTimeout</a>, 
+    <a href="ConfigDefault.html#DefaultWorkerTimeout-constant" title="Puma::ConfigDefault::DefaultWorkerTimeout (constant)">DefaultWorkerTimeout</a>
+  </p>
+</div>
+
+<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#new-class_method" title=".new (class method)">.<strong>new</strong>(user_options = {}, default_options = {}, &amp;block)  &#x21d2; Configuration </a>
+    </span>
+    <span class='note title constructor'>constructor</span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#temp_path-class_method" title=".temp_path (class method)">.<strong>temp_path</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#random_token-class_method" title=".random_token (class method)">.<strong>random_token</strong>  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+</ul>
+</div>  <!-- class_method_summary -->
+
+<h2 class='h2_sum' id='instance_attribute_summary'>Instance Attribute Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#app_configured%3F-instance_method" title="#app_configured? (instance method)">#<strong>app_configured?</strong>  &#x21d2; Boolean </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Indicate if there is a properly configured app.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#options-instance_method" title="#options (instance method)">#<strong>options</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#plugins-instance_method" title="#plugins (instance method)">#<strong>plugins</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+</ul>
+</div>  <!-- instance_attribute_summary -->
+
+<h2 class='h2_sum' id='instance_method_summary'>Instance Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#app-instance_method" title="#app (instance method)">#<strong>app</strong>  </a>
+    </span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Load the specified rackup file, pull options from the rackup file, and set @app.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#clamp-instance_method" title="#clamp (instance method)">#<strong>clamp</strong>  </a>
+    </span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Call once all configuration (included from rackup files) is loaded to flesh out any defaults.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#config_files-instance_method" title="#config_files (instance method)">#<strong>config_files</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#configure-instance_method" title="#configure (instance method)">#<strong>configure</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#environment-instance_method" title="#environment (instance method)">#<strong>environment</strong>  </a>
+    </span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Return which environment we&#39;re running in.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#environment_str-instance_method" title="#environment_str (instance method)">#<strong>environment_str</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#flatten-instance_method" title="#flatten (instance method)">#<strong>flatten</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#flatten!-instance_method" title="#flatten! (instance method)">#<strong>flatten!</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#initialize_copy-instance_method" title="#initialize_copy (instance method)">#<strong>initialize_copy</strong>(other)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#load-instance_method" title="#load (instance method)">#<strong>load</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#load_plugin-instance_method" title="#load_plugin (instance method)">#<strong>load_plugin</strong>(name)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#puma_default_options-instance_method" title="#puma_default_options (instance method)">#<strong>puma_default_options</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#rackup-instance_method" title="#rackup (instance method)">#<strong>rackup</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#run_hooks-instance_method" title="#run_hooks (instance method)">#<strong>run_hooks</strong>(key, arg)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#infer_tag-instance_method" title="#infer_tag (instance method)">#<strong>infer_tag</strong>  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#load_rackup-instance_method" title="#load_rackup (instance method)">#<strong>load_rackup</strong>  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#rack_builder-instance_method" title="#rack_builder (instance method)">#<strong>rack_builder</strong>  </a>
+    </span>
+    <span class='note title private'>private</span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Load and use the normal <a href="Rack.html" title="Puma::Rack (module)">Rack</a> builder if we can, otherwise fallback to our minimal version.</p></div>
+    </div>
+  </li>
+</ul>
+</div>  <!-- instance_method_summary -->
+<h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
+
+  <section class='method_details first' id="new-class_method">
+  <h3 class='signature  first'>
+    .<strong>new</strong>(user_options = {}, default_options = {}, &amp;block)  &#x21d2; <code>Configuration</code> 
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  
+</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L131-L143'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='131' data-end='143'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 131</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_user_options'>user_options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_default_options'>default_options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_default_options'>default_options</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_puma_default_options'>puma_default_options</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_default_options'>default_options</span><span class='rparen'>)</span>
+
+  <span class='ivar'>@options</span>     <span class='op'>=</span> <span class='const'><a href="UserFileDefaultOptions.html" title="Puma::UserFileDefaultOptions (class)">UserFileDefaultOptions</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="UserFileDefaultOptions.html#new-class_method" title="Puma::UserFileDefaultOptions.new (method)">new</a></span><span class='lparen'>(</span><span class='id identifier rubyid_user_options'>user_options</span><span class='comma'>,</span> <span class='id identifier rubyid_default_options'>default_options</span><span class='rparen'>)</span>
+  <span class='ivar'>@plugins</span>     <span class='op'>=</span> <span class='const'><a href="PluginLoader.html" title="Puma::PluginLoader (class)">PluginLoader</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="PluginLoader.html#new-class_method" title="Puma::PluginLoader.new (method)">new</a></span>
+  <span class='ivar'>@user_dsl</span>    <span class='op'>=</span> <span class='const'><a href="DSL.html" title="Puma::DSL (class)">DSL</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="DSL.html#new-class_method" title="Puma::DSL.new (method)">new</a></span><span class='lparen'>(</span><span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_user_options'>user_options</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
+  <span class='ivar'>@file_dsl</span>    <span class='op'>=</span> <span class='const'><a href="DSL.html" title="Puma::DSL (class)">DSL</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="DSL.html#new-class_method" title="Puma::DSL.new (method)">new</a></span><span class='lparen'>(</span><span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_file_options'>file_options</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
+  <span class='ivar'>@default_dsl</span> <span class='op'>=</span> <span class='const'><a href="DSL.html" title="Puma::DSL (class)">DSL</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="DSL.html#new-class_method" title="Puma::DSL.new (method)">new</a></span><span class='lparen'>(</span><span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_default_options'>default_options</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_block'>block</span>
+    <span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Class Method Details</h2>
+<section class='method_details first' id="random_token-class_method">
+  <h3 class='signature priv first'>
+    .<strong>random_token</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L333-L357'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='333' data-end='357'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 333</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_random_token'>random_token</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>openssl</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>rescue</span> <span class='const'>LoadError</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_count'>count</span> <span class='op'>=</span> <span class='int'>16</span>
+
+  <span class='id identifier rubyid_bytes'>bytes</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+  <span class='kw'>if</span> <span class='kw'>defined?</span> <span class='const'><a href="../OpenSSL.html" title="OpenSSL (module)">OpenSSL</a></span><span class='op'>::</span><span class='const'>Random</span>
+    <span class='id identifier rubyid_bytes'>bytes</span> <span class='op'>=</span> <span class='const'><a href="../OpenSSL.html" title="OpenSSL (module)">OpenSSL</a></span><span class='op'>::</span><span class='const'>Random</span><span class='period'>.</span><span class='id identifier rubyid_random_bytes'>random_bytes</span><span class='lparen'>(</span><span class='id identifier rubyid_count'>count</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/dev/urandom</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/dev/urandom</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_bytes'>bytes</span> <span class='op'>=</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_count'>count</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_bytes'>bytes</span>
+    <span class='id identifier rubyid_token'>token</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+    <span class='id identifier rubyid_bytes'>bytes</span><span class='period'>.</span><span class='id identifier rubyid_each_byte'>each_byte</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span> <span class='id identifier rubyid_token'>token</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='int'>16</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_token'>token</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>..</span><span class='id identifier rubyid_count'>count</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>255</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='int'>16</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='id identifier rubyid_token'>token</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="temp_path-class_method">
+  <h3 class='signature '>
+    .<strong>temp_path</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L281-L286'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='281' data-end='286'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 281</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_temp_path'>temp_path</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tmpdir</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='id identifier rubyid_t'>t</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span> <span class='op'>*</span> <span class='int'>1000</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_tmpdir'>tmpdir</span><span class='embexpr_end'>}</span><span class='tstring_content'>/puma-status-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_t'>t</span><span class='embexpr_end'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='gvar'>$$</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Attribute Details</h2>
+<section class='method_details first' id="app_configured?-instance_method">
+  <h3 class='signature ro first'>
+    #<strong>app_configured?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Indicate if there is a properly configured app</p>
+
+  </div>
+</div>
+<div class='tags'>
+  
+</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L233-L235'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='233' data-end='235'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 233</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_app_configured?'>app_configured?</span>
+  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_app'>app</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_rackup'>rackup</span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="options-instance_method">
+  <h3 class='signature ro'>
+    #<strong>options</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L145-L145'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='145' data-end='145'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 145</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_plugins'>plugins</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="plugins-instance_method">
+  <h3 class='signature ro'>
+    #<strong>plugins</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L145-L145'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='145' data-end='145'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 145</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_plugins'>plugins</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Method Details</h2>
+<section class='method_details first' id="app-instance_method">
+  <h3 class='signature  first'>
+    #<strong>app</strong>  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Load the specified rackup file, pull options from the rackup file, and set @app.</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L244-L262'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='244' data-end='262'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 244</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_app'>app</span>
+  <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_app'>app</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_load_rackup'>load_rackup</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_mode'>mode</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid_tcp'>tcp</span>
+    <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma/tcp_logger</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='id identifier rubyid_logger'>logger</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_logger'>logger</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_quiet'>quiet</span> <span class='op'>=</span> <span class='op'>!</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_log_requests'>log_requests</span><span class='rbracket'>]</span>
+    <span class='kw'>return</span> <span class='const'><a href="TCPLogger.html" title="Puma::TCPLogger (class)">TCPLogger</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="TCPLogger.html#new-class_method" title="Puma::TCPLogger.new (method)">new</a></span><span class='lparen'>(</span><span class='id identifier rubyid_logger'>logger</span><span class='comma'>,</span> <span class='id identifier rubyid_found'>found</span><span class='comma'>,</span> <span class='id identifier rubyid_quiet'>quiet</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_log_requests'>log_requests</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma/commonlogger</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_logger'>logger</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_logger'>logger</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='const'><a href="CommonLogger.html" title="Puma::CommonLogger (class)">CommonLogger</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="CommonLogger.html#new-class_method" title="Puma::CommonLogger.new (method)">new</a></span><span class='lparen'>(</span><span class='id identifier rubyid_found'>found</span><span class='comma'>,</span> <span class='id identifier rubyid_logger'>logger</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='const'><a href="Configuration/ConfigMiddleware.html" title="Puma::Configuration::ConfigMiddleware (class)">ConfigMiddleware</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="Configuration/ConfigMiddleware.html#new-class_method" title="Puma::Configuration::ConfigMiddleware.new (method)">new</a></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_found'>found</span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="clamp-instance_method">
+  <h3 class='signature '>
+    #<strong>clamp</strong>  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Call once all configuration (included from rackup files) is loaded to flesh out any defaults</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L214-L216'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='214' data-end='216'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 214</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clamp'>clamp</span>
+  <span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_finalize_values'>finalize_values</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="config_files-instance_method">
+  <h3 class='signature '>
+    #<strong>config_files</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L199-L210'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='199' data-end='210'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 199</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_config_files'>config_files</span>
+  <span class='id identifier rubyid_files'>files</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_all_of'>all_of</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_config_files'>config_files</span><span class='rparen'>)</span>
+
+  <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_files'>files</span> <span class='op'>==</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_files'>files</span> <span class='kw'>if</span> <span class='id identifier rubyid_files'>files</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span>
+
+  <span class='id identifier rubyid_first_default_file'>first_default_file</span> <span class='op'>=</span> <span class='words_beg'>%W(</span><span class='tstring_content'>config/puma/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_environment_str'>environment_str</span><span class='embexpr_end'>}</span><span class='tstring_content'>.rb</span><span class='words_sep'> </span><span class='tstring_content'>config/puma.rb</span><span class='tstring_end'>)</span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='lbracket'>[</span><span class='id identifier rubyid_first_default_file'>first_default_file</span><span class='rbracket'>]</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="configure-instance_method">
+  <h3 class='signature '>
+    #<strong>configure</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L147-L153'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='147' data-end='153'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 147</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_configure'>configure</span>
+  <span class='kw'>yield</span> <span class='ivar'>@user_dsl</span><span class='comma'>,</span> <span class='ivar'>@file_dsl</span><span class='comma'>,</span> <span class='ivar'>@default_dsl</span>
+<span class='kw'>ensure</span>
+  <span class='ivar'>@user_dsl</span><span class='period'>.</span><span class='id identifier rubyid__offer_plugins'>_offer_plugins</span>
+  <span class='ivar'>@file_dsl</span><span class='period'>.</span><span class='id identifier rubyid__offer_plugins'>_offer_plugins</span>
+  <span class='ivar'>@default_dsl</span><span class='period'>.</span><span class='id identifier rubyid__offer_plugins'>_offer_plugins</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="environment-instance_method">
+  <h3 class='signature '>
+    #<strong>environment</strong>  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Return which environment we&#39;re running in</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L265-L267'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='265' data-end='267'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 265</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_environment'>environment</span>
+  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_environment'>environment</span><span class='rbracket'>]</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="environment_str-instance_method">
+  <h3 class='signature '>
+    #<strong>environment_str</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L269-L271'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='269' data-end='271'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 269</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_environment_str'>environment_str</span>
+  <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_call'>call</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='op'>:</span> <span class='id identifier rubyid_environment'>environment</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="flatten-instance_method">
+  <h3 class='signature '>
+    #<strong>flatten</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L161-L163'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='161' data-end='163'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 161</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_flatten'>flatten</span>
+  <span class='id identifier rubyid_dup'>dup</span><span class='period'>.</span><span class='id identifier rubyid_flatten!'>flatten!</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="flatten!-instance_method">
+  <h3 class='signature '>
+    #<strong>flatten!</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L165-L168'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='165' data-end='168'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 165</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_flatten!'>flatten!</span>
+  <span class='ivar'>@options</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="infer_tag-instance_method">
+  <h3 class='signature priv'>
+    #<strong>infer_tag</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L290-L292'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='290' data-end='292'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 290</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_infer_tag'>infer_tag</span>
+  <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_getwd'>getwd</span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="initialize_copy-instance_method">
+  <h3 class='signature '>
+    #<strong>initialize_copy</strong>(other)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L155-L159'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='155' data-end='159'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 155</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize_copy'>initialize_copy</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span>
+  <span class='ivar'>@conf</span>        <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@cli_options</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@options</span>     <span class='op'>=</span> <span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="load-instance_method">
+  <h3 class='signature '>
+    #<strong>load</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L193-L197'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='193' data-end='197'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 193</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load'>load</span>
+  <span class='id identifier rubyid_config_files'>config_files</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_config_file'>config_file</span><span class='op'>|</span> <span class='ivar'>@file_dsl</span><span class='period'>.</span><span class='id identifier rubyid__load_from'>_load_from</span><span class='lparen'>(</span><span class='id identifier rubyid_config_file'>config_file</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+
+  <span class='ivar'>@options</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="load_plugin-instance_method">
+  <h3 class='signature '>
+    #<strong>load_plugin</strong>(name)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L273-L275'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='273' data-end='275'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 273</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load_plugin'>load_plugin</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='ivar'>@plugins</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span> <span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="load_rackup-instance_method">
+  <h3 class='signature priv'>
+    #<strong>load_rackup</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L317-L331'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='317' data-end='331'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 317</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load_rackup'>load_rackup</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Missing rackup file &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_rackup'>rackup</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_rackup'>rackup</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_rack_app'>rack_app</span><span class='comma'>,</span> <span class='id identifier rubyid_rack_options'>rack_options</span> <span class='op'>=</span> <span class='id identifier rubyid_rack_builder'>rack_builder</span><span class='period'>.</span><span class='id identifier rubyid_parse_file'>parse_file</span><span class='lparen'>(</span><span class='id identifier rubyid_rackup'>rackup</span><span class='rparen'>)</span>
+  <span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_file_options'>file_options</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_rack_options'>rack_options</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_config_ru_binds'>config_ru_binds</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_rack_options'>rack_options</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+    <span class='id identifier rubyid_config_ru_binds'>config_ru_binds</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_v'>v</span> <span class='kw'>if</span> <span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bind</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_file_options'>file_options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_binds'>binds</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_config_ru_binds'>config_ru_binds</span> <span class='kw'>unless</span> <span class='id identifier rubyid_config_ru_binds'>config_ru_binds</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
+  <span class='id identifier rubyid_rack_app'>rack_app</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="puma_default_options-instance_method">
+  <h3 class='signature '>
+    #<strong>puma_default_options</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L170-L191'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='170' data-end='191'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 170</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_puma_default_options'>puma_default_options</span>
+  <span class='lbrace'>{</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_min_threads'>min_threads</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_max_threads'>max_threads</span> <span class='op'>=&gt;</span> <span class='int'>16</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_log_requests'>log_requests</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_debug'>debug</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_binds'>binds</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tcp://</span><span class='embexpr_beg'>#{</span><span class='const'><a href="ConfigDefault.html#DefaultTCPHost-constant" title="Puma::ConfigDefault::DefaultTCPHost (constant)">DefaultTCPHost</a></span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='const'><a href="ConfigDefault.html#DefaultTCPPort-constant" title="Puma::ConfigDefault::DefaultTCPPort (constant)">DefaultTCPPort</a></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_workers'>workers</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_daemon'>daemon</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_mode'>mode</span> <span class='op'>=&gt;</span> <span class='symbeg'>:</span><span class='id identifier rubyid_http'>http</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_worker_timeout'>worker_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="ConfigDefault.html#DefaultWorkerTimeout-constant" title="Puma::ConfigDefault::DefaultWorkerTimeout (constant)">DefaultWorkerTimeout</a></span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_worker_boot_timeout'>worker_boot_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="ConfigDefault.html#DefaultWorkerTimeout-constant" title="Puma::ConfigDefault::DefaultWorkerTimeout (constant)">DefaultWorkerTimeout</a></span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_worker_shutdown_timeout'>worker_shutdown_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="ConfigDefault.html#DefaultWorkerShutdownTimeout-constant" title="Puma::ConfigDefault::DefaultWorkerShutdownTimeout (constant)">DefaultWorkerShutdownTimeout</a></span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_remote_address'>remote_address</span> <span class='op'>=&gt;</span> <span class='symbeg'>:</span><span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_tag'>tag</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_infer_tag'>infer_tag</span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_environment'>environment</span> <span class='op'>=&gt;</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>RACK_ENV</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>development</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_rackup'>rackup</span> <span class='op'>=&gt;</span> <span class='const'><a href="ConfigDefault.html#DefaultRackup-constant" title="Puma::ConfigDefault::DefaultRackup (constant)">DefaultRackup</a></span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_logger'>logger</span> <span class='op'>=&gt;</span> <span class='const'>STDOUT</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_persistent_timeout'>persistent_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#PERSISTENT_TIMEOUT-constant" title="Puma::Const::PERSISTENT_TIMEOUT (constant)">PERSISTENT_TIMEOUT</a></span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_first_data_timeout'>first_data_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#FIRST_DATA_TIMEOUT-constant" title="Puma::Const::FIRST_DATA_TIMEOUT (constant)">FIRST_DATA_TIMEOUT</a></span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="rack_builder-instance_method">
+  <h3 class='signature priv'>
+    #<strong>rack_builder</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Load and use the normal <a href="Rack.html" title="Puma::Rack (module)">Rack</a> builder if we can, otherwise fallback to our minimal version.</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L296-L315'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='296' data-end='315'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 296</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rack_builder'>rack_builder</span>
+  <span class='comment'># Load bundler now if we can so that we can pickup rack from
+</span>  <span class='comment'># a Gemfile
+</span>  <span class='kw'>if</span> <span class='const'>ENV</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUMA_BUNDLER_PRUNED</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bundler/setup</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>rescue</span> <span class='const'>LoadError</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rack</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rack/builder</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>rescue</span> <span class='const'>LoadError</span>
+    <span class='comment'># ok, use builtin version
+</span>    <span class='kw'>return</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'><a href="Rack/Builder.html" title="Puma::Rack::Builder (class)">Builder</a></span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='op'>::</span><span class='const'><a href="../Rack.html" title="Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'><a href="Rack/Builder.html" title="Puma::Rack::Builder (class)">Builder</a></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="rackup-instance_method">
+  <h3 class='signature '>
+    #<strong>rackup</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L237-L239'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='237' data-end='239'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 237</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rackup'>rackup</span>
+  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_rackup'>rackup</span><span class='rbracket'>]</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="run_hooks-instance_method">
+  <h3 class='signature '>
+    #<strong>run_hooks</strong>(key, arg)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/configuration.rb#L277-L279'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='277' data-end='279'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 277</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_run_hooks'>run_hooks</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_arg'>arg</span><span class='rparen'>)</span>
+  <span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_all_of'>all_of</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='id identifier rubyid_arg'>arg</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>

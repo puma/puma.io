@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Class: Puma::Runner &mdash; Puma</title>
+
+<link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::Runner",
+    relpath = '../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../index.html'>Puma</a> &raquo; 
+      <a href='../_index.html#alpha_R'>Index (R)</a> &raquo; 
+        <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>Runner&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='class'>
+<h1>Class: Puma::Runner</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='box_h' colspan='2'>Extension / Inclusion / Inheritance Descendants</td></tr>
+    <tr>
+      <td colspan='2'>
+        <div class='box_2'>Subclasses:</div>
+        <div class='box_22'>
+          <a href="Cluster.html" title="Puma::Cluster (class)">Cluster</a>, <a href="Single.html" title="Puma::Single (class)">Single</a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td id='t2_inherits' class='box_2'>Inherits:</td>
+      <td class='box_rel'>
+        <span class='inheritName'><a href="../Object.html" title="Object (class)">Object</a></span>
+      </td>
+    </tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L10'>lib/puma/runner.rb</a>      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Generic class that is used by `Puma::Cluster` and `Puma::Single` to serve requests. This class spawns a new instance of `Puma::Server` via a call to `start_server`.</p>
+
+  </div>
+</div>
+</div>
+<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#new-class_method" title=".new (class method)">.<strong>new</strong>(cli, events)  &#x21d2; Runner </a>
+    </span>
+    <span class='note title constructor'>constructor</span>
+  </li>
+</ul>
+</div>  <!-- class_method_summary -->
+
+<h2 class='h2_sum' id='instance_attribute_summary'>Instance Attribute Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#daemon%3F-instance_method" title="#daemon? (instance method)">#<strong>daemon?</strong>  &#x21d2; Boolean </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#development%3F-instance_method" title="#development? (instance method)">#<strong>development?</strong>  &#x21d2; Boolean </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#redirected_io%3F-instance_method" title="#redirected_io? (instance method)">#<strong>redirected_io?</strong>  &#x21d2; Boolean </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#test%3F-instance_method" title="#test? (instance method)">#<strong>test?</strong>  &#x21d2; Boolean </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+</ul>
+</div>  <!-- instance_attribute_summary -->
+
+<h2 class='h2_sum' id='instance_method_summary'>Instance Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#app-instance_method" title="#app (instance method)">#<strong>app</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#before_restart-instance_method" title="#before_restart (instance method)">#<strong>before_restart</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#debug-instance_method" title="#debug (instance method)">#<strong>debug</strong>(str)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#error-instance_method" title="#error (instance method)">#<strong>error</strong>(str)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#load_and_bind-instance_method" title="#load_and_bind (instance method)">#<strong>load_and_bind</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#log-instance_method" title="#log (instance method)">#<strong>log</strong>(str)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#output_header-instance_method" title="#output_header (instance method)">#<strong>output_header</strong>(mode)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#redirect_io-instance_method" title="#redirect_io (instance method)">#<strong>redirect_io</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#ruby_engine-instance_method" title="#ruby_engine (instance method)">#<strong>ruby_engine</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#start_control-instance_method" title="#start_control (instance method)">#<strong>start_control</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#start_server-instance_method" title="#start_server (instance method)">#<strong>start_server</strong>  </a>
+    </span>
+  </li>
+</ul>
+</div>  <!-- instance_method_summary -->
+<h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
+
+  <section class='method_details first' id="new-class_method">
+  <h3 class='signature  first'>
+    .<strong>new</strong>(cli, events)  &#x21d2; <code>Runner</code> 
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  
+</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L11-L17'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='11' data-end='17'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 11</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_cli'>cli</span><span class='comma'>,</span> <span class='id identifier rubyid_events'>events</span><span class='rparen'>)</span>
+  <span class='ivar'>@launcher</span> <span class='op'>=</span> <span class='id identifier rubyid_cli'>cli</span>
+  <span class='ivar'>@events</span> <span class='op'>=</span> <span class='id identifier rubyid_events'>events</span>
+  <span class='ivar'>@options</span> <span class='op'>=</span> <span class='id identifier rubyid_cli'>cli</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span>
+  <span class='ivar'>@app</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@control</span> <span class='op'>=</span> <span class='kw'>nil</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Attribute Details</h2>
+<section class='method_details first' id="daemon?-instance_method">
+  <h3 class='signature ro first'>
+    #<strong>daemon?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L19-L21'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='19' data-end='21'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 19</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_daemon?'>daemon?</span>
+  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_daemon'>daemon</span><span class='rbracket'>]</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="development?-instance_method">
+  <h3 class='signature ro'>
+    #<strong>development?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L23-L25'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='23' data-end='25'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 23</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_development?'>development?</span>
+  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_environment'>environment</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>development</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="redirected_io?-instance_method">
+  <h3 class='signature ro'>
+    #<strong>redirected_io?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L109-L111'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='109' data-end='111'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 109</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_redirected_io?'>redirected_io?</span>
+  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_redirect_stdout'>redirect_stdout</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_redirect_stderr'>redirect_stderr</span><span class='rbracket'>]</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="test?-instance_method">
+  <h3 class='signature ro'>
+    #<strong>test?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L27-L29'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='27' data-end='29'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 27</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_test?'>test?</span>
+  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_environment'>environment</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>test</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Method Details</h2>
+<section class='method_details first' id="app-instance_method">
+  <h3 class='signature  first'>
+    #<strong>app</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L156-L158'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='156' data-end='158'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 156</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_app'>app</span>
+  <span class='ivar'>@app</span> <span class='op'>||=</span> <span class='ivar'>@launcher</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_app'>app</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="before_restart-instance_method">
+  <h3 class='signature '>
+    #<strong>before_restart</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L35-L37'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='35' data-end='37'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 35</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_before_restart'>before_restart</span>
+  <span class='ivar'>@control</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@control</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="debug-instance_method">
+  <h3 class='signature '>
+    #<strong>debug</strong>(str)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L43-L45'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='43' data-end='45'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 43</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='ivar'>@events</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>- </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_debug'>debug</span><span class='rbracket'>]</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="error-instance_method">
+  <h3 class='signature '>
+    #<strong>error</strong>(str)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L39-L41'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='39' data-end='41'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 39</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_error'>error</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='ivar'>@events</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span> <span class='id identifier rubyid_str'>str</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="load_and_bind-instance_method">
+  <h3 class='signature '>
+    #<strong>load_and_bind</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L139-L154'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='139' data-end='154'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 139</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load_and_bind'>load_and_bind</span>
+  <span class='kw'>unless</span> <span class='ivar'>@launcher</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_app_configured?'>app_configured?</span>
+    <span class='id identifier rubyid_error'>error</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No application configured, nothing to run</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_exit'>exit</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Load the app before we daemonize.
+</span>  <span class='kw'>begin</span>
+    <span class='ivar'>@app</span> <span class='op'>=</span> <span class='ivar'>@launcher</span><span class='period'>.</span><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_app'>app</span>
+  <span class='kw'>rescue</span> <span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Unable to load application: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@launcher</span><span class='period'>.</span><span class='id identifier rubyid_binder'>binder</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_binds'>binds</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>self</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="log-instance_method">
+  <h3 class='signature '>
+    #<strong>log</strong>(str)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L31-L33'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='31' data-end='33'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 31</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='ivar'>@events</span><span class='period'>.</span><span class='id identifier rubyid_log'>log</span> <span class='id identifier rubyid_str'>str</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="output_header-instance_method">
+  <h3 class='signature '>
+    #<strong>output_header</strong>(mode)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L95-L107'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='95' data-end='107'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 95</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_output_header'>output_header</span><span class='lparen'>(</span><span class='id identifier rubyid_mode'>mode</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_min_t'>min_t</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_min_threads'>min_threads</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_max_t'>max_t</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_max_threads'>max_threads</span><span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Puma starting in </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_mode'>mode</span><span class='embexpr_end'>}</span><span class='tstring_content'> mode...</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Version </span><span class='embexpr_beg'>#{</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#PUMA_VERSION-constant" title="Puma::Const::PUMA_VERSION (constant)">PUMA_VERSION</a></span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ruby_engine'>ruby_engine</span><span class='embexpr_end'>}</span><span class='tstring_content'>), codename: </span><span class='embexpr_beg'>#{</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#CODE_NAME-constant" title="Puma::Const::CODE_NAME (constant)">CODE_NAME</a></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Min threads: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_min_t'>min_t</span><span class='embexpr_end'>}</span><span class='tstring_content'>, max threads: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_max_t'>max_t</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Environment: </span><span class='embexpr_beg'>#{</span><span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>RACK_ENV</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_mode'>mode</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid_tcp'>tcp</span>
+    <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Mode: Lopez Express (tcp)</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="redirect_io-instance_method">
+  <h3 class='signature '>
+    #<strong>redirect_io</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L113-L137'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='113' data-end='137'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 113</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_redirect_io'>redirect_io</span>
+  <span class='id identifier rubyid_stdout'>stdout</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_redirect_stdout'>redirect_stdout</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_stderr'>stderr</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_redirect_stderr'>redirect_stderr</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_append'>append</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_redirect_append'>redirect_append</span><span class='rbracket'>]</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_stdout'>stdout</span>
+    <span class='kw'>unless</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='id identifier rubyid_stdout'>stdout</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cannot redirect STDOUT to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stdout'>stdout</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='const'>STDOUT</span><span class='period'>.</span><span class='id identifier rubyid_reopen'>reopen</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_append'>append</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>w</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'>STDOUT</span><span class='period'>.</span><span class='id identifier rubyid_sync'>sync</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='const'>STDOUT</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>=== puma startup: </span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='embexpr_end'>}</span><span class='tstring_content'> ===</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_stderr'>stderr</span>
+    <span class='kw'>unless</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='id identifier rubyid_stderr'>stderr</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cannot redirect STDERR to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_stderr'>stderr</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='const'>STDERR</span><span class='period'>.</span><span class='id identifier rubyid_reopen'>reopen</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_append'>append</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>w</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'>STDERR</span><span class='period'>.</span><span class='id identifier rubyid_sync'>sync</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='const'>STDERR</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>=== puma startup: </span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='embexpr_end'>}</span><span class='tstring_content'> ===</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="ruby_engine-instance_method">
+  <h3 class='signature '>
+    #<strong>ruby_engine</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L83-L93'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='83' data-end='93'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 83</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ruby_engine'>ruby_engine</span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>RUBY_ENGINE</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'>RUBY_ENGINE</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ruby</span><span class='tstring_end'>&quot;</span></span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ruby </span><span class='embexpr_beg'>#{</span><span class='const'>RUBY_VERSION</span><span class='embexpr_end'>}</span><span class='tstring_content'>-p</span><span class='embexpr_beg'>#{</span><span class='const'>RUBY_PATCHLEVEL</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>RUBY_ENGINE_VERSION</span><span class='rparen'>)</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>RUBY_ENGINE</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='const'>RUBY_ENGINE_VERSION</span><span class='embexpr_end'>}</span><span class='tstring_content'> - ruby </span><span class='embexpr_beg'>#{</span><span class='const'>RUBY_VERSION</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>RUBY_ENGINE</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='const'>RUBY_VERSION</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="start_control-instance_method">
+  <h3 class='signature '>
+    #<strong>start_control</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L47-L81'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='47' data-end='81'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 47</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_control'>start_control</span>
+  <span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_control_url'>control_url</span><span class='rbracket'>]</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_str'>str</span>
+
+  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma/app/status</span><span class='tstring_end'>&#39;</span></span>
+
+  <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='const'><a href="../URI.html" title="URI (module)">URI</a></span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_str'>str</span>
+
+  <span class='id identifier rubyid_app'>app</span> <span class='op'>=</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="App.html" title="Puma::App (module)">App</a></span><span class='op'>::</span><span class='const'><a href="App/Status.html" title="Puma::App::Status (class)">Status</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="App/Status.html#new-class_method" title="Puma::App::Status.new (method)">new</a></span> <span class='ivar'>@launcher</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_token'>token</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_control_auth_token'>control_auth_token</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_app'>app</span><span class='period'>.</span><span class='id identifier rubyid_auth_token'>auth_token</span> <span class='op'>=</span> <span class='id identifier rubyid_token'>token</span> <span class='kw'>unless</span> <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='kw'>or</span> <span class='id identifier rubyid_token'>token</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid_none'>none</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_control'>control</span> <span class='op'>=</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Server.html" title="Puma::Server (class)">Server</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="Server.html#new-class_method" title="Puma::Server.new (method)">new</a></span> <span class='id identifier rubyid_app'>app</span><span class='comma'>,</span> <span class='ivar'>@launcher</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span>
+  <span class='id identifier rubyid_control'>control</span><span class='period'>.</span><span class='id identifier rubyid_min_threads'>min_threads</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_control'>control</span><span class='period'>.</span><span class='id identifier rubyid_max_threads'>max_threads</span> <span class='op'>=</span> <span class='int'>1</span>
+
+  <span class='kw'>case</span> <span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_scheme'>scheme</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tcp</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Starting control server on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_control'>control</span><span class='period'>.</span><span class='id identifier rubyid_add_tcp_listener'>add_tcp_listener</span> <span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_port'>port</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unix</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Starting control server on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_host'>host</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_mask'>mask</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_control_url_umask'>control_url_umask</span><span class='rbracket'>]</span>
+
+    <span class='id identifier rubyid_control'>control</span><span class='period'>.</span><span class='id identifier rubyid_add_unix_listener'>add_unix_listener</span> <span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_mask'>mask</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_error'>error</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid control URI: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_control'>control</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span>
+  <span class='ivar'>@control</span> <span class='op'>=</span> <span class='id identifier rubyid_control'>control</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="start_server-instance_method">
+  <h3 class='signature '>
+    #<strong>start_server</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/runner.rb#L160-L182'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='160' data-end='182'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/runner.rb', line 160</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_server'>start_server</span>
+  <span class='id identifier rubyid_min_t'>min_t</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_min_threads'>min_threads</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_max_t'>max_t</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_max_threads'>max_threads</span><span class='rbracket'>]</span>
+
+  <span class='id identifier rubyid_server'>server</span> <span class='op'>=</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Server.html" title="Puma::Server (class)">Server</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="Server.html#new-class_method" title="Puma::Server.new (method)">new</a></span> <span class='id identifier rubyid_app'>app</span><span class='comma'>,</span> <span class='ivar'>@launcher</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='comma'>,</span> <span class='ivar'>@options</span>
+  <span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_min_threads'>min_threads</span> <span class='op'>=</span> <span class='id identifier rubyid_min_t'>min_t</span>
+  <span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_max_threads'>max_threads</span> <span class='op'>=</span> <span class='id identifier rubyid_max_t'>max_t</span>
+  <span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_inherit_binder'>inherit_binder</span> <span class='ivar'>@launcher</span><span class='period'>.</span><span class='id identifier rubyid_binder'>binder</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_mode'>mode</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid_tcp'>tcp</span>
+    <span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_tcp_mode!'>tcp_mode!</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_early_hints'>early_hints</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_early_hints'>early_hints</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_development?'>development?</span> <span class='op'>||</span> <span class='id identifier rubyid_test?'>test?</span>
+    <span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_leak_stack_on_error'>leak_stack_on_error</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_server'>server</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>File: Nginx &mdash; Puma</title>
+
+<link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "nginx",
+    relpath = '';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='index.html'>Puma</a> &raquo; 
+      <a href='_index.html'>Index</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>File: Nginx&nbsp;&#x25B2;</a></span>
+          </div>
+
+    <a id='list_href' href="class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='file'>
+<h1>Nginx configuration example file</h1>
+
+<p>This is a very common setup using an upstream. It was adapted from some Capistrano recipe I found on the Internet a while ago.</p>
+
+<pre class="code ruby"><code class="ruby">upstream myapp {
+  server unix:///myapp/tmp/puma.sock;
+}
+
+server {
+  listen 80;
+  server_name myapp.com;
+
+  # ~2 seconds is often enough for most folks to parse HTML/CSS and
+  # retrieve needed images/icons/frames, connections are cheap in
+  # nginx so increasing this is generally safe...
+  keepalive_timeout 5;
+
+  # path for static files
+  root /myapp/public;
+  access_log /myapp/log/nginx.access.log;
+  error_log /myapp/log/nginx.error.log info;
+
+  # this rewrites all the requests to the maintenance.html
+  # page if it exists in the doc root. This is for capistrano&#39;s
+  # disable web task
+  if (-f $document_root/maintenance.html) {
+    rewrite  ^(.*)$  /maintenance.html last;
+    break;
+  }
+
+  location / {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+
+    # If the file exists as a static file serve it directly without
+    # running all the other rewrite tests on it
+    if (-f $request_filename) {
+      break;
+    }
+
+    # check for index.html for directory index
+    # if it&#39;s there on the filesystem then rewrite
+    # the url to add /index.html to the end of it
+    # and then break to send it to the next config rules.
+    if (-f $request_filename/index.html) {
+      rewrite (.*) $1/index.html break;
+    }
+
+    # this is the meat of the rack page caching config
+    # it adds .html to the end of the url and then checks
+    # the filesystem for that file. If it exists, then we
+    # rewrite the url to have explicit .html on the end
+    # and then send it on its way to the next config rule.
+    # if there is no file on the fs then it sets all the
+    # necessary headers and proxies to our upstream pumas
+    if (-f $request_filename.html) {
+      rewrite (.*) $1.html break;
+    }
+
+    if (!-f $request_filename) {
+      proxy_pass http://myapp;
+      break;
+    }
+  }
+
+  # Now this supposedly should work as it gets the filenames with querystrings that Rails provides.
+  # BUT there&#39;s a chance it could break the ajax calls.
+  location ~* \.(ico|css|gif|jpe?g|png|js)(\?[0-9]+)?$ {
+     expires max;
+     break;
+  }
+
+  # Error pages
+  # error_page 500 502 503 504 /500.html;
+  location = /500.html {
+    root /myapp/current/public;
+  }
+}
+</code></pre>
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>
