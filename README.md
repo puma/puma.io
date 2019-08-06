@@ -6,6 +6,6 @@ Website for the [Puma](http://puma.io) web server for Ruby. Powered by [Jekyll](
 
 ## License
 
-Puma is copyright 2011 Evan Phoenix and contributors. It is licensed under the BSD license.
+Puma is copyright 2019 Evan Phoenix and contributors. It is licensed under the BSD license.
 
 -----------
