@@ -101,22 +101,10 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/single.rb#L15'>lib/puma/single.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/single.rb#L15'>lib/puma/single.rb</a>      </td>
     </tr>
   </tbody>
 </table>
-</div>
-<h2 id='h2_overview'>Overview</h2>
-<div id='overview_ds'>
-<div class='docstring'>
-  <div class='discussion'>
-    
-<p>This class is instantiated by the `Puma::Launcher` and used to boot and serve a Ruby application when no puma “workers” are needed i.e. only using “threaded” mode. For example `$ puma -t 1:5`</p>
-
-<p>At the core of this class is running an instance of `Puma::Server` which gets created via the `start_server` method from the `Puma::Runner` class that this inherits from.</p>
-
-  </div>
-</div>
 </div>
 <h2 class='h2_sum' id='class_Method_summary'>Class Method Summary</h2>
 <div class='div_sum'>
@@ -228,7 +216,7 @@
   <h3 class='signature ro first'>
     #<strong>jruby_daemon?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/single.rb#L42-L44'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/single.rb#L42-L44'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='42' data-end='44'></pre>
   <div class='lines_code'>
@@ -248,7 +236,7 @@
   <h3 class='signature  first'>
     #<strong>halt</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/single.rb#L32-L34'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/single.rb#L32-L34'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='32' data-end='34'></pre>
   <div class='lines_code'>
@@ -267,7 +255,7 @@
   <h3 class='signature '>
     #<strong>jruby_daemon_start</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/single.rb#L46-L49'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/single.rb#L46-L49'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='46' data-end='49'></pre>
   <div class='lines_code'>
@@ -287,7 +275,7 @@
   <h3 class='signature '>
     #<strong>restart</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/single.rb#L24-L26'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/single.rb#L24-L26'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='24' data-end='26'></pre>
   <div class='lines_code'>
@@ -306,9 +294,9 @@
   <h3 class='signature '>
     #<strong>run</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/single.rb#L51-L121'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/single.rb#L51-L122'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='51' data-end='121'></pre>
+  <pre class='lines_num' data-start='51' data-end='122'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/single.rb', line 51</span></pre>
 <pre class='code ruby'>
@@ -319,9 +307,9 @@
   <span class='kw'>if</span> <span class='id identifier rubyid_jruby_daemon?'>jruby_daemon?</span>
     <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma/jruby_restart</span><span class='tstring_end'>&#39;</span></span>
 
-    <span class='kw'>if</span> <span class='const'><a href="JRubyRestart.html" title="Puma::JRubyRestart (module)">JRubyRestart</a></span><span class='period'>.</span><span class='id identifier rubyid_daemon?'><a href="JRubyRestart.html#daemon%3F-class_method" title="Puma::JRubyRestart.daemon? (method)">daemon?</a></span>
-      <span class='comment'># load and bind before redirecting IO so errors show up on stdout/stderr
-</span>      <span class='id identifier rubyid_load_and_bind'>load_and_bind</span>
+    <span class='kw'>if</span> <span class='const'><a href="JRubyRestart.html" title="Puma::JRubyRestart (module)">JRubyRestart</a></span><span class='period'>.</span><span class='id identifier rubyid_daemon?'><a href="JRubyRestart.html#daemon%3F-class_method" title="Puma::JRubyRestart.daemon? (method)">daemon?</a></span>      <span class='comment'># load and bind before redirecting IO so errors show up on stdout/stderr
+</span>
+      <span class='id identifier rubyid_load_and_bind'>load_and_bind</span>
       <span class='id identifier rubyid_redirect_io'>redirect_io</span>
     <span class='kw'>end</span>
 
@@ -356,7 +344,7 @@
   <span class='kw'>else</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_daemon?'>daemon?</span>
       <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Daemonizing...</span><span class='tstring_end'>&quot;</span></span>
-      <span class='const'><a href="../Process.html" title="Process (module)">Process</a></span><span class='period'>.</span><span class='id identifier rubyid_daemon'><a href="../Process.html#daemon-class_method" title="Process.daemon (method)">daemon</a></span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>
+      <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_daemon'>daemon</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_redirect_io'>redirect_io</span>
     <span class='kw'>end</span>
 
@@ -380,9 +368,10 @@
 
   <span class='kw'>begin</span>
     <span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>
-  <span class='kw'>rescue</span> <span class='const'>Interrupt</span>
-    <span class='comment'># Swallow it
-</span>  <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'>Interrupt</span>    <span class='comment'># Swallow it
+</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@launcher</span><span class='period'>.</span><span class='id identifier rubyid_close_binder_unix_paths'>close_binder_unix_paths</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -393,7 +382,7 @@
   <h3 class='signature '>
     #<strong>stats</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/single.rb#L16-L22'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/single.rb#L16-L22'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='16' data-end='22'></pre>
   <div class='lines_code'>
@@ -405,7 +394,7 @@
   <span class='id identifier rubyid_r'>r</span> <span class='op'>=</span> <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_running'>running</span> <span class='op'>||</span> <span class='int'>0</span>
   <span class='id identifier rubyid_t'>t</span> <span class='op'>=</span> <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_pool_capacity'>pool_capacity</span> <span class='op'>||</span> <span class='int'>0</span>
   <span class='id identifier rubyid_m'>m</span> <span class='op'>=</span> <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_max_threads'>max_threads</span> <span class='op'>||</span> <span class='int'>0</span>
-  <span class='tstring'><span class='tstring_beg'>%Q!</span><span class='tstring_content'>{ &quot;backlog&quot;: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_b'>b</span><span class='embexpr_end'>}</span><span class='tstring_content'>, &quot;running&quot;: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_r'>r</span><span class='embexpr_end'>}</span><span class='tstring_content'>, &quot;pool_capacity&quot;: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_t'>t</span><span class='embexpr_end'>}</span><span class='tstring_content'>, &quot;max_threads&quot;: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_m'>m</span><span class='embexpr_end'>}</span><span class='tstring_content'> }</span><span class='tstring_end'>!</span></span>
+  <span class='tstring'><span class='tstring_beg'>%Q!</span><span class='tstring_content'>{ &quot;started_at&quot;: &quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@started_at</span><span class='period'>.</span><span class='id identifier rubyid_utc'>utc</span><span class='period'>.</span><span class='id identifier rubyid_iso8601'>iso8601</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;, &quot;backlog&quot;: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_b'>b</span><span class='embexpr_end'>}</span><span class='tstring_content'>, &quot;running&quot;: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_r'>r</span><span class='embexpr_end'>}</span><span class='tstring_content'>, &quot;pool_capacity&quot;: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_t'>t</span><span class='embexpr_end'>}</span><span class='tstring_content'>, &quot;max_threads&quot;: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_m'>m</span><span class='embexpr_end'>}</span><span class='tstring_content'> }</span><span class='tstring_end'>!</span></span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -416,7 +405,7 @@
   <h3 class='signature '>
     #<strong>stop</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/single.rb#L28-L30'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/single.rb#L28-L30'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='28' data-end='30'></pre>
   <div class='lines_code'>
@@ -424,7 +413,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stop'>stop</span>
-  <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span> <span class='kw'>false</span>
+  <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span><span class='lparen'>(</span><span class='kw'>false</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@server</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -435,7 +424,7 @@
   <h3 class='signature '>
     #<strong>stop_blocked</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/single.rb#L36-L40'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/single.rb#L36-L40'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='36' data-end='40'></pre>
   <div class='lines_code'>
@@ -445,7 +434,7 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_stop_blocked'>stop_blocked</span>
   <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>- Gracefully stopping, waiting for requests to finish</span><span class='tstring_end'>&quot;</span></span>
   <span class='ivar'>@control</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@control</span>
-  <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@server</span>
 <span class='kw'>end</span>
 </pre>
   </div>

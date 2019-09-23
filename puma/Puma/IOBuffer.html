@@ -76,36 +76,12 @@
       </td>
     </tr>
     <tr class='single'>
-      <td id='t2_defined_in' class='box_2 o'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/master/ext/puma_http11/io_buffer.c#L145'>ext/puma_http11/io_buffer.c</a><span class='defines'>,<br /><a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/java_io_buffer.rb#L13'>lib/puma/java_io_buffer.rb</a></span>
-      </td>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/ext/puma_http11/io_buffer.c#L145'>ext/puma_http11/io_buffer.c</a>      </td>
     </tr>
   </tbody>
 </table>
 </div>
-<h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
-<div>
-<ul class='constants summary full'>
-  <li>
-    <span id='BUF_DEFAULT_SIZE-constant' class='summary_signature'>BUF_DEFAULT_SIZE =</span>
-    <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/java_io_buffer.rb#L14-L14'># File 'lib/puma/java_io_buffer.rb', line 14</a>    <pre class='code ruby'><span class='int'>4096</span></pre>
-  </li>
-</ul>
-</div>
-
-<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
-<div class='div_sum'>
-<ul class='summary full'>
-  <li>
-    <span class='summary_signature '>
-      <a href="#new-class_method" title=".new (class method)">.<strong>new</strong>  &#x21d2; IOBuffer </a>
-    </span>
-    <span class='note title constructor'>constructor</span>
-  </li>
-</ul>
-</div>  <!-- class_method_summary -->
-
 <h2 class='h2_sum' id='instance_method_summary'>Instance Method Summary</h2>
 <div class='div_sum'>
 <ul class='summary full'>
@@ -116,7 +92,7 @@
   </li>
   <li>
     <span class='summary_signature '>
-      <a href="#append-instance_method" title="#append (instance method)">#<strong>append</strong>(*strs)  </a>
+      <a href="#append-instance_method" title="#append (instance method)">#<strong>append</strong>(*args)  </a>
     </span>
   </li>
   <li>
@@ -134,9 +110,6 @@
       <a href="#to_s-instance_method" title="#to_s (instance method)">#<strong>to_s</strong>  </a>
       (also: #to_str)
     </span>
-    <div class='summary_desc'>
-      <div class='inline'><p>Alias for <a href="#to_s-instance_method" title="Puma::IOBuffer#to_s (method)">#to_s</a>.</p></div>
-    </div>
   </li>
   <li>
     <span class='summary_signature '>
@@ -153,40 +126,12 @@
   </li>
 </ul>
 </div>  <!-- instance_method_summary -->
-<h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
-
-  <section class='method_details first' id="new-class_method">
-  <h3 class='signature  first'>
-    .<strong>new</strong>  &#x21d2; <code>IOBuffer</code> 
-  </h3>
-<div class='docstring'>
-  <div class='discussion'>
-    
-  </div>
-</div>
-<div class='tags'>
-  
-</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/java_io_buffer.rb#L16-L18'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='16' data-end='18'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/java_io_buffer.rb', line 16</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
-  <span class='ivar'>@buf</span> <span class='op'>=</span> <span class='const'><a href="JavaIOBuffer.html" title="Puma::JavaIOBuffer (class)">JavaIOBuffer</a></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><a href="#BUF_DEFAULT_SIZE-constant" title="Puma::IOBuffer::BUF_DEFAULT_SIZE (constant)">BUF_DEFAULT_SIZE</a></span><span class='rparen'>)</span>
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <h2 class='y_details'>Instance Method Details</h2>
 <section class='method_details first' id="<<-instance_method">
   <h3 class='signature  first'>
     #<strong>&lt;&lt;</strong>(str)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/ext/puma_http11/io_buffer.c#L34-L67'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/ext/puma_http11/io_buffer.c#L34-L67'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='34' data-end='67'></pre>
   <div class='lines_code'>
@@ -234,9 +179,9 @@ static VALUE buf_append(VALUE self, VALUE str) {
 
 <section class='method_details' id="append-instance_method">
   <h3 class='signature '>
-    #<strong>append</strong>(*strs)  
+    #<strong>append</strong>(*args)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/ext/puma_http11/io_buffer.c#L69-L113'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/ext/puma_http11/io_buffer.c#L69-L113'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='69' data-end='113'></pre>
   <div class='lines_code'>
@@ -297,7 +242,7 @@ static VALUE buf_append2(int argc, VALUE* argv, VALUE self) {
   <h3 class='signature '>
     #<strong>capacity</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/ext/puma_http11/io_buffer.c#L129-L134'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/ext/puma_http11/io_buffer.c#L129-L134'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='129' data-end='134'></pre>
   <div class='lines_code'>
@@ -319,7 +264,7 @@ static VALUE buf_capa(VALUE self) {
   <h3 class='signature '>
     #<strong>reset</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/ext/puma_http11/io_buffer.c#L136-L142'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/ext/puma_http11/io_buffer.c#L136-L142'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='136' data-end='142'></pre>
   <div class='lines_code'>
@@ -343,14 +288,7 @@ static VALUE buf_reset(VALUE self) {
     #<strong>to_s</strong>  
     <span class='aliases'>Also known as: <span class='names'>#to_str</span></span>
   </h3>
-<div class='docstring'>
-  <div class='discussion'>
-    
-<p>Alias for <code>to_s</code>.</p>
-
-  </div>
-</div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/ext/puma_http11/io_buffer.c#L115-L120'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/ext/puma_http11/io_buffer.c#L115-L120'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='115' data-end='120'></pre>
   <div class='lines_code'>
@@ -379,29 +317,14 @@ static VALUE buf_to_str(VALUE self) {
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/ext/puma_http11/io_buffer.c#L115-L120'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='115' data-end='120'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/io_buffer.c', line 115</span></pre>
-<pre class='code cpp'>
 
-static VALUE buf_to_str(VALUE self) {
-  struct buf_int* b;
-  Data_Get_Struct(self, struct buf_int, b);
-
-  return rb_str_new((const char*)(b-&gt;top), b-&gt;cur - b-&gt;top);
-}
-</pre>
-  </div>
-</div>
 </section>
 
 <section class='method_details' id="used-instance_method">
   <h3 class='signature '>
     #<strong>used</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/ext/puma_http11/io_buffer.c#L122-L127'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/ext/puma_http11/io_buffer.c#L122-L127'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='122' data-end='127'></pre>
   <div class='lines_code'>

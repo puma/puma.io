@@ -62,45 +62,30 @@
   </header>
 <div id='content' class='file'>
 <h1>Restarts</h1>
-
 <p>To perform a restart, there are 3 builtin mechanisms:</p>
-
 <ul>
-<li>Send the <code>puma</code> process the <code>SIGUSR2</code> signal</li>
-<li>Send the <code>puma</code> process the <code>SIGUSR1</code> signal (rolling restart, cluster mode only)</li>
+<li>Send the <code>puma</code> process the <code>SIGUSR2</code> signal (normal restart)</li>
+<li>Send the <code>puma</code> process the <code>SIGUSR1</code> signal (restart in phases (a &quot;rolling restart&quot;), cluster mode only)</li>
 <li>Use the status server and issue <code>/restart</code></li>
 </ul>
-
 <p>No code is shared between the current and restarted process, so it should be safe to issue a restart any place where you would manually stop <a href="Puma.html" title="Puma (module)">Puma</a> and start it again.</p>
-
 <p>If the new process is unable to load, it will simply exit. You should therefore run <a href="Puma.html" title="Puma (module)">Puma</a> under a process monitor (see below) when using it in production.</p>
-
 <h3>Normal vs Hot vs Phased Restart</h3>
-
 <p>A hot restart means that no requests will be lost while deploying your new code, since the server socket is kept open between restarts.</p>
-
 <p>But beware, hot restart does not mean that the incoming requests won’t hang for multiple seconds while your new code has not fully deployed. If you need a zero downtime and zero hanging requests deploy, you must use phased restart.</p>
-
 <p>When you run pumactl phased-restart, <a href="Puma.html" title="Puma (module)">Puma</a> kills workers one-by-one, meaning that at least another worker is still available to serve requests, which lead to zero hanging requests (yay!).</p>
-
 <p>But again beware, upgrading an application sometimes involves upgrading the database schema. With phased restart, there may be a moment during the deployment where processes belonging to the previous version and processes belonging to the new version both exist at the same time. Any database schema upgrades you perform must therefore be backwards-compatible with the old application version.</p>
-
 <p>If you perform a lot of database migrations, you probably should not use phased restart and use a normal/hot restart instead (<code>pumactl restart</code>). That way, no code is shared while deploying (in that case, <code>preload_app!</code> might help for quicker deployment, see <a href="file.README.html#clustered-mode">&quot;Clustered Mode&quot; in the README</a>).</p>
-
+<p><strong>Note</strong>: Hot and phased restarts are only available on MRI, not on JRuby. They are also unavailable on Windows servers.</p>
 <h3>Release Directory</h3>
-
-<p>If your symlink releases into a common working directory (i.e., <code>/current</code> from Capistrano), <a href="Puma.html" title="Puma (module)">Puma</a> won&#39;t pick up your new changes when running phased restarts without additional configuration. You should set your working directory within Puma&#39;s config to specify the directory it should use. This is a change from earlier versions of <a href="Puma.html" title="Puma (module)">Puma</a> (&lt; 2.15) that would infer the directory for you.</p>
-
+<p>If your symlink releases into a common working directory (i.e., <code>/current</code> from Capistrano), <a href="Puma.html" title="Puma (module)">Puma</a> won't pick up your new changes when running phased restarts without additional configuration. You should set your working directory within Puma's config to specify the directory it should use. This is a change from earlier versions of <a href="Puma.html" title="Puma (module)">Puma</a> (&lt; 2.15) that would infer the directory for you.</p>
 <pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
 </span>
 <span class='id identifier rubyid_directory'>directory</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/var/www/current</span><span class='tstring_end'>&#39;</span></span>
 </code></pre>
-
 <h3>Cleanup Code</h3>
-
-<p>Puma isn&#39;t able to understand all the resources that your app may use, so it provides a hook in the configuration file you pass to <code>-C</code> called <code>on_restart</code>. The block passed to <code>on_restart</code> will be called, unsurprisingly, just before Puma restarts itself.</p>
-
-<p>You should place code to close global log files, redis connections, etc. in this block so that their file descriptors don&#39;t leak into the restarted process. Failure to do so will result in slowly running out of descriptors and eventually obscure crashes as the server is restarted many times.</p>
+<p>Puma isn't able to understand all the resources that your app may use, so it provides a hook in the configuration file you pass to <code>-C</code> called <code>on_restart</code>. The block passed to <code>on_restart</code> will be called, unsurprisingly, just before Puma restarts itself.</p>
+<p>You should place code to close global log files, redis connections, etc. in this block so that their file descriptors don't leak into the restarted process. Failure to do so will result in slowly running out of descriptors and eventually obscure crashes as the server is restarted many times.</p>
 
 <div id='footer'></div>
 </div> <!-- content  -->

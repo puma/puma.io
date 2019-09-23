@@ -78,24 +78,10 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/rack/urlmap.rb#L14'>lib/puma/rack/urlmap.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/rack/urlmap.rb#L16'>lib/puma/rack/urlmap.rb</a>      </td>
     </tr>
   </tbody>
 </table>
-</div>
-<h2 id='h2_overview'>Overview</h2>
-<div id='overview_ds'>
-<div class='docstring'>
-  <div class='discussion'>
-    
-<p><code>URLMap</code> takes a hash mapping urls or paths to apps, and dispatches accordingly.  Support for HTTP/1.1 host names exists if the URLs start with <code>http://</code> or <code>https://</code>.</p>
-
-<p><code>URLMap</code> modifies the SCRIPT_NAME and PATH_INFO such that the part relevant for dispatch is in the SCRIPT_NAME, and the rest in the PATH_INFO.  This should be taken care of when you need to reconstruct the URL in order to create links.</p>
-
-<p><code>URLMap</code> dispatches in such a way that the longest paths are tried first, since they are most specific.</p>
-
-  </div>
-</div>
 </div>
 <h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
 <div>
@@ -103,12 +89,12 @@
   <li>
     <span id='INFINITY-constant' class='summary_signature'>INFINITY =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/rack/urlmap.rb#L16-L16'># File 'lib/puma/rack/urlmap.rb', line 16</a>    <pre class='code ruby'><span class='float'>1.0</span> <span class='op'>/</span> <span class='float'>0.0</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/rack/urlmap.rb#L18-L18'># File 'lib/puma/rack/urlmap.rb', line 18</a>    <pre class='code ruby'><span class='float'>1.0</span> <span class='op'>/</span> <span class='float'>0.0</span></pre>
   </li>
   <li>
     <span id='NEGATIVE_INFINITY-constant' class='summary_signature'>NEGATIVE_INFINITY =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/rack/urlmap.rb#L15-L15'># File 'lib/puma/rack/urlmap.rb', line 15</a>    <pre class='code ruby'><span class='op'>-</span><span class='float'>1.0</span> <span class='op'>/</span> <span class='float'>0.0</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/rack/urlmap.rb#L17-L17'># File 'lib/puma/rack/urlmap.rb', line 17</a>    <pre class='code ruby'><span class='op'>-</span><span class='float'>1.0</span> <span class='op'>/</span> <span class='float'>0.0</span></pre>
   </li>
 </ul>
 </div>
@@ -159,11 +145,11 @@
 </div>
 <div class='tags'>
   
-</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/rack/urlmap.rb#L18-L20'>GitHub</a>&#8202;]</span>
+</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/rack/urlmap.rb#L20-L22'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='18' data-end='20'></pre>
+  <pre class='lines_num' data-start='20' data-end='22'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/rack/urlmap.rb', line 18</span></pre>
+<pre><span class='info file'># File 'lib/puma/rack/urlmap.rb', line 20</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_map'>map</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -179,11 +165,11 @@
   <h3 class='signature  first'>
     #<strong>call</strong>(env)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/rack/urlmap.rb#L43-L76'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/rack/urlmap.rb#L45-L78'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='43' data-end='76'></pre>
+  <pre class='lines_num' data-start='45' data-end='78'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/rack/urlmap.rb', line 43</span></pre>
+<pre><span class='info file'># File 'lib/puma/rack/urlmap.rb', line 45</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
@@ -236,11 +222,11 @@
 </div>
 <div class='tags'>
   
-</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/rack/urlmap.rb#L79-L89'>GitHub</a>&#8202;]</span>
+</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/rack/urlmap.rb#L81-L91'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='79' data-end='89'></pre>
+  <pre class='lines_num' data-start='81' data-end='91'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/rack/urlmap.rb', line 79</span></pre>
+<pre><span class='info file'># File 'lib/puma/rack/urlmap.rb', line 81</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_casecmp?'>casecmp?</span><span class='lparen'>(</span><span class='id identifier rubyid_v1'>v1</span><span class='comma'>,</span> <span class='id identifier rubyid_v2'>v2</span><span class='rparen'>)</span>
@@ -263,11 +249,11 @@
   <h3 class='signature '>
     #<strong>remap</strong>(map)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/rack/urlmap.rb#L22-L41'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/rack/urlmap.rb#L24-L43'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='22' data-end='41'></pre>
+  <pre class='lines_num' data-start='24' data-end='43'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/rack/urlmap.rb', line 22</span></pre>
+<pre><span class='info file'># File 'lib/puma/rack/urlmap.rb', line 24</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remap'>remap</span><span class='lparen'>(</span><span class='id identifier rubyid_map'>map</span><span class='rparen'>)</span>
