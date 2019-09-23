@@ -77,7 +77,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/control_cli.rb#L12'>lib/puma/control_cli.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/control_cli.rb#L12'>lib/puma/control_cli.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -88,7 +88,7 @@
   <li>
     <span id='COMMANDS-constant' class='summary_signature'>COMMANDS =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/control_cli.rb#L14-L14'># File 'lib/puma/control_cli.rb', line 14</a>    <pre class='code ruby'><span class='qwords_beg'>%w{</span><span class='tstring_content'>halt</span><span class='words_sep'> </span><span class='tstring_content'>restart</span><span class='words_sep'> </span><span class='tstring_content'>phased-restart</span><span class='words_sep'> </span><span class='tstring_content'>start</span><span class='words_sep'> </span><span class='tstring_content'>stats</span><span class='words_sep'> </span><span class='tstring_content'>status</span><span class='words_sep'> </span><span class='tstring_content'>stop</span><span class='words_sep'> </span><span class='tstring_content'>reload-worker-directory</span><span class='words_sep'> </span><span class='tstring_content'>gc</span><span class='words_sep'> </span><span class='tstring_content'>gc-stats</span><span class='tstring_end'>}</span></span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/control_cli.rb#L14-L14'># File 'lib/puma/control_cli.rb', line 14</a>    <pre class='code ruby'><span class='qwords_beg'>%w{</span><span class='tstring_content'>halt</span><span class='words_sep'> </span><span class='tstring_content'>restart</span><span class='words_sep'> </span><span class='tstring_content'>phased-restart</span><span class='words_sep'> </span><span class='tstring_content'>start</span><span class='words_sep'> </span><span class='tstring_content'>stats</span><span class='words_sep'> </span><span class='tstring_content'>status</span><span class='words_sep'> </span><span class='tstring_content'>stop</span><span class='words_sep'> </span><span class='tstring_content'>reload-worker-directory</span><span class='words_sep'> </span><span class='tstring_content'>gc</span><span class='words_sep'> </span><span class='tstring_content'>gc-stats</span><span class='tstring_end'>}</span></span></pre>
   </li>
 </ul>
 </div>
@@ -154,9 +154,9 @@
 </div>
 <div class='tags'>
   
-</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/control_cli.rb#L16-L106'>GitHub</a>&#8202;]</span>
+</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/control_cli.rb#L16-L113'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='16' data-end='106'></pre>
+  <pre class='lines_num' data-start='16' data-end='113'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/control_cli.rb', line 16</span></pre>
 <pre class='code ruby'>
@@ -170,6 +170,7 @@
   <span class='ivar'>@control_auth_token</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@config_file</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@command</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@environment</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>RACK_ENV</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>development</span><span class='tstring_end'>&quot;</span></span>
 
   <span class='ivar'>@argv</span> <span class='op'>=</span> <span class='id identifier rubyid_argv'>argv</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
   <span class='ivar'>@stdout</span> <span class='op'>=</span> <span class='id identifier rubyid_stdout'>stdout</span>
@@ -207,6 +208,11 @@
       <span class='ivar'>@config_file</span> <span class='op'>=</span> <span class='id identifier rubyid_arg'>arg</span>
     <span class='kw'>end</span>
 
+    <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-e</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--environment ENVIRONMENT</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The environment to run the Rack app on (default development)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+      <span class='ivar'>@environment</span> <span class='op'>=</span> <span class='id identifier rubyid_arg'>arg</span>
+    <span class='kw'>end</span>
+
     <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_on_tail'>on_tail</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-H</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--help</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Show this message</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
       <span class='ivar'>@stdout</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_o'>o</span>
       <span class='id identifier rubyid_exit'>exit</span>
@@ -224,17 +230,19 @@
   <span class='ivar'>@command</span> <span class='op'>=</span> <span class='id identifier rubyid_argv'>argv</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
 
   <span class='kw'>unless</span> <span class='ivar'>@config_file</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span>
-    <span class='kw'>if</span> <span class='ivar'>@config_file</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>and</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>config/puma.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-      <span class='ivar'>@config_file</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>config/puma.rb</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>if</span> <span class='ivar'>@config_file</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='ivar'>@config_file</span> <span class='op'>=</span> <span class='words_beg'>%W(</span><span class='tstring_content'>config/puma/</span><span class='embexpr_beg'>#{</span><span class='ivar'>@environment</span><span class='embexpr_end'>}</span><span class='tstring_content'>.rb</span><span class='words_sep'> </span><span class='tstring_content'>config/puma.rb</span><span class='tstring_end'>)</span></span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
+        <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
     <span class='kw'>end</span>
 
     <span class='kw'>if</span> <span class='ivar'>@config_file</span>
       <span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Configuration.html" title="Puma::Configuration (class)">Configuration</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="Configuration.html#new-class_method" title="Puma::Configuration.new (method)">new</a></span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='label'>config_files:</span> <span class='lbracket'>[</span><span class='ivar'>@config_file</span><span class='rbracket'>]</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span>
-      <span class='ivar'>@state</span>              <span class='op'>||=</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_state'>state</span><span class='rbracket'>]</span>
-      <span class='ivar'>@control_url</span>        <span class='op'>||=</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_control_url'>control_url</span><span class='rbracket'>]</span>
-      <span class='ivar'>@control_auth_token</span> <span class='op'>||=</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_control_auth_token'>control_auth_token</span><span class='rbracket'>]</span>
-      <span class='ivar'>@pidfile</span>            <span class='op'>||=</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_pidfile'>pidfile</span><span class='rbracket'>]</span>
+      <span class='ivar'>@state</span>              <span class='op'>||=</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:state</span><span class='rbracket'>]</span>
+      <span class='ivar'>@control_url</span>        <span class='op'>||=</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:control_url</span><span class='rbracket'>]</span>
+      <span class='ivar'>@control_auth_token</span> <span class='op'>||=</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:control_auth_token</span><span class='rbracket'>]</span>
+      <span class='ivar'>@pidfile</span>            <span class='op'>||=</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:pidfile</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
@@ -249,7 +257,6 @@
 
 <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
   <span class='ivar'>@stdout</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span>
-  <span class='ivar'>@stdout</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span>
   <span class='id identifier rubyid_exit'>exit</span> <span class='int'>1</span>
 <span class='kw'>end</span>
 </pre>
@@ -262,11 +269,11 @@
   <h3 class='signature  first'>
     #<strong>message</strong>(msg)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/control_cli.rb#L108-L110'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/control_cli.rb#L115-L117'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='108' data-end='110'></pre>
+  <pre class='lines_num' data-start='115' data-end='117'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/control_cli.rb', line 108</span></pre>
+<pre><span class='info file'># File 'lib/puma/control_cli.rb', line 115</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_message'>message</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span>
@@ -281,11 +288,11 @@
   <h3 class='signature '>
     #<strong>prepare_configuration</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/control_cli.rb#L112-L128'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/control_cli.rb#L119-L135'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='112' data-end='128'></pre>
+  <pre class='lines_num' data-start='119' data-end='135'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/control_cli.rb', line 112</span></pre>
+<pre><span class='info file'># File 'lib/puma/control_cli.rb', line 119</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prepare_configuration'>prepare_configuration</span>
@@ -300,9 +307,9 @@
     <span class='ivar'>@control_url</span> <span class='op'>=</span> <span class='id identifier rubyid_sf'>sf</span><span class='period'>.</span><span class='id identifier rubyid_control_url'>control_url</span>
     <span class='ivar'>@control_auth_token</span> <span class='op'>=</span> <span class='id identifier rubyid_sf'>sf</span><span class='period'>.</span><span class='id identifier rubyid_control_auth_token'>control_auth_token</span>
     <span class='ivar'>@pid</span> <span class='op'>=</span> <span class='id identifier rubyid_sf'>sf</span><span class='period'>.</span><span class='id identifier rubyid_pid'>pid</span>
-  <span class='kw'>elsif</span> <span class='ivar'>@pidfile</span>
-    <span class='comment'># get pid from pid_file
-</span>    <span class='ivar'>@pid</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='ivar'>@pidfile</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gets'>gets</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+  <span class='kw'>elsif</span> <span class='ivar'>@pidfile</span>    <span class='comment'># get pid from pid_file
+</span>
+    <span class='ivar'>@pid</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='ivar'>@pidfile</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gets'>gets</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </pre>
@@ -314,11 +321,11 @@
   <h3 class='signature '>
     #<strong>run</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/control_cli.rb#L224-L239'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/control_cli.rb#L241-L255'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='224' data-end='239'></pre>
+  <pre class='lines_num' data-start='241' data-end='255'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/control_cli.rb', line 224</span></pre>
+<pre><span class='info file'># File 'lib/puma/control_cli.rb', line 241</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>
@@ -334,7 +341,6 @@
 
 <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
   <span class='id identifier rubyid_message'>message</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span>
-  <span class='id identifier rubyid_message'>message</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span>
   <span class='id identifier rubyid_exit'>exit</span> <span class='int'>1</span>
 <span class='kw'>end</span>
 </pre>
@@ -346,15 +352,15 @@
   <h3 class='signature '>
     #<strong>send_request</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/control_cli.rb#L130-L179'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/control_cli.rb#L137-L186'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='130' data-end='179'></pre>
+  <pre class='lines_num' data-start='137' data-end='186'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/control_cli.rb', line 130</span></pre>
+<pre><span class='info file'># File 'lib/puma/control_cli.rb', line 137</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_request'>send_request</span>
-  <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='const'><a href="../URI.html" title="URI (module)">URI</a></span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='ivar'>@control_url</span>
+  <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='ivar'>@control_url</span>
 
   <span class='comment'># create server object by scheme
 </span>  <span class='id identifier rubyid_server'>server</span> <span class='op'>=</span> <span class='kw'>case</span> <span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_scheme'>scheme</span>
@@ -412,11 +418,11 @@
   <h3 class='signature '>
     #<strong>send_signal</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/control_cli.rb#L181-L222'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/control_cli.rb#L188-L239'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='181' data-end='222'></pre>
+  <pre class='lines_num' data-start='188' data-end='239'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/control_cli.rb', line 181</span></pre>
+<pre><span class='info file'># File 'lib/puma/control_cli.rb', line 188</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_signal'>send_signal</span>
@@ -428,13 +434,13 @@
 
     <span class='kw'>case</span> <span class='ivar'>@command</span>
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>restart</span><span class='tstring_end'>&quot;</span></span>
-      <span class='const'><a href="../Process.html" title="Process (module)">Process</a></span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGUSR2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@pid</span>
+      <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGUSR2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@pid</span>
 
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>halt</span><span class='tstring_end'>&quot;</span></span>
-      <span class='const'><a href="../Process.html" title="Process (module)">Process</a></span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>QUIT</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@pid</span>
+      <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>QUIT</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@pid</span>
 
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stop</span><span class='tstring_end'>&quot;</span></span>
-      <span class='const'><a href="../Process.html" title="Process (module)">Process</a></span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGTERM</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@pid</span>
+      <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGTERM</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@pid</span>
 
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stats</span><span class='tstring_end'>&quot;</span></span>
       <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Stats not available via pid only</span><span class='tstring_end'>&quot;</span></span>
@@ -445,7 +451,17 @@
       <span class='kw'>return</span>
 
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>phased-restart</span><span class='tstring_end'>&quot;</span></span>
-      <span class='const'><a href="../Process.html" title="Process (module)">Process</a></span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGUSR1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@pid</span>
+      <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGUSR1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@pid</span>
+
+    <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>status</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>begin</span>
+        <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span> <span class='int'>0</span><span class='comma'>,</span> <span class='ivar'>@pid</span>
+        <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Puma is started</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>ESRCH</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Puma is not running</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+
+      <span class='kw'>return</span>
 
     <span class='kw'>else</span>
       <span class='kw'>return</span>
@@ -470,11 +486,11 @@
   <h3 class='signature priv'>
     #<strong>start</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/control_cli.rb#L242-L262'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/control_cli.rb#L258-L279'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='242' data-end='262'></pre>
+  <pre class='lines_num' data-start='258' data-end='279'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/control_cli.rb', line 242</span></pre>
+<pre><span class='info file'># File 'lib/puma/control_cli.rb', line 258</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start'>start</span>
@@ -488,6 +504,7 @@
   <span class='id identifier rubyid_run_args'>run_args</span> <span class='op'>+=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--control-url</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@control_url</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='ivar'>@control_url</span>
   <span class='id identifier rubyid_run_args'>run_args</span> <span class='op'>+=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--control-token</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@control_auth_token</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='ivar'>@control_auth_token</span>
   <span class='id identifier rubyid_run_args'>run_args</span> <span class='op'>+=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-C</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@config_file</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='ivar'>@config_file</span>
+  <span class='id identifier rubyid_run_args'>run_args</span> <span class='op'>+=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-e</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@environment</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='ivar'>@environment</span>
 
   <span class='id identifier rubyid_events'>events</span> <span class='op'>=</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Events.html" title="Puma::Events (class)">Events</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="Events.html#new-class_method" title="Puma::Events.new (method)">new</a></span> <span class='ivar'>@stdout</span><span class='comma'>,</span> <span class='ivar'>@stderr</span>
 

@@ -1824,12 +1824,12 @@ function toc_Generate(content, isCode) {
         itemHref = el.id;
       }
       if (itemHref.length === 0) {
-        proposedId = el.getAttribute('toc-id') || el.textContent.replace(/[^a-z0-9]+/ig, '-');;
+        proposedId = el.getAttribute('toc-id') || el.textContent.toLowerCase().replace(/& /g, '-').replace(/[^a-z0-9-]+/g, '-');
         qs = /^[0-9]/.test(proposedId) ? '#\\' : '#';
         if ( /^-/.test(proposedId) ) proposedId = "_" + proposedId;
         if (proposedId === null || proposedId === '' ||
             content.querySelector(qs + proposedId) ) {
-          proposedId = title.replace(/[^a-z0-9]+/ig, '-');
+          proposedId = title.toLowerCase().replace(/& /g, '-').replace(/[^a-z0-9-]+/g, '-');
           // selectors can't start with an unescaped number
           if ( /\s*/.test(proposedId) ) proposedId = "_" + counter; counter++;
           qs = /^[0-9]/.test(proposedId) ? '#\\' : '#';
@@ -2843,7 +2843,7 @@ function xhrOnError(url, func, xhr) {
   return false;
 }
 
-/* Receives xhr.responseText, parses, loads into a DocumentFragment, which is
+/* Receives xhr.responseXML, parses, loads into a DocumentFragment, which is
  *  returned to func callback.
  *
  * * Parses title element string
@@ -3393,7 +3393,7 @@ function addContent(content) {
 //    var nl = content.querySelectorAll('pre.code.javascript, pre.code.cpp');
     var nl = content.querySelectorAll('pre.code');
     for (var i = 0, el; el = nl[i]; i++) {
-      if ( !(el.classList.contains('ruby') || el.classList.contains('example') )  )
+      if ( !(el.classList.contains('ruby') || el.classList.contains('example') ) )
         hljs.highlightBlock(el);
     }
   }
@@ -3733,9 +3733,13 @@ function clkContent(e) {
       len,
       cancel = false,
       reCls = /(toggleSource|summary_signature|h2_sum|h2_sum nodoc|cnst_a)/,
-      reIds = /(h2_overview|t2_defined_in|t2_relations|t2_inherits)/;
+      reIds = /(h2_overview|t2_defined_in|t2_relations|t2_inherits)/,
+      attrHRef = tgt.getAttribute('href');
 
   settingsCheck();
+
+  // standard internal link
+  if (attrHRef && /^#\S+/.test(attrHRef)) { return true };
 
   if (reIds.test(id)) {
     var t;

@@ -62,50 +62,42 @@
   </header>
 <div id='content' class='file'>
 <h1>Architecture</h1>
-
 <h2>Overview</h2>
-
-<p><img src="images/puma-general-arch.png" alt="http://bit.ly/2iJuFky"></p>
-
+<p><img src="images/puma-general-arch.png" alt="http://bit.ly/2iJuFky" /></p>
 <p><a href="Puma.html" title="Puma (module)">Puma</a> is a threaded web server, processing requests across a TCP or UNIX socket.</p>
-
-<p>Workers accept connections from the socket and a thread in the worker&#39;s thread pool processes the client&#39;s request.</p>
-
+<p>Workers accept connections from the socket and a thread in the worker's thread pool processes the client's request.</p>
 <p>Clustered mode is shown/discussed here. Single mode is analogous to having a single worker process.</p>
-
 <h2>Connection pipeline</h2>
-
-<p><img src="images/puma-connection-flow.png" alt="http://bit.ly/2zwzhEK"></p>
-
+<p><img src="images/puma-connection-flow.png" alt="http://bit.ly/2zwzhEK" /></p>
 <ul>
 <li>Upon startup, <a href="Puma.html" title="Puma (module)">Puma</a> listens on a TCP or UNIX socket.
-
 <ul>
 <li>The backlog of this socket is configured (with a default of 1024), determining how many established but unaccepted connections can exist concurrently.</li>
-<li>This socket backlog is distinct from the &quot;backlog&quot; of work as reported by the control server stats. The latter is the number of connections in that worker&#39;s &quot;todo&quot; set waiting for a worker thread.</li>
-</ul></li>
+<li>This socket backlog is distinct from the &quot;backlog&quot; of work as reported by the control server stats. The latter is the number of connections in that worker's &quot;todo&quot; set waiting for a worker thread.</li>
+</ul>
+</li>
 <li>By default, a single, separate thread is used to receive HTTP requests across the socket.
-
 <ul>
 <li>When at least one worker thread is available for work, a connection is accepted and placed in this request buffer</li>
-<li>This thread waits for entire HTTP requests to be received over the connection</li>
+<li>This thread waits for entire HTTP requests to be received over the connection
+<ul>
+<li>The time spent waiting for the HTTP request body to be received is exposed to the Rack app as <code>env['puma.request_body_wait']</code> (milliseconds)</li>
+</ul>
+</li>
 <li>Once received, the connection is pushed into the &quot;todo&quot; set</li>
-</ul></li>
+</ul>
+</li>
 <li>Worker threads pop work off the &quot;todo&quot; set for processing
-
 <ul>
 <li>The thread processes the request via the rack application (which generates the HTTP response)</li>
 <li>The thread writes the response to the connection</li>
 <li>Finally, the thread become available to process another connection in the &quot;todo&quot; set</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3>Disabling <code>queue_requests</code></h3>
-
-<p><img src="images/puma-connection-flow-no-reactor.png" alt="http://bit.ly/2zxCJ1Z"></p>
-
+<p><img src="images/puma-connection-flow-no-reactor.png" alt="http://bit.ly/2zxCJ1Z" /></p>
 <p>The <code>queue_requests</code> option is <code>true</code> by default, enabling the separate thread used to buffer requests as described above.</p>
-
 <p>If set to <code>false</code>, this buffer will not be used for connections while waiting for the request to arrive.
 In this mode, when a connection is accepted, it is added to the &quot;todo&quot; queue immediately, and a worker will synchronously do any waiting necessary to read the HTTP request from the socket.</p>
 

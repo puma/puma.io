@@ -62,34 +62,21 @@
   </header>
 <div id='content' class='file'>
 <h2>Plugins</h2>
-
 <p><a href="Puma.html" title="Puma (module)">Puma</a> 3.0 added support for plugins that can augment configuration and service operations.</p>
-
 <p>2 canonical plugins to look to aid in development of further plugins:</p>
-
 <ul>
 <li><a href="https://github.com/puma/puma/blob/master/lib/puma/plugin/tmp_restart.rb">tmp_restart</a>: Restarts the server if the file <code>tmp/restart.txt</code> is touched</li>
 <li><a href="https://github.com/puma/puma-heroku/blob/master/lib/puma/plugin/heroku.rb">heroku</a>: Packages up the default configuration used by puma on Heroku</li>
 </ul>
-
-<p>Plugins are activated in a puma configuration file (such as <code>config/puma.rb&#39;</code>) by adding <code>plugin &quot;name&quot;</code>, such as <code>plugin &quot;heroku&quot;</code>.</p>
-
+<p>Plugins are activated in a puma configuration file (such as <code>config/puma.rb'</code>) by adding <code>plugin &quot;name&quot;</code>, such as <code>plugin &quot;heroku&quot;</code>.</p>
 <p>Plugins are activated based simply on path requirements so, activating the <code>heroku</code> plugin will simply be doing <code>require &quot;puma/plugin/heroku&quot;</code>. This allows gems to provide multiple plugins (as well as unrelated gems to provide puma plugins).</p>
-
 <p>The <code>tmp_restart</code> plugin is bundled with puma, so it can always be used.</p>
-
 <p>To use the <code>heroku</code> plugin, add <code>puma-heroku</code> to your Gemfile or install it.</p>
-
 <h3>API</h3>
-
 <p>At present, there are 2 hooks that plugins can use: <code>start</code> and <code>config</code>.</p>
-
 <p><code>start</code> runs when the server has started and allows the plugin to start other functionality to augment puma.</p>
-
 <p><code>config</code> runs when the server is being configured and is passed a <a href="Puma/DSL.html" title="Puma::DSL (class)">::Puma::DSL</a> object that can be used to add additional configuration.</p>
-
 <p>Any public methods in <a href="Puma/Plugin.html" title="Puma::Plugin (class)">::Puma::Plugin</a> are the public API that any plugin may use.</p>
-
 <p>In the future, more hooks and APIs will be added.</p>
 
 <div id='footer'></div>

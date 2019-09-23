@@ -96,7 +96,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L37'>lib/puma/client.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L38'>lib/puma/client.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -106,9 +106,9 @@
 <div class='docstring'>
   <div class='discussion'>
     
-<p>An instance of this class represents a unique request from a client. For example a web request from a browser or from CURL. This</p>
+<p>An instance of this class represents a unique request from a client. For example, this could be a web request from a browser or from CURL.</p>
 
-<p>An instance of `Puma::Client` can be used as if it were an <a href="../IO.html" title="IO (class)">::IO</a> object for example it is passed into `IO.select` inside of the `Puma::Reactor`. This is accomplished by the `to_io` method which gets called on any non-IO objects being used with the <a href="../IO.html" title="IO (class)">::IO</a> api such as `IO.select.</p>
+<p>An instance of `Puma::Client` can be used as if it were an <a href="../IO.html" title="IO (class)">::IO</a> object by the reactor. The reactor is expected to call `#to_io` on any non-IO objects it polls. For example, nio4r internally calls `IO::try_convert` (which may call `#to_io`) when a new socket is registered.</p>
 
 <p>Instances of this class are responsible for knowing if the header and body are fully buffered via the `try_to_finish` method. They can be used to “time out” a response via the `timeout_at` reader.</p>
 
@@ -120,14 +120,8 @@
 <ul class='constants summary full'>
   <li>
     <span id='EmptyBody-constant' class='summary_signature'>EmptyBody =</span>
-    <div class='docstring'>
-  <div class='discussion'>
-    
-<p>The object used for a request with no body. All requests with no body share this one object since it has no state.</p>
-
-  </div>
-</div>
-    <a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L133-L133'># File 'lib/puma/client.rb', line 133</a>    <pre class='code ruby'><span class='const'><a href="NullIO.html" title="Puma::NullIO (class)">NullIO</a></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span></pre>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L41-L41'># File 'lib/puma/client.rb', line 41</a>    <pre class='code ruby'><span class='const'><a href="NullIO.html" title="Puma::NullIO (class)">NullIO</a></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span></pre>
   </li>
 </ul>
   <h3 class='inherited'><a href="Const.html" title="Puma::Const (module)">Const</a> - Included</h3>
@@ -146,11 +140,7 @@
     <a href="Const.html#CONTENT_LENGTH_S-constant" title="Puma::Const::CONTENT_LENGTH_S (constant)">CONTENT_LENGTH_S</a>, 
     <a href="Const.html#CONTINUE-constant" title="Puma::Const::CONTINUE (constant)">CONTINUE</a>, 
     <a href="Const.html#EARLY_HINTS-constant" title="Puma::Const::EARLY_HINTS (constant)">EARLY_HINTS</a>, 
-    <a href="Const.html#ERROR_400_RESPONSE-constant" title="Puma::Const::ERROR_400_RESPONSE (constant)">ERROR_400_RESPONSE</a>, 
-    <a href="Const.html#ERROR_404_RESPONSE-constant" title="Puma::Const::ERROR_404_RESPONSE (constant)">ERROR_404_RESPONSE</a>, 
-    <a href="Const.html#ERROR_408_RESPONSE-constant" title="Puma::Const::ERROR_408_RESPONSE (constant)">ERROR_408_RESPONSE</a>, 
-    <a href="Const.html#ERROR_500_RESPONSE-constant" title="Puma::Const::ERROR_500_RESPONSE (constant)">ERROR_500_RESPONSE</a>, 
-    <a href="Const.html#ERROR_503_RESPONSE-constant" title="Puma::Const::ERROR_503_RESPONSE (constant)">ERROR_503_RESPONSE</a>, 
+    <a href="Const.html#ERROR_RESPONSE-constant" title="Puma::Const::ERROR_RESPONSE (constant)">ERROR_RESPONSE</a>, 
     <a href="Const.html#FAST_TRACK_KA_TIMEOUT-constant" title="Puma::Const::FAST_TRACK_KA_TIMEOUT (constant)">FAST_TRACK_KA_TIMEOUT</a>, 
     <a href="Const.html#FIRST_DATA_TIMEOUT-constant" title="Puma::Const::FIRST_DATA_TIMEOUT (constant)">FIRST_DATA_TIMEOUT</a>, 
     <a href="Const.html#GATEWAY_INTERFACE-constant" title="Puma::Const::GATEWAY_INTERFACE (constant)">GATEWAY_INTERFACE</a>, 
@@ -171,6 +161,9 @@
     <a href="Const.html#HTTP_HOST-constant" title="Puma::Const::HTTP_HOST (constant)">HTTP_HOST</a>, 
     <a href="Const.html#HTTP_VERSION-constant" title="Puma::Const::HTTP_VERSION (constant)">HTTP_VERSION</a>, 
     <a href="Const.html#HTTP_X_FORWARDED_FOR-constant" title="Puma::Const::HTTP_X_FORWARDED_FOR (constant)">HTTP_X_FORWARDED_FOR</a>, 
+    <a href="Const.html#HTTP_X_FORWARDED_PROTO-constant" title="Puma::Const::HTTP_X_FORWARDED_PROTO (constant)">HTTP_X_FORWARDED_PROTO</a>, 
+    <a href="Const.html#HTTP_X_FORWARDED_SCHEME-constant" title="Puma::Const::HTTP_X_FORWARDED_SCHEME (constant)">HTTP_X_FORWARDED_SCHEME</a>, 
+    <a href="Const.html#HTTP_X_FORWARDED_SSL-constant" title="Puma::Const::HTTP_X_FORWARDED_SSL (constant)">HTTP_X_FORWARDED_SSL</a>, 
     <a href="Const.html#KEEP_ALIVE-constant" title="Puma::Const::KEEP_ALIVE (constant)">KEEP_ALIVE</a>, 
     <a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a>, 
     <a href="Const.html#LOCALHOST-constant" title="Puma::Const::LOCALHOST (constant)">LOCALHOST</a>, 
@@ -206,6 +199,7 @@
     <a href="Const.html#TRANSFER_ENCODING-constant" title="Puma::Const::TRANSFER_ENCODING (constant)">TRANSFER_ENCODING</a>, 
     <a href="Const.html#TRANSFER_ENCODING2-constant" title="Puma::Const::TRANSFER_ENCODING2 (constant)">TRANSFER_ENCODING2</a>, 
     <a href="Const.html#TRANSFER_ENCODING_CHUNKED-constant" title="Puma::Const::TRANSFER_ENCODING_CHUNKED (constant)">TRANSFER_ENCODING_CHUNKED</a>, 
+    <a href="Const.html#WORKER_CHECK_INTERVAL-constant" title="Puma::Const::WORKER_CHECK_INTERVAL (constant)">WORKER_CHECK_INTERVAL</a>, 
     <a href="Const.html#WRITE_TIMEOUT-constant" title="Puma::Const::WRITE_TIMEOUT (constant)">WRITE_TIMEOUT</a>
   </p>
 </div>
@@ -323,15 +317,10 @@
   </li>
   <li>
     <span class='summary_signature '>
-      <a href="#decode_chunk-instance_method" title="#decode_chunk (instance method)">#<strong>decode_chunk</strong>(chunk)  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
       <a href="#eagerly_finish-instance_method" title="#eagerly_finish (instance method)">#<strong>eagerly_finish</strong>  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>See additional method definition at line 364.</p></div>
+      <div class='inline'><p>See additional method definition at line 223.</p></div>
     </div>
   </li>
   <li>
@@ -359,16 +348,6 @@
   </li>
   <li>
     <span class='summary_signature '>
-      <a href="#read_body-instance_method" title="#read_body (instance method)">#<strong>read_body</strong>  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#read_chunked_body-instance_method" title="#read_chunked_body (instance method)">#<strong>read_chunked_body</strong>  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
       <a href="#reset-instance_method" title="#reset (instance method)">#<strong>reset</strong>(fast_check = true)  </a>
     </span>
   </li>
@@ -379,33 +358,49 @@
   </li>
   <li>
     <span class='summary_signature '>
-      <a href="#setup_body-instance_method" title="#setup_body (instance method)">#<strong>setup_body</strong>  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#setup_chunked_body-instance_method" title="#setup_chunked_body (instance method)">#<strong>setup_chunked_body</strong>(body)  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
       <a href="#try_to_finish-instance_method" title="#try_to_finish (instance method)">#<strong>try_to_finish</strong>  </a>
     </span>
   </li>
   <li>
     <span class='summary_signature '>
-      <a href="#write_400-instance_method" title="#write_400 (instance method)">#<strong>write_400</strong>  </a>
+      <a href="#write_error-instance_method" title="#write_error (instance method)">#<strong>write_error</strong>(status_code)  </a>
     </span>
   </li>
   <li>
-    <span class='summary_signature '>
-      <a href="#write_408-instance_method" title="#write_408 (instance method)">#<strong>write_408</strong>  </a>
+    <span class='summary_signature priv'>
+      <a href="#decode_chunk-instance_method" title="#decode_chunk (instance method)">#<strong>decode_chunk</strong>(chunk)  </a>
     </span>
+    <span class='note title private'>private</span>
   </li>
   <li>
-    <span class='summary_signature '>
-      <a href="#write_500-instance_method" title="#write_500 (instance method)">#<strong>write_500</strong>  </a>
+    <span class='summary_signature priv'>
+      <a href="#read_body-instance_method" title="#read_body (instance method)">#<strong>read_body</strong>  </a>
     </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#read_chunked_body-instance_method" title="#read_chunked_body (instance method)">#<strong>read_chunked_body</strong>  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#set_ready-instance_method" title="#set_ready (instance method)">#<strong>set_ready</strong>  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#setup_body-instance_method" title="#setup_body (instance method)">#<strong>setup_body</strong>  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#setup_chunked_body-instance_method" title="#setup_chunked_body (instance method)">#<strong>setup_chunked_body</strong>(body)  </a>
+    </span>
+    <span class='note title private'>private</span>
   </li>
 </ul>
 </div>  <!-- instance_method_summary -->
@@ -422,11 +417,11 @@
 </div>
 <div class='tags'>
   
-</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L41-L67'>GitHub</a>&#8202;]</span>
+</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L46-L77'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='41' data-end='67'></pre>
+  <pre class='lines_num' data-start='46' data-end='77'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 41</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 46</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='id identifier rubyid_env'>env</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
@@ -445,6 +440,7 @@
   <span class='ivar'>@ready</span> <span class='op'>=</span> <span class='kw'>false</span>
 
   <span class='ivar'>@body</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@body_read_start</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@tempfile</span> <span class='op'>=</span> <span class='kw'>nil</span>
 
@@ -455,6 +451,10 @@
 
   <span class='ivar'>@peerip</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@remote_addr_header</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+  <span class='ivar'>@body_remain</span> <span class='op'>=</span> <span class='int'>0</span>
+
+  <span class='ivar'>@in_last_chunk</span> <span class='op'>=</span> <span class='kw'>false</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -466,15 +466,15 @@
   <h3 class='signature ro first'>
     #<strong>body</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L69-L70'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='69' data-end='70'></pre>
+  <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 69</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:env</span><span class='comma'>,</span> <span class='symbol'>:to_io</span><span class='comma'>,</span> <span class='symbol'>:body</span><span class='comma'>,</span> <span class='symbol'>:io</span><span class='comma'>,</span> <span class='symbol'>:timeout_at</span><span class='comma'>,</span> <span class='symbol'>:ready</span><span class='comma'>,</span> <span class='symbol'>:hijacked</span><span class='comma'>,</span>
+            <span class='symbol'>:tempfile</span>
 </pre>
   </div>
 </div>
@@ -484,15 +484,15 @@
   <h3 class='signature ro'>
     #<strong>env</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L69-L70'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='69' data-end='70'></pre>
+  <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 69</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:env</span><span class='comma'>,</span> <span class='symbol'>:to_io</span><span class='comma'>,</span> <span class='symbol'>:body</span><span class='comma'>,</span> <span class='symbol'>:io</span><span class='comma'>,</span> <span class='symbol'>:timeout_at</span><span class='comma'>,</span> <span class='symbol'>:ready</span><span class='comma'>,</span> <span class='symbol'>:hijacked</span><span class='comma'>,</span>
+            <span class='symbol'>:tempfile</span>
 </pre>
   </div>
 </div>
@@ -502,15 +502,15 @@
   <h3 class='signature ro'>
     #<strong>hijacked</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L69-L70'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='69' data-end='70'></pre>
+  <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 69</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:env</span><span class='comma'>,</span> <span class='symbol'>:to_io</span><span class='comma'>,</span> <span class='symbol'>:body</span><span class='comma'>,</span> <span class='symbol'>:io</span><span class='comma'>,</span> <span class='symbol'>:timeout_at</span><span class='comma'>,</span> <span class='symbol'>:ready</span><span class='comma'>,</span> <span class='symbol'>:hijacked</span><span class='comma'>,</span>
+            <span class='symbol'>:tempfile</span>
 </pre>
   </div>
 </div>
@@ -520,15 +520,15 @@
   <h3 class='signature ro'>
     #<strong>io</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L69-L70'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='69' data-end='70'></pre>
+  <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 69</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:env</span><span class='comma'>,</span> <span class='symbol'>:to_io</span><span class='comma'>,</span> <span class='symbol'>:body</span><span class='comma'>,</span> <span class='symbol'>:io</span><span class='comma'>,</span> <span class='symbol'>:timeout_at</span><span class='comma'>,</span> <span class='symbol'>:ready</span><span class='comma'>,</span> <span class='symbol'>:hijacked</span><span class='comma'>,</span>
+            <span class='symbol'>:tempfile</span>
 </pre>
   </div>
 </div>
@@ -538,11 +538,11 @@
   <h3 class='signature rw'>
     #<strong>peerip</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L460-L470'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L258-L268'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='460' data-end='470'></pre>
+  <pre class='lines_num' data-start='258' data-end='268'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 460</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 258</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_peerip'>peerip</span>
@@ -565,14 +565,14 @@
   <h3 class='signature rw'>
     #<strong>peerip=</strong>(value)   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L72-L72'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L82-L82'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='72' data-end='72'></pre>
+  <pre class='lines_num' data-start='82' data-end='82'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 72</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 82</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_writer'>attr_writer</span> <span class='symbeg'>:</span><span class='id identifier rubyid_peerip'>peerip</span>
+<span class='id identifier rubyid_attr_writer'>attr_writer</span> <span class='symbol'>:peerip</span>
 </pre>
   </div>
 </div>
@@ -582,15 +582,15 @@
   <h3 class='signature ro'>
     #<strong>ready</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L69-L70'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='69' data-end='70'></pre>
+  <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 69</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:env</span><span class='comma'>,</span> <span class='symbol'>:to_io</span><span class='comma'>,</span> <span class='symbol'>:body</span><span class='comma'>,</span> <span class='symbol'>:io</span><span class='comma'>,</span> <span class='symbol'>:timeout_at</span><span class='comma'>,</span> <span class='symbol'>:ready</span><span class='comma'>,</span> <span class='symbol'>:hijacked</span><span class='comma'>,</span>
+            <span class='symbol'>:tempfile</span>
 </pre>
   </div>
 </div>
@@ -600,14 +600,14 @@
   <h3 class='signature rw'>
     #<strong>remote_addr_header</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L74-L74'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L84-L84'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='74' data-end='74'></pre>
+  <pre class='lines_num' data-start='84' data-end='84'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 74</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 84</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbeg'>:</span><span class='id identifier rubyid_remote_addr_header'>remote_addr_header</span>
+<span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:remote_addr_header</span>
 </pre>
   </div>
 </div>
@@ -617,15 +617,15 @@
   <h3 class='signature ro'>
     #<strong>tempfile</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L69-L70'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='69' data-end='70'></pre>
+  <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 69</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:env</span><span class='comma'>,</span> <span class='symbol'>:to_io</span><span class='comma'>,</span> <span class='symbol'>:body</span><span class='comma'>,</span> <span class='symbol'>:io</span><span class='comma'>,</span> <span class='symbol'>:timeout_at</span><span class='comma'>,</span> <span class='symbol'>:ready</span><span class='comma'>,</span> <span class='symbol'>:hijacked</span><span class='comma'>,</span>
+            <span class='symbol'>:tempfile</span>
 </pre>
   </div>
 </div>
@@ -635,15 +635,15 @@
   <h3 class='signature ro'>
     #<strong>timeout_at</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L69-L70'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='69' data-end='70'></pre>
+  <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 69</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:env</span><span class='comma'>,</span> <span class='symbol'>:to_io</span><span class='comma'>,</span> <span class='symbol'>:body</span><span class='comma'>,</span> <span class='symbol'>:io</span><span class='comma'>,</span> <span class='symbol'>:timeout_at</span><span class='comma'>,</span> <span class='symbol'>:ready</span><span class='comma'>,</span> <span class='symbol'>:hijacked</span><span class='comma'>,</span>
+            <span class='symbol'>:tempfile</span>
 </pre>
   </div>
 </div>
@@ -653,15 +653,15 @@
   <h3 class='signature ro'>
     #<strong>to_io</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L69-L70'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='69' data-end='70'></pre>
+  <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 69</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:env</span><span class='comma'>,</span> <span class='symbol'>:to_io</span><span class='comma'>,</span> <span class='symbol'>:body</span><span class='comma'>,</span> <span class='symbol'>:io</span><span class='comma'>,</span> <span class='symbol'>:timeout_at</span><span class='comma'>,</span> <span class='symbol'>:ready</span><span class='comma'>,</span> <span class='symbol'>:hijacked</span><span class='comma'>,</span>
+            <span class='symbol'>:tempfile</span>
 </pre>
   </div>
 </div>
@@ -679,11 +679,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L84-L87'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L94-L97'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='84' data-end='87'></pre>
+  <pre class='lines_num' data-start='94' data-end='97'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 84</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 94</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span>
@@ -699,18 +699,18 @@
   <h3 class='signature '>
     #<strong>close</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L123-L129'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L143-L149'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='123' data-end='129'></pre>
+  <pre class='lines_num' data-start='143' data-end='149'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 123</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 143</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
   <span class='kw'>begin</span>
     <span class='ivar'>@io</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
   <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>
-    <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span>
+    <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:purge_interrupt_queue</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </pre>
@@ -719,24 +719,27 @@
 </section>
 
 <section class='method_details' id="decode_chunk-instance_method">
-  <h3 class='signature '>
-    #<strong>decode_chunk</strong>(chunk)  
+  <h3 class='signature priv'>
+    #<strong>decode_chunk</strong>(chunk)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L147-L208'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L408-L484'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='147' data-end='208'></pre>
+  <pre class='lines_num' data-start='408' data-end='484'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 147</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 408</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_decode_chunk'>decode_chunk</span><span class='lparen'>(</span><span class='id identifier rubyid_chunk'>chunk</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@partial_part_left</span> <span class='op'>&gt;</span> <span class='int'>0</span>
     <span class='kw'>if</span> <span class='ivar'>@partial_part_left</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_chunk'>chunk</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
-      <span class='ivar'>@body</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_chunk'>chunk</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='lparen'>(</span><span class='ivar'>@partial_part_left</span><span class='op'>-</span><span class='int'>3</span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='comment'># skip the \r\n
-</span>      <span class='id identifier rubyid_chunk'>chunk</span> <span class='op'>=</span> <span class='id identifier rubyid_chunk'>chunk</span><span class='lbracket'>[</span><span class='ivar'>@partial_part_left</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+      <span class='kw'>if</span> <span class='ivar'>@partial_part_left</span> <span class='op'>&gt;</span> <span class='int'>2</span>
+        <span class='ivar'>@body</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_chunk'>chunk</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='lparen'>(</span><span class='ivar'>@partial_part_left</span><span class='op'>-</span><span class='int'>3</span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='comment'># skip the \r\n
+</span>      <span class='kw'>end</span>
+      <span class='id identifier rubyid_chunk'>chunk</span> <span class='op'>=</span> <span class='id identifier rubyid_chunk'>chunk</span><span class='lbracket'>[</span><span class='ivar'>@partial_part_left</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+      <span class='ivar'>@partial_part_left</span> <span class='op'>=</span> <span class='int'>0</span>
     <span class='kw'>else</span>
-      <span class='ivar'>@body</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_chunk'>chunk</span>
-      <span class='ivar'>@partial_part_left</span> <span class='op'>-=</span> <span class='id identifier rubyid_chunk'>chunk</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+      <span class='ivar'>@body</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_chunk'>chunk</span> <span class='kw'>if</span> <span class='ivar'>@partial_part_left</span> <span class='op'>&gt;</span> <span class='int'>2</span> <span class='comment'># don&#39;t include the last \r\n
+</span>      <span class='ivar'>@partial_part_left</span> <span class='op'>-=</span> <span class='id identifier rubyid_chunk'>chunk</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
       <span class='kw'>return</span> <span class='kw'>false</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -753,13 +756,20 @@
     <span class='kw'>if</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_end_with?'>end_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_len'>len</span> <span class='op'>=</span> <span class='id identifier rubyid_line'>line</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='lparen'>(</span><span class='int'>16</span><span class='rparen'>)</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_len'>len</span> <span class='op'>==</span> <span class='int'>0</span>
+        <span class='ivar'>@in_last_chunk</span> <span class='op'>=</span> <span class='kw'>true</span>
         <span class='ivar'>@body</span><span class='period'>.</span><span class='id identifier rubyid_rewind'>rewind</span>
         <span class='id identifier rubyid_rest'>rest</span> <span class='op'>=</span> <span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
-        <span class='id identifier rubyid_rest'>rest</span> <span class='op'>=</span> <span class='id identifier rubyid_rest'>rest</span><span class='lbracket'>[</span><span class='int'>2</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_rest'>rest</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-        <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='id identifier rubyid_rest'>rest</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_rest'>rest</span>
-        <span class='ivar'>@requests_served</span> <span class='op'>+=</span> <span class='int'>1</span>
-        <span class='ivar'>@ready</span> <span class='op'>=</span> <span class='kw'>true</span>
-        <span class='kw'>return</span> <span class='kw'>true</span>
+        <span class='id identifier rubyid_last_crlf_size'>last_crlf_size</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_bytesize'>bytesize</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_rest'>rest</span><span class='period'>.</span><span class='id identifier rubyid_bytesize'>bytesize</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_last_crlf_size'>last_crlf_size</span>
+          <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
+          <span class='ivar'>@partial_part_left</span> <span class='op'>=</span> <span class='id identifier rubyid_last_crlf_size'>last_crlf_size</span> <span class='op'>-</span> <span class='id identifier rubyid_rest'>rest</span><span class='period'>.</span><span class='id identifier rubyid_bytesize'>bytesize</span>
+          <span class='kw'>return</span> <span class='kw'>false</span>
+        <span class='kw'>else</span>
+          <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='id identifier rubyid_rest'>rest</span><span class='lbracket'>[</span><span class='id identifier rubyid_last_crlf_size'>last_crlf_size</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+          <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='ivar'>@buffer</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+          <span class='id identifier rubyid_set_ready'>set_ready</span>
+          <span class='kw'>return</span> <span class='kw'>true</span>
+        <span class='kw'>end</span>
       <span class='kw'>end</span>
 
       <span class='id identifier rubyid_len'>len</span> <span class='op'>+=</span> <span class='int'>2</span>
@@ -789,7 +799,12 @@
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
-  <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>if</span> <span class='ivar'>@in_last_chunk</span>
+    <span class='id identifier rubyid_set_ready'>set_ready</span>
+    <span class='kw'>true</span>
+  <span class='kw'>else</span>
+    <span class='kw'>false</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -803,15 +818,15 @@
 <div class='docstring'>
   <div class='discussion'>
     
-<p>See additional method definition at line 364.</p>
+<p>See additional method definition at line 223.</p>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L377-L386'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L236-L245'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='377' data-end='386'></pre>
+  <pre class='lines_num' data-start='236' data-end='245'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 377</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 236</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_eagerly_finish'>eagerly_finish</span>
@@ -840,11 +855,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L384-L390'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L243-L249'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='384' data-end='390'></pre>
+  <pre class='lines_num' data-start='243' data-end='249'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 384</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 243</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_finish'>finish</span>
@@ -863,11 +878,11 @@
   <h3 class='signature '>
     #<strong>in_data_phase</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L89-L91'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L99-L101'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='89' data-end='91'></pre>
+  <pre class='lines_num' data-start='99' data-end='101'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 89</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 99</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_in_data_phase'>in_data_phase</span>
@@ -882,11 +897,11 @@
   <h3 class='signature '>
     #<strong>inspect</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L78-L80'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L88-L90'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='78' data-end='80'></pre>
+  <pre class='lines_num' data-start='88' data-end='90'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 78</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 88</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
@@ -901,11 +916,11 @@
   <h3 class='signature '>
     #<strong>jruby_start_try_to_finish</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L328-L362'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L188-L221'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='328' data-end='362'></pre>
+  <pre class='lines_num' data-start='188' data-end='221'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 328</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 188</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_jruby_start_try_to_finish'>jruby_start_try_to_finish</span>
@@ -921,8 +936,7 @@
   <span class='comment'># No data means a closed socket
 </span>  <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span>
     <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='ivar'>@requests_served</span> <span class='op'>+=</span> <span class='int'>1</span>
-    <span class='ivar'>@ready</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_set_ready'>set_ready</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>EOFError</span>
   <span class='kw'>end</span>
 
@@ -949,14 +963,14 @@
 </section>
 
 <section class='method_details' id="read_body-instance_method">
-  <h3 class='signature '>
-    #<strong>read_body</strong>  
+  <h3 class='signature priv'>
+    #<strong>read_body</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L392-L437'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L329-L372'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='392' data-end='437'></pre>
+  <pre class='lines_num' data-start='329' data-end='372'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 392</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 329</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_body'>read_body</span>
@@ -986,8 +1000,7 @@
 </span>  <span class='kw'>unless</span> <span class='id identifier rubyid_chunk'>chunk</span>
     <span class='ivar'>@body</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
     <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='ivar'>@requests_served</span> <span class='op'>+=</span> <span class='int'>1</span>
-    <span class='ivar'>@ready</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_set_ready'>set_ready</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>EOFError</span>
   <span class='kw'>end</span>
 
@@ -996,8 +1009,7 @@
   <span class='kw'>if</span> <span class='id identifier rubyid_remain'>remain</span> <span class='op'>&lt;=</span> <span class='int'>0</span>
     <span class='ivar'>@body</span><span class='period'>.</span><span class='id identifier rubyid_rewind'>rewind</span>
     <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='ivar'>@requests_served</span> <span class='op'>+=</span> <span class='int'>1</span>
-    <span class='ivar'>@ready</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_set_ready'>set_ready</span>
     <span class='kw'>return</span> <span class='kw'>true</span>
   <span class='kw'>end</span>
 
@@ -1011,21 +1023,21 @@
 </section>
 
 <section class='method_details' id="read_chunked_body-instance_method">
-  <h3 class='signature '>
-    #<strong>read_chunked_body</strong>  
+  <h3 class='signature priv'>
+    #<strong>read_chunked_body</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L210-L231'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L374-L394'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='210' data-end='231'></pre>
+  <pre class='lines_num' data-start='374' data-end='394'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 210</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 374</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_chunked_body'>read_chunked_body</span>
   <span class='kw'>while</span> <span class='kw'>true</span>
     <span class='kw'>begin</span>
       <span class='id identifier rubyid_chunk'>chunk</span> <span class='op'>=</span> <span class='ivar'>@io</span><span class='period'>.</span><span class='id identifier rubyid_read_nonblock'>read_nonblock</span><span class='lparen'>(</span><span class='int'>4096</span><span class='rparen'>)</span>
-    <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EAGAIN</span>
+    <span class='kw'>rescue</span> <span class='const'><a href="../IO.html" title="IO (class)">IO</a></span><span class='op'>::</span><span class='const'><a href="../IO/WaitReadable.html" title="IO::WaitReadable (module)">WaitReadable</a></span>
       <span class='kw'>return</span> <span class='kw'>false</span>
     <span class='kw'>rescue</span> <span class='const'>SystemCallError</span><span class='comma'>,</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="ConnectionError.html" title="Puma::ConnectionError (class)">ConnectionError</a></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Connection error detected during read</span><span class='tstring_end'>&quot;</span></span>
@@ -1035,8 +1047,7 @@
 </span>    <span class='kw'>unless</span> <span class='id identifier rubyid_chunk'>chunk</span>
       <span class='ivar'>@body</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
       <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
-      <span class='ivar'>@requests_served</span> <span class='op'>+=</span> <span class='int'>1</span>
-      <span class='ivar'>@ready</span> <span class='op'>=</span> <span class='kw'>true</span>
+      <span class='id identifier rubyid_set_ready'>set_ready</span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='const'>EOFError</span>
     <span class='kw'>end</span>
 
@@ -1052,11 +1063,11 @@
   <h3 class='signature '>
     #<strong>reset</strong>(fast_check = true)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L97-L121'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L107-L141'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='97' data-end='121'></pre>
+  <pre class='lines_num' data-start='107' data-end='141'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 97</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 107</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reset'>reset</span><span class='lparen'>(</span><span class='id identifier rubyid_fast_check'>fast_check</span><span class='op'>=</span><span class='kw'>true</span><span class='rparen'>)</span>
@@ -1067,6 +1078,9 @@
   <span class='ivar'>@tempfile</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@parsed_bytes</span> <span class='op'>=</span> <span class='int'>0</span>
   <span class='ivar'>@ready</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@body_remain</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@peerip</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@in_last_chunk</span> <span class='op'>=</span> <span class='kw'>false</span>
 
   <span class='kw'>if</span> <span class='ivar'>@buffer</span>
     <span class='ivar'>@parsed_bytes</span> <span class='op'>=</span> <span class='ivar'>@parser</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='ivar'>@env</span><span class='comma'>,</span> <span class='ivar'>@buffer</span><span class='comma'>,</span> <span class='ivar'>@parsed_bytes</span><span class='rparen'>)</span>
@@ -1079,10 +1093,40 @@
     <span class='kw'>end</span>
 
     <span class='kw'>return</span> <span class='kw'>false</span>
-  <span class='kw'>elsif</span> <span class='id identifier rubyid_fast_check'>fast_check</span> <span class='op'>&amp;&amp;</span>
-        <span class='const'><a href="../IO.html" title="IO (class)">IO</a></span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='ivar'>@to_io</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='const'><a href="Const.html#FAST_TRACK_KA_TIMEOUT-constant" title="Puma::Const::FAST_TRACK_KA_TIMEOUT (constant)">FAST_TRACK_KA_TIMEOUT</a></span><span class='rparen'>)</span>
-    <span class='kw'>return</span> <span class='id identifier rubyid_try_to_finish'>try_to_finish</span>
+  <span class='kw'>else</span>
+    <span class='kw'>begin</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_fast_check'>fast_check</span> <span class='op'>&amp;&amp;</span>
+          <span class='const'><a href="../IO.html" title="IO (class)">IO</a></span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='ivar'>@to_io</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='const'><a href="Const.html#FAST_TRACK_KA_TIMEOUT-constant" title="Puma::Const::FAST_TRACK_KA_TIMEOUT (constant)">FAST_TRACK_KA_TIMEOUT</a></span><span class='rparen'>)</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_try_to_finish'>try_to_finish</span>
+      <span class='kw'>end</span>
+    <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>      <span class='comment'># swallow it
+</span>
+    <span class='kw'>end</span>
+
   <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="set_ready-instance_method">
+  <h3 class='signature priv'>
+    #<strong>set_ready</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L486-L492'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='486' data-end='492'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 486</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_ready'>set_ready</span>
+  <span class='kw'>if</span> <span class='ivar'>@body_read_start</span>
+    <span class='ivar'>@env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma.request_body_wait</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_clock_gettime'>clock_gettime</span><span class='lparen'>(</span><span class='const'>Process</span><span class='op'>::</span><span class='const'>CLOCK_MONOTONIC</span><span class='comma'>,</span> <span class='symbol'>:millisecond</span><span class='rparen'>)</span> <span class='op'>-</span> <span class='ivar'>@body_read_start</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@requests_served</span> <span class='op'>+=</span> <span class='int'>1</span>
+  <span class='ivar'>@ready</span> <span class='op'>=</span> <span class='kw'>true</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -1093,11 +1137,11 @@
   <h3 class='signature '>
     #<strong>set_timeout</strong>(val)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L93-L95'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L103-L105'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='93' data-end='95'></pre>
+  <pre class='lines_num' data-start='103' data-end='105'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 93</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 103</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_timeout'>set_timeout</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
@@ -1109,21 +1153,23 @@
 </section>
 
 <section class='method_details' id="setup_body-instance_method">
-  <h3 class='signature '>
-    #<strong>setup_body</strong>  
+  <h3 class='signature priv'>
+    #<strong>setup_body</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L233-L288'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L272-L327'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='233' data-end='288'></pre>
+  <pre class='lines_num' data-start='272' data-end='327'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 233</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 272</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setup_body'>setup_body</span>
-  <span class='kw'>if</span> <span class='ivar'>@env</span><span class='lbracket'>[</span><span class='const'><a href="Const.html#HTTP_EXPECT-constant" title="Puma::Const::HTTP_EXPECT (constant)">HTTP_EXPECT</a></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='const'><a href="Const.html#CONTINUE-constant" title="Puma::Const::CONTINUE (constant)">CONTINUE</a></span>
-    <span class='comment'># TODO allow a hook here to check the headers before
+  <span class='ivar'>@body_read_start</span> <span class='op'>=</span> <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_clock_gettime'>clock_gettime</span><span class='lparen'>(</span><span class='const'>Process</span><span class='op'>::</span><span class='const'>CLOCK_MONOTONIC</span><span class='comma'>,</span> <span class='symbol'>:millisecond</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@env</span><span class='lbracket'>[</span><span class='const'><a href="Const.html#HTTP_EXPECT-constant" title="Puma::Const::HTTP_EXPECT (constant)">HTTP_EXPECT</a></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='const'><a href="Const.html#CONTINUE-constant" title="Puma::Const::CONTINUE (constant)">CONTINUE</a></span>    <span class='comment'># TODO allow a hook here to check the headers before
 </span>    <span class='comment'># going forward
-</span>    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='const'><a href="Const.html#HTTP_11_100-constant" title="Puma::Const::HTTP_11_100 (constant)">HTTP_11_100</a></span>
+</span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='const'><a href="Const.html#HTTP_11_100-constant" title="Puma::Const::HTTP_11_100 (constant)">HTTP_11_100</a></span>
     <span class='ivar'>@io</span><span class='period'>.</span><span class='id identifier rubyid_flush'>flush</span>
   <span class='kw'>end</span>
 
@@ -1144,8 +1190,7 @@
   <span class='kw'>unless</span> <span class='id identifier rubyid_cl'>cl</span>
     <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='id identifier rubyid_body'>body</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_body'>body</span>
     <span class='ivar'>@body</span> <span class='op'>=</span> <span class='const'><a href="#EmptyBody-constant" title="Puma::Client::EmptyBody (constant)">EmptyBody</a></span>
-    <span class='ivar'>@requests_served</span> <span class='op'>+=</span> <span class='int'>1</span>
-    <span class='ivar'>@ready</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_set_ready'>set_ready</span>
     <span class='kw'>return</span> <span class='kw'>true</span>
   <span class='kw'>end</span>
 
@@ -1154,8 +1199,7 @@
   <span class='kw'>if</span> <span class='id identifier rubyid_remain'>remain</span> <span class='op'>&lt;=</span> <span class='int'>0</span>
     <span class='ivar'>@body</span> <span class='op'>=</span> <span class='const'>StringIO</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
     <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='ivar'>@requests_served</span> <span class='op'>+=</span> <span class='int'>1</span>
-    <span class='ivar'>@ready</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_set_ready'>set_ready</span>
     <span class='kw'>return</span> <span class='kw'>true</span>
   <span class='kw'>end</span>
 
@@ -1181,14 +1225,14 @@
 </section>
 
 <section class='method_details' id="setup_chunked_body-instance_method">
-  <h3 class='signature '>
-    #<strong>setup_chunked_body</strong>(body)  
+  <h3 class='signature priv'>
+    #<strong>setup_chunked_body</strong>(body)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L135-L145'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L396-L406'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='135' data-end='145'></pre>
+  <pre class='lines_num' data-start='396' data-end='406'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 135</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 396</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setup_chunked_body'>setup_chunked_body</span><span class='lparen'>(</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
@@ -1211,11 +1255,11 @@
   <h3 class='signature '>
     #<strong>try_to_finish</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L290-L325'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L151-L185'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='290' data-end='325'></pre>
+  <pre class='lines_num' data-start='151' data-end='185'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 290</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 151</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_try_to_finish'>try_to_finish</span>
@@ -1225,15 +1269,14 @@
     <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='ivar'>@io</span><span class='period'>.</span><span class='id identifier rubyid_read_nonblock'>read_nonblock</span><span class='lparen'>(</span><span class='const'><a href="Const.html#CHUNK_SIZE-constant" title="Puma::Const::CHUNK_SIZE (constant)">CHUNK_SIZE</a></span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EAGAIN</span>
     <span class='kw'>return</span> <span class='kw'>false</span>
-  <span class='kw'>rescue</span> <span class='const'>SystemCallError</span><span class='comma'>,</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>
+  <span class='kw'>rescue</span> <span class='const'>SystemCallError</span><span class='comma'>,</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span><span class='comma'>,</span> <span class='const'>EOFError</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="ConnectionError.html" title="Puma::ConnectionError (class)">ConnectionError</a></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Connection error detected during read</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 
   <span class='comment'># No data means a closed socket
 </span>  <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span>
     <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='ivar'>@requests_served</span> <span class='op'>+=</span> <span class='int'>1</span>
-    <span class='ivar'>@ready</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_set_ready'>set_ready</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>EOFError</span>
   <span class='kw'>end</span>
 
@@ -1259,64 +1302,20 @@
 </div>
 </section>
 
-<section class='method_details' id="write_400-instance_method">
+<section class='method_details' id="write_error-instance_method">
   <h3 class='signature '>
-    #<strong>write_400</strong>  
+    #<strong>write_error</strong>(status_code)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L439-L444'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/client.rb#L251-L256'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='439' data-end='444'></pre>
+  <pre class='lines_num' data-start='251' data-end='256'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 439</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 251</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_write_400'>write_400</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_write_error'>write_error</span><span class='lparen'>(</span><span class='id identifier rubyid_status_code'>status_code</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
-    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='const'><a href="Const.html#ERROR_400_RESPONSE-constant" title="Puma::Const::ERROR_400_RESPONSE (constant)">ERROR_400_RESPONSE</a></span>
-  <span class='kw'>rescue</span> <span class='const'><a href="../StandardError.html" title="StandardError (class)">StandardError</a></span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
-<section class='method_details' id="write_408-instance_method">
-  <h3 class='signature '>
-    #<strong>write_408</strong>  
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L446-L451'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='446' data-end='451'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 446</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_write_408'>write_408</span>
-  <span class='kw'>begin</span>
-    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='const'><a href="Const.html#ERROR_408_RESPONSE-constant" title="Puma::Const::ERROR_408_RESPONSE (constant)">ERROR_408_RESPONSE</a></span>
-  <span class='kw'>rescue</span> <span class='const'><a href="../StandardError.html" title="StandardError (class)">StandardError</a></span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
-<section class='method_details' id="write_500-instance_method">
-  <h3 class='signature '>
-    #<strong>write_500</strong>  
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/master/lib/puma/client.rb#L453-L458'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='453' data-end='458'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 453</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_write_500'>write_500</span>
-  <span class='kw'>begin</span>
-    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='const'><a href="Const.html#ERROR_500_RESPONSE-constant" title="Puma::Const::ERROR_500_RESPONSE (constant)">ERROR_500_RESPONSE</a></span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='const'><a href="Const.html#ERROR_RESPONSE-constant" title="Puma::Const::ERROR_RESPONSE (constant)">ERROR_RESPONSE</a></span><span class='lbracket'>[</span><span class='id identifier rubyid_status_code'>status_code</span><span class='rbracket'>]</span>
   <span class='kw'>rescue</span> <span class='const'><a href="../StandardError.html" title="StandardError (class)">StandardError</a></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
