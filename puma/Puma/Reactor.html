@@ -77,7 +77,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/reactor.rb#L38'>lib/puma/reactor.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.2.1/lib/puma/reactor.rb#L38'>lib/puma/reactor.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -88,7 +88,7 @@
   <li>
     <span id='DefaultSleepFor-constant' class='summary_signature'>DefaultSleepFor =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/reactor.rb#L39-L39'># File 'lib/puma/reactor.rb', line 39</a>    <pre class='code ruby'><span class='int'>5</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v4.2.1/lib/puma/reactor.rb#L39-L39'># File 'lib/puma/reactor.rb', line 39</a>    <pre class='code ruby'><span class='int'>5</span></pre>
   </li>
 </ul>
 </div>
@@ -124,7 +124,7 @@
       <a href="#calculate_sleep-instance_method" title="#calculate_sleep (instance method)">#<strong>calculate_sleep</strong>  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>The `calculate_sleep` sets the value that the `NIO::Selector#select` will sleep for in the main reactor loop when no sockets are being written to.</p></div>
+      <div class='inline'><p>The <code>calculate_sleep</code> sets the value that the <code>NIO::Selector#select</code> will sleep for in the main reactor loop when no sockets are being written to.</p></div>
     </div>
   </li>
   <li>
@@ -162,7 +162,7 @@
     </span>
     <span class='note title private'>private</span>
     <div class='summary_desc'>
-      <div class='inline'><p>Until a request is added via the `add` method this method will internally loop, waiting on the `sockets` array objects.</p></div>
+      <div class='inline'><p>Until a request is added via the <a href="#add-instance_method" title="Puma::Reactor#add (method)">#add</a> method this method will internally loop, waiting on the <code>sockets</code> array objects.</p></div>
     </div>
   </li>
 </ul>
@@ -178,15 +178,15 @@
     
 <p>Creates an instance of <code>Reactor</code></p>
 
-<p>The `server` argument is an instance of `Puma::Server` that is used to write a response for “low level errors” when there is an exception inside of the reactor.</p>
+<p>The <code>server</code> argument is an instance of <a href="Server.html" title="Puma::Server (class)">Server</a> that is used to write a response for “low level errors” when there is an exception inside of the reactor.</p>
 
-<p>The `app_pool` is an instance of `Puma::ThreadPool`. Once a request is fully formed (header and body are received) it will be passed to the `app_pool`.</p>
+<p>The <code>app_pool</code> is an instance of <a href="ThreadPool.html" title="Puma::ThreadPool (class)">ThreadPool</a>. Once a request is fully formed (header and body are received) it will be passed to the <code>app_pool</code>.</p>
 
   </div>
 </div>
 <div class='tags'>
   
-</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/reactor.rb#L50-L69'>GitHub</a>&#8202;]</span>
+</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.1/lib/puma/reactor.rb#L50-L69'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='50' data-end='69'></pre>
   <div class='lines_code'>
@@ -228,19 +228,19 @@
     
 <p>This method adds a connection to the reactor</p>
 
-<p>Typically called by `Puma::Server` the value passed in is usually a `Puma::Client` object that responds like an <a href="../IO.html" title="IO (class)">::IO</a> object.</p>
+<p>Typically called by <a href="Server.html" title="Puma::Server (class)">Server</a> the value passed in is usually a <a href="Client.html" title="Puma::Client (class)">Client</a> object that responds like an <a href="../IO.html" title="IO (class)">::IO</a> object.</p>
 
-<p>The main body of the reactor loop is in `run_internal` and it will sleep on `NIO::Selector#select`. When a new connection is added to the reactor it cannot be added directly to the `sockets` array, because the `NIO::Selector#select` will not be watching for it yet.</p>
+<p>The main body of the reactor loop is in <a href="#run_internal-instance_method" title="Puma::Reactor#run_internal (method)">#run_internal</a> and it will sleep on <code>NIO::Selector#select</code>. When a new connection is added to the reactor it cannot be added directly to the <code>sockets</code> array, because the <code>NIO::Selector#select</code> will not be watching for it yet.</p>
 
-<p>Instead what needs to happen is that `NIO::Selector#select` needs to be woken up, the contents of `@input` added to the `sockets` array, and then another call to `NIO::Selector#select` needs to happen. Since the `Puma::Client` object can be read immediately, it does not block, but instead returns right away.</p>
+<p>Instead what needs to happen is that <code>NIO::Selector#select</code> needs to be woken up, the contents of <code>@input</code> added to the <code>sockets</code> array, and then another call to <code>NIO::Selector#select</code> needs to happen. Since the <a href="Client.html" title="Puma::Client (class)">Client</a> object can be read immediately, it does not block, but instead returns right away.</p>
 
-<p>This behavior is accomplished by writing to `@trigger` which wakes up the `NIO::Selector#select` and then there is logic to detect the value of `*`, pull the contents from `@input` and add them to the sockets array.</p>
+<p>This behavior is accomplished by writing to <code>@trigger</code> which wakes up the <code>NIO::Selector#select</code> and then there is logic to detect the value of <code>*</code>, pull the contents from <code>@input</code> and add them to the sockets array.</p>
 
-<p>If the object passed in has a timeout value in `timeout_at` then it is added to a `@timeouts` array. This array is then re-arranged so that the first element to timeout will be at the front of the array. Then a value to sleep for is derived in the call to `calculate_sleep`</p>
+<p>If the object passed in has a timeout value in <code>timeout_at</code> then it is added to a <code>@timeouts</code> array. This array is then re-arranged so that the first element to timeout will be at the front of the array. Then a value to sleep for is derived in the call to <a href="#calculate_sleep-instance_method" title="Puma::Reactor#calculate_sleep (method)">#calculate_sleep</a></p>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/reactor.rb#L373-L378'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.1/lib/puma/reactor.rb#L373-L378'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='373' data-end='378'></pre>
   <div class='lines_code'>
@@ -265,9 +265,9 @@
 <div class='docstring'>
   <div class='discussion'>
     
-<p>The `calculate_sleep` sets the value that the `NIO::Selector#select` will sleep for in the main reactor loop when no sockets are being written to.</p>
+<p>The <code>calculate_sleep</code> sets the value that the <code>NIO::Selector#select</code> will sleep for in the main reactor loop when no sockets are being written to.</p>
 
-<p>The values kept in `@timeouts` are sorted so that the first timeout comes first in the array. When there are no timeouts the default timeout is used.</p>
+<p>The values kept in <code>@timeouts</code> are sorted so that the first timeout comes first in the array. When there are no timeouts the default timeout is used.</p>
 
 <p>Otherwise a sleep value is set that is the same as the amount of time it would take for the first element to time out.</p>
 
@@ -275,7 +275,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/reactor.rb#L334-L346'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.1/lib/puma/reactor.rb#L334-L346'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='334' data-end='346'></pre>
   <div class='lines_code'>
@@ -311,7 +311,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/reactor.rb#L381-L387'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.1/lib/puma/reactor.rb#L381-L387'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='381' data-end='387'></pre>
   <div class='lines_code'>
@@ -334,7 +334,7 @@
   <h3 class='signature priv'>
     #<strong>clear_monitor</strong>(mon)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/reactor.rb#L294-L297'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.1/lib/puma/reactor.rb#L294-L297'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='294' data-end='297'></pre>
   <div class='lines_code'>
@@ -354,7 +354,7 @@
   <h3 class='signature '>
     #<strong>run</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/reactor.rb#L301-L306'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.1/lib/puma/reactor.rb#L301-L306'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='301' data-end='306'></pre>
   <div class='lines_code'>
@@ -376,7 +376,7 @@
   <h3 class='signature '>
     #<strong>run_in_thread</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/reactor.rb#L308-L322'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.1/lib/puma/reactor.rb#L308-L322'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='308' data-end='322'></pre>
   <div class='lines_code'>
@@ -410,35 +410,35 @@
 <div class='docstring'>
   <div class='discussion'>
     
-<p>Until a request is added via the `add` method this method will internally loop, waiting on the `sockets` array objects. The only object in this array at first is the `@ready` <a href="../IO.html" title="IO (class)">::IO</a> object, which is the read end of a pipe connected to `@trigger` object. When `@trigger` is written to, then the loop will break on `NIO::Selector#select` and return an array.</p>
+<p>Until a request is added via the <a href="#add-instance_method" title="Puma::Reactor#add (method)">#add</a> method this method will internally loop, waiting on the <code>sockets</code> array objects. The only object in this array at first is the <code>@ready</code> <a href="../IO.html" title="IO (class)">::IO</a> object, which is the read end of a pipe connected to <code>@trigger</code> object. When <code>@trigger</code> is written to, then the loop will break on <code>NIO::Selector#select</code> and return an array.</p>
 
 <h4 id="label-When+a+request+is+added-3A">When a request is added:</h4>
 
-<p>When the `add` method is called, an instance of `Puma::Client` is added to the `@input` array. Next the `@ready` pipe is “woken” by writing a string of `“*”` to `@trigger`.</p>
+<p>When the <a href="#add-instance_method" title="Puma::Reactor#add (method)">#add</a> method is called, an instance of <a href="Client.html" title="Puma::Client (class)">Client</a> is added to the <code>@input</code> array. Next the <code>@ready</code> pipe is “woken” by writing a string of <code>&quot;*&quot;</code> to <code>@trigger</code>.</p>
 
-<p>When that happens, the internal loop stops blocking at `NIO::Selector#select` and returns a reference to whatever “woke” it up. On the very first loop, the only thing in `sockets` is `@ready`. When `@trigger` is written-to, the loop “wakes” and the `ready` variable returns an array of arrays that looks like `[[#&lt;IO:fd 10&gt;], [], []]` where the first <a href="../IO.html" title="IO (class)">::IO</a> object is the `@ready` object. This first array `[#&lt;IO:fd 10&gt;]` is saved as a `reads` variable.</p>
+<p>When that happens, the internal loop stops blocking at <code>NIO::Selector#select</code> and returns a reference to whatever “woke” it up. On the very first loop, the only thing in <code>sockets</code> is <code>@ready</code>. When <code>@trigger</code> is written-to, the loop “wakes” and the <code>ready</code> variable returns an array of arrays that looks like <code>[[#&lt;IO:fd 10&gt;], [], []]</code> where the first <a href="../IO.html" title="IO (class)">::IO</a> object is the <code>@ready</code> object. This first array <code>[#&lt;IO:fd 10&gt;]</code> is saved as a <code>reads</code> variable.</p>
 
-<p>The `reads` variable is iterated through. In the case that the object is the same as the `@ready` input pipe, then we know that there was a `trigger` event.</p>
+<p>The <code>reads</code> variable is iterated through. In the case that the object is the same as the <code>@ready</code> input pipe, then we know that there was a <code>trigger</code> event.</p>
 
-<p>If there was a trigger event, then one byte of `@ready` is read into memory. In the case of the first request, the reactor sees that it&#39;s a `“*”` value and the reactor adds the contents of `@input` into the `sockets` array. The while then loop continues to iterate again, but now the `sockets` array contains a `Puma::Client` instance in addition to the `@ready` <a href="../IO.html" title="IO (class)">::IO</a> object. For example: `[#&lt;IO:fd 10&gt;, #&lt;Puma::Client:0x3fdc1103bee8 @ready=false&gt;]`.</p>
+<p>If there was a trigger event, then one byte of <code>@ready</code> is read into memory. In the case of the first request, the reactor sees that it&#39;s a <code>&quot;*&quot;</code> value and the reactor adds the contents of <code>@input</code> into the <code>sockets</code> array. The while then loop continues to iterate again, but now the <code>sockets</code> array contains a <a href="Client.html" title="Puma::Client (class)">Client</a> instance in addition to the <code>@ready</code> <a href="../IO.html" title="IO (class)">::IO</a> object. For example: <code>[#&lt;IO:fd 10&gt;, #&lt;Puma::Client:0x3fdc1103bee8 @ready=false&gt;]</code>.</p>
 
-<p>Since the `Puma::Client` in this example has data that has not been read yet, the `NIO::Selector#select` is immediately able to “wake” and read from the `Puma::Client`. At this point the `ready` output looks like this: `[[#&lt;Puma::Client:0x3fdc1103bee8 @ready=false&gt;], [], []]`.</p>
+<p>Since the <a href="Client.html" title="Puma::Client (class)">Client</a> in this example has data that has not been read yet, the <code>NIO::Selector#select</code> is immediately able to “wake” and read from the <a href="Client.html" title="Puma::Client (class)">Client</a>. At this point the <code>ready</code> output looks like this: <code>[[#&lt;Puma::Client:0x3fdc1103bee8 @ready=false&gt;], [], []]</code>.</p>
 
-<p>Each element in the first entry is iterated over. The `Puma::Client` object is not the `@ready` pipe, so the reactor checks to see if it has the full header and body with the `Puma::Client#try_to_finish` method. If the full request has been sent, then the request is passed off to the `@app_pool` thread pool so that a “worker thread” can pick up the request and begin to execute application logic. This is done via `@app_pool &lt;&lt; c`. The `Puma::Client` is then removed from the `sockets` array.</p>
+<p>Each element in the first entry is iterated over. The <a href="Client.html" title="Puma::Client (class)">Client</a> object is not the <code>@ready</code> pipe, so the reactor checks to see if it has the full header and body with the <a href="Client.html#try_to_finish-instance_method" title="Puma::Client#try_to_finish (method)">Client#try_to_finish</a> method. If the full request has been sent, then the request is passed off to the <code>@app_pool</code> thread pool so that a “worker thread” can pick up the request and begin to execute application logic. This is done via <code>@app_pool &lt;&lt; c</code>. The <a href="Client.html" title="Puma::Client (class)">Client</a> is then removed from the <code>sockets</code> array.</p>
 
-<p>If the request body is not present then nothing will happen, and the loop will iterate again. When the client sends more data to the socket the `Puma::Client` object will wake up the `NIO::Selector#select` and it can again be checked to see if it&#39;s ready to be passed to the thread pool.</p>
+<p>If the request body is not present then nothing will happen, and the loop will iterate again. When the client sends more data to the socket the <a href="Client.html" title="Puma::Client (class)">Client</a> object will wake up the <code>NIO::Selector#select</code> and it can again be checked to see if it&#39;s ready to be passed to the thread pool.</p>
 
 <h4 id="label-Time+Out+Case">Time Out Case</h4>
 
-<p>In addition to being woken via a write to one of the sockets the `NIO::Selector#select` will periodically “time out” of the sleep. One of the functions of this is to check for any requests that have “timed out”. At the end of the loop it&#39;s checked to see if the first element in the `@timeout` array has exceed its allowed time. If so, the client object is removed from the timeout array, a 408 response is written. Then its connection is closed, and the object is removed from the `sockets` array that watches for new data.</p>
+<p>In addition to being woken via a write to one of the sockets the <code>NIO::Selector#select</code> will periodically “time out” of the sleep. One of the functions of this is to check for any requests that have “timed out”. At the end of the loop it&#39;s checked to see if the first element in the <code>@timeout</code> array has exceed its allowed time. If so, the client object is removed from the timeout array, a 408 response is written. Then its connection is closed, and the object is removed from the <code>sockets</code> array that watches for new data.</p>
 
 <p>This behavior loops until all the objects that have timed out have been removed.</p>
 
-<p>Once all the timeouts have been processed, the next duration of the `NIO::Selector#select` sleep will be set to be equal to the amount of time it will take for the next timeout to occur. This calculation happens in `calculate_sleep`.</p>
+<p>Once all the timeouts have been processed, the next duration of the <code>NIO::Selector#select</code> sleep will be set to be equal to the amount of time it will take for the next timeout to occur. This calculation happens in <a href="#calculate_sleep-instance_method" title="Puma::Reactor#calculate_sleep (method)">#calculate_sleep</a>.</p>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/reactor.rb#L130-L292'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.1/lib/puma/reactor.rb#L130-L292'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='130' data-end='292'></pre>
   <div class='lines_code'>
@@ -617,7 +617,7 @@
   <h3 class='signature '>
     #<strong>shutdown</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.0/lib/puma/reactor.rb#L389-L397'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.2.1/lib/puma/reactor.rb#L389-L397'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='389' data-end='397'></pre>
   <div class='lines_code'>
