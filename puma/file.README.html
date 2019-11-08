@@ -66,6 +66,7 @@
 </p>
 <h1>Puma: A Ruby Web Server Built For Concurrency</h1>
 <p><a href="https://gitter.im/puma/puma?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" /></a>
+<a href="https://github.com/puma/puma/actions"><img src="https://github.com/puma/puma/workflows/Puma/badge.svg" alt="Actions Build Status" /></a>
 <a href="https://travis-ci.org/puma/puma"><img src="https://travis-ci.org/puma/puma.svg?branch=master" alt="Travis Build Status" /></a></p>
 <p><a href="https://codeclimate.com/github/puma/puma"><img src="https://codeclimate.com/github/puma/puma.svg" alt="Code Climate" /></a>
 <a href="https://dependabot.com/compatibility-score.html?dependency-name=puma&amp;package-manager=bundler&amp;version-scheme=semver"><img src="https://api.dependabot.com/badges/compatibility_score?dependency-name=puma&amp;package-manager=bundler&amp;version-scheme=semver" alt="SemVer" /></a></p>
@@ -187,6 +188,7 @@ error-tracking service (in this example, <a href="http://rollbar.com">rollbar</a
 <p>If you want to prevent Puma from looking for a configuration file in those locations, provide a dash as the argument to the <code>-C</code> (or <code>--config</code>) flag:</p>
 <pre class="code ruby"><code class="ruby">$ puma -C &quot;-&quot;
 </code></pre>
+<p>The other side-effects of setting the environment are whether to show stack traces (in <code>development</code> or <code>test</code>), and setting RACK_ENV may potentially affect middleware looking for this value to change their behavior. The default puma RACK_ENV value is <code>development</code>. You can see all config default values <a href="https://github.com/puma/puma/blob/12d1706ddc71b89ed2ee26275e31c788e94ff541/lib/puma/configuration.rb#L170">here</a>.</p>
 <p>Check out <a href="https://github.com/puma/puma/blob/master/lib/puma/dsl.rb">dsl.rb</a> to see all available options.</p>
 <h2>Restart</h2>
 <p>Puma includes the ability to restart itself. When available (MRI, Rubinius, JRuby), Puma performs a &quot;hot restart&quot;. This is the same functionality available in <em>Unicorn</em> and <em>NGINX</em> which keep the server sockets open between restarts. This makes sure that no pending requests are dropped while the restart is taking place.</p>
@@ -225,20 +227,7 @@ reliability in production environments:</p>
 <li><a href="https://github.com/sj26/puma-plugin-systemd">puma-plugin-systemd</a> — deeper integration with systemd for notify, status and watchdog</li>
 </ul>
 <h2>Contributing</h2>
-<p>To run the test suite:</p>
-<pre class="code bash"><code class="bash">$ bundle install
-$ bundle exec rake
-</code></pre>
-<p>To run a single test file, run only that file:</p>
-<pre class="code bash"><code class="bash">$ ruby -Ilib test/test_integration.rb
-</code></pre>
-<p>Or use <a href="https://github.com/qrush/m"><code>m</code></a>:</p>
-<pre class="code ruby"><code class="ruby">$ bundle exec m test/test_binder.rb
-</code></pre>
-<p>Which can also be used to run a single test case:</p>
-<pre class="code ruby"><code class="ruby">$ bundle exec m test/test_binder.rb:37
-</code></pre>
-<p>If you open a pull request with a change that doesn't need to be noted in the changelog (<a href="file.History.html" title="History.md">History.md</a>), add the text <code>[changelog skip]</code> to the pull request title to skip <a href="https://github.com/puma/puma/pull/1991">the changelog check</a>.</p>
+<p>Find details for contributing in the <a href="https://github.com/puma/puma/blob/master/CONTRIBUTING.md">contribution guide</a>.</p>
 <h2>License</h2>
 <p>Puma is copyright Evan Phoenix and contributors, licensed under the BSD 3-Clause license. See the included LICENSE file for details.</p>
 
