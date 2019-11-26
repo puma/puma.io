@@ -93,6 +93,22 @@
   </tbody>
 </table>
 </div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Internal Docs for A simple thread pool management object.</p>
+
+<p>Each Puma “worker” has a thread pool to process requests.</p>
+
+<p>First a connection to a client is made in <a href="Server.html" title="Puma::Server (class)">Server</a>. It is wrapped in a <a href="Client.html" title="Puma::Client (class)">Client</a> instance and then passed to the <a href="Reactor.html" title="Puma::Reactor (class)">Reactor</a> to ensure the whole request is buffered into memory. Once the request is ready, it is passed into a thread pool via the <a href="#<<-instance_method" title="Puma::ThreadPool#&lt;&lt; (method)">#&lt;&lt;</a> operator where it is stored in a <code>@todo</code> array.</p>
+
+<p>Each thread in the pool has an internal loop where it pulls a request from the <code>@todo</code> array and proceses it.</p>
+
+  </div>
+</div>
+</div>
 <h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
 <div>
 <ul class='constants summary full'>
@@ -311,7 +327,7 @@
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clean_thread_locals'>clean_thread_locals</span>
   <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span> <span class='comment'># rubocop: disable Performance/HashEachMethods
-</span>    <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>==</span> <span class='symbol'>:__recursive_key__</span>
+</span>    <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid___recursive_key__'>__recursive_key__</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </pre>
@@ -331,7 +347,7 @@
 <pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 64</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbol'>:clean_thread_locals</span>
+<span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbeg'>:</span><span class='id identifier rubyid_clean_thread_locals'>clean_thread_locals</span>
 </pre>
   </div>
 </div>
@@ -348,7 +364,7 @@
 <pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 63</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:spawned</span><span class='comma'>,</span> <span class='symbol'>:trim_requested</span><span class='comma'>,</span> <span class='symbol'>:waiting</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_spawned'>spawned</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_trim_requested'>trim_requested</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_waiting'>waiting</span>
 </pre>
   </div>
 </div>
@@ -365,7 +381,7 @@
 <pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 63</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:spawned</span><span class='comma'>,</span> <span class='symbol'>:trim_requested</span><span class='comma'>,</span> <span class='symbol'>:waiting</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_spawned'>spawned</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_trim_requested'>trim_requested</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_waiting'>waiting</span>
 </pre>
   </div>
 </div>
@@ -382,7 +398,7 @@
 <pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 63</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:spawned</span><span class='comma'>,</span> <span class='symbol'>:trim_requested</span><span class='comma'>,</span> <span class='symbol'>:waiting</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_spawned'>spawned</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_trim_requested'>trim_requested</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_waiting'>waiting</span>
 </pre>
   </div>
 </div>
@@ -439,7 +455,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_auto_reap!'>auto_reap!</span><span class='lparen'>(</span><span class='id identifier rubyid_timeout'>timeout</span><span class='op'>=</span><span class='int'>5</span><span class='rparen'>)</span>
-  <span class='ivar'>@reaper</span> <span class='op'>=</span> <span class='const'><a href="ThreadPool/Automaton.html" title="Puma::ThreadPool::Automaton (class)">Automaton</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="ThreadPool/Automaton.html#new-class_method" title="Puma::ThreadPool::Automaton.new (method)">new</a></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_timeout'>timeout</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>threadpool reaper</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:reap</span><span class='rparen'>)</span>
+  <span class='ivar'>@reaper</span> <span class='op'>=</span> <span class='const'><a href="ThreadPool/Automaton.html" title="Puma::ThreadPool::Automaton (class)">Automaton</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="ThreadPool/Automaton.html#new-class_method" title="Puma::ThreadPool::Automaton.new (method)">new</a></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_timeout'>timeout</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>threadpool reaper</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_reap'>reap</span><span class='rparen'>)</span>
   <span class='ivar'>@reaper</span><span class='period'>.</span><span class='id identifier rubyid_start!'>start!</span>
 <span class='kw'>end</span>
 </pre>
@@ -459,7 +475,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_auto_trim!'>auto_trim!</span><span class='lparen'>(</span><span class='id identifier rubyid_timeout'>timeout</span><span class='op'>=</span><span class='int'>30</span><span class='rparen'>)</span>
-  <span class='ivar'>@auto_trim</span> <span class='op'>=</span> <span class='const'><a href="ThreadPool/Automaton.html" title="Puma::ThreadPool::Automaton (class)">Automaton</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="ThreadPool/Automaton.html#new-class_method" title="Puma::ThreadPool::Automaton.new (method)">new</a></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_timeout'>timeout</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>threadpool trimmer</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:trim</span><span class='rparen'>)</span>
+  <span class='ivar'>@auto_trim</span> <span class='op'>=</span> <span class='const'><a href="ThreadPool/Automaton.html" title="Puma::ThreadPool::Automaton (class)">Automaton</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="ThreadPool/Automaton.html#new-class_method" title="Puma::ThreadPool::Automaton.new (method)">new</a></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_timeout'>timeout</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>threadpool trimmer</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_trim'>trim</span><span class='rparen'>)</span>
   <span class='ivar'>@auto_trim</span><span class='period'>.</span><span class='id identifier rubyid_start!'>start!</span>
 <span class='kw'>end</span>
 </pre>
@@ -532,7 +548,7 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reap'>reap</span>
   <span class='ivar'>@mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_dead_workers'>dead_workers</span> <span class='op'>=</span> <span class='ivar'>@workers</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:alive?</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_dead_workers'>dead_workers</span> <span class='op'>=</span> <span class='ivar'>@workers</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbeg'>:</span><span class='id identifier rubyid_alive?'>alive?</span><span class='rparen'>)</span>
 
     <span class='id identifier rubyid_dead_workers'>dead_workers</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_worker'>worker</span><span class='op'>|</span>
       <span class='id identifier rubyid_worker'>worker</span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span>
@@ -574,14 +590,14 @@
     <span class='ivar'>@not_full</span><span class='period'>.</span><span class='id identifier rubyid_broadcast'>broadcast</span>
 
     <span class='ivar'>@auto_trim</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span> <span class='kw'>if</span> <span class='ivar'>@auto_trim</span>
-    <span class='ivar'>@reaper</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span> <span class='kw'>if</span> <span class='ivar'>@reaper</span>    <span class='comment'># dup workers so that we join them all safely
-</span>
-    <span class='ivar'>@workers</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+    <span class='ivar'>@reaper</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span> <span class='kw'>if</span> <span class='ivar'>@reaper</span>
+    <span class='comment'># dup workers so that we join them all safely
+</span>    <span class='ivar'>@workers</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
   <span class='kw'>end</span>
 
-  <span class='kw'>if</span> <span class='id identifier rubyid_timeout'>timeout</span> <span class='op'>==</span> <span class='op'>-</span><span class='int'>1</span>    <span class='comment'># Wait for threads to finish without force shutdown.
-</span>
-    <span class='id identifier rubyid_threads'>threads</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:join</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_timeout'>timeout</span> <span class='op'>==</span> <span class='op'>-</span><span class='int'>1</span>
+    <span class='comment'># Wait for threads to finish without force shutdown.
+</span>    <span class='id identifier rubyid_threads'>threads</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbeg'>:</span><span class='id identifier rubyid_join'>join</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='comment'># Wait for threads to finish after n attempts (timeout).
 </span>    <span class='comment'># If threads are still running, it will forcefully kill them.

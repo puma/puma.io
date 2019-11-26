@@ -83,6 +83,16 @@
   </tbody>
 </table>
 </div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Check out <a href="#call-instance_method" title="Puma::App::Status#call (method)">#call</a>&#39;s source code to see what actions this web application can respond to.</p>
+
+  </div>
+</div>
+</div>
 <h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
 <div>
 <ul class='constants summary full'>
@@ -215,7 +225,7 @@
     <span class='kw'>end</span>
 
   <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\/reload-worker-directory$</span><span class='regexp_end'>/</span></span>
-    <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@cli</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:reload_worker_directory</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@cli</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_reload_worker_directory'>reload_worker_directory</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_rack_response'>rack_response</span><span class='lparen'>(</span><span class='int'>404</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>{ &quot;error&quot;: &quot;reload_worker_directory not available&quot; }</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_rack_response'>rack_response</span><span class='lparen'>(</span><span class='int'>200</span><span class='comma'>,</span> <span class='const'><a href="#OK_STATUS-constant" title="Puma::App::Status::OK_STATUS (constant)">OK_STATUS</a></span><span class='rparen'>)</span>

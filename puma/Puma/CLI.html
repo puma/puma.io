@@ -227,7 +227,7 @@
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
-  <span class='ivar'>@launcher</span> <span class='op'>=</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Launcher.html" title="Puma::Launcher (class)">Launcher</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="Launcher.html#new-class_method" title="Puma::Launcher.new (method)">new</a></span><span class='lparen'>(</span><span class='ivar'>@conf</span><span class='comma'>,</span> <span class='symbol'>:events</span> <span class='op'>=&gt;</span> <span class='ivar'>@events</span><span class='comma'>,</span> <span class='symbol'>:argv</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span>
+  <span class='ivar'>@launcher</span> <span class='op'>=</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Launcher.html" title="Puma::Launcher (class)">Launcher</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="Launcher.html#new-class_method" title="Puma::Launcher.new (method)">new</a></span><span class='lparen'>(</span><span class='ivar'>@conf</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'>events</span> <span class='op'>=&gt;</span> <span class='ivar'>@events</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_argv'>argv</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_argv'>argv</span><span class='rparen'>)</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -246,7 +246,7 @@
 <pre><span class='info file'># File 'lib/puma/cli.rb', line 74</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:launcher</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_launcher'>launcher</span>
 </pre>
   </div>
 </div>
@@ -342,7 +342,7 @@
 
       <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--control-token TOKEN</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
         <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The token to use as authentication for the control server</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
-        <span class='ivar'>@control_options</span><span class='lbracket'>[</span><span class='symbol'>:auth_token</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_arg'>arg</span>
+        <span class='ivar'>@control_options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_auth_token'>auth_token</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_arg'>arg</span>
       <span class='kw'>end</span>
 
       <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-d</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--daemon</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Daemonize the server into the background</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
