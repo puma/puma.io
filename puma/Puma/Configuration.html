@@ -422,7 +422,7 @@ puts config.options[:port]
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_app_configured?'>app_configured?</span>
-  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:app</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_rackup'>rackup</span><span class='rparen'>)</span>
+  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_app'>app</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_rackup'>rackup</span><span class='rparen'>)</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -440,7 +440,7 @@ puts config.options[:port]
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 145</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:options</span><span class='comma'>,</span> <span class='symbol'>:plugins</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_plugins'>plugins</span>
 </pre>
   </div>
 </div>
@@ -457,7 +457,7 @@ puts config.options[:port]
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 145</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:options</span><span class='comma'>,</span> <span class='symbol'>:plugins</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_plugins'>plugins</span>
 </pre>
   </div>
 </div>
@@ -483,19 +483,19 @@ puts config.options[:port]
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_app'>app</span>
-  <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:app</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_load_rackup'>load_rackup</span>
+  <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_app'>app</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_load_rackup'>load_rackup</span>
 
-  <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:mode</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='symbol'>:tcp</span>
+  <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_mode'>mode</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid_tcp'>tcp</span>
     <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma/tcp_logger</span><span class='tstring_end'>&#39;</span></span>
 
-    <span class='id identifier rubyid_logger'>logger</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:logger</span><span class='rbracket'>]</span>
-    <span class='id identifier rubyid_quiet'>quiet</span> <span class='op'>=</span> <span class='op'>!</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:log_requests</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_logger'>logger</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_logger'>logger</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_quiet'>quiet</span> <span class='op'>=</span> <span class='op'>!</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_log_requests'>log_requests</span><span class='rbracket'>]</span>
     <span class='kw'>return</span> <span class='const'><a href="TCPLogger.html" title="Puma::TCPLogger (class)">TCPLogger</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="TCPLogger.html#new-class_method" title="Puma::TCPLogger.new (method)">new</a></span><span class='lparen'>(</span><span class='id identifier rubyid_logger'>logger</span><span class='comma'>,</span> <span class='id identifier rubyid_found'>found</span><span class='comma'>,</span> <span class='id identifier rubyid_quiet'>quiet</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
-  <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:log_requests</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_log_requests'>log_requests</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma/commonlogger</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_logger'>logger</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:logger</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_logger'>logger</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_logger'>logger</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='const'><a href="CommonLogger.html" title="Puma::CommonLogger (class)">CommonLogger</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="CommonLogger.html#new-class_method" title="Puma::CommonLogger.new (method)">new</a></span><span class='lparen'>(</span><span class='id identifier rubyid_found'>found</span><span class='comma'>,</span> <span class='id identifier rubyid_logger'>logger</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
@@ -544,7 +544,7 @@ puts config.options[:port]
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_config_files'>config_files</span>
-  <span class='id identifier rubyid_files'>files</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_all_of'>all_of</span><span class='lparen'>(</span><span class='symbol'>:config_files</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_files'>files</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_all_of'>all_of</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_config_files'>config_files</span><span class='rparen'>)</span>
 
   <span class='kw'>return</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_files'>files</span> <span class='op'>==</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
   <span class='kw'>return</span> <span class='id identifier rubyid_files'>files</span> <span class='kw'>if</span> <span class='id identifier rubyid_files'>files</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span>
@@ -602,7 +602,7 @@ puts config.options[:port]
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_environment'>environment</span>
-  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:environment</span><span class='rbracket'>]</span>
+  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_environment'>environment</span><span class='rbracket'>]</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -621,7 +621,7 @@ puts config.options[:port]
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_environment_str'>environment_str</span>
-  <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:call</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='op'>:</span> <span class='id identifier rubyid_environment'>environment</span>
+  <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_call'>call</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='op'>:</span> <span class='id identifier rubyid_environment'>environment</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -769,7 +769,7 @@ puts config.options[:port]
     <span class='id identifier rubyid_config_ru_binds'>config_ru_binds</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_v'>v</span> <span class='kw'>if</span> <span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bind</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
-  <span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_file_options'>file_options</span><span class='lbracket'>[</span><span class='symbol'>:binds</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_config_ru_binds'>config_ru_binds</span> <span class='kw'>unless</span> <span class='id identifier rubyid_config_ru_binds'>config_ru_binds</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='ivar'>@options</span><span class='period'>.</span><span class='id identifier rubyid_file_options'>file_options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_binds'>binds</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_config_ru_binds'>config_ru_binds</span> <span class='kw'>unless</span> <span class='id identifier rubyid_config_ru_binds'>config_ru_binds</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
 
   <span class='id identifier rubyid_rack_app'>rack_app</span>
 <span class='kw'>end</span>
@@ -791,25 +791,25 @@ puts config.options[:port]
 
 <span class='kw'>def</span> <span class='id identifier rubyid_puma_default_options'>puma_default_options</span>
   <span class='lbrace'>{</span>
-    <span class='symbol'>:min_threads</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>
-    <span class='symbol'>:max_threads</span> <span class='op'>=&gt;</span> <span class='int'>16</span><span class='comma'>,</span>
-    <span class='symbol'>:log_requests</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
-    <span class='symbol'>:debug</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
-    <span class='symbol'>:binds</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tcp://</span><span class='embexpr_beg'>#{</span><span class='const'><a href="ConfigDefault.html#DefaultTCPHost-constant" title="Puma::ConfigDefault::DefaultTCPHost (constant)">DefaultTCPHost</a></span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='const'><a href="ConfigDefault.html#DefaultTCPPort-constant" title="Puma::ConfigDefault::DefaultTCPPort (constant)">DefaultTCPPort</a></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='symbol'>:workers</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>
-    <span class='symbol'>:daemon</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
-    <span class='symbol'>:mode</span> <span class='op'>=&gt;</span> <span class='symbol'>:http</span><span class='comma'>,</span>
-    <span class='symbol'>:worker_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="ConfigDefault.html#DefaultWorkerTimeout-constant" title="Puma::ConfigDefault::DefaultWorkerTimeout (constant)">DefaultWorkerTimeout</a></span><span class='comma'>,</span>
-    <span class='symbol'>:worker_boot_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="ConfigDefault.html#DefaultWorkerTimeout-constant" title="Puma::ConfigDefault::DefaultWorkerTimeout (constant)">DefaultWorkerTimeout</a></span><span class='comma'>,</span>
-    <span class='symbol'>:worker_shutdown_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="ConfigDefault.html#DefaultWorkerShutdownTimeout-constant" title="Puma::ConfigDefault::DefaultWorkerShutdownTimeout (constant)">DefaultWorkerShutdownTimeout</a></span><span class='comma'>,</span>
-    <span class='symbol'>:remote_address</span> <span class='op'>=&gt;</span> <span class='symbol'>:socket</span><span class='comma'>,</span>
-    <span class='symbol'>:tag</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='symbol'>:infer_tag</span><span class='rparen'>)</span><span class='comma'>,</span>
-    <span class='symbol'>:environment</span> <span class='op'>=&gt;</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>RACK_ENV</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>development</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
-    <span class='symbol'>:rackup</span> <span class='op'>=&gt;</span> <span class='const'><a href="ConfigDefault.html#DefaultRackup-constant" title="Puma::ConfigDefault::DefaultRackup (constant)">DefaultRackup</a></span><span class='comma'>,</span>
-    <span class='symbol'>:logger</span> <span class='op'>=&gt;</span> <span class='const'>STDOUT</span><span class='comma'>,</span>
-    <span class='symbol'>:persistent_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#PERSISTENT_TIMEOUT-constant" title="Puma::Const::PERSISTENT_TIMEOUT (constant)">PERSISTENT_TIMEOUT</a></span><span class='comma'>,</span>
-    <span class='symbol'>:first_data_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#FIRST_DATA_TIMEOUT-constant" title="Puma::Const::FIRST_DATA_TIMEOUT (constant)">FIRST_DATA_TIMEOUT</a></span><span class='comma'>,</span>
-    <span class='symbol'>:raise_exception_on_sigterm</span> <span class='op'>=&gt;</span> <span class='kw'>true</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_min_threads'>min_threads</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_max_threads'>max_threads</span> <span class='op'>=&gt;</span> <span class='int'>16</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_log_requests'>log_requests</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_debug'>debug</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_binds'>binds</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tcp://</span><span class='embexpr_beg'>#{</span><span class='const'><a href="ConfigDefault.html#DefaultTCPHost-constant" title="Puma::ConfigDefault::DefaultTCPHost (constant)">DefaultTCPHost</a></span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='const'><a href="ConfigDefault.html#DefaultTCPPort-constant" title="Puma::ConfigDefault::DefaultTCPPort (constant)">DefaultTCPPort</a></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_workers'>workers</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_daemon'>daemon</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_mode'>mode</span> <span class='op'>=&gt;</span> <span class='symbeg'>:</span><span class='id identifier rubyid_http'>http</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_worker_timeout'>worker_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="ConfigDefault.html#DefaultWorkerTimeout-constant" title="Puma::ConfigDefault::DefaultWorkerTimeout (constant)">DefaultWorkerTimeout</a></span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_worker_boot_timeout'>worker_boot_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="ConfigDefault.html#DefaultWorkerTimeout-constant" title="Puma::ConfigDefault::DefaultWorkerTimeout (constant)">DefaultWorkerTimeout</a></span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_worker_shutdown_timeout'>worker_shutdown_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="ConfigDefault.html#DefaultWorkerShutdownTimeout-constant" title="Puma::ConfigDefault::DefaultWorkerShutdownTimeout (constant)">DefaultWorkerShutdownTimeout</a></span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_remote_address'>remote_address</span> <span class='op'>=&gt;</span> <span class='symbeg'>:</span><span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_tag'>tag</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_infer_tag'>infer_tag</span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_environment'>environment</span> <span class='op'>=&gt;</span> <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>RACK_ENV</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>development</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_rackup'>rackup</span> <span class='op'>=&gt;</span> <span class='const'><a href="ConfigDefault.html#DefaultRackup-constant" title="Puma::ConfigDefault::DefaultRackup (constant)">DefaultRackup</a></span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_logger'>logger</span> <span class='op'>=&gt;</span> <span class='const'>STDOUT</span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_persistent_timeout'>persistent_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#PERSISTENT_TIMEOUT-constant" title="Puma::Const::PERSISTENT_TIMEOUT (constant)">PERSISTENT_TIMEOUT</a></span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_first_data_timeout'>first_data_timeout</span> <span class='op'>=&gt;</span> <span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#FIRST_DATA_TIMEOUT-constant" title="Puma::Const::FIRST_DATA_TIMEOUT (constant)">FIRST_DATA_TIMEOUT</a></span><span class='comma'>,</span>
+    <span class='symbeg'>:</span><span class='id identifier rubyid_raise_exception_on_sigterm'>raise_exception_on_sigterm</span> <span class='op'>=&gt;</span> <span class='kw'>true</span>
   <span class='rbrace'>}</span>
 <span class='kw'>end</span>
 </pre>
@@ -835,10 +835,10 @@ puts config.options[:port]
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 297</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_rack_builder'>rack_builder</span>  <span class='comment'># Load bundler now if we can so that we can pickup rack from
+<span class='kw'>def</span> <span class='id identifier rubyid_rack_builder'>rack_builder</span>
+  <span class='comment'># Load bundler now if we can so that we can pickup rack from
 </span>  <span class='comment'># a Gemfile
-</span>
-  <span class='kw'>if</span> <span class='const'>ENV</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUMA_BUNDLER_PRUNED</span><span class='tstring_end'>&#39;</span></span>
+</span>  <span class='kw'>if</span> <span class='const'>ENV</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUMA_BUNDLER_PRUNED</span><span class='tstring_end'>&#39;</span></span>
     <span class='kw'>begin</span>
       <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bundler/setup</span><span class='tstring_end'>&#39;</span></span>
     <span class='kw'>rescue</span> <span class='const'>LoadError</span>
@@ -848,9 +848,9 @@ puts config.options[:port]
   <span class='kw'>begin</span>
     <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rack</span><span class='tstring_end'>&#39;</span></span>
     <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rack/builder</span><span class='tstring_end'>&#39;</span></span>
-  <span class='kw'>rescue</span> <span class='const'>LoadError</span>    <span class='comment'># ok, use builtin version
-</span>
-    <span class='kw'>return</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'><a href="Rack/Builder.html" title="Puma::Rack::Builder (class)">Builder</a></span>
+  <span class='kw'>rescue</span> <span class='const'>LoadError</span>
+    <span class='comment'># ok, use builtin version
+</span>    <span class='kw'>return</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'><a href="Rack/Builder.html" title="Puma::Rack::Builder (class)">Builder</a></span>
   <span class='kw'>else</span>
     <span class='kw'>return</span> <span class='op'>::</span><span class='const'><a href="../Rack.html" title="Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'><a href="Rack/Builder.html" title="Puma::Rack::Builder (class)">Builder</a></span>
   <span class='kw'>end</span>
@@ -872,7 +872,7 @@ puts config.options[:port]
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rackup'>rackup</span>
-  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:rackup</span><span class='rbracket'>]</span>
+  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_rackup'>rackup</span><span class='rbracket'>]</span>
 <span class='kw'>end</span>
 </pre>
   </div>

@@ -82,6 +82,32 @@
   </tbody>
 </table>
 </div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Internal Docs, Not a public interface.</p>
+
+<p>The Reactor object is responsible for ensuring that a request has been completely received before it starts to be processed. This may be known as read buffering. If read buffering is not done, and no other read buffering is performed (such as by an application server such as nginx) then the application would be subject to a slow client attack.</p>
+
+<p>Each Puma “worker” process has its own <code>Reactor</code>. For example if you start puma with <code>$ puma -w 5</code> then it will have 5 workers and each worker will have it&#39;s own reactor.</p>
+
+<p>For a graphical representation of how the reactor works see [architecture.md](<a href="https://github.com/puma/puma/blob/master/docs/architecture.md#connection-pipeline">github.com/puma/puma/blob/master/docs/architecture.md#connection-pipeline</a>).</p>
+
+<h3 id="label-Reactor+Flow">Reactor Flow</h3>
+
+<p>A connection comes into a <a href="Server.html" title="Puma::Server (class)">Server</a> instance, it is then passed to a <code>Reactor</code> instance, which stores it in an array and waits for any of the connections to be ready for reading.</p>
+
+<p>The waiting/wake up is performed with nio4r, which will use the appropriate backend (libev, Java NIO or just plain <code>IO#select</code>). The call to <code>NIO::Selector#select</code> will “wake up” and return the references to any objects that caused it to “wake”. The reactor then loops through each of these request objects, and sees if they&#39;re complete. If they have a full header and body then the reactor passes the request to a thread pool. Once in a thread pool, a “worker thread” can run the the application&#39;s Ruby code against the request.</p>
+
+<p>If the request is not complete, then it stays in the array, and the next time any data is written to that socket reference, then the loop is woken up and it is checked for completeness again.</p>
+
+<p>A detailed example is given in the docs for <a href="#run_internal-instance_method" title="Puma::Reactor#run_internal (method)">#run_internal</a> which is where the bulk of this logic lives.</p>
+
+  </div>
+</div>
+</div>
 <h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
 <div>
 <ul class='constants summary full'>
@@ -208,7 +234,7 @@
   <span class='ivar'>@sleep_for</span> <span class='op'>=</span> <span class='const'><a href="#DefaultSleepFor-constant" title="Puma::Reactor::DefaultSleepFor (constant)">DefaultSleepFor</a></span>
   <span class='ivar'>@timeouts</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
 
-  <span class='id identifier rubyid_mon'>mon</span> <span class='op'>=</span> <span class='ivar'>@selector</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='ivar'>@ready</span><span class='comma'>,</span> <span class='symbol'>:r</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_mon'>mon</span> <span class='op'>=</span> <span class='ivar'>@selector</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='ivar'>@ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_mon'>mon</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='ivar'>@ready</span>
 
   <span class='ivar'>@monitors</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_mon'>mon</span><span class='rbracket'>]</span>
@@ -322,7 +348,7 @@
   <span class='kw'>begin</span>
     <span class='ivar'>@trigger</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>
-    <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:purge_interrupt_queue</span>
+    <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </pre>
@@ -453,7 +479,7 @@
     <span class='kw'>begin</span>
       <span class='id identifier rubyid_ready'>ready</span> <span class='op'>=</span> <span class='id identifier rubyid_selector'>selector</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='ivar'>@sleep_for</span>
     <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
-      <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:purge_interrupt_queue</span>
+      <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_monitors'>monitors</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_mon'>mon</span><span class='op'>|</span> <span class='id identifier rubyid_mon'>mon</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_closed?'>closed?</span> <span class='rbrace'>}</span>
         <span class='const'>STDERR</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error in select: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
         <span class='const'>STDERR</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span>
@@ -481,18 +507,18 @@
                 <span class='id identifier rubyid_mon'>mon</span> <span class='op'>=</span> <span class='kw'>nil</span>
                 <span class='kw'>begin</span>
                   <span class='kw'>begin</span>
-                    <span class='id identifier rubyid_mon'>mon</span> <span class='op'>=</span> <span class='id identifier rubyid_selector'>selector</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_c'>c</span><span class='comma'>,</span> <span class='symbol'>:r</span><span class='rparen'>)</span>
-                  <span class='kw'>rescue</span> <span class='const'>ArgumentError</span>                    <span class='comment'># There is a bug where we seem to be registering an already registered
+                    <span class='id identifier rubyid_mon'>mon</span> <span class='op'>=</span> <span class='id identifier rubyid_selector'>selector</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_c'>c</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
+                  <span class='kw'>rescue</span> <span class='const'>ArgumentError</span>
+                    <span class='comment'># There is a bug where we seem to be registering an already registered
 </span>                    <span class='comment'># client. This code deals with this situation but I wish we didn&#39;t have to.
-</span>
-                    <span class='id identifier rubyid_monitors'>monitors</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_submon'>submon</span><span class='op'>|</span> <span class='id identifier rubyid_submon'>submon</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_io'>to_io</span> <span class='op'>==</span> <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_to_io'>to_io</span> <span class='rbrace'>}</span>
+</span>                    <span class='id identifier rubyid_monitors'>monitors</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_submon'>submon</span><span class='op'>|</span> <span class='id identifier rubyid_submon'>submon</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_io'>to_io</span> <span class='op'>==</span> <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_to_io'>to_io</span> <span class='rbrace'>}</span>
                     <span class='id identifier rubyid_selector'>selector</span><span class='period'>.</span><span class='id identifier rubyid_deregister'>deregister</span><span class='lparen'>(</span><span class='id identifier rubyid_c'>c</span><span class='rparen'>)</span>
-                    <span class='id identifier rubyid_mon'>mon</span> <span class='op'>=</span> <span class='id identifier rubyid_selector'>selector</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_c'>c</span><span class='comma'>,</span> <span class='symbol'>:r</span><span class='rparen'>)</span>
+                    <span class='id identifier rubyid_mon'>mon</span> <span class='op'>=</span> <span class='id identifier rubyid_selector'>selector</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_c'>c</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_r'>r</span><span class='rparen'>)</span>
                   <span class='kw'>end</span>
-                <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>                  <span class='comment'># Means that the io is closed, so we should ignore this request
+                <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>
+                  <span class='comment'># Means that the io is closed, so we should ignore this request
 </span>                  <span class='comment'># entirely
-</span>
-                <span class='kw'>else</span>
+</span>                <span class='kw'>else</span>
                   <span class='id identifier rubyid_mon'>mon</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_c'>c</span>
                   <span class='ivar'>@timeouts</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mon'>mon</span> <span class='kw'>if</span> <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_timeout_at'>timeout_at</span>
                   <span class='id identifier rubyid_monitors'>monitors</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_mon'>mon</span>
@@ -510,10 +536,10 @@
                   <span class='id identifier rubyid_submon'>submon</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
                   <span class='kw'>begin</span>
                     <span class='id identifier rubyid_selector'>selector</span><span class='period'>.</span><span class='id identifier rubyid_deregister'>deregister</span> <span class='id identifier rubyid_submon'>submon</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
-                  <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>                    <span class='comment'># nio4r on jruby seems to throw an IOError here if the IO is closed, so
+                  <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>
+                    <span class='comment'># nio4r on jruby seems to throw an IOError here if the IO is closed, so
 </span>                    <span class='comment'># we need to swallow it.
-</span>
-                  <span class='kw'>end</span>
+</span>                  <span class='kw'>end</span>
                   <span class='kw'>true</span>
                 <span class='kw'>end</span>
               <span class='kw'>end</span>
@@ -554,9 +580,9 @@
 
             <span class='id identifier rubyid_ssl_socket'>ssl_socket</span> <span class='op'>=</span> <span class='id identifier rubyid_c'>c</span><span class='period'>.</span><span class='id identifier rubyid_io'>io</span>
             <span class='kw'>begin</span>
-              <span class='id identifier rubyid_addr'>addr</span> <span class='op'>=</span> <span class='id identifier rubyid_ssl_socket'>ssl_socket</span><span class='period'>.</span><span class='id identifier rubyid_peeraddr'>peeraddr</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>            <span class='comment'># EINVAL can happen when browser closes socket w/security exception
-</span>
-            <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span><span class='comma'>,</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EINVAL</span>
+              <span class='id identifier rubyid_addr'>addr</span> <span class='op'>=</span> <span class='id identifier rubyid_ssl_socket'>ssl_socket</span><span class='period'>.</span><span class='id identifier rubyid_peeraddr'>peeraddr</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+            <span class='comment'># EINVAL can happen when browser closes socket w/security exception
+</span>            <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span><span class='comma'>,</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EINVAL</span>
               <span class='id identifier rubyid_addr'>addr</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;unknown&gt;</span><span class='tstring_end'>&quot;</span></span>
             <span class='kw'>end</span>
 
@@ -629,7 +655,7 @@
   <span class='kw'>begin</span>
     <span class='ivar'>@trigger</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>!</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>
-    <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:purge_interrupt_queue</span>
+    <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span>
   <span class='kw'>end</span>
 
   <span class='ivar'>@thread</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>

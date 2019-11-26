@@ -281,7 +281,7 @@
 <pre><span class='info file'># File 'lib/puma/minissl.rb', line 107</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbol'>:&lt;&lt;</span><span class='comma'>,</span> <span class='symbol'>:write</span>
+<span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='op'>&lt;&lt;</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_write'>write</span>
 </pre>
   </div>
 </div>
@@ -304,12 +304,12 @@
 </span>    <span class='comment'># Don&#39;t let this socket hold this loop forever.
 </span>    <span class='comment'># If it can&#39;t send more packets within 1s, then give up.
 </span>    <span class='kw'>while</span> <span class='id identifier rubyid_should_drop_bytes?'>should_drop_bytes?</span>
-      <span class='kw'>return</span> <span class='kw'>if</span> <span class='lbracket'>[</span><span class='symbol'>:timeout</span><span class='comma'>,</span> <span class='symbol'>:eof</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_read_and_drop'>read_and_drop</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='kw'>if</span> <span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_timeout'>timeout</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_eof'>eof</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_read_and_drop'>read_and_drop</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'><a href="../../IOError.html" title="IOError (class)">IOError</a></span><span class='comma'>,</span> <span class='const'>SystemCallError</span>
-    <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:purge_interrupt_queue</span>    <span class='comment'># nothing
-</span>
-  <span class='kw'>ensure</span>
+    <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span>
+    <span class='comment'># nothing
+</span>  <span class='kw'>ensure</span>
     <span class='ivar'>@socket</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
@@ -415,12 +415,12 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_and_drop'>read_and_drop</span><span class='lparen'>(</span><span class='id identifier rubyid_timeout'>timeout</span> <span class='op'>=</span> <span class='int'>1</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='symbol'>:timeout</span> <span class='kw'>unless</span> <span class='const'><a href="../../IO.html" title="IO (class)">IO</a></span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='ivar'>@socket</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_timeout'>timeout</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='symbol'>:eof</span> <span class='kw'>unless</span> <span class='id identifier rubyid_read_nonblock'>read_nonblock</span><span class='lparen'>(</span><span class='int'>1024</span><span class='rparen'>)</span>
-  <span class='symbol'>:drop</span>
-<span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EAGAIN</span>  <span class='comment'># do nothing
-</span>
-  <span class='symbol'>:eagain</span>
+  <span class='kw'>return</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout'>timeout</span> <span class='kw'>unless</span> <span class='const'><a href="../../IO.html" title="IO (class)">IO</a></span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='ivar'>@socket</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_timeout'>timeout</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='symbeg'>:</span><span class='id identifier rubyid_eof'>eof</span> <span class='kw'>unless</span> <span class='id identifier rubyid_read_nonblock'>read_nonblock</span><span class='lparen'>(</span><span class='int'>1024</span><span class='rparen'>)</span>
+  <span class='symbeg'>:</span><span class='id identifier rubyid_drop'>drop</span>
+<span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EAGAIN</span>
+  <span class='comment'># do nothing
+</span>  <span class='symbeg'>:</span><span class='id identifier rubyid_eagain'>eagain</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -446,7 +446,8 @@
     <span class='kw'>return</span> <span class='id identifier rubyid_output'>output</span> <span class='kw'>if</span> <span class='id identifier rubyid_output'>output</span>
 
     <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='ivar'>@socket</span><span class='period'>.</span><span class='id identifier rubyid_read_nonblock'>read_nonblock</span><span class='lparen'>(</span><span class='id identifier rubyid_size'>size</span><span class='comma'>,</span> <span class='label'>exception:</span> <span class='kw'>false</span><span class='rparen'>)</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>==</span> <span class='symbol'>:wait_readable</span> <span class='op'>||</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>==</span> <span class='symbol'>:wait_writable</span>      <span class='comment'># It would make more sense to let @socket.read_nonblock raise
+    <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid_wait_readable'>wait_readable</span> <span class='op'>||</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid_wait_writable'>wait_writable</span>
+      <span class='comment'># It would make more sense to let @socket.read_nonblock raise
 </span>      <span class='comment'># EAGAIN if necessary but it seems like it&#39;ll misbehave on Windows.
 </span>      <span class='comment'># I don&#39;t have a Windows machine to debug this so I can&#39;t explain
 </span>      <span class='comment'># exactly whats happening in that OS. Please let me know if you
@@ -455,8 +456,7 @@
 </span>      <span class='comment'># In the meantime, we can emulate the correct behavior by
 </span>      <span class='comment'># capturing :wait_readable &amp; :wait_writable and raising EAGAIN
 </span>      <span class='comment'># ourselves.
-</span>
-      <span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="../../IO.html" title="IO (class)">IO</a></span><span class='op'>::</span><span class='const'>EAGAINWaitReadable</span>
+</span>      <span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="../../IO.html" title="IO (class)">IO</a></span><span class='op'>::</span><span class='const'>EAGAINWaitReadable</span>
     <span class='kw'>elsif</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
       <span class='kw'>return</span> <span class='kw'>nil</span>
     <span class='kw'>end</span>
@@ -526,7 +526,7 @@
 <pre><span class='info file'># File 'lib/puma/minissl.rb', line 106</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbol'>:syswrite</span><span class='comma'>,</span> <span class='symbol'>:write</span>
+<span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='id identifier rubyid_syswrite'>syswrite</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_write'>write</span>
 </pre>
   </div>
 </div>

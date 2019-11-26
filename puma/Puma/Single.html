@@ -106,6 +106,18 @@
   </tbody>
 </table>
 </div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>This class is instantiated by the <a href="Launcher.html" title="Puma::Launcher (class)">Launcher</a> and used to boot and serve a Ruby application when no puma “workers” are needed i.e. only using “threaded” mode. For example <code>$ puma -t 1:5</code></p>
+
+<p>At the core of this class is running an instance of <a href="Server.html" title="Puma::Server (class)">Server</a> which gets created via the <code>start_server</code> method from the <a href="Runner.html" title="Puma::Runner (class)">Runner</a> class that this inherits from.</p>
+
+  </div>
+</div>
+</div>
 <h2 class='h2_sum' id='class_Method_summary'>Class Method Summary</h2>
 <div class='div_sum'>
 
@@ -307,9 +319,9 @@
   <span class='kw'>if</span> <span class='id identifier rubyid_jruby_daemon?'>jruby_daemon?</span>
     <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma/jruby_restart</span><span class='tstring_end'>&#39;</span></span>
 
-    <span class='kw'>if</span> <span class='const'><a href="JRubyRestart.html" title="Puma::JRubyRestart (module)">JRubyRestart</a></span><span class='period'>.</span><span class='id identifier rubyid_daemon?'><a href="JRubyRestart.html#daemon%3F-class_method" title="Puma::JRubyRestart.daemon? (method)">daemon?</a></span>      <span class='comment'># load and bind before redirecting IO so errors show up on stdout/stderr
-</span>
-      <span class='id identifier rubyid_load_and_bind'>load_and_bind</span>
+    <span class='kw'>if</span> <span class='const'><a href="JRubyRestart.html" title="Puma::JRubyRestart (module)">JRubyRestart</a></span><span class='period'>.</span><span class='id identifier rubyid_daemon?'><a href="JRubyRestart.html#daemon%3F-class_method" title="Puma::JRubyRestart.daemon? (method)">daemon?</a></span>
+      <span class='comment'># load and bind before redirecting IO so errors show up on stdout/stderr
+</span>      <span class='id identifier rubyid_load_and_bind'>load_and_bind</span>
       <span class='id identifier rubyid_redirect_io'>redirect_io</span>
     <span class='kw'>end</span>
 
@@ -368,9 +380,9 @@
 
   <span class='kw'>begin</span>
     <span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>
-  <span class='kw'>rescue</span> <span class='const'>Interrupt</span>    <span class='comment'># Swallow it
-</span>
-  <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'>Interrupt</span>
+    <span class='comment'># Swallow it
+</span>  <span class='kw'>end</span>
 <span class='kw'>end</span>
 </pre>
   </div>

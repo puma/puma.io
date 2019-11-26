@@ -82,6 +82,18 @@
   </tbody>
 </table>
 </div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p><code>Launcher</code> is the single entry point for starting a <a href="../Puma.html" title="Puma (module)">::Puma</a> server based on user configuration. It is responsible for taking user supplied arguments and resolving them with configuration in <code>config/puma.rb</code> or <code>config/puma/&lt;env&gt;.rb</code>.</p>
+
+<p>It is responsible for either launching a cluster of <a href="../Puma.html" title="Puma (module)">::Puma</a> workers or a single puma server.</p>
+
+  </div>
+</div>
+</div>
 <h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
 <div>
 <ul class='constants summary full'>
@@ -89,9 +101,9 @@
     <span id='KEYS_NOT_TO_PERSIST_IN_STATE-constant' class='summary_signature'>KEYS_NOT_TO_PERSIST_IN_STATE =</span>
     <br/>
     <a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/launcher.rb#L18-L22'># File 'lib/puma/launcher.rb', line 18</a>    <pre class='code ruby'><span class='lbracket'>[</span>
-  <span class='symbol'>:logger</span><span class='comma'>,</span> <span class='symbol'>:lowlevel_error_handler</span><span class='comma'>,</span>
-  <span class='symbol'>:before_worker_shutdown</span><span class='comma'>,</span> <span class='symbol'>:before_worker_boot</span><span class='comma'>,</span> <span class='symbol'>:before_worker_fork</span><span class='comma'>,</span>
-  <span class='symbol'>:after_worker_boot</span><span class='comma'>,</span> <span class='symbol'>:before_fork</span><span class='comma'>,</span> <span class='symbol'>:on_restart</span>
+  <span class='symbeg'>:</span><span class='id identifier rubyid_logger'>logger</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_lowlevel_error_handler'>lowlevel_error_handler</span><span class='comma'>,</span>
+  <span class='symbeg'>:</span><span class='id identifier rubyid_before_worker_shutdown'>before_worker_shutdown</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_before_worker_boot'>before_worker_boot</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_before_worker_fork'>before_worker_fork</span><span class='comma'>,</span>
+  <span class='symbeg'>:</span><span class='id identifier rubyid_after_worker_boot'>after_worker_boot</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_before_fork'>before_fork</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_on_restart'>on_restart</span>
 <span class='rbracket'>]</span></pre>
   </li>
 </ul>
@@ -412,8 +424,8 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_conf'>conf</span><span class='comma'>,</span> <span class='id identifier rubyid_launcher_args'>launcher_args</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@runner</span>        <span class='op'>=</span> <span class='kw'>nil</span>
-  <span class='ivar'>@events</span>        <span class='op'>=</span> <span class='id identifier rubyid_launcher_args'>launcher_args</span><span class='lbracket'>[</span><span class='symbol'>:events</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='const'><a href="Events.html" title="Puma::Events (class)">Events</a></span><span class='op'>::</span><span class='const'><a href="Events.html#DEFAULT-constant" title="Puma::Events::DEFAULT (constant)">DEFAULT</a></span>
-  <span class='ivar'>@argv</span>          <span class='op'>=</span> <span class='id identifier rubyid_launcher_args'>launcher_args</span><span class='lbracket'>[</span><span class='symbol'>:argv</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@events</span>        <span class='op'>=</span> <span class='id identifier rubyid_launcher_args'>launcher_args</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_events'>events</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='const'><a href="Events.html" title="Puma::Events (class)">Events</a></span><span class='op'>::</span><span class='const'><a href="Events.html#DEFAULT-constant" title="Puma::Events::DEFAULT (constant)">DEFAULT</a></span>
+  <span class='ivar'>@argv</span>          <span class='op'>=</span> <span class='id identifier rubyid_launcher_args'>launcher_args</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_argv'>argv</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='ivar'>@original_argv</span> <span class='op'>=</span> <span class='ivar'>@argv</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
   <span class='ivar'>@config</span>        <span class='op'>=</span> <span class='id identifier rubyid_conf'>conf</span>
 
@@ -431,15 +443,15 @@
   <span class='ivar'>@config</span><span class='period'>.</span><span class='id identifier rubyid_clamp'>clamp</span>
 
   <span class='ivar'>@events</span><span class='period'>.</span><span class='id identifier rubyid_formatter'>formatter</span> <span class='op'>=</span> <span class='const'><a href="Events.html" title="Puma::Events (class)">Events</a></span><span class='op'>::</span><span class='const'><a href="Events/PidFormatter.html" title="Puma::Events::PidFormatter (class)">PidFormatter</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="Events.html#new-class_method" title="Puma::Events.new (method)">new</a></span> <span class='kw'>if</span> <span class='id identifier rubyid_clustered?'>clustered?</span>
-  <span class='ivar'>@events</span><span class='period'>.</span><span class='id identifier rubyid_formatter'>formatter</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:log_formatter</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:log_formatter</span><span class='rbracket'>]</span>
+  <span class='ivar'>@events</span><span class='period'>.</span><span class='id identifier rubyid_formatter'>formatter</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_log_formatter'>log_formatter</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_log_formatter'>log_formatter</span><span class='rbracket'>]</span>
 
   <span class='id identifier rubyid_generate_restart_data'>generate_restart_data</span>
 
-  <span class='kw'>if</span> <span class='id identifier rubyid_clustered?'>clustered?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:fork</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_clustered?'>clustered?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_fork'>fork</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_unsupported'>unsupported</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>worker mode not supported on </span><span class='embexpr_beg'>#{</span><span class='const'>RUBY_ENGINE</span><span class='embexpr_end'>}</span><span class='tstring_content'> on this platform</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 
-  <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:daemon</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='period'>.</span><span class='id identifier rubyid_windows?'><a href="../Puma.html#windows%3F-class_method" title="Puma.windows? (method)">windows?</a></span>
+  <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_daemon'>daemon</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='period'>.</span><span class='id identifier rubyid_windows?'><a href="../Puma.html#windows%3F-class_method" title="Puma.windows? (method)">windows?</a></span>
     <span class='id identifier rubyid_unsupported'>unsupported</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>daemon mode not supported on Windows</span><span class='tstring_end'>&#39;</span></span>
   <span class='kw'>end</span>
 
@@ -447,11 +459,11 @@
 
   <span class='id identifier rubyid_prune_bundler'>prune_bundler</span> <span class='kw'>if</span> <span class='id identifier rubyid_prune_bundler?'>prune_bundler?</span>
 
-  <span class='ivar'>@environment</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:environment</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:environment</span><span class='rbracket'>]</span>
+  <span class='ivar'>@environment</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_environment'>environment</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_environment'>environment</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_set_rack_environment'>set_rack_environment</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_clustered?'>clustered?</span>
-    <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:logger</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@events</span>
+    <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_logger'>logger</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@events</span>
 
     <span class='ivar'>@runner</span> <span class='op'>=</span> <span class='const'><a href="Cluster.html" title="Puma::Cluster (class)">Cluster</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="Cluster.html#new-class_method" title="Puma::Cluster.new (method)">new</a></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='ivar'>@events</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
@@ -459,7 +471,7 @@
   <span class='kw'>end</span>
   <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='period'>.</span><span class='id identifier rubyid_stats_object'>stats_object</span> <span class='op'>=</span> <span class='ivar'>@runner</span>
 
-  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbol'>:run</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbeg'>:</span><span class='id identifier rubyid_run'>run</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -478,7 +490,7 @@
 <pre><span class='info file'># File 'lib/puma/launcher.rb', line 95</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:binder</span><span class='comma'>,</span> <span class='symbol'>:events</span><span class='comma'>,</span> <span class='symbol'>:config</span><span class='comma'>,</span> <span class='symbol'>:options</span><span class='comma'>,</span> <span class='symbol'>:restart_dir</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_binder'>binder</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'>events</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_config'>config</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_restart_dir'>restart_dir</span>
 </pre>
   </div>
 </div>
@@ -496,7 +508,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clustered?'>clustered?</span>
-  <span class='lparen'>(</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:workers</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+  <span class='lparen'>(</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_workers'>workers</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='op'>&gt;</span> <span class='int'>0</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -514,7 +526,7 @@
 <pre><span class='info file'># File 'lib/puma/launcher.rb', line 95</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:binder</span><span class='comma'>,</span> <span class='symbol'>:events</span><span class='comma'>,</span> <span class='symbol'>:config</span><span class='comma'>,</span> <span class='symbol'>:options</span><span class='comma'>,</span> <span class='symbol'>:restart_dir</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_binder'>binder</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'>events</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_config'>config</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_restart_dir'>restart_dir</span>
 </pre>
   </div>
 </div>
@@ -531,7 +543,7 @@
 <pre><span class='info file'># File 'lib/puma/launcher.rb', line 95</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:binder</span><span class='comma'>,</span> <span class='symbol'>:events</span><span class='comma'>,</span> <span class='symbol'>:config</span><span class='comma'>,</span> <span class='symbol'>:options</span><span class='comma'>,</span> <span class='symbol'>:restart_dir</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_binder'>binder</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'>events</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_config'>config</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_restart_dir'>restart_dir</span>
 </pre>
   </div>
 </div>
@@ -548,7 +560,7 @@
 <pre><span class='info file'># File 'lib/puma/launcher.rb', line 95</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:binder</span><span class='comma'>,</span> <span class='symbol'>:events</span><span class='comma'>,</span> <span class='symbol'>:config</span><span class='comma'>,</span> <span class='symbol'>:options</span><span class='comma'>,</span> <span class='symbol'>:restart_dir</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_binder'>binder</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'>events</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_config'>config</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_restart_dir'>restart_dir</span>
 </pre>
   </div>
 </div>
@@ -580,9 +592,9 @@
   <span class='const'>Bundler</span><span class='period'>.</span><span class='id identifier rubyid_with_clean_env'>with_clean_env</span> <span class='kw'>do</span>
     <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GEM_HOME</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_home'>home</span>
     <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUMA_BUNDLER_PRUNED</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='const'>Gem</span><span class='period'>.</span><span class='id identifier rubyid_ruby'>ruby</span><span class='comma'>,</span> <span class='id identifier rubyid_puma_wild_location'>puma_wild_location</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-I</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_dirs'>dirs</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>:</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_deps'>deps</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='ivar'>@original_argv</span>    <span class='comment'># Ruby 2.0+ defaults to true which breaks socket activation
-</span>
-    <span class='id identifier rubyid_args'>args</span> <span class='op'>+=</span> <span class='lbracket'>[</span><span class='lbrace'>{</span><span class='symbol'>:close_others</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rbrace'>}</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='const'>Gem</span><span class='period'>.</span><span class='id identifier rubyid_ruby'>ruby</span><span class='comma'>,</span> <span class='id identifier rubyid_puma_wild_location'>puma_wild_location</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-I</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_dirs'>dirs</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>:</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_deps'>deps</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='ivar'>@original_argv</span>
+    <span class='comment'># Ruby 2.0+ defaults to true which breaks socket activation
+</span>    <span class='id identifier rubyid_args'>args</span> <span class='op'>+=</span> <span class='lbracket'>[</span><span class='lbrace'>{</span><span class='symbeg'>:</span><span class='id identifier rubyid_close_others'>close_others</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='rbrace'>}</span><span class='rbracket'>]</span>
     <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_exec'>exec</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
@@ -603,7 +615,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prune_bundler?'>prune_bundler?</span>
-  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:prune_bundler</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_clustered?'>clustered?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:preload_app</span><span class='rbracket'>]</span>
+  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_prune_bundler'>prune_bundler</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_clustered?'>clustered?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_preload_app'>preload_app</span><span class='rbracket'>]</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -621,7 +633,7 @@
 <pre><span class='info file'># File 'lib/puma/launcher.rb', line 95</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:binder</span><span class='comma'>,</span> <span class='symbol'>:events</span><span class='comma'>,</span> <span class='symbol'>:config</span><span class='comma'>,</span> <span class='symbol'>:options</span><span class='comma'>,</span> <span class='symbol'>:restart_dir</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_binder'>binder</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'>events</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_config'>config</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_restart_dir'>restart_dir</span>
 </pre>
   </div>
 </div>
@@ -692,7 +704,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_pidfile'>delete_pidfile</span>
-  <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:pidfile</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_pidfile'>pidfile</span><span class='rbracket'>]</span>
   <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_unlink'>unlink</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_path'>path</span> <span class='op'>&amp;&amp;</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
 <span class='kw'>end</span>
 </pre>
@@ -756,7 +768,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extra_runtime_deps_directories'>extra_runtime_deps_directories</span>
-  <span class='const'>Array</span><span class='lparen'>(</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:extra_runtime_dependencies</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_d_name'>d_name</span><span class='op'>|</span>
+  <span class='const'>Array</span><span class='lparen'>(</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_extra_runtime_dependencies'>extra_runtime_dependencies</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_d_name'>d_name</span><span class='op'>|</span>
     <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_spec'>spec</span> <span class='op'>=</span> <span class='id identifier rubyid_spec_for_gem'>spec_for_gem</span><span class='lparen'>(</span><span class='id identifier rubyid_d_name'>d_name</span><span class='rparen'>)</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_require_paths_for_gem'>require_paths_for_gem</span><span class='lparen'>(</span><span class='id identifier rubyid_spec'>spec</span><span class='rparen'>)</span>
     <span class='kw'>else</span>
@@ -782,13 +794,13 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_restart_data'>generate_restart_data</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_dir'>dir</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:directory</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_dir'>dir</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_directory'>directory</span><span class='rbracket'>]</span>
     <span class='ivar'>@restart_dir</span> <span class='op'>=</span> <span class='id identifier rubyid_dir'>dir</span>
 
-  <span class='kw'>elsif</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='period'>.</span><span class='id identifier rubyid_windows?'><a href="../Puma.html#windows%3F-class_method" title="Puma.windows? (method)">windows?</a></span>    <span class='comment'># I guess the value of PWD is garbage on windows so don&#39;t bother
+  <span class='kw'>elsif</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='period'>.</span><span class='id identifier rubyid_windows?'><a href="../Puma.html#windows%3F-class_method" title="Puma.windows? (method)">windows?</a></span>
+    <span class='comment'># I guess the value of PWD is garbage on windows so don&#39;t bother
 </span>    <span class='comment'># using it.
-</span>
-    <span class='ivar'>@restart_dir</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_pwd'>pwd</span>
+</span>    <span class='ivar'>@restart_dir</span> <span class='op'>=</span> <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_pwd'>pwd</span>
 
     <span class='comment'># Use the same trick as unicorn, namely favor PWD because
 </span>    <span class='comment'># it will contain an unresolved symlink, useful for when
@@ -870,7 +882,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_halt'>halt</span>
-  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbol'>:halt</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbeg'>:</span><span class='id identifier rubyid_halt'>halt</span>
   <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_halt'>halt</span>
 <span class='kw'>end</span>
 </pre>
@@ -912,7 +924,7 @@
   <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_list'>list</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_thread'>thread</span><span class='op'>|</span>
     <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Thread TID-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thread'>thread</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='int'>36</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thread'>thread</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>label</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_logstr'>logstr</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Thread: TID-</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thread'>thread</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='int'>36</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_logstr'>logstr</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thread'>thread</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_thread'>thread</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_logstr'>logstr</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thread'>thread</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_thread'>thread</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_log'>log</span> <span class='id identifier rubyid_logstr'>logstr</span>
 
     <span class='kw'>if</span> <span class='id identifier rubyid_thread'>thread</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span>
@@ -946,7 +958,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_phased_restart'>phased_restart</span>
-  <span class='kw'>unless</span> <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:phased_restart</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_phased_restart'>phased_restart</span>
+  <span class='kw'>unless</span> <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_phased_restart'>phased_restart</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_phased_restart'>phased_restart</span>
     <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* phased-restart called but not available, restarting normally.</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>return</span> <span class='id identifier rubyid_restart'>restart</span>
   <span class='kw'>end</span>
@@ -991,7 +1003,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reload_worker_directory'>reload_worker_directory</span>
-  <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_reload_worker_directory'>reload_worker_directory</span> <span class='kw'>if</span> <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:reload_worker_directory</span><span class='rparen'>)</span>
+  <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_reload_worker_directory'>reload_worker_directory</span> <span class='kw'>if</span> <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_reload_worker_directory'>reload_worker_directory</span><span class='rparen'>)</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -1058,7 +1070,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_restart'>restart</span>
-  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbol'>:restart</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbeg'>:</span><span class='id identifier rubyid_restart'>restart</span>
   <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_restart'>restart</span>
 <span class='kw'>end</span>
 </pre>
@@ -1078,7 +1090,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_restart!'>restart!</span>
-  <span class='ivar'>@config</span><span class='period'>.</span><span class='id identifier rubyid_run_hooks'>run_hooks</span> <span class='symbol'>:on_restart</span><span class='comma'>,</span> <span class='kw'>self</span>
+  <span class='ivar'>@config</span><span class='period'>.</span><span class='id identifier rubyid_run_hooks'>run_hooks</span> <span class='symbeg'>:</span><span class='id identifier rubyid_on_restart'>on_restart</span><span class='comma'>,</span> <span class='kw'>self</span>
 
   <span class='kw'>if</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='period'>.</span><span class='id identifier rubyid_jruby?'><a href="../Puma.html#jruby%3F-class_method" title="Puma.jruby? (method)">jruby?</a></span>
     <span class='id identifier rubyid_close_binder_listeners'>close_binder_listeners</span>
@@ -1115,7 +1127,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_restart_args'>restart_args</span>
-  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:restart_cmd</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_restart_cmd'>restart_cmd</span><span class='rbracket'>]</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_cmd'>cmd</span>
     <span class='id identifier rubyid_cmd'>cmd</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>+</span> <span class='ivar'>@original_argv</span>
   <span class='kw'>else</span>
@@ -1148,9 +1160,9 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>
   <span class='id identifier rubyid_previous_env'>previous_env</span> <span class='op'>=</span>
     <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='const'>Bundler</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_env'>env</span> <span class='op'>=</span> <span class='const'>Bundler</span><span class='op'>::</span><span class='const'>ORIGINAL_ENV</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>      <span class='comment'># add -rbundler/setup so we load from Gemfile when restarting
-</span>
-      <span class='id identifier rubyid_bundle'>bundle</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-rbundler/setup</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_env'>env</span> <span class='op'>=</span> <span class='const'>Bundler</span><span class='op'>::</span><span class='const'>ORIGINAL_ENV</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+      <span class='comment'># add -rbundler/setup so we load from Gemfile when restarting
+</span>      <span class='id identifier rubyid_bundle'>bundle</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-rbundler/setup</span><span class='tstring_end'>&quot;</span></span>
       <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>RUBYOPT</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>RUBYOPT</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_bundle'>bundle</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_lstrip'>lstrip</span> <span class='kw'>unless</span> <span class='id identifier rubyid_env'>env</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>RUBYOPT</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_bundle'>bundle</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_env'>env</span>
     <span class='kw'>else</span>
@@ -1166,18 +1178,18 @@
   <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span>
 
   <span class='kw'>case</span> <span class='ivar'>@status</span>
-  <span class='kw'>when</span> <span class='symbol'>:halt</span>
+  <span class='kw'>when</span> <span class='symbeg'>:</span><span class='id identifier rubyid_halt'>halt</span>
     <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Stopping immediately!</span><span class='tstring_end'>&quot;</span></span>
-  <span class='kw'>when</span> <span class='symbol'>:run</span><span class='comma'>,</span> <span class='symbol'>:stop</span>
+  <span class='kw'>when</span> <span class='symbeg'>:</span><span class='id identifier rubyid_run'>run</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_stop'>stop</span>
     <span class='id identifier rubyid_graceful_stop'>graceful_stop</span>
-  <span class='kw'>when</span> <span class='symbol'>:restart</span>
+  <span class='kw'>when</span> <span class='symbeg'>:</span><span class='id identifier rubyid_restart'>restart</span>
     <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Restarting...</span><span class='tstring_end'>&quot;</span></span>
     <span class='const'>ENV</span><span class='period'>.</span><span class='id identifier rubyid_replace'>replace</span><span class='lparen'>(</span><span class='id identifier rubyid_previous_env'>previous_env</span><span class='rparen'>)</span>
     <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_before_restart'>before_restart</span>
     <span class='id identifier rubyid_restart!'>restart!</span>
-  <span class='kw'>when</span> <span class='symbol'>:exit</span>    <span class='comment'># nothing
-</span>
-  <span class='kw'>end</span>
+  <span class='kw'>when</span> <span class='symbeg'>:</span><span class='id identifier rubyid_exit'>exit</span>
+    <span class='comment'># nothing
+</span>  <span class='kw'>end</span>
   <span class='ivar'>@binder</span><span class='period'>.</span><span class='id identifier rubyid_close_unix_paths'>close_unix_paths</span>
 <span class='kw'>end</span>
 </pre>
@@ -1197,7 +1209,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_process_title'>set_process_title</span>
-  <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:setproctitle</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_setproctitle'>setproctitle</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='gvar'>$0</span> <span class='op'>=</span> <span class='id identifier rubyid_title'>title</span>
+  <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_setproctitle'>setproctitle</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_setproctitle'>setproctitle</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='gvar'>$0</span> <span class='op'>=</span> <span class='id identifier rubyid_title'>title</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -1216,7 +1228,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_rack_environment'>set_rack_environment</span>
-  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:environment</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_environment'>environment</span>
+  <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_environment'>environment</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_environment'>environment</span>
   <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>RACK_ENV</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_environment'>environment</span>
 <span class='kw'>end</span>
 </pre>
@@ -1258,7 +1270,7 @@
     <span class='const'>Signal</span><span class='period'>.</span><span class='id identifier rubyid_trap'>trap</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGTERM</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
       <span class='id identifier rubyid_graceful_stop'>graceful_stop</span>
 
-      <span class='id identifier rubyid_raise'>raise</span><span class='lparen'>(</span><span class='const'>SignalException</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGTERM</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:raise_exception_on_sigterm</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_raise'>raise</span><span class='lparen'>(</span><span class='const'>SignalException</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGTERM</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_raise_exception_on_sigterm'>raise_exception_on_sigterm</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'>Exception</span>
     <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>*** SIGTERM not implemented, signal based gracefully stopping unavailable!</span><span class='tstring_end'>&quot;</span></span>
@@ -1288,10 +1300,10 @@
     <span class='const'>Signal</span><span class='period'>.</span><span class='id identifier rubyid_trap'>trap</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGINFO</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
       <span class='id identifier rubyid_log_thread_status'>log_thread_status</span>
     <span class='kw'>end</span>
-  <span class='kw'>rescue</span> <span class='const'>Exception</span>    <span class='comment'># Not going to log this one, as SIGINFO is *BSD only and would be pretty annoying
+  <span class='kw'>rescue</span> <span class='const'>Exception</span>
+    <span class='comment'># Not going to log this one, as SIGINFO is *BSD only and would be pretty annoying
 </span>    <span class='comment'># to see this constantly on Linux.
-</span>
-  <span class='kw'>end</span>
+</span>  <span class='kw'>end</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -1362,7 +1374,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stop'>stop</span>
-  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbol'>:stop</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbeg'>:</span><span class='id identifier rubyid_stop'>stop</span>
   <span class='ivar'>@runner</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span>
 <span class='kw'>end</span>
 </pre>
@@ -1382,8 +1394,8 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_title'>title</span>
-  <span class='id identifier rubyid_buffer'>buffer</span>  <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puma </span><span class='embexpr_beg'>#{</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'>VERSION</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:binds</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_buffer'>buffer</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> [</span><span class='embexpr_beg'>#{</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:tag</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:tag</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:tag</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='id identifier rubyid_buffer'>buffer</span>  <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puma </span><span class='embexpr_beg'>#{</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'>VERSION</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_binds'>binds</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_buffer'>buffer</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> [</span><span class='embexpr_beg'>#{</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_tag'>tag</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_tag'>tag</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_tag'>tag</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
   <span class='id identifier rubyid_buffer'>buffer</span>
 <span class='kw'>end</span>
 </pre>
@@ -1443,7 +1455,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_pid'>write_pid</span>
-  <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:pidfile</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_pidfile'>pidfile</span><span class='rbracket'>]</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_path'>path</span>
 
   <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span> <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_pid'>pid</span> <span class='rbrace'>}</span>
@@ -1478,15 +1490,15 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_write_state'>write_state</span>
   <span class='id identifier rubyid_write_pid'>write_pid</span>
 
-  <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:state</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_state'>state</span><span class='rbracket'>]</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_path'>path</span>
 
   <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma/state_file</span><span class='tstring_end'>&#39;</span></span>
 
   <span class='id identifier rubyid_sf'>sf</span> <span class='op'>=</span> <span class='const'><a href="StateFile.html" title="Puma::StateFile (class)">StateFile</a></span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="StateFile.html#new-class_method" title="Puma::StateFile.new (method)">new</a></span>
   <span class='id identifier rubyid_sf'>sf</span><span class='period'>.</span><span class='id identifier rubyid_pid'>pid</span> <span class='op'>=</span> <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_pid'>pid</span>
-  <span class='id identifier rubyid_sf'>sf</span><span class='period'>.</span><span class='id identifier rubyid_control_url'>control_url</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:control_url</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_sf'>sf</span><span class='period'>.</span><span class='id identifier rubyid_control_auth_token'>control_auth_token</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:control_auth_token</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_sf'>sf</span><span class='period'>.</span><span class='id identifier rubyid_control_url'>control_url</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_control_url'>control_url</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_sf'>sf</span><span class='period'>.</span><span class='id identifier rubyid_control_auth_token'>control_auth_token</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_control_auth_token'>control_auth_token</span><span class='rbracket'>]</span>
 
   <span class='id identifier rubyid_sf'>sf</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span> <span class='id identifier rubyid_path'>path</span>
 <span class='kw'>end</span>
