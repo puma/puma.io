@@ -62,29 +62,43 @@
   </header>
 <div id='content' class='file'>
 <h1>Deployment engineering for puma</h1>
+
 <p><a href="Puma.html" title="Puma (module)">Puma</a> is software that is expected to be run in a deployed environment eventually.
 You can certainly use it as your dev server only, but most people look to use
 it in their production deployments as well.</p>
+
 <p>To that end, this is meant to serve as a foundation of wisdom how to do that
 in a way that increases happiness and decreases downtime.</p>
+
 <h2>Specifying puma</h2>
-<p>Most people want to do this by putting <code>gem &quot;puma&quot;</code> into their Gemfile, so we'll
+
+<p>Most people want to do this by putting <code>gem "puma"</code> into their Gemfile, so we'll
 go ahead and assume that. Go add it now... we'll wait.</p>
+
 <p>Welcome back!</p>
+
 <h2>Single vs Cluster mode</h2>
+
 <p><a href="Puma.html" title="Puma (module)">Puma</a> was originally conceived as a thread-only webserver, but grew the ability to
 also use processes in version 2.</p>
+
 <p>Here are some rules of thumb:</p>
+
 <h3>MRI</h3>
+
 <ul>
 <li>Use cluster mode and set the number of workers to 1.5x the number of cpu cores
 in the machine, minimum 2.</li>
 <li>Set the number of threads to desired concurrent requests / number of workers.
 Puma defaults to 16 and that's a decent number.</li>
 </ul>
+
+
 <h4>Migrating from Unicorn</h4>
+
 <ul>
 <li>If you're migrating from unicorn though, here are some settings to start with:
+
 <ul>
 <li>Set workers to half the number of unicorn workers you're using</li>
 <li>Set threads to 2</li>
@@ -94,32 +108,45 @@ Puma defaults to 16 and that's a decent number.</li>
 <li>As you grow more confident in the thread safety of your app, you can tune the
 workers down and the threads up.</li>
 </ul>
+
+
 <h4>Ubuntu / Systemd (Systemctl) Installation</h4>
+
 <p>See <a href="file.systemd.html" title="systemd.md">systemd.md</a></p>
+
 <h4>Worker utilization</h4>
+
 <p><strong>How do you know if you've got enough (or too many workers)?</strong></p>
+
 <p>A good question. Due to MRI's GIL, only one thread can be executing Ruby code at a time.
 But since so many apps are waiting on <a href="IO.html" title="IO (class)">IO</a> from DBs, etc., they can utilize threads
 to make better use of the process.</p>
+
 <p>The rule of thumb is you never want processes that are pegged all the time. This
 means that there is more work to do than the process can get through. On the other
 hand, if you have processes that sit around doing nothing, then they're just eating
 up resources.</p>
+
 <p>Watch your CPU utilization over time and aim for about 70% on average. This means
 you've got capacity still but aren't starving threads.</p>
+
 <p><strong>Measuring utilization</strong></p>
+
 <p>Using a timestamp header from an upstream proxy server (eg. nginx or haproxy), it's
 possible to get an indication of how long requests have been waiting for a <a href="Puma.html" title="Puma (module)">Puma</a>
 thread to become available.</p>
+
 <ul>
 <li>Have your upstream proxy set a header with the time it received the request:
+
 <ul>
-<li>nginx: <code>proxy_set_header X-Request-Start &quot;${msec}&quot;;</code></li>
-<li>haproxy: <code>http-request set-header X-Request-Start &quot;%t&quot;;</code></li>
+<li>nginx: <code>proxy_set_header X-Request-Start "${msec}";</code></li>
+<li>haproxy: <code>http-request set-header X-Request-Start "%t";</code></li>
 </ul>
 </li>
 <li>In your <a href="Rack.html" title="Rack (module)">Rack</a> middleware, determine the amount of time elapsed since <code>X-Request-Start</code>.</li>
 <li>To improve accuracy, you will want to subtract time spent waiting for slow clients:
+
 <ul>
 <li><code>env['puma.request_body_wait']</code> contains the number of milliseconds Puma spent
 waiting for the client to send the request body.</li>
@@ -128,11 +155,15 @@ can also be added as headers.</li>
 </ul>
 </li>
 </ul>
+
+
 <h2>Daemonizing</h2>
+
 <p>I prefer to not daemonize my servers and use something like <code>runit</code> or <code>upstart</code> to
 monitor them as child processes. This gives them fast response to crashes and
 makes it easy to figure out what is going on. Additionally, unlike <code>unicorn</code>,
 puma does not require daemonization to do zero-downtime restarts.</p>
+
 <p>I see people using daemonization because they start puma directly via capistrano
 task and thus want it to live on past the <code>cap deploy</code>. To these people I say:
 You need to be using a process monitor. Nothing is making sure puma stays up in
@@ -140,30 +171,28 @@ this scenario! You're just waiting for something weird to happen, puma to die,
 and to get paged at 3am. Do yourself a favor, at least the process monitoring
 your OS comes with, be it <code>sysvinit</code>, <code>upstart</code>, or <code>systemd</code>. Or branch out
 and use <code>runit</code> or hell, even <code>monit</code>.</p>
+
 <h2>Restarting</h2>
+
 <p>You probably will want to deploy some new code at some point, and you'd like
 puma to start running that new code. Minimizing the amount of time the server
 is unavailable would be nice as well. Here's how to do it:</p>
+
 <ol>
-<li>
-<p>Don't use <code>preload!</code>. This dirties the master process and means it will have
-to shutdown all the workers and re-exec itself to get your new code. It is not compatible with phased-restart and <code>prune_bundler</code> as well.</p>
-</li>
-<li>
-<p>Use <code>prune_bundler</code>. This makes it so that the cluster master will detach itself
+<li><p>Don't use <code>preload!</code>. This dirties the master process and means it will have
+to shutdown all the workers and re-exec itself to get your new code. It is not compatible with phased-restart and <code>prune_bundler</code> as well.</p></li>
+<li><p>Use <code>prune_bundler</code>. This makes it so that the cluster master will detach itself
 from a Bundler context on start. This allows the cluster workers to load your app
 and start a brand new Bundler context within the worker only. This means your
-master remains pristine and can live on between new releases of your code.</p>
-</li>
-<li>
-<p>Use phased-restart (<code>SIGUSR1</code> or <code>pumactl phased-restart</code>). This tells the master
+master remains pristine and can live on between new releases of your code.</p></li>
+<li><p>Use phased-restart (<code>SIGUSR1</code> or <code>pumactl phased-restart</code>). This tells the master
 to kill off one worker at a time and restart them in your new code. This minimizes
 downtime and staggers the restart nicely. <strong>WARNING</strong> This means that both your
 old code and your new code will be running concurrently. Most deployment solutions
 already cause that, but it's worth warning you about it again. Be careful with your
-migrations, etc!</p>
-</li>
+migrations, etc!</p></li>
 </ol>
+
 
 <div id='footer'></div>
 </div> <!-- content  -->
