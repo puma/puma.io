@@ -77,7 +77,7 @@
     </td></tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/util.rb#L6'>lib/puma/util.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/util.rb#L6'>lib/puma/util.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -88,7 +88,7 @@
   <li>
     <span id='DEFAULT_SEP-constant' class='summary_signature'>DEFAULT_SEP =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/util.rb#L26-L26'># File 'lib/puma/util.rb', line 26</a>    <pre class='code ruby'><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[&amp;;] *</span><span class='regexp_end'>/n</span></span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/util.rb#L26-L26'># File 'lib/puma/util.rb', line 26</a>    <pre class='code ruby'><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[&amp;;] *</span><span class='regexp_end'>/n</span></span></pre>
   </li>
 </ul>
 </div>
@@ -131,30 +131,30 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/util.rb#L33-L54'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/util.rb#L33-L54'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='33' data-end='54'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/util.rb', line 33</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_parse_query'>parse_query</span><span class='lparen'>(</span><span class='id identifier rubyid_qs'>qs</span><span class='comma'>,</span> <span class='id identifier rubyid_d'>d</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_unescaper'>unescaper</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_unescaper'>unescaper</span> <span class='op'>||=</span> <span class='id identifier rubyid_method'>method</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_unescape'>unescape</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_query'>parse_query</span>(<span class='id identifier rubyid_qs'>qs</span><span class='comma'>,</span> <span class='id identifier rubyid_d'>d</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_unescaper'>unescaper</span>)
+  <span class='id identifier rubyid_unescaper'>unescaper</span> <span class='op'>||=</span> <span class='id identifier rubyid_method'>method</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_unescape'>unescape</span>)
 
-  <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> {}
 
-  <span class='lparen'>(</span><span class='id identifier rubyid_qs'>qs</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='id identifier rubyid_d'>d</span> <span class='op'>?</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_d'>d</span><span class='embexpr_end'>}</span><span class='tstring_content'>] *</span><span class='regexp_end'>/n</span></span> <span class='op'>:</span> <span class='const'><a href="#DEFAULT_SEP-constant" title="Puma::Util::DEFAULT_SEP (constant)">DEFAULT_SEP</a></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_p'>p</span><span class='op'>|</span>
-    <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-    <span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>=</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>2</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_unescaper'>unescaper</span><span class='rparen'>)</span>
+  (<span class='id identifier rubyid_qs'>qs</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>).<span class='id identifier rubyid_split'>split</span>(<span class='id identifier rubyid_d'>d</span> <span class='op'>?</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_d'>d</span><span class='embexpr_end'>}</span><span class='tstring_content'>] *</span><span class='regexp_end'>/n</span></span> <span class='op'>:</span> <span class='const'><a href="#DEFAULT_SEP-constant" title="Puma::Util::DEFAULT_SEP (constant)">DEFAULT_SEP</a></span>).<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_p'>p</span><span class='op'>|</span>
+    <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_p'>p</span>.<span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_p'>p</span>.<span class='id identifier rubyid_split'>split</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>=</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>2</span>).<span class='id identifier rubyid_map'>map</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_unescaper'>unescaper</span>)
 
-    <span class='kw'>if</span> <span class='id identifier rubyid_cur'>cur</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span>
-      <span class='kw'>if</span> <span class='id identifier rubyid_cur'>cur</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
-        <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_v'>v</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_cur'>cur</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span>[<span class='id identifier rubyid_k'>k</span>]
+      <span class='kw'>if</span> <span class='id identifier rubyid_cur'>cur</span>.<span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
+        <span class='id identifier rubyid_params'>params</span>[<span class='id identifier rubyid_k'>k</span>] <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_v'>v</span>
       <span class='kw'>else</span>
-        <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_cur'>cur</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_params'>params</span>[<span class='id identifier rubyid_k'>k</span>] <span class='op'>=</span> [<span class='id identifier rubyid_cur'>cur</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span>]
       <span class='kw'>end</span>
     <span class='kw'>else</span>
-      <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>
+      <span class='id identifier rubyid_params'>params</span>[<span class='id identifier rubyid_k'>k</span>] <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
@@ -169,7 +169,7 @@
   <h3 class='signature private'>
     .<strong>pipe</strong>   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/util.rb#L9-L11'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/util.rb#L9-L11'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='9' data-end='11'></pre>
   <div class='lines_code'>
@@ -177,7 +177,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pipe'>pipe</span>
-  <span class='const'><a href="../IO.html" title="IO (class)">IO</a></span><span class='period'>.</span><span class='id identifier rubyid_pipe'>pipe</span>
+  <span class='const'><a href="../IO.html" title="IO (class)">IO</a></span>.<span class='id identifier rubyid_pipe'>pipe</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -188,15 +188,15 @@
   <h3 class='signature private'>
     .<strong>unescape</strong>(s, encoding = nil)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/util.rb#L20-L22'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/util.rb#L20-L22'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='20' data-end='22'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/util.rb', line 20</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_unescape'>unescape</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_encoding'>encoding</span> <span class='op'>=</span> <span class='const'>Encoding</span><span class='op'>::</span><span class='const'>UTF_8</span><span class='rparen'>)</span>
-  <span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_decode_www_form_component'>decode_www_form_component</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_encoding'>encoding</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_unescape'>unescape</span>(<span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_encoding'>encoding</span> <span class='op'>=</span> <span class='const'>Encoding</span><span class='op'>::</span><span class='const'>UTF_8</span>)
+  <span class='const'>URI</span>.<span class='id identifier rubyid_decode_www_form_component'>decode_www_form_component</span>(<span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_encoding'>encoding</span>)
 <span class='kw'>end</span>
 </pre>
   </div>

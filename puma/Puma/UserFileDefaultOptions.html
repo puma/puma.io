@@ -77,7 +77,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/configuration.rb#L47'>lib/puma/configuration.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/configuration.rb#L47'>lib/puma/configuration.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -93,26 +93,26 @@
 
 <p>User input is preferred over “defaults”:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_user_options'>user_options</span>    <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>foo:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bar</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
-<span class='id identifier rubyid_default_options'>default_options</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>foo:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>zoo</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
-<span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='const'>UserFileDefaultOptions</span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::UserFileDefaultOptions.new (method)">new</a></span><span class='lparen'>(</span><span class='id identifier rubyid_user_options'>user_options</span><span class='comma'>,</span> <span class='id identifier rubyid_default_options'>default_options</span><span class='rparen'>)</span>
-<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_foo'>foo</span><span class='rbracket'>]</span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_user_options'>user_options</span>    <span class='op'>=</span> { <span class='label'>foo:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bar</span><span class='tstring_end'>&quot;</span></span> }
+<span class='id identifier rubyid_default_options'>default_options</span> <span class='op'>=</span> { <span class='label'>foo:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>zoo</span><span class='tstring_end'>&quot;</span></span> }
+<span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='const'>UserFileDefaultOptions</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::UserFileDefaultOptions.new (method)">new</a></span>(<span class='id identifier rubyid_user_options'>user_options</span><span class='comma'>,</span> <span class='id identifier rubyid_default_options'>default_options</span>)
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_options'>options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_foo'>foo</span>]
 <span class='comment'># =&gt; &quot;bar&quot;
 </span></code></pre>
 
 <p>All values can be accessed via <a href="#all_of-instance_method" title="Puma::UserFileDefaultOptions#all_of (method)">#all_of</a></p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_all_of'>all_of</span><span class='lparen'>(</span><span class='symbeg'>:</span><span class='id identifier rubyid_foo'>foo</span><span class='rparen'>)</span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_options'>options</span>.<span class='id identifier rubyid_all_of'>all_of</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_foo'>foo</span>)
 <span class='comment'># =&gt; [&quot;bar&quot;, &quot;zoo&quot;]
 </span></code></pre>
 
 <p>A “file” option can be set. This config will be preferred over “default” options but will defer to any available “user” specified options.</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_user_options'>user_options</span>    <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>foo:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bar</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
-<span class='id identifier rubyid_default_options'>default_options</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>rackup:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>zoo.rb</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
-<span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='const'>UserFileDefaultOptions</span><span class='period'>.</span><span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::UserFileDefaultOptions.new (method)">new</a></span><span class='lparen'>(</span><span class='id identifier rubyid_user_options'>user_options</span><span class='comma'>,</span> <span class='id identifier rubyid_default_options'>default_options</span><span class='rparen'>)</span>
-<span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_file_options'>file_options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_rackup'>rackup</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sup.rb</span><span class='tstring_end'>&quot;</span></span>
-<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbeg'>:</span><span class='id identifier rubyid_rackup'>rackup</span><span class='rbracket'>]</span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_user_options'>user_options</span>    <span class='op'>=</span> { <span class='label'>foo:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bar</span><span class='tstring_end'>&quot;</span></span> }
+<span class='id identifier rubyid_default_options'>default_options</span> <span class='op'>=</span> { <span class='label'>rackup:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>zoo.rb</span><span class='tstring_end'>&quot;</span></span> }
+<span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='const'>UserFileDefaultOptions</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::UserFileDefaultOptions.new (method)">new</a></span>(<span class='id identifier rubyid_user_options'>user_options</span><span class='comma'>,</span> <span class='id identifier rubyid_default_options'>default_options</span>)
+<span class='id identifier rubyid_options'>options</span>.<span class='id identifier rubyid_file_options'>file_options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_rackup'>rackup</span>] <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sup.rb</span><span class='tstring_end'>&quot;</span></span>
+<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_options'>options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_rackup'>rackup</span>]
 <span class='comment'># =&gt; &quot;sup.rb&quot;
 </span></code></pre>
 
@@ -200,16 +200,17 @@
 </div>
 <div class='tags'>
   
-</div>  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/configuration.rb#L48-L52'>GitHub</a>&#8202;]</span>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/configuration.rb#L48-L52'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='48' data-end='52'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 48</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_user_options'>user_options</span><span class='comma'>,</span> <span class='id identifier rubyid_default_options'>default_options</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_user_options'>user_options</span><span class='comma'>,</span> <span class='id identifier rubyid_default_options'>default_options</span>)
   <span class='ivar'>@user_options</span>    <span class='op'>=</span> <span class='id identifier rubyid_user_options'>user_options</span>
-  <span class='ivar'>@file_options</span>    <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@file_options</span>    <span class='op'>=</span> {}
   <span class='ivar'>@default_options</span> <span class='op'>=</span> <span class='id identifier rubyid_default_options'>default_options</span>
 <span class='kw'>end</span>
 </pre>
@@ -222,7 +223,7 @@
   <h3 class='signature ro first'>
     #<strong>default_options</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/configuration.rb#L54-L54'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/configuration.rb#L54-L54'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='54' data-end='54'></pre>
   <div class='lines_code'>
@@ -239,7 +240,7 @@
   <h3 class='signature ro'>
     #<strong>file_options</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/configuration.rb#L54-L54'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/configuration.rb#L54-L54'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='54' data-end='54'></pre>
   <div class='lines_code'>
@@ -256,7 +257,7 @@
   <h3 class='signature ro'>
     #<strong>user_options</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/configuration.rb#L54-L54'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/configuration.rb#L54-L54'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='54' data-end='54'></pre>
   <div class='lines_code'>
@@ -274,17 +275,17 @@
   <h3 class='signature  first'>
     #<strong>[]</strong>(key)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/configuration.rb#L56-L60'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/configuration.rb#L56-L60'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='56' data-end='60'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 56</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_user_options'>user_options</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>    <span class='kw'>if</span> <span class='id identifier rubyid_user_options'>user_options</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_file_options'>file_options</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>    <span class='kw'>if</span> <span class='id identifier rubyid_file_options'>file_options</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_default_options'>default_options</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_default_options'>default_options</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='op'>[]</span>(<span class='id identifier rubyid_key'>key</span>)
+  <span class='kw'>return</span> <span class='id identifier rubyid_user_options'>user_options</span>[<span class='id identifier rubyid_key'>key</span>]    <span class='kw'>if</span> <span class='id identifier rubyid_user_options'>user_options</span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='id identifier rubyid_key'>key</span>)
+  <span class='kw'>return</span> <span class='id identifier rubyid_file_options'>file_options</span>[<span class='id identifier rubyid_key'>key</span>]    <span class='kw'>if</span> <span class='id identifier rubyid_file_options'>file_options</span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='id identifier rubyid_key'>key</span>)
+  <span class='kw'>return</span> <span class='id identifier rubyid_default_options'>default_options</span>[<span class='id identifier rubyid_key'>key</span>] <span class='kw'>if</span> <span class='id identifier rubyid_default_options'>default_options</span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='id identifier rubyid_key'>key</span>)
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -295,15 +296,15 @@
   <h3 class='signature '>
     #<strong>[]=</strong>(key, value)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/configuration.rb#L62-L64'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/configuration.rb#L62-L64'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='62' data-end='64'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 62</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_user_options'>user_options</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+<span class='kw'>def</span> <span class='op'>[]=</span>(<span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span>)
+  <span class='id identifier rubyid_user_options'>user_options</span>[<span class='id identifier rubyid_key'>key</span>] <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -314,25 +315,25 @@
   <h3 class='signature '>
     #<strong>all_of</strong>(key)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/configuration.rb#L70-L84'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/configuration.rb#L70-L84'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='70' data-end='84'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 70</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_all_of'>all_of</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_user'>user</span>    <span class='op'>=</span> <span class='id identifier rubyid_user_options'>user_options</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_file'>file</span>    <span class='op'>=</span> <span class='id identifier rubyid_file_options'>file_options</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_default'>default</span> <span class='op'>=</span> <span class='id identifier rubyid_default_options'>default_options</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_all_of'>all_of</span>(<span class='id identifier rubyid_key'>key</span>)
+  <span class='id identifier rubyid_user'>user</span>    <span class='op'>=</span> <span class='id identifier rubyid_user_options'>user_options</span>[<span class='id identifier rubyid_key'>key</span>]
+  <span class='id identifier rubyid_file'>file</span>    <span class='op'>=</span> <span class='id identifier rubyid_file_options'>file_options</span>[<span class='id identifier rubyid_key'>key</span>]
+  <span class='id identifier rubyid_default'>default</span> <span class='op'>=</span> <span class='id identifier rubyid_default_options'>default_options</span>[<span class='id identifier rubyid_key'>key</span>]
 
-  <span class='id identifier rubyid_user'>user</span>    <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_user'>user</span><span class='rbracket'>]</span>    <span class='kw'>unless</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_file'>file</span>    <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_file'>file</span><span class='rbracket'>]</span>    <span class='kw'>unless</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_default'>default</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_default'>default</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='id identifier rubyid_default'>default</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_user'>user</span>    <span class='op'>=</span> [<span class='id identifier rubyid_user'>user</span>]    <span class='kw'>unless</span> <span class='id identifier rubyid_user'>user</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='const'>Array</span>)
+  <span class='id identifier rubyid_file'>file</span>    <span class='op'>=</span> [<span class='id identifier rubyid_file'>file</span>]    <span class='kw'>unless</span> <span class='id identifier rubyid_file'>file</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='const'>Array</span>)
+  <span class='id identifier rubyid_default'>default</span> <span class='op'>=</span> [<span class='id identifier rubyid_default'>default</span>] <span class='kw'>unless</span> <span class='id identifier rubyid_default'>default</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='const'>Array</span>)
 
-  <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_compact!'>compact!</span>
-  <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_compact!'>compact!</span>
-  <span class='id identifier rubyid_default'>default</span><span class='period'>.</span><span class='id identifier rubyid_compact!'>compact!</span>
+  <span class='id identifier rubyid_user'>user</span>.<span class='id identifier rubyid_compact!'>compact!</span>
+  <span class='id identifier rubyid_file'>file</span>.<span class='id identifier rubyid_compact!'>compact!</span>
+  <span class='id identifier rubyid_default'>default</span>.<span class='id identifier rubyid_compact!'>compact!</span>
 
   <span class='id identifier rubyid_user'>user</span> <span class='op'>+</span> <span class='id identifier rubyid_file'>file</span> <span class='op'>+</span> <span class='id identifier rubyid_default'>default</span>
 <span class='kw'>end</span>
@@ -345,15 +346,15 @@
   <h3 class='signature '>
     #<strong>fetch</strong>(key, default_value = nil)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/configuration.rb#L66-L68'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/configuration.rb#L66-L68'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='66' data-end='68'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 66</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_default_value'>default_value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='kw'>self</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_default_value'>default_value</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_fetch'>fetch</span>(<span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_default_value'>default_value</span> <span class='op'>=</span> <span class='kw'>nil</span>)
+  <span class='kw'>self</span>[<span class='id identifier rubyid_key'>key</span>] <span class='op'>||</span> <span class='id identifier rubyid_default_value'>default_value</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -364,7 +365,7 @@
   <h3 class='signature '>
     #<strong>finalize_values</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.0/lib/puma/configuration.rb#L86-L92'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/configuration.rb#L86-L92'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='86' data-end='92'></pre>
   <div class='lines_code'>
@@ -372,9 +373,9 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_finalize_values'>finalize_values</span>
-  <span class='ivar'>@default_options</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_call'>call</span>
-      <span class='ivar'>@default_options</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
+  <span class='ivar'>@default_options</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_v'>v</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_call'>call</span>
+      <span class='ivar'>@default_options</span>[<span class='id identifier rubyid_k'>k</span>] <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>.<span class='id identifier rubyid_call'>call</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
