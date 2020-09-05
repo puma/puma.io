@@ -61,61 +61,58 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<h2>Master</h2>
-
+<h2>4.3.6 / 2020-09-05</h2>
 <ul>
-<li><p>Features</p>
-
+<li>Bugfixes
 <ul>
-<li>Your feature goes here (#Github Number)</li>
-</ul>
-</li>
-<li><p>Bugfixes</p>
-
-<ul>
-<li>Your bugfix goes here (#Github Number)</li>
+<li>Explicitly include ctype.h to fix compilation warning and build error on macOS with Xcode 12 (#2304)</li>
+<li>Don't require json at boot (#2269)</li>
 </ul>
 </li>
 </ul>
-
-
+<h2>4.3.4/4.3.5 and 3.12.5/3.12.6 / 2020-05-22</h2>
+<p>Each patchlevel release contains a separate security fix. We recommend simply upgrading to 4.3.5/3.12.6.</p>
+<h2>4.3.3 and 3.12.4 / 2020-02-28</h2>
+<ul>
+<li>Bugfixes
+<ul>
+<li>Fix: Fixes a problem where we weren't splitting headers correctly on newlines (#2132)</li>
+</ul>
+</li>
+<li>Security
+<ul>
+<li>Fix: Prevent HTTP Response splitting via CR in early hints.</li>
+</ul>
+</li>
+</ul>
 <h2>4.3.2 and 3.12.3 / 2020-02-27</h2>
-
 <ul>
 <li>Security
-
 <ul>
 <li>Fix: Prevent HTTP Response splitting via CR/LF in header values. CVE-2020-5247.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>4.3.1 and 3.12.2 / 2019-12-05</h2>
-
 <ul>
 <li>Security
-
 <ul>
 <li>Fix: a poorly-behaved client could use keepalive requests to monopolize Puma's reactor and create a denial of service attack. CVE-2019-16770.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>4.3.0 / 2019-11-07</h2>
-
 <ul>
-<li><p>Features</p>
-
+<li>
+<p>Features</p>
 <ul>
 <li>Strip whitespace at end of HTTP headers (#2010)</li>
 <li>Optimize HTTP parser for JRuby (#2012)</li>
 <li>Add SSL support for the control app and cli (#2046, #2052)</li>
 </ul>
 </li>
-<li><p>Bugfixes</p>
-
+<li>
+<p>Bugfixes</p>
 <ul>
 <li>Fix Errno::EINVAL when SSL is enabled and browser rejects cert (#1564)</li>
 <li>Fix pumactl defaulting puma to development if an environment was not specified (#2035)</li>
@@ -124,13 +121,9 @@
 </ul>
 </li>
 </ul>
-
-
 <h2>4.2.1 / 2019-10-07</h2>
-
 <ul>
 <li>3 bugfixes
-
 <ul>
 <li>Fix socket activation of systemd (pre-existing) unix binder files (#1842, #1988)</li>
 <li>Deal with multiple calls to bind correctly (#1986, #1994, #2006)</li>
@@ -138,13 +131,9 @@
 </ul>
 </li>
 </ul>
-
-
 <h2>4.2.0 / 2019-09-23</h2>
-
 <ul>
 <li>6 features
-
 <ul>
 <li>Pumactl has a new -e environment option and reads <code>config/puma/&lt;environment&gt;.rb</code> config files (#1885)</li>
 <li>Semicolons are now allowed in URL paths (MRI only), useful for Angular or Redmine (#1934)</li>
@@ -155,7 +144,6 @@
 </ul>
 </li>
 <li>4 bugfixes
-
 <ul>
 <li>Fix some misbehavior with phased restart and externally SIGTERMed workers (#1908, #1952)</li>
 <li>Fix socket closing on error (#1941)</li>
@@ -165,13 +153,9 @@
 </li>
 <li>Absolutely thousands of lines of test improvements and fixes thanks to @MSP-Greg</li>
 </ul>
-
-
 <h2>4.1.1 / 2019-09-05</h2>
-
 <ul>
 <li>3 bugfixes
-
 <ul>
 <li>Revert our attempt to not dup STDOUT/STDERR (#1946)</li>
 <li>Fix socket close on error (#1941)</li>
@@ -179,13 +163,10 @@
 </ul>
 </li>
 </ul>
-
-
 <h2>4.1.0 / 2019-08-08</h2>
-
 <ul>
-<li><p>4 features</p>
-
+<li>
+<p>4 features</p>
 <ul>
 <li>Add REQUEST_PATH on parse error message (#1831)</li>
 <li>You can now easily add custom log formatters with the <code>log_formatter</code> config option (#1816)</li>
@@ -193,8 +174,8 @@
 <li>Add support for disabling TLSv1.1 (#1836)</li>
 </ul>
 </li>
-<li><p>7 bugfixes</p>
-
+<li>
+<p>7 bugfixes</p>
 <ul>
 <li>Fix issue where Puma was creating zombie process entries (#1887)</li>
 <li>Fix bugs with line-endings and chunked encoding (#1812)</li>
@@ -205,8 +186,8 @@
 <li>Backtrace no longer dumped when invalid pumactl commands are run (#1863)</li>
 </ul>
 </li>
-<li><p>5 other</p>
-
+<li>
+<p>5 other</p>
 <ul>
 <li>Avoid casting worker_timeout twice (#1838)</li>
 <li>Removed a call to private that wasn't doing anything (#1882)</li>
@@ -215,39 +196,31 @@
 <li>Added the Contributor Covenant CoC</li>
 </ul>
 </li>
-<li><p>1 known issue</p>
-
+<li>
+<p>1 known issue</p>
 <ul>
 <li>Some users are still experiencing issues surrounding socket activation and Unix sockets (#1842)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>4.0.1 / 2019-07-11</h2>
-
 <ul>
 <li>2 bugfixes
-
 <ul>
 <li>Fix socket removed after reload - should fix problems with systemd socket activation. (#1829)</li>
-<li>Add extconf tests for DTLS_method &amp; TLS_server_method, use in minissl.rb. Should fix "undefined symbol: DTLS_method" when compiling against old OpenSSL versions. (#1832)</li>
+<li>Add extconf tests for DTLS_method &amp; TLS_server_method, use in minissl.rb. Should fix &quot;undefined symbol: DTLS_method&quot; when compiling against old OpenSSL versions. (#1832)</li>
 </ul>
 </li>
 <li>1 other
-
 <ul>
 <li>Removed unnecessary RUBY_VERSION checks. (#1827)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>4.0.0 / 2019-06-25</h2>
-
 <ul>
-<li><p>9 features</p>
-
+<li>
+<p>9 features</p>
 <ul>
 <li>Add support for disabling TLSv1.0 (#1562)</li>
 <li>Request body read time metric (#1569)</li>
@@ -260,8 +233,8 @@
 <li>Add status to pumactl with pidfile (#1824)</li>
 </ul>
 </li>
-<li><p>10 bugfixes</p>
-
+<li>
+<p>10 bugfixes</p>
 <ul>
 <li>Do not accept new requests on shutdown (#1685, #1808)</li>
 <li>Fix 3 corner cases when request body is chunked (#1508)</li>
@@ -272,23 +245,18 @@
 <li>Fix Java 8 support (#1773)</li>
 <li>Fix error <code>uninitialized constant Puma::Cluster</code> (#1731)</li>
 <li>Fix <code>not_token</code> being able to be set to true (#1803)</li>
-<li>Fix "Hang on SIGTERM with ruby 2.6 in clustered mode" (<a href="https://github.com/puma/puma/pull/1741">PR #1741</a>, <a href="https://github.com/puma/puma/issues/1674">#1674</a>, <a href="https://github.com/puma/puma/issues/1720">#1720</a>, <a href="https://github.com/puma/puma/issues/1730">#1730</a>, <a href="https://github.com/puma/puma/issues/1755">#1755</a>)</li>
+<li>Fix &quot;Hang on SIGTERM with ruby 2.6 in clustered mode&quot; (<a href="https://github.com/puma/puma/pull/1741">PR #1741</a>, <a href="https://github.com/puma/puma/issues/1674">#1674</a>, <a href="https://github.com/puma/puma/issues/1720">#1720</a>, <a href="https://github.com/puma/puma/issues/1730">#1730</a>, <a href="https://github.com/puma/puma/issues/1755">#1755</a>)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.12.1 / 2019-03-19</h2>
-
 <ul>
 <li>1 features
-
 <ul>
 <li>Internal strings are frozen (#1649)</li>
 </ul>
 </li>
 <li>3 bugfixes
-
 <ul>
 <li>Fix chunked ending check (#1607)</li>
 <li>Rack handler should use provided default host (#1700)</li>
@@ -296,13 +264,10 @@
 </ul>
 </li>
 </ul>
-
-
 <h2>3.12.0 / 2018-07-13</h2>
-
 <ul>
-<li><p>5 features:</p>
-
+<li>
+<p>5 features:</p>
 <ul>
 <li>You can now specify which SSL ciphers the server should support, default is unchanged (#1478)</li>
 <li>The setting for Puma's <code>max_threads</code> is now in <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> (#1604)</li>
@@ -311,28 +276,23 @@
 <li><code>--control</code> is now deprecated in favor of <code>--control-url</code> (#1487)</li>
 </ul>
 </li>
-<li><p>2 bugfixes:</p>
-
+<li>
+<p>2 bugfixes:</p>
 <ul>
 <li>Workers will no longer accept more web requests than they have capacity to process. This prevents an issue where one worker would accept lots of requests while starving other workers (#1563)</li>
 <li>In a test env puma now emits the stack on an exception (#1557)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.11.4 / 2018-04-12</h2>
-
 <ul>
 <li>2 features:
-
 <ul>
 <li>Manage puma as a service using rc.d (#1529)</li>
 <li>Server stats are now available from a top level method (#1532)</li>
 </ul>
 </li>
 <li>5 bugfixes:
-
 <ul>
 <li>Fix parsing CLI options (#1482)</li>
 <li>Order of stderr and stdout is made before redirecting to a log file (#1511)</li>
@@ -342,13 +302,9 @@
 </ul>
 </li>
 </ul>
-
-
 <h2>3.11.3 / 2018-03-05</h2>
-
 <ul>
 <li>3 bugfixes:
-
 <ul>
 <li>Add closed? to MiniSSL::Socket for use in reactor (#1510)</li>
 <li>Handle EOFError at the toplevel of the server threads (#1524) (#1507)</li>
@@ -356,44 +312,33 @@
 </ul>
 </li>
 </ul>
-
-
 <h2>3.11.2 / 2018-01-19</h2>
-
 <ul>
 <li>1 bugfix:
-
 <ul>
 <li>Deal with read_nonblock returning nil early</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.11.1 / 2018-01-18</h2>
-
 <ul>
 <li>1 bugfix:
-
 <ul>
 <li>Handle read_nonblock returning nil when the socket close (#1502)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.11.0 / 2017-11-20</h2>
-
 <ul>
-<li><p>2 features:</p>
-
+<li>
+<p>2 features:</p>
 <ul>
 <li>HTTP 103 Early Hints (#1403)</li>
 <li>421/451 status codes now have correct status messages attached (#1435)</li>
 </ul>
 </li>
-<li><p>9 bugfixes:</p>
-
+<li>
+<p>9 bugfixes:</p>
 <ul>
 <li>Environment config files (/config/puma/<ENV>.rb) load correctly (#1340)</li>
 <li>Specify windows dependencies correctly (#1434, #1436)</li>
@@ -406,36 +351,33 @@
 <li>Deal with leading spaces in RUBYOPT (#1455)</li>
 </ul>
 </li>
-<li><p>2 other:</p>
-
+<li>
+<p>2 other:</p>
 <ul>
 <li>Add docs about internals (#1425, #1452)</li>
 <li>Tons of test fixes from @MSP-Greg (#1439, #1442, #1464)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.10.0 / 2017-08-17</h2>
-
 <ul>
-<li><p>3 features:</p>
-
+<li>
+<p>3 features:</p>
 <ul>
 <li>The status server has a new /gc and /gc-status command. (#1384)</li>
 <li>The persistent and first data timeouts are now configurable (#1111)</li>
 <li>Implemented RFC 2324 (#1392)</li>
 </ul>
 </li>
-<li><p>12 bugfixes:</p>
-
+<li>
+<p>12 bugfixes:</p>
 <ul>
 <li>Not really a Puma bug, but @NickolasVashchenko created a gem to workaround a Ruby bug that some users of Puma may be experiencing. See README for more. (#1347)</li>
 <li>Fix hangups with SSL and persistent connections. (#1334)</li>
 <li>Fix Rails double-binding to a port (#1383)</li>
 <li>Fix incorrect thread names (#1368)</li>
 <li>Fix issues with /etc/hosts and JRuby where localhost addresses were not correct. (#1318)</li>
-<li>Fix compatibility with RUBYOPT="--enable-frozen-string-literal" (#1376)</li>
+<li>Fix compatibility with RUBYOPT=&quot;--enable-frozen-string-literal&quot; (#1376)</li>
 <li>Fixed some compiler warnings (#1388)</li>
 <li>We actually run the integration tests in CI now (#1390)</li>
 <li>No longer shipping unnecessary directories in the gemfile (#1391)</li>
@@ -444,48 +386,41 @@
 <li>Proper exit code returned when we receive a TERM signal (#1337)</li>
 </ul>
 </li>
-<li><p>3 refactors:</p>
-
+<li>
+<p>3 refactors:</p>
 <ul>
 <li>Various test improvements from @grosser</li>
 <li>Rubocop (#1325)</li>
 <li>Hoe has been removed (#1395)</li>
 </ul>
 </li>
-<li><p>1 known issue:</p>
-
+<li>
+<p>1 known issue:</p>
 <ul>
 <li>Socket activation doesn't work in JRuby. Their fault, not ours. (#1367)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.9.1 / 2017-06-03</h2>
-
 <ul>
 <li>2 bugfixes:
-
 <ul>
 <li>Fixed compatibility with older Bundler versions (#1314)</li>
 <li>Some internal test/development cleanup (#1311, #1313)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.9.0 / 2017-06-01</h2>
-
 <ul>
-<li><p>2 features:</p>
-
+<li>
+<p>2 features:</p>
 <ul>
 <li>The ENV is now reset to its original values when Puma restarts via USR1/USR2 (#1260) (MRI only, no JRuby support)</li>
 <li>Puma will no longer accept more clients than the maximum number of threads. (#1278)</li>
 </ul>
 </li>
-<li><p>9 bugfixes:</p>
-
+<li>
+<p>9 bugfixes:</p>
 <ul>
 <li>Reduce information leakage by preventing HTTP parse errors from writing environment hashes to STDERR (#1306)</li>
 <li>Fix SSL/WebSocket compatibility (#1274)</li>
@@ -498,88 +433,70 @@
 <li>Replace Dir.exists? with Dir.exist? (#1294)</li>
 </ul>
 </li>
-<li><p>1 known issue:</p>
-
+<li>
+<p>1 known issue:</p>
 <ul>
 <li>A bug in MRI 2.2+ can result in IOError: stream closed. See #1206. This issue has existed since at least Puma 3.6, and probably further back.</li>
 </ul>
 </li>
-<li><p>1 refactor:</p>
-
+<li>
+<p>1 refactor:</p>
 <ul>
 <li>Lots of test fixups from @grosser.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.8.2 / 2017-03-14</h2>
-
 <ul>
 <li>1 bugfix:
-
 <ul>
 <li>Deal with getsockopt with TCP_INFO failing for sockets that say they're TCP but aren't really. (#1241)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.8.1 / 2017-03-10</h2>
-
 <ul>
 <li>1 bugfix:
-
 <ul>
 <li>Remove method call to method that no longer exists (#1239)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.8.0 / 2017-03-09</h2>
-
 <ul>
-<li><p>2 bugfixes:</p>
-
+<li>
+<p>2 bugfixes:</p>
 <ul>
 <li>Port from rack handler does not take precedence over config file in Rails 5.1.0.beta2+ and 5.0.1.rc3+ (#1234)</li>
 <li>The <code>tmp/restart.txt</code> plugin no longer restricts the user from running more than one server from the same folder at a time (#1226)</li>
 </ul>
 </li>
-<li><p>1 feature:</p>
-
+<li>
+<p>1 feature:</p>
 <ul>
 <li>Closed clients are aborted to save capacity (#1227)</li>
 </ul>
 </li>
-<li><p>1 refactor:</p>
-
+<li>
+<p>1 refactor:</p>
 <ul>
 <li>Bundler is no longer a dependency from tests (#1213)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.7.1 / 2017-02-20</h2>
-
 <ul>
 <li>2 bugfixes:
-
 <ul>
 <li>Fix typo which blew up MiniSSL (#1182)</li>
 <li>Stop overriding command-line options with the config file (#1203)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.7.0 / 2017-01-04</h2>
-
 <ul>
-<li><p>6 minor features:</p>
-
+<li>
+<p>6 minor features:</p>
 <ul>
 <li>Allow rack handler to accept ssl host. (#1129)</li>
 <li>Refactor TTOU processing. TTOU now handles multiple signals at once. (#1165)</li>
@@ -589,8 +506,8 @@
 <li>Add Rack 2.0 support to gemspec. (#1068)</li>
 </ul>
 </li>
-<li><p>5 refactors:</p>
-
+<li>
+<p>5 refactors:</p>
 <ul>
 <li>Compare host and server name only once per call. (#1091)</li>
 <li>Minor refactor on Thread pool (#1088)</li>
@@ -599,8 +516,8 @@
 <li>Use hooks for on_booted event. (#1160)</li>
 </ul>
 </li>
-<li><p>14 bugfixes:</p>
-
+<li>
+<p>14 bugfixes:</p>
 <ul>
 <li>Add eof? method to NullIO? (#1169)</li>
 <li>Fix Puma startup in provided init.d script (#1061)</li>
@@ -618,8 +535,8 @@
 <li>Fix access priorities of each level in LeveledOptions (#1118)</li>
 </ul>
 </li>
-<li><p>3 others:</p>
-
+<li>
+<p>3 others:</p>
 <ul>
 <li>Lots of tests added/fixed/improved. Switched to Minitest from Test::Unit. Big thanks to @frodsan.</li>
 <li>Lots of documentation added/improved.</li>
@@ -627,13 +544,10 @@
 </ul>
 </li>
 </ul>
-
-
 <h2>3.6.2 / 2016-11-22</h2>
-
 <ul>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Revert #1118/Fix access priorities of each level in LeveledOptions. This
 had an unintentional side effect of changing the importance of command line
@@ -641,13 +555,10 @@ options, such as -p.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.6.1 / 2016-11-21</h2>
-
 <ul>
-<li><p>8 bug fixes:</p>
-
+<li>
+<p>8 bug fixes:</p>
 <ul>
 <li>Fix Puma start in init.d script.</li>
 <li>Fix default SSL mode back to none. Fixes #1036</li>
@@ -659,21 +570,17 @@ options, such as -p.</li>
 <li>Stub description files updated for init.d.</li>
 </ul>
 </li>
-<li><p>2 new project committers:</p>
-
+<li>
+<p>2 new project committers:</p>
 <ul>
 <li>Nate Berkopec (@nateberkopec)</li>
 <li>Richard Schneeman (@schneems)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.6.0 / 2016-07-24</h2>
-
 <ul>
 <li>12 bug fixes:
-
 <ul>
 <li>Add ability to detect a shutting down server. Fixes #932</li>
 <li>Add support for Expect: 100-continue. Fixes #519</li>
@@ -690,49 +597,39 @@ options, such as -p.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.5.2 / 2016-07-20</h2>
-
 <ul>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Don't let persistent_timeout be nil</li>
 </ul>
 </li>
-<li><p>1 PR merged:</p>
-
+<li>
+<p>1 PR merged:</p>
 <ul>
 <li>Merge pull request #1021 from benzrf/patch-1</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.5.1 / 2016-07-20</h2>
-
 <ul>
 <li>1 bug fix:
-
 <ul>
 <li>Be sure to only listen on host:port combos once. Fixes #1022</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.5.0 / 2016-07-18</h2>
-
 <ul>
-<li><p>1 minor features:</p>
-
+<li>
+<p>1 minor features:</p>
 <ul>
 <li>Allow persistent_timeout to be configured via the dsl.</li>
 </ul>
 </li>
-<li><p>9 bug fixes:</p>
-
+<li>
+<p>9 bug fixes:</p>
 <ul>
 <li>Allow a bare % in a query string. Fixes #958</li>
 <li>Explicitly listen on all localhost addresses. Fixes #782</li>
@@ -745,8 +642,8 @@ options, such as -p.</li>
 <li>It should not log requests if we want it to be quiet</li>
 </ul>
 </li>
-<li><p>5 doc fixes:</p>
-
+<li>
+<p>5 doc fixes:</p>
 <ul>
 <li>Add How to stop Puma on Heroku using plugins to the example directory</li>
 <li>Provide both hot and phased restart in jungle script</li>
@@ -755,8 +652,8 @@ options, such as -p.</li>
 <li>Fix typo in example config</li>
 </ul>
 </li>
-<li><p>14 PRs merged:</p>
-
+<li>
+<p>14 PRs merged:</p>
 <ul>
 <li>Merge pull request #1007 from willnet/patch-1</li>
 <li>Merge pull request #1014 from jeznet/patch-1</li>
@@ -775,28 +672,25 @@ options, such as -p.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.4.0 / 2016-04-07</h2>
-
 <ul>
-<li><p>2 minor features:</p>
-
+<li>
+<p>2 minor features:</p>
 <ul>
 <li>Add ability to force threads to stop on shutdown. Fixes #938</li>
 <li>Detect and commit seppuku when fork(2) fails. Fixes #529</li>
 </ul>
 </li>
-<li><p>3 unknowns:</p>
-
+<li>
+<p>3 unknowns:</p>
 <ul>
 <li>Ignore errors trying to update the backport tables. Fixes #788</li>
 <li>Invoke the lowlevel_error in more places to allow for exception tracking. Fixes #894</li>
 <li>Update the query string when an absolute URI is used. Fixes #937</li>
 </ul>
 </li>
-<li><p>5 doc fixes:</p>
-
+<li>
+<p>5 doc fixes:</p>
 <ul>
 <li>Add Process Monitors section to top-level README</li>
 <li>Better document the hooks. Fixes #840</li>
@@ -805,8 +699,8 @@ options, such as -p.</li>
 <li>Cleanup warnings</li>
 </ul>
 </li>
-<li><p>3 PRs merged:</p>
-
+<li>
+<p>3 PRs merged:</p>
 <ul>
 <li>Merge pull request #945 from dekellum/systemd-docs-refined</li>
 <li>Merge pull request #946 from vipulnsward/rm-pid</li>
@@ -814,27 +708,24 @@ options, such as -p.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.3.0 / 2016-04-05</h2>
-
 <ul>
-<li><p>2 minor features:</p>
-
+<li>
+<p>2 minor features:</p>
 <ul>
 <li>Allow overriding options of Configuration object</li>
 <li>Rename to inherit_ssl_listener like inherit_tcp|unix</li>
 </ul>
 </li>
-<li><p>2 doc fixes:</p>
-
+<li>
+<p>2 doc fixes:</p>
 <ul>
 <li>Add docs/systemd.md (with socket activation sub-section)</li>
 <li>Document UNIX signals with cluster on README.md</li>
 </ul>
 </li>
-<li><p>3 PRs merged:</p>
-
+<li>
+<p>3 PRs merged:</p>
 <ul>
 <li>Merge pull request #936 from prathamesh-sonpatki/allow-overriding-config-options</li>
 <li>Merge pull request #940 from kyledrake/signalsdoc</li>
@@ -842,40 +733,34 @@ options, such as -p.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.2.0 / 2016-03-20</h2>
-
 <ul>
-<li><p>1 deprecation removal:</p>
-
+<li>
+<p>1 deprecation removal:</p>
 <ul>
 <li>Delete capistrano.rb</li>
 </ul>
 </li>
-<li><p>3 bug fixes:</p>
-
+<li>
+<p>3 bug fixes:</p>
 <ul>
 <li>Detect gems.rb as well as Gemfile</li>
 <li>Simplify and fix logic for directory to use when restarting for all phases</li>
 <li>Speed up phased-restart start</li>
 </ul>
 </li>
-<li><p>2 PRs merged:</p>
-
+<li>
+<p>2 PRs merged:</p>
 <ul>
 <li>Merge pull request #927 from jlecour/gemfile_variants</li>
 <li>Merge pull request #931 from joneslee85/patch-10</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.1.1 / 2016-03-17</h2>
-
 <ul>
-<li><p>4 bug fixes:</p>
-
+<li>
+<p>4 bug fixes:</p>
 <ul>
 <li>Disable USR1 usage on JRuby</li>
 <li>Fixes #922 - Correctly define file encoding as UTF-8</li>
@@ -883,8 +768,8 @@ options, such as -p.</li>
 <li>Show RUBY_ENGINE_VERSION if available. Fixes #923</li>
 </ul>
 </li>
-<li><p>3 PRs merged:</p>
-
+<li>
+<p>3 PRs merged:</p>
 <ul>
 <li>Merge pull request #912 from tricknotes/fix-allow-failures-in-travis-yml</li>
 <li>Merge pull request #921 from swrobel/patch-1</li>
@@ -892,19 +777,16 @@ options, such as -p.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.1.0 / 2016-03-05</h2>
-
 <ul>
-<li><p>1 minor feature:</p>
-
+<li>
+<p>1 minor feature:</p>
 <ul>
 <li>Add 'import' directive to config file. Fixes #916</li>
 </ul>
 </li>
-<li><p>5 bug fixes:</p>
-
+<li>
+<p>5 bug fixes:</p>
 <ul>
 <li>Add 'fetch' to options. Fixes #913</li>
 <li>Fix jruby daemonization. Fixes #918</li>
@@ -913,23 +795,20 @@ options, such as -p.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.0.2 / 2016-02-26</h2>
-
 <ul>
-<li><p>5 bug fixes:</p>
-
+<li>
+<p>5 bug fixes:</p>
 <ul>
-<li>Fix 'undefined local variable or method <code>pid</code> for #&lt;Puma::ControlCLI:0x007f185fcef968>' when execute pumactl with <code>--pid</code> option.</li>
+<li>Fix 'undefined local variable or method <code>pid</code> for #<a href="Puma::ControlCLI:0x007f185fcef968">Puma::ControlCLI:0x007f185fcef968</a>' when execute pumactl with <code>--pid</code> option.</li>
 <li>Fix 'undefined method <code>windows?</code> for Puma:Module' when execute pumactl.</li>
 <li>Harden tmp_restart against errors related to the restart file</li>
 <li>Make <code>plugin :tmp_restart</code> behavior correct in Windows.</li>
 <li>fix uninitialized constant Puma::ControlCLI::StateFile</li>
 </ul>
 </li>
-<li><p>3 PRs merged:</p>
-
+<li>
+<p>3 PRs merged:</p>
 <ul>
 <li>Merge pull request #901 from mitto/fix-pumactl-uninitialized-constant-statefile</li>
 <li>Merge pull request #902 from corrupt952/fix_undefined_method_and_variable_when_execute_pumactl</li>
@@ -937,13 +816,10 @@ options, such as -p.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.0.1 / 2016-02-25</h2>
-
 <ul>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Removed the experimental support for async.callback as it broke
 websockets entirely. Seems no server has both hijack and async.callback
@@ -951,13 +827,10 @@ and thus faye is totally confused what to do and doesn't work.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>3.0.0 / 2016-02-25</h2>
-
 <ul>
-<li><p>2 major changes:</p>
-
+<li>
+<p>2 major changes:</p>
 <ul>
 <li>Ruby pre-2.0 is no longer supported. We'll do our best to not add
 features that break those rubies but will no longer be testing
@@ -965,16 +838,16 @@ with them.</li>
 <li>Don't log requests by default. Fixes #852</li>
 </ul>
 </li>
-<li><p>2 major features:</p>
-
+<li>
+<p>2 major features:</p>
 <ul>
 <li>Plugin support! Plugins can interact with configuration as well
 as provide augment server functionality!</li>
 <li>Experimental env['async.callback'] support</li>
 </ul>
 </li>
-<li><p>4 minor features:</p>
-
+<li>
+<p>4 minor features:</p>
 <ul>
 <li>Listen to unix socket with provided backlog if any</li>
 <li>Improves the clustered stats to report worker stats</li>
@@ -982,8 +855,8 @@ as provide augment server functionality!</li>
 <li>Treat path-like hosts as unix sockets. Fixes #824</li>
 </ul>
 </li>
-<li><p>5 bug fixes:</p>
-
+<li>
+<p>5 bug fixes:</p>
 <ul>
 <li>Clean thread locals when using keepalive. Fixes #823</li>
 <li>Cleanup compiler warnings. Fixes #815</li>
@@ -992,8 +865,8 @@ as provide augment server functionality!</li>
 <li>Signal not full on worker exit #876</li>
 </ul>
 </li>
-<li><p>5 doc fixes:</p>
-
+<li>
+<p>5 doc fixes:</p>
 <ul>
 <li>Update README.md with various grammar fixes</li>
 <li>Use newest version of Minitest</li>
@@ -1001,8 +874,8 @@ as provide augment server functionality!</li>
 <li>Remove old COPYING notice. Fixes #849</li>
 </ul>
 </li>
-<li><p>10 merged PRs:</p>
-
+<li>
+<p>10 merged PRs:</p>
 <ul>
 <li>Merge pull request #871 from deepj/travis</li>
 <li>Merge pull request #874 from wallclockbuilder/master</li>
@@ -1017,13 +890,10 @@ as provide augment server functionality!</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.16.0 / 2016-01-27</h2>
-
 <ul>
-<li><p>7 minor features:</p>
-
+<li>
+<p>7 minor features:</p>
 <ul>
 <li>Add 'set_remote_address' config option</li>
 <li>Allow to run puma in silent mode</li>
@@ -1034,8 +904,8 @@ as provide augment server functionality!</li>
 <li>Support TLS client auth (verify_mode) in jruby</li>
 </ul>
 </li>
-<li><p>7 bug fixes:</p>
-
+<li>
+<p>7 bug fixes:</p>
 <ul>
 <li>Don't persist before_fork hook in state file</li>
 <li>Reload bundler before pulling in rack. Fixes #859</li>
@@ -1046,14 +916,14 @@ as provide augment server functionality!</li>
 <li>Ignore the case of certain headers, because HTTP</li>
 </ul>
 </li>
-<li><p>1 doc changes:</p>
-
+<li>
+<p>1 doc changes:</p>
 <ul>
 <li>Test against the latest Ruby 2.1, 2.2, 2.3, head and JRuby 9.0.4.0 on Travis</li>
 </ul>
 </li>
-<li><p>12 merged PRs</p>
-
+<li>
+<p>12 merged PRs</p>
 <ul>
 <li>Merge pull request #822 from kwugirl/remove_NEWRELIC_DISPATCHER</li>
 <li>Merge pull request #833 from joemiller/jruby-client-tls-auth</li>
@@ -1070,57 +940,45 @@ as provide augment server functionality!</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.15.3 / 2015-11-07</h2>
-
 <ul>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Fix JRuby parser</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.15.2 / 2015-11-06</h2>
-
 <ul>
-<li><p>2 bug fixes:</p>
-
+<li>
+<p>2 bug fixes:</p>
 <ul>
 <li>ext/puma_http11: handle duplicate headers as per RFC</li>
 <li>Only set ctx.ca iff there is a params['ca'] to set with.</li>
 </ul>
 </li>
-<li><p>2 PRs merged:</p>
-
+<li>
+<p>2 PRs merged:</p>
 <ul>
 <li>Merge pull request #818 from unleashed/support-duplicate-headers</li>
 <li>Merge pull request #819 from VictorLowther/fix-ca-and-verify_null-exception</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.15.1 / 2015-11-06</h2>
-
 <ul>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Allow older openssl versions</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.15.0 / 2015-11-06</h2>
-
 <ul>
-<li><p>6 minor features:</p>
-
+<li>
+<p>6 minor features:</p>
 <ul>
 <li>Allow setting ca without setting a verify mode</li>
 <li>Make jungle for init.d support rbenv</li>
@@ -1130,8 +988,8 @@ as provide augment server functionality!</li>
 <li>puma/cli: support specifying STD<code>OUT,ERR</code> redirections and append mode</li>
 </ul>
 </li>
-<li><p>5 bug fixes:</p>
-
+<li>
+<p>5 bug fixes:</p>
 <ul>
 <li>Disable SSL Compression</li>
 <li>Fix bug setting worker_directory when using a symlink directory</li>
@@ -1140,23 +998,23 @@ as provide augment server functionality!</li>
 <li>thread_pool: fix race condition when shutting down workers</li>
 </ul>
 </li>
-<li><p>10 doc fixes:</p>
-
+<li>
+<p>10 doc fixes:</p>
 <ul>
 <li>Add before_fork explanation in Readme.md</li>
 <li>Correct spelling in DEPLOYMENT.md</li>
 <li>Correct spelling in docs/nginx.md</li>
 <li>Fix spelling errors.</li>
 <li>Fix typo in deployment description</li>
-<li>Fix typos (it's -> its) in events.rb and server.rb</li>
+<li>Fix typos (it's -&gt; its) in events.rb and server.rb</li>
 <li>fixing for typo mentioned in #803</li>
 <li>Spelling correction for README</li>
 <li>thread_pool: fix typos in comment</li>
 <li>More explicit docs for worker_timeout</li>
 </ul>
 </li>
-<li><p>18 PRs merged:</p>
-
+<li>
+<p>18 PRs merged:</p>
 <ul>
 <li>Merge pull request #768 from nathansamson/patch-1</li>
 <li>Merge pull request #773 from rossta/spelling_corrections</li>
@@ -1179,105 +1037,81 @@ as provide augment server functionality!</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.14.0 / 2015-09-18</h2>
-
 <ul>
-<li><p>1 minor feature:</p>
-
+<li>
+<p>1 minor feature:</p>
 <ul>
 <li>Make building with SSL support optional</li>
 </ul>
 </li>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Use Rack::Builder if available. Fixes #735</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.13.4 / 2015-08-16</h2>
-
 <ul>
 <li>1 bug fix:
-
 <ul>
 <li>Use the environment possible set by the config early and from
 the config file later (if set).</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.13.3 / 2015-08-15</h2>
-
 <p>Seriously, I need to revamp config with tests.</p>
-
 <ul>
 <li>1 bug fix:
-
 <ul>
 <li>Fix preserving options before cleaning for state. Fixes #769</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.13.2 / 2015-08-15</h2>
-
-<p>The "clearly I don't have enough tests for the config" release.</p>
-
+<p>The &quot;clearly I don't have enough tests for the config&quot; release.</p>
 <ul>
 <li>1 bug fix:
-
 <ul>
 <li>Fix another place binds wasn't initialized. Fixes #767</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.13.1 / 2015-08-15</h2>
-
 <ul>
 <li>2 bug fixes:
-
 <ul>
 <li>Fix binds being masked in config files. Fixes #765</li>
 <li>Use options from the config file properly in pumactl. Fixes #764</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.13.0 / 2015-08-14</h2>
-
 <ul>
-<li><p>1 minor feature:</p>
-
+<li>
+<p>1 minor feature:</p>
 <ul>
 <li>Add before_fork hooks option.</li>
 </ul>
 </li>
-<li><p>3 bug fixes:</p>
-
+<li>
+<p>3 bug fixes:</p>
 <ul>
 <li>Check for OPENSSL_NO_ECDH before using ECDH</li>
 <li>Eliminate logging overhead from JRuby SSL</li>
 <li>Prefer cli options over config file ones. Fixes #669</li>
 </ul>
 </li>
-<li><p>1 deprecation:</p>
-
+<li>
+<p>1 deprecation:</p>
 <ul>
 <li>Add deprecation warning to capistrano.rb. Fixes #673</li>
 </ul>
 </li>
-<li><p>4 PRs merged:</p>
-
+<li>
+<p>4 PRs merged:</p>
 <ul>
 <li>Merge pull request #668 from kcollignon/patch-1</li>
 <li>Merge pull request #754 from nathansamson/before_boot</li>
@@ -1286,13 +1120,10 @@ the config file later (if set).</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.12.3 / 2015-08-03</h2>
-
 <ul>
-<li><p>8 minor bugs fixed:</p>
-
+<li>
+<p>8 minor bugs fixed:</p>
 <ul>
 <li>Fix Capistrano 'uninitialized constant Puma' error.</li>
 <li>Fix some ancient and incorrect error handling code</li>
@@ -1304,8 +1135,8 @@ the config file later (if set).</li>
 <li>ruby 1.8.7 compatibility patches</li>
 </ul>
 </li>
-<li><p>4 PRs merged:</p>
-
+<li>
+<p>4 PRs merged:</p>
 <ul>
 <li>Merge pull request #742 from deivid-rodriguez/fix_missing_require</li>
 <li>Merge pull request #743 from matthewd/skip-empty-chunks</li>
@@ -1313,58 +1144,48 @@ the config file later (if set).</li>
 <li>Merge pull request #751 from costi/compat_1_8_7</li>
 </ul>
 </li>
-<li><p>1 test fix:</p>
-
+<li>
+<p>1 test fix:</p>
 <ul>
 <li>Add 1.8.7, rbx-1 (allow failures) to Travis.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.12.2 / 2015-07-17</h2>
-
 <ul>
 <li>2 bug fix:
-
 <ul>
 <li>Pull over and use Rack::URLMap. Fixes #741</li>
 <li>Stub out peercert on JRuby for now. Fixes #739</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.12.1 / 2015-07-16</h2>
-
 <ul>
-<li><p>2 bug fixes:</p>
-
+<li>
+<p>2 bug fixes:</p>
 <ul>
 <li>Use a constant format. Fixes #737</li>
 <li>Use strerror for Windows sake. Fixes #733</li>
 </ul>
 </li>
-<li><p>1 doc change:</p>
-
+<li>
+<p>1 doc change:</p>
 <ul>
-<li>typo fix: occured -> occurred</li>
+<li>typo fix: occured -&gt; occurred</li>
 </ul>
 </li>
-<li><p>1 PR merged:</p>
-
+<li>
+<p>1 PR merged:</p>
 <ul>
 <li>Merge pull request #736 from paulanunda/paulanunda/typo-fix</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.12.0 / 2015-07-14</h2>
-
 <ul>
-<li><p>13 bug fixes:</p>
-
+<li>
+<p>13 bug fixes:</p>
 <ul>
 <li>Add thread reaping to thread pool</li>
 <li>Do not automatically use chunked responses when hijacked</li>
@@ -1381,8 +1202,8 @@ the config file later (if set).</li>
 <li>Add Client Side Certificate Auth</li>
 </ul>
 </li>
-<li><p>8 doc/test changes:</p>
-
+<li>
+<p>8 doc/test changes:</p>
 <ul>
 <li>Added example sourcing of environment vars</li>
 <li>Added tests for bind configuration on rackup file</li>
@@ -1394,15 +1215,15 @@ the config file later (if set).</li>
 <li>ci: Convert to container infrastructure for travisci</li>
 </ul>
 </li>
-<li><p>2 ops changes:</p>
-
+<li>
+<p>2 ops changes:</p>
 <ul>
 <li>Check for system-wide rbenv</li>
 <li>capistrano: Add additional env when start rails</li>
 </ul>
 </li>
-<li><p>16 PRs merged:</p>
-
+<li>
+<p>16 PRs merged:</p>
 <ul>
 <li>Merge pull request #686 from jjb/patch-2</li>
 <li>Merge pull request #693 from rob-murray/update-example-config</li>
@@ -1423,13 +1244,10 @@ the config file later (if set).</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.11.3 / 2015-05-18</h2>
-
 <ul>
-<li><p>5 bug fixes:</p>
-
+<li>
+<p>5 bug fixes:</p>
 <ul>
 <li>Be sure to unlink tempfiles after a request. Fixes #690</li>
 <li>Coerce the key to a string before checking. (thar be symbols). Fixes #684</li>
@@ -1437,42 +1255,39 @@ the config file later (if set).</li>
 <li>Remove <code>enable_SSLv3</code> support from JRuby</li>
 </ul>
 </li>
-<li><p>1 PR merged:</p>
-
+<li>
+<p>1 PR merged:</p>
 <ul>
 <li>Merge pull request #698 from looker/hang-handshake</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.11.2 / 2015-04-11</h2>
-
 <ul>
-<li><p>2 minor features:</p>
-
+<li>
+<p>2 minor features:</p>
 <ul>
 <li>Add <code>on_worker_fork</code> hook, which allows to mimic Unicorn's behavior</li>
 <li>Add shutdown_debug config option</li>
 </ul>
 </li>
-<li><p>4 bug fixes:</p>
-
+<li>
+<p>4 bug fixes:</p>
 <ul>
 <li>Fix the Config constants not being available in the DSL. Fixes #683</li>
 <li>Ignore multiple port declarations</li>
 <li>Proper 'Connection' header handling compatible with HTTP 1.[01] protocols</li>
-<li>Use "Puma" instead of "puma" to reporting to New Relic</li>
+<li>Use &quot;Puma&quot; instead of &quot;puma&quot; to reporting to New Relic</li>
 </ul>
 </li>
-<li><p>1 doc fixes:</p>
-
+<li>
+<p>1 doc fixes:</p>
 <ul>
 <li>Add Gitter badge.</li>
 </ul>
 </li>
-<li><p>6 PRs merged:</p>
-
+<li>
+<p>6 PRs merged:</p>
 <ul>
 <li>Merge pull request #657 from schneems/schneems/puma-once-port</li>
 <li>Merge pull request #658 from Tomohiro/newrelic-dispatcher-default-update</li>
@@ -1483,33 +1298,27 @@ the config file later (if set).</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.11.1 / 2015-02-11</h2>
-
 <ul>
-<li><p>2 bug fixes:</p>
-
+<li>
+<p>2 bug fixes:</p>
 <ul>
 <li>Avoid crash in strange restart conditions</li>
 <li>Inject the GEM_HOME that bundler into puma-wild's env. Fixes #653</li>
 </ul>
 </li>
-<li><p>2 PRs merged:</p>
-
+<li>
+<p>2 PRs merged:</p>
 <ul>
 <li>Merge pull request #644 from bpaquet/master</li>
 <li>Merge pull request #646 from mkonecny/master</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.11.0 / 2015-01-20</h2>
-
 <ul>
-<li><p>9 bug fixes:</p>
-
+<li>
+<p>9 bug fixes:</p>
 <ul>
 <li>Add mode as an additional bind option to unix sockets. Fixes #630</li>
 <li>Advertise HTTPS properly after a hot restart</li>
@@ -1522,8 +1331,8 @@ the config file later (if set).</li>
 <li>redirect io right after daemonizing so startup errors are shown. Fixes #359</li>
 </ul>
 </li>
-<li><p>6 minor features:</p>
-
+<li>
+<p>6 minor features:</p>
 <ul>
 <li>Add a configuration option that prevents puma from queueing requests.</li>
 <li>Add reload_worker_directory</li>
@@ -1533,8 +1342,8 @@ the config file later (if set).</li>
 <li>Update lowlevel error message to be more meaningful.</li>
 </ul>
 </li>
-<li><p>10 PRs merged:</p>
-
+<li>
+<p>10 PRs merged:</p>
 <ul>
 <li>Merge pull request #478 from rubencaro/master</li>
 <li>Merge pull request #610 from kwilczynski/master</li>
@@ -1549,13 +1358,9 @@ the config file later (if set).</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.10.2 / 2014-11-26</h2>
-
 <ul>
 <li>1 bug fix:
-
 <ul>
 <li>Conditionalize thread local cleaning, fixes perf degradation fix
 The code to clean out all Thread locals adds pretty significant
@@ -1564,39 +1369,31 @@ if a user needs it.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.10.1 / 2014-11-24</h2>
-
 <ul>
-<li>1 bug fix:
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Load the app after daemonizing because the app might start threads.</li>
 </ul>
-
-
 <p>This change means errors loading the app are now reported only in the redirected
 stdout/stderr.</p>
-
 <p>If you're app has problems starting up, start it without daemon mode initially
-to test.</p></li>
+to test.</p>
+</li>
 </ul>
-
-
 <h2>2.10.0 / 2014-11-23</h2>
-
 <ul>
-<li><p>3 minor features:</p>
-
+<li>
+<p>3 minor features:</p>
 <ul>
 <li>Added on_worker_shutdown hook mechanism</li>
 <li>Allow binding to ipv6 addresses for ssl URIs</li>
 <li>Warn about any threads started during app preload</li>
 </ul>
 </li>
-<li><p>5 bug fixes:</p>
-
+<li>
+<p>5 bug fixes:</p>
 <ul>
 <li>Clean out a threads local data before doing work</li>
 <li>Disable SSLv3. Fixes #591</li>
@@ -1605,15 +1402,15 @@ to test.</p></li>
 <li>Strongish cipher suite with FS support for some browsers</li>
 </ul>
 </li>
-<li><p>2 doc changes:</p>
-
+<li>
+<p>2 doc changes:</p>
 <ul>
 <li>Change umask examples to more permissive values</li>
 <li>fix typo in README.md</li>
 </ul>
 </li>
-<li><p>9 Merged PRs:</p>
-
+<li>
+<p>9 Merged PRs:</p>
 <ul>
 <li>Merge pull request #560 from raskhadafi/prune_bundler-bug</li>
 <li>Merge pull request #566 from sheltond/master</li>
@@ -1627,13 +1424,10 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.9.2 / 2014-10-25</h2>
-
 <ul>
-<li><p>8 bug fixes:</p>
-
+<li>
+<p>8 bug fixes:</p>
 <ul>
 <li>Fix puma-wild handling a restart properly. Fixes #550</li>
 <li>JRuby SSL POODLE update</li>
@@ -1645,8 +1439,8 @@ to test.</p></li>
 <li>Fixing sexist error messages</li>
 </ul>
 </li>
-<li><p>6 PRs merged:</p>
-
+<li>
+<p>6 PRs merged:</p>
 <ul>
 <li>Merge pull request #549 from bsnape/log-shutdown-time</li>
 <li>Merge pull request #553 from lowjoel/master</li>
@@ -1657,13 +1451,10 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.9.1 / 2014-09-05</h2>
-
 <ul>
-<li><p>4 bug fixes:</p>
-
+<li>
+<p>4 bug fixes:</p>
 <ul>
 <li>Cleanup the SSL related structures properly, fixes memory leak</li>
 <li>Fix thread spawning edge case.</li>
@@ -1671,35 +1462,32 @@ to test.</p></li>
 <li>Implement SIGHUP for logs reopening</li>
 </ul>
 </li>
-<li><p>2 PRs merged:</p>
-
+<li>
+<p>2 PRs merged:</p>
 <ul>
 <li>Merge pull request #561 from theoldreader/sighup</li>
 <li>Merge pull request #570 from havenwood/spawn-thread-edge-case</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.9.0 / 2014-07-12</h2>
-
 <ul>
-<li><p>1 minor feature:</p>
-
+<li>
+<p>1 minor feature:</p>
 <ul>
 <li>Add SSL support for JRuby</li>
 </ul>
 </li>
-<li><p>3 bug fixes:</p>
-
+<li>
+<p>3 bug fixes:</p>
 <ul>
-<li>Typo BUNDLER_GEMFILE -> BUNDLE_GEMFILE</li>
+<li>Typo BUNDLER_GEMFILE -&gt; BUNDLE_GEMFILE</li>
 <li>Use fast_write because we can't trust syswrite</li>
 <li>pumactl - do not modify original ARGV</li>
 </ul>
 </li>
-<li><p>4 doc fixes:</p>
-
+<li>
+<p>4 doc fixes:</p>
 <ul>
 <li>BSD-3-Clause over BSD to avoid confusion</li>
 <li>Deploy doc: clarification of the GIL</li>
@@ -1707,8 +1495,8 @@ to test.</p></li>
 <li>Update README.md</li>
 </ul>
 </li>
-<li><p>6 PRs merged:</p>
-
+<li>
+<p>6 PRs merged:</p>
 <ul>
 <li>Merge pull request #520 from misfo/patch-2</li>
 <li>Merge pull request #530 from looker/jruby-ssl</li>
@@ -1719,13 +1507,10 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.8.2 / 2014-04-12</h2>
-
 <ul>
-<li><p>4 bug fixes:</p>
-
+<li>
+<p>4 bug fixes:</p>
 <ul>
 <li>During upgrade, change directory in main process instead of workers.</li>
 <li>Close the client properly on error</li>
@@ -1733,8 +1518,8 @@ to test.</p></li>
 <li>Allow tag option in conf file</li>
 </ul>
 </li>
-<li><p>4 doc fixes:</p>
-
+<li>
+<p>4 doc fixes:</p>
 <ul>
 <li>Fix Puma daemon service README typo</li>
 <li><code>preload_app!</code> instead of <code>preload_app</code></li>
@@ -1742,8 +1527,8 @@ to test.</p></li>
 <li>allow changing of worker_timeout in config file</li>
 </ul>
 </li>
-<li><p>11 PRs merged:</p>
-
+<li>
+<p>11 PRs merged:</p>
 <ul>
 <li>Merge pull request #487 from ckuttruff/master</li>
 <li>Merge pull request #492 from ckuttruff/master</li>
@@ -1759,26 +1544,23 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.8.1 / 2014-03-06</h2>
-
 <ul>
-<li><p>1 bug fixes:</p>
-
+<li>
+<p>1 bug fixes:</p>
 <ul>
 <li>Run puma-wild with proper deps for prune_bundler</li>
 </ul>
 </li>
-<li><p>2 doc changes:</p>
-
+<li>
+<p>2 doc changes:</p>
 <ul>
 <li>Described the configuration file finding behavior added in 2.8.0 and how to disable it.</li>
 <li>Start the deployment doc</li>
 </ul>
 </li>
-<li><p>6 PRs merged:</p>
-
+<li>
+<p>6 PRs merged:</p>
 <ul>
 <li>Merge pull request #471 from arthurnn/fix_test</li>
 <li>Merge pull request #485 from joneslee85/patch-9</li>
@@ -1788,13 +1570,10 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.8.0 / 2014-02-28</h2>
-
 <ul>
-<li><p>8 minor features:</p>
-
+<li>
+<p>8 minor features:</p>
 <ul>
 <li>Add ability to autoload a config file. Fixes #438</li>
 <li>Add ability to detect and terminate hung workers. Fixes #333</li>
@@ -1806,8 +1585,8 @@ to test.</p></li>
 <li>Show the ruby version in use</li>
 </ul>
 </li>
-<li><p>7 bug fixes:</p>
-
+<li>
+<p>7 bug fixes:</p>
 <ul>
 <li>Added 408 status on timeout.</li>
 <li>Be more hostile with sockets that write block. Fixes #449</li>
@@ -1818,8 +1597,8 @@ to test.</p></li>
 <li>Rescue SystemCallError as well. Fixes #425</li>
 </ul>
 </li>
-<li><p>4 doc changes:</p>
-
+<li>
+<p>4 doc changes:</p>
 <ul>
 <li>Add 2.1.0 to the matrix</li>
 <li>Add Code Climate badge to README</li>
@@ -1827,8 +1606,8 @@ to test.</p></li>
 <li>Set the license to BSD. Fixes #432</li>
 </ul>
 </li>
-<li><p>14 PRs merged:</p>
-
+<li>
+<p>14 PRs merged:</p>
 <ul>
 <li>Merge pull request #428 from alexeyfrank/capistrano_default_hooks</li>
 <li>Merge pull request #429 from namusyaka/revert-const_defined</li>
@@ -1847,31 +1626,25 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.7.1 / 2013-12-05</h2>
-
 <ul>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Keep STDOUT/STDERR the right mode. Fixes #422</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.7.0 / 2013-12-03</h2>
-
 <ul>
-<li><p>1 minor feature:</p>
-
+<li>
+<p>1 minor feature:</p>
 <ul>
 <li>Adding TTIN and TTOU to increment/decrement workers</li>
 </ul>
 </li>
-<li><p>N bug fixes:</p>
-
+<li>
+<p>N bug fixes:</p>
 <ul>
 <li>Always use our Process.daemon because it's not busted</li>
 <li>Add capistrano restart failback to start.</li>
@@ -1886,21 +1659,18 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.6.0 / 2013-09-13</h2>
-
 <ul>
-<li><p>2 minor features:</p>
-
+<li>
+<p>2 minor features:</p>
 <ul>
 <li>Add support for event hooks
 ** Add a hook for state transitions</li>
 <li>Add phased restart to capistrano recipe.</li>
 </ul>
 </li>
-<li><p>4 bug fixes:</p>
-
+<li>
+<p>4 bug fixes:</p>
 <ul>
 <li>Convince workers to stop by SIGKILL after timeout</li>
 <li>Define RSTRING_NOT_MODIFIED for Rubinius performance</li>
@@ -1909,33 +1679,27 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.5.1 / 2013-08-13</h2>
-
 <ul>
-<li><p>2 bug fixes:</p>
-
+<li>
+<p>2 bug fixes:</p>
 <ul>
 <li>Keep jruby daemon mode from retrying on a hot restart</li>
 <li>Extract version from const.rb in gemspec</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.5.0 / 2013-08-08</h2>
-
 <ul>
-<li><p>2 minor features:</p>
-
+<li>
+<p>2 minor features:</p>
 <ul>
 <li>Allow configuring pumactl with config.rb</li>
 <li>make <code>pumactl restart</code> start puma if not running</li>
 </ul>
 </li>
-<li><p>6 bug fixes:</p>
-
+<li>
+<p>6 bug fixes:</p>
 <ul>
 <li>Autodetect ruby managers and home directory in upstart script</li>
 <li>Convert header values to string before sending.</li>
@@ -1945,8 +1709,8 @@ to test.</p></li>
 <li>Fix typo in using lopez express (raw tcp) mode</li>
 </ul>
 </li>
-<li><p>6 misc changes:</p>
-
+<li>
+<p>6 misc changes:</p>
 <ul>
 <li>Fix typo in phased-restart response</li>
 <li>Uncomment setuid/setgid by default in upstart</li>
@@ -1957,25 +1721,18 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.4.1 / 2013-08-07</h2>
-
 <ul>
 <li>1 experimental feature:
-
 <ul>
 <li>Support raw tcp servers (aka Lopez Express mode)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.4.0 / 2013-07-22</h2>
-
 <ul>
-<li><p>5 minor features:</p>
-
+<li>
+<p>5 minor features:</p>
 <ul>
 <li>Add PUMA_JRUBY_DAEMON_OPTS to get around agent starting twice</li>
 <li>Add ability to drain accept socket on shutdown</li>
@@ -1984,8 +1741,8 @@ to test.</p></li>
 <li>Make phased_restart fallback to restart if not available</li>
 </ul>
 </li>
-<li><p>10 bug fixes:</p>
-
+<li>
+<p>10 bug fixes:</p>
 <ul>
 <li>Be sure to only delete the pid in the master. Fixes #334</li>
 <li>Call out -C/--config flags</li>
@@ -2000,50 +1757,41 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.3.2 / 2013-07-08</h2>
-
 <ul>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Move starting control server to after daemonization.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.3.1 / 2013-07-06</h2>
-
 <ul>
-<li><p>2 bug fixes:</p>
-
+<li>
+<p>2 bug fixes:</p>
 <ul>
 <li>Include the right files in the Manifest.</li>
 <li>Disable inheriting connections on restart on windows. Fixes #166</li>
 </ul>
 </li>
-<li><p>1 doc change:</p>
-
+<li>
+<p>1 doc change:</p>
 <ul>
 <li>Better document some platform constraints</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.3.0 / 2013-07-05</h2>
-
 <ul>
-<li><p>1 major bug fix:</p>
-
+<li>
+<p>1 major bug fix:</p>
 <ul>
 <li>Stabilize control server, add support in cluster mode</li>
 </ul>
 </li>
-<li><p>5 minor bug fixes:</p>
-
+<li>
+<p>5 minor bug fixes:</p>
 <ul>
 <li>Add ability to cleanup stale unix sockets</li>
 <li>Check status data better. Fixes #292</li>
@@ -2052,91 +1800,76 @@ to test.</p></li>
 <li>Pass state path through to <code>pumactl start</code>. Fixes #287</li>
 </ul>
 </li>
-<li><p>2 internal changes:</p>
-
+<li>
+<p>2 internal changes:</p>
 <ul>
 <li>Refactored modes into seperate classes that CLI uses</li>
 <li>Changed CLI to take an Events object instead of stdout/stderr (API change)</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.2.2 / 2013-07-02</h2>
-
 <ul>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Fix restart_command in the config</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.2.1 / 2013-07-02</h2>
-
 <ul>
-<li><p>1 minor feature:</p>
-
+<li>
+<p>1 minor feature:</p>
 <ul>
 <li>Introduce preload flag</li>
 </ul>
 </li>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Pass custom restart command in JRuby</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.2.0 / 2013-07-01</h2>
-
 <ul>
-<li><p>1 major feature:</p>
-
+<li>
+<p>1 major feature:</p>
 <ul>
 <li>Add ability to preload rack app</li>
 </ul>
 </li>
-<li><p>2 minor bugfixes:</p>
-
+<li>
+<p>2 minor bugfixes:</p>
 <ul>
 <li>Don't leak info when not in development. Fixes #256</li>
 <li>Load the app, then bind the ports</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.1.1 / 2013-06-20</h2>
-
 <ul>
-<li><p>2 minor bug fixes:</p>
-
+<li>
+<p>2 minor bug fixes:</p>
 <ul>
 <li>Fix daemonization on jruby</li>
 <li>Load the application before daemonizing. Fixes #285</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.1.0 / 2013-06-18</h2>
-
 <ul>
-<li><p>3 minor features:</p>
-
+<li>
+<p>3 minor features:</p>
 <ul>
 <li>Allow listening socket to be configured via Capistrano variable</li>
 <li>Output results from 'stat's command when using pumactl</li>
 <li>Support systemd socket activation</li>
 </ul>
 </li>
-<li><p>15 bug fixes:</p>
-
+<li>
+<p>15 bug fixes:</p>
 <ul>
 <li>Deal with pipes closing while stopping. Fixes #270</li>
 <li>Error out early if there is no app configured</li>
@@ -2155,8 +1888,8 @@ to test.</p></li>
 <li>Handle errors from the server better</li>
 </ul>
 </li>
-<li><p>3 doc changes:</p>
-
+<li>
+<p>3 doc changes:</p>
 <ul>
 <li>Add note about on_worker_boot hook</li>
 <li>Add some documentation for Clustered mode</li>
@@ -2164,41 +1897,34 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.0.1 / 2013-04-30</h2>
-
 <ul>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Fix not starting on JRuby properly</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.0.0 / 2013-04-29</h2>
-
 <p>RailsConf 2013 edition!</p>
-
 <ul>
-<li><p>2 doc changes:</p>
-
+<li>
+<p>2 doc changes:</p>
 <ul>
 <li>Start with rackup -s Puma, NOT rackup -s puma.</li>
 <li>Minor doc fixes in the README.md, Capistrano section</li>
 </ul>
 </li>
-<li><p>2 bug fixes:</p>
-
+<li>
+<p>2 bug fixes:</p>
 <ul>
 <li>Fix reading RACK_ENV properly. Fixes #234</li>
 <li>Make cap recipe handle tmp/sockets; fixes #228</li>
 </ul>
 </li>
-<li><p>3 minor changes:</p>
-
+<li>
+<p>3 minor changes:</p>
 <ul>
 <li>Fix capistrano recipe</li>
 <li>Fix stdout/stderr logs to sync outputs</li>
@@ -2206,13 +1932,10 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.0.0.b7 / 2013-03-18</h2>
-
 <ul>
-<li><p>5 minor enhancements:</p>
-
+<li>
+<p>5 minor enhancements:</p>
 <ul>
 <li>Add -q option for :start</li>
 <li>Add -V, --version</li>
@@ -2221,8 +1944,8 @@ to test.</p></li>
 <li>Set worker directory from configuration file</li>
 </ul>
 </li>
-<li><p>12 bug fixes:</p>
-
+<li>
+<p>12 bug fixes:</p>
 <ul>
 <li>Close the binder in the right place. Fixes #192</li>
 <li>Handle early term in workers. Fixes #206</li>
@@ -2239,46 +1962,40 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.0.0.b6 / 2013-02-06</h2>
-
 <ul>
-<li><p>2 minor enhancements:</p>
-
+<li>
+<p>2 minor enhancements:</p>
 <ul>
 <li>Add hook for running when a worker boots</li>
 <li>Advertise the Configuration object for apps to use.</li>
 </ul>
 </li>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Change directory in working during upgrade. Fixes #185</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.0.0.b5 / 2013-02-05</h2>
-
 <ul>
-<li><p>2 major features:</p>
-
+<li>
+<p>2 major features:</p>
 <ul>
 <li>Add phased worker upgrade</li>
 <li>Add support for the rack hijack protocol</li>
 </ul>
 </li>
-<li><p>2 minor features:</p>
-
+<li>
+<p>2 minor features:</p>
 <ul>
 <li>Add -R to specify the restart command</li>
 <li>Add config file option to specify the restart command</li>
 </ul>
 </li>
-<li><p>5 bug fixes:</p>
-
+<li>
+<p>5 bug fixes:</p>
 <ul>
 <li>Cleanup pipes properly. Fixes #182</li>
 <li>Daemonize earlier so that we don't lose app threads. Fixes #183</li>
@@ -2288,13 +2005,9 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.0.0.b4 / 2012-12-12</h2>
-
 <ul>
 <li>4 bug fixes:
-
 <ul>
 <li>Properly check #syswrite's value for variable sized buffers. Fixes #170</li>
 <li>Shutdown status server properly</li>
@@ -2303,36 +2016,29 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.0.0.b3 / 2012-11-22</h2>
-
 <ul>
 <li>1 bug fix:
-
 <ul>
 <li>Package right files in gem</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.0.0.b2 / 2012-11-18</h2>
-
 <ul>
-<li><p>5 minor feature:</p>
-
+<li>
+<p>5 minor feature:</p>
 <ul>
 <li>Now Puma is bundled with an capistrano recipe. Just require
- 'puma/capistrano' in you deploy.rb</li>
+'puma/capistrano' in you deploy.rb</li>
 <li>Only inject CommonLogger in development mode</li>
 <li>Add -p option to pumactl</li>
 <li>Add ability to use pumactl to start a server</li>
 <li>Add options to daemonize puma</li>
 </ul>
 </li>
-<li><p>7 bug fixes:</p>
-
+<li>
+<p>7 bug fixes:</p>
 <ul>
 <li>Reset the IOBuffer properly. Fixes #148</li>
 <li>Shutdown gracefully on JRuby with Ctrl-C</li>
@@ -2344,87 +2050,64 @@ to test.</p></li>
 </ul>
 </li>
 </ul>
-
-
 <h2>2.0.0.b1 / 2012-09-11</h2>
-
 <ul>
-<li><p>1 major feature:</p>
-
+<li>
+<p>1 major feature:</p>
 <ul>
 <li>Optional worker process mode (-w) to allow for process scaling in
 addition to thread scaling</li>
 </ul>
 </li>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>Introduce Puma::MiniSSL to be able to properly control doing
 nonblocking SSL</li>
 </ul>
 </li>
 </ul>
-
-
 <p>NOTE: SSL support in JRuby is not supported at present. Support will
 be added back in a future date when a java <a href="Puma/MiniSSL.html" title="Puma::MiniSSL (module)">::Puma::MiniSSL</a> is added.</p>
-
 <h2>1.6.3 / 2012-09-04</h2>
-
 <ul>
 <li>1 bug fix:
-
 <ul>
 <li>Close sockets waiting in the reactor when a hot restart is performed
 so that browsers reconnect on the next request</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>1.6.2 / 2012-08-27</h2>
-
 <ul>
 <li>1 bug fix:
-
 <ul>
 <li>Rescue StandardError instead of IOError to handle SystemCallErrors
 as well as other application exceptions inside the reactor.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>1.6.1 / 2012-07-23</h2>
-
 <ul>
 <li>1 packaging bug fixed:
-
 <ul>
 <li>Include missing files</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>1.6.0 / 2012-07-23</h2>
-
 <ul>
 <li>1 major bug fix:
-
 <ul>
 <li>Prevent slow clients from starving the server by introducing a
 dedicated IO reactor thread. Credit for reporting goes to @meh.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>1.5.0 / 2012-07-19</h2>
-
 <ul>
-<li><p>7 contributors to this release:</p>
-
+<li>
+<p>7 contributors to this release:</p>
 <ul>
 <li>Christian Mayer</li>
 <li>Darío Javier Cravero</li>
@@ -2435,8 +2118,8 @@ dedicated IO reactor thread. Credit for reporting goes to @meh.</li>
 <li>tomykaira</li>
 </ul>
 </li>
-<li><p>6 bug fixes:</p>
-
+<li>
+<p>6 bug fixes:</p>
 <ul>
 <li>Define RSTRING_NOT_MODIFIED for Rubinius</li>
 <li>Convert status to integer. Fixes #123</li>
@@ -2446,8 +2129,8 @@ dedicated IO reactor thread. Credit for reporting goes to @meh.</li>
 <li>Use String#bytesize instead of String#length</li>
 </ul>
 </li>
-<li><p>3 minor features:</p>
-
+<li>
+<p>3 minor features:</p>
 <ul>
 <li>Added support for setting RACK_ENV via the CLI, config file, and rack app</li>
 <li>Allow Server#run to run sync. Fixes #111</li>
@@ -2455,51 +2138,41 @@ dedicated IO reactor thread. Credit for reporting goes to @meh.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>1.4.0 / 2012-06-04</h2>
-
 <ul>
-<li><p>1 bug fix:</p>
-
+<li>
+<p>1 bug fix:</p>
 <ul>
 <li>SCRIPT_NAME should be passed from env to allow mounting apps</li>
 </ul>
 </li>
-<li><p>1 experimental feature:</p>
-
+<li>
+<p>1 experimental feature:</p>
 <ul>
 <li>Add puma.socket key for direct socket access</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>1.3.1 / 2012-05-15</h2>
-
 <ul>
 <li>2 bug fixes:
-
 <ul>
 <li>use #bytesize instead of #length for Content-Length header</li>
 <li>Use StringIO properly. Fixes #98</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>1.3.0 / 2012-05-08</h2>
-
 <ul>
-<li><p>2 minor features:</p>
-
+<li>
+<p>2 minor features:</p>
 <ul>
 <li>Return valid Rack responses (passes Lint) from status server</li>
 <li>Add -I option to specify $LOAD_PATH directories</li>
 </ul>
 </li>
-<li><p>4 bug fixes:</p>
-
+<li>
+<p>4 bug fixes:</p>
 <ul>
 <li>Don't join the server thread inside the signal handle. Fixes #94</li>
 <li>Make NullIO#read mimic IO#read</li>
@@ -2507,20 +2180,17 @@ dedicated IO reactor thread. Credit for reporting goes to @meh.</li>
 <li>Set RACK_ENV early in cli also. Fixes #78</li>
 </ul>
 </li>
-<li><p>1 new contributor:</p>
-
+<li>
+<p>1 new contributor:</p>
 <ul>
 <li>Jesse Cooke</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>1.2.2 / 2012-04-28</h2>
-
 <ul>
-<li><p>4 bug fixes:</p>
-
+<li>
+<p>4 bug fixes:</p>
 <ul>
 <li>Report a lowlevel error to stderr</li>
 <li>Set a fallback SERVER_NAME and SERVER_PORT</li>
@@ -2529,101 +2199,65 @@ dedicated IO reactor thread. Credit for reporting goes to @meh.</li>
 </ul>
 </li>
 </ul>
-
-
 <h2>1.2.1 / 2012-04-11</h2>
-
-<p> 1 bug fix:</p>
-
+<p>1 bug fix:</p>
 <ul>
-<li> Fix rack.url_scheme for SSL servers. Fixes #65</li>
+<li>Fix rack.url_scheme for SSL servers. Fixes #65</li>
 </ul>
-
-
 <h2>1.2.0 / 2012-04-11</h2>
-
-<p> 1 major feature:</p>
-
+<p>1 major feature:</p>
 <ul>
-<li> When possible, the internal restart does a "hot restart" meaning
- the server sockets remains open, so no connections are lost.</li>
+<li>When possible, the internal restart does a &quot;hot restart&quot; meaning
+the server sockets remains open, so no connections are lost.</li>
 </ul>
-
-
-<p> 1 minor feature:</p>
-
-<pre class="code ruby"><code class="ruby">* More helpful fallback error message
-</code></pre>
-
-<p> 6 bug fixes:</p>
-
+<p>1 minor feature:</p>
+<pre class="code ruby"><code class="ruby">* More helpful fallback error message</code></pre>
+<p>6 bug fixes:</p>
 <pre class="code ruby"><code class="ruby">* Pass the proper args to unknown_error. Fixes #54, #58
 * Stop the control server before restarting. Fixes #61
 * Fix reporting https only on a true SSL connection
 * Set the default content type to &#39;text/plain&#39;. Fixes #63
 * Use REUSEADDR. Fixes #60
-* Shutdown gracefully on SIGTERM. Fixes #53
-</code></pre>
-
-<p> 2 new contributors:</p>
-
+* Shutdown gracefully on SIGTERM. Fixes #53</code></pre>
+<p>2 new contributors:</p>
 <ul>
-<li> Seamus Abshere</li>
-<li> Steve Richert</li>
+<li>Seamus Abshere</li>
+<li>Steve Richert</li>
 </ul>
-
-
 <h2>1.1.1 / 2012-03-30</h2>
-
-<p> 1 bugfix:</p>
-
+<p>1 bugfix:</p>
 <ul>
-<li> Include puma/compat.rb in the gem (oops!)</li>
+<li>Include puma/compat.rb in the gem (oops!)</li>
 </ul>
-
-
 <h2>1.1.0 / 2012-03-30</h2>
-
-<p> 1 bugfix:</p>
-
+<p>1 bugfix:</p>
 <ul>
-<li> Make sure that the unix socket has the perms 0777 by default</li>
+<li>Make sure that the unix socket has the perms 0777 by default</li>
 </ul>
-
-
-<p> 1 minor feature:</p>
-
+<p>1 minor feature:</p>
 <ul>
-<li> Add umask param to the unix:// bind to set the umask</li>
+<li>Add umask param to the unix:// bind to set the umask</li>
 </ul>
-
-
 <h2>1.0.0 / 2012-03-29</h2>
-
 <ul>
 <li>Released!</li>
 </ul>
-
-
 <h2>Ignore - this is for maintainers to copy-paste during release</h2>
-
 <h2>Master</h2>
-
 <ul>
-<li><p>Features</p>
-
+<li>
+<p>Features</p>
 <ul>
 <li>Your feature goes here (#Github Number)</li>
 </ul>
 </li>
-<li><p>Bugfixes</p>
-
+<li>
+<p>Bugfixes</p>
 <ul>
 <li>Your bugfix goes here (#Github Number)</li>
 </ul>
 </li>
 </ul>
-
 
 <div id='footer'></div>
 </div> <!-- content  -->

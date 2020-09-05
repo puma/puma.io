@@ -78,7 +78,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/rack/urlmap.rb#L16'>lib/puma/rack/urlmap.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/rack/urlmap.rb#L16'>lib/puma/rack/urlmap.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -103,12 +103,12 @@
   <li>
     <span id='INFINITY-constant' class='summary_signature'>INFINITY =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/rack/urlmap.rb#L18-L18'># File 'lib/puma/rack/urlmap.rb', line 18</a>    <pre class='code ruby'><span class='float'>1.0</span> <span class='op'>/</span> <span class='float'>0.0</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/rack/urlmap.rb#L18-L18'># File 'lib/puma/rack/urlmap.rb', line 18</a>    <pre class='code ruby'><span class='float'>1.0</span> <span class='op'>/</span> <span class='float'>0.0</span></pre>
   </li>
   <li>
     <span id='NEGATIVE_INFINITY-constant' class='summary_signature'>NEGATIVE_INFINITY =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/rack/urlmap.rb#L17-L17'># File 'lib/puma/rack/urlmap.rb', line 17</a>    <pre class='code ruby'><span class='op'>-</span><span class='float'>1.0</span> <span class='op'>/</span> <span class='float'>0.0</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/rack/urlmap.rb#L17-L17'># File 'lib/puma/rack/urlmap.rb', line 17</a>    <pre class='code ruby'><span class='op'>-</span><span class='float'>1.0</span> <span class='op'>/</span> <span class='float'>0.0</span></pre>
   </li>
 </ul>
 </div>
@@ -160,7 +160,7 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/rack/urlmap.rb#L20-L22'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/rack/urlmap.rb#L20-L22'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='20' data-end='22'></pre>
   <div class='lines_code'>
@@ -168,7 +168,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_map'>map</span> <span class='op'>=</span> {})
-  <span class='id identifier rubyid_remap'>remap</span>(<span class='id identifier rubyid_map'>map</span>)
+  <span class='id identifier rubyid_remap'><a href="#remap-instance_method" title="Puma::Rack::URLMap#remap (method)">remap</a></span>(<span class='id identifier rubyid_map'>map</span>)
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -180,7 +180,7 @@
   <h3 class='signature  first'>
     #<strong>call</strong>(env)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/rack/urlmap.rb#L45-L78'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/rack/urlmap.rb#L45-L78'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='45' data-end='78'></pre>
   <div class='lines_code'>
@@ -194,12 +194,12 @@
   <span class='id identifier rubyid_server_name'>server_name</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SERVER_NAME</span><span class='tstring_end'>&#39;</span></span>]
   <span class='id identifier rubyid_server_port'>server_port</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SERVER_PORT</span><span class='tstring_end'>&#39;</span></span>]
 
-  <span class='id identifier rubyid_is_same_server'>is_same_server</span> <span class='op'>=</span> <span class='id identifier rubyid_casecmp?'>casecmp?</span>(<span class='id identifier rubyid_http_host'>http_host</span><span class='comma'>,</span> <span class='id identifier rubyid_server_name'>server_name</span>) <span class='op'>||</span>
-                <span class='id identifier rubyid_casecmp?'>casecmp?</span>(<span class='id identifier rubyid_http_host'>http_host</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_server_name'>server_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_server_port'>server_port</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>)
+  <span class='id identifier rubyid_is_same_server'>is_same_server</span> <span class='op'>=</span> <span class='id identifier rubyid_casecmp?'><a href="#casecmp%3F-instance_method" title="Puma::Rack::URLMap#casecmp? (method)">casecmp?</a></span>(<span class='id identifier rubyid_http_host'>http_host</span><span class='comma'>,</span> <span class='id identifier rubyid_server_name'>server_name</span>) <span class='op'>||</span>
+                <span class='id identifier rubyid_casecmp?'><a href="#casecmp%3F-instance_method" title="Puma::Rack::URLMap#casecmp? (method)">casecmp?</a></span>(<span class='id identifier rubyid_http_host'>http_host</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_server_name'>server_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_server_port'>server_port</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>)
 
   <span class='ivar'>@mapping</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_location'>location</span><span class='comma'>,</span> <span class='id identifier rubyid_match'>match</span><span class='comma'>,</span> <span class='id identifier rubyid_app'>app</span><span class='op'>|</span>
-    <span class='kw'>unless</span> <span class='id identifier rubyid_casecmp?'>casecmp?</span>(<span class='id identifier rubyid_http_host'>http_host</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span>) \
-        <span class='op'>||</span> <span class='id identifier rubyid_casecmp?'>casecmp?</span>(<span class='id identifier rubyid_server_name'>server_name</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span>) \
+    <span class='kw'>unless</span> <span class='id identifier rubyid_casecmp?'><a href="#casecmp%3F-instance_method" title="Puma::Rack::URLMap#casecmp? (method)">casecmp?</a></span>(<span class='id identifier rubyid_http_host'>http_host</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span>) \
+        <span class='op'>||</span> <span class='id identifier rubyid_casecmp?'><a href="#casecmp%3F-instance_method" title="Puma::Rack::URLMap#casecmp? (method)">casecmp?</a></span>(<span class='id identifier rubyid_server_name'>server_name</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span>) \
         <span class='op'>||</span> (<span class='op'>!</span><span class='id identifier rubyid_host'>host</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_is_same_server'>is_same_server</span>)
       <span class='kw'>next</span>
     <span class='kw'>end</span>
@@ -238,7 +238,7 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/rack/urlmap.rb#L81-L91'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/rack/urlmap.rb#L81-L91'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='81' data-end='91'></pre>
   <div class='lines_code'>
@@ -265,7 +265,7 @@
   <h3 class='signature '>
     #<strong>remap</strong>(map)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/rack/urlmap.rb#L24-L43'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/rack/urlmap.rb#L24-L43'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='24' data-end='43'></pre>
   <div class='lines_code'>
@@ -285,7 +285,7 @@
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_location'>location</span> <span class='op'>=</span> <span class='id identifier rubyid_location'>location</span>.<span class='id identifier rubyid_chomp'>chomp</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span>)
-    <span class='id identifier rubyid_match'>match</span> <span class='op'>=</span> <span class='const'>Regexp</span>.<span class='id identifier rubyid_new'>new</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='const'>Regexp</span>.<span class='id identifier rubyid_quote'>quote</span>(<span class='id identifier rubyid_location'>location</span>).<span class='id identifier rubyid_gsub'>gsub</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/+</span><span class='tstring_end'>&#39;</span></span>)<span class='embexpr_end'>}</span><span class='tstring_content'>(.*)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>n</span><span class='tstring_end'>&#39;</span></span>)
+    <span class='id identifier rubyid_match'>match</span> <span class='op'>=</span> <span class='const'>Regexp</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Rack::URLMap.new (method)">new</a></span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>^</span><span class='embexpr_beg'>#{</span><span class='const'>Regexp</span>.<span class='id identifier rubyid_quote'>quote</span>(<span class='id identifier rubyid_location'>location</span>).<span class='id identifier rubyid_gsub'>gsub</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/+</span><span class='tstring_end'>&#39;</span></span>)<span class='embexpr_end'>}</span><span class='tstring_content'>(.*)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>n</span><span class='tstring_end'>&#39;</span></span>)
 
     [<span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_location'>location</span><span class='comma'>,</span> <span class='id identifier rubyid_match'>match</span><span class='comma'>,</span> <span class='id identifier rubyid_app'>app</span>]
   }.<span class='id identifier rubyid_sort_by'>sort_by</span> <span class='kw'>do</span> <span class='op'>|</span>(<span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_location'>location</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span>)<span class='op'>|</span>
