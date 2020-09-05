@@ -96,7 +96,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L38'>lib/puma/client.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L38'>lib/puma/client.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -127,7 +127,7 @@
 
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L41-L41'># File 'lib/puma/client.rb', line 41</a>    <pre class='code ruby'><span class='const'><a href="NullIO.html" title="Puma::NullIO (class)">NullIO</a></span>.<span class='id identifier rubyid_new'>new</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L41-L41'># File 'lib/puma/client.rb', line 41</a>    <pre class='code ruby'><span class='const'><a href="NullIO.html" title="Puma::NullIO (class)">NullIO</a></span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Client.new (method)">new</a></span></pre>
   </li>
 </ul>
   <h3 class='inherited'><a href="Const.html" title="Puma::Const (module)">Const</a> - Included</h3>
@@ -145,7 +145,6 @@
     <a href="Const.html#CONTENT_LENGTH2-constant" title="Puma::Const::CONTENT_LENGTH2 (constant)">CONTENT_LENGTH2</a>, 
     <a href="Const.html#CONTENT_LENGTH_S-constant" title="Puma::Const::CONTENT_LENGTH_S (constant)">CONTENT_LENGTH_S</a>, 
     <a href="Const.html#CONTINUE-constant" title="Puma::Const::CONTINUE (constant)">CONTINUE</a>, 
-    <a href="Const.html#CRLF_REGEX-constant" title="Puma::Const::CRLF_REGEX (constant)">CRLF_REGEX</a>, 
     <a href="Const.html#EARLY_HINTS-constant" title="Puma::Const::EARLY_HINTS (constant)">EARLY_HINTS</a>, 
     <a href="Const.html#ERROR_RESPONSE-constant" title="Puma::Const::ERROR_RESPONSE (constant)">ERROR_RESPONSE</a>, 
     <a href="Const.html#FAST_TRACK_KA_TIMEOUT-constant" title="Puma::Const::FAST_TRACK_KA_TIMEOUT (constant)">FAST_TRACK_KA_TIMEOUT</a>, 
@@ -166,6 +165,7 @@
     <a href="Const.html#HTTP_CONNECTION-constant" title="Puma::Const::HTTP_CONNECTION (constant)">HTTP_CONNECTION</a>, 
     <a href="Const.html#HTTP_EXPECT-constant" title="Puma::Const::HTTP_EXPECT (constant)">HTTP_EXPECT</a>, 
     <a href="Const.html#HTTP_HOST-constant" title="Puma::Const::HTTP_HOST (constant)">HTTP_HOST</a>, 
+    <a href="Const.html#HTTP_INJECTION_REGEX-constant" title="Puma::Const::HTTP_INJECTION_REGEX (constant)">HTTP_INJECTION_REGEX</a>, 
     <a href="Const.html#HTTP_VERSION-constant" title="Puma::Const::HTTP_VERSION (constant)">HTTP_VERSION</a>, 
     <a href="Const.html#HTTP_X_FORWARDED_FOR-constant" title="Puma::Const::HTTP_X_FORWARDED_FOR (constant)">HTTP_X_FORWARDED_FOR</a>, 
     <a href="Const.html#HTTP_X_FORWARDED_PROTO-constant" title="Puma::Const::HTTP_X_FORWARDED_PROTO (constant)">HTTP_X_FORWARDED_PROTO</a>, 
@@ -415,21 +415,21 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L46-L77'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L46-L77'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='46' data-end='77'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/client.rb', line 46</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='id identifier rubyid_env'>env</span><span class='op'>=</span><span class='kw'>nil</span>)
-  <span class='ivar'>@io</span> <span class='op'>=</span> <span class='id identifier rubyid_io'>io</span>
-  <span class='ivar'>@to_io</span> <span class='op'>=</span> <span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_to_io'>to_io</span>
-  <span class='ivar'>@proto_env</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span>
-  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_env'>env</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span><span class='comma'>,</span> <span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Client#env (method)">env</a></span><span class='op'>=</span><span class='kw'>nil</span>)
+  <span class='ivar'>@io</span> <span class='op'>=</span> <span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span>
+  <span class='ivar'>@to_io</span> <span class='op'>=</span> <span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span>.<span class='id identifier rubyid_to_io'><a href="#to_io-instance_method" title="Puma::Client#to_io (method)">to_io</a></span>
+  <span class='ivar'>@proto_env</span> <span class='op'>=</span> <span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Client#env (method)">env</a></span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Client#env (method)">env</a></span>
     <span class='ivar'>@env</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='kw'>else</span>
-    <span class='ivar'>@env</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span>.<span class='id identifier rubyid_dup'>dup</span>
+    <span class='ivar'>@env</span> <span class='op'>=</span> <span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Client#env (method)">env</a></span>.<span class='id identifier rubyid_dup'>dup</span>
   <span class='kw'>end</span>
 
   <span class='ivar'>@parser</span> <span class='op'>=</span> <span class='const'><a href="HttpParser.html" title="Puma::HttpParser (class)">HttpParser</a></span>.<span class='id identifier rubyid_new'><a href="HttpParser.html#new-class_method" title="Puma::HttpParser.new (method)">new</a></span>
@@ -464,15 +464,15 @@
   <h3 class='signature ro first'>
     #<strong>body</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Client#env (method)">env</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'><a href="#to_io-instance_method" title="Puma::Client#to_io (method)">to_io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'><a href="#timeout_at-instance_method" title="Puma::Client#timeout_at (method)">timeout_at</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'><a href="#ready-instance_method" title="Puma::Client#ready (method)">ready</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'><a href="#hijacked-instance_method" title="Puma::Client#hijacked (method)">hijacked</a></span><span class='comma'>,</span>
+            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'><a href="#tempfile-instance_method" title="Puma::Client#tempfile (method)">tempfile</a></span>
 </pre>
   </div>
 </div>
@@ -482,15 +482,15 @@
   <h3 class='signature ro'>
     #<strong>env</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'><a href="#to_io-instance_method" title="Puma::Client#to_io (method)">to_io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'><a href="#timeout_at-instance_method" title="Puma::Client#timeout_at (method)">timeout_at</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'><a href="#ready-instance_method" title="Puma::Client#ready (method)">ready</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'><a href="#hijacked-instance_method" title="Puma::Client#hijacked (method)">hijacked</a></span><span class='comma'>,</span>
+            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'><a href="#tempfile-instance_method" title="Puma::Client#tempfile (method)">tempfile</a></span>
 </pre>
   </div>
 </div>
@@ -500,15 +500,15 @@
   <h3 class='signature ro'>
     #<strong>hijacked</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Client#env (method)">env</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'><a href="#to_io-instance_method" title="Puma::Client#to_io (method)">to_io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'><a href="#timeout_at-instance_method" title="Puma::Client#timeout_at (method)">timeout_at</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'><a href="#ready-instance_method" title="Puma::Client#ready (method)">ready</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
+            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'><a href="#tempfile-instance_method" title="Puma::Client#tempfile (method)">tempfile</a></span>
 </pre>
   </div>
 </div>
@@ -518,15 +518,15 @@
   <h3 class='signature ro'>
     #<strong>io</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Client#env (method)">env</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'><a href="#to_io-instance_method" title="Puma::Client#to_io (method)">to_io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'><a href="#timeout_at-instance_method" title="Puma::Client#timeout_at (method)">timeout_at</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'><a href="#ready-instance_method" title="Puma::Client#ready (method)">ready</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'><a href="#hijacked-instance_method" title="Puma::Client#hijacked (method)">hijacked</a></span><span class='comma'>,</span>
+            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'><a href="#tempfile-instance_method" title="Puma::Client#tempfile (method)">tempfile</a></span>
 </pre>
   </div>
 </div>
@@ -536,7 +536,7 @@
   <h3 class='signature rw'>
     #<strong>peerip</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L258-L268'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L258-L268'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='258' data-end='268'></pre>
   <div class='lines_code'>
@@ -563,14 +563,14 @@
   <h3 class='signature rw'>
     #<strong>peerip=</strong>(value)   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L82-L82'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L82-L82'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='82' data-end='82'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/client.rb', line 82</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_writer'>attr_writer</span> <span class='symbeg'>:</span><span class='id identifier rubyid_peerip'>peerip</span>
+<span class='id identifier rubyid_attr_writer'>attr_writer</span> <span class='symbeg'>:</span><span class='id identifier rubyid_peerip'><a href="#peerip-instance_method" title="Puma::Client#peerip (method)">peerip</a></span>
 </pre>
   </div>
 </div>
@@ -580,15 +580,15 @@
   <h3 class='signature ro'>
     #<strong>ready</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Client#env (method)">env</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'><a href="#to_io-instance_method" title="Puma::Client#to_io (method)">to_io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'><a href="#timeout_at-instance_method" title="Puma::Client#timeout_at (method)">timeout_at</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'><a href="#hijacked-instance_method" title="Puma::Client#hijacked (method)">hijacked</a></span><span class='comma'>,</span>
+            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'><a href="#tempfile-instance_method" title="Puma::Client#tempfile (method)">tempfile</a></span>
 </pre>
   </div>
 </div>
@@ -598,7 +598,7 @@
   <h3 class='signature rw'>
     #<strong>remote_addr_header</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L84-L84'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L84-L84'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='84' data-end='84'></pre>
   <div class='lines_code'>
@@ -615,14 +615,14 @@
   <h3 class='signature ro'>
     #<strong>tempfile</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Client#env (method)">env</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'><a href="#to_io-instance_method" title="Puma::Client#to_io (method)">to_io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'><a href="#timeout_at-instance_method" title="Puma::Client#timeout_at (method)">timeout_at</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'><a href="#ready-instance_method" title="Puma::Client#ready (method)">ready</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'><a href="#hijacked-instance_method" title="Puma::Client#hijacked (method)">hijacked</a></span><span class='comma'>,</span>
             <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
 </pre>
   </div>
@@ -633,15 +633,15 @@
   <h3 class='signature ro'>
     #<strong>timeout_at</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Client#env (method)">env</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'><a href="#to_io-instance_method" title="Puma::Client#to_io (method)">to_io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'><a href="#ready-instance_method" title="Puma::Client#ready (method)">ready</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'><a href="#hijacked-instance_method" title="Puma::Client#hijacked (method)">hijacked</a></span><span class='comma'>,</span>
+            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'><a href="#tempfile-instance_method" title="Puma::Client#tempfile (method)">tempfile</a></span>
 </pre>
   </div>
 </div>
@@ -651,15 +651,15 @@
   <h3 class='signature ro'>
     #<strong>to_io</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L79-L80'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='79' data-end='80'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/client.rb', line 79</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'>timeout_at</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'>ready</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'>hijacked</span><span class='comma'>,</span>
-            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'>tempfile</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Client#env (method)">env</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_to_io'>to_io</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout_at'><a href="#timeout_at-instance_method" title="Puma::Client#timeout_at (method)">timeout_at</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ready'><a href="#ready-instance_method" title="Puma::Client#ready (method)">ready</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hijacked'><a href="#hijacked-instance_method" title="Puma::Client#hijacked (method)">hijacked</a></span><span class='comma'>,</span>
+            <span class='symbeg'>:</span><span class='id identifier rubyid_tempfile'><a href="#tempfile-instance_method" title="Puma::Client#tempfile (method)">tempfile</a></span>
 </pre>
   </div>
 </div>
@@ -677,7 +677,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L94-L97'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L94-L97'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='94' data-end='97'></pre>
   <div class='lines_code'>
@@ -686,7 +686,7 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span>
   <span class='ivar'>@hijacked</span> <span class='op'>=</span> <span class='kw'>true</span>
-  <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#HIJACK_IO-constant" title="Puma::Const::HIJACK_IO (constant)">HIJACK_IO</a></span>] <span class='op'>||=</span> <span class='ivar'>@io</span>
+  <span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Client#env (method)">env</a></span>[<span class='const'><a href="Const.html#HIJACK_IO-constant" title="Puma::Const::HIJACK_IO (constant)">HIJACK_IO</a></span>] <span class='op'>||=</span> <span class='ivar'>@io</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -697,7 +697,7 @@
   <h3 class='signature '>
     #<strong>close</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L143-L149'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L143-L149'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='143' data-end='149'></pre>
   <div class='lines_code'>
@@ -720,11 +720,11 @@
   <h3 class='signature priv'>
     #<strong>decode_chunk</strong>(chunk)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L408-L484'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L416-L492'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='408' data-end='484'></pre>
+  <pre class='lines_num' data-start='416' data-end='492'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 408</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 416</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_decode_chunk'>decode_chunk</span>(<span class='id identifier rubyid_chunk'>chunk</span>)
@@ -743,20 +743,20 @@
   <span class='kw'>end</span>
 
   <span class='kw'>if</span> <span class='ivar'>@prev_chunk</span>.<span class='id identifier rubyid_empty?'>empty?</span>
-    <span class='id identifier rubyid_io'>io</span> <span class='op'>=</span> <span class='const'>StringIO</span>.<span class='id identifier rubyid_new'>new</span>(<span class='id identifier rubyid_chunk'>chunk</span>)
+    <span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span> <span class='op'>=</span> <span class='const'>StringIO</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Client.new (method)">new</a></span>(<span class='id identifier rubyid_chunk'>chunk</span>)
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_io'>io</span> <span class='op'>=</span> <span class='const'>StringIO</span>.<span class='id identifier rubyid_new'>new</span>(<span class='ivar'>@prev_chunk</span><span class='op'>+</span><span class='id identifier rubyid_chunk'>chunk</span>)
+    <span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span> <span class='op'>=</span> <span class='const'>StringIO</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Client.new (method)">new</a></span>(<span class='ivar'>@prev_chunk</span><span class='op'>+</span><span class='id identifier rubyid_chunk'>chunk</span>)
     <span class='ivar'>@prev_chunk</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 
-  <span class='kw'>while</span> <span class='op'>!</span><span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_eof?'>eof?</span>
-    <span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_gets'>gets</span>
+  <span class='kw'>while</span> <span class='op'>!</span><span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span>.<span class='id identifier rubyid_eof?'>eof?</span>
+    <span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span>.<span class='id identifier rubyid_gets'>gets</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_line'>line</span>.<span class='id identifier rubyid_end_with?'>end_with?</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span>)
       <span class='id identifier rubyid_len'>len</span> <span class='op'>=</span> <span class='id identifier rubyid_line'>line</span>.<span class='id identifier rubyid_strip'>strip</span>.<span class='id identifier rubyid_to_i'>to_i</span>(<span class='int'>16</span>)
       <span class='kw'>if</span> <span class='id identifier rubyid_len'>len</span> <span class='op'>==</span> <span class='int'>0</span>
         <span class='ivar'>@in_last_chunk</span> <span class='op'>=</span> <span class='kw'>true</span>
         <span class='ivar'>@body</span>.<span class='id identifier rubyid_rewind'>rewind</span>
-        <span class='id identifier rubyid_rest'>rest</span> <span class='op'>=</span> <span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_read'>read</span>
+        <span class='id identifier rubyid_rest'>rest</span> <span class='op'>=</span> <span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span>.<span class='id identifier rubyid_read'>read</span>
         <span class='id identifier rubyid_last_crlf_size'>last_crlf_size</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span>.<span class='id identifier rubyid_bytesize'>bytesize</span>
         <span class='kw'>if</span> <span class='id identifier rubyid_rest'>rest</span>.<span class='id identifier rubyid_bytesize'>bytesize</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_last_crlf_size'>last_crlf_size</span>
           <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -765,14 +765,14 @@
         <span class='kw'>else</span>
           <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='id identifier rubyid_rest'>rest</span>[<span class='id identifier rubyid_last_crlf_size'>last_crlf_size</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span>]
           <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='ivar'>@buffer</span>.<span class='id identifier rubyid_empty?'>empty?</span>
-          <span class='id identifier rubyid_set_ready'>set_ready</span>
+          <span class='id identifier rubyid_set_ready'><a href="#set_ready-instance_method" title="Puma::Client#set_ready (method)">set_ready</a></span>
           <span class='kw'>return</span> <span class='kw'>true</span>
         <span class='kw'>end</span>
       <span class='kw'>end</span>
 
       <span class='id identifier rubyid_len'>len</span> <span class='op'>+=</span> <span class='int'>2</span>
 
-      <span class='id identifier rubyid_part'>part</span> <span class='op'>=</span> <span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_read'>read</span>(<span class='id identifier rubyid_len'>len</span>)
+      <span class='id identifier rubyid_part'>part</span> <span class='op'>=</span> <span class='id identifier rubyid_io'><a href="#io-instance_method" title="Puma::Client#io (method)">io</a></span>.<span class='id identifier rubyid_read'>read</span>(<span class='id identifier rubyid_len'>len</span>)
 
       <span class='kw'>unless</span> <span class='id identifier rubyid_part'>part</span>
         <span class='ivar'>@partial_part_left</span> <span class='op'>=</span> <span class='id identifier rubyid_len'>len</span>
@@ -798,7 +798,7 @@
   <span class='kw'>end</span>
 
   <span class='kw'>if</span> <span class='ivar'>@in_last_chunk</span>
-    <span class='id identifier rubyid_set_ready'>set_ready</span>
+    <span class='id identifier rubyid_set_ready'><a href="#set_ready-instance_method" title="Puma::Client#set_ready (method)">set_ready</a></span>
     <span class='kw'>true</span>
   <span class='kw'>else</span>
     <span class='kw'>false</span>
@@ -820,7 +820,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L236-L245'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L236-L245'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='236' data-end='245'></pre>
   <div class='lines_code'>
@@ -831,11 +831,11 @@
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='ivar'>@ready</span>
 
   <span class='kw'>if</span> <span class='ivar'>@io</span>.<span class='id identifier rubyid_kind_of?'>kind_of?</span> <span class='const'><a href="../OpenSSL.html" title="OpenSSL (module)">OpenSSL</a></span><span class='op'>::</span><span class='const'><a href="../OpenSSL/SSL.html" title="OpenSSL::SSL (module)">SSL</a></span><span class='op'>::</span><span class='const'>SSLSocket</span>
-    <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_jruby_start_try_to_finish'>jruby_start_try_to_finish</span>
+    <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_jruby_start_try_to_finish'><a href="#jruby_start_try_to_finish-instance_method" title="Puma::Client#jruby_start_try_to_finish (method)">jruby_start_try_to_finish</a></span>
   <span class='kw'>end</span>
 
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='const'><a href="../IO.html" title="IO (class)">IO</a></span>.<span class='id identifier rubyid_select'>select</span>([<span class='ivar'>@to_io</span>]<span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='int'>0</span>)
-  <span class='id identifier rubyid_try_to_finish'>try_to_finish</span>
+  <span class='id identifier rubyid_try_to_finish'><a href="#try_to_finish-instance_method" title="Puma::Client#try_to_finish (method)">try_to_finish</a></span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -853,7 +853,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L243-L249'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L243-L249'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='243' data-end='249'></pre>
   <div class='lines_code'>
@@ -862,7 +862,7 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_finish'>finish</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='ivar'>@ready</span>
-  <span class='kw'>until</span> <span class='id identifier rubyid_try_to_finish'>try_to_finish</span>
+  <span class='kw'>until</span> <span class='id identifier rubyid_try_to_finish'><a href="#try_to_finish-instance_method" title="Puma::Client#try_to_finish (method)">try_to_finish</a></span>
     <span class='const'><a href="../IO.html" title="IO (class)">IO</a></span>.<span class='id identifier rubyid_select'>select</span>([<span class='ivar'>@to_io</span>]<span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span>)
   <span class='kw'>end</span>
   <span class='kw'>true</span>
@@ -876,7 +876,7 @@
   <h3 class='signature '>
     #<strong>in_data_phase</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L99-L101'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L99-L101'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='99' data-end='101'></pre>
   <div class='lines_code'>
@@ -895,7 +895,7 @@
   <h3 class='signature '>
     #<strong>inspect</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L88-L90'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L88-L90'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='88' data-end='90'></pre>
   <div class='lines_code'>
@@ -914,7 +914,7 @@
   <h3 class='signature '>
     #<strong>jruby_start_try_to_finish</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L188-L221'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L188-L221'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='188' data-end='221'></pre>
   <div class='lines_code'>
@@ -922,7 +922,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_jruby_start_try_to_finish'>jruby_start_try_to_finish</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_read_body'>read_body</span> <span class='kw'>unless</span> <span class='ivar'>@read_header</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_read_body'><a href="#read_body-instance_method" title="Puma::Client#read_body (method)">read_body</a></span> <span class='kw'>unless</span> <span class='ivar'>@read_header</span>
 
   <span class='kw'>begin</span>
     <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='ivar'>@io</span>.<span class='id identifier rubyid_sysread_nonblock'>sysread_nonblock</span>(<span class='const'><a href="Const.html#CHUNK_SIZE-constant" title="Puma::Const::CHUNK_SIZE (constant)">CHUNK_SIZE</a></span>)
@@ -934,7 +934,7 @@
   <span class='comment'># No data means a closed socket
 </span>  <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span>
     <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='id identifier rubyid_set_ready'>set_ready</span>
+    <span class='id identifier rubyid_set_ready'><a href="#set_ready-instance_method" title="Puma::Client#set_ready (method)">set_ready</a></span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>EOFError</span>
   <span class='kw'>end</span>
 
@@ -947,7 +947,7 @@
   <span class='ivar'>@parsed_bytes</span> <span class='op'>=</span> <span class='ivar'>@parser</span>.<span class='id identifier rubyid_execute'>execute</span>(<span class='ivar'>@env</span><span class='comma'>,</span> <span class='ivar'>@buffer</span><span class='comma'>,</span> <span class='ivar'>@parsed_bytes</span>)
 
   <span class='kw'>if</span> <span class='ivar'>@parser</span>.<span class='id identifier rubyid_finished?'>finished?</span>
-    <span class='kw'>return</span> <span class='id identifier rubyid_setup_body'>setup_body</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_setup_body'><a href="#setup_body-instance_method" title="Puma::Client#setup_body (method)">setup_body</a></span>
   <span class='kw'>elsif</span> <span class='ivar'>@parsed_bytes</span> <span class='op'>&gt;=</span> <span class='const'><a href="Const.html#MAX_HEADER-constant" title="Puma::Const::MAX_HEADER (constant)">MAX_HEADER</a></span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="HttpParserError.html" title="Puma::HttpParserError (class)">HttpParserError</a></span><span class='comma'>,</span>
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HEADER is longer than allowed, aborting client early.</span><span class='tstring_end'>&quot;</span></span>
@@ -964,16 +964,16 @@
   <h3 class='signature priv'>
     #<strong>read_body</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L329-L372'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L337-L380'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='329' data-end='372'></pre>
+  <pre class='lines_num' data-start='337' data-end='380'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 329</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 337</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_body'>read_body</span>
   <span class='kw'>if</span> <span class='ivar'>@chunked_body</span>
-    <span class='kw'>return</span> <span class='id identifier rubyid_read_chunked_body'>read_chunked_body</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_read_chunked_body'><a href="#read_chunked_body-instance_method" title="Puma::Client#read_chunked_body (method)">read_chunked_body</a></span>
   <span class='kw'>end</span>
 
   <span class='comment'># Read an odd sized chunk so we can read even sized ones
@@ -996,9 +996,9 @@
 
   <span class='comment'># No chunk means a closed socket
 </span>  <span class='kw'>unless</span> <span class='id identifier rubyid_chunk'>chunk</span>
-    <span class='ivar'>@body</span>.<span class='id identifier rubyid_close'>close</span>
+    <span class='ivar'>@body</span>.<span class='id identifier rubyid_close'><a href="#close-instance_method" title="Puma::Client#close (method)">close</a></span>
     <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='id identifier rubyid_set_ready'>set_ready</span>
+    <span class='id identifier rubyid_set_ready'><a href="#set_ready-instance_method" title="Puma::Client#set_ready (method)">set_ready</a></span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>EOFError</span>
   <span class='kw'>end</span>
 
@@ -1007,7 +1007,7 @@
   <span class='kw'>if</span> <span class='id identifier rubyid_remain'>remain</span> <span class='op'>&lt;=</span> <span class='int'>0</span>
     <span class='ivar'>@body</span>.<span class='id identifier rubyid_rewind'>rewind</span>
     <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='id identifier rubyid_set_ready'>set_ready</span>
+    <span class='id identifier rubyid_set_ready'><a href="#set_ready-instance_method" title="Puma::Client#set_ready (method)">set_ready</a></span>
     <span class='kw'>return</span> <span class='kw'>true</span>
   <span class='kw'>end</span>
 
@@ -1024,11 +1024,11 @@
   <h3 class='signature priv'>
     #<strong>read_chunked_body</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L374-L394'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L382-L402'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='374' data-end='394'></pre>
+  <pre class='lines_num' data-start='382' data-end='402'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 374</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 382</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_chunked_body'>read_chunked_body</span>
@@ -1043,13 +1043,13 @@
 
     <span class='comment'># No chunk means a closed socket
 </span>    <span class='kw'>unless</span> <span class='id identifier rubyid_chunk'>chunk</span>
-      <span class='ivar'>@body</span>.<span class='id identifier rubyid_close'>close</span>
+      <span class='ivar'>@body</span>.<span class='id identifier rubyid_close'><a href="#close-instance_method" title="Puma::Client#close (method)">close</a></span>
       <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
-      <span class='id identifier rubyid_set_ready'>set_ready</span>
+      <span class='id identifier rubyid_set_ready'><a href="#set_ready-instance_method" title="Puma::Client#set_ready (method)">set_ready</a></span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='const'>EOFError</span>
     <span class='kw'>end</span>
 
-    <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_decode_chunk'>decode_chunk</span>(<span class='id identifier rubyid_chunk'>chunk</span>)
+    <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_decode_chunk'><a href="#decode_chunk-instance_method" title="Puma::Client#decode_chunk (method)">decode_chunk</a></span>(<span class='id identifier rubyid_chunk'>chunk</span>)
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </pre>
@@ -1061,7 +1061,7 @@
   <h3 class='signature '>
     #<strong>reset</strong>(fast_check = true)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L107-L141'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L107-L141'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='107' data-end='141'></pre>
   <div class='lines_code'>
@@ -1084,7 +1084,7 @@
     <span class='ivar'>@parsed_bytes</span> <span class='op'>=</span> <span class='ivar'>@parser</span>.<span class='id identifier rubyid_execute'>execute</span>(<span class='ivar'>@env</span><span class='comma'>,</span> <span class='ivar'>@buffer</span><span class='comma'>,</span> <span class='ivar'>@parsed_bytes</span>)
 
     <span class='kw'>if</span> <span class='ivar'>@parser</span>.<span class='id identifier rubyid_finished?'>finished?</span>
-      <span class='kw'>return</span> <span class='id identifier rubyid_setup_body'>setup_body</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_setup_body'><a href="#setup_body-instance_method" title="Puma::Client#setup_body (method)">setup_body</a></span>
     <span class='kw'>elsif</span> <span class='ivar'>@parsed_bytes</span> <span class='op'>&gt;=</span> <span class='const'><a href="Const.html#MAX_HEADER-constant" title="Puma::Const::MAX_HEADER (constant)">MAX_HEADER</a></span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="HttpParserError.html" title="Puma::HttpParserError (class)">HttpParserError</a></span><span class='comma'>,</span>
         <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HEADER is longer than allowed, aborting client early.</span><span class='tstring_end'>&quot;</span></span>
@@ -1095,7 +1095,7 @@
     <span class='kw'>begin</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_fast_check'>fast_check</span> <span class='op'>&amp;&amp;</span>
           <span class='const'><a href="../IO.html" title="IO (class)">IO</a></span>.<span class='id identifier rubyid_select'>select</span>([<span class='ivar'>@to_io</span>]<span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='const'><a href="Const.html#FAST_TRACK_KA_TIMEOUT-constant" title="Puma::Const::FAST_TRACK_KA_TIMEOUT (constant)">FAST_TRACK_KA_TIMEOUT</a></span>)
-        <span class='kw'>return</span> <span class='id identifier rubyid_try_to_finish'>try_to_finish</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_try_to_finish'><a href="#try_to_finish-instance_method" title="Puma::Client#try_to_finish (method)">try_to_finish</a></span>
       <span class='kw'>end</span>
     <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>
       <span class='comment'># swallow it
@@ -1112,11 +1112,11 @@
   <h3 class='signature priv'>
     #<strong>set_ready</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L486-L492'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L494-L500'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='486' data-end='492'></pre>
+  <pre class='lines_num' data-start='494' data-end='500'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 486</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 494</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_ready'>set_ready</span>
@@ -1135,7 +1135,7 @@
   <h3 class='signature '>
     #<strong>set_timeout</strong>(val)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L103-L105'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L103-L105'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='103' data-end='105'></pre>
   <div class='lines_code'>
@@ -1154,9 +1154,9 @@
   <h3 class='signature priv'>
     #<strong>setup_body</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L272-L327'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L272-L335'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='272' data-end='327'></pre>
+  <pre class='lines_num' data-start='272' data-end='335'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/client.rb', line 272</span></pre>
 <pre class='code ruby'>
@@ -1173,12 +1173,20 @@
 
   <span class='ivar'>@read_header</span> <span class='op'>=</span> <span class='kw'>false</span>
 
-  <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='ivar'>@parser</span>.<span class='id identifier rubyid_body'>body</span>
+  <span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span> <span class='op'>=</span> <span class='ivar'>@parser</span>.<span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span>
 
   <span class='id identifier rubyid_te'>te</span> <span class='op'>=</span> <span class='ivar'>@env</span>[<span class='const'><a href="Const.html#TRANSFER_ENCODING2-constant" title="Puma::Const::TRANSFER_ENCODING2 (constant)">TRANSFER_ENCODING2</a></span>]
 
-  <span class='kw'>if</span> <span class='id identifier rubyid_te'>te</span> <span class='op'>&amp;&amp;</span> <span class='const'><a href="Const.html#CHUNKED-constant" title="Puma::Const::CHUNKED (constant)">CHUNKED</a></span>.<span class='id identifier rubyid_casecmp'>casecmp</span>(<span class='id identifier rubyid_te'>te</span>) <span class='op'>==</span> <span class='int'>0</span>
-    <span class='kw'>return</span> <span class='id identifier rubyid_setup_chunked_body'>setup_chunked_body</span>(<span class='id identifier rubyid_body'>body</span>)
+  <span class='kw'>if</span> <span class='id identifier rubyid_te'>te</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_te'>te</span>.<span class='id identifier rubyid_include?'>include?</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>,</span><span class='tstring_end'>&quot;</span></span>)
+      <span class='id identifier rubyid_te'>te</span>.<span class='id identifier rubyid_split'>split</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>,</span><span class='tstring_end'>&quot;</span></span>).<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_part'>part</span><span class='op'>|</span>
+        <span class='kw'>if</span> <span class='const'><a href="Const.html#CHUNKED-constant" title="Puma::Const::CHUNKED (constant)">CHUNKED</a></span>.<span class='id identifier rubyid_casecmp'>casecmp</span>(<span class='id identifier rubyid_part'>part</span>.<span class='id identifier rubyid_strip'>strip</span>) <span class='op'>==</span> <span class='int'>0</span>
+          <span class='kw'>return</span> <span class='id identifier rubyid_setup_chunked_body'><a href="#setup_chunked_body-instance_method" title="Puma::Client#setup_chunked_body (method)">setup_chunked_body</a></span>(<span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span>)
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>elsif</span> <span class='const'><a href="Const.html#CHUNKED-constant" title="Puma::Const::CHUNKED (constant)">CHUNKED</a></span>.<span class='id identifier rubyid_casecmp'>casecmp</span>(<span class='id identifier rubyid_te'>te</span>) <span class='op'>==</span> <span class='int'>0</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_setup_chunked_body'><a href="#setup_chunked_body-instance_method" title="Puma::Client#setup_chunked_body (method)">setup_chunked_body</a></span>(<span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span>)
+    <span class='kw'>end</span>
   <span class='kw'>end</span>
 
   <span class='ivar'>@chunked_body</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -1186,32 +1194,32 @@
   <span class='id identifier rubyid_cl'>cl</span> <span class='op'>=</span> <span class='ivar'>@env</span>[<span class='const'><a href="Const.html#CONTENT_LENGTH-constant" title="Puma::Const::CONTENT_LENGTH (constant)">CONTENT_LENGTH</a></span>]
 
   <span class='kw'>unless</span> <span class='id identifier rubyid_cl'>cl</span>
-    <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_body'>body</span>
+    <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span>.<span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span>
     <span class='ivar'>@body</span> <span class='op'>=</span> <span class='const'><a href="#EmptyBody-constant" title="Puma::Client::EmptyBody (constant)">EmptyBody</a></span>
-    <span class='id identifier rubyid_set_ready'>set_ready</span>
+    <span class='id identifier rubyid_set_ready'><a href="#set_ready-instance_method" title="Puma::Client#set_ready (method)">set_ready</a></span>
     <span class='kw'>return</span> <span class='kw'>true</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_remain'>remain</span> <span class='op'>=</span> <span class='id identifier rubyid_cl'>cl</span>.<span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>-</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_bytesize'>bytesize</span>
+  <span class='id identifier rubyid_remain'>remain</span> <span class='op'>=</span> <span class='id identifier rubyid_cl'>cl</span>.<span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>-</span> <span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span>.<span class='id identifier rubyid_bytesize'>bytesize</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_remain'>remain</span> <span class='op'>&lt;=</span> <span class='int'>0</span>
-    <span class='ivar'>@body</span> <span class='op'>=</span> <span class='const'>StringIO</span>.<span class='id identifier rubyid_new'>new</span>(<span class='id identifier rubyid_body'>body</span>)
+    <span class='ivar'>@body</span> <span class='op'>=</span> <span class='const'>StringIO</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Client.new (method)">new</a></span>(<span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span>)
     <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='id identifier rubyid_set_ready'>set_ready</span>
+    <span class='id identifier rubyid_set_ready'><a href="#set_ready-instance_method" title="Puma::Client#set_ready (method)">set_ready</a></span>
     <span class='kw'>return</span> <span class='kw'>true</span>
   <span class='kw'>end</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_remain'>remain</span> <span class='op'>&gt;</span> <span class='const'><a href="Const.html#MAX_BODY-constant" title="Puma::Const::MAX_BODY (constant)">MAX_BODY</a></span>
-    <span class='ivar'>@body</span> <span class='op'>=</span> <span class='const'>Tempfile</span>.<span class='id identifier rubyid_new'>new</span>(<span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#PUMA_TMP_BASE-constant" title="Puma::Const::PUMA_TMP_BASE (constant)">PUMA_TMP_BASE</a></span>)
+    <span class='ivar'>@body</span> <span class='op'>=</span> <span class='const'>Tempfile</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Client.new (method)">new</a></span>(<span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#PUMA_TMP_BASE-constant" title="Puma::Const::PUMA_TMP_BASE (constant)">PUMA_TMP_BASE</a></span>)
     <span class='ivar'>@body</span>.<span class='id identifier rubyid_binmode'>binmode</span>
     <span class='ivar'>@tempfile</span> <span class='op'>=</span> <span class='ivar'>@body</span>
   <span class='kw'>else</span>
     <span class='comment'># The body[0,0] trick is to get an empty string in the same
 </span>    <span class='comment'># encoding as body.
-</span>    <span class='ivar'>@body</span> <span class='op'>=</span> <span class='const'>StringIO</span>.<span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_body'>body</span>[<span class='int'>0</span><span class='comma'>,</span><span class='int'>0</span>]
+</span>    <span class='ivar'>@body</span> <span class='op'>=</span> <span class='const'>StringIO</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Client.new (method)">new</a></span> <span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span>[<span class='int'>0</span><span class='comma'>,</span><span class='int'>0</span>]
   <span class='kw'>end</span>
 
-  <span class='ivar'>@body</span>.<span class='id identifier rubyid_write'>write</span> <span class='id identifier rubyid_body'>body</span>
+  <span class='ivar'>@body</span>.<span class='id identifier rubyid_write'>write</span> <span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span>
 
   <span class='ivar'>@body_remain</span> <span class='op'>=</span> <span class='id identifier rubyid_remain'>remain</span>
 
@@ -1226,23 +1234,23 @@
   <h3 class='signature priv'>
     #<strong>setup_chunked_body</strong>(body)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L396-L406'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L404-L414'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='396' data-end='406'></pre>
+  <pre class='lines_num' data-start='404' data-end='414'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/client.rb', line 396</span></pre>
+<pre><span class='info file'># File 'lib/puma/client.rb', line 404</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_setup_chunked_body'>setup_chunked_body</span>(<span class='id identifier rubyid_body'>body</span>)
+<span class='kw'>def</span> <span class='id identifier rubyid_setup_chunked_body'>setup_chunked_body</span>(<span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span>)
   <span class='ivar'>@chunked_body</span> <span class='op'>=</span> <span class='kw'>true</span>
   <span class='ivar'>@partial_part_left</span> <span class='op'>=</span> <span class='int'>0</span>
   <span class='ivar'>@prev_chunk</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
 
-  <span class='ivar'>@body</span> <span class='op'>=</span> <span class='const'>Tempfile</span>.<span class='id identifier rubyid_new'>new</span>(<span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#PUMA_TMP_BASE-constant" title="Puma::Const::PUMA_TMP_BASE (constant)">PUMA_TMP_BASE</a></span>)
+  <span class='ivar'>@body</span> <span class='op'>=</span> <span class='const'>Tempfile</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Client.new (method)">new</a></span>(<span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#PUMA_TMP_BASE-constant" title="Puma::Const::PUMA_TMP_BASE (constant)">PUMA_TMP_BASE</a></span>)
   <span class='ivar'>@body</span>.<span class='id identifier rubyid_binmode'>binmode</span>
   <span class='ivar'>@tempfile</span> <span class='op'>=</span> <span class='ivar'>@body</span>
 
-  <span class='kw'>return</span> <span class='id identifier rubyid_decode_chunk'>decode_chunk</span>(<span class='id identifier rubyid_body'>body</span>)
+  <span class='kw'>return</span> <span class='id identifier rubyid_decode_chunk'><a href="#decode_chunk-instance_method" title="Puma::Client#decode_chunk (method)">decode_chunk</a></span>(<span class='id identifier rubyid_body'><a href="#body-instance_method" title="Puma::Client#body (method)">body</a></span>)
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -1253,7 +1261,7 @@
   <h3 class='signature '>
     #<strong>try_to_finish</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L151-L185'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L151-L185'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='151' data-end='185'></pre>
   <div class='lines_code'>
@@ -1261,7 +1269,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_try_to_finish'>try_to_finish</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_read_body'>read_body</span> <span class='kw'>unless</span> <span class='ivar'>@read_header</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_read_body'><a href="#read_body-instance_method" title="Puma::Client#read_body (method)">read_body</a></span> <span class='kw'>unless</span> <span class='ivar'>@read_header</span>
 
   <span class='kw'>begin</span>
     <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='ivar'>@io</span>.<span class='id identifier rubyid_read_nonblock'>read_nonblock</span>(<span class='const'><a href="Const.html#CHUNK_SIZE-constant" title="Puma::Const::CHUNK_SIZE (constant)">CHUNK_SIZE</a></span>)
@@ -1274,7 +1282,7 @@
   <span class='comment'># No data means a closed socket
 </span>  <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span>
     <span class='ivar'>@buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='id identifier rubyid_set_ready'>set_ready</span>
+    <span class='id identifier rubyid_set_ready'><a href="#set_ready-instance_method" title="Puma::Client#set_ready (method)">set_ready</a></span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>EOFError</span>
   <span class='kw'>end</span>
 
@@ -1287,7 +1295,7 @@
   <span class='ivar'>@parsed_bytes</span> <span class='op'>=</span> <span class='ivar'>@parser</span>.<span class='id identifier rubyid_execute'>execute</span>(<span class='ivar'>@env</span><span class='comma'>,</span> <span class='ivar'>@buffer</span><span class='comma'>,</span> <span class='ivar'>@parsed_bytes</span>)
 
   <span class='kw'>if</span> <span class='ivar'>@parser</span>.<span class='id identifier rubyid_finished?'>finished?</span>
-    <span class='kw'>return</span> <span class='id identifier rubyid_setup_body'>setup_body</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_setup_body'><a href="#setup_body-instance_method" title="Puma::Client#setup_body (method)">setup_body</a></span>
   <span class='kw'>elsif</span> <span class='ivar'>@parsed_bytes</span> <span class='op'>&gt;=</span> <span class='const'><a href="Const.html#MAX_HEADER-constant" title="Puma::Const::MAX_HEADER (constant)">MAX_HEADER</a></span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="HttpParserError.html" title="Puma::HttpParserError (class)">HttpParserError</a></span><span class='comma'>,</span>
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HEADER is longer than allowed, aborting client early.</span><span class='tstring_end'>&quot;</span></span>
@@ -1304,7 +1312,7 @@
   <h3 class='signature '>
     #<strong>write_error</strong>(status_code)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/client.rb#L251-L256'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/client.rb#L251-L256'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='251' data-end='256'></pre>
   <div class='lines_code'>

@@ -78,7 +78,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L10'>lib/puma/minissl.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L10'>lib/puma/minissl.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -207,7 +207,7 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L11-L15'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L11-L15'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='11' data-end='15'></pre>
   <div class='lines_code'>
@@ -229,7 +229,7 @@
   <h3 class='signature ro first'>
     #<strong>closed?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L21-L23'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L21-L23'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='21' data-end='23'></pre>
   <div class='lines_code'>
@@ -248,7 +248,7 @@
   <h3 class='signature ro'>
     #<strong>should_drop_bytes?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L135-L137'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L135-L137'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='135' data-end='137'></pre>
   <div class='lines_code'>
@@ -275,14 +275,14 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L107-L107'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L107-L107'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='107' data-end='107'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/minissl.rb', line 107</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='op'>&lt;&lt;</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_write'>write</span>
+<span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='op'>&lt;&lt;</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_write'><a href="#write-instance_method" title="Puma::MiniSSL::Socket#write (method)">write</a></span>
 </pre>
   </div>
 </div>
@@ -292,7 +292,7 @@
   <h3 class='signature '>
     #<strong>close</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L139-L153'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L139-L153'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='139' data-end='153'></pre>
   <div class='lines_code'>
@@ -304,8 +304,8 @@
     <span class='comment'># Read any drop any partially initialized sockets and any received bytes during shutdown.
 </span>    <span class='comment'># Don&#39;t let this socket hold this loop forever.
 </span>    <span class='comment'># If it can&#39;t send more packets within 1s, then give up.
-</span>    <span class='kw'>while</span> <span class='id identifier rubyid_should_drop_bytes?'>should_drop_bytes?</span>
-      <span class='kw'>return</span> <span class='kw'>if</span> [<span class='symbeg'>:</span><span class='id identifier rubyid_timeout'>timeout</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_eof'>eof</span>].<span class='id identifier rubyid_include?'>include?</span>(<span class='id identifier rubyid_read_and_drop'>read_and_drop</span>(<span class='int'>1</span>))
+</span>    <span class='kw'>while</span> <span class='id identifier rubyid_should_drop_bytes?'><a href="#should_drop_bytes%3F-instance_method" title="Puma::MiniSSL::Socket#should_drop_bytes? (method)">should_drop_bytes?</a></span>
+      <span class='kw'>return</span> <span class='kw'>if</span> [<span class='symbeg'>:</span><span class='id identifier rubyid_timeout'>timeout</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_eof'>eof</span>].<span class='id identifier rubyid_include?'>include?</span>(<span class='id identifier rubyid_read_and_drop'><a href="#read_and_drop-instance_method" title="Puma::MiniSSL::Socket#read_and_drop (method)">read_and_drop</a></span>(<span class='int'>1</span>))
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'><a href="../../IOError.html" title="IOError (class)">IOError</a></span><span class='comma'>,</span> <span class='const'>SystemCallError</span>
     <span class='const'>Thread</span>.<span class='id identifier rubyid_current'>current</span>.<span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span>.<span class='id identifier rubyid_current'>current</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span>
@@ -323,7 +323,7 @@
   <h3 class='signature '>
     #<strong>engine_read_all</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L42-L48'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L42-L48'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='42' data-end='48'></pre>
   <div class='lines_code'>
@@ -346,7 +346,7 @@
   <h3 class='signature '>
     #<strong>flush</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L122-L124'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L122-L124'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='122' data-end='124'></pre>
   <div class='lines_code'>
@@ -365,7 +365,7 @@
   <h3 class='signature '>
     #<strong>peeraddr</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L155-L157'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L155-L157'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='155' data-end='157'></pre>
   <div class='lines_code'>
@@ -384,7 +384,7 @@
   <h3 class='signature '>
     #<strong>peercert</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L159-L166'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L159-L166'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='159' data-end='166'></pre>
   <div class='lines_code'>
@@ -397,7 +397,7 @@
   <span class='id identifier rubyid_raw'>raw</span> <span class='op'>=</span> <span class='ivar'>@engine</span>.<span class='id identifier rubyid_peercert'>peercert</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_raw'>raw</span>
 
-  <span class='ivar'>@peercert</span> <span class='op'>=</span> <span class='const'><a href="../../OpenSSL.html" title="OpenSSL (module)">OpenSSL</a></span><span class='op'>::</span><span class='const'>X509</span><span class='op'>::</span><span class='const'>Certificate</span>.<span class='id identifier rubyid_new'>new</span> <span class='id identifier rubyid_raw'>raw</span>
+  <span class='ivar'>@peercert</span> <span class='op'>=</span> <span class='const'><a href="../../OpenSSL.html" title="OpenSSL (module)">OpenSSL</a></span><span class='op'>::</span><span class='const'>X509</span><span class='op'>::</span><span class='const'>Certificate</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::MiniSSL::Socket.new (method)">new</a></span> <span class='id identifier rubyid_raw'>raw</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -408,7 +408,7 @@
   <h3 class='signature '>
     #<strong>read_and_drop</strong>(timeout = 1)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L126-L133'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L126-L133'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='126' data-end='133'></pre>
   <div class='lines_code'>
@@ -417,7 +417,7 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_and_drop'>read_and_drop</span>(<span class='id identifier rubyid_timeout'>timeout</span> <span class='op'>=</span> <span class='int'>1</span>)
   <span class='kw'>return</span> <span class='symbeg'>:</span><span class='id identifier rubyid_timeout'>timeout</span> <span class='kw'>unless</span> <span class='const'><a href="../../IO.html" title="IO (class)">IO</a></span>.<span class='id identifier rubyid_select'>select</span>([<span class='ivar'>@socket</span>]<span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_timeout'>timeout</span>)
-  <span class='kw'>return</span> <span class='symbeg'>:</span><span class='id identifier rubyid_eof'>eof</span> <span class='kw'>unless</span> <span class='id identifier rubyid_read_nonblock'>read_nonblock</span>(<span class='int'>1024</span>)
+  <span class='kw'>return</span> <span class='symbeg'>:</span><span class='id identifier rubyid_eof'>eof</span> <span class='kw'>unless</span> <span class='id identifier rubyid_read_nonblock'><a href="#read_nonblock-instance_method" title="Puma::MiniSSL::Socket#read_nonblock (method)">read_nonblock</a></span>(<span class='int'>1024</span>)
   <span class='symbeg'>:</span><span class='id identifier rubyid_drop'>drop</span>
 <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EAGAIN</span>
   <span class='comment'># do nothing
@@ -432,7 +432,7 @@
   <h3 class='signature '>
     #<strong>read_nonblock</strong>(size, *_)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L50-L82'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L50-L82'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='50' data-end='82'></pre>
   <div class='lines_code'>
@@ -443,7 +443,7 @@
   <span class='comment'># *_ is to deal with keyword args that were added
 </span>  <span class='comment'># at some point (and being used in the wild)
 </span>  <span class='kw'>while</span> <span class='kw'>true</span>
-    <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='id identifier rubyid_engine_read_all'>engine_read_all</span>
+    <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='id identifier rubyid_engine_read_all'><a href="#engine_read_all-instance_method" title="Puma::MiniSSL::Socket#engine_read_all (method)">engine_read_all</a></span>
     <span class='kw'>return</span> <span class='id identifier rubyid_output'>output</span> <span class='kw'>if</span> <span class='id identifier rubyid_output'>output</span>
 
     <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='ivar'>@socket</span>.<span class='id identifier rubyid_read_nonblock'>read_nonblock</span>(<span class='id identifier rubyid_size'>size</span><span class='comma'>,</span> <span class='label'>exception:</span> <span class='kw'>false</span>)
@@ -463,12 +463,12 @@
     <span class='kw'>end</span>
 
     <span class='ivar'>@engine</span>.<span class='id identifier rubyid_inject'>inject</span>(<span class='id identifier rubyid_data'>data</span>)
-    <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='id identifier rubyid_engine_read_all'>engine_read_all</span>
+    <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='id identifier rubyid_engine_read_all'><a href="#engine_read_all-instance_method" title="Puma::MiniSSL::Socket#engine_read_all (method)">engine_read_all</a></span>
 
     <span class='kw'>return</span> <span class='id identifier rubyid_output'>output</span> <span class='kw'>if</span> <span class='id identifier rubyid_output'>output</span>
 
     <span class='kw'>while</span> <span class='id identifier rubyid_neg_data'>neg_data</span> <span class='op'>=</span> <span class='ivar'>@engine</span>.<span class='id identifier rubyid_extract'>extract</span>
-      <span class='ivar'>@socket</span>.<span class='id identifier rubyid_write'>write</span> <span class='id identifier rubyid_neg_data'>neg_data</span>
+      <span class='ivar'>@socket</span>.<span class='id identifier rubyid_write'><a href="#write-instance_method" title="Puma::MiniSSL::Socket#write (method)">write</a></span> <span class='id identifier rubyid_neg_data'>neg_data</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
@@ -481,7 +481,7 @@
   <h3 class='signature '>
     #<strong>readpartial</strong>(size)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L25-L40'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L25-L40'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='25' data-end='40'></pre>
   <div class='lines_code'>
@@ -500,7 +500,7 @@
     <span class='kw'>return</span> <span class='id identifier rubyid_output'>output</span> <span class='kw'>if</span> <span class='id identifier rubyid_output'>output</span>
 
     <span class='kw'>while</span> <span class='id identifier rubyid_neg_data'>neg_data</span> <span class='op'>=</span> <span class='ivar'>@engine</span>.<span class='id identifier rubyid_extract'>extract</span>
-      <span class='ivar'>@socket</span>.<span class='id identifier rubyid_write'>write</span> <span class='id identifier rubyid_neg_data'>neg_data</span>
+      <span class='ivar'>@socket</span>.<span class='id identifier rubyid_write'><a href="#write-instance_method" title="Puma::MiniSSL::Socket#write (method)">write</a></span> <span class='id identifier rubyid_neg_data'>neg_data</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
@@ -520,14 +520,14 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L106-L106'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L106-L106'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='106' data-end='106'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/minissl.rb', line 106</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='id identifier rubyid_syswrite'>syswrite</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_write'>write</span>
+<span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='id identifier rubyid_syswrite'>syswrite</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_write'><a href="#write-instance_method" title="Puma::MiniSSL::Socket#write (method)">write</a></span>
 </pre>
   </div>
 </div>
@@ -537,7 +537,7 @@
   <h3 class='signature '>
     #<strong>to_io</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L17-L19'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L17-L19'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='17' data-end='19'></pre>
   <div class='lines_code'>
@@ -557,7 +557,7 @@
     #<strong>write</strong>(data)  
     <span class='aliases'>Also known as: <span class='names'>#syswrite, #&lt;&lt;</span></span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L84-L104'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L84-L104'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='84' data-end='104'></pre>
   <div class='lines_code'>
@@ -601,7 +601,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.2/lib/puma/minissl.rb#L118-L120'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L118-L120'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='118' data-end='120'></pre>
   <div class='lines_code'>
@@ -609,7 +609,7 @@
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_nonblock'>write_nonblock</span>(<span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid__'>_</span>)
-  <span class='id identifier rubyid_write'>write</span> <span class='id identifier rubyid_data'>data</span>
+  <span class='id identifier rubyid_write'><a href="#write-instance_method" title="Puma::MiniSSL::Socket#write (method)">write</a></span> <span class='id identifier rubyid_data'>data</span>
 <span class='kw'>end</span>
 </pre>
   </div>
