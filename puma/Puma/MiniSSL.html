@@ -86,7 +86,7 @@
     </td></tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2 o'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L9'>lib/puma/minissl.rb</a><span class='defines'>,<br /><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L482'>ext/puma_http11/mini_ssl.c</a>,<br/> <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L548'>ext/puma_http11/mini_ssl.c</a>,<br/> <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl/context_builder.rb#L2'>lib/puma/minissl/context_builder.rb</a></span>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma.rb#L42'>lib/puma.rb</a><span class='defines'>,<br /><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/ext/puma_http11/mini_ssl.c#L561'>ext/puma_http11/mini_ssl.c</a>,<br/> <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/ext/puma_http11/mini_ssl.c#L493'>ext/puma_http11/mini_ssl.c</a>,<br/> <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L12'>lib/puma/minissl.rb</a>,<br/> <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl/context_builder.rb#L2'>lib/puma/minissl/context_builder.rb</a></span>
       </td>
     </tr>
   </tbody>
@@ -96,6 +96,30 @@
 <div>
 <ul class='constants summary full'>
   <li>
+    <span id='HAS_TLS1_3-constant' class='summary_signature'>HAS_TLS1_3 =</span>
+    <div class='docstring'>
+  <div class='discussion'>
+    
+<p>Define constant at runtime, as it&#39;s easy to determine at built time, but <a href="../Puma.html" title="Puma (module)">::Puma</a> could (it shouldn&#39;t) be loaded with an older <a href="../OpenSSL.html" title="OpenSSL (module)">::OpenSSL</a> version</p>
+
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L16-L18'># File 'lib/puma/minissl.rb', line 16</a>    <pre class='code ruby'><span class='op'>!</span><span class='const'><a href="../Puma.html#IS_JRUBY-constant" title="Puma::IS_JRUBY (constant)">IS_JRUBY</a></span> <span class='op'>&amp;&amp;</span>
+(<span class='const'><a href="#OPENSSL_VERSION-constant" title="Puma::MiniSSL::OPENSSL_VERSION (constant)">OPENSSL_VERSION</a></span>[<span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'> \d\.\d\.\d+</span><span class='regexp_end'>/</span></span>].<span class='id identifier rubyid_split'>split</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span>).<span class='id identifier rubyid_map'>map</span>(<span class='op'>&amp;</span><span class='symbeg'>:</span><span class='id identifier rubyid_to_i'>to_i</span>) <span class='op'>&lt;=&gt;</span> [<span class='int'>1</span><span class='comma'>,</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>1</span>]) <span class='op'>!=</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>&amp;&amp;</span>
+(<span class='const'><a href="#OPENSSL_LIBRARY_VERSION-constant" title="Puma::MiniSSL::OPENSSL_LIBRARY_VERSION (constant)">OPENSSL_LIBRARY_VERSION</a></span>[<span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'> \d\.\d\.\d+</span><span class='regexp_end'>/</span></span>].<span class='id identifier rubyid_split'>split</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span>).<span class='id identifier rubyid_map'>map</span>(<span class='op'>&amp;</span><span class='symbeg'>:</span><span class='id identifier rubyid_to_i'>to_i</span>) <span class='op'>&lt;=&gt;</span> [<span class='int'>1</span><span class='comma'>,</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>1</span>]) <span class='op'>!=</span><span class='op'>-</span><span class='int'>1</span></pre>
+  </li>
+  <li>
     <span id='OPENSSL_LIBRARY_VERSION-constant' class='summary_signature'>OPENSSL_LIBRARY_VERSION =</span>
     <div class='docstring'>
   <div class='discussion'>
@@ -104,29 +128,17 @@
 
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L492'># File 'ext/puma_http11/mini_ssl.c', line 492</a>    <pre class='code c'><span class='id identifier rubyid_rb_str_new2'>rb_str_new2</span>(<span class='const'>OpenSSL_version</span>(<span class='const'><a href="#OPENSSL_VERSION-constant" title="Puma::MiniSSL::OPENSSL_VERSION (constant)">OPENSSL_VERSION</a></span>))</pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/ext/puma_http11/mini_ssl.c#L503'># File 'ext/puma_http11/mini_ssl.c', line 503</a>    <pre class='code c'><span class='id identifier rubyid_rb_str_new2'>rb_str_new2</span>(<span class='const'>OpenSSL_version</span>(<span class='const'><a href="#OPENSSL_VERSION-constant" title="Puma::MiniSSL::OPENSSL_VERSION (constant)">OPENSSL_VERSION</a></span>))</pre>
   </li>
   <li>
     <span id='OPENSSL_NO_SSL3-constant' class='summary_signature'>OPENSSL_NO_SSL3 =</span>
-    <div class='docstring'>
-  <div class='discussion'>
-    
-<p>True if SSL3 is not available</p>
-
-  </div>
-</div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L499'># File 'ext/puma_http11/mini_ssl.c', line 499</a>    <pre class='code c'><span class='const'>Qtrue</span></pre>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L206-L206'># File 'lib/puma/minissl.rb', line 206</a>    <pre class='code ruby'><span class='kw'>false</span></pre>
   </li>
   <li>
     <span id='OPENSSL_NO_TLS1-constant' class='summary_signature'>OPENSSL_NO_TLS1 =</span>
-    <div class='docstring'>
-  <div class='discussion'>
-    
-<p>True if TLS1 is not available</p>
-
-  </div>
-</div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L506'># File 'ext/puma_http11/mini_ssl.c', line 506</a>    <pre class='code c'><span class='const'>Qtrue</span></pre>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L207-L207'># File 'lib/puma/minissl.rb', line 207</a>    <pre class='code ruby'><span class='kw'>false</span></pre>
   </li>
   <li>
     <span id='OPENSSL_NO_TLS1_1-constant' class='summary_signature'>OPENSSL_NO_TLS1_1 =</span>
@@ -137,7 +149,7 @@
 
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L513'># File 'ext/puma_http11/mini_ssl.c', line 513</a>    <pre class='code c'><span class='const'>Qtrue</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/ext/puma_http11/mini_ssl.c#L524'># File 'ext/puma_http11/mini_ssl.c', line 524</a>    <pre class='code c'><span class='const'>Qtrue</span></pre>
   </li>
   <li>
     <span id='OPENSSL_VERSION-constant' class='summary_signature'>OPENSSL_VERSION =</span>
@@ -148,22 +160,22 @@
 
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L488'># File 'ext/puma_http11/mini_ssl.c', line 488</a>    <pre class='code c'><span class='id identifier rubyid_rb_str_new2'>rb_str_new2</span>(<span class='const'>OPENSSL_VERSION_TEXT</span>)</pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/ext/puma_http11/mini_ssl.c#L499'># File 'ext/puma_http11/mini_ssl.c', line 499</a>    <pre class='code c'><span class='id identifier rubyid_rb_str_new2'>rb_str_new2</span>(<span class='const'>OPENSSL_VERSION_TEXT</span>)</pre>
   </li>
   <li>
     <span id='VERIFY_FAIL_IF_NO_PEER_CERT-constant' class='summary_signature'>VERIFY_FAIL_IF_NO_PEER_CERT =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L245-L245'># File 'lib/puma/minissl.rb', line 245</a>    <pre class='code ruby'><span class='int'>2</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L282-L282'># File 'lib/puma/minissl.rb', line 282</a>    <pre class='code ruby'><span class='int'>2</span></pre>
   </li>
   <li>
     <span id='VERIFY_NONE-constant' class='summary_signature'>VERIFY_NONE =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L243-L243'># File 'lib/puma/minissl.rb', line 243</a>    <pre class='code ruby'><span class='int'>0</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L280-L280'># File 'lib/puma/minissl.rb', line 280</a>    <pre class='code ruby'><span class='int'>0</span></pre>
   </li>
   <li>
     <span id='VERIFY_PEER-constant' class='summary_signature'>VERIFY_PEER =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L244-L244'># File 'lib/puma/minissl.rb', line 244</a>    <pre class='code ruby'><span class='int'>1</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L281-L281'># File 'lib/puma/minissl.rb', line 281</a>    <pre class='code ruby'><span class='int'>1</span></pre>
   </li>
 </ul>
 </div>
@@ -183,14 +195,16 @@
   <h3 class='signature  first'>
     .<strong>check</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/minissl.rb#L174-L174'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/ext/puma_http11/mini_ssl.c#L476-L478'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='174' data-end='174'></pre>
+  <pre class='lines_num' data-start='476' data-end='478'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 174</span></pre>
-<pre class='code ruby'>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 476</span></pre>
+<pre class='code cpp'>
 
-<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_check'>check</span><span class='semicolon'>;</span> <span class='kw'>end</span>
+VALUE noop(VALUE self) {
+  return Qnil;
+}
 </pre>
   </div>
 </div>

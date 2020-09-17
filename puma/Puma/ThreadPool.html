@@ -88,7 +88,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L17'>lib/puma/thread_pool.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L17'>lib/puma/thread_pool.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -121,7 +121,7 @@
 
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L24-L24'># File 'lib/puma/thread_pool.rb', line 24</a>    <pre class='code ruby'><span class='int'>5</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L24-L24'># File 'lib/puma/thread_pool.rb', line 24</a>    <pre class='code ruby'><span class='int'>5</span></pre>
   </li>
 </ul>
 </div>
@@ -152,6 +152,12 @@
   <li>
     <span class='summary_signature rw'>
       <a href="#clean_thread_locals-instance_method" title="#clean_thread_locals (instance method)">#<strong>clean_thread_locals</strong>  </a>
+    </span>
+    <span class='note title rw'>rw</span>
+  </li>
+  <li>
+    <span class='summary_signature rw'>
+      <a href="#out_of_band_hook-instance_method" title="#out_of_band_hook (instance method)">#<strong>out_of_band_hook</strong>  </a>
     </span>
     <span class='note title rw'>rw</span>
   </li>
@@ -207,6 +213,11 @@
   </li>
   <li>
     <span class='summary_signature '>
+      <a href="#busy_threads-instance_method" title="#busy_threads (instance method)">#<strong>busy_threads</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
       <a href="#pool_capacity-instance_method" title="#pool_capacity (instance method)">#<strong>pool_capacity</strong>  </a>
     </span>
   </li>
@@ -231,8 +242,13 @@
       <a href="#trim-instance_method" title="#trim (instance method)">#<strong>trim</strong>(force = false)  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>If too many threads are in the pool, tell one to finish go ahead and exit.</p></div>
+      <div class='inline'><p>If there are any free threads in the pool, tell one to go ahead and exit.</p></div>
     </div>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#wait_for_less_busy_worker-instance_method" title="#wait_for_less_busy_worker (instance method)">#<strong>wait_for_less_busy_worker</strong>(delay_s)  </a>
+    </span>
   </li>
   <li>
     <span class='summary_signature '>
@@ -241,6 +257,17 @@
     <div class='summary_desc'>
       <div class='inline'><p>This method is used by <a href="Server.html" title="Puma::Server (class)">Server</a> to let the server know when the thread pool can pull more requests from the socket and pass to the reactor.</p></div>
     </div>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#with_mutex-instance_method" title="#with_mutex (instance method)">#<strong>with_mutex</strong>(&amp;block)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#trigger_out_of_band_hook-instance_method" title="#trigger_out_of_band_hook (instance method)">#<strong>trigger_out_of_band_hook</strong>  </a>
+    </span>
+    <span class='note title private'>private</span>
   </li>
   <li>
     <span class='summary_signature priv nodoc'>
@@ -272,9 +299,9 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L32-L61'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L32-L65'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='32' data-end='61'></pre>
+  <pre class='lines_num' data-start='32' data-end='65'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 32</span></pre>
 <pre class='code ruby'>
@@ -297,6 +324,7 @@
   <span class='ivar'>@shutdown</span> <span class='op'>=</span> <span class='kw'>false</span>
 
   <span class='ivar'>@trim_requested</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@out_of_band_pending</span> <span class='op'>=</span> <span class='kw'>false</span>
 
   <span class='ivar'>@workers</span> <span class='op'>=</span> []
 
@@ -304,7 +332,10 @@
   <span class='ivar'>@reaper</span> <span class='op'>=</span> <span class='kw'>nil</span>
 
   <span class='ivar'>@mutex</span>.<span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
-    <span class='ivar'>@min</span>.<span class='id identifier rubyid_times'>times</span> { <span class='id identifier rubyid_spawn_thread'><a href="#spawn_thread-instance_method" title="Puma::ThreadPool#spawn_thread (method)">spawn_thread</a></span> }
+    <span class='ivar'>@min</span>.<span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_spawn_thread'><a href="#spawn_thread-instance_method" title="Puma::ThreadPool#spawn_thread (method)">spawn_thread</a></span>
+      <span class='ivar'>@not_full</span>.<span class='id identifier rubyid_wait'>wait</span>(<span class='ivar'>@mutex</span>)
+    <span class='kw'>end</span>
   <span class='kw'>end</span>
 
   <span class='ivar'>@clean_thread_locals</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -319,11 +350,11 @@
   <h3 class='signature  first'>
     .<strong>clean_thread_locals</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L66-L70'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L71-L75'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='66' data-end='70'></pre>
+  <pre class='lines_num' data-start='71' data-end='75'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 66</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 71</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_clean_thread_locals'>clean_thread_locals</span>
@@ -341,14 +372,47 @@
   <h3 class='signature rw first'>
     #<strong>clean_thread_locals</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L64-L64'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L68-L68'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='64' data-end='64'></pre>
+  <pre class='lines_num' data-start='68' data-end='68'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 64</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 68</span></pre>
 <pre class='code ruby'>
 
 <span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbeg'>:</span><span class='id identifier rubyid_clean_thread_locals'>clean_thread_locals</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="out_of_band_hook-instance_method">
+  <h3 class='signature rw'>
+    #<strong>out_of_band_hook</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L69-L69'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='69' data-end='69'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 69</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_accessor'>attr_accessor</span> <span class='symbeg'>:</span><span class='id identifier rubyid_out_of_band_hook'>out_of_band_hook</span> <span class='comment'># @version 5.0.0</span>
 </pre>
   </div>
 </div>
@@ -358,11 +422,11 @@
   <h3 class='signature ro'>
     #<strong>spawned</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L63-L63'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L67-L67'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='63' data-end='63'></pre>
+  <pre class='lines_num' data-start='67' data-end='67'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 63</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 67</span></pre>
 <pre class='code ruby'>
 
 <span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_spawned'>spawned</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_trim_requested'><a href="#trim_requested-instance_method" title="Puma::ThreadPool#trim_requested (method)">trim_requested</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_waiting'><a href="#waiting-instance_method" title="Puma::ThreadPool#waiting (method)">waiting</a></span>
@@ -375,11 +439,11 @@
   <h3 class='signature ro'>
     #<strong>trim_requested</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L63-L63'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L67-L67'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='63' data-end='63'></pre>
+  <pre class='lines_num' data-start='67' data-end='67'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 63</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 67</span></pre>
 <pre class='code ruby'>
 
 <span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_spawned'><a href="#spawned-instance_method" title="Puma::ThreadPool#spawned (method)">spawned</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_trim_requested'>trim_requested</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_waiting'><a href="#waiting-instance_method" title="Puma::ThreadPool#waiting (method)">waiting</a></span>
@@ -392,11 +456,11 @@
   <h3 class='signature ro'>
     #<strong>waiting</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L63-L63'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L67-L67'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='63' data-end='63'></pre>
+  <pre class='lines_num' data-start='67' data-end='67'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 63</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 67</span></pre>
 <pre class='code ruby'>
 
 <span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_spawned'><a href="#spawned-instance_method" title="Puma::ThreadPool#spawned (method)">spawned</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_trim_requested'><a href="#trim_requested-instance_method" title="Puma::ThreadPool#trim_requested (method)">trim_requested</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_waiting'>waiting</span>
@@ -417,15 +481,15 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L154-L168'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L179-L193'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='154' data-end='168'></pre>
+  <pre class='lines_num' data-start='179' data-end='193'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 154</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 179</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='op'>&lt;&lt;</span>(<span class='id identifier rubyid_work'>work</span>)
-  <span class='ivar'>@mutex</span>.<span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_with_mutex'><a href="#with_mutex-instance_method" title="Puma::ThreadPool#with_mutex (method)">with_mutex</a></span> <span class='kw'>do</span>
     <span class='kw'>if</span> <span class='ivar'>@shutdown</span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unable to add work while shutting down</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
@@ -448,11 +512,11 @@
   <h3 class='signature '>
     #<strong>auto_reap!</strong>(timeout = 5)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L278-L281'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L320-L323'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='278' data-end='281'></pre>
+  <pre class='lines_num' data-start='320' data-end='323'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 278</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 320</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_auto_reap!'>auto_reap!</span>(<span class='id identifier rubyid_timeout'>timeout</span><span class='op'>=</span><span class='int'>5</span>)
@@ -468,11 +532,11 @@
   <h3 class='signature '>
     #<strong>auto_trim!</strong>(timeout = 30)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L273-L276'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L315-L318'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='273' data-end='276'></pre>
+  <pre class='lines_num' data-start='315' data-end='318'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 273</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 315</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_auto_trim!'>auto_trim!</span>(<span class='id identifier rubyid_timeout'>timeout</span><span class='op'>=</span><span class='int'>30</span>)
@@ -495,15 +559,50 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L74-L76'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L79-L81'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='74' data-end='76'></pre>
+  <pre class='lines_num' data-start='79' data-end='81'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 74</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 79</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_backlog'>backlog</span>
-  <span class='ivar'>@mutex</span>.<span class='id identifier rubyid_synchronize'>synchronize</span> { <span class='ivar'>@todo</span>.<span class='id identifier rubyid_size'>size</span> }
+  <span class='id identifier rubyid_with_mutex'><a href="#with_mutex-instance_method" title="Puma::ThreadPool#with_mutex (method)">with_mutex</a></span> { <span class='ivar'>@todo</span>.<span class='id identifier rubyid_size'>size</span> }
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="busy_threads-instance_method">
+  <h3 class='signature '>
+    #<strong>busy_threads</strong>  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L88-L90'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='88' data-end='90'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 88</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_busy_threads'>busy_threads</span>
+  <span class='id identifier rubyid_with_mutex'><a href="#with_mutex-instance_method" title="Puma::ThreadPool#with_mutex (method)">with_mutex</a></span> { <span class='ivar'>@spawned</span> <span class='op'>-</span> <span class='ivar'>@waiting</span> <span class='op'>+</span> <span class='ivar'>@todo</span>.<span class='id identifier rubyid_size'>size</span> }
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -514,11 +613,11 @@
   <h3 class='signature '>
     #<strong>pool_capacity</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L78-L80'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L83-L85'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='78' data-end='80'></pre>
+  <pre class='lines_num' data-start='83' data-end='85'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 78</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 83</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pool_capacity'>pool_capacity</span>
@@ -540,15 +639,15 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L231-L244'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L273-L286'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='231' data-end='244'></pre>
+  <pre class='lines_num' data-start='273' data-end='286'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 231</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 273</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reap'>reap</span>
-  <span class='ivar'>@mutex</span>.<span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_with_mutex'><a href="#with_mutex-instance_method" title="Puma::ThreadPool#with_mutex (method)">with_mutex</a></span> <span class='kw'>do</span>
     <span class='id identifier rubyid_dead_workers'>dead_workers</span> <span class='op'>=</span> <span class='ivar'>@workers</span>.<span class='id identifier rubyid_reject'>reject</span>(<span class='op'>&amp;</span><span class='symbeg'>:</span><span class='id identifier rubyid_alive?'>alive?</span>)
 
     <span class='id identifier rubyid_dead_workers'>dead_workers</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_worker'>worker</span><span class='op'>|</span>
@@ -573,20 +672,21 @@
 <div class='docstring'>
   <div class='discussion'>
     
-<p>Tell all threads in the pool to exit and wait for them to finish.</p>
+<p>Tell all threads in the pool to exit and wait for them to finish. Wait <code>timeout</code> seconds then raise <a href="ThreadPool/ForceShutdown.html" title="Puma::ThreadPool::ForceShutdown (class)">ThreadPool::ForceShutdown</a> in remaining threads. Next, wait an extra <code>grace</code> seconds then force-kill remaining threads. Finally, wait <code>kill_grace</code> seconds for remaining threads to exit.</p>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L285-L326'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L330-L371'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='285' data-end='326'></pre>
+  <pre class='lines_num' data-start='330' data-end='371'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 285</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 330</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shutdown'>shutdown</span>(<span class='id identifier rubyid_timeout'>timeout</span><span class='op'>=</span><span class='op'>-</span><span class='int'>1</span>)
-  <span class='id identifier rubyid_threads'>threads</span> <span class='op'>=</span> <span class='ivar'>@mutex</span>.<span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_threads'>threads</span> <span class='op'>=</span> <span class='id identifier rubyid_with_mutex'><a href="#with_mutex-instance_method" title="Puma::ThreadPool#with_mutex (method)">with_mutex</a></span> <span class='kw'>do</span>
     <span class='ivar'>@shutdown</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='ivar'>@trim_requested</span> <span class='op'>=</span> <span class='ivar'>@spawned</span>
     <span class='ivar'>@not_empty</span>.<span class='id identifier rubyid_broadcast'>broadcast</span>
     <span class='ivar'>@not_full</span>.<span class='id identifier rubyid_broadcast'>broadcast</span>
 
@@ -600,27 +700,26 @@
     <span class='comment'># Wait for threads to finish without force shutdown.
 </span>    <span class='id identifier rubyid_threads'>threads</span>.<span class='id identifier rubyid_each'>each</span>(<span class='op'>&amp;</span><span class='symbeg'>:</span><span class='id identifier rubyid_join'>join</span>)
   <span class='kw'>else</span>
-    <span class='comment'># Wait for threads to finish after n attempts (timeout).
-</span>    <span class='comment'># If threads are still running, it will forcefully kill them.
-</span>    <span class='id identifier rubyid_timeout'>timeout</span>.<span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_threads'>threads</span>.<span class='id identifier rubyid_delete_if'>delete_if</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span>
-        <span class='id identifier rubyid_t'>t</span>.<span class='id identifier rubyid_join'>join</span> <span class='int'>1</span>
-      <span class='kw'>end</span>
-
-      <span class='kw'>if</span> <span class='id identifier rubyid_threads'>threads</span>.<span class='id identifier rubyid_empty?'>empty?</span>
-        <span class='kw'>break</span>
-      <span class='kw'>else</span>
-        <span class='id identifier rubyid_sleep'>sleep</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_join'>join</span> <span class='op'>=</span> <span class='tlambda'>-&gt;</span>(<span class='id identifier rubyid_inner_timeout'>inner_timeout</span>) <span class='kw'>do</span>
+      <span class='id identifier rubyid_start'>start</span> <span class='op'>=</span> <span class='const'>Process</span>.<span class='id identifier rubyid_clock_gettime'>clock_gettime</span>(<span class='const'>Process</span><span class='op'>::</span><span class='const'>CLOCK_MONOTONIC</span>)
+      <span class='id identifier rubyid_threads'>threads</span>.<span class='id identifier rubyid_reject!'>reject!</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span>
+        <span class='id identifier rubyid_elapsed'>elapsed</span> <span class='op'>=</span> <span class='const'>Process</span>.<span class='id identifier rubyid_clock_gettime'>clock_gettime</span>(<span class='const'>Process</span><span class='op'>::</span><span class='const'>CLOCK_MONOTONIC</span>) <span class='op'>-</span> <span class='id identifier rubyid_start'>start</span>
+        <span class='id identifier rubyid_t'>t</span>.<span class='id identifier rubyid_join'>join</span> <span class='id identifier rubyid_inner_timeout'>inner_timeout</span> <span class='op'>-</span> <span class='id identifier rubyid_elapsed'>elapsed</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
 
-    <span class='id identifier rubyid_threads'>threads</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span>
+    <span class='comment'># Wait timeout seconds for threads to finish.
+</span>    <span class='id identifier rubyid_join'>join</span>.<span class='id identifier rubyid_call'>call</span>(<span class='id identifier rubyid_timeout'>timeout</span>)
+
+    <span class='comment'># If threads are still running, raise ForceShutdown and wait to finish.
+</span>    <span class='id identifier rubyid_threads'>threads</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span>
       <span class='id identifier rubyid_t'>t</span>.<span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="ThreadPool/ForceShutdown.html" title="Puma::ThreadPool::ForceShutdown (class)">ForceShutdown</a></span>
     <span class='kw'>end</span>
+    <span class='id identifier rubyid_join'>join</span>.<span class='id identifier rubyid_call'>call</span>(<span class='const'><a href="#SHUTDOWN_GRACE_TIME-constant" title="Puma::ThreadPool::SHUTDOWN_GRACE_TIME (constant)">SHUTDOWN_GRACE_TIME</a></span>)
 
-    <span class='id identifier rubyid_threads'>threads</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span>
-      <span class='id identifier rubyid_t'>t</span>.<span class='id identifier rubyid_join'>join</span> <span class='const'><a href="#SHUTDOWN_GRACE_TIME-constant" title="Puma::ThreadPool::SHUTDOWN_GRACE_TIME (constant)">SHUTDOWN_GRACE_TIME</a></span>
-    <span class='kw'>end</span>
+    <span class='comment'># If threads are _still_ running, forcefully kill them and wait to finish.
+</span>    <span class='id identifier rubyid_threads'>threads</span>.<span class='id identifier rubyid_each'>each</span>(<span class='op'>&amp;</span><span class='symbeg'>:</span><span class='id identifier rubyid_kill'>kill</span>)
+    <span class='id identifier rubyid_join'>join</span>.<span class='id identifier rubyid_call'>call</span>(<span class='int'>1</span>)
   <span class='kw'>end</span>
 
   <span class='ivar'>@spawned</span> <span class='op'>=</span> <span class='int'>0</span>
@@ -645,11 +744,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L86-L149'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L96-L151'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='86' data-end='149'></pre>
+  <pre class='lines_num' data-start='96' data-end='151'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 86</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 96</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spawn_thread'>spawn_thread</span>
@@ -668,53 +767,89 @@
     <span class='kw'>while</span> <span class='kw'>true</span>
       <span class='id identifier rubyid_work'>work</span> <span class='op'>=</span> <span class='kw'>nil</span>
 
-      <span class='id identifier rubyid_continue'>continue</span> <span class='op'>=</span> <span class='kw'>true</span>
-
       <span class='id identifier rubyid_mutex'>mutex</span>.<span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
         <span class='kw'>while</span> <span class='id identifier rubyid_todo'>todo</span>.<span class='id identifier rubyid_empty?'>empty?</span>
           <span class='kw'>if</span> <span class='ivar'>@trim_requested</span> <span class='op'>&gt;</span> <span class='int'>0</span>
             <span class='ivar'>@trim_requested</span> <span class='op'>-=</span> <span class='int'>1</span>
-            <span class='id identifier rubyid_continue'>continue</span> <span class='op'>=</span> <span class='kw'>false</span>
-            <span class='id identifier rubyid_not_full'>not_full</span>.<span class='id identifier rubyid_signal'>signal</span>
-            <span class='kw'>break</span>
-          <span class='kw'>end</span>
-
-          <span class='kw'>if</span> <span class='ivar'>@shutdown</span>
-            <span class='id identifier rubyid_continue'>continue</span> <span class='op'>=</span> <span class='kw'>false</span>
-            <span class='kw'>break</span>
+            <span class='ivar'>@spawned</span> <span class='op'>-=</span> <span class='int'>1</span>
+            <span class='ivar'>@workers</span>.<span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_th'>th</span>
+            <span class='const'>Thread</span>.<span class='id identifier rubyid_exit'>exit</span>
           <span class='kw'>end</span>
 
           <span class='ivar'>@waiting</span> <span class='op'>+=</span> <span class='int'>1</span>
+          <span class='kw'>if</span> <span class='ivar'>@out_of_band_pending</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_trigger_out_of_band_hook'><a href="#trigger_out_of_band_hook-instance_method" title="Puma::ThreadPool#trigger_out_of_band_hook (method)">trigger_out_of_band_hook</a></span>
+            <span class='ivar'>@out_of_band_pending</span> <span class='op'>=</span> <span class='kw'>false</span>
+          <span class='kw'>end</span>
           <span class='id identifier rubyid_not_full'>not_full</span>.<span class='id identifier rubyid_signal'>signal</span>
-          <span class='id identifier rubyid_not_empty'>not_empty</span>.<span class='id identifier rubyid_wait'>wait</span> <span class='id identifier rubyid_mutex'>mutex</span>
-          <span class='ivar'>@waiting</span> <span class='op'>-=</span> <span class='int'>1</span>
+          <span class='kw'>begin</span>
+            <span class='id identifier rubyid_not_empty'>not_empty</span>.<span class='id identifier rubyid_wait'>wait</span> <span class='id identifier rubyid_mutex'>mutex</span>
+          <span class='kw'>ensure</span>
+            <span class='ivar'>@waiting</span> <span class='op'>-=</span> <span class='int'>1</span>
+          <span class='kw'>end</span>
         <span class='kw'>end</span>
 
-        <span class='id identifier rubyid_work'>work</span> <span class='op'>=</span> <span class='id identifier rubyid_todo'>todo</span>.<span class='id identifier rubyid_shift'>shift</span> <span class='kw'>if</span> <span class='id identifier rubyid_continue'>continue</span>
+        <span class='id identifier rubyid_work'>work</span> <span class='op'>=</span> <span class='id identifier rubyid_todo'>todo</span>.<span class='id identifier rubyid_shift'>shift</span>
       <span class='kw'>end</span>
-
-      <span class='kw'>break</span> <span class='kw'>unless</span> <span class='id identifier rubyid_continue'>continue</span>
 
       <span class='kw'>if</span> <span class='ivar'>@clean_thread_locals</span>
         <span class='const'>ThreadPool</span>.<span class='id identifier rubyid_clean_thread_locals'><a href="#clean_thread_locals-class_method" title="Puma::ThreadPool.clean_thread_locals (method)">clean_thread_locals</a></span>
       <span class='kw'>end</span>
 
       <span class='kw'>begin</span>
-        <span class='id identifier rubyid_block'>block</span>.<span class='id identifier rubyid_call'>call</span>(<span class='id identifier rubyid_work'>work</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_extra'>extra</span>)
+        <span class='ivar'>@out_of_band_pending</span> <span class='op'>=</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_block'>block</span>.<span class='id identifier rubyid_call'>call</span>(<span class='id identifier rubyid_work'>work</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_extra'>extra</span>)
       <span class='kw'>rescue</span> <span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
         <span class='const'>STDERR</span>.<span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Error reached top of thread-pool: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span>.<span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span>.<span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>
-    <span class='kw'>end</span>
-
-    <span class='id identifier rubyid_mutex'>mutex</span>.<span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
-      <span class='ivar'>@spawned</span> <span class='op'>-=</span> <span class='int'>1</span>
-      <span class='ivar'>@workers</span>.<span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_th'>th</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
   <span class='ivar'>@workers</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_th'>th</span>
 
   <span class='id identifier rubyid_th'>th</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="trigger_out_of_band_hook-instance_method">
+  <h3 class='signature priv'>
+    #<strong>trigger_out_of_band_hook</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L156-L167'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='156' data-end='167'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 156</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_trigger_out_of_band_hook'>trigger_out_of_band_hook</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_out_of_band_hook'><a href="#out_of_band_hook-instance_method" title="Puma::ThreadPool#out_of_band_hook (method)">out_of_band_hook</a></span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_out_of_band_hook'><a href="#out_of_band_hook-instance_method" title="Puma::ThreadPool#out_of_band_hook (method)">out_of_band_hook</a></span>.<span class='id identifier rubyid_any?'>any?</span>
+
+  <span class='comment'># we execute on idle hook when all threads are free
+</span>  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='ivar'>@spawned</span> <span class='op'>==</span> <span class='ivar'>@waiting</span>
+
+  <span class='id identifier rubyid_out_of_band_hook'><a href="#out_of_band_hook-instance_method" title="Puma::ThreadPool#out_of_band_hook (method)">out_of_band_hook</a></span>.<span class='id identifier rubyid_each'>each</span>(<span class='op'>&amp;</span><span class='symbeg'>:</span><span class='id identifier rubyid_call'>call</span>)
+  <span class='kw'>true</span>
+<span class='kw'>rescue</span> <span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='const'>STDERR</span>.<span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Exception calling out_of_band_hook: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span>.<span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span>.<span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>true</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -728,23 +863,74 @@
 <div class='docstring'>
   <div class='discussion'>
     
-<p>If too many threads are in the pool, tell one to finish go ahead and exit. If <code>force</code> is true, then a trim request is requested even if all threads are being utilized.</p>
+<p>If there are any free threads in the pool, tell one to go ahead and exit. If <code>force</code> is true, then a trim request is requested even if all threads are being utilized.</p>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L220-L227'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L261-L269'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='220' data-end='227'></pre>
+  <pre class='lines_num' data-start='261' data-end='269'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 220</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 261</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_trim'>trim</span>(<span class='id identifier rubyid_force'>force</span><span class='op'>=</span><span class='kw'>false</span>)
-  <span class='ivar'>@mutex</span>.<span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
-    <span class='kw'>if</span> (<span class='id identifier rubyid_force'>force</span> <span class='kw'>or</span> <span class='ivar'>@waiting</span> <span class='op'>&gt;</span> <span class='int'>0</span>) <span class='kw'>and</span> <span class='ivar'>@spawned</span> <span class='op'>-</span> <span class='ivar'>@trim_requested</span> <span class='op'>&gt;</span> <span class='ivar'>@min</span>
+  <span class='id identifier rubyid_with_mutex'><a href="#with_mutex-instance_method" title="Puma::ThreadPool#with_mutex (method)">with_mutex</a></span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_free'>free</span> <span class='op'>=</span> <span class='ivar'>@waiting</span> <span class='op'>-</span> <span class='ivar'>@todo</span>.<span class='id identifier rubyid_size'>size</span>
+    <span class='kw'>if</span> (<span class='id identifier rubyid_force'>force</span> <span class='kw'>or</span> <span class='id identifier rubyid_free'>free</span> <span class='op'>&gt;</span> <span class='int'>0</span>) <span class='kw'>and</span> <span class='ivar'>@spawned</span> <span class='op'>-</span> <span class='ivar'>@trim_requested</span> <span class='op'>&gt;</span> <span class='ivar'>@min</span>
       <span class='ivar'>@trim_requested</span> <span class='op'>+=</span> <span class='int'>1</span>
       <span class='ivar'>@not_empty</span>.<span class='id identifier rubyid_signal'>signal</span>
     <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="wait_for_less_busy_worker-instance_method">
+  <h3 class='signature '>
+    #<strong>wait_for_less_busy_worker</strong>(delay_s)  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L238-L255'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='238' data-end='255'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 238</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_wait_for_less_busy_worker'>wait_for_less_busy_worker</span>(<span class='id identifier rubyid_delay_s'>delay_s</span>)
+  <span class='comment'># Ruby MRI does GVL, this can result
+</span>  <span class='comment'># in processing contention when multiple threads
+</span>  <span class='comment'># (requests) are running concurrently
+</span>  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span>.<span class='id identifier rubyid_mri?'><a href="../Puma.html#mri%3F-class_method" title="Puma.mri? (method)">mri?</a></span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_delay_s'>delay_s</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+
+  <span class='id identifier rubyid_with_mutex'><a href="#with_mutex-instance_method" title="Puma::ThreadPool#with_mutex (method)">with_mutex</a></span> <span class='kw'>do</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@shutdown</span>
+
+    <span class='comment'># do not delay, if we are not busy
+</span>    <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_busy_threads'><a href="#busy_threads-instance_method" title="Puma::ThreadPool#busy_threads (method)">busy_threads</a></span> <span class='op'>&gt;</span> <span class='int'>0</span>
+
+    <span class='comment'># this will be signaled once a request finishes,
+</span>    <span class='comment'># which can happen earlier than delay
+</span>    <span class='ivar'>@not_full</span>.<span class='id identifier rubyid_wait'>wait</span> <span class='ivar'>@mutex</span><span class='comma'>,</span> <span class='id identifier rubyid_delay_s'>delay_s</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </pre>
@@ -769,19 +955,17 @@
 
 <p>It&#39;s important to note that even though the server might accept another request, it might not be added to the <code>@todo</code> array right away. For example if a slow client has only sent a header, but not a body then the <code>@todo</code> array would stay the same size as the reactor works to try to buffer the request. In that scenario the next call to this method would not block and another request would be added into the reactor by the server. This would continue until a fully bufferend request makes it through the reactor and can then be processed by the thread pool.</p>
 
-<p>Returns the current number of busy threads, or <code>nil</code> if shutting down.</p>
-
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/thread_pool.rb#L199-L214'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L221-L235'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='199' data-end='214'></pre>
+  <pre class='lines_num' data-start='221' data-end='235'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 199</span></pre>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 221</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wait_until_not_full'>wait_until_not_full</span>
-  <span class='ivar'>@mutex</span>.<span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_with_mutex'><a href="#with_mutex-instance_method" title="Puma::ThreadPool#with_mutex (method)">with_mutex</a></span> <span class='kw'>do</span>
     <span class='kw'>while</span> <span class='kw'>true</span>
       <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@shutdown</span>
 
@@ -789,12 +973,48 @@
 </span>      <span class='comment'># is work queued that cannot be handled by waiting
 </span>      <span class='comment'># threads, then accept more work until we would
 </span>      <span class='comment'># spin up the max number of threads.
-</span>      <span class='id identifier rubyid_busy_threads'>busy_threads</span> <span class='op'>=</span> <span class='ivar'>@spawned</span> <span class='op'>-</span> <span class='ivar'>@waiting</span> <span class='op'>+</span> <span class='ivar'>@todo</span>.<span class='id identifier rubyid_size'>size</span>
-      <span class='kw'>return</span> <span class='id identifier rubyid_busy_threads'>busy_threads</span> <span class='kw'>if</span> <span class='ivar'>@max</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_busy_threads'>busy_threads</span>
+</span>      <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_busy_threads'><a href="#busy_threads-instance_method" title="Puma::ThreadPool#busy_threads (method)">busy_threads</a></span> <span class='op'>&lt;</span> <span class='ivar'>@max</span>
 
       <span class='ivar'>@not_full</span>.<span class='id identifier rubyid_wait'>wait</span> <span class='ivar'>@mutex</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="with_mutex-instance_method">
+  <h3 class='signature '>
+    #<strong>with_mutex</strong>(&amp;block)  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/thread_pool.rb#L172-L176'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='172' data-end='176'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/thread_pool.rb', line 172</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_with_mutex'>with_mutex</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
+  <span class='ivar'>@mutex</span>.<span class='id identifier rubyid_owned?'>owned?</span> <span class='op'>?</span>
+    <span class='kw'>yield</span> <span class='op'>:</span>
+    <span class='ivar'>@mutex</span>.<span class='id identifier rubyid_synchronize'>synchronize</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
 <span class='kw'>end</span>
 </pre>
   </div>

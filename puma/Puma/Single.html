@@ -101,7 +101,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/single.rb#L15'>lib/puma/single.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/single.rb#L15'>lib/puma/single.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -133,23 +133,14 @@
 </table></div>
 </div>  <!-- class_method_summary -->
 
-<h2 class='h2_sum' id='instance_attribute_summary'>Instance Attribute Summary</h2>
+<h2 class='h2_sum' id='instance_Attribute_summary'>Instance Attribute Summary</h2>
 <div class='div_sum'>
-<ul class='summary full'>
-  <li>
-    <span class='summary_signature ro'>
-      <a href="#jruby_daemon%3F-instance_method" title="#jruby_daemon? (instance method)">#<strong>jruby_daemon?</strong>  &#x21d2; Boolean </a>
-    </span>
-    <span class='note title readonly'>readonly</span>
-  </li>
-</ul>
 
 <h3 class='inherited'><a href="Runner.html" title="Puma::Runner (class)">Runner</a> - Inherited</h3>
 <div class='inherited'><table class='inherited'>
   <tbody>
     <tr>
       <td colspan='2'>
-        <a class='i_m ro' href="Runner.html#daemon%3F-instance_method" title="Puma::Runner#daemon? (method)">#daemon?</a>,
         <a class='i_m ro' href="Runner.html#development%3F-instance_method" title="Puma::Runner#development? (method)">#development?</a>,
         <a class='i_m ro' href="Runner.html#redirected_io%3F-instance_method" title="Puma::Runner#redirected_io? (method)">#redirected_io?</a>,
         <a class='i_m ro' href="Runner.html#test%3F-instance_method" title="Puma::Runner#test? (method)">#test?</a>
@@ -165,11 +156,6 @@
   <li>
     <span class='summary_signature '>
       <a href="#halt-instance_method" title="#halt (instance method)">#<strong>halt</strong>  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#jruby_daemon_start-instance_method" title="#jruby_daemon_start (instance method)">#<strong>jruby_daemon_start</strong>  </a>
     </span>
   </li>
   <li>
@@ -205,7 +191,7 @@
     <tr>
       <td colspan='2'>
         <a class='i_m ' href="Runner.html#app-instance_method" title="Puma::Runner#app (method)">#app</a>,
-        <a class='i_m ' href="Runner.html#before_restart-instance_method" title="Puma::Runner#before_restart (method)">#before_restart</a>,
+        <a class='i_m ' href="Runner.html#close_control_listeners-instance_method" title="Puma::Runner#close_control_listeners (method)">#close_control_listeners</a>,
         <a class='i_m ' href="Runner.html#debug-instance_method" title="Puma::Runner#debug (method)">#debug</a>,
         <a class='i_m ' href="Runner.html#error-instance_method" title="Puma::Runner#error (method)">#error</a>,
         <a class='i_m ' href="Runner.html#load_and_bind-instance_method" title="Puma::Runner#load_and_bind (method)">#load_and_bind</a>,
@@ -214,7 +200,8 @@
         <a class='i_m ' href="Runner.html#redirect_io-instance_method" title="Puma::Runner#redirect_io (method)">#redirect_io</a>,
         <a class='i_m ' href="Runner.html#ruby_engine-instance_method" title="Puma::Runner#ruby_engine (method)">#ruby_engine</a>,
         <a class='i_m ' href="Runner.html#start_control-instance_method" title="Puma::Runner#start_control (method)">#start_control</a>,
-        <a class='i_m ' href="Runner.html#start_server-instance_method" title="Puma::Runner#start_server (method)">#start_server</a>
+        <a class='i_m ' href="Runner.html#start_server-instance_method" title="Puma::Runner#start_server (method)">#start_server</a>,
+        <a class='i_m ' href="Runner.html#stop_control-instance_method" title="Puma::Runner#stop_control (method)">#stop_control</a>
       </td>
     </tr>
   </tbody>
@@ -223,36 +210,16 @@
 <h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
 
   <p class='notice'>This class inherits a constructor from <a href="Runner.html#new-class_method" title="Puma::Runner.new (method)">Puma::Runner</a></p>
-<h2 class='y_details'>Instance Attribute Details</h2>
-<section class='method_details first' id="jruby_daemon?-instance_method">
-  <h3 class='signature ro first'>
-    #<strong>jruby_daemon?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/single.rb#L42-L44'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='42' data-end='44'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/single.rb', line 42</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_jruby_daemon?'>jruby_daemon?</span>
-  <span class='id identifier rubyid_daemon?'>daemon?</span> <span class='kw'>and</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span>.<span class='id identifier rubyid_jruby?'><a href="../Puma.html#jruby%3F-class_method" title="Puma.jruby? (method)">jruby?</a></span>
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <h2 class='y_details'>Instance Method Details</h2>
 <section class='method_details first' id="halt-instance_method">
   <h3 class='signature  first'>
     #<strong>halt</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/single.rb#L32-L34'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/single.rb#L30-L32'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='32' data-end='34'></pre>
+  <pre class='lines_num' data-start='30' data-end='32'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/single.rb', line 32</span></pre>
+<pre><span class='info file'># File 'lib/puma/single.rb', line 30</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_halt'>halt</span>
@@ -263,35 +230,15 @@
 </div>
 </section>
 
-<section class='method_details' id="jruby_daemon_start-instance_method">
-  <h3 class='signature '>
-    #<strong>jruby_daemon_start</strong>  
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/single.rb#L46-L49'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='46' data-end='49'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/single.rb', line 46</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_jruby_daemon_start'>jruby_daemon_start</span>
-  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma/jruby_restart</span><span class='tstring_end'>&#39;</span></span>
-  <span class='const'><a href="JRubyRestart.html" title="Puma::JRubyRestart (module)">JRubyRestart</a></span>.<span class='id identifier rubyid_daemon_start'><a href="JRubyRestart.html#daemon_start-class_method" title="Puma::JRubyRestart.daemon_start (method)">daemon_start</a></span>(<span class='ivar'>@restart_dir</span><span class='comma'>,</span> <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_restart_args'>restart_args</span>)
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <section class='method_details' id="restart-instance_method">
   <h3 class='signature '>
     #<strong>restart</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/single.rb#L24-L26'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/single.rb#L22-L24'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='24' data-end='26'></pre>
+  <pre class='lines_num' data-start='22' data-end='24'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/single.rb', line 24</span></pre>
+<pre><span class='info file'># File 'lib/puma/single.rb', line 22</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_restart'>restart</span>
@@ -306,62 +253,17 @@
   <h3 class='signature '>
     #<strong>run</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/single.rb#L51-L121'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/single.rb#L40-L64'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='51' data-end='121'></pre>
+  <pre class='lines_num' data-start='40' data-end='64'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/single.rb', line 51</span></pre>
+<pre><span class='info file'># File 'lib/puma/single.rb', line 40</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>
-  <span class='id identifier rubyid_already_daemon'>already_daemon</span> <span class='op'>=</span> <span class='kw'>false</span>
-
-  <span class='kw'>if</span> <span class='id identifier rubyid_jruby_daemon?'><a href="#jruby_daemon%3F-instance_method" title="Puma::Single#jruby_daemon? (method)">jruby_daemon?</a></span>
-    <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma/jruby_restart</span><span class='tstring_end'>&#39;</span></span>
-
-    <span class='kw'>if</span> <span class='const'><a href="JRubyRestart.html" title="Puma::JRubyRestart (module)">JRubyRestart</a></span>.<span class='id identifier rubyid_daemon?'><a href="JRubyRestart.html#daemon%3F-class_method" title="Puma::JRubyRestart.daemon? (method)">daemon?</a></span>
-      <span class='comment'># load and bind before redirecting IO so errors show up on stdout/stderr
-</span>      <span class='id identifier rubyid_load_and_bind'>load_and_bind</span>
-      <span class='id identifier rubyid_redirect_io'>redirect_io</span>
-    <span class='kw'>end</span>
-
-    <span class='id identifier rubyid_already_daemon'>already_daemon</span> <span class='op'>=</span> <span class='const'><a href="JRubyRestart.html" title="Puma::JRubyRestart (module)">JRubyRestart</a></span>.<span class='id identifier rubyid_daemon_init'><a href="JRubyRestart.html#daemon_init-class_method" title="Puma::JRubyRestart.daemon_init (method)">daemon_init</a></span>
-  <span class='kw'>end</span>
-
   <span class='id identifier rubyid_output_header'>output_header</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>single</span><span class='tstring_end'>&quot;</span></span>
 
-  <span class='kw'>if</span> <span class='id identifier rubyid_jruby_daemon?'><a href="#jruby_daemon%3F-instance_method" title="Puma::Single#jruby_daemon? (method)">jruby_daemon?</a></span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_already_daemon'>already_daemon</span>
-      <span class='const'><a href="JRubyRestart.html" title="Puma::JRubyRestart (module)">JRubyRestart</a></span>.<span class='id identifier rubyid_perm_daemonize'><a href="JRubyRestart.html#perm_daemonize-class_method" title="Puma::JRubyRestart.perm_daemonize (method)">perm_daemonize</a></span>
-    <span class='kw'>else</span>
-      <span class='id identifier rubyid_pid'>pid</span> <span class='op'>=</span> <span class='kw'>nil</span>
-
-      <span class='const'>Signal</span>.<span class='id identifier rubyid_trap'>trap</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGUSR2</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
-        <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Started new process </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pid'>pid</span><span class='embexpr_end'>}</span><span class='tstring_content'> as daemon...</span><span class='tstring_end'>&quot;</span></span>
-
-        <span class='comment'># Must use exit! so we don&#39;t unwind and run the ensures
-</span>        <span class='comment'># that will be run by the new child (such as deleting the
-</span>        <span class='comment'># pidfile)
-</span>        <span class='id identifier rubyid_exit!'>exit!</span>(<span class='kw'>true</span>)
-      <span class='kw'>end</span>
-
-      <span class='const'>Signal</span>.<span class='id identifier rubyid_trap'>trap</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGCHLD</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
-        <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Error starting new process as daemon, exiting</span><span class='tstring_end'>&quot;</span></span>
-        <span class='id identifier rubyid_exit'>exit</span> <span class='int'>1</span>
-      <span class='kw'>end</span>
-
-      <span class='id identifier rubyid_jruby_daemon_start'><a href="#jruby_daemon_start-instance_method" title="Puma::Single#jruby_daemon_start (method)">jruby_daemon_start</a></span>
-      <span class='id identifier rubyid_sleep'>sleep</span>
-    <span class='kw'>end</span>
-  <span class='kw'>else</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_daemon?'>daemon?</span>
-      <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Daemonizing...</span><span class='tstring_end'>&quot;</span></span>
-      <span class='const'>Process</span>.<span class='id identifier rubyid_daemon'>daemon</span>(<span class='kw'>true</span>)
-      <span class='id identifier rubyid_redirect_io'>redirect_io</span>
-    <span class='kw'>end</span>
-
-    <span class='id identifier rubyid_load_and_bind'>load_and_bind</span>
-  <span class='kw'>end</span>
+  <span class='id identifier rubyid_load_and_bind'>load_and_bind</span>
 
   <span class='const'><a href="../Puma.html#Plugins-constant" title="Puma::Plugins (constant)">Plugins</a></span>.<span class='id identifier rubyid_fire_background'>fire_background</span>
 
@@ -371,10 +273,9 @@
 
   <span class='ivar'>@server</span> <span class='op'>=</span> <span class='id identifier rubyid_server'>server</span> <span class='op'>=</span> <span class='id identifier rubyid_start_server'>start_server</span>
 
-  <span class='kw'>unless</span> <span class='id identifier rubyid_daemon?'>daemon?</span>
-    <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Use Ctrl-C to stop</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_redirect_io'>redirect_io</span>
-  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Use Ctrl-C to stop</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_redirect_io'>redirect_io</span>
 
   <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_events'>events</span>.<span class='id identifier rubyid_fire_on_booted!'>fire_on_booted!</span>
 
@@ -393,19 +294,17 @@
   <h3 class='signature '>
     #<strong>stats</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/single.rb#L16-L22'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/single.rb#L16-L20'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='16' data-end='22'></pre>
+  <pre class='lines_num' data-start='16' data-end='20'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/single.rb', line 16</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stats'>stats</span>
-  <span class='id identifier rubyid_b'>b</span> <span class='op'>=</span> <span class='ivar'>@server</span>.<span class='id identifier rubyid_backlog'>backlog</span> <span class='op'>||</span> <span class='int'>0</span>
-  <span class='id identifier rubyid_r'>r</span> <span class='op'>=</span> <span class='ivar'>@server</span>.<span class='id identifier rubyid_running'>running</span> <span class='op'>||</span> <span class='int'>0</span>
-  <span class='id identifier rubyid_t'>t</span> <span class='op'>=</span> <span class='ivar'>@server</span>.<span class='id identifier rubyid_pool_capacity'>pool_capacity</span> <span class='op'>||</span> <span class='int'>0</span>
-  <span class='id identifier rubyid_m'>m</span> <span class='op'>=</span> <span class='ivar'>@server</span>.<span class='id identifier rubyid_max_threads'>max_threads</span> <span class='op'>||</span> <span class='int'>0</span>
-  <span class='tstring'><span class='tstring_beg'>%Q!</span><span class='tstring_content'>{ &quot;started_at&quot;: &quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@started_at</span>.<span class='id identifier rubyid_utc'>utc</span>.<span class='id identifier rubyid_iso8601'>iso8601</span><span class='embexpr_end'>}</span><span class='tstring_content'>&quot;, &quot;backlog&quot;: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_b'>b</span><span class='embexpr_end'>}</span><span class='tstring_content'>, &quot;running&quot;: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_r'>r</span><span class='embexpr_end'>}</span><span class='tstring_content'>, &quot;pool_capacity&quot;: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_t'>t</span><span class='embexpr_end'>}</span><span class='tstring_content'>, &quot;max_threads&quot;: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_m'>m</span><span class='embexpr_end'>}</span><span class='tstring_content'> }</span><span class='tstring_end'>!</span></span>
+  {
+    <span class='label'>started_at:</span> <span class='ivar'>@started_at</span>.<span class='id identifier rubyid_utc'>utc</span>.<span class='id identifier rubyid_iso8601'>iso8601</span>
+  }.<span class='id identifier rubyid_merge'>merge</span>(<span class='ivar'>@server</span>.<span class='id identifier rubyid_stats'>stats</span>)
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -416,11 +315,11 @@
   <h3 class='signature '>
     #<strong>stop</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/single.rb#L28-L30'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/single.rb#L26-L28'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='28' data-end='30'></pre>
+  <pre class='lines_num' data-start='26' data-end='28'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/single.rb', line 28</span></pre>
+<pre><span class='info file'># File 'lib/puma/single.rb', line 26</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stop'>stop</span>
@@ -435,11 +334,11 @@
   <h3 class='signature '>
     #<strong>stop_blocked</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/single.rb#L36-L40'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/single.rb#L34-L38'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='36' data-end='40'></pre>
+  <pre class='lines_num' data-start='34' data-end='38'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/single.rb', line 36</span></pre>
+<pre><span class='info file'># File 'lib/puma/single.rb', line 34</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stop_blocked'>stop_blocked</span>

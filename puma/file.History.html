@@ -61,6 +61,93 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
+<h2>5.0.0</h2>
+<ul>
+<li>
+<p>Features</p>
+<ul>
+<li>Allow compiling without OpenSSL and dynamically load files needed for SSL, add 'no ssl' CI (#2305)</li>
+<li>EXPERIMENTAL: Add <code>fork_worker</code> option and <code>refork</code> command for reduced memory usage by forking from a worker process instead of the master process. (#2099)</li>
+<li>EXPERIMENTAL: Added <code>wait_for_less_busy_worker</code> config. This may reduce latency on MRI through inserting a small delay before re-listening on the socket if worker is busy (#2079).</li>
+<li>EXPERIMENTAL: Added <code>nakayoshi_fork</code> option. Reduce memory usage in preloaded cluster-mode apps by GCing before fork and compacting, where available. (#2093, #2256)</li>
+<li>Added pumactl <code>thread-backtraces</code> command to print thread backtraces (#2054)</li>
+<li>Added incrementing <code>requests_count</code> to <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a>. (#2106)</li>
+<li>Increased maximum URI path length from 2048 to 8192 bytes (#2167, #2344)</li>
+<li><code>lowlevel_error_handler</code> is now called during a forced threadpool shutdown, and if a callable with 3 arguments is set, we now also pass the status code (#2203)</li>
+<li>Faster phased restart and worker timeout (#2220)</li>
+<li>Added <code>state_permission</code> to config DSL to set state file permissions (#2238)</li>
+<li>Added <a href="Puma.html#stats_hash-class_method" title="Puma.stats_hash (method)">Puma.stats_hash</a>, which returns a stats in Hash instead of a JSON string (#2086, #2253)</li>
+<li><code>rack.multithread</code> and <code>rack.multiprocess</code> now dynamically resolved by <code>max_thread</code> and <code>workers</code> respectively (#2288)</li>
+</ul>
+</li>
+<li>
+<p>Deprecations, Removals and Breaking API Changes</p>
+<ul>
+<li><code>--control</code> has been removed. Use <code>--control-url</code> (#1487)</li>
+<li><code>worker_directory</code> has been removed. Use <code>directory</code>.</li>
+<li>min_threads now set by environment variables PUMA_MIN_THREADS and MIN_THREADS. (#2143)</li>
+<li>max_threads now set by environment variables PUMA_MAX_THREADS and MAX_THREADS. (#2143)</li>
+<li>max_threads default to 5 in MRI or 16 for all other interpreters. (#2143)</li>
+<li>preload by default if workers &gt; 1 (#2143)</li>
+<li>Puma::Plugin.workers_supported? has been removed. Use Puma.forkable? instead. (#2143)</li>
+<li><code>tcp_mode</code> has been removed without replacement. (#2169)</li>
+<li>Daemonization has been removed without replacement. (#2170)</li>
+<li>Changed #connected_port to #connected_ports (#2076)</li>
+<li>Configuration: <code>environment</code> is read from <code>RAILS_ENV</code>, if <code>RACK_ENV</code> can't be found (#2022)</li>
+<li>Log binding on http:// for TCP bindings to make it clickable</li>
+</ul>
+</li>
+<li>
+<p>Bugfixes</p>
+<ul>
+<li>Fix JSON loading issues on phased-restarts (#2269)</li>
+<li>Improve shutdown reliability (#2312, #2338)</li>
+<li>Close client http connections made to an ssl server with TLSv1.3 (#2116)</li>
+<li>Do not set user_config to quiet by default to allow for file config (#2074)</li>
+<li>Always close SSL connection in Puma::ControlCLI (#2211)</li>
+<li>Windows update extconf.rb for use with ssp and varied Ruby/MSYS2 combinations (#2069)</li>
+<li>Ensure control server Unix socket is closed on shutdown (#2112)</li>
+<li>Preserve <code>BUNDLE_GEMFILE</code> env var when using <code>prune_bundler</code> (#1893)</li>
+<li>Send 408 request timeout even when queue requests is disabled (#2119)</li>
+<li>Rescue IO::WaitReadable instead of EAGAIN for blocking read (#2121)</li>
+<li>Ensure <code>BUNDLE_GEMFILE</code> is unspecified in workers if unspecified in master when using <code>prune_bundler</code> (#2154)</li>
+<li>Rescue and log exceptions in hooks defined by users (on_worker_boot, after_worker_fork etc) (#1551)</li>
+<li>Read directly from the socket in #read_and_drop to avoid raising further SSL errors (#2198)</li>
+<li>Set <code>Connection: closed</code> header when queue requests is disabled (#2216)</li>
+<li>Pass queued requests to thread pool on server shutdown (#2122)</li>
+<li>Fixed a few minor concurrency bugs in ThreadPool that may have affected non-GVL Rubies (#2220)</li>
+<li>Fix <code>out_of_band</code> hook never executed if the number of worker threads is &gt; 1 (#2177)</li>
+<li>Fix ThreadPool#shutdown timeout accuracy (#2221)</li>
+<li>Fix <code>UserFileDefaultOptions#fetch</code> to properly use <code>default</code> (#2233)</li>
+<li>Improvements to <code>out_of_band</code> hook (#2234)</li>
+<li>Prefer the rackup file specified by the CLI (#2225)</li>
+<li>Fix for spawning subprocesses with fork_worker option (#2267)</li>
+<li>Set <code>CONTENT_LENGTH</code> for chunked requests (#2287)</li>
+<li>JRuby - Add Puma::MiniSSL::Engine#init? and #teardown methods, run all SSL tests (#2317)</li>
+<li>Improve shutdown reliability (#2312)</li>
+<li>Resolve issue with threadpool waiting counter decrement when thread is killed</li>
+<li>Constrain rake-compiler version to 0.9.4 to fix <code>ClassNotFound</code> exception when using MiniSSL with Java8.</li>
+<li>Fix recursive <code>prune_bundler</code> (#2319).</li>
+<li>Ensure that TCP_CORK is usable</li>
+<li>Fix corner case when request body is chunked (#2326)</li>
+<li>Fix filehandle leak in MiniSSL (#2299)</li>
+</ul>
+</li>
+<li>
+<p>Refactor</p>
+<ul>
+<li>Remove unused loader argument from Plugin initializer (#2095)</li>
+<li>Simplify <code>Configuration.random_token</code> and remove insecure fallback (#2102)</li>
+<li>Simplify <code>Runner#start_control</code> URL parsing (#2111)</li>
+<li>Removed the IOBuffer extension and replaced with Ruby (#1980)</li>
+<li>Update <a href="Rack/Handler/Puma.html#run-class_method" title="Rack::Handler::Puma.run (method)">Rack::Handler::Puma.run</a> to use <code>**options</code> (#2189)</li>
+<li>ThreadPool concurrency refactoring (#2220)</li>
+<li>JSON parse cluster worker stats instead of regex (#2124)</li>
+<li>Support parallel tests in verbose progress reporting (#2223)</li>
+<li>Refactor error handling in server accept loop (#2239)</li>
+</ul>
+</li>
+</ul>
 <h2>4.3.6 / 2020-09-05</h2>
 <ul>
 <li>Bugfixes
@@ -72,6 +159,13 @@
 </ul>
 <h2>4.3.4/4.3.5 and 3.12.5/3.12.6 / 2020-05-22</h2>
 <p>Each patchlevel release contains a separate security fix. We recommend simply upgrading to 4.3.5/3.12.6.</p>
+<ul>
+<li>Security
+<ul>
+<li>Fix: Fixed two separate HTTP smuggling vulnerabilities that used the Transfer-Encoding header. CVE-2020-11076 and CVE-2020-11077.</li>
+</ul>
+</li>
+</ul>
 <h2>4.3.3 and 3.12.4 / 2020-02-28</h2>
 <ul>
 <li>Bugfixes
@@ -81,11 +175,11 @@
 </li>
 <li>Security
 <ul>
-<li>Fix: Prevent HTTP Response splitting via CR in early hints.</li>
+<li>Fix: Prevent HTTP Response splitting via CR in early hints. CVE-2020-5249.</li>
 </ul>
 </li>
 </ul>
-<h2>4.3.2 and 3.12.3 / 2020-02-27</h2>
+<h2>4.3.2 and 3.12.3 / 2020-02-27 (YANKED)</h2>
 <ul>
 <li>Security
 <ul>

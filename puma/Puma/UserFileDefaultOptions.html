@@ -77,7 +77,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/configuration.rb#L47'>lib/puma/configuration.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/configuration.rb#L47'>lib/puma/configuration.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -198,7 +198,7 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/configuration.rb#L48-L52'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/configuration.rb#L48-L52'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='48' data-end='52'></pre>
   <div class='lines_code'>
@@ -220,7 +220,7 @@
   <h3 class='signature ro first'>
     #<strong>default_options</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/configuration.rb#L54-L54'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/configuration.rb#L54-L54'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='54' data-end='54'></pre>
   <div class='lines_code'>
@@ -237,7 +237,7 @@
   <h3 class='signature ro'>
     #<strong>file_options</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/configuration.rb#L54-L54'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/configuration.rb#L54-L54'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='54' data-end='54'></pre>
   <div class='lines_code'>
@@ -254,7 +254,7 @@
   <h3 class='signature ro'>
     #<strong>user_options</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/configuration.rb#L54-L54'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/configuration.rb#L54-L54'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='54' data-end='54'></pre>
   <div class='lines_code'>
@@ -272,17 +272,15 @@
   <h3 class='signature  first'>
     #<strong>[]</strong>(key)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/configuration.rb#L56-L60'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/configuration.rb#L56-L58'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='56' data-end='60'></pre>
+  <pre class='lines_num' data-start='56' data-end='58'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 56</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='op'>[]</span>(<span class='id identifier rubyid_key'>key</span>)
-  <span class='kw'>return</span> <span class='id identifier rubyid_user_options'><a href="#user_options-instance_method" title="Puma::UserFileDefaultOptions#user_options (method)">user_options</a></span>[<span class='id identifier rubyid_key'>key</span>]    <span class='kw'>if</span> <span class='id identifier rubyid_user_options'><a href="#user_options-instance_method" title="Puma::UserFileDefaultOptions#user_options (method)">user_options</a></span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='id identifier rubyid_key'>key</span>)
-  <span class='kw'>return</span> <span class='id identifier rubyid_file_options'><a href="#file_options-instance_method" title="Puma::UserFileDefaultOptions#file_options (method)">file_options</a></span>[<span class='id identifier rubyid_key'>key</span>]    <span class='kw'>if</span> <span class='id identifier rubyid_file_options'><a href="#file_options-instance_method" title="Puma::UserFileDefaultOptions#file_options (method)">file_options</a></span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='id identifier rubyid_key'>key</span>)
-  <span class='kw'>return</span> <span class='id identifier rubyid_default_options'><a href="#default_options-instance_method" title="Puma::UserFileDefaultOptions#default_options (method)">default_options</a></span>[<span class='id identifier rubyid_key'>key</span>] <span class='kw'>if</span> <span class='id identifier rubyid_default_options'><a href="#default_options-instance_method" title="Puma::UserFileDefaultOptions#default_options (method)">default_options</a></span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='id identifier rubyid_key'>key</span>)
+  <span class='id identifier rubyid_fetch'><a href="#fetch-instance_method" title="Puma::UserFileDefaultOptions#fetch (method)">fetch</a></span>(<span class='id identifier rubyid_key'>key</span>)
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -293,11 +291,11 @@
   <h3 class='signature '>
     #<strong>[]=</strong>(key, value)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/configuration.rb#L62-L64'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/configuration.rb#L60-L62'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='62' data-end='64'></pre>
+  <pre class='lines_num' data-start='60' data-end='62'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 62</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 60</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='op'>[]=</span>(<span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span>)
@@ -312,11 +310,11 @@
   <h3 class='signature '>
     #<strong>all_of</strong>(key)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/configuration.rb#L70-L84'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/configuration.rb#L72-L86'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='70' data-end='84'></pre>
+  <pre class='lines_num' data-start='72' data-end='86'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 70</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 72</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_all_of'>all_of</span>(<span class='id identifier rubyid_key'>key</span>)
@@ -343,15 +341,19 @@
   <h3 class='signature '>
     #<strong>fetch</strong>(key, default_value = nil)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/configuration.rb#L66-L68'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/configuration.rb#L64-L70'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='66' data-end='68'></pre>
+  <pre class='lines_num' data-start='64' data-end='70'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 66</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 64</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fetch'>fetch</span>(<span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_default_value'>default_value</span> <span class='op'>=</span> <span class='kw'>nil</span>)
-  <span class='kw'>self</span>[<span class='id identifier rubyid_key'>key</span>] <span class='op'>||</span> <span class='id identifier rubyid_default_value'>default_value</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_user_options'><a href="#user_options-instance_method" title="Puma::UserFileDefaultOptions#user_options (method)">user_options</a></span>[<span class='id identifier rubyid_key'>key</span>]    <span class='kw'>if</span> <span class='id identifier rubyid_user_options'><a href="#user_options-instance_method" title="Puma::UserFileDefaultOptions#user_options (method)">user_options</a></span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='id identifier rubyid_key'>key</span>)
+  <span class='kw'>return</span> <span class='id identifier rubyid_file_options'><a href="#file_options-instance_method" title="Puma::UserFileDefaultOptions#file_options (method)">file_options</a></span>[<span class='id identifier rubyid_key'>key</span>]    <span class='kw'>if</span> <span class='id identifier rubyid_file_options'><a href="#file_options-instance_method" title="Puma::UserFileDefaultOptions#file_options (method)">file_options</a></span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='id identifier rubyid_key'>key</span>)
+  <span class='kw'>return</span> <span class='id identifier rubyid_default_options'><a href="#default_options-instance_method" title="Puma::UserFileDefaultOptions#default_options (method)">default_options</a></span>[<span class='id identifier rubyid_key'>key</span>] <span class='kw'>if</span> <span class='id identifier rubyid_default_options'><a href="#default_options-instance_method" title="Puma::UserFileDefaultOptions#default_options (method)">default_options</a></span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='id identifier rubyid_key'>key</span>)
+
+  <span class='id identifier rubyid_default_value'>default_value</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -362,11 +364,11 @@
   <h3 class='signature '>
     #<strong>finalize_values</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/configuration.rb#L86-L92'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/configuration.rb#L88-L94'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='86' data-end='92'></pre>
+  <pre class='lines_num' data-start='88' data-end='94'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 86</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 88</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_finalize_values'>finalize_values</span>

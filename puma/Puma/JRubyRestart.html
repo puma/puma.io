@@ -81,39 +81,11 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/jruby_restart.rb#L6'>lib/puma/jruby_restart.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/jruby_restart.rb#L6'>lib/puma/jruby_restart.rb</a>      </td>
     </tr>
   </tbody>
 </table>
 </div>
-<h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
-<div>
-<ul class='constants summary full'>
-  <li>
-    <span id='PermKey-constant' class='summary_signature'>PermKey =</span>
-    <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/jruby_restart.rb#L26-L26'># File 'lib/puma/jruby_restart.rb', line 26</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUMA_DAEMON_PERM</span><span class='tstring_end'>&#39;</span></span></pre>
-  </li>
-  <li>
-    <span id='RestartKey-constant' class='summary_signature'>RestartKey =</span>
-    <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/jruby_restart.rb#L27-L27'># File 'lib/puma/jruby_restart.rb', line 27</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUMA_DAEMON_RESTART</span><span class='tstring_end'>&#39;</span></span></pre>
-  </li>
-</ul>
-</div>
-
-<h2 class='h2_sum' id='class_attribute_summary'>Class Attribute Summary</h2>
-<div class='div_sum'>
-<ul class='summary full'>
-  <li>
-    <span class='summary_signature ro'>
-      <a href="#daemon%3F-class_method" title=".daemon? (class method)">.<strong>daemon?</strong>  &#x21d2; Boolean </a>
-    </span>
-    <span class='note title readonly'>readonly</span>
-  </li>
-</ul>
-</div>  <!-- class_attribute_summary -->
-
 <h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
 <div class='div_sum'>
 <ul class='summary full'>
@@ -122,46 +94,8 @@
       <a href="#chdir_exec-class_method" title=".chdir_exec (class method)">.<strong>chdir_exec</strong>(dir, argv)  </a>
     </span>
   </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#daemon_init-class_method" title=".daemon_init (class method)">.<strong>daemon_init</strong>  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#daemon_start-class_method" title=".daemon_start (class method)">.<strong>daemon_start</strong>(dir, argv)  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#perm_daemonize-class_method" title=".perm_daemonize (class method)">.<strong>perm_daemonize</strong>  </a>
-    </span>
-    <div class='summary_desc'>
-      <div class='inline'><p>Called to tell things “Your now always in daemon mode, don&#39;t try to reenter it.”.</p></div>
-    </div>
-  </li>
 </ul>
 </div>  <!-- class_method_summary -->
-<h2 class='y_details'>Class Attribute Details</h2>
-<section class='method_details first' id="daemon?-class_method">
-  <h3 class='signature ro first'>
-    .<strong>daemon?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/jruby_restart.rb#L36-L38'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='36' data-end='38'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/jruby_restart.rb', line 36</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_daemon?'>daemon?</span>
-  <span class='const'>ENV</span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='const'><a href="#PermKey-constant" title="Puma::JRubyRestart::PermKey (constant)">PermKey</a></span>) <span class='op'>||</span> <span class='const'>ENV</span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='const'><a href="#RestartKey-constant" title="Puma::JRubyRestart::RestartKey (constant)">RestartKey</a></span>)
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <h2 class='y_details'>Class Method Details</h2>
 <section class='method_details first' id="chdir_exec-class_method">
   <h3 class='signature  first'>
@@ -181,7 +115,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/jruby_restart.rb#L16-L24'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/jruby_restart.rb#L16-L24'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='16' data-end='24'></pre>
   <div class='lines_code'>
@@ -196,120 +130,6 @@
   <span class='id identifier rubyid_argv'>argv</span> <span class='op'>&lt;&lt;</span> <span class='kw'>nil</span>
   <span class='id identifier rubyid_execlp'>execlp</span>(<span class='id identifier rubyid_cmd'>cmd</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_argv'>argv</span>)
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>SystemCallError</span>.<span class='id identifier rubyid_new'>new</span>(<span class='const'>FFI</span>.<span class='id identifier rubyid_errno'>errno</span>)
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
-<section class='method_details' id="daemon_init-class_method">
-  <h3 class='signature '>
-    .<strong>daemon_init</strong>  
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/jruby_restart.rb#L40-L63'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='40' data-end='63'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/jruby_restart.rb', line 40</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_daemon_init'>daemon_init</span>
-  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='const'>ENV</span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='const'><a href="#PermKey-constant" title="Puma::JRubyRestart::PermKey (constant)">PermKey</a></span>)
-
-  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='const'>ENV</span>.<span class='id identifier rubyid_key?'>key?</span> <span class='const'><a href="#RestartKey-constant" title="Puma::JRubyRestart::RestartKey (constant)">RestartKey</a></span>
-
-  <span class='id identifier rubyid_master'>master</span> <span class='op'>=</span> <span class='const'>ENV</span>[<span class='const'><a href="#RestartKey-constant" title="Puma::JRubyRestart::RestartKey (constant)">RestartKey</a></span>]
-
-  <span class='comment'># In case the master disappears early
-</span>  <span class='kw'>begin</span>
-    <span class='const'>Process</span>.<span class='id identifier rubyid_kill'>kill</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGUSR2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_master'>master</span>.<span class='id identifier rubyid_to_i'>to_i</span>
-  <span class='kw'>rescue</span> <span class='const'>SystemCallError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
-  <span class='kw'>end</span>
-
-  <span class='const'>ENV</span>[<span class='const'><a href="#RestartKey-constant" title="Puma::JRubyRestart::RestartKey (constant)">RestartKey</a></span>] <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
-
-  <span class='id identifier rubyid_setsid'>setsid</span>
-
-  <span class='id identifier rubyid_null'>null</span> <span class='op'>=</span> <span class='const'>File</span>.<span class='id identifier rubyid_open'>open</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/dev/null</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>w+</span><span class='tstring_end'>&quot;</span></span>
-  <span class='const'>STDIN</span>.<span class='id identifier rubyid_reopen'>reopen</span> <span class='id identifier rubyid_null'>null</span>
-  <span class='const'>STDOUT</span>.<span class='id identifier rubyid_reopen'>reopen</span> <span class='id identifier rubyid_null'>null</span>
-  <span class='const'>STDERR</span>.<span class='id identifier rubyid_reopen'>reopen</span> <span class='id identifier rubyid_null'>null</span>
-
-  <span class='kw'>true</span>
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
-<section class='method_details' id="daemon_start-class_method">
-  <h3 class='signature '>
-    .<strong>daemon_start</strong>(dir, argv)  
-  </h3>
-<div class='docstring'>
-  <div class='discussion'>
-    
-  </div>
-</div>
-<div class='tags'>
-  <p class='tag_title'>Raises:</p>
-<ul class='raise'>
-  <li>
-    <span class='type'>(<code>SystemCallError</code>)</span>
-  </li>
-</ul>
-
-</div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/jruby_restart.rb#L65-L82'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='65' data-end='82'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/jruby_restart.rb', line 65</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_daemon_start'>daemon_start</span>(<span class='id identifier rubyid_dir'>dir</span><span class='comma'>,</span> <span class='id identifier rubyid_argv'>argv</span>)
-  <span class='const'>ENV</span>[<span class='const'><a href="#RestartKey-constant" title="Puma::JRubyRestart::RestartKey (constant)">RestartKey</a></span>] <span class='op'>=</span> <span class='const'>Process</span>.<span class='id identifier rubyid_pid'>pid</span>.<span class='id identifier rubyid_to_s'>to_s</span>
-
-  <span class='kw'>if</span> <span class='id identifier rubyid_k'>k</span> <span class='op'>=</span> <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUMA_JRUBY_DAEMON_OPTS</span><span class='tstring_end'>&#39;</span></span>]
-    <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>JRUBY_OPTS</span><span class='tstring_end'>&#39;</span></span>] <span class='op'>=</span> <span class='id identifier rubyid_k'>k</span>
-  <span class='kw'>end</span>
-
-  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='id identifier rubyid_argv'>argv</span>.<span class='id identifier rubyid_first'>first</span>
-  <span class='id identifier rubyid_argv'>argv</span> <span class='op'>=</span> ([<span class='symbeg'>:</span><span class='id identifier rubyid_string'>string</span>] <span class='op'>*</span> <span class='id identifier rubyid_argv'>argv</span>.<span class='id identifier rubyid_size'>size</span>).<span class='id identifier rubyid_zip'>zip</span>(<span class='id identifier rubyid_argv'>argv</span>).<span class='id identifier rubyid_flatten'>flatten</span>
-  <span class='id identifier rubyid_argv'>argv</span> <span class='op'>&lt;&lt;</span> <span class='symbeg'>:</span><span class='id identifier rubyid_string'>string</span>
-  <span class='id identifier rubyid_argv'>argv</span> <span class='op'>&lt;&lt;</span> <span class='kw'>nil</span>
-
-  <span class='id identifier rubyid_chdir'>chdir</span>(<span class='id identifier rubyid_dir'>dir</span>)
-  <span class='id identifier rubyid_ret'>ret</span> <span class='op'>=</span> <span class='id identifier rubyid_fork'>fork</span>
-  <span class='kw'>return</span> <span class='id identifier rubyid_ret'>ret</span> <span class='kw'>if</span> <span class='id identifier rubyid_ret'>ret</span> <span class='op'>!=</span> <span class='int'>0</span>
-  <span class='id identifier rubyid_execlp'>execlp</span>(<span class='id identifier rubyid_cmd'>cmd</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_argv'>argv</span>)
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>SystemCallError</span>.<span class='id identifier rubyid_new'>new</span>(<span class='const'>FFI</span>.<span class='id identifier rubyid_errno'>errno</span>)
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
-<section class='method_details' id="perm_daemonize-class_method">
-  <h3 class='signature '>
-    .<strong>perm_daemonize</strong>  
-  </h3>
-<div class='docstring'>
-  <div class='discussion'>
-    
-<p>Called to tell things “Your now always in daemon mode, don&#39;t try to reenter it.”</p>
-
-  </div>
-</div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/jruby_restart.rb#L32-L34'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='32' data-end='34'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/jruby_restart.rb', line 32</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_perm_daemonize'>perm_daemonize</span>
-  <span class='const'>ENV</span>[<span class='const'><a href="#PermKey-constant" title="Puma::JRubyRestart::PermKey (constant)">PermKey</a></span>] <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span>
 </pre>
   </div>

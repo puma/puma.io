@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Class: Puma::ErrorLogger &mdash; Puma</title>
+
+<link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::ErrorLogger",
+    relpath = '../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../index.html'>Puma</a> &raquo; 
+      <a href='../_index.html#alpha_E'>Index (E)</a> &raquo; 
+        <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>ErrorLogger&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='class'>
+<h1>Class: Puma::ErrorLogger</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='box_h' colspan='2'>Super Chains via Extension / Inclusion / Inheritance</td></tr>
+    <tr>
+      <td colspan='2'>
+        <div class='box_2'>Instance Chain:</div>
+        <div class='box_22'>
+          self,
+          <a href="Const.html" title="Puma::Const (module)">Const</a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td id='t2_inherits' class='box_2'>Inherits:</td>
+      <td class='box_rel'>
+        <span class='inheritName'><a href="../Object.html" title="Object (class)">Object</a></span>
+      </td>
+    </tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/error_logger.rb#L9'>lib/puma/error_logger.rb</a>      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>The implementation of a detailed error logging.</p>
+
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+</div>
+<h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
+<div>
+<ul class='constants summary full'>
+  <li>
+    <span id='REQUEST_FORMAT-constant' class='summary_signature'>REQUEST_FORMAT =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/error_logger.rb#L14-L14'># File 'lib/puma/error_logger.rb', line 14</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>%{</span><span class='tstring_content'>&quot;%s %s%s&quot; - (%s)</span><span class='tstring_end'>}</span></span></pre>
+  </li>
+</ul>
+  <h3 class='inherited'><a href="Const.html" title="Puma::Const (module)">Const</a> - Included</h3>
+  <p  class='inherited'>
+    <a href="Const.html#CGI_VER-constant" title="Puma::Const::CGI_VER (constant)">CGI_VER</a>, 
+    <a href="Const.html#CHUNKED-constant" title="Puma::Const::CHUNKED (constant)">CHUNKED</a>, 
+    <a href="Const.html#CHUNK_SIZE-constant" title="Puma::Const::CHUNK_SIZE (constant)">CHUNK_SIZE</a>, 
+    <a href="Const.html#CLOSE-constant" title="Puma::Const::CLOSE (constant)">CLOSE</a>, 
+    <a href="Const.html#CLOSE_CHUNKED-constant" title="Puma::Const::CLOSE_CHUNKED (constant)">CLOSE_CHUNKED</a>, 
+    <a href="Const.html#CODE_NAME-constant" title="Puma::Const::CODE_NAME (constant)">CODE_NAME</a>, 
+    <a href="Const.html#COLON-constant" title="Puma::Const::COLON (constant)">COLON</a>, 
+    <a href="Const.html#CONNECTION_CLOSE-constant" title="Puma::Const::CONNECTION_CLOSE (constant)">CONNECTION_CLOSE</a>, 
+    <a href="Const.html#CONNECTION_KEEP_ALIVE-constant" title="Puma::Const::CONNECTION_KEEP_ALIVE (constant)">CONNECTION_KEEP_ALIVE</a>, 
+    <a href="Const.html#CONTENT_LENGTH-constant" title="Puma::Const::CONTENT_LENGTH (constant)">CONTENT_LENGTH</a>, 
+    <a href="Const.html#CONTENT_LENGTH2-constant" title="Puma::Const::CONTENT_LENGTH2 (constant)">CONTENT_LENGTH2</a>, 
+    <a href="Const.html#CONTENT_LENGTH_S-constant" title="Puma::Const::CONTENT_LENGTH_S (constant)">CONTENT_LENGTH_S</a>, 
+    <a href="Const.html#CONTINUE-constant" title="Puma::Const::CONTINUE (constant)">CONTINUE</a>, 
+    <a href="Const.html#EARLY_HINTS-constant" title="Puma::Const::EARLY_HINTS (constant)">EARLY_HINTS</a>, 
+    <a href="Const.html#ERROR_RESPONSE-constant" title="Puma::Const::ERROR_RESPONSE (constant)">ERROR_RESPONSE</a>, 
+    <a href="Const.html#FAST_TRACK_KA_TIMEOUT-constant" title="Puma::Const::FAST_TRACK_KA_TIMEOUT (constant)">FAST_TRACK_KA_TIMEOUT</a>, 
+    <a href="Const.html#FIRST_DATA_TIMEOUT-constant" title="Puma::Const::FIRST_DATA_TIMEOUT (constant)">FIRST_DATA_TIMEOUT</a>, 
+    <a href="Const.html#GATEWAY_INTERFACE-constant" title="Puma::Const::GATEWAY_INTERFACE (constant)">GATEWAY_INTERFACE</a>, 
+    <a href="Const.html#HALT_COMMAND-constant" title="Puma::Const::HALT_COMMAND (constant)">HALT_COMMAND</a>, 
+    <a href="Const.html#HEAD-constant" title="Puma::Const::HEAD (constant)">HEAD</a>, 
+    <a href="Const.html#HIJACK-constant" title="Puma::Const::HIJACK (constant)">HIJACK</a>, 
+    <a href="Const.html#HIJACK_IO-constant" title="Puma::Const::HIJACK_IO (constant)">HIJACK_IO</a>, 
+    <a href="Const.html#HIJACK_P-constant" title="Puma::Const::HIJACK_P (constant)">HIJACK_P</a>, 
+    <a href="Const.html#HTTP-constant" title="Puma::Const::HTTP (constant)">HTTP</a>, 
+    <a href="Const.html#HTTPS-constant" title="Puma::Const::HTTPS (constant)">HTTPS</a>, 
+    <a href="Const.html#HTTPS_KEY-constant" title="Puma::Const::HTTPS_KEY (constant)">HTTPS_KEY</a>, 
+    <a href="Const.html#HTTP_10_200-constant" title="Puma::Const::HTTP_10_200 (constant)">HTTP_10_200</a>, 
+    <a href="Const.html#HTTP_11-constant" title="Puma::Const::HTTP_11 (constant)">HTTP_11</a>, 
+    <a href="Const.html#HTTP_11_100-constant" title="Puma::Const::HTTP_11_100 (constant)">HTTP_11_100</a>, 
+    <a href="Const.html#HTTP_11_200-constant" title="Puma::Const::HTTP_11_200 (constant)">HTTP_11_200</a>, 
+    <a href="Const.html#HTTP_CONNECTION-constant" title="Puma::Const::HTTP_CONNECTION (constant)">HTTP_CONNECTION</a>, 
+    <a href="Const.html#HTTP_EXPECT-constant" title="Puma::Const::HTTP_EXPECT (constant)">HTTP_EXPECT</a>, 
+    <a href="Const.html#HTTP_HOST-constant" title="Puma::Const::HTTP_HOST (constant)">HTTP_HOST</a>, 
+    <a href="Const.html#HTTP_INJECTION_REGEX-constant" title="Puma::Const::HTTP_INJECTION_REGEX (constant)">HTTP_INJECTION_REGEX</a>, 
+    <a href="Const.html#HTTP_VERSION-constant" title="Puma::Const::HTTP_VERSION (constant)">HTTP_VERSION</a>, 
+    <a href="Const.html#HTTP_X_FORWARDED_FOR-constant" title="Puma::Const::HTTP_X_FORWARDED_FOR (constant)">HTTP_X_FORWARDED_FOR</a>, 
+    <a href="Const.html#HTTP_X_FORWARDED_PROTO-constant" title="Puma::Const::HTTP_X_FORWARDED_PROTO (constant)">HTTP_X_FORWARDED_PROTO</a>, 
+    <a href="Const.html#HTTP_X_FORWARDED_SCHEME-constant" title="Puma::Const::HTTP_X_FORWARDED_SCHEME (constant)">HTTP_X_FORWARDED_SCHEME</a>, 
+    <a href="Const.html#HTTP_X_FORWARDED_SSL-constant" title="Puma::Const::HTTP_X_FORWARDED_SSL (constant)">HTTP_X_FORWARDED_SSL</a>, 
+    <a href="Const.html#KEEP_ALIVE-constant" title="Puma::Const::KEEP_ALIVE (constant)">KEEP_ALIVE</a>, 
+    <a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a>, 
+    <a href="Const.html#LOCALHOST-constant" title="Puma::Const::LOCALHOST (constant)">LOCALHOST</a>, 
+    <a href="Const.html#LOCALHOST_IP-constant" title="Puma::Const::LOCALHOST_IP (constant)">LOCALHOST_IP</a>, 
+    <a href="Const.html#MAX_BODY-constant" title="Puma::Const::MAX_BODY (constant)">MAX_BODY</a>, 
+    <a href="Const.html#MAX_FAST_INLINE-constant" title="Puma::Const::MAX_FAST_INLINE (constant)">MAX_FAST_INLINE</a>, 
+    <a href="Const.html#MAX_HEADER-constant" title="Puma::Const::MAX_HEADER (constant)">MAX_HEADER</a>, 
+    <a href="Const.html#NEWLINE-constant" title="Puma::Const::NEWLINE (constant)">NEWLINE</a>, 
+    <a href="Const.html#PATH_INFO-constant" title="Puma::Const::PATH_INFO (constant)">PATH_INFO</a>, 
+    <a href="Const.html#PERSISTENT_TIMEOUT-constant" title="Puma::Const::PERSISTENT_TIMEOUT (constant)">PERSISTENT_TIMEOUT</a>, 
+    <a href="Const.html#PORT_443-constant" title="Puma::Const::PORT_443 (constant)">PORT_443</a>, 
+    <a href="Const.html#PORT_80-constant" title="Puma::Const::PORT_80 (constant)">PORT_80</a>, 
+    <a href="Const.html#PUMA_CONFIG-constant" title="Puma::Const::PUMA_CONFIG (constant)">PUMA_CONFIG</a>, 
+    <a href="Const.html#PUMA_PEERCERT-constant" title="Puma::Const::PUMA_PEERCERT (constant)">PUMA_PEERCERT</a>, 
+    <a href="Const.html#PUMA_SERVER_STRING-constant" title="Puma::Const::PUMA_SERVER_STRING (constant)">PUMA_SERVER_STRING</a>, 
+    <a href="Const.html#PUMA_SOCKET-constant" title="Puma::Const::PUMA_SOCKET (constant)">PUMA_SOCKET</a>, 
+    <a href="Const.html#PUMA_TMP_BASE-constant" title="Puma::Const::PUMA_TMP_BASE (constant)">PUMA_TMP_BASE</a>, 
+    <a href="Const.html#PUMA_VERSION-constant" title="Puma::Const::PUMA_VERSION (constant)">PUMA_VERSION</a>, 
+    <a href="Const.html#QUERY_STRING-constant" title="Puma::Const::QUERY_STRING (constant)">QUERY_STRING</a>, 
+    <a href="Const.html#RACK_AFTER_REPLY-constant" title="Puma::Const::RACK_AFTER_REPLY (constant)">RACK_AFTER_REPLY</a>, 
+    <a href="Const.html#RACK_INPUT-constant" title="Puma::Const::RACK_INPUT (constant)">RACK_INPUT</a>, 
+    <a href="Const.html#RACK_URL_SCHEME-constant" title="Puma::Const::RACK_URL_SCHEME (constant)">RACK_URL_SCHEME</a>, 
+    <a href="Const.html#REMOTE_ADDR-constant" title="Puma::Const::REMOTE_ADDR (constant)">REMOTE_ADDR</a>, 
+    <a href="Const.html#REQUEST_METHOD-constant" title="Puma::Const::REQUEST_METHOD (constant)">REQUEST_METHOD</a>, 
+    <a href="Const.html#REQUEST_PATH-constant" title="Puma::Const::REQUEST_PATH (constant)">REQUEST_PATH</a>, 
+    <a href="Const.html#REQUEST_URI-constant" title="Puma::Const::REQUEST_URI (constant)">REQUEST_URI</a>, 
+    <a href="Const.html#RESTART_COMMAND-constant" title="Puma::Const::RESTART_COMMAND (constant)">RESTART_COMMAND</a>, 
+    <a href="Const.html#SERVER_NAME-constant" title="Puma::Const::SERVER_NAME (constant)">SERVER_NAME</a>, 
+    <a href="Const.html#SERVER_PORT-constant" title="Puma::Const::SERVER_PORT (constant)">SERVER_PORT</a>, 
+    <a href="Const.html#SERVER_PROTOCOL-constant" title="Puma::Const::SERVER_PROTOCOL (constant)">SERVER_PROTOCOL</a>, 
+    <a href="Const.html#SERVER_SOFTWARE-constant" title="Puma::Const::SERVER_SOFTWARE (constant)">SERVER_SOFTWARE</a>, 
+    <a href="Const.html#STOP_COMMAND-constant" title="Puma::Const::STOP_COMMAND (constant)">STOP_COMMAND</a>, 
+    <a href="Const.html#TRANSFER_ENCODING-constant" title="Puma::Const::TRANSFER_ENCODING (constant)">TRANSFER_ENCODING</a>, 
+    <a href="Const.html#TRANSFER_ENCODING2-constant" title="Puma::Const::TRANSFER_ENCODING2 (constant)">TRANSFER_ENCODING2</a>, 
+    <a href="Const.html#TRANSFER_ENCODING_CHUNKED-constant" title="Puma::Const::TRANSFER_ENCODING_CHUNKED (constant)">TRANSFER_ENCODING_CHUNKED</a>, 
+    <a href="Const.html#WORKER_CHECK_INTERVAL-constant" title="Puma::Const::WORKER_CHECK_INTERVAL (constant)">WORKER_CHECK_INTERVAL</a>, 
+    <a href="Const.html#WRITE_TIMEOUT-constant" title="Puma::Const::WRITE_TIMEOUT (constant)">WRITE_TIMEOUT</a>
+  </p>
+</div>
+
+<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#new-class_method" title=".new (class method)">.<strong>new</strong>(ioerr)  &#x21d2; ErrorLogger </a>
+    </span>
+    <span class='note title constructor'>constructor</span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#stdio-class_method" title=".stdio (class method)">.<strong>stdio</strong>  </a>
+    </span>
+  </li>
+</ul>
+</div>  <!-- class_method_summary -->
+
+<h2 class='h2_sum' id='instance_attribute_summary'>Instance Attribute Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#ioerr-instance_method" title="#ioerr (instance method)">#<strong>ioerr</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+</ul>
+</div>  <!-- instance_attribute_summary -->
+
+<h2 class='h2_sum' id='instance_method_summary'>Instance Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#debug-instance_method" title="#debug (instance method)">#<strong>debug</strong>(options = {})  </a>
+    </span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Print occured error details only if environment variable PUMA_DEBUG is defined.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#info-instance_method" title="#info (instance method)">#<strong>info</strong>(options = {})  </a>
+    </span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Print occured error details.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#request_dump-instance_method" title="#request_dump (instance method)">#<strong>request_dump</strong>(req)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#request_headers-instance_method" title="#request_headers (instance method)">#<strong>request_headers</strong>(req)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#request_parsed%3F-instance_method" title="#request_parsed? (instance method)">#<strong>request_parsed?</strong>(req)  &#x21d2; Boolean </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#request_title-instance_method" title="#request_title (instance method)">#<strong>request_title</strong>(req)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#title-instance_method" title="#title (instance method)">#<strong>title</strong>(options = {})  </a>
+    </span>
+  </li>
+</ul>
+</div>  <!-- instance_method_summary -->
+<h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
+
+  <section class='method_details first' id="new-class_method">
+  <h3 class='signature  first'>
+    .<strong>new</strong>(ioerr)  &#x21d2; <code>ErrorLogger</code> 
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/error_logger.rb#L16-L21'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='16' data-end='21'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/error_logger.rb', line 16</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_ioerr'><a href="#ioerr-instance_method" title="Puma::ErrorLogger#ioerr (method)">ioerr</a></span>)
+  <span class='ivar'>@ioerr</span> <span class='op'>=</span> <span class='id identifier rubyid_ioerr'><a href="#ioerr-instance_method" title="Puma::ErrorLogger#ioerr (method)">ioerr</a></span>
+  <span class='ivar'>@ioerr</span>.<span class='id identifier rubyid_sync'>sync</span> <span class='op'>=</span> <span class='kw'>true</span>
+
+  <span class='ivar'>@debug</span> <span class='op'>=</span> <span class='const'>ENV</span>.<span class='id identifier rubyid_key?'>key?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUMA_DEBUG</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Class Method Details</h2>
+<section class='method_details first' id="stdio-class_method">
+  <h3 class='signature  first'>
+    .<strong>stdio</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/error_logger.rb#L23-L25'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='23' data-end='25'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/error_logger.rb', line 23</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_stdio'>stdio</span>
+  <span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::ErrorLogger.new (method)">new</a></span> <span class='gvar'>$stderr</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Attribute Details</h2>
+<section class='method_details first' id="ioerr-instance_method">
+  <h3 class='signature ro first'>
+    #<strong>ioerr</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/error_logger.rb#L12-L12'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='12' data-end='12'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/error_logger.rb', line 12</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ioerr'>ioerr</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Method Details</h2>
+<section class='method_details first' id="debug-instance_method">
+  <h3 class='signature  first'>
+    #<strong>debug</strong>(options = {})  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Print occured error details only if environment variable PUMA_DEBUG is defined. <code>options</code> hash with additional options:</p>
+<ul><li>
+<p><code>error</code> is an exception object</p>
+</li><li>
+<p><code>req</code> the http request</p>
+</li><li>
+<p><code>text</code> (default nil) custom string to print in title and before all remaining info.</p>
+</li></ul>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/error_logger.rb#L46-L58'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='46' data-end='58'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/error_logger.rb', line 46</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_debug'>debug</span>(<span class='id identifier rubyid_options'>options</span><span class='op'>=</span>{})
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='ivar'>@debug</span>
+
+  <span class='id identifier rubyid_error'>error</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_error'>error</span>]
+  <span class='id identifier rubyid_req'>req</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_req'>req</span>]
+
+  <span class='id identifier rubyid_string_block'>string_block</span> <span class='op'>=</span> []
+  <span class='id identifier rubyid_string_block'>string_block</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_title'><a href="#title-instance_method" title="Puma::ErrorLogger#title (method)">title</a></span>(<span class='id identifier rubyid_options'>options</span>)
+  <span class='id identifier rubyid_string_block'>string_block</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_request_dump'><a href="#request_dump-instance_method" title="Puma::ErrorLogger#request_dump (method)">request_dump</a></span>(<span class='id identifier rubyid_req'>req</span>) <span class='kw'>if</span> <span class='id identifier rubyid_req'>req</span>
+  <span class='id identifier rubyid_string_block'>string_block</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_error_backtrace'>error_backtrace</span>(<span class='id identifier rubyid_options'>options</span>) <span class='kw'>if</span> <span class='id identifier rubyid_error'>error</span>
+
+  <span class='id identifier rubyid_ioerr'><a href="#ioerr-instance_method" title="Puma::ErrorLogger#ioerr (method)">ioerr</a></span>.<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_string_block'>string_block</span>.<span class='id identifier rubyid_join'>join</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="info-instance_method">
+  <h3 class='signature '>
+    #<strong>info</strong>(options = {})  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Print occured error details. <code>options</code> hash with additional options:</p>
+<ul><li>
+<p><code>error</code> is an exception object</p>
+</li><li>
+<p><code>req</code> the http request</p>
+</li><li>
+<p><code>text</code> (default nil) custom string to print in title and before all remaining info.</p>
+</li></ul>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/error_logger.rb#L34-L36'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='34' data-end='36'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/error_logger.rb', line 34</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_info'>info</span>(<span class='id identifier rubyid_options'>options</span><span class='op'>=</span>{})
+  <span class='id identifier rubyid_ioerr'><a href="#ioerr-instance_method" title="Puma::ErrorLogger#ioerr (method)">ioerr</a></span>.<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_title'><a href="#title-instance_method" title="Puma::ErrorLogger#title (method)">title</a></span>(<span class='id identifier rubyid_options'>options</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="request_dump-instance_method">
+  <h3 class='signature '>
+    #<strong>request_dump</strong>(req)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/error_logger.rb#L72-L75'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='72' data-end='75'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/error_logger.rb', line 72</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_request_dump'>request_dump</span>(<span class='id identifier rubyid_req'>req</span>)
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Headers: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_request_headers'><a href="#request_headers-instance_method" title="Puma::ErrorLogger#request_headers (method)">request_headers</a></span>(<span class='id identifier rubyid_req'>req</span>)<span class='embexpr_end'>}</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span> \
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Body: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_req'>req</span>.<span class='id identifier rubyid_body'>body</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="request_headers-instance_method">
+  <h3 class='signature '>
+    #<strong>request_headers</strong>(req)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/error_logger.rb#L88-L91'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='88' data-end='91'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/error_logger.rb', line 88</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_request_headers'>request_headers</span>(<span class='id identifier rubyid_req'>req</span>)
+  <span class='id identifier rubyid_headers'>headers</span> <span class='op'>=</span> <span class='id identifier rubyid_req'>req</span>.<span class='id identifier rubyid_env'>env</span>.<span class='id identifier rubyid_select'>select</span> { <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='op'>|</span> <span class='id identifier rubyid_key'>key</span>.<span class='id identifier rubyid_start_with?'>start_with?</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP_</span><span class='tstring_end'>&#39;</span></span>) }
+  <span class='id identifier rubyid_headers'>headers</span>.<span class='id identifier rubyid_map'>map</span> { <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span> [<span class='id identifier rubyid_key'>key</span>[<span class='int'>5</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span>]<span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span>] }.<span class='id identifier rubyid_to_h'>to_h</span>.<span class='id identifier rubyid_inspect'>inspect</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="request_parsed?-instance_method">
+  <h3 class='signature '>
+    #<strong>request_parsed?</strong>(req)  &#x21d2; <code>Boolean</code> 
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/error_logger.rb#L93-L95'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='93' data-end='95'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/error_logger.rb', line 93</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_request_parsed?'>request_parsed?</span>(<span class='id identifier rubyid_req'>req</span>)
+  <span class='id identifier rubyid_req'>req</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_req'>req</span>.<span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#REQUEST_METHOD-constant" title="Puma::Const::REQUEST_METHOD (constant)">REQUEST_METHOD</a></span>]
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="request_title-instance_method">
+  <h3 class='signature '>
+    #<strong>request_title</strong>(req)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/error_logger.rb#L77-L86'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='77' data-end='86'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/error_logger.rb', line 77</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_request_title'>request_title</span>(<span class='id identifier rubyid_req'>req</span>)
+  <span class='id identifier rubyid_env'>env</span> <span class='op'>=</span> <span class='id identifier rubyid_req'>req</span>.<span class='id identifier rubyid_env'>env</span>
+
+  <span class='const'><a href="#REQUEST_FORMAT-constant" title="Puma::ErrorLogger::REQUEST_FORMAT (constant)">REQUEST_FORMAT</a></span> <span class='op'>%</span> [
+    <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#REQUEST_METHOD-constant" title="Puma::Const::REQUEST_METHOD (constant)">REQUEST_METHOD</a></span>]<span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#REQUEST_PATH-constant" title="Puma::Const::REQUEST_PATH (constant)">REQUEST_PATH</a></span>] <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#PATH_INFO-constant" title="Puma::Const::PATH_INFO (constant)">PATH_INFO</a></span>]<span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#QUERY_STRING-constant" title="Puma::Const::QUERY_STRING (constant)">QUERY_STRING</a></span>] <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#HTTP_X_FORWARDED_FOR-constant" title="Puma::Const::HTTP_X_FORWARDED_FOR (constant)">HTTP_X_FORWARDED_FOR</a></span>] <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#REMOTE_ADDR-constant" title="Puma::Const::REMOTE_ADDR (constant)">REMOTE_ADDR</a></span>] <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span>
+  ]
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="title-instance_method">
+  <h3 class='signature '>
+    #<strong>title</strong>(options = {})  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/error_logger.rb#L60-L70'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='60' data-end='70'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/error_logger.rb', line 60</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_title'>title</span>(<span class='id identifier rubyid_options'>options</span><span class='op'>=</span>{})
+  <span class='id identifier rubyid_text'>text</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_text'>text</span>]
+  <span class='id identifier rubyid_req'>req</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_req'>req</span>]
+  <span class='id identifier rubyid_error'>error</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_error'>error</span>]
+
+  <span class='id identifier rubyid_string_block'>string_block</span> <span class='op'>=</span> [<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Time</span>.<span class='id identifier rubyid_now'>now</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>]
+  <span class='id identifier rubyid_string_block'>string_block</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_text'>text</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_text'>text</span>
+  <span class='id identifier rubyid_string_block'>string_block</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_request_title'><a href="#request_title-instance_method" title="Puma::ErrorLogger#request_title (method)">request_title</a></span>(<span class='id identifier rubyid_req'>req</span>)<span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_request_parsed?'><a href="#request_parsed%3F-instance_method" title="Puma::ErrorLogger#request_parsed? (method)">request_parsed?</a></span>(<span class='id identifier rubyid_req'>req</span>)
+  <span class='id identifier rubyid_string_block'>string_block</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_error'>error</span>.<span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_error'>error</span>
+  <span class='id identifier rubyid_string_block'>string_block</span>.<span class='id identifier rubyid_join'>join</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>

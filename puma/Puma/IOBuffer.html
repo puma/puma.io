@@ -69,15 +69,39 @@
     <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
   </thead>
   <tbody>
+    <tr><td class='box_h' colspan='2'>Super Chains via Extension / Inclusion / Inheritance</td></tr>
     <tr>
-      <td id='t2_inherits' class='box_2'>Inherits:</td>
+      <td colspan='2'>
+        <div class='box_2'>Class Chain:</div>
+        <div class='box_22'>
+          self,
+          String
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan='2'>
+        <div class='box_2'>Instance Chain:</div>
+        <div class='box_22'>
+          self,
+          String
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td id='t2_inherits' class='box_2 o'>Inherits:</td>
       <td class='box_rel'>
-        <span class='inheritName'><a href="../Object.html" title="Object (class)">Object</a></span>
+        <span class='inheritName'>String</span>
+        <ul class='fullTree'>
+          <li><a href="../Object.html" title="Object (class)">::Object</a></li>
+          <li class='next'>String</li>
+          <li class='next'>Puma::IOBuffer</li>
+        </ul>
       </td>
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/io_buffer.c#L145'>ext/puma_http11/io_buffer.c</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/io_buffer.rb#L4'>lib/puma/io_buffer.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -87,17 +111,7 @@
 <ul class='summary full'>
   <li>
     <span class='summary_signature '>
-      <a href="#<<-instance_method" title="#&lt;&lt; (instance method)">#<strong>&lt;&lt;</strong>(str)  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
       <a href="#append-instance_method" title="#append (instance method)">#<strong>append</strong>(*args)  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#capacity-instance_method" title="#capacity (instance method)">#<strong>capacity</strong>  </a>
     </span>
   </li>
   <li>
@@ -105,156 +119,23 @@
       <a href="#reset-instance_method" title="#reset (instance method)">#<strong>reset</strong>  </a>
     </span>
   </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#to_s-instance_method" title="#to_s (instance method)">#<strong>to_s</strong>  </a>
-      (also: #to_str)
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#to_str-instance_method" title="#to_str (instance method)">#<strong>to_str</strong>  </a>
-    </span>
-    <div class='summary_desc'>
-      <div class='inline'><p>Alias for <a href="#to_s-instance_method" title="Puma::IOBuffer#to_s (method)">#to_s</a>.</p></div>
-    </div>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#used-instance_method" title="#used (instance method)">#<strong>used</strong>  </a>
-    </span>
-  </li>
 </ul>
 </div>  <!-- instance_method_summary -->
 <h2 class='y_details'>Instance Method Details</h2>
-<section class='method_details first' id="<<-instance_method">
+<section class='method_details first' id="append-instance_method">
   <h3 class='signature  first'>
-    #<strong>&lt;&lt;</strong>(str)  
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/io_buffer.c#L34-L67'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='34' data-end='67'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/io_buffer.c', line 34</span></pre>
-<pre class='code cpp'>
-
-static VALUE buf_append(VALUE self, VALUE str) {
-  struct buf_int* b;
-  size_t used, str_len, new_size;
-
-  Data_Get_Struct(self, struct buf_int, b);
-
-  used = b-&gt;cur - b-&gt;top;
-
-  StringValue(str);
-  str_len = RSTRING_LEN(str);
-
-  new_size = used + str_len;
-
-  if(new_size &gt; b-&gt;size) {
-    size_t n = b-&gt;size + (b-&gt;size / 2);
-    uint8_t* top;
-    uint8_t* old;
-
-    new_size = (n &gt; new_size ? n : new_size + BUF_TOLERANCE);
-
-    top = ALLOC_N(uint8_t, new_size);
-    old = b-&gt;top;
-    memcpy(top, old, used);
-    b-&gt;top = top;
-    b-&gt;cur = top + used;
-    b-&gt;size = new_size;
-    xfree(old);
-  }
-
-  memcpy(b-&gt;cur, RSTRING_PTR(str), str_len);
-  b-&gt;cur += str_len;
-
-  return self;
-}
-</pre>
-  </div>
-</div>
-</section>
-
-<section class='method_details' id="append-instance_method">
-  <h3 class='signature '>
     #<strong>append</strong>(*args)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/io_buffer.c#L69-L113'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/io_buffer.rb#L5-L7'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='69' data-end='113'></pre>
+  <pre class='lines_num' data-start='5' data-end='7'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/io_buffer.c', line 69</span></pre>
-<pre class='code cpp'>
+<pre><span class='info file'># File 'lib/puma/io_buffer.rb', line 5</span></pre>
+<pre class='code ruby'>
 
-static VALUE buf_append2(int argc, VALUE* argv, VALUE self) {
-  struct buf_int* b;
-  size_t used, new_size;
-  int i;
-  VALUE str;
-
-  Data_Get_Struct(self, struct buf_int, b);
-
-  used = b-&gt;cur - b-&gt;top;
-  new_size = used;
-
-  for(i = 0; i &lt; argc; i++) {
-    StringValue(argv[i]);
-
-    str = argv[i];
-
-    new_size += RSTRING_LEN(str);
-  }
-
-  if(new_size &gt; b-&gt;size) {
-    size_t n = b-&gt;size + (b-&gt;size / 2);
-    uint8_t* top;
-    uint8_t* old;
-
-    new_size = (n &gt; new_size ? n : new_size + BUF_TOLERANCE);
-
-    top = ALLOC_N(uint8_t, new_size);
-    old = b-&gt;top;
-    memcpy(top, old, used);
-    b-&gt;top = top;
-    b-&gt;cur = top + used;
-    b-&gt;size = new_size;
-    xfree(old);
-  }
-
-  for(i = 0; i &lt; argc; i++) {
-    long str_len;
-    str = argv[i];
-    str_len = RSTRING_LEN(str);
-    memcpy(b-&gt;cur, RSTRING_PTR(str), str_len);
-    b-&gt;cur += str_len;
-  }
-
-  return self;
-}
-</pre>
-  </div>
-</div>
-</section>
-
-<section class='method_details' id="capacity-instance_method">
-  <h3 class='signature '>
-    #<strong>capacity</strong>  
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/io_buffer.c#L129-L134'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='129' data-end='134'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/io_buffer.c', line 129</span></pre>
-<pre class='code cpp'>
-
-static VALUE buf_capa(VALUE self) {
-  struct buf_int* b;
-  Data_Get_Struct(self, struct buf_int, b);
-
-  return INT2FIX(b-&gt;size);
-}
+<span class='kw'>def</span> <span class='id identifier rubyid_append'>append</span>(<span class='op'>*</span><span class='id identifier rubyid_args'>args</span>)
+  <span class='id identifier rubyid_args'>args</span>.<span class='id identifier rubyid_each'>each</span> { <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span> <span class='id identifier rubyid_concat'>concat</span>(<span class='id identifier rubyid_a'>a</span>) }
+<span class='kw'>end</span>
 </pre>
   </div>
 </div>
@@ -264,79 +145,14 @@ static VALUE buf_capa(VALUE self) {
   <h3 class='signature '>
     #<strong>reset</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/io_buffer.c#L136-L142'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/io_buffer.rb#L9-L9'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='136' data-end='142'></pre>
+  <pre class='lines_num' data-start='9' data-end='9'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/io_buffer.c', line 136</span></pre>
-<pre class='code cpp'>
+<pre><span class='info file'># File 'lib/puma/io_buffer.rb', line 9</span></pre>
+<pre class='code ruby'>
 
-static VALUE buf_reset(VALUE self) {
-  struct buf_int* b;
-  Data_Get_Struct(self, struct buf_int, b);
-
-  b-&gt;cur = b-&gt;top;
-  return self;
-}
-</pre>
-  </div>
-</div>
-</section>
-
-<section class='method_details' id="to_s-instance_method">
-  <h3 class='signature '>
-    #<strong>to_s</strong>  
-    <span class='aliases'>Also known as: <span class='names'>#to_str</span></span>
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/io_buffer.c#L115-L120'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='115' data-end='120'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/io_buffer.c', line 115</span></pre>
-<pre class='code cpp'>
-
-static VALUE buf_to_str(VALUE self) {
-  struct buf_int* b;
-  Data_Get_Struct(self, struct buf_int, b);
-
-  return rb_str_new((const char*)(b-&gt;top), b-&gt;cur - b-&gt;top);
-}
-</pre>
-  </div>
-</div>
-</section>
-
-<section class='method_details' id="to_str-instance_method">
-  <h3 class='signature '>
-    #<strong>to_str</strong>  
-  </h3>
-<div class='docstring'>
-  <div class='discussion'>
-    
-<p>Alias for <a href="#to_s-instance_method" title="Puma::IOBuffer#to_s (method)">#to_s</a>.</p>
-
-  </div>
-</div>
-
-</section>
-
-<section class='method_details' id="used-instance_method">
-  <h3 class='signature '>
-    #<strong>used</strong>  
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/io_buffer.c#L122-L127'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='122' data-end='127'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/io_buffer.c', line 122</span></pre>
-<pre class='code cpp'>
-
-static VALUE buf_used(VALUE self) {
-  struct buf_int* b;
-  Data_Get_Struct(self, struct buf_int, b);
-
-  return INT2FIX(b-&gt;cur - b-&gt;top);
-}
+<span class='kw'>alias</span> <span class='id identifier rubyid_reset'>reset</span> <span class='id identifier rubyid_clear'>clear</span>
 </pre>
   </div>
 </div>
