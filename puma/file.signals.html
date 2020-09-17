@@ -61,9 +61,9 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<p>The <a href="http://en.wikipedia.org/wiki/Unix_signal">unix signal</a> is a method of sending messages between <a href="http://en.wikipedia.org/wiki/Process_(computing)">processes</a>. When a signal is sent, the operating system interrupts the target process's normal flow of execution. There are standard signals that are used to stop a process but there are also custom signals that can be used for other purposes. This document is an attempt to list all supported signals that <a href="Puma.html" title="Puma (module)">Puma</a> will respond to. In general, signals need only be sent to the master process of a cluster.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Unix_signal" target="_parent" title="unix signal">unix signal</a> is a method of sending messages between <a href="https://en.wikipedia.org/wiki/Process_(computing" target="_parent" title="processes">processes</a>). When a signal is sent, the operating system interrupts the target process's normal flow of execution. There are standard signals that are used to stop a process but there are also custom signals that can be used for other purposes. This document is an attempt to list all supported signals that <a href="Puma.html" title="Puma (module)">Puma</a> will respond to. In general, signals need only be sent to the master process of a cluster.</p>
 <h2>Sending Signals</h2>
-<p>If you are new to signals it can be useful to see how they can be used. When a process is created in a *nix like operating system it will have a <a href="http://en.wikipedia.org/wiki/Process_identifier">PID - or process identifier</a> that can be used to send signals to the process. For demonstration we will create an infinitely running process by tailing a file:</p>
+<p>If you are new to signals it can be useful to see how they can be used. When a process is created in a *nix like operating system it will have a <a href="https://en.wikipedia.org/wiki/Process_identifier" target="_parent" title="PID - or process identifier">PID - or process identifier</a> that can be used to send signals to the process. For demonstration we will create an infinitely running process by tailing a file:</p>
 <pre class="code sh"><code class="sh">$ echo &quot;foo&quot; &gt;&gt; my.log
 $ irb
 &gt; pid = Process.spawn &#39;tail -f my.log&#39;
@@ -72,11 +72,11 @@ $ irb
 <pre class="code sh"><code class="sh">$ ps aux | grep tail
 schneems        87152   0.0  0.0  2432772    492 s032  S+   12:46PM   0:00.00 tail -f my.log
 </code></pre>
-<p>You can send a signal in Ruby using the <a href="http://www.ruby-doc.org/core-2.1.1/Process.html#kill-method">Process module</a>:</p>
+<p>You can send a signal in Ruby using the <a href="https://www.ruby-doc.org/core-2.1.1/Process.html#kill-method" target="_parent" title="Process module">Process module</a>:</p>
 <pre class="code ruby"><code class="ruby">$ irb
 &gt; puts pid
 #=&gt; 87152
-Process.detach(pid) # http://ruby-doc.org/core-2.1.1/Process.html#method-c-detach
+Process.detach(pid) # https://ruby-doc.org/core-2.1.1/Process.html#method-c-detach
 Process.kill(&quot;TERM&quot;, pid)</code></pre>
 <p>Now you will see via <code>ps</code> that there is no more <code>tail</code> process. Sometimes when referring to signals the <code>SIG</code> prefix will be used for instance <code>SIGTERM</code> is equivalent to sending <code>TERM</code> via <code>Process.kill</code>.</p>
 <h2>Puma Signals</h2>
@@ -87,9 +87,10 @@ Process.kill(&quot;TERM&quot;, pid)</code></pre>
 <li><code>TERM</code> send <code>TERM</code> to worker. Worker will attempt to finish then exit.</li>
 <li><code>USR2</code> restart workers. This also reloads puma configuration file, if there is one.</li>
 <li><code>USR1</code> restart workers in phases, a rolling restart. This will not reload configuration file.</li>
-<li><code>HUP</code>  reopen log files defined in stdout_redirect configuration parameter. If there is no stdout_redirect option provided it will behave like <code>INT</code></li>
-<li><code>INT</code> equivalent of sending Ctrl-C to cluster. Will attempt to finish then exit.</li>
+<li><code>HUP </code> reopen log files defined in stdout_redirect configuration parameter. If there is no stdout_redirect option provided it will behave like <code>INT</code></li>
+<li><code>INT </code> equivalent of sending Ctrl-C to cluster. Will attempt to finish then exit.</li>
 <li><code>CHLD</code></li>
+<li><code>URG </code> refork workers in phases from worker 0, if <code>fork_workers</code> option is enabled.</li>
 </ul>
 <h2>Callbacks order in case of different signals</h2>
 <h3>Start application</h3>

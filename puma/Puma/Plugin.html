@@ -77,7 +77,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/plugin.rb#L76'>lib/puma/plugin.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/plugin.rb#L76'>lib/puma/plugin.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -98,7 +98,7 @@ C:/Ruby22/lib/ruby/gems/2.2.0/gems/puma-3.0.1/lib/puma/plugin/tmp_restart.rb</co
 
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/plugin.rb#L81-L88'># File 'lib/puma/plugin.rb', line 81</a>    <pre class='code ruby'><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/plugin.rb#L81-L88'># File 'lib/puma/plugin.rb', line 81</a>    <pre class='code ruby'><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>
   \A       # start of string
   .+       # file path (one or more characters)
   (?=      # stop previous match when
@@ -123,26 +123,8 @@ C:/Ruby22/lib/ruby/gems/2.2.0/gems/puma-3.0.1/lib/puma/plugin/tmp_restart.rb</co
       <a href="#extract_name-class_method" title=".extract_name (class method)">.<strong>extract_name</strong>(ary)  </a>
     </span>
   </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#new-class_method" title=".new (class method)">.<strong>new</strong>(loader)  &#x21d2; Plugin </a>
-    </span>
-    <span class='note title constructor'>constructor</span>
-  </li>
 </ul>
 </div>  <!-- class_method_summary -->
-
-<h2 class='h2_sum' id='instance_attribute_summary'>Instance Attribute Summary</h2>
-<div class='div_sum'>
-<ul class='summary full'>
-  <li>
-    <span class='summary_signature ro'>
-      <a href="#workers_supported%3F-instance_method" title="#workers_supported? (instance method)">#<strong>workers_supported?</strong>  &#x21d2; Boolean </a>
-    </span>
-    <span class='note title readonly'>readonly</span>
-  </li>
-</ul>
-</div>  <!-- instance_attribute_summary -->
 
 <h2 class='h2_sum' id='instance_method_summary'>Instance Method Summary</h2>
 <div class='div_sum'>
@@ -154,41 +136,12 @@ C:/Ruby22/lib/ruby/gems/2.2.0/gems/puma-3.0.1/lib/puma/plugin/tmp_restart.rb</co
   </li>
 </ul>
 </div>  <!-- instance_method_summary -->
-<h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
-
-  <section class='method_details first' id="new-class_method">
-  <h3 class='signature  first'>
-    .<strong>new</strong>(loader)  &#x21d2; <code>Plugin</code> 
-  </h3>
-<div class='docstring'>
-  <div class='discussion'>
-    
-  </div>
-</div>
-<div class='tags'>
-  
-</div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/plugin.rb#L107-L109'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='107' data-end='109'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/plugin.rb', line 107</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_loader'>loader</span>)
-  <span class='ivar'>@loader</span> <span class='op'>=</span> <span class='id identifier rubyid_loader'>loader</span>
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <h2 class='y_details'>Class Method Details</h2>
 <section class='method_details first' id="create-class_method">
   <h3 class='signature  first'>
     .<strong>create</strong>(&amp;blk)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/plugin.rb#L97-L105'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/plugin.rb#L97-L105'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='97' data-end='105'></pre>
   <div class='lines_code'>
@@ -198,7 +151,7 @@ C:/Ruby22/lib/ruby/gems/2.2.0/gems/puma-3.0.1/lib/puma/plugin/tmp_restart.rb</co
 <span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_create'>create</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_blk'>blk</span>)
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_extract_name'><a href="#extract_name-class_method" title="Puma::Plugin.extract_name (method)">extract_name</a></span>(<span class='id identifier rubyid_caller'>caller</span>)
 
-  <span class='id identifier rubyid_cls'>cls</span> <span class='op'>=</span> <span class='const'>Class</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Plugin.new (method)">new</a></span>(<span class='kw'>self</span>)
+  <span class='id identifier rubyid_cls'>cls</span> <span class='op'>=</span> <span class='const'>Class</span>.<span class='id identifier rubyid_new'>new</span>(<span class='kw'>self</span>)
 
   <span class='id identifier rubyid_cls'>cls</span>.<span class='id identifier rubyid_class_eval'>class_eval</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_blk'>blk</span>)
 
@@ -213,7 +166,7 @@ C:/Ruby22/lib/ruby/gems/2.2.0/gems/puma-3.0.1/lib/puma/plugin/tmp_restart.rb</co
   <h3 class='signature '>
     .<strong>extract_name</strong>(ary)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/plugin.rb#L90-L95'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/plugin.rb#L90-L95'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='90' data-end='95'></pre>
   <div class='lines_code'>
@@ -231,37 +184,16 @@ C:/Ruby22/lib/ruby/gems/2.2.0/gems/puma-3.0.1/lib/puma/plugin/tmp_restart.rb</co
 </div>
 </section>
 
-<h2 class='y_details'>Instance Attribute Details</h2>
-<section class='method_details first' id="workers_supported?-instance_method">
-  <h3 class='signature ro first'>
-    #<strong>workers_supported?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/plugin.rb#L115-L118'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='115' data-end='118'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/plugin.rb', line 115</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_workers_supported?'>workers_supported?</span>
-  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span>.<span class='id identifier rubyid_jruby?'><a href="../Puma.html#jruby%3F-class_method" title="Puma.jruby? (method)">jruby?</a></span> <span class='op'>||</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span>.<span class='id identifier rubyid_windows?'><a href="../Puma.html#windows%3F-class_method" title="Puma.windows? (method)">windows?</a></span>
-  <span class='kw'>true</span>
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <h2 class='y_details'>Instance Method Details</h2>
 <section class='method_details first' id="in_background-instance_method">
   <h3 class='signature  first'>
     #<strong>in_background</strong>(&amp;blk)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/plugin.rb#L111-L113'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/plugin.rb#L107-L109'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='111' data-end='113'></pre>
+  <pre class='lines_num' data-start='107' data-end='109'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/plugin.rb', line 111</span></pre>
+<pre><span class='info file'># File 'lib/puma/plugin.rb', line 107</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_in_background'>in_background</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_blk'>blk</span>)

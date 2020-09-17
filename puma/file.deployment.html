@@ -74,7 +74,9 @@ go ahead and assume that. Go add it now... we'll wait.</p>
 <h2>Single vs Cluster mode</h2>
 <p><a href="Puma.html" title="Puma (module)">Puma</a> was originally conceived as a thread-only webserver, but grew the ability to
 also use processes in version 2.</p>
-<p>Here are some rules of thumb:</p>
+<p>To run puma in single mode (e.g. for a development environment) you will need to
+set the number of workers to 0, anything above will run in cluster mode.</p>
+<p>Here are some rules of thumb for cluster mode:</p>
 <h3>MRI</h3>
 <ul>
 <li>Use cluster mode and set the number of workers to 1.5x the number of cpu cores
@@ -115,7 +117,8 @@ thread to become available.</p>
 <li>Have your upstream proxy set a header with the time it received the request:
 <ul>
 <li>nginx: <code>proxy_set_header X-Request-Start &quot;${msec}&quot;;</code></li>
-<li>haproxy: <code>http-request set-header X-Request-Start &quot;%t&quot;;</code></li>
+<li>haproxy &gt;= 1.9: <code>http-request set-header X-Request-Start t=%[date()]%[date_us()]</code></li>
+<li>haproxy &lt; 1.9: <code>http-request set-header X-Request-Start t=%[date()]</code></li>
 </ul>
 </li>
 <li>In your <a href="Rack.html" title="Rack (module)">Rack</a> middleware, determine the amount of time elapsed since <code>X-Request-Start</code>.</li>
@@ -128,7 +131,8 @@ can also be added as headers.</li>
 </ul>
 </li>
 </ul>
-<h2>Daemonizing</h2>
+<h2>Should I daemonize?</h2>
+<p>Daemonization was removed in <a href="Puma.html" title="Puma (module)">Puma</a> 5.0. For alternatives, continue reading.</p>
 <p>I prefer to not daemonize my servers and use something like <code>runit</code> or <code>upstart</code> to
 monitor them as child processes. This gives them fast response to crashes and
 makes it easy to figure out what is going on. Additionally, unlike <code>unicorn</code>,

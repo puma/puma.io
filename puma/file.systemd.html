@@ -62,7 +62,7 @@
   </header>
 <div id='content' class='file'>
 <h1>systemd</h1>
-<p><a href="https://www.freedesktop.org/wiki/Software/systemd/">systemd</a> is a
+<p><a href="https://www.freedesktop.org/wiki/Software/systemd/" target="_parent" title="systemd">systemd</a> is a
 commonly available init system (PID 1) on many Linux distributions. It
 offers process monitoring (including automatic restarts) and other
 useful features for running <a href="Puma.html" title="Puma (module)">Puma</a> in production.</p>
@@ -72,9 +72,7 @@ can be copied or symlinked to /etc/systemd/system/puma.service, or if
 desired, using an application or instance specific name.</p>
 <p>Note that this uses the systemd preferred &quot;simple&quot; type where the
 start command remains running in the foreground (does not fork and
-exit). See also, the
-<a href="#alternative-forking-configuration">Alternative Forking Configuration</a>
-below.</p>
+exit).</p>
 <pre class="code ini"><code class="ini">[Unit]
 Description=Puma HTTP Server
 After=network.target
@@ -115,7 +113,7 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 </code></pre>
-<p>See <a href="https://www.freedesktop.org/software/systemd/man/systemd.exec.html">systemd.exec</a>
+<p>See <a href="https://www.freedesktop.org/software/systemd/man/systemd.exec.html" target="_parent" title="systemd.exec">systemd.exec</a>
 for additional details.</p>
 <h2>Socket Activation</h2>
 <p>systemd and puma also support socket activation, where systemd opens
@@ -156,7 +154,7 @@ Backlog=1024
 [Install]
 WantedBy=sockets.target
 </code></pre>
-<p>See <a href="https://www.freedesktop.org/software/systemd/man/systemd.socket.html">systemd.socket</a>
+<p>See <a href="https://www.freedesktop.org/software/systemd/man/systemd.socket.html" target="_parent" title="systemd.socket">systemd.socket</a>
 for additional configuration details.</p>
 <p>Note that the above configurations will work with <a href="Puma.html" title="Puma (module)">Puma</a> in either
 single process or cluster mode.</p>
@@ -241,65 +239,9 @@ Apr 07 08:40:19 hx puma[28320]: * Phased restart available
 Apr 07 08:40:19 hx puma[28320]: * Activated tcp://0.0.0.0:9233
 Apr 07 08:40:19 hx puma[28320]: * Activated ssl://0.0.0.0:9234?key=key.pem&amp;cert=cert.pem
 Apr 07 08:40:19 hx puma[28320]: Use Ctrl-C to stop</code></pre>
-<h2>Alternative Forking Configuration</h2>
-<p>Other systems/tools might expect or need puma to be run as a
-&quot;traditional&quot; forking server, for example so that the <code>pumactl</code>
-command can be used directly and outside of systemd for
-stop/start/restart. This use case is incompatible with systemd socket
-activation, so it should not be configured. Below is an alternative
-puma.service config sample, using <code>Type=forking</code> and the <code>--daemon</code>
-flag in <code>ExecStart</code>. Here systemd is playing a role more equivalent to
-SysV init.d, where it is responsible for starting <a href="Puma.html" title="Puma (module)">Puma</a> on boot
-(multi-user.target) and stopping it on shutdown, but is not performing
-continuous restarts. Therefore running <a href="Puma.html" title="Puma (module)">Puma</a> in cluster mode, where the
-master can restart workers, is highly recommended. See the systemd
-<a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html#Restart=">Restart</a> directive for details.</p>
-<pre class="code ini"><code class="ini">[Unit]
-Description=Puma HTTP Forking Server
-After=network.target
-
-[Service]
-# Background process configuration (use with --daemon in ExecStart)
-Type=forking
-
-# Preferably configure a non-privileged user
-# User=
-
-# The path to the puma application root
-# Also replace the &quot;&lt;WD&gt;&quot; place holders below with this path.
-WorkingDirectory=
-
-# The command to start {Puma}
-# (replace &quot;&lt;WD&gt;&quot; below)
-ExecStart=bundle exec puma -C &lt;WD&gt;/shared/puma.rb --daemon
-
-# The command to stop {Puma}
-# (replace &quot;&lt;WD&gt;&quot; below)
-ExecStop=bundle exec pumactl -S &lt;WD&gt;/shared/tmp/pids/puma.state stop
-
-# Path to PID file so that systemd knows which is the master process
-PIDFile=&lt;WD&gt;/shared/tmp/pids/puma.pid
-
-# Should systemd restart puma?
-# Use &quot;no&quot; (the default) to ensure no interference when using
-# stop/start/restart via `pumactl`.  The &quot;on-failure&quot; setting might
-# work better for this purpose, but you must test it.
-# Use &quot;always&quot; if only `systemctl` is used for start/stop/restart, and
-# reconsider if you actually need the forking config.
-Restart=no
-
-# `puma_ctl restart` wouldn&#39;t work without this. It&#39;s because `pumactl`
-# changes PID on restart and systemd stops the service afterwards
-# because of the PID change. This option prevents stopping after PID
-# change.
-RemainAfterExit=yes
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
 <h3>capistrano3-puma</h3>
 <p>By default,
-<a href="https://github.com/seuros/capistrano-puma">capistrano3-puma</a> uses
+<a href="https://github.com/seuros/capistrano-puma" target="_parent" title="capistrano3-puma">capistrano3-puma</a> uses
 <code>pumactl</code> for deployment restarts, outside of systemd.  To learn the
 exact commands that this tool would use for <code>ExecStart</code> and
 <code>ExecStop</code>, use the following <code>cap</code> commands in dry-run mode, and

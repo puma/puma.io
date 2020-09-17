@@ -67,14 +67,15 @@
 <ul>
 <li>creating a <a href="https://github.com/puma/puma/issues/new?template=bug_report.md">bug report</a> or <a href="https://github.com/puma/puma/issues/new?template=feature_request.md">feature request</a></li>
 <li>verifying <a href="https://github.com/puma/puma/issues?q=is%3Aopen+is%3Aissue+label%3Aneeds-repro">existing bug reports</a> and adding <a href="https://github.com/puma/puma/blob/CONTRIBUTING.md#reproduction-steps">reproduction steps</a></li>
-<li>reviewing <a href="https://github.com/puma/puma/pulls">pull requests</a> and testing the changes on your own machine</li>
-<li>writing or editing documentation</li>
+<li>reviewing <a href="https://github.com/puma/puma/pulls">pull requests</a> and testing the changes locally, on your own machine</li>
+<li>writing or editing <a href="https://github.com/puma/puma/tree/master/docs">documentation</a></li>
 <li>improving test coverage</li>
 <li>fixing a <a href="https://github.com/puma/puma/issues?utf8=%E2%9C%93&amp;q=is%3Aopen+is%3Aissue+label%3Abug">reproducing bug</a> or adding a new feature</li>
 </ul>
+<p>Newbies welcome! We would be happy to help you make your first contribution to a F/OSS project.</p>
 <h2>Setup</h2>
 <p>Clone down the <a href="Puma.html" title="Puma (module)">Puma</a> repository.</p>
-<p>You will need to install <a href="https://www.colm.net/open-source/ragel/">ragel</a> to generate puma's extension code.</p>
+<p>You will need to install <a href="https://www.colm.net/open-source/ragel/">ragel</a> (use Ragel version 7.0.0.9) to generate puma's extension code.</p>
 <p>macOS:</p>
 <pre class="code sh"><code class="sh">brew install ragel
 </code></pre>
@@ -95,9 +96,9 @@
 <pre class="code sh"><code class="sh">bundle exec rake test:all
 </code></pre>
 <p>To run a single test file:</p>
-<pre class="code sh"><code class="sh">ruby -Ilib test/test_binder.rb
+<pre class="code sh"><code class="sh">bundle exec ruby test/test_binder.rb
 </code></pre>
-<p>Or use <a href="https://github.com/qrush/m"><code>m</code></a>:</p>
+<p>Or use <a href="https://github.com/qrush/m" target="_parent" title="m">m</a>:</p>
 <pre class="code sh"><code class="sh">bundle exec m test/test_binder.rb
 </code></pre>
 <p>... which can also be used to run a single test case:</p>
@@ -119,7 +120,7 @@ with:</p>
 <pre class="code sh"><code class="sh">bundle exec puma -C &lt;path/to/config.rb&gt; &lt;path/to/rackup.ru&gt;
 </code></pre>
 <p>As an example, using one of the test rack apps:
-<a href="https://github.com/puma/puma/blob/master/test/rackup/hello.ru"><code>test/rackup/hello.ru</code></a>, and one of the test config files:
+[<code>test/rackup/hello.ru</code>][rackup file], and one of the test config files:
 <a href="https://github.com/puma/puma/blob/master/test/config/settings.rb"><code>test/config/settings.rb</code></a>, you would run the test app with:</p>
 <pre class="code sh"><code class="sh">bundle exec puma -C test/config/settings.rb test/rackup/hello.ru
 </code></pre>
@@ -133,14 +134,15 @@ test your changes, please open a pull request and leave a comment asking for
 help.</p>
 <p>If you open a pull request with a change that doesn't need to be noted in the
 changelog (<a href="file.History.html" title="History.md">History.md</a>), add the text <code>[changelog skip]</code> to the
-pull request title to skip <a href="https://github.com/puma/puma/pull/1991">the changelog
-check</a>.</p>
+pull request title to skip <code>href="https://github.com/puma/puma/pull/1991">https://github.com/puma/puma/pull/1991</a> the changelog
+check</code>.</p>
 <h2>Bibliography/Reading</h2>
 <p>Puma can be a bit intimidating for your first contribution because there's a lot of concepts here that you've probably never had to think about before - Rack, sockets, forking, threads etc. Here are some helpful links for learning more about things related to Puma:</p>
 <ul>
-<li><a href="https://www.rubydoc.info/github/rack/rack/file/SPEC">The Rack specification</a></li>
+<li><a href="https://github.com/puma/puma/blob/master/docs/architecture.md" target="_parent" title="Puma&#39;s Architecture docs">Puma's Architecture docs</a></li>
+<li><a href="https://www.rubydoc.info/github/rack/rack/file/SPEC" target="_parent" title="The Rack specification">The Rack specification</a></li>
 <li>The Ruby docs for IO.pipe, TCPServer/Socket.</li>
-<li><a href="https://github.com/socketry/nio4r/wiki/Getting-Started">nio4r documentation</a></li>
+<li><a href="https://github.com/socketry/nio4r/wiki/Getting-Started" target="_parent" title="nio4r documentation">nio4r documentation</a></li>
 </ul>
 
 <div id='footer'></div>

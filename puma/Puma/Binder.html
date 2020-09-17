@@ -87,7 +87,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L11'>lib/puma/binder.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L18'>lib/puma/binder.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -98,7 +98,7 @@
   <li>
     <span id='RACK_VERSION-constant' class='summary_signature'>RACK_VERSION =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L14-L14'># File 'lib/puma/binder.rb', line 14</a>    <pre class='code ruby'>[<span class='int'>1</span><span class='comma'>,</span><span class='int'>3</span>].<span class='id identifier rubyid_freeze'>freeze</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L21-L21'># File 'lib/puma/binder.rb', line 21</a>    <pre class='code ruby'>[<span class='int'>1</span><span class='comma'>,</span><span class='int'>6</span>].<span class='id identifier rubyid_freeze'>freeze</span></pre>
   </li>
 </ul>
   <h3 class='inherited'><a href="Const.html" title="Puma::Const (module)">Const</a> - Included</h3>
@@ -145,7 +145,6 @@
     <a href="Const.html#KEEP_ALIVE-constant" title="Puma::Const::KEEP_ALIVE (constant)">KEEP_ALIVE</a>, 
     <a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a>, 
     <a href="Const.html#LOCALHOST-constant" title="Puma::Const::LOCALHOST (constant)">LOCALHOST</a>, 
-    <a href="Const.html#LOCALHOST_ADDR-constant" title="Puma::Const::LOCALHOST_ADDR (constant)">LOCALHOST_ADDR</a>, 
     <a href="Const.html#LOCALHOST_IP-constant" title="Puma::Const::LOCALHOST_IP (constant)">LOCALHOST_IP</a>, 
     <a href="Const.html#MAX_BODY-constant" title="Puma::Const::MAX_BODY (constant)">MAX_BODY</a>, 
     <a href="Const.html#MAX_FAST_INLINE-constant" title="Puma::Const::MAX_FAST_INLINE (constant)">MAX_FAST_INLINE</a>, 
@@ -188,7 +187,7 @@
 <ul class='summary full'>
   <li>
     <span class='summary_signature '>
-      <a href="#new-class_method" title=".new (class method)">.<strong>new</strong>(events)  &#x21d2; Binder </a>
+      <a href="#new-class_method" title=".new (class method)">.<strong>new</strong>(events, conf = Configuration.new)  &#x21d2; Binder </a>
     </span>
     <span class='note title constructor'>constructor</span>
   </li>
@@ -199,14 +198,56 @@
 <div class='div_sum'>
 <ul class='summary full'>
   <li>
+    <span class='summary_signature rw'>
+      <a href="#ios-instance_method" title="#ios (instance method)">#<strong>ios</strong>  </a>
+    </span>
+    <span class='note title rw'>rw</span>
+  </li>
+  <li>
+    <span class='summary_signature rw'>
+      <a href="#ios=-instance_method" title="#ios= (instance method)">#<strong>ios=</strong>(value)  </a>
+    </span>
+    <span class='note title rw'>rw</span>
+  </li>
+  <li>
+    <span class='summary_signature rw'>
+      <a href="#listeners-instance_method" title="#listeners (instance method)">#<strong>listeners</strong>  </a>
+    </span>
+    <span class='note title rw'>rw</span>
+  </li>
+  <li>
+    <span class='summary_signature rw'>
+      <a href="#listeners=-instance_method" title="#listeners= (instance method)">#<strong>listeners=</strong>(value)  </a>
+    </span>
+    <span class='note title rw'>rw</span>
+  </li>
+  <li>
     <span class='summary_signature ro'>
-      <a href="#connected_port-instance_method" title="#connected_port (instance method)">#<strong>connected_port</strong>  </a>
+      <a href="#activated_sockets-instance_method" title="#activated_sockets (instance method)">#<strong>activated_sockets</strong>  </a>
     </span>
     <span class='note title readonly'>readonly</span>
   </li>
   <li>
     <span class='summary_signature ro'>
-      <a href="#ios-instance_method" title="#ios (instance method)">#<strong>ios</strong>  </a>
+      <a href="#envs-instance_method" title="#envs (instance method)">#<strong>envs</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#inherited_fds-instance_method" title="#inherited_fds (instance method)">#<strong>inherited_fds</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#proto_env-instance_method" title="#proto_env (instance method)">#<strong>proto_env</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#unix_paths-instance_method" title="#unix_paths (instance method)">#<strong>unix_paths</strong>  </a>
     </span>
     <span class='note title readonly'>readonly</span>
   </li>
@@ -249,17 +290,25 @@
   </li>
   <li>
     <span class='summary_signature '>
-      <a href="#close_unix_paths-instance_method" title="#close_unix_paths (instance method)">#<strong>close_unix_paths</strong>  </a>
+      <a href="#connected_ports-instance_method" title="#connected_ports (instance method)">#<strong>connected_ports</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#create_activated_fds-instance_method" title="#create_activated_fds (instance method)">#<strong>create_activated_fds</strong>(env_hash)  </a>
+    </span>
+    <div class='summary_desc'>
+      <div class='inline'><p>systemd socket activation.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#create_inherited_fds-instance_method" title="#create_inherited_fds (instance method)">#<strong>create_inherited_fds</strong>(env_hash)  </a>
     </span>
   </li>
   <li>
     <span class='summary_signature '>
       <a href="#env-instance_method" title="#env (instance method)">#<strong>env</strong>(sock)  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#import_from_env-instance_method" title="#import_from_env (instance method)">#<strong>import_from_env</strong>  </a>
     </span>
   </li>
   <li>
@@ -279,12 +328,7 @@
   </li>
   <li>
     <span class='summary_signature '>
-      <a href="#loopback_addresses-instance_method" title="#loopback_addresses (instance method)">#<strong>loopback_addresses</strong>  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#parse-instance_method" title="#parse (instance method)">#<strong>parse</strong>(binds, logger)  </a>
+      <a href="#parse-instance_method" title="#parse (instance method)">#<strong>parse</strong>(binds, logger, log_msg = &#39;Listening&#39;)  </a>
     </span>
   </li>
   <li>
@@ -292,13 +336,30 @@
       <a href="#redirects_for_restart-instance_method" title="#redirects_for_restart (instance method)">#<strong>redirects_for_restart</strong>  </a>
     </span>
   </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#redirects_for_restart_env-instance_method" title="#redirects_for_restart_env (instance method)">#<strong>redirects_for_restart_env</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#loopback_addresses-instance_method" title="#loopback_addresses (instance method)">#<strong>loopback_addresses</strong>  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#socket_activation_fd-instance_method" title="#socket_activation_fd (instance method)">#<strong>socket_activation_fd</strong>(int)  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
 </ul>
 </div>  <!-- instance_method_summary -->
 <h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
 
   <section class='method_details first' id="new-class_method">
   <h3 class='signature  first'>
-    .<strong>new</strong>(events)  &#x21d2; <code>Binder</code> 
+    .<strong>new</strong>(events, conf = Configuration.new)  &#x21d2; <code>Binder</code> 
   </h3>
 <div class='docstring'>
   <div class='discussion'>
@@ -308,14 +369,14 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L16-L44'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L23-L51'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='16' data-end='44'></pre>
+  <pre class='lines_num' data-start='23' data-end='51'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 16</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 23</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_events'>events</span>)
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_events'>events</span><span class='comma'>,</span> <span class='id identifier rubyid_conf'>conf</span> <span class='op'>=</span> <span class='const'><a href="Configuration.html" title="Puma::Configuration (class)">Configuration</a></span>.<span class='id identifier rubyid_new'><a href="Configuration.html#new-class_method" title="Puma::Configuration.new (method)">new</a></span>)
   <span class='ivar'>@events</span> <span class='op'>=</span> <span class='id identifier rubyid_events'>events</span>
   <span class='ivar'>@listeners</span> <span class='op'>=</span> []
   <span class='ivar'>@inherited_fds</span> <span class='op'>=</span> {}
@@ -325,8 +386,8 @@
   <span class='ivar'>@proto_env</span> <span class='op'>=</span> {
     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rack.version</span><span class='tstring_end'>&quot;</span></span>.<span class='id identifier rubyid_freeze'>freeze</span> <span class='op'>=&gt;</span> <span class='const'><a href="#RACK_VERSION-constant" title="Puma::Binder::RACK_VERSION (constant)">RACK_VERSION</a></span><span class='comma'>,</span>
     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rack.errors</span><span class='tstring_end'>&quot;</span></span>.<span class='id identifier rubyid_freeze'>freeze</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_events'>events</span>.<span class='id identifier rubyid_stderr'>stderr</span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rack.multithread</span><span class='tstring_end'>&quot;</span></span>.<span class='id identifier rubyid_freeze'>freeze</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='comma'>,</span>
-    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rack.multiprocess</span><span class='tstring_end'>&quot;</span></span>.<span class='id identifier rubyid_freeze'>freeze</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rack.multithread</span><span class='tstring_end'>&quot;</span></span>.<span class='id identifier rubyid_freeze'>freeze</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_conf'>conf</span>.<span class='id identifier rubyid_options'>options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_max_threads'>max_threads</span>] <span class='op'>&gt;</span> <span class='int'>1</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rack.multiprocess</span><span class='tstring_end'>&quot;</span></span>.<span class='id identifier rubyid_freeze'>freeze</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_conf'>conf</span>.<span class='id identifier rubyid_options'>options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_workers'>workers</span>] <span class='op'>&gt;=</span> <span class='int'>1</span><span class='comma'>,</span>
     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rack.run_once</span><span class='tstring_end'>&quot;</span></span>.<span class='id identifier rubyid_freeze'>freeze</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SCRIPT_NAME</span><span class='tstring_end'>&quot;</span></span>.<span class='id identifier rubyid_freeze'>freeze</span> <span class='op'>=&gt;</span> <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SCRIPT_NAME</span><span class='tstring_end'>&#39;</span></span>] <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
 
@@ -350,35 +411,282 @@
 </section>
 
 <h2 class='y_details'>Instance Attribute Details</h2>
-<section class='method_details first' id="connected_port-instance_method">
+<section class='method_details first' id="activated_sockets-instance_method">
   <h3 class='signature ro first'>
-    #<strong>connected_port</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+    #<strong>activated_sockets</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L241-L241'>GitHub</a>&#8202;]</span>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L56-L56'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='241' data-end='241'></pre>
+  <pre class='lines_num' data-start='56' data-end='56'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 241</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 56</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_connected_port'>connected_port</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_activated_sockets'>activated_sockets</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_envs'><a href="#envs-instance_method" title="Puma::Binder#envs (method)">envs</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_inherited_fds'><a href="#inherited_fds-instance_method" title="Puma::Binder#inherited_fds (method)">inherited_fds</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_listeners'><a href="#listeners-instance_method" title="Puma::Binder#listeners (method)">listeners</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_proto_env'><a href="#proto_env-instance_method" title="Puma::Binder#proto_env (method)">proto_env</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_unix_paths'><a href="#unix_paths-instance_method" title="Puma::Binder#unix_paths (method)">unix_paths</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="envs-instance_method">
+  <h3 class='signature ro'>
+    #<strong>envs</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L56-L56'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='56' data-end='56'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 56</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_activated_sockets'><a href="#activated_sockets-instance_method" title="Puma::Binder#activated_sockets (method)">activated_sockets</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_envs'>envs</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_inherited_fds'><a href="#inherited_fds-instance_method" title="Puma::Binder#inherited_fds (method)">inherited_fds</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_listeners'><a href="#listeners-instance_method" title="Puma::Binder#listeners (method)">listeners</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_proto_env'><a href="#proto_env-instance_method" title="Puma::Binder#proto_env (method)">proto_env</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_unix_paths'><a href="#unix_paths-instance_method" title="Puma::Binder#unix_paths (method)">unix_paths</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="inherited_fds-instance_method">
+  <h3 class='signature ro'>
+    #<strong>inherited_fds</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L56-L56'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='56' data-end='56'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 56</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_activated_sockets'><a href="#activated_sockets-instance_method" title="Puma::Binder#activated_sockets (method)">activated_sockets</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_envs'><a href="#envs-instance_method" title="Puma::Binder#envs (method)">envs</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_inherited_fds'>inherited_fds</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_listeners'><a href="#listeners-instance_method" title="Puma::Binder#listeners (method)">listeners</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_proto_env'><a href="#proto_env-instance_method" title="Puma::Binder#proto_env (method)">proto_env</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_unix_paths'><a href="#unix_paths-instance_method" title="Puma::Binder#unix_paths (method)">unix_paths</a></span>
 </pre>
   </div>
 </div>
 </section>
 
 <section class='method_details' id="ios-instance_method">
-  <h3 class='signature ro'>
-    #<strong>ios</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  <h3 class='signature rw'>
+    #<strong>ios</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L46-L46'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L53-L53'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='46' data-end='46'></pre>
+  <pre class='lines_num' data-start='53' data-end='53'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 46</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 53</span></pre>
 <pre class='code ruby'>
 
 <span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ios'>ios</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="ios=-instance_method">
+  <h3 class='signature rw'>
+    #<strong>ios=</strong>(value)   <span class="extras">(<span class='rw'>rw</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L59-L59'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='59' data-end='59'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 59</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_writer'>attr_writer</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ios'><a href="#ios-instance_method" title="Puma::Binder#ios (method)">ios</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_listeners'><a href="#listeners-instance_method" title="Puma::Binder#listeners (method)">listeners</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="listeners-instance_method">
+  <h3 class='signature rw'>
+    #<strong>listeners</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L56-L56'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='56' data-end='56'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 56</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_activated_sockets'><a href="#activated_sockets-instance_method" title="Puma::Binder#activated_sockets (method)">activated_sockets</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_envs'><a href="#envs-instance_method" title="Puma::Binder#envs (method)">envs</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_inherited_fds'><a href="#inherited_fds-instance_method" title="Puma::Binder#inherited_fds (method)">inherited_fds</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_listeners'>listeners</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_proto_env'><a href="#proto_env-instance_method" title="Puma::Binder#proto_env (method)">proto_env</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_unix_paths'><a href="#unix_paths-instance_method" title="Puma::Binder#unix_paths (method)">unix_paths</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="listeners=-instance_method">
+  <h3 class='signature rw'>
+    #<strong>listeners=</strong>(value)   <span class="extras">(<span class='rw'>rw</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L59-L59'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='59' data-end='59'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 59</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_writer'>attr_writer</span> <span class='symbeg'>:</span><span class='id identifier rubyid_ios'><a href="#ios-instance_method" title="Puma::Binder#ios (method)">ios</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_listeners'><a href="#listeners-instance_method" title="Puma::Binder#listeners (method)">listeners</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="proto_env-instance_method">
+  <h3 class='signature ro'>
+    #<strong>proto_env</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L56-L56'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='56' data-end='56'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 56</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_activated_sockets'><a href="#activated_sockets-instance_method" title="Puma::Binder#activated_sockets (method)">activated_sockets</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_envs'><a href="#envs-instance_method" title="Puma::Binder#envs (method)">envs</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_inherited_fds'><a href="#inherited_fds-instance_method" title="Puma::Binder#inherited_fds (method)">inherited_fds</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_listeners'><a href="#listeners-instance_method" title="Puma::Binder#listeners (method)">listeners</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_proto_env'>proto_env</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_unix_paths'><a href="#unix_paths-instance_method" title="Puma::Binder#unix_paths (method)">unix_paths</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="unix_paths-instance_method">
+  <h3 class='signature ro'>
+    #<strong>unix_paths</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L56-L56'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='56' data-end='56'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 56</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_activated_sockets'><a href="#activated_sockets-instance_method" title="Puma::Binder#activated_sockets (method)">activated_sockets</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_envs'><a href="#envs-instance_method" title="Puma::Binder#envs (method)">envs</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_inherited_fds'><a href="#inherited_fds-instance_method" title="Puma::Binder#inherited_fds (method)">inherited_fds</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_listeners'><a href="#listeners-instance_method" title="Puma::Binder#listeners (method)">listeners</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_proto_env'><a href="#proto_env-instance_method" title="Puma::Binder#proto_env (method)">proto_env</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_unix_paths'>unix_paths</span>
 </pre>
   </div>
 </div>
@@ -389,18 +697,17 @@
   <h3 class='signature  first'>
     #<strong>add_ssl_listener</strong>(host, port, ctx, optimize_for_latency = true, backlog = 1024)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L254-L283'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L264-L291'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='254' data-end='283'></pre>
+  <pre class='lines_num' data-start='264' data-end='291'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 254</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 264</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_ssl_listener'>add_ssl_listener</span>(<span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='id identifier rubyid_ctx'>ctx</span><span class='comma'>,</span>
                      <span class='id identifier rubyid_optimize_for_latency'>optimize_for_latency</span><span class='op'>=</span><span class='kw'>true</span><span class='comma'>,</span> <span class='id identifier rubyid_backlog'>backlog</span><span class='op'>=</span><span class='int'>1024</span>)
-  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma/minissl</span><span class='tstring_end'>&#39;</span></span>
 
-  <span class='const'><a href="MiniSSL.html" title="Puma::MiniSSL (module)">MiniSSL</a></span>.<span class='id identifier rubyid_check'><a href="MiniSSL.html#check-class_method" title="Puma::MiniSSL.check (method)">check</a></span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Puma compiled without SSL support</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'><a href="../Puma.html#HAS_SSL-constant" title="Puma::HAS_SSL (constant)">HAS_SSL</a></span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_host'>host</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_loopback_addresses'><a href="#loopback_addresses-instance_method" title="Puma::Binder#loopback_addresses (method)">loopback_addresses</a></span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_addr'>addr</span><span class='op'>|</span>
@@ -416,7 +723,6 @@
   <span class='kw'>end</span>
   <span class='id identifier rubyid_s'>s</span>.<span class='id identifier rubyid_setsockopt'>setsockopt</span>(<span class='const'>Socket</span><span class='op'>::</span><span class='const'>SOL_SOCKET</span><span class='comma'>,</span><span class='const'>Socket</span><span class='op'>::</span><span class='const'>SO_REUSEADDR</span><span class='comma'>,</span> <span class='kw'>true</span>)
   <span class='id identifier rubyid_s'>s</span>.<span class='id identifier rubyid_listen'>listen</span> <span class='id identifier rubyid_backlog'>backlog</span>
-
 
   <span class='id identifier rubyid_ssl'>ssl</span> <span class='op'>=</span> <span class='const'><a href="MiniSSL.html" title="Puma::MiniSSL (module)">MiniSSL</a></span><span class='op'>::</span><span class='const'><a href="MiniSSL/Server.html" title="Puma::MiniSSL::Server (class)">Server</a></span>.<span class='id identifier rubyid_new'><a href="MiniSSL/Server.html#new-class_method" title="Puma::MiniSSL::Server.new (method)">new</a></span> <span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_ctx'>ctx</span>
   <span class='id identifier rubyid_env'><a href="#env-instance_method" title="Puma::Binder#env (method)">env</a></span> <span class='op'>=</span> <span class='ivar'>@proto_env</span>.<span class='id identifier rubyid_dup'>dup</span>
@@ -444,11 +750,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L220-L239'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L233-L251'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='220' data-end='239'></pre>
+  <pre class='lines_num' data-start='233' data-end='251'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 220</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 233</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_tcp_listener'>add_tcp_listener</span>(<span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='id identifier rubyid_optimize_for_latency'>optimize_for_latency</span><span class='op'>=</span><span class='kw'>true</span><span class='comma'>,</span> <span class='id identifier rubyid_backlog'>backlog</span><span class='op'>=</span><span class='int'>1024</span>)
@@ -460,16 +766,15 @@
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_host'>host</span> <span class='op'>=</span> <span class='id identifier rubyid_host'>host</span>[<span class='int'>1</span><span class='op'>..</span><span class='op'>-</span><span class='int'>2</span>] <span class='kw'>if</span> <span class='id identifier rubyid_host'>host</span> <span class='kw'>and</span> <span class='id identifier rubyid_host'>host</span>[<span class='int'>0</span><span class='op'>..</span><span class='int'>0</span>] <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>[</span><span class='tstring_end'>&#39;</span></span>
-  <span class='id identifier rubyid_s'>s</span> <span class='op'>=</span> <span class='const'>TCPServer</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Binder.new (method)">new</a></span>(<span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span>)
+  <span class='id identifier rubyid_tcp_server'>tcp_server</span> <span class='op'>=</span> <span class='const'>TCPServer</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Binder.new (method)">new</a></span>(<span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span>)
   <span class='kw'>if</span> <span class='id identifier rubyid_optimize_for_latency'>optimize_for_latency</span>
-    <span class='id identifier rubyid_s'>s</span>.<span class='id identifier rubyid_setsockopt'>setsockopt</span>(<span class='const'>Socket</span><span class='op'>::</span><span class='const'>IPPROTO_TCP</span><span class='comma'>,</span> <span class='const'>Socket</span><span class='op'>::</span><span class='const'>TCP_NODELAY</span><span class='comma'>,</span> <span class='int'>1</span>)
+    <span class='id identifier rubyid_tcp_server'>tcp_server</span>.<span class='id identifier rubyid_setsockopt'>setsockopt</span>(<span class='const'>Socket</span><span class='op'>::</span><span class='const'>IPPROTO_TCP</span><span class='comma'>,</span> <span class='const'>Socket</span><span class='op'>::</span><span class='const'>TCP_NODELAY</span><span class='comma'>,</span> <span class='int'>1</span>)
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_s'>s</span>.<span class='id identifier rubyid_setsockopt'>setsockopt</span>(<span class='const'>Socket</span><span class='op'>::</span><span class='const'>SOL_SOCKET</span><span class='comma'>,</span><span class='const'>Socket</span><span class='op'>::</span><span class='const'>SO_REUSEADDR</span><span class='comma'>,</span> <span class='kw'>true</span>)
-  <span class='id identifier rubyid_s'>s</span>.<span class='id identifier rubyid_listen'>listen</span> <span class='id identifier rubyid_backlog'>backlog</span>
-  <span class='ivar'>@connected_port</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span>.<span class='id identifier rubyid_addr'>addr</span>[<span class='int'>1</span>]
+  <span class='id identifier rubyid_tcp_server'>tcp_server</span>.<span class='id identifier rubyid_setsockopt'>setsockopt</span>(<span class='const'>Socket</span><span class='op'>::</span><span class='const'>SOL_SOCKET</span><span class='comma'>,</span><span class='const'>Socket</span><span class='op'>::</span><span class='const'>SO_REUSEADDR</span><span class='comma'>,</span> <span class='kw'>true</span>)
+  <span class='id identifier rubyid_tcp_server'>tcp_server</span>.<span class='id identifier rubyid_listen'>listen</span> <span class='id identifier rubyid_backlog'>backlog</span>
 
-  <span class='ivar'>@ios</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_s'>s</span>
-  <span class='id identifier rubyid_s'>s</span>
+  <span class='ivar'>@ios</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_tcp_server'>tcp_server</span>
+  <span class='id identifier rubyid_tcp_server'>tcp_server</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -487,11 +792,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L307-L343'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L314-L350'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='307' data-end='343'></pre>
+  <pre class='lines_num' data-start='314' data-end='350'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 307</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 314</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_unix_listener'>add_unix_listener</span>(<span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_umask'>umask</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_mode'>mode</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_backlog'>backlog</span><span class='op'>=</span><span class='int'>1024</span>)
@@ -540,11 +845,11 @@
   <h3 class='signature '>
     #<strong>close</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L52-L54'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L65-L67'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='52' data-end='54'></pre>
+  <pre class='lines_num' data-start='65' data-end='67'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 52</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 65</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
@@ -559,20 +864,20 @@
   <h3 class='signature '>
     #<strong>close_listeners</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L362-L370'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L369-L377'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='362' data-end='370'></pre>
+  <pre class='lines_num' data-start='369' data-end='377'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 362</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 369</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close_listeners'>close_listeners</span>
-  <span class='ivar'>@listeners</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_l'>l</span><span class='comma'>,</span> <span class='id identifier rubyid_io'>io</span><span class='op'>|</span>
-    <span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_close'><a href="#close-instance_method" title="Puma::Binder#close (method)">close</a></span>
-    <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='const'>URI</span>.<span class='id identifier rubyid_parse'><a href="#parse-instance_method" title="Puma::Binder#parse (method)">parse</a></span>(<span class='id identifier rubyid_l'>l</span>)
+  <span class='id identifier rubyid_listeners'><a href="#listeners-instance_method" title="Puma::Binder#listeners (method)">listeners</a></span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_l'>l</span><span class='comma'>,</span> <span class='id identifier rubyid_io'>io</span><span class='op'>|</span>
+    <span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_close'><a href="#close-instance_method" title="Puma::Binder#close (method)">close</a></span> <span class='kw'>unless</span> <span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_closed?'>closed?</span> <span class='comment'># Ruby 2.2 issue
+</span>    <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='const'>URI</span>.<span class='id identifier rubyid_parse'><a href="#parse-instance_method" title="Puma::Binder#parse (method)">parse</a></span>(<span class='id identifier rubyid_l'>l</span>)
     <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_uri'>uri</span>.<span class='id identifier rubyid_scheme'>scheme</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unix</span><span class='tstring_end'>&#39;</span></span>
     <span class='id identifier rubyid_unix_path'>unix_path</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uri'>uri</span>.<span class='id identifier rubyid_host'>host</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_uri'>uri</span>.<span class='id identifier rubyid_path'>path</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='const'>File</span>.<span class='id identifier rubyid_unlink'>unlink</span> <span class='id identifier rubyid_unix_path'>unix_path</span> <span class='kw'>if</span> <span class='ivar'>@unix_paths</span>.<span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_unix_path'>unix_path</span>
+    <span class='const'>File</span>.<span class='id identifier rubyid_unlink'>unlink</span> <span class='id identifier rubyid_unix_path'>unix_path</span> <span class='kw'>if</span> <span class='id identifier rubyid_unix_paths'><a href="#unix_paths-instance_method" title="Puma::Binder#unix_paths (method)">unix_paths</a></span>.<span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_unix_path'>unix_path</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </pre>
@@ -580,20 +885,128 @@
 </div>
 </section>
 
-<section class='method_details' id="close_unix_paths-instance_method">
+<section class='method_details' id="connected_ports-instance_method">
   <h3 class='signature '>
-    #<strong>close_unix_paths</strong>  
+    #<strong>connected_ports</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L372-L374'>GitHub</a>&#8202;]</span>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L70-L72'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='372' data-end='374'></pre>
+  <pre class='lines_num' data-start='70' data-end='72'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 372</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 70</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_close_unix_paths'>close_unix_paths</span>
-  <span class='ivar'>@unix_paths</span>.<span class='id identifier rubyid_each'>each</span> { <span class='op'>|</span><span class='id identifier rubyid_up'>up</span><span class='op'>|</span> <span class='const'>File</span>.<span class='id identifier rubyid_unlink'>unlink</span>(<span class='id identifier rubyid_up'>up</span>) <span class='kw'>if</span> <span class='const'>File</span>.<span class='id identifier rubyid_exist?'>exist?</span> <span class='id identifier rubyid_up'>up</span> }
+<span class='kw'>def</span> <span class='id identifier rubyid_connected_ports'>connected_ports</span>
+  <span class='id identifier rubyid_ios'><a href="#ios-instance_method" title="Puma::Binder#ios (method)">ios</a></span>.<span class='id identifier rubyid_map'>map</span> { <span class='op'>|</span><span class='id identifier rubyid_io'>io</span><span class='op'>|</span> <span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_addr'>addr</span>[<span class='int'>1</span>] }.<span class='id identifier rubyid_uniq'>uniq</span>
 <span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="create_activated_fds-instance_method">
+  <h3 class='signature '>
+    #<strong>create_activated_fds</strong>(env_hash)  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>systemd socket activation. LISTEN_FDS = number of listening sockets. e.g. 2 means accept on 2 sockets w/descriptors 3 and 4. LISTEN_PID = PID of the service process, aka us</p>
+
+  </div>
+</div>
+<div class='tags'>
+    <p class='tag_title'>See Also:</p>
+  <ul class='see'>
+      <li><a href="https://www.freedesktop.org/software/systemd/man/systemd-socket-activate.html" target="_parent" title="https://www.freedesktop.org/software/systemd/man/systemd-socket-activate.html">https://www.freedesktop.org/software/systemd/man/systemd-socket-activate.html</a></li>
+      </ul>
+<p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L88-L103'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='88' data-end='103'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 88</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_activated_fds'>create_activated_fds</span>(<span class='id identifier rubyid_env_hash'>env_hash</span>)
+  <span class='kw'>return</span> [] <span class='kw'>unless</span> <span class='id identifier rubyid_env_hash'>env_hash</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LISTEN_FDS</span><span class='tstring_end'>&#39;</span></span>] <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_env_hash'>env_hash</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LISTEN_PID</span><span class='tstring_end'>&#39;</span></span>].<span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>==</span> <span class='gvar'>$$</span>
+  <span class='id identifier rubyid_env_hash'>env_hash</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LISTEN_FDS</span><span class='tstring_end'>&#39;</span></span>].<span class='id identifier rubyid_to_i'>to_i</span>.<span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_index'>index</span><span class='op'>|</span>
+    <span class='id identifier rubyid_sock'>sock</span> <span class='op'>=</span> <span class='const'>TCPServer</span>.<span class='id identifier rubyid_for_fd'>for_fd</span>(<span class='id identifier rubyid_socket_activation_fd'><a href="#socket_activation_fd-instance_method" title="Puma::Binder#socket_activation_fd (method)">socket_activation_fd</a></span>(<span class='id identifier rubyid_index'>index</span>))
+    <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='kw'>begin</span> <span class='comment'># Try to parse as a path
+</span>      [<span class='symbeg'>:</span><span class='id identifier rubyid_unix'>unix</span><span class='comma'>,</span> <span class='const'>Socket</span>.<span class='id identifier rubyid_unpack_sockaddr_un'>unpack_sockaddr_un</span>(<span class='id identifier rubyid_sock'>sock</span>.<span class='id identifier rubyid_getsockname'>getsockname</span>)]
+    <span class='kw'>rescue</span> <span class='const'>ArgumentError</span> <span class='comment'># Try to parse as a port/ip
+</span>      <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='id identifier rubyid_addr'>addr</span> <span class='op'>=</span> <span class='const'>Socket</span>.<span class='id identifier rubyid_unpack_sockaddr_in'>unpack_sockaddr_in</span>(<span class='id identifier rubyid_sock'>sock</span>.<span class='id identifier rubyid_getsockname'>getsockname</span>)
+      <span class='id identifier rubyid_addr'>addr</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_addr'>addr</span><span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_addr'>addr</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\:</span><span class='regexp_end'>/</span></span>
+      [<span class='symbeg'>:</span><span class='id identifier rubyid_tcp'>tcp</span><span class='comma'>,</span> <span class='id identifier rubyid_addr'>addr</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span>]
+    <span class='kw'>end</span>
+    <span class='ivar'>@activated_sockets</span>[<span class='id identifier rubyid_key'>key</span>] <span class='op'>=</span> <span class='id identifier rubyid_sock'>sock</span>
+    <span class='ivar'>@events</span>.<span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Registered </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span>.<span class='id identifier rubyid_join'>join</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>:</span><span class='tstring_end'>&#39;</span></span><span class='embexpr_end'>}</span><span class='tstring_content'> for activation from LISTEN_FDS</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  [<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>LISTEN_FDS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>LISTEN_PID</span><span class='tstring_end'>&quot;</span></span>] <span class='comment'># Signal to remove these keys from ENV
+</span><span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="create_inherited_fds-instance_method">
+  <h3 class='signature '>
+    #<strong>create_inherited_fds</strong>(env_hash)  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L75-L80'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='75' data-end='80'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 75</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_inherited_fds'>create_inherited_fds</span>(<span class='id identifier rubyid_env_hash'>env_hash</span>)
+  <span class='id identifier rubyid_env_hash'>env_hash</span>.<span class='id identifier rubyid_select'>select</span> {<span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_k'>k</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>PUMA_INHERIT_\d+</span><span class='regexp_end'>/</span></span>}.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid__k'>_k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+    <span class='id identifier rubyid_fd'>fd</span><span class='comma'>,</span> <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>.<span class='id identifier rubyid_split'>split</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>2</span>)
+    <span class='ivar'>@inherited_fds</span>[<span class='id identifier rubyid_url'>url</span>] <span class='op'>=</span> <span class='id identifier rubyid_fd'>fd</span>.<span class='id identifier rubyid_to_i'>to_i</span>
+  <span class='kw'>end</span>.<span class='id identifier rubyid_keys'>keys</span> <span class='comment'># pass keys back for removal
+</span><span class='kw'>end</span>
 </pre>
   </div>
 </div>
@@ -603,11 +1016,11 @@
   <h3 class='signature '>
     #<strong>env</strong>(sock)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L48-L50'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L61-L63'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='48' data-end='50'></pre>
+  <pre class='lines_num' data-start='61' data-end='63'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 48</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 61</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_env'>env</span>(<span class='id identifier rubyid_sock'>sock</span>)
@@ -618,68 +1031,19 @@
 </div>
 </section>
 
-<section class='method_details' id="import_from_env-instance_method">
-  <h3 class='signature '>
-    #<strong>import_from_env</strong>  
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L56-L87'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='56' data-end='87'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 56</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_import_from_env'>import_from_env</span>
-  <span class='id identifier rubyid_remove'>remove</span> <span class='op'>=</span> []
-
-  <span class='const'>ENV</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_k'>k</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>PUMA_INHERIT_\d+</span><span class='regexp_end'>/</span></span>
-      <span class='id identifier rubyid_fd'>fd</span><span class='comma'>,</span> <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>.<span class='id identifier rubyid_split'>split</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>2</span>)
-      <span class='ivar'>@inherited_fds</span>[<span class='id identifier rubyid_url'>url</span>] <span class='op'>=</span> <span class='id identifier rubyid_fd'>fd</span>.<span class='id identifier rubyid_to_i'>to_i</span>
-      <span class='id identifier rubyid_remove'>remove</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_k'>k</span>
-    <span class='kw'>elsif</span> <span class='id identifier rubyid_k'>k</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LISTEN_FDS</span><span class='tstring_end'>&#39;</span></span> <span class='op'>&amp;&amp;</span> <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LISTEN_PID</span><span class='tstring_end'>&#39;</span></span>].<span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>==</span> <span class='gvar'>$$</span>
-      <span class='id identifier rubyid_v'>v</span>.<span class='id identifier rubyid_to_i'>to_i</span>.<span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_num'>num</span><span class='op'>|</span>
-        <span class='id identifier rubyid_fd'>fd</span> <span class='op'>=</span> <span class='id identifier rubyid_num'>num</span> <span class='op'>+</span> <span class='int'>3</span>
-        <span class='id identifier rubyid_sock'>sock</span> <span class='op'>=</span> <span class='const'>TCPServer</span>.<span class='id identifier rubyid_for_fd'>for_fd</span>(<span class='id identifier rubyid_fd'>fd</span>)
-        <span class='kw'>begin</span>
-          <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> [ <span class='symbeg'>:</span><span class='id identifier rubyid_unix'>unix</span><span class='comma'>,</span> <span class='const'>Socket</span>.<span class='id identifier rubyid_unpack_sockaddr_un'>unpack_sockaddr_un</span>(<span class='id identifier rubyid_sock'>sock</span>.<span class='id identifier rubyid_getsockname'>getsockname</span>) ]
-        <span class='kw'>rescue</span> <span class='const'>ArgumentError</span>
-          <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='id identifier rubyid_addr'>addr</span> <span class='op'>=</span> <span class='const'>Socket</span>.<span class='id identifier rubyid_unpack_sockaddr_in'>unpack_sockaddr_in</span>(<span class='id identifier rubyid_sock'>sock</span>.<span class='id identifier rubyid_getsockname'>getsockname</span>)
-          <span class='kw'>if</span> <span class='id identifier rubyid_addr'>addr</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\:</span><span class='regexp_end'>/</span></span>
-            <span class='id identifier rubyid_addr'>addr</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_addr'>addr</span><span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span>
-          <span class='kw'>end</span>
-          <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> [ <span class='symbeg'>:</span><span class='id identifier rubyid_tcp'>tcp</span><span class='comma'>,</span> <span class='id identifier rubyid_addr'>addr</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span> ]
-        <span class='kw'>end</span>
-        <span class='ivar'>@activated_sockets</span>[<span class='id identifier rubyid_key'>key</span>] <span class='op'>=</span> <span class='id identifier rubyid_sock'>sock</span>
-        <span class='ivar'>@events</span>.<span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Registered </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span>.<span class='id identifier rubyid_join'>join</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>:</span><span class='tstring_end'>&#39;</span></span><span class='embexpr_end'>}</span><span class='tstring_content'> for activation from LISTEN_FDS</span><span class='tstring_end'>&quot;</span></span>
-      <span class='kw'>end</span>
-      <span class='id identifier rubyid_remove'>remove</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_k'>k</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>LISTEN_PID</span><span class='tstring_end'>&#39;</span></span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-
-  <span class='id identifier rubyid_remove'>remove</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span>
-    <span class='const'>ENV</span>.<span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_k'>k</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <section class='method_details' id="inherit_ssl_listener-instance_method">
   <h3 class='signature '>
     #<strong>inherit_ssl_listener</strong>(fd, ctx)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L285-L303'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L293-L310'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='285' data-end='303'></pre>
+  <pre class='lines_num' data-start='293' data-end='310'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 285</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 293</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inherit_ssl_listener'>inherit_ssl_listener</span>(<span class='id identifier rubyid_fd'>fd</span><span class='comma'>,</span> <span class='id identifier rubyid_ctx'>ctx</span>)
-  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma/minissl</span><span class='tstring_end'>&#39;</span></span>
-  <span class='const'><a href="MiniSSL.html" title="Puma::MiniSSL (module)">MiniSSL</a></span>.<span class='id identifier rubyid_check'><a href="MiniSSL.html#check-class_method" title="Puma::MiniSSL.check (method)">check</a></span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Puma compiled without SSL support</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'><a href="../Puma.html#HAS_SSL-constant" title="Puma::HAS_SSL (constant)">HAS_SSL</a></span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_fd'>fd</span>.<span class='id identifier rubyid_kind_of?'>kind_of?</span> <span class='const'>TCPServer</span>
     <span class='id identifier rubyid_s'>s</span> <span class='op'>=</span> <span class='id identifier rubyid_fd'>fd</span>
@@ -705,11 +1069,11 @@
   <h3 class='signature '>
     #<strong>inherit_tcp_listener</strong>(host, port, fd)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L243-L252'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L253-L262'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='243' data-end='252'></pre>
+  <pre class='lines_num' data-start='253' data-end='262'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 243</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 253</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inherit_tcp_listener'>inherit_tcp_listener</span>(<span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='id identifier rubyid_fd'>fd</span>)
@@ -731,11 +1095,11 @@
   <h3 class='signature '>
     #<strong>inherit_unix_listener</strong>(path, fd)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L345-L360'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L352-L367'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='345' data-end='360'></pre>
+  <pre class='lines_num' data-start='352' data-end='367'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 345</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 352</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inherit_unix_listener'>inherit_unix_listener</span>(<span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_fd'>fd</span>)
@@ -760,14 +1124,14 @@
 </section>
 
 <section class='method_details' id="loopback_addresses-instance_method">
-  <h3 class='signature '>
-    #<strong>loopback_addresses</strong>  
+  <h3 class='signature priv'>
+    #<strong>loopback_addresses</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L207-L211'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L394-L398'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='207' data-end='211'></pre>
+  <pre class='lines_num' data-start='394' data-end='398'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 207</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 394</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_loopback_addresses'>loopback_addresses</span>
@@ -782,16 +1146,16 @@
 
 <section class='method_details' id="parse-instance_method">
   <h3 class='signature '>
-    #<strong>parse</strong>(binds, logger)  
+    #<strong>parse</strong>(binds, logger, log_msg = &#39;Listening&#39;)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L89-L205'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L105-L224'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='89' data-end='205'></pre>
+  <pre class='lines_num' data-start='105' data-end='224'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 89</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 105</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_parse'>parse</span>(<span class='id identifier rubyid_binds'>binds</span><span class='comma'>,</span> <span class='id identifier rubyid_logger'>logger</span>)
+<span class='kw'>def</span> <span class='id identifier rubyid_parse'>parse</span>(<span class='id identifier rubyid_binds'>binds</span><span class='comma'>,</span> <span class='id identifier rubyid_logger'>logger</span><span class='comma'>,</span> <span class='id identifier rubyid_log_msg'>log_msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Listening</span><span class='tstring_end'>&#39;</span></span>)
   <span class='id identifier rubyid_binds'>binds</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_str'>str</span><span class='op'>|</span>
     <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='const'>URI</span>.<span class='id identifier rubyid_parse'>parse</span> <span class='id identifier rubyid_str'>str</span>
     <span class='kw'>case</span> <span class='id identifier rubyid_uri'>uri</span>.<span class='id identifier rubyid_scheme'>scheme</span>
@@ -818,7 +1182,7 @@
             <span class='id identifier rubyid_i'>i</span>.<span class='id identifier rubyid_local_address'>local_address</span>.<span class='id identifier rubyid_ip_unpack'>ip_unpack</span>.<span class='id identifier rubyid_join'>join</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>:</span><span class='tstring_end'>&#39;</span></span>)
           <span class='kw'>end</span>
 
-          <span class='id identifier rubyid_logger'>logger</span>.<span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Listening on tcp://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_addr'>addr</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+          <span class='id identifier rubyid_logger'>logger</span>.<span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_log_msg'>log_msg</span><span class='embexpr_end'>}</span><span class='tstring_content'> on http://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_addr'>addr</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
         <span class='kw'>end</span>
       <span class='kw'>end</span>
 
@@ -854,11 +1218,14 @@
         <span class='kw'>end</span>
 
         <span class='id identifier rubyid_io'>io</span> <span class='op'>=</span> <span class='id identifier rubyid_add_unix_listener'><a href="#add_unix_listener-instance_method" title="Puma::Binder#add_unix_listener (method)">add_unix_listener</a></span> <span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_umask'>umask</span><span class='comma'>,</span> <span class='id identifier rubyid_mode'>mode</span><span class='comma'>,</span> <span class='id identifier rubyid_backlog'>backlog</span>
-        <span class='id identifier rubyid_logger'>logger</span>.<span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* Listening on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_logger'>logger</span>.<span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>* </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_log_msg'>log_msg</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>
 
       <span class='ivar'>@listeners</span> <span class='op'>&lt;&lt;</span> [<span class='id identifier rubyid_str'>str</span><span class='comma'>,</span> <span class='id identifier rubyid_io'>io</span>]
     <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ssl</span><span class='tstring_end'>&quot;</span></span>
+
+      <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Puma compiled without SSL support</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'><a href="../Puma.html#HAS_SSL-constant" title="Puma::HAS_SSL (constant)">HAS_SSL</a></span>
+
       <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='const'><a href="Util.html" title="Puma::Util (module)">Util</a></span>.<span class='id identifier rubyid_parse_query'><a href="Util.html#parse_query-class_method" title="Puma::Util.parse_query (method)">parse_query</a></span> <span class='id identifier rubyid_uri'>uri</span>.<span class='id identifier rubyid_query'>query</span>
       <span class='id identifier rubyid_ctx'>ctx</span> <span class='op'>=</span> <span class='const'><a href="MiniSSL.html" title="Puma::MiniSSL (module)">MiniSSL</a></span><span class='op'>::</span><span class='const'><a href="MiniSSL/ContextBuilder.html" title="Puma::MiniSSL::ContextBuilder (class)">ContextBuilder</a></span>.<span class='id identifier rubyid_new'><a href="MiniSSL/ContextBuilder.html#new-class_method" title="Puma::MiniSSL::ContextBuilder.new (method)">new</a></span>(<span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='ivar'>@events</span>).<span class='id identifier rubyid_context'><a href="MiniSSL/ContextBuilder.html#context-instance_method" title="Puma::MiniSSL::ContextBuilder#context (method)">context</a></span>
 
@@ -917,21 +1284,90 @@
   <h3 class='signature '>
     #<strong>redirects_for_restart</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/lib/puma/binder.rb#L376-L383'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L379-L383'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='376' data-end='383'></pre>
+  <pre class='lines_num' data-start='379' data-end='383'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/binder.rb', line 376</span></pre>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 379</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_redirects_for_restart'>redirects_for_restart</span>
-  <span class='id identifier rubyid_redirects'>redirects</span> <span class='op'>=</span> {<span class='symbeg'>:</span><span class='id identifier rubyid_close_others'>close_others</span> <span class='op'>=&gt;</span> <span class='kw'>true</span>}
-  <span class='ivar'>@listeners</span>.<span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span>(<span class='id identifier rubyid_l'>l</span><span class='comma'>,</span> <span class='id identifier rubyid_io'>io</span>)<span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
-    <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PUMA_INHERIT_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_i'>i</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>] <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_to_i'>to_i</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_l'>l</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_redirects'>redirects</span>[<span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_to_i'>to_i</span>] <span class='op'>=</span> <span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_to_i'>to_i</span>
-  <span class='kw'>end</span>
+  <span class='id identifier rubyid_redirects'>redirects</span> <span class='op'>=</span> <span class='id identifier rubyid_listeners'><a href="#listeners-instance_method" title="Puma::Binder#listeners (method)">listeners</a></span>.<span class='id identifier rubyid_map'>map</span> { <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span> [<span class='id identifier rubyid_a'>a</span>[<span class='int'>1</span>].<span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='id identifier rubyid_a'>a</span>[<span class='int'>1</span>].<span class='id identifier rubyid_to_i'>to_i</span>] }.<span class='id identifier rubyid_to_h'>to_h</span>
+  <span class='id identifier rubyid_redirects'>redirects</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_close_others'>close_others</span>] <span class='op'>=</span> <span class='kw'>true</span>
   <span class='id identifier rubyid_redirects'>redirects</span>
 <span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="redirects_for_restart_env-instance_method">
+  <h3 class='signature '>
+    #<strong>redirects_for_restart_env</strong>  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L386-L390'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='386' data-end='390'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 386</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_redirects_for_restart_env'>redirects_for_restart_env</span>
+  <span class='id identifier rubyid_listeners'><a href="#listeners-instance_method" title="Puma::Binder#listeners (method)">listeners</a></span>.<span class='id identifier rubyid_each_with_object'>each_with_object</span>({}).<span class='id identifier rubyid_with_index'>with_index</span> <span class='kw'>do</span> <span class='op'>|</span>(<span class='id identifier rubyid_listen'>listen</span><span class='comma'>,</span> <span class='id identifier rubyid_memo'>memo</span>)<span class='comma'>,</span> <span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='id identifier rubyid_memo'>memo</span>[<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PUMA_INHERIT_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_i'>i</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>] <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_listen'>listen</span>[<span class='int'>1</span>].<span class='id identifier rubyid_to_i'>to_i</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_listen'>listen</span>[<span class='int'>0</span>]<span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="socket_activation_fd-instance_method">
+  <h3 class='signature priv'>
+    #<strong>socket_activation_fd</strong>(int)   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/binder.rb#L401-L403'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='401' data-end='403'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/binder.rb', line 401</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_socket_activation_fd'>socket_activation_fd</span>(<span class='id identifier rubyid_int'>int</span>)
+  <span class='id identifier rubyid_int'>int</span> <span class='op'>+</span> <span class='int'>3</span> <span class='comment'># 3 is the magic number you add to follow the SA protocol
+</span><span class='kw'>end</span>
 </pre>
   </div>
 </div>

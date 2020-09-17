@@ -63,12 +63,12 @@
 <div id='content' class='file'>
 <h1>Architecture</h1>
 <h2>Overview</h2>
-<p><img src="images/puma-general-arch.png" alt="http://bit.ly/2iJuFky" /></p>
+<p><img src="images/puma-general-arch.png" alt="https://bit.ly/2iJuFky" /></p>
 <p><a href="Puma.html" title="Puma (module)">Puma</a> is a threaded web server, processing requests across a TCP or UNIX socket.</p>
 <p>Workers accept connections from the socket and a thread in the worker's thread pool processes the client's request.</p>
 <p>Clustered mode is shown/discussed here. Single mode is analogous to having a single worker process.</p>
 <h2>Connection pipeline</h2>
-<p><img src="images/puma-connection-flow.png" alt="http://bit.ly/2zwzhEK" /></p>
+<p><img src="images/puma-connection-flow.png" alt="https://bit.ly/2zwzhEK" /></p>
 <ul>
 <li>Upon startup, <a href="Puma.html" title="Puma (module)">Puma</a> listens on a TCP or UNIX socket.
 <ul>
@@ -96,7 +96,7 @@
 </li>
 </ul>
 <h3>Disabling <code>queue_requests</code></h3>
-<p><img src="images/puma-connection-flow-no-reactor.png" alt="http://bit.ly/2zxCJ1Z" /></p>
+<p><img src="images/puma-connection-flow-no-reactor.png" alt="https://bit.ly/2zxCJ1Z" /></p>
 <p>The <code>queue_requests</code> option is <code>true</code> by default, enabling the separate thread used to buffer requests as described above.</p>
 <p>If set to <code>false</code>, this buffer will not be used for connections while waiting for the request to arrive.
 In this mode, when a connection is accepted, it is added to the &quot;todo&quot; queue immediately, and a worker will synchronously do any waiting necessary to read the HTTP request from the socket.</p>
