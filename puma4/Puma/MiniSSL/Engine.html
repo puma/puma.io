@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Class: Puma::MiniSSL::Engine &mdash; Puma</title>
+
+<link rel='stylesheet'  type='text/css' href='../../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::MiniSSL::Engine",
+    relpath = '../../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../../index.html'>Puma</a> &raquo; 
+      <a href='../../_index.html#alpha_E'>Index (E)</a> &raquo; 
+        <a href="../../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+        <a href="../MiniSSL.html" title="Puma::MiniSSL (module)">MiniSSL</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>Engine&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='class'>
+<h1>Class: Puma::MiniSSL::Engine</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id='t2_inherits' class='box_2'>Inherits:</td>
+      <td class='box_rel'>
+        <span class='inheritName'><a href="../../Object.html" title="Object (class)">Object</a></span>
+      </td>
+    </tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L483'>ext/puma_http11/mini_ssl.c</a>      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#client-class_method" title=".client (class method)">.<strong>client</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#server-class_method" title=".server (class method)">.<strong>server</strong>(mini_ssl_ctx)  </a>
+    </span>
+  </li>
+</ul>
+</div>  <!-- class_method_summary -->
+
+<h2 class='h2_sum' id='instance_attribute_summary'>Instance Attribute Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#init%3F-instance_method" title="#init? (instance method)">#<strong>init?</strong>  &#x21d2; Boolean </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+</ul>
+</div>  <!-- instance_attribute_summary -->
+
+<h2 class='h2_sum' id='instance_method_summary'>Instance Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#extract-instance_method" title="#extract (instance method)">#<strong>extract</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#inject-instance_method" title="#inject (instance method)">#<strong>inject</strong>(str)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#peercert-instance_method" title="#peercert (instance method)">#<strong>peercert</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#read-instance_method" title="#read (instance method)">#<strong>read</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#shutdown-instance_method" title="#shutdown (instance method)">#<strong>shutdown</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#write-instance_method" title="#write (instance method)">#<strong>write</strong>(str)  </a>
+    </span>
+  </li>
+</ul>
+</div>  <!-- instance_method_summary -->
+<h2 class='y_details'>Class Method Details</h2>
+<section class='method_details first' id="client-class_method">
+  <h3 class='signature  first'>
+    .<strong>client</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L262-L278'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='262' data-end='278'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 262</span></pre>
+<pre class='code cpp'>
+
+VALUE engine_init_client(VALUE klass) {
+  VALUE obj;
+  ms_conn* conn = engine_alloc(klass, &amp;obj);
+#ifdef HAVE_DTLS_METHOD
+  conn-&gt;ctx = SSL_CTX_new(DTLS_method());
+#else
+  conn-&gt;ctx = SSL_CTX_new(DTLSv1_method());
+#endif
+  conn-&gt;ssl = SSL_new(conn-&gt;ctx);
+  SSL_set_app_data(conn-&gt;ssl, NULL);
+  SSL_set_verify(conn-&gt;ssl, SSL_VERIFY_NONE, NULL);
+
+  SSL_set_bio(conn-&gt;ssl, conn-&gt;read, conn-&gt;write);
+
+  SSL_set_connect_state(conn-&gt;ssl);
+  return obj;
+}
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="server-class_method">
+  <h3 class='signature '>
+    .<strong>server</strong>(mini_ssl_ctx)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L141-L260'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='141' data-end='260'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 141</span></pre>
+<pre class='code cpp'>
+
+VALUE engine_init_server(VALUE self, VALUE mini_ssl_ctx) {
+  VALUE obj;
+  SSL_CTX* ctx;
+  SSL* ssl;
+  int min, ssl_options;
+
+  ms_conn* conn = engine_alloc(self, &amp;obj);
+
+  ID sym_key = rb_intern(&quot;key&quot;);
+  VALUE key = rb_funcall(mini_ssl_ctx, sym_key, 0);
+
+  StringValue(key);
+
+  ID sym_cert = rb_intern(&quot;cert&quot;);
+  VALUE cert = rb_funcall(mini_ssl_ctx, sym_cert, 0);
+
+  StringValue(cert);
+
+  ID sym_ca = rb_intern(&quot;ca&quot;);
+  VALUE ca = rb_funcall(mini_ssl_ctx, sym_ca, 0);
+
+  ID sym_verify_mode = rb_intern(&quot;verify_mode&quot;);
+  VALUE verify_mode = rb_funcall(mini_ssl_ctx, sym_verify_mode, 0);
+
+  ID sym_ssl_cipher_filter = rb_intern(&quot;ssl_cipher_filter&quot;);
+  VALUE ssl_cipher_filter = rb_funcall(mini_ssl_ctx, sym_ssl_cipher_filter, 0);
+
+  ID sym_no_tlsv1 = rb_intern(&quot;no_tlsv1&quot;);
+  VALUE no_tlsv1 = rb_funcall(mini_ssl_ctx, sym_no_tlsv1, 0);
+
+  ID sym_no_tlsv1_1 = rb_intern(&quot;no_tlsv1_1&quot;);
+  VALUE no_tlsv1_1 = rb_funcall(mini_ssl_ctx, sym_no_tlsv1_1, 0);
+
+#ifdef HAVE_TLS_SERVER_METHOD
+  ctx = SSL_CTX_new(TLS_server_method());
+#else
+  ctx = SSL_CTX_new(SSLv23_server_method());
+#endif
+  conn-&gt;ctx = ctx;
+
+  SSL_CTX_use_certificate_chain_file(ctx, RSTRING_PTR(cert));
+  SSL_CTX_use_PrivateKey_file(ctx, RSTRING_PTR(key), SSL_FILETYPE_PEM);
+
+  if (!NIL_P(ca)) {
+    StringValue(ca);
+    SSL_CTX_load_verify_locations(ctx, RSTRING_PTR(ca), NULL);
+  }
+
+  ssl_options = SSL_OP_CIPHER_SERVER_PREFERENCE | SSL_OP_SINGLE_ECDH_USE | SSL_OP_NO_COMPRESSION;
+
+#ifdef HAVE_SSL_CTX_SET_MIN_PROTO_VERSION
+  if (RTEST(no_tlsv1_1)) {
+    min = TLS1_2_VERSION;
+  }
+  else if (RTEST(no_tlsv1)) {
+    min = TLS1_1_VERSION;
+  }
+  else {
+    min = TLS1_VERSION;
+  }
+  
+  SSL_CTX_set_min_proto_version(ctx, min);
+
+  SSL_CTX_set_options(ctx, ssl_options);
+
+#else
+  /* As of 1.0.2f, SSL_OP_SINGLE_DH_USE key use is always on */
+  ssl_options |= SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3 | SSL_OP_SINGLE_DH_USE;
+
+  if (RTEST(no_tlsv1)) {
+    ssl_options |= SSL_OP_NO_TLSv1;
+  }
+  if(RTEST(no_tlsv1_1)) {
+    ssl_options |= SSL_OP_NO_TLSv1 | SSL_OP_NO_TLSv1_1;
+  }
+  SSL_CTX_set_options(ctx, ssl_options);
+#endif
+
+  SSL_CTX_set_session_cache_mode(ctx, SSL_SESS_CACHE_OFF);
+
+  if (!NIL_P(ssl_cipher_filter)) {
+    StringValue(ssl_cipher_filter);
+    SSL_CTX_set_cipher_list(ctx, RSTRING_PTR(ssl_cipher_filter));
+  }
+  else {
+    SSL_CTX_set_cipher_list(ctx, &quot;HIGH:!aNULL@STRENGTH&quot;);
+  }
+
+  DH *dh = get_dh1024();
+  SSL_CTX_set_tmp_dh(ctx, dh);
+
+#if OPENSSL_VERSION_NUMBER &lt; 0x10002000L
+  // Remove this case if OpenSSL 1.0.1 (now EOL) support is no
+  // longer needed.
+  EC_KEY *ecdh = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+  if (ecdh) {
+    SSL_CTX_set_tmp_ecdh(ctx, ecdh);
+    EC_KEY_free(ecdh);
+  }
+#elif OPENSSL_VERSION_NUMBER &lt; 0x10100000L || defined(LIBRESSL_VERSION_NUMBER)
+  // Prior to OpenSSL 1.1.0, servers must manually enable server-side ECDH
+  // negotiation.
+  SSL_CTX_set_ecdh_auto(ctx, 1);
+#endif
+
+  ssl = SSL_new(ctx);
+  conn-&gt;ssl = ssl;
+  SSL_set_app_data(ssl, NULL);
+
+  if (NIL_P(verify_mode)) {
+    /* SSL_set_verify(ssl, SSL_VERIFY_NONE, NULL); */
+  } else {
+    SSL_set_verify(ssl, NUM2INT(verify_mode), engine_verify_callback);
+  }
+
+  SSL_set_bio(ssl, conn-&gt;read, conn-&gt;write);
+
+  SSL_set_accept_state(ssl);
+  return obj;
+}
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Attribute Details</h2>
+<section class='method_details first' id="init?-instance_method">
+  <h3 class='signature ro first'>
+    #<strong>init?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L418-L424'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='418' data-end='424'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 418</span></pre>
+<pre class='code cpp'>
+
+VALUE engine_init(VALUE self) {
+  ms_conn* conn;
+
+  Data_Get_Struct(self, ms_conn, conn);
+
+  return SSL_in_init(conn-&gt;ssl) ? Qtrue : Qfalse;
+}
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Method Details</h2>
+<section class='method_details first' id="extract-instance_method">
+  <h3 class='signature  first'>
+    #<strong>extract</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L381-L400'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='381' data-end='400'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 381</span></pre>
+<pre class='code cpp'>
+
+VALUE engine_extract(VALUE self) {
+  ms_conn* conn;
+  int bytes;
+  size_t pending;
+  char buf[512];
+
+  Data_Get_Struct(self, ms_conn, conn);
+
+  pending = BIO_pending(conn-&gt;write);
+  if(pending &gt; 0) {
+    bytes = BIO_read(conn-&gt;write, buf, sizeof(buf));
+    if(bytes &gt; 0) {
+      return rb_str_new(buf, bytes);
+    } else if(!BIO_should_retry(conn-&gt;write)) {
+      raise_error(conn-&gt;ssl, bytes);
+    }
+  }
+
+  return Qnil;
+}
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="inject-instance_method">
+  <h3 class='signature '>
+    #<strong>inject</strong>(str)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L280-L295'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='280' data-end='295'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 280</span></pre>
+<pre class='code cpp'>
+
+VALUE engine_inject(VALUE self, VALUE str) {
+  ms_conn* conn;
+  long used;
+
+  Data_Get_Struct(self, ms_conn, conn);
+
+  StringValue(str);
+
+  used = BIO_write(conn-&gt;read, RSTRING_PTR(str), (int)RSTRING_LEN(str));
+
+  if(used == 0 || used == -1) {
+    return Qfalse;
+  }
+
+  return INT2FIX(used);
+}
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="peercert-instance_method">
+  <h3 class='signature '>
+    #<strong>peercert</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L426-L463'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='426' data-end='463'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 426</span></pre>
+<pre class='code cpp'>
+
+VALUE engine_peercert(VALUE self) {
+  ms_conn* conn;
+  X509* cert;
+  int bytes;
+  unsigned char* buf = NULL;
+  ms_cert_buf* cert_buf = NULL;
+  VALUE rb_cert_buf;
+
+  Data_Get_Struct(self, ms_conn, conn);
+
+  cert = SSL_get_peer_certificate(conn-&gt;ssl);
+  if(!cert) {
+    /*
+     * See if there was a failed certificate associated with this client.
+     */
+    cert_buf = (ms_cert_buf*)SSL_get_app_data(conn-&gt;ssl);
+    if(!cert_buf) {
+      return Qnil;
+    }
+    buf = cert_buf-&gt;buf;
+    bytes = cert_buf-&gt;bytes;
+
+  } else {
+    bytes = i2d_X509(cert, &amp;buf);
+    X509_free(cert);
+
+    if(bytes &lt; 0) {
+      return Qnil;
+    }
+  }
+
+  rb_cert_buf = rb_str_new((const char*)(buf), bytes);
+  if(!cert_buf) {
+    OPENSSL_free(buf);
+  }
+
+  return rb_cert_buf;
+}
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="read-instance_method">
+  <h3 class='signature '>
+    #<strong>read</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L331-L357'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='331' data-end='357'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 331</span></pre>
+<pre class='code cpp'>
+
+VALUE engine_read(VALUE self) {
+  ms_conn* conn;
+  char buf[512];
+  int bytes, error;
+
+  Data_Get_Struct(self, ms_conn, conn);
+
+  ERR_clear_error();
+
+  bytes = SSL_read(conn-&gt;ssl, (void*)buf, sizeof(buf));
+
+  if(bytes &gt; 0) {
+    return rb_str_new(buf, bytes);
+  }
+
+  if(SSL_want_read(conn-&gt;ssl)) return Qnil;
+
+  error = SSL_get_error(conn-&gt;ssl, bytes);
+
+  if(error == SSL_ERROR_ZERO_RETURN) {
+    rb_eof_error();
+  } else {
+    raise_error(conn-&gt;ssl, bytes);
+  }
+
+  return Qnil;
+}
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="shutdown-instance_method">
+  <h3 class='signature '>
+    #<strong>shutdown</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L402-L416'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='402' data-end='416'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 402</span></pre>
+<pre class='code cpp'>
+
+VALUE engine_shutdown(VALUE self) {
+  ms_conn* conn;
+  int ok;
+
+  Data_Get_Struct(self, ms_conn, conn);
+
+  ERR_clear_error();
+
+  ok = SSL_shutdown(conn-&gt;ssl);
+  if (ok == 0) {
+    return Qfalse;
+  }
+
+  return Qtrue;
+}
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="write-instance_method">
+  <h3 class='signature '>
+    #<strong>write</strong>(str)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.6/ext/puma_http11/mini_ssl.c#L359-L379'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='359' data-end='379'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 359</span></pre>
+<pre class='code cpp'>
+
+VALUE engine_write(VALUE self, VALUE str) {
+  ms_conn* conn;
+  int bytes;
+
+  Data_Get_Struct(self, ms_conn, conn);
+
+  StringValue(str);
+
+  ERR_clear_error();
+
+  bytes = SSL_write(conn-&gt;ssl, (void*)RSTRING_PTR(str), (int)RSTRING_LEN(str));
+  if(bytes &gt; 0) {
+    return INT2FIX(bytes);
+  }
+
+  if(SSL_want_write(conn-&gt;ssl)) return Qnil;
+
+  raise_error(conn-&gt;ssl, bytes);
+
+  return Qnil;
+}
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>
