@@ -107,7 +107,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L21'>lib/puma/cluster.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L21'>lib/puma/cluster.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -160,9 +160,24 @@
   </li>
   <li>
     <span class='summary_signature ro'>
+      <a href="#next_worker_index-instance_method" title="#next_worker_index (instance method)">#<strong>next_worker_index</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
       <a href="#preload%3F-instance_method" title="#preload? (instance method)">#<strong>preload?</strong>  &#x21d2; Boolean </a>
     </span>
     <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#stats-instance_method" title="#stats (instance method)">#<strong>stats</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Inside of a child process, this will return all zeroes, as @workers is only populated in the master process.</p></div>
+    </div>
   </li>
 </ul>
 
@@ -201,11 +216,6 @@
   <li>
     <span class='summary_signature '>
       <a href="#halt-instance_method" title="#halt (instance method)">#<strong>halt</strong>  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#next_worker_index-instance_method" title="#next_worker_index (instance method)">#<strong>next_worker_index</strong>  </a>
     </span>
   </li>
   <li>
@@ -255,14 +265,6 @@
     <span class='summary_signature '>
       <a href="#start_phased_restart-instance_method" title="#start_phased_restart (instance method)">#<strong>start_phased_restart</strong>  </a>
     </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#stats-instance_method" title="#stats (instance method)">#<strong>stats</strong>  </a>
-    </span>
-    <div class='summary_desc'>
-      <div class='inline'><p>Inside of a child process, this will return all zeroes, as @workers is only populated in the master process.</p></div>
-    </div>
   </li>
   <li>
     <span class='summary_signature '>
@@ -348,7 +350,7 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L22-L30'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L22-L30'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='22' data-end='30'></pre>
   <div class='lines_code'>
@@ -374,11 +376,11 @@
   <h3 class='signature ro first'>
     #<strong>all_workers_booted?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L204-L206'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L205-L207'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='204' data-end='206'></pre>
+  <pre class='lines_num' data-start='205' data-end='207'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 204</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 205</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_all_workers_booted?'>all_workers_booted?</span>
@@ -389,19 +391,87 @@
 </div>
 </section>
 
+<section class='method_details' id="next_worker_index-instance_method">
+  <h3 class='signature ro'>
+    #<strong>next_worker_index</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L198-L203'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='198' data-end='203'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 198</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_next_worker_index'>next_worker_index</span>
+  <span class='id identifier rubyid_all_positions'>all_positions</span> <span class='op'>=</span>  <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_workers'>workers</span>]
+  <span class='id identifier rubyid_occupied_positions'>occupied_positions</span> <span class='op'>=</span> <span class='ivar'>@workers</span>.<span class='id identifier rubyid_map'>map</span> { <span class='op'>|</span><span class='id identifier rubyid_w'>w</span><span class='op'>|</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_index'>index</span> }
+  <span class='id identifier rubyid_available_positions'>available_positions</span> <span class='op'>=</span> <span class='id identifier rubyid_all_positions'>all_positions</span>.<span class='id identifier rubyid_to_a'>to_a</span> <span class='op'>-</span> <span class='id identifier rubyid_occupied_positions'>occupied_positions</span>
+  <span class='id identifier rubyid_available_positions'>available_positions</span>.<span class='id identifier rubyid_first'>first</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
 <section class='method_details' id="preload?-instance_method">
   <h3 class='signature ro'>
     #<strong>preload?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L423-L425'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L425-L427'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='423' data-end='425'></pre>
+  <pre class='lines_num' data-start='425' data-end='427'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 423</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 425</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_preload?'>preload?</span>
   <span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_preload_app'>preload_app</span>]
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="stats-instance_method">
+  <h3 class='signature ro'>
+    #<strong>stats</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Inside of a child process, this will return all zeroes, as @workers is only populated in the master process.</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L401-L423'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='401' data-end='423'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 401</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_stats'>stats</span>
+  <span class='id identifier rubyid_old_worker_count'>old_worker_count</span> <span class='op'>=</span> <span class='ivar'>@workers</span>.<span class='id identifier rubyid_count'>count</span> { <span class='op'>|</span><span class='id identifier rubyid_w'>w</span><span class='op'>|</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_phase'>phase</span> <span class='op'>!=</span> <span class='ivar'>@phase</span> }
+  <span class='id identifier rubyid_worker_status'>worker_status</span> <span class='op'>=</span> <span class='ivar'>@workers</span>.<span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_w'>w</span><span class='op'>|</span>
+    {
+      <span class='label'>started_at:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_started_at'>started_at</span>.<span class='id identifier rubyid_utc'>utc</span>.<span class='id identifier rubyid_iso8601'>iso8601</span><span class='comma'>,</span>
+      <span class='label'>pid:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_pid'>pid</span><span class='comma'>,</span>
+      <span class='label'>index:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_index'>index</span><span class='comma'>,</span>
+      <span class='label'>phase:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_phase'>phase</span><span class='comma'>,</span>
+      <span class='label'>booted:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_booted?'>booted?</span><span class='comma'>,</span>
+      <span class='label'>last_checkin:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_last_checkin'>last_checkin</span>.<span class='id identifier rubyid_utc'>utc</span>.<span class='id identifier rubyid_iso8601'>iso8601</span><span class='comma'>,</span>
+      <span class='label'>last_status:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_last_status'>last_status</span><span class='comma'>,</span>
+    }
+  <span class='kw'>end</span>
+
+  {
+    <span class='label'>started_at:</span> <span class='ivar'>@started_at</span>.<span class='id identifier rubyid_utc'>utc</span>.<span class='id identifier rubyid_iso8601'>iso8601</span><span class='comma'>,</span>
+    <span class='label'>workers:</span> <span class='ivar'>@workers</span>.<span class='id identifier rubyid_size'>size</span><span class='comma'>,</span>
+    <span class='label'>phase:</span> <span class='ivar'>@phase</span><span class='comma'>,</span>
+    <span class='label'>booted_workers:</span> <span class='id identifier rubyid_worker_status'>worker_status</span>.<span class='id identifier rubyid_count'>count</span> { <span class='op'>|</span><span class='id identifier rubyid_w'>w</span><span class='op'>|</span> <span class='id identifier rubyid_w'>w</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_booted'>booted</span>] }<span class='comma'>,</span>
+    <span class='label'>old_workers:</span> <span class='id identifier rubyid_old_worker_count'>old_worker_count</span><span class='comma'>,</span>
+    <span class='label'>worker_status:</span> <span class='id identifier rubyid_worker_status'>worker_status</span><span class='comma'>,</span>
+  }
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -413,11 +483,11 @@
   <h3 class='signature  first'>
     #<strong>check_workers</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L208-L238'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L209-L239'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='208' data-end='238'></pre>
+  <pre class='lines_num' data-start='209' data-end='239'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 208</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 209</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_workers'>check_workers</span>
@@ -460,7 +530,7 @@
   <h3 class='signature '>
     #<strong>cull_workers</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L182-L195'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L182-L195'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='182' data-end='195'></pre>
   <div class='lines_code'>
@@ -506,11 +576,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L428-L433'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L430-L435'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='428' data-end='433'></pre>
+  <pre class='lines_num' data-start='430' data-end='435'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 428</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 430</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fork_worker!'>fork_worker!</span>
@@ -528,11 +598,11 @@
   <h3 class='signature '>
     #<strong>halt</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L386-L389'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L387-L390'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='386' data-end='389'></pre>
+  <pre class='lines_num' data-start='387' data-end='390'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 386</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 387</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_halt'>halt</span>
@@ -564,11 +634,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L660-L669'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L662-L671'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='660' data-end='669'></pre>
+  <pre class='lines_num' data-start='662' data-end='671'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 660</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 662</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_nakayoshi_gc'>nakayoshi_gc</span>
@@ -586,37 +656,15 @@
 </div>
 </section>
 
-<section class='method_details' id="next_worker_index-instance_method">
-  <h3 class='signature '>
-    #<strong>next_worker_index</strong>  
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L197-L202'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='197' data-end='202'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 197</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_next_worker_index'>next_worker_index</span>
-  <span class='id identifier rubyid_all_positions'>all_positions</span> <span class='op'>=</span>  <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_workers'>workers</span>]
-  <span class='id identifier rubyid_occupied_positions'>occupied_positions</span> <span class='op'>=</span> <span class='ivar'>@workers</span>.<span class='id identifier rubyid_map'>map</span> { <span class='op'>|</span><span class='id identifier rubyid_w'>w</span><span class='op'>|</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_index'>index</span> }
-  <span class='id identifier rubyid_available_positions'>available_positions</span> <span class='op'>=</span> <span class='id identifier rubyid_all_positions'>all_positions</span>.<span class='id identifier rubyid_to_a'>to_a</span> <span class='op'>-</span> <span class='id identifier rubyid_occupied_positions'>occupied_positions</span>
-  <span class='id identifier rubyid_available_positions'>available_positions</span>.<span class='id identifier rubyid_first'>first</span>
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <section class='method_details' id="phased_restart-instance_method">
   <h3 class='signature '>
     #<strong>phased_restart</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L365-L372'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L366-L373'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='365' data-end='372'></pre>
+  <pre class='lines_num' data-start='366' data-end='373'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 365</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 366</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_phased_restart'>phased_restart</span>
@@ -636,7 +684,7 @@
   <h3 class='signature '>
     #<strong>redirect_io</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L58-L62'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L58-L62'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='58' data-end='62'></pre>
   <div class='lines_code'>
@@ -657,11 +705,11 @@
   <h3 class='signature '>
     #<strong>reload_worker_directory</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L391-L395'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L392-L396'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='391' data-end='395'></pre>
+  <pre class='lines_num' data-start='392' data-end='396'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 391</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 392</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reload_worker_directory'>reload_worker_directory</span>
@@ -678,11 +726,11 @@
   <h3 class='signature '>
     #<strong>restart</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L360-L363'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L361-L364'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='360' data-end='363'></pre>
+  <pre class='lines_num' data-start='361' data-end='364'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 360</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 361</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_restart'>restart</span>
@@ -698,11 +746,11 @@
   <h3 class='signature '>
     #<strong>run</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L488-L622'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L490-L624'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='488' data-end='622'></pre>
+  <pre class='lines_num' data-start='490' data-end='624'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 488</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 490</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>
@@ -856,11 +904,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L437-L486'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L439-L488'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='437' data-end='486'></pre>
+  <pre class='lines_num' data-start='439' data-end='488'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 437</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 439</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setup_signals'>setup_signals</span>
@@ -938,7 +986,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L168-L180'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L168-L180'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='168' data-end='180'></pre>
   <div class='lines_code'>
@@ -967,7 +1015,7 @@
   <h3 class='signature '>
     #<strong>spawn_workers</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L137-L165'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L137-L165'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='137' data-end='165'></pre>
   <div class='lines_code'>
@@ -1012,7 +1060,7 @@
   <h3 class='signature '>
     #<strong>start_phased_restart</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L47-L56'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L47-L56'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='47' data-end='56'></pre>
   <div class='lines_code'>
@@ -1034,61 +1082,15 @@
 </div>
 </section>
 
-<section class='method_details' id="stats-instance_method">
-  <h3 class='signature '>
-    #<strong>stats</strong>  
-  </h3>
-<div class='docstring'>
-  <div class='discussion'>
-    
-<p>Inside of a child process, this will return all zeroes, as @workers is only populated in the master process.</p>
-
-  </div>
-</div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L399-L421'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='399' data-end='421'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 399</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_stats'>stats</span>
-  <span class='id identifier rubyid_old_worker_count'>old_worker_count</span> <span class='op'>=</span> <span class='ivar'>@workers</span>.<span class='id identifier rubyid_count'>count</span> { <span class='op'>|</span><span class='id identifier rubyid_w'>w</span><span class='op'>|</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_phase'>phase</span> <span class='op'>!=</span> <span class='ivar'>@phase</span> }
-  <span class='id identifier rubyid_worker_status'>worker_status</span> <span class='op'>=</span> <span class='ivar'>@workers</span>.<span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_w'>w</span><span class='op'>|</span>
-    {
-      <span class='label'>started_at:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_started_at'>started_at</span>.<span class='id identifier rubyid_utc'>utc</span>.<span class='id identifier rubyid_iso8601'>iso8601</span><span class='comma'>,</span>
-      <span class='label'>pid:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_pid'>pid</span><span class='comma'>,</span>
-      <span class='label'>index:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_index'>index</span><span class='comma'>,</span>
-      <span class='label'>phase:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_phase'>phase</span><span class='comma'>,</span>
-      <span class='label'>booted:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_booted?'>booted?</span><span class='comma'>,</span>
-      <span class='label'>last_checkin:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_last_checkin'>last_checkin</span>.<span class='id identifier rubyid_utc'>utc</span>.<span class='id identifier rubyid_iso8601'>iso8601</span><span class='comma'>,</span>
-      <span class='label'>last_status:</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_last_status'>last_status</span><span class='comma'>,</span>
-    }
-  <span class='kw'>end</span>
-
-  {
-    <span class='label'>started_at:</span> <span class='ivar'>@started_at</span>.<span class='id identifier rubyid_utc'>utc</span>.<span class='id identifier rubyid_iso8601'>iso8601</span><span class='comma'>,</span>
-    <span class='label'>workers:</span> <span class='ivar'>@workers</span>.<span class='id identifier rubyid_size'>size</span><span class='comma'>,</span>
-    <span class='label'>phase:</span> <span class='ivar'>@phase</span><span class='comma'>,</span>
-    <span class='label'>booted_workers:</span> <span class='id identifier rubyid_worker_status'>worker_status</span>.<span class='id identifier rubyid_count'>count</span> { <span class='op'>|</span><span class='id identifier rubyid_w'>w</span><span class='op'>|</span> <span class='id identifier rubyid_w'>w</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_booted'>booted</span>] }<span class='comma'>,</span>
-    <span class='label'>old_workers:</span> <span class='id identifier rubyid_old_worker_count'>old_worker_count</span><span class='comma'>,</span>
-    <span class='label'>worker_status:</span> <span class='id identifier rubyid_worker_status'>worker_status</span><span class='comma'>,</span>
-  }
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <section class='method_details' id="stop-instance_method">
   <h3 class='signature '>
     #<strong>stop</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L374-L377'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L375-L378'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='374' data-end='377'></pre>
+  <pre class='lines_num' data-start='375' data-end='378'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 374</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 375</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stop'>stop</span>
@@ -1104,11 +1106,11 @@
   <h3 class='signature '>
     #<strong>stop_blocked</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L379-L384'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L380-L385'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='379' data-end='384'></pre>
+  <pre class='lines_num' data-start='380' data-end='385'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 379</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 380</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stop_blocked'>stop_blocked</span>
@@ -1126,7 +1128,7 @@
   <h3 class='signature '>
     #<strong>stop_workers</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L32-L45'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L32-L45'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='32' data-end='45'></pre>
   <div class='lines_code'>
@@ -1172,11 +1174,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L650-L657'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L652-L659'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='650' data-end='657'></pre>
+  <pre class='lines_num' data-start='652' data-end='659'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 650</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 652</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_timeout_workers'>timeout_workers</span>
@@ -1203,11 +1205,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L628-L647'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L630-L649'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='628' data-end='647'></pre>
+  <pre class='lines_num' data-start='630' data-end='649'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 628</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 630</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wait_workers'>wait_workers</span>
@@ -1239,11 +1241,11 @@
   <h3 class='signature '>
     #<strong>wakeup!</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L240-L248'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L241-L249'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='240' data-end='248'></pre>
+  <pre class='lines_num' data-start='241' data-end='249'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 240</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 241</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wakeup!'>wakeup!</span>
@@ -1264,11 +1266,11 @@
   <h3 class='signature '>
     #<strong>worker</strong>(index, master)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/cluster.rb#L250-L358'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L251-L359'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='250' data-end='358'></pre>
+  <pre class='lines_num' data-start='251' data-end='359'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 250</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 251</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_worker'>worker</span>(<span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_master'>master</span>)

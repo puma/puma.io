@@ -78,7 +78,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L284'>lib/puma/minissl.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/minissl.rb#L290'>lib/puma/minissl.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -95,6 +95,24 @@
 </ul>
 </div>  <!-- class_method_summary -->
 
+<h2 class='h2_sum' id='instance_attribute_summary'>Instance Attribute Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#addr-instance_method" title="#addr (instance method)">#<strong>addr</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#to_io-instance_method" title="#to_io (instance method)">#<strong>to_io</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+</ul>
+</div>  <!-- instance_attribute_summary -->
+
 <h2 class='h2_sum' id='instance_method_summary'>Instance Method Summary</h2>
 <div class='div_sum'>
 <ul class='summary full'>
@@ -110,17 +128,7 @@
   </li>
   <li>
     <span class='summary_signature '>
-      <a href="#addr-instance_method" title="#addr (instance method)">#<strong>addr</strong>  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
       <a href="#close-instance_method" title="#close (instance method)">#<strong>close</strong>  </a>
-    </span>
-  </li>
-  <li>
-    <span class='summary_signature '>
-      <a href="#to_io-instance_method" title="#to_io (instance method)">#<strong>to_io</strong>  </a>
     </span>
   </li>
 </ul>
@@ -139,11 +147,11 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L285-L288'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/minissl.rb#L291-L294'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='285' data-end='288'></pre>
+  <pre class='lines_num' data-start='291' data-end='294'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 285</span></pre>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 291</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_ctx'>ctx</span>)
@@ -155,16 +163,71 @@
 </div>
 </section>
 
+<h2 class='y_details'>Instance Attribute Details</h2>
+<section class='method_details first' id="addr-instance_method">
+  <h3 class='signature ro first'>
+    #<strong>addr</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/minissl.rb#L319-L321'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='319' data-end='321'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 319</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addr'>addr</span>
+  <span class='ivar'>@socket</span>.<span class='id identifier rubyid_addr'>addr</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="to_io-instance_method">
+  <h3 class='signature ro'>
+    #<strong>to_io</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/minissl.rb#L297-L299'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='297' data-end='299'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 297</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_io'>to_io</span>
+  <span class='ivar'>@socket</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
 <h2 class='y_details'>Instance Method Details</h2>
 <section class='method_details first' id="accept-instance_method">
   <h3 class='signature  first'>
     #<strong>accept</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L294-L300'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/minissl.rb#L301-L307'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='294' data-end='300'></pre>
+  <pre class='lines_num' data-start='301' data-end='307'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 294</span></pre>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 301</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_accept'>accept</span>
@@ -183,11 +246,11 @@
   <h3 class='signature '>
     #<strong>accept_nonblock</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L302-L308'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/minissl.rb#L309-L315'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='302' data-end='308'></pre>
+  <pre class='lines_num' data-start='309' data-end='315'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 302</span></pre>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 309</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_accept_nonblock'>accept_nonblock</span>
@@ -202,74 +265,20 @@
 </div>
 </section>
 
-<section class='method_details' id="addr-instance_method">
-  <h3 class='signature '>
-    #<strong>addr</strong>  
-  </h3>
-<div class='docstring'>
-  <div class='discussion'>
-    
-  </div>
-</div>
-<div class='tags'>
-  <p class='tag_title'>Version:</p>
-<ul class='version'>
-  <li>
-    <div class='inline'>
-<p>5.0.0</p>
-</div>
-  </li>
-</ul>
-
-</div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L311-L313'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='311' data-end='313'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 311</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_addr'>addr</span>
-  <span class='ivar'>@socket</span>.<span class='id identifier rubyid_addr'>addr</span>
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <section class='method_details' id="close-instance_method">
   <h3 class='signature '>
     #<strong>close</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L315-L317'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/minissl.rb#L323-L325'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='315' data-end='317'></pre>
+  <pre class='lines_num' data-start='323' data-end='325'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 315</span></pre>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 323</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
   <span class='ivar'>@socket</span>.<span class='id identifier rubyid_close'>close</span> <span class='kw'>unless</span> <span class='ivar'>@socket</span>.<span class='id identifier rubyid_closed?'>closed?</span>       <span class='comment'># closed? call is for Windows
 </span><span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
-<section class='method_details' id="to_io-instance_method">
-  <h3 class='signature '>
-    #<strong>to_io</strong>  
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/minissl.rb#L290-L292'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='290' data-end='292'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 290</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_to_io'>to_io</span>
-  <span class='ivar'>@socket</span>
-<span class='kw'>end</span>
 </pre>
   </div>
 </div>

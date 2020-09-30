@@ -102,7 +102,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L58'>lib/puma/util.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L58'>lib/puma/util.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -117,6 +117,19 @@
   </div>
 </div>
 </div>
+<h2 class='h2_sum' id='class_attribute_summary'>Class Attribute Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#to_hash-class_method" title=".to_hash (class method)">.<strong>to_hash</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+</ul>
+</div>  <!-- class_attribute_summary -->
+
 <h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
 <div class='div_sum'>
 <ul class='summary full'>
@@ -208,12 +221,6 @@
     </span>
     <span class='mod_func note title'>mod_func</span>
   </li>
-  <li>
-    <span class='summary_signature mf'>
-      <a href="#to_hash-class_method" title=".to_hash (class method)">.<strong>to_hash</strong>  </a>
-    </span>
-    <span class='mod_func note title'>mod_func</span>
-  </li>
 </ul>
 </div>  <!-- class_method_summary -->
 <h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
@@ -230,7 +237,7 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L59-L61'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L59-L61'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='59' data-end='61'></pre>
   <div class='lines_code'>
@@ -245,16 +252,38 @@
 </div>
 </section>
 
+<h2 class='y_details'>Class Attribute Details</h2>
+<section class='method_details first' id="to_hash-class_method">
+  <h3 class='signature ro  private first'>
+    .<strong>to_hash</strong>   <span class="extras">(<span class='readonly'>readonly</span>, <span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L76-L80'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='76' data-end='80'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 76</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_hash'>to_hash</span>
+  <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> {}
+  <span class='id identifier rubyid_each'><a href="#each-class_method" title="Puma::Util::HeaderHash.each (method)">each</a></span> { <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_hash'>hash</span>[<span class='id identifier rubyid_k'>k</span>] <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span> }
+  <span class='id identifier rubyid_hash'>hash</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
 <h2 class='y_details'>Class Method Details</h2>
 <section class='method_details first' id="[]-class_method">
   <h3 class='signature private first'>
     .<strong>[]</strong>(k)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L81-L83'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L82-L84'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='81' data-end='83'></pre>
+  <pre class='lines_num' data-start='82' data-end='84'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/util.rb', line 81</span></pre>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 82</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='op'>[]</span>(<span class='id identifier rubyid_k'>k</span>)
@@ -269,11 +298,11 @@
   <h3 class='signature private'>
     .<strong>[]=</strong>(k, v)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L85-L90'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L86-L91'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='85' data-end='90'></pre>
+  <pre class='lines_num' data-start='86' data-end='91'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/util.rb', line 85</span></pre>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 86</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='op'>[]=</span>(<span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span>)
@@ -291,11 +320,11 @@
   <h3 class='signature private'>
     .<strong>delete</strong>(k)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L92-L97'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L93-L98'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='92' data-end='97'></pre>
+  <pre class='lines_num' data-start='93' data-end='98'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/util.rb', line 92</span></pre>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 93</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete'>delete</span>(<span class='id identifier rubyid_k'>k</span>)
@@ -313,7 +342,7 @@
   <h3 class='signature private'>
     .<strong>each</strong>   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L69-L73'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L69-L73'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='69' data-end='73'></pre>
   <div class='lines_code'>
@@ -341,11 +370,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L103-L103'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L104-L104'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='103' data-end='103'></pre>
+  <pre class='lines_num' data-start='104' data-end='104'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/util.rb', line 103</span></pre>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 104</span></pre>
 <pre class='code ruby'>
 
 <span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_include?'><a href="#include%3F-class_method" title="Puma::Util::HeaderHash.include? (method)">include?</a></span>
@@ -367,11 +396,11 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L99-L101'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L100-L102'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='99' data-end='101'></pre>
+  <pre class='lines_num' data-start='100' data-end='102'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/util.rb', line 99</span></pre>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 100</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include?'>include?</span>(<span class='id identifier rubyid_k'>k</span>)
@@ -386,7 +415,7 @@
   <h3 class='signature private'>
     .<strong>initialize</strong>(hash = {})   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L63-L67'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L63-L67'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='63' data-end='67'></pre>
   <div class='lines_code'>
@@ -414,11 +443,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L105-L105'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L106-L106'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='105' data-end='105'></pre>
+  <pre class='lines_num' data-start='106' data-end='106'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/util.rb', line 105</span></pre>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 106</span></pre>
 <pre class='code ruby'>
 
 <span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='id identifier rubyid_key?'>key?</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_include?'><a href="#include%3F-class_method" title="Puma::Util::HeaderHash.include? (method)">include?</a></span>
@@ -438,11 +467,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L104-L104'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L105-L105'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='104' data-end='104'></pre>
+  <pre class='lines_num' data-start='105' data-end='105'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/util.rb', line 104</span></pre>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 105</span></pre>
 <pre class='code ruby'>
 
 <span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='id identifier rubyid_member?'>member?</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_include?'><a href="#include%3F-class_method" title="Puma::Util::HeaderHash.include? (method)">include?</a></span>
@@ -455,11 +484,11 @@
   <h3 class='signature private'>
     .<strong>merge</strong>(other)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L112-L115'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L113-L116'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='112' data-end='115'></pre>
+  <pre class='lines_num' data-start='113' data-end='116'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/util.rb', line 112</span></pre>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 113</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge'>merge</span>(<span class='id identifier rubyid_other'>other</span>)
@@ -475,11 +504,11 @@
   <h3 class='signature private'>
     .<strong>merge!</strong>(other)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L107-L110'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L108-L111'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='107' data-end='110'></pre>
+  <pre class='lines_num' data-start='108' data-end='111'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/util.rb', line 107</span></pre>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 108</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge!'>merge!</span>(<span class='id identifier rubyid_other'>other</span>)
@@ -495,38 +524,17 @@
   <h3 class='signature private'>
     .<strong>replace</strong>(other)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L117-L121'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L118-L122'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='117' data-end='121'></pre>
+  <pre class='lines_num' data-start='118' data-end='122'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/util.rb', line 117</span></pre>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 118</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_replace'>replace</span>(<span class='id identifier rubyid_other'>other</span>)
   <span class='id identifier rubyid_clear'>clear</span>
   <span class='id identifier rubyid_other'>other</span>.<span class='id identifier rubyid_each'><a href="#each-class_method" title="Puma::Util::HeaderHash.each (method)">each</a></span> { <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='kw'>self</span>[<span class='id identifier rubyid_k'>k</span>] <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span> }
   <span class='kw'>self</span>
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
-<section class='method_details' id="to_hash-class_method">
-  <h3 class='signature private'>
-    .<strong>to_hash</strong>   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.0/lib/puma/util.rb#L75-L79'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='75' data-end='79'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/util.rb', line 75</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_to_hash'>to_hash</span>
-  <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> {}
-  <span class='id identifier rubyid_each'><a href="#each-class_method" title="Puma::Util::HeaderHash.each (method)">each</a></span> { <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_hash'>hash</span>[<span class='id identifier rubyid_k'>k</span>] <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span> }
-  <span class='id identifier rubyid_hash'>hash</span>
 <span class='kw'>end</span>
 </pre>
   </div>
