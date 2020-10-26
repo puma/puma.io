@@ -88,7 +88,7 @@
   <li>
     <span id='DEFAULT_SEP-constant' class='summary_signature'>DEFAULT_SEP =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L26-L26'># File 'lib/puma/util.rb', line 26</a>    <pre class='code ruby'><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[&amp;;] *</span><span class='regexp_end'>/n</span></span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L37-L37'># File 'lib/puma/util.rb', line 37</a>    <pre class='code ruby'><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[&amp;;] *</span><span class='regexp_end'>/n</span></span></pre>
   </li>
 </ul>
 </div>
@@ -96,6 +96,12 @@
 <h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
 <div class='div_sum'>
 <ul class='summary full'>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#nakayoshi_gc-class_method" title=".nakayoshi_gc (class method)">.<strong>nakayoshi_gc</strong>(events)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
   <li>
     <span class='summary_signature mf'>
       <a href="#parse_query-class_method" title=".parse_query (class method)">.<strong>parse_query</strong>(qs, d = nil, &amp;unescaper)  </a>
@@ -120,8 +126,49 @@
 </ul>
 </div>  <!-- class_method_summary -->
 <h2 class='y_details'>Class Method Details</h2>
-<section class='method_details first' id="parse_query-class_method">
+<section class='method_details first' id="nakayoshi_gc-class_method">
   <h3 class='signature private first'>
+    .<strong>nakayoshi_gc</strong>(events)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L27-L35'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='27' data-end='35'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 27</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_nakayoshi_gc'>nakayoshi_gc</span>(<span class='id identifier rubyid_events'>events</span>)
+  <span class='id identifier rubyid_events'>events</span>.<span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Promoting existing objects to old generation...</span><span class='tstring_end'>&quot;</span></span>
+  <span class='int'>4</span>.<span class='id identifier rubyid_times'>times</span> { <span class='const'>GC</span>.<span class='id identifier rubyid_start'>start</span>(<span class='label'>full_mark:</span> <span class='kw'>false</span>) }
+  <span class='kw'>if</span> <span class='const'>GC</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_compact'>compact</span>)
+    <span class='id identifier rubyid_events'>events</span>.<span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Compacting...</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>GC</span>.<span class='id identifier rubyid_compact'>compact</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_events'>events</span>.<span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Friendly fork preparation complete.</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="parse_query-class_method">
+  <h3 class='signature private'>
     .<strong>parse_query</strong>(qs, d = nil, &amp;unescaper)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
   </h3>
 <div class='docstring'>
@@ -131,11 +178,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L33-L54'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/util.rb#L44-L65'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='33' data-end='54'></pre>
+  <pre class='lines_num' data-start='44' data-end='65'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/util.rb', line 33</span></pre>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 44</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_query'>parse_query</span>(<span class='id identifier rubyid_qs'>qs</span><span class='comma'>,</span> <span class='id identifier rubyid_d'>d</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_unescaper'>unescaper</span>)

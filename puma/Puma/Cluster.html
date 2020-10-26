@@ -73,7 +73,8 @@
     <tr><td colspan='2'>
       <div class='box_1'>Classes:</div>
       <div class='box_11'>
-          <a href="Cluster/Worker.html" title="Puma::Cluster::Worker (class)">Worker</a>      </div>
+          <a href="Cluster/Worker.html" title="Puma::Cluster::Worker (class)">Worker</a>,
+        <a href="Cluster/WorkerHandle.html" title="Puma::Cluster::WorkerHandle (class)">WorkerHandle</a>      </div>
     </td></tr>
     <tr><td class='box_h' colspan='2'>Super Chains via Extension / Inclusion / Inheritance</td></tr>
     <tr>
@@ -106,8 +107,9 @@
       </td>
     </tr>
     <tr class='single'>
-      <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L21'>lib/puma/cluster.rb</a>      </td>
+      <td id='t2_defined_in' class='box_2 o'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L19'>lib/puma/cluster.rb</a><span class='defines'>,<br /><a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster/worker.rb#L4'>lib/puma/cluster/worker.rb</a>,<br/> <a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster/worker_handle.rb#L4'>lib/puma/cluster/worker_handle.rb</a></span>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -118,8 +120,6 @@
   <div class='discussion'>
     
 <p>This class is instantiated by the <a href="Launcher.html" title="Puma::Launcher (class)">Launcher</a> and used to boot and serve a Ruby application when puma “workers” are needed i.e. when using multi-processes. For example <code>$ puma -w 5</code></p>
-
-<p>At the core of this class is running an instance of <a href="Server.html" title="Puma::Server (class)">Server</a> which gets created via the <code>start_server</code> method from the <a href="Runner.html" title="Puma::Runner (class)">Runner</a> class that this inherits from.</p>
 
 <p>An instance of this class will spawn the number of processes passed in via the <a href="#spawn_workers-instance_method" title="Puma::Cluster#spawn_workers (method)">#spawn_workers</a> method call. Each worker will have it&#39;s own instance of a <a href="Server.html" title="Puma::Server (class)">Server</a>.</p>
 
@@ -186,8 +186,10 @@
   <tbody>
     <tr>
       <td colspan='2'>
+        <a class='i_m ro' href="Runner.html#app-instance_method" title="Puma::Runner#app (method)">#app</a>,
         <a class='i_m ro' href="Runner.html#development%3F-instance_method" title="Puma::Runner#development? (method)">#development?</a>,
         <a class='i_m ro' href="Runner.html#redirected_io%3F-instance_method" title="Puma::Runner#redirected_io? (method)">#redirected_io?</a>,
+        <a class='i_m ro' href="Runner.html#ruby_engine-instance_method" title="Puma::Runner#ruby_engine (method)">#ruby_engine</a>,
         <a class='i_m ro' href="Runner.html#test%3F-instance_method" title="Puma::Runner#test? (method)">#test?</a>
       </td>
     </tr>
@@ -293,12 +295,6 @@
   </li>
   <li>
     <span class='summary_signature priv'>
-      <a href="#nakayoshi_gc-instance_method" title="#nakayoshi_gc (instance method)">#<strong>nakayoshi_gc</strong>  </a>
-    </span>
-    <span class='note title private'>private</span>
-  </li>
-  <li>
-    <span class='summary_signature priv'>
       <a href="#timeout_workers-instance_method" title="#timeout_workers (instance method)">#<strong>timeout_workers</strong>  </a>
     </span>
     <span class='note title private'>private</span>
@@ -319,7 +315,6 @@
   <tbody>
     <tr>
       <td colspan='2'>
-        <a class='i_m ' href="Runner.html#app-instance_method" title="Puma::Runner#app (method)">#app</a>,
         <a class='i_m ' href="Runner.html#close_control_listeners-instance_method" title="Puma::Runner#close_control_listeners (method)">#close_control_listeners</a>,
         <a class='i_m ' href="Runner.html#debug-instance_method" title="Puma::Runner#debug (method)">#debug</a>,
         <a class='i_m ' href="Runner.html#error-instance_method" title="Puma::Runner#error (method)">#error</a>,
@@ -327,7 +322,6 @@
         <a class='i_m ' href="Runner.html#log-instance_method" title="Puma::Runner#log (method)">#log</a>,
         <a class='i_m ' href="Runner.html#output_header-instance_method" title="Puma::Runner#output_header (method)">#output_header</a>,
         <a class='i_m ' href="Runner.html#redirect_io-instance_method" title="Puma::Runner#redirect_io (method)">#redirect_io</a>,
-        <a class='i_m ' href="Runner.html#ruby_engine-instance_method" title="Puma::Runner#ruby_engine (method)">#ruby_engine</a>,
         <a class='i_m ' href="Runner.html#start_control-instance_method" title="Puma::Runner#start_control (method)">#start_control</a>,
         <a class='i_m ' href="Runner.html#start_server-instance_method" title="Puma::Runner#start_server (method)">#start_server</a>,
         <a class='i_m ' href="Runner.html#stop_control-instance_method" title="Puma::Runner#stop_control (method)">#stop_control</a>
@@ -350,11 +344,11 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L22-L30'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L20-L28'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='22' data-end='30'></pre>
+  <pre class='lines_num' data-start='20' data-end='28'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 22</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 20</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_cli'>cli</span><span class='comma'>,</span> <span class='id identifier rubyid_events'>events</span>)
@@ -376,11 +370,11 @@
   <h3 class='signature ro first'>
     #<strong>all_workers_booted?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L205-L207'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L130-L132'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='205' data-end='207'></pre>
+  <pre class='lines_num' data-start='130' data-end='132'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 205</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 130</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_all_workers_booted?'>all_workers_booted?</span>
@@ -395,11 +389,11 @@
   <h3 class='signature ro'>
     #<strong>next_worker_index</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L198-L203'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L123-L128'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='198' data-end='203'></pre>
+  <pre class='lines_num' data-start='123' data-end='128'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 198</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 123</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_next_worker_index'>next_worker_index</span>
@@ -417,11 +411,11 @@
   <h3 class='signature ro'>
     #<strong>preload?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L425-L427'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L260-L262'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='425' data-end='427'></pre>
+  <pre class='lines_num' data-start='260' data-end='262'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 425</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 260</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_preload?'>preload?</span>
@@ -443,11 +437,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L401-L423'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L236-L258'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='401' data-end='423'></pre>
+  <pre class='lines_num' data-start='236' data-end='258'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 401</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 236</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stats'>stats</span>
@@ -483,11 +477,11 @@
   <h3 class='signature  first'>
     #<strong>check_workers</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L209-L239'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L134-L164'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='209' data-end='239'></pre>
+  <pre class='lines_num' data-start='134' data-end='164'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 209</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 134</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_workers'>check_workers</span>
@@ -530,11 +524,11 @@
   <h3 class='signature '>
     #<strong>cull_workers</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L182-L195'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L107-L120'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='182' data-end='195'></pre>
+  <pre class='lines_num' data-start='107' data-end='120'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 182</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 107</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cull_workers'>cull_workers</span>
@@ -576,11 +570,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L430-L435'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L265-L270'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='430' data-end='435'></pre>
+  <pre class='lines_num' data-start='265' data-end='270'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 430</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 265</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fork_worker!'>fork_worker!</span>
@@ -598,11 +592,11 @@
   <h3 class='signature '>
     #<strong>halt</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L387-L390'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L222-L225'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='387' data-end='390'></pre>
+  <pre class='lines_num' data-start='222' data-end='225'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 387</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 222</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_halt'>halt</span>
@@ -614,57 +608,15 @@
 </div>
 </section>
 
-<section class='method_details' id="nakayoshi_gc-instance_method">
-  <h3 class='signature priv'>
-    #<strong>nakayoshi_gc</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
-  </h3>
-<div class='docstring'>
-  <div class='discussion'>
-    
-  </div>
-</div>
-<div class='tags'>
-  <p class='tag_title'>Version:</p>
-<ul class='version'>
-  <li>
-    <div class='inline'>
-<p>5.0.0</p>
-</div>
-  </li>
-</ul>
-
-</div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L662-L671'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='662' data-end='671'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 662</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_nakayoshi_gc'>nakayoshi_gc</span>
-  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_nakayoshi_fork'>nakayoshi_fork</span>]
-  <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Promoting existing objects to old generation...</span><span class='tstring_end'>&quot;</span></span>
-  <span class='int'>4</span>.<span class='id identifier rubyid_times'>times</span> { <span class='const'>GC</span>.<span class='id identifier rubyid_start'>start</span>(<span class='label'>full_mark:</span> <span class='kw'>false</span>) }
-  <span class='kw'>if</span> <span class='const'>GC</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_compact'>compact</span>)
-    <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Compacting...</span><span class='tstring_end'>&quot;</span></span>
-    <span class='const'>GC</span>.<span class='id identifier rubyid_compact'>compact</span>
-  <span class='kw'>end</span>
-  <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Friendly fork preparation complete.</span><span class='tstring_end'>&quot;</span></span>
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <section class='method_details' id="phased_restart-instance_method">
   <h3 class='signature '>
     #<strong>phased_restart</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L366-L373'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L201-L208'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='366' data-end='373'></pre>
+  <pre class='lines_num' data-start='201' data-end='208'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 366</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 201</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_phased_restart'>phased_restart</span>
@@ -684,11 +636,11 @@
   <h3 class='signature '>
     #<strong>redirect_io</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L58-L62'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L56-L60'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='58' data-end='62'></pre>
+  <pre class='lines_num' data-start='56' data-end='60'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 58</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 56</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_redirect_io'>redirect_io</span>
@@ -705,11 +657,11 @@
   <h3 class='signature '>
     #<strong>reload_worker_directory</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L392-L396'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L227-L231'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='392' data-end='396'></pre>
+  <pre class='lines_num' data-start='227' data-end='231'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 392</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 227</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reload_worker_directory'>reload_worker_directory</span>
@@ -726,11 +678,11 @@
   <h3 class='signature '>
     #<strong>restart</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L361-L364'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L196-L199'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='361' data-end='364'></pre>
+  <pre class='lines_num' data-start='196' data-end='199'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 361</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 196</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_restart'>restart</span>
@@ -746,11 +698,11 @@
   <h3 class='signature '>
     #<strong>run</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L490-L624'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L325-L463'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='490' data-end='624'></pre>
+  <pre class='lines_num' data-start='325' data-end='463'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 490</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 325</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>
@@ -818,7 +770,7 @@
   <span class='ivar'>@master_read</span><span class='comma'>,</span> <span class='ivar'>@worker_write</span> <span class='op'>=</span> <span class='id identifier rubyid_read'>read</span><span class='comma'>,</span> <span class='ivar'>@wakeup</span>
 
   <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_config'>config</span>.<span class='id identifier rubyid_run_hooks'>run_hooks</span> <span class='symbeg'>:</span><span class='id identifier rubyid_before_fork'>before_fork</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_events'>events</span>
-  <span class='id identifier rubyid_nakayoshi_gc'><a href="#nakayoshi_gc-instance_method" title="Puma::Cluster#nakayoshi_gc (method)">nakayoshi_gc</a></span>
+  <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Util.html" title="Puma::Util (module)">Util</a></span>.<span class='id identifier rubyid_nakayoshi_gc'><a href="Util.html#nakayoshi_gc-class_method" title="Puma::Util.nakayoshi_gc (method)">nakayoshi_gc</a></span> <span class='ivar'>@events</span> <span class='kw'>if</span> <span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_nakayoshi_fork'>nakayoshi_fork</span>]
 
   <span class='id identifier rubyid_spawn_workers'><a href="#spawn_workers-instance_method" title="Puma::Cluster#spawn_workers (method)">spawn_workers</a></span>
 
@@ -826,9 +778,9 @@
     <span class='id identifier rubyid_stop'><a href="#stop-instance_method" title="Puma::Cluster#stop (method)">stop</a></span>
   <span class='kw'>end</span>
 
-  <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_events'>events</span>.<span class='id identifier rubyid_fire_on_booted!'>fire_on_booted!</span>
-
   <span class='kw'>begin</span>
+    <span class='id identifier rubyid_booted'>booted</span> <span class='op'>=</span> <span class='kw'>false</span>
+
     <span class='kw'>while</span> <span class='ivar'>@status</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid_run'>run</span>
       <span class='kw'>begin</span>
         <span class='kw'>if</span> <span class='ivar'>@phased_restart</span>
@@ -869,6 +821,10 @@
             <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>p</span><span class='tstring_end'>&quot;</span></span>
               <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_ping!'>ping!</span>(<span class='id identifier rubyid_result'>result</span>.<span class='id identifier rubyid_sub'>sub</span>(<span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^\d+</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>).<span class='id identifier rubyid_chomp'>chomp</span>)
               <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_events'>events</span>.<span class='id identifier rubyid_fire'>fire</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_ping!'>ping!</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span>)
+              <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_booted'>booted</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@workers</span>.<span class='id identifier rubyid_none?'>none?</span> {<span class='op'>|</span><span class='id identifier rubyid_worker'><a href="#worker-instance_method" title="Puma::Cluster#worker (method)">worker</a></span><span class='op'>|</span> <span class='id identifier rubyid_worker'><a href="#worker-instance_method" title="Puma::Cluster#worker (method)">worker</a></span>.<span class='id identifier rubyid_last_status'>last_status</span>.<span class='id identifier rubyid_empty?'>empty?</span>}
+                <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_events'>events</span>.<span class='id identifier rubyid_fire_on_booted!'>fire_on_booted!</span>
+                <span class='id identifier rubyid_booted'>booted</span> <span class='op'>=</span> <span class='kw'>true</span>
+              <span class='kw'>end</span>
             <span class='kw'>end</span>
           <span class='kw'>else</span>
             <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Out-of-sync worker list, no </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pid'>pid</span><span class='embexpr_end'>}</span><span class='tstring_content'> worker</span><span class='tstring_end'>&quot;</span></span>
@@ -904,11 +860,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L439-L488'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L274-L323'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='439' data-end='488'></pre>
+  <pre class='lines_num' data-start='274' data-end='323'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 439</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 274</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setup_signals'>setup_signals</span>
@@ -986,11 +942,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L168-L180'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L93-L105'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='168' data-end='180'></pre>
+  <pre class='lines_num' data-start='93' data-end='105'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 168</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 93</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spawn_worker'>spawn_worker</span>(<span class='id identifier rubyid_idx'>idx</span><span class='comma'>,</span> <span class='id identifier rubyid_master'>master</span>)
@@ -1015,11 +971,11 @@
   <h3 class='signature '>
     #<strong>spawn_workers</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L137-L165'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L62-L90'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='137' data-end='165'></pre>
+  <pre class='lines_num' data-start='62' data-end='90'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 137</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 62</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spawn_workers'>spawn_workers</span>
@@ -1042,7 +998,7 @@
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Spawned worker: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pid'>pid</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='ivar'>@workers</span> <span class='op'>&lt;&lt;</span> <span class='const'><a href="Cluster/Worker.html" title="Puma::Cluster::Worker (class)">Worker</a></span>.<span class='id identifier rubyid_new'><a href="Cluster/Worker.html#new-class_method" title="Puma::Cluster::Worker.new (method)">new</a></span>(<span class='id identifier rubyid_idx'>idx</span><span class='comma'>,</span> <span class='id identifier rubyid_pid'>pid</span><span class='comma'>,</span> <span class='ivar'>@phase</span><span class='comma'>,</span> <span class='ivar'>@options</span>)
+    <span class='ivar'>@workers</span> <span class='op'>&lt;&lt;</span> <span class='const'><a href="Cluster/WorkerHandle.html" title="Puma::Cluster::WorkerHandle (class)">WorkerHandle</a></span>.<span class='id identifier rubyid_new'><a href="Cluster/WorkerHandle.html#new-class_method" title="Puma::Cluster::WorkerHandle.new (method)">new</a></span>(<span class='id identifier rubyid_idx'>idx</span><span class='comma'>,</span> <span class='id identifier rubyid_pid'>pid</span><span class='comma'>,</span> <span class='ivar'>@phase</span><span class='comma'>,</span> <span class='ivar'>@options</span>)
   <span class='kw'>end</span>
 
   <span class='kw'>if</span> <span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_fork_worker'>fork_worker</span>] <span class='op'>&amp;&amp;</span>
@@ -1060,11 +1016,11 @@
   <h3 class='signature '>
     #<strong>start_phased_restart</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L47-L56'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L45-L54'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='47' data-end='56'></pre>
+  <pre class='lines_num' data-start='45' data-end='54'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 47</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 45</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_phased_restart'>start_phased_restart</span>
@@ -1086,11 +1042,11 @@
   <h3 class='signature '>
     #<strong>stop</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L375-L378'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L210-L213'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='375' data-end='378'></pre>
+  <pre class='lines_num' data-start='210' data-end='213'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 375</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 210</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stop'>stop</span>
@@ -1106,11 +1062,11 @@
   <h3 class='signature '>
     #<strong>stop_blocked</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L380-L385'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L215-L220'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='380' data-end='385'></pre>
+  <pre class='lines_num' data-start='215' data-end='220'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 380</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 215</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stop_blocked'>stop_blocked</span>
@@ -1128,11 +1084,11 @@
   <h3 class='signature '>
     #<strong>stop_workers</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L32-L45'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L30-L43'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='32' data-end='45'></pre>
+  <pre class='lines_num' data-start='30' data-end='43'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 32</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 30</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stop_workers'>stop_workers</span>
@@ -1174,11 +1130,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L652-L659'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L493-L500'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='652' data-end='659'></pre>
+  <pre class='lines_num' data-start='493' data-end='500'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 652</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 493</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_timeout_workers'>timeout_workers</span>
@@ -1205,11 +1161,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L630-L649'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L469-L490'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='630' data-end='649'></pre>
+  <pre class='lines_num' data-start='469' data-end='490'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 630</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 469</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wait_workers'>wait_workers</span>
@@ -1225,8 +1181,10 @@
     <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>ECHILD</span>
       <span class='kw'>begin</span>
         <span class='const'>Process</span>.<span class='id identifier rubyid_kill'>kill</span>(<span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_pid'>pid</span>)
-        <span class='kw'>false</span> <span class='comment'># child still alive, but has another parent
-</span>      <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>ESRCH</span><span class='comma'>,</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EPERM</span>
+        <span class='comment'># child still alive but has another parent (e.g., using fork_worker)
+</span>        <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_term'>term</span> <span class='kw'>if</span> <span class='id identifier rubyid_w'>w</span>.<span class='id identifier rubyid_term?'>term?</span>
+        <span class='kw'>false</span>
+      <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>ESRCH</span><span class='comma'>,</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EPERM</span>
         <span class='kw'>true</span> <span class='comment'># child is already terminated
 </span>      <span class='kw'>end</span>
     <span class='kw'>end</span>
@@ -1241,11 +1199,11 @@
   <h3 class='signature '>
     #<strong>wakeup!</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L241-L249'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L166-L174'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='241' data-end='249'></pre>
+  <pre class='lines_num' data-start='166' data-end='174'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 241</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 166</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wakeup!'>wakeup!</span>
@@ -1266,121 +1224,31 @@
   <h3 class='signature '>
     #<strong>worker</strong>(index, master)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L251-L359'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/cluster.rb#L176-L194'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='251' data-end='359'></pre>
+  <pre class='lines_num' data-start='176' data-end='194'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/cluster.rb', line 251</span></pre>
+<pre><span class='info file'># File 'lib/puma/cluster.rb', line 176</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_worker'>worker</span>(<span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_master'>master</span>)
-  <span class='id identifier rubyid_title'>title</span>  <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puma: cluster worker </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_index'>index</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_master'>master</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_title'>title</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> [</span><span class='embexpr_beg'>#{</span><span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_tag'>tag</span>]<span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_tag'>tag</span>] <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_tag'>tag</span>].<span class='id identifier rubyid_empty?'>empty?</span>
-  <span class='gvar'>$0</span> <span class='op'>=</span> <span class='id identifier rubyid_title'>title</span>
-
-  <span class='const'>Signal</span>.<span class='id identifier rubyid_trap'>trap</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGINT</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>IGNORE</span><span class='tstring_end'>&quot;</span></span>
-  <span class='const'>Signal</span>.<span class='id identifier rubyid_trap'>trap</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGCHLD</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DEFAULT</span><span class='tstring_end'>&quot;</span></span>
-
-  <span class='id identifier rubyid_fork_worker'>fork_worker</span> <span class='op'>=</span> <span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_fork_worker'>fork_worker</span>] <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>==</span> <span class='int'>0</span>
-
   <span class='ivar'>@workers</span> <span class='op'>=</span> []
-  <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_fork_worker'>fork_worker</span>] <span class='op'>||</span> <span class='id identifier rubyid_fork_worker'>fork_worker</span>
-    <span class='ivar'>@master_read</span>.<span class='id identifier rubyid_close'>close</span>
-    <span class='ivar'>@suicide_pipe</span>.<span class='id identifier rubyid_close'>close</span>
-    <span class='ivar'>@fork_writer</span>.<span class='id identifier rubyid_close'>close</span>
+
+  <span class='ivar'>@master_read</span>.<span class='id identifier rubyid_close'>close</span>
+  <span class='ivar'>@suicide_pipe</span>.<span class='id identifier rubyid_close'>close</span>
+  <span class='ivar'>@fork_writer</span>.<span class='id identifier rubyid_close'>close</span>
+
+  <span class='id identifier rubyid_pipes'>pipes</span> <span class='op'>=</span> { <span class='label'>check_pipe:</span> <span class='ivar'>@check_pipe</span><span class='comma'>,</span> <span class='label'>worker_write:</span> <span class='ivar'>@worker_write</span> }
+  <span class='kw'>if</span> <span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_fork_worker'>fork_worker</span>]
+    <span class='id identifier rubyid_pipes'>pipes</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_fork_pipe'>fork_pipe</span>] <span class='op'>=</span> <span class='ivar'>@fork_pipe</span>
+    <span class='id identifier rubyid_pipes'>pipes</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_wakeup'>wakeup</span>] <span class='op'>=</span> <span class='ivar'>@wakeup</span>
   <span class='kw'>end</span>
 
-  <span class='const'>Thread</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Cluster.new (method)">new</a></span> <span class='kw'>do</span>
-    <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span>.<span class='id identifier rubyid_set_thread_name'><a href="../Puma.html#set_thread_name-class_method" title="Puma.set_thread_name (method)">set_thread_name</a></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>worker check pipe</span><span class='tstring_end'>&quot;</span></span>
-    <span class='const'><a href="../IO.html" title="IO (class)">IO</a></span>.<span class='id identifier rubyid_select'>select</span> [<span class='ivar'>@check_pipe</span>]
-    <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Detected parent died, dying</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_exit!'>exit!</span> <span class='int'>1</span>
-  <span class='kw'>end</span>
-
-  <span class='comment'># If we&#39;re not running under a Bundler context, then
-</span>  <span class='comment'># report the info about the context we will be using
-</span>  <span class='kw'>if</span> <span class='op'>!</span><span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>BUNDLE_GEMFILE</span><span class='tstring_end'>&#39;</span></span>]
-    <span class='kw'>if</span> <span class='const'>File</span>.<span class='id identifier rubyid_exist?'>exist?</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gemfile</span><span class='tstring_end'>&quot;</span></span>)
-      <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>+ Gemfile in context: </span><span class='embexpr_beg'>#{</span><span class='const'>File</span>.<span class='id identifier rubyid_expand_path'>expand_path</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Gemfile</span><span class='tstring_end'>&quot;</span></span>)<span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='kw'>elsif</span> <span class='const'>File</span>.<span class='id identifier rubyid_exist?'>exist?</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gems.rb</span><span class='tstring_end'>&quot;</span></span>)
-      <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>+ Gemfile in context: </span><span class='embexpr_beg'>#{</span><span class='const'>File</span>.<span class='id identifier rubyid_expand_path'>expand_path</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gems.rb</span><span class='tstring_end'>&quot;</span></span>)<span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-
-  <span class='comment'># Invoke any worker boot hooks so they can get
-</span>  <span class='comment'># things in shape before booting the app.
-</span>  <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_config'>config</span>.<span class='id identifier rubyid_run_hooks'>run_hooks</span> <span class='symbeg'>:</span><span class='id identifier rubyid_before_worker_boot'>before_worker_boot</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_events'>events</span>
-
-  <span class='id identifier rubyid_server'>server</span> <span class='op'>=</span> <span class='ivar'>@server</span> <span class='op'>||=</span> <span class='id identifier rubyid_start_server'>start_server</span>
-  <span class='id identifier rubyid_restart_server'>restart_server</span> <span class='op'>=</span> <span class='const'>Queue</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Cluster.new (method)">new</a></span> <span class='op'>&lt;&lt;</span> <span class='kw'>true</span> <span class='op'>&lt;&lt;</span> <span class='kw'>false</span>
-
-  <span class='kw'>if</span> <span class='id identifier rubyid_fork_worker'>fork_worker</span>
-    <span class='id identifier rubyid_restart_server'>restart_server</span>.<span class='id identifier rubyid_clear'>clear</span>
-    <span class='id identifier rubyid_worker_pids'>worker_pids</span> <span class='op'>=</span> []
-    <span class='const'>Signal</span>.<span class='id identifier rubyid_trap'>trap</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGCHLD</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_wakeup!'><a href="#wakeup!-instance_method" title="Puma::Cluster#wakeup! (method)">wakeup!</a></span> <span class='kw'>if</span> <span class='id identifier rubyid_worker_pids'>worker_pids</span>.<span class='id identifier rubyid_reject!'>reject!</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_p'>p</span><span class='op'>|</span>
-        <span class='const'>Process</span>.<span class='id identifier rubyid_wait'>wait</span>(<span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='const'>Process</span><span class='op'>::</span><span class='const'>WNOHANG</span>) <span class='kw'>rescue</span> <span class='kw'>true</span>
-      <span class='kw'>end</span>
-    <span class='kw'>end</span>
-
-    <span class='const'>Thread</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Cluster.new (method)">new</a></span> <span class='kw'>do</span>
-      <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span>.<span class='id identifier rubyid_set_thread_name'><a href="../Puma.html#set_thread_name-class_method" title="Puma.set_thread_name (method)">set_thread_name</a></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>worker fork pipe</span><span class='tstring_end'>&quot;</span></span>
-      <span class='kw'>while</span> (<span class='id identifier rubyid_idx'>idx</span> <span class='op'>=</span> <span class='ivar'>@fork_pipe</span>.<span class='id identifier rubyid_gets'>gets</span>)
-        <span class='id identifier rubyid_idx'>idx</span> <span class='op'>=</span> <span class='id identifier rubyid_idx'>idx</span>.<span class='id identifier rubyid_to_i'>to_i</span>
-        <span class='kw'>if</span> <span class='id identifier rubyid_idx'>idx</span> <span class='op'>==</span> <span class='op'>-</span><span class='int'>1</span> <span class='comment'># stop server
-</span>          <span class='kw'>if</span> <span class='id identifier rubyid_restart_server'>restart_server</span>.<span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>0</span>
-            <span class='id identifier rubyid_restart_server'>restart_server</span>.<span class='id identifier rubyid_clear'>clear</span>
-            <span class='id identifier rubyid_server'>server</span>.<span class='id identifier rubyid_begin_restart'>begin_restart</span>(<span class='kw'>true</span>)
-            <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_config'>config</span>.<span class='id identifier rubyid_run_hooks'>run_hooks</span> <span class='symbeg'>:</span><span class='id identifier rubyid_before_refork'>before_refork</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_events'>events</span>
-            <span class='id identifier rubyid_nakayoshi_gc'><a href="#nakayoshi_gc-instance_method" title="Puma::Cluster#nakayoshi_gc (method)">nakayoshi_gc</a></span>
-          <span class='kw'>end</span>
-        <span class='kw'>elsif</span> <span class='id identifier rubyid_idx'>idx</span> <span class='op'>==</span> <span class='int'>0</span> <span class='comment'># restart server
-</span>          <span class='id identifier rubyid_restart_server'>restart_server</span> <span class='op'>&lt;&lt;</span> <span class='kw'>true</span> <span class='op'>&lt;&lt;</span> <span class='kw'>false</span>
-        <span class='kw'>else</span> <span class='comment'># fork worker
-</span>          <span class='id identifier rubyid_worker_pids'>worker_pids</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_pid'>pid</span> <span class='op'>=</span> <span class='id identifier rubyid_spawn_worker'><a href="#spawn_worker-instance_method" title="Puma::Cluster#spawn_worker (method)">spawn_worker</a></span>(<span class='id identifier rubyid_idx'>idx</span><span class='comma'>,</span> <span class='id identifier rubyid_master'>master</span>)
-          <span class='ivar'>@worker_write</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>f</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pid'>pid</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_idx'>idx</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>rescue</span> <span class='kw'>nil</span>
-        <span class='kw'>end</span>
-      <span class='kw'>end</span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-
-  <span class='const'>Signal</span>.<span class='id identifier rubyid_trap'>trap</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SIGTERM</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
-    <span class='ivar'>@worker_write</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>e</span><span class='embexpr_beg'>#{</span><span class='const'>Process</span>.<span class='id identifier rubyid_pid'>pid</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>rescue</span> <span class='kw'>nil</span>
-    <span class='id identifier rubyid_server'>server</span>.<span class='id identifier rubyid_stop'><a href="#stop-instance_method" title="Puma::Cluster#stop (method)">stop</a></span>
-    <span class='id identifier rubyid_restart_server'>restart_server</span> <span class='op'>&lt;&lt;</span> <span class='kw'>false</span>
-  <span class='kw'>end</span>
-
-  <span class='kw'>begin</span>
-    <span class='ivar'>@worker_write</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>b</span><span class='embexpr_beg'>#{</span><span class='const'>Process</span>.<span class='id identifier rubyid_pid'>pid</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_index'>index</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span>
-  <span class='kw'>rescue</span> <span class='const'>SystemCallError</span><span class='comma'>,</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>
-    <span class='const'>Thread</span>.<span class='id identifier rubyid_current'>current</span>.<span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span>.<span class='id identifier rubyid_current'>current</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span>
-    <span class='const'>STDERR</span>.<span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Master seems to have exited, exiting.</span><span class='tstring_end'>&quot;</span></span>
-    <span class='kw'>return</span>
-  <span class='kw'>end</span>
-
-  <span class='const'>Thread</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Cluster.new (method)">new</a></span>(<span class='ivar'>@worker_write</span>) <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_io'>io</span><span class='op'>|</span>
-    <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span>.<span class='id identifier rubyid_set_thread_name'><a href="../Puma.html#set_thread_name-class_method" title="Puma.set_thread_name (method)">set_thread_name</a></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>stat payload</span><span class='tstring_end'>&quot;</span></span>
-
-    <span class='kw'>while</span> <span class='kw'>true</span>
-      <span class='id identifier rubyid_sleep'>sleep</span> <span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#WORKER_CHECK_INTERVAL-constant" title="Puma::Const::WORKER_CHECK_INTERVAL (constant)">WORKER_CHECK_INTERVAL</a></span>
-      <span class='kw'>begin</span>
-        <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>json</span><span class='tstring_end'>&#39;</span></span>
-        <span class='id identifier rubyid_io'>io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>p</span><span class='embexpr_beg'>#{</span><span class='const'>Process</span>.<span class='id identifier rubyid_pid'>pid</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_server'>server</span>.<span class='id identifier rubyid_stats'><a href="#stats-instance_method" title="Puma::Cluster#stats (method)">stats</a></span>.<span class='id identifier rubyid_to_json'>to_json</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span>
-      <span class='kw'>rescue</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>
-        <span class='const'>Thread</span>.<span class='id identifier rubyid_current'>current</span>.<span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span>.<span class='id identifier rubyid_current'>current</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span>
-        <span class='kw'>break</span>
-      <span class='kw'>end</span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-
-  <span class='id identifier rubyid_server'>server</span>.<span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Cluster#run (method)">run</a></span>.<span class='id identifier rubyid_join'>join</span> <span class='kw'>while</span> <span class='id identifier rubyid_restart_server'>restart_server</span>.<span class='id identifier rubyid_pop'>pop</span>
-
-  <span class='comment'># Invoke any worker shutdown hooks so they can prevent the worker
-</span>  <span class='comment'># exiting until any background operations are completed
-</span>  <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_config'>config</span>.<span class='id identifier rubyid_run_hooks'>run_hooks</span> <span class='symbeg'>:</span><span class='id identifier rubyid_before_worker_shutdown'>before_worker_shutdown</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_events'>events</span>
-<span class='kw'>ensure</span>
-  <span class='ivar'>@worker_write</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='embexpr_beg'>#{</span><span class='const'>Process</span>.<span class='id identifier rubyid_pid'>pid</span><span class='embexpr_end'>}</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>rescue</span> <span class='kw'>nil</span>
-  <span class='ivar'>@worker_write</span>.<span class='id identifier rubyid_close'>close</span>
+  <span class='id identifier rubyid_new_worker'>new_worker</span> <span class='op'>=</span> <span class='const'><a href="Cluster/Worker.html" title="Puma::Cluster::Worker (class)">Worker</a></span>.<span class='id identifier rubyid_new'><a href="Cluster/Worker.html#new-class_method" title="Puma::Cluster::Worker.new (method)">new</a></span> <span class='label'>index:</span> <span class='id identifier rubyid_index'>index</span><span class='comma'>,</span>
+                          <span class='label'>master:</span> <span class='id identifier rubyid_master'>master</span><span class='comma'>,</span>
+                          <span class='label'>launcher:</span> <span class='ivar'>@launcher</span><span class='comma'>,</span>
+                          <span class='label'>pipes:</span> <span class='id identifier rubyid_pipes'>pipes</span>
+  <span class='id identifier rubyid_new_worker'>new_worker</span>.<span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Cluster#run (method)">run</a></span>
 <span class='kw'>end</span>
 </pre>
   </div>

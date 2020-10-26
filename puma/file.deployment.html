@@ -61,20 +61,20 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<h1>Deployment engineering for puma</h1>
+<h1>Deployment engineering for <a href="Puma.html" title="Puma (module)">Puma</a></h1>
 <p><a href="Puma.html" title="Puma (module)">Puma</a> is software that is expected to be run in a deployed environment eventually.
 You can certainly use it as your dev server only, but most people look to use
 it in their production deployments as well.</p>
 <p>To that end, this is meant to serve as a foundation of wisdom how to do that
 in a way that increases happiness and decreases downtime.</p>
-<h2>Specifying puma</h2>
+<h2>Specifying Puma</h2>
 <p>Most people want to do this by putting <code>gem &quot;puma&quot;</code> into their Gemfile, so we'll
 go ahead and assume that. Go add it now... we'll wait.</p>
 <p>Welcome back!</p>
 <h2>Single vs Cluster mode</h2>
 <p><a href="Puma.html" title="Puma (module)">Puma</a> was originally conceived as a thread-only webserver, but grew the ability to
 also use processes in version 2.</p>
-<p>To run puma in single mode (e.g. for a development environment) you will need to
+<p>To run <code>puma</code> in single mode (e.g. for a development environment) you will need to
 set the number of workers to 0, anything above will run in cluster mode.</p>
 <p>Here are some rules of thumb for cluster mode:</p>
 <h3>MRI</h3>
@@ -133,7 +133,7 @@ can also be added as headers.</li>
 </ul>
 <h2>Should I daemonize?</h2>
 <p>Daemonization was removed in <a href="Puma.html" title="Puma (module)">Puma</a> 5.0. For alternatives, continue reading.</p>
-<p>I prefer to not daemonize my servers and use something like <code>runit</code> or <code>upstart</code> to
+<p>I prefer to not daemonize my servers and use something like <code>runit</code> or <code>systemd</code> to
 monitor them as child processes. This gives them fast response to crashes and
 makes it easy to figure out what is going on. Additionally, unlike <code>unicorn</code>,
 puma does not require daemonization to do zero-downtime restarts.</p>
@@ -142,7 +142,7 @@ task and thus want it to live on past the <code>cap deploy</code>. To these peop
 You need to be using a process monitor. Nothing is making sure puma stays up in
 this scenario! You're just waiting for something weird to happen, puma to die,
 and to get paged at 3am. Do yourself a favor, at least the process monitoring
-your OS comes with, be it <code>sysvinit</code>, <code>upstart</code>, or <code>systemd</code>. Or branch out
+your OS comes with, be it <code>sysvinit</code> or <code>systemd</code>. Or branch out
 and use <code>runit</code> or hell, even <code>monit</code>.</p>
 <h2>Restarting</h2>
 <p>You probably will want to deploy some new code at some point, and you'd like
