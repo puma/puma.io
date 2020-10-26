@@ -187,13 +187,6 @@
   </li>
   <li>
     <span class='summary_signature ro priv'>
-      <a href="#dependencies_and_files_to_require_after_prune-instance_method" title="#dependencies_and_files_to_require_after_prune (instance method)">#<strong>dependencies_and_files_to_require_after_prune</strong>  </a>
-    </span>
-    <span class='note title readonly'>readonly</span>
-    <span class='note title private'>private</span>
-  </li>
-  <li>
-    <span class='summary_signature ro priv'>
       <a href="#environment-instance_method" title="#environment (instance method)">#<strong>environment</strong>  </a>
     </span>
     <span class='note title readonly'>readonly</span>
@@ -202,6 +195,13 @@
   <li>
     <span class='summary_signature ro priv'>
       <a href="#extra_runtime_deps_directories-instance_method" title="#extra_runtime_deps_directories (instance method)">#<strong>extra_runtime_deps_directories</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature ro priv'>
+      <a href="#files_to_require_after_prune-instance_method" title="#files_to_require_after_prune (instance method)">#<strong>files_to_require_after_prune</strong>  </a>
     </span>
     <span class='note title readonly'>readonly</span>
     <span class='note title private'>private</span>
@@ -510,11 +510,11 @@
   <h3 class='signature ro priv'>
     #<strong>clustered?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>, <span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L335-L337'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L331-L333'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='335' data-end='337'></pre>
+  <pre class='lines_num' data-start='331' data-end='333'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 335</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 331</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clustered?'>clustered?</span>
@@ -579,40 +579,15 @@
 </div>
 </section>
 
-<section class='method_details' id="dependencies_and_files_to_require_after_prune-instance_method">
-  <h3 class='signature ro priv'>
-    #<strong>dependencies_and_files_to_require_after_prune</strong>   <span class="extras">(<span class='readonly'>readonly</span>, <span class='priv'>private</span>)</span>
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L268-L276'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='268' data-end='276'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 268</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_dependencies_and_files_to_require_after_prune'>dependencies_and_files_to_require_after_prune</span>
-  <span class='id identifier rubyid_puma'>puma</span> <span class='op'>=</span> <span class='id identifier rubyid_spec_for_gem'><a href="#spec_for_gem-instance_method" title="Puma::Launcher#spec_for_gem (method)">spec_for_gem</a></span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puma</span><span class='tstring_end'>&quot;</span></span>)
-
-  <span class='id identifier rubyid_deps'>deps</span> <span class='op'>=</span> <span class='id identifier rubyid_puma'>puma</span>.<span class='id identifier rubyid_runtime_dependencies'>runtime_dependencies</span>.<span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_d'>d</span><span class='op'>|</span>
-    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_d'>d</span>.<span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_spec_for_gem'><a href="#spec_for_gem-instance_method" title="Puma::Launcher#spec_for_gem (method)">spec_for_gem</a></span>(<span class='id identifier rubyid_d'>d</span>.<span class='id identifier rubyid_name'>name</span>).<span class='id identifier rubyid_version'>version</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-  <span class='kw'>end</span>
-
-  [<span class='id identifier rubyid_deps'>deps</span><span class='comma'>,</span> <span class='id identifier rubyid_require_paths_for_gem'><a href="#require_paths_for_gem-instance_method" title="Puma::Launcher#require_paths_for_gem (method)">require_paths_for_gem</a></span>(<span class='id identifier rubyid_puma'>puma</span>) <span class='op'>+</span> <span class='id identifier rubyid_extra_runtime_deps_directories'><a href="#extra_runtime_deps_directories-instance_method" title="Puma::Launcher#extra_runtime_deps_directories (method)">extra_runtime_deps_directories</a></span>]
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <section class='method_details' id="environment-instance_method">
   <h3 class='signature ro priv'>
     #<strong>environment</strong>   <span class="extras">(<span class='readonly'>readonly</span>, <span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L367-L369'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L363-L365'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='367' data-end='369'></pre>
+  <pre class='lines_num' data-start='363' data-end='365'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 367</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 363</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_environment'>environment</span>
@@ -644,11 +619,11 @@
   <h3 class='signature ro priv'>
     #<strong>extra_runtime_deps_directories</strong>   <span class="extras">(<span class='readonly'>readonly</span>, <span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L279-L288'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L275-L284'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='279' data-end='288'></pre>
+  <pre class='lines_num' data-start='275' data-end='284'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 279</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 275</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extra_runtime_deps_directories'>extra_runtime_deps_directories</span>
@@ -660,6 +635,27 @@
       <span class='kw'>nil</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>.<span class='id identifier rubyid_flatten'>flatten</span>.<span class='id identifier rubyid_compact'>compact</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="files_to_require_after_prune-instance_method">
+  <h3 class='signature ro priv'>
+    #<strong>files_to_require_after_prune</strong>   <span class="extras">(<span class='readonly'>readonly</span>, <span class='priv'>private</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L268-L272'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='268' data-end='272'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 268</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_files_to_require_after_prune'>files_to_require_after_prune</span>
+  <span class='id identifier rubyid_puma'>puma</span> <span class='op'>=</span> <span class='id identifier rubyid_spec_for_gem'><a href="#spec_for_gem-instance_method" title="Puma::Launcher#spec_for_gem (method)">spec_for_gem</a></span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puma</span><span class='tstring_end'>&quot;</span></span>)
+
+  <span class='id identifier rubyid_require_paths_for_gem'><a href="#require_paths_for_gem-instance_method" title="Puma::Launcher#require_paths_for_gem (method)">require_paths_for_gem</a></span>(<span class='id identifier rubyid_puma'>puma</span>) <span class='op'>+</span> <span class='id identifier rubyid_extra_runtime_deps_directories'><a href="#extra_runtime_deps_directories-instance_method" title="Puma::Launcher#extra_runtime_deps_directories (method)">extra_runtime_deps_directories</a></span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -687,11 +683,11 @@
   <h3 class='signature ro priv'>
     #<strong>prune_bundler</strong>   <span class="extras">(<span class='readonly'>readonly</span>, <span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L298-L321'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L294-L317'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='298' data-end='321'></pre>
+  <pre class='lines_num' data-start='294' data-end='317'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 298</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 294</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prune_bundler'>prune_bundler</span>
@@ -703,7 +699,7 @@
     <span class='kw'>return</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_deps'>deps</span><span class='comma'>,</span> <span class='id identifier rubyid_dirs'>dirs</span> <span class='op'>=</span> <span class='id identifier rubyid_dependencies_and_files_to_require_after_prune'><a href="#dependencies_and_files_to_require_after_prune-instance_method" title="Puma::Launcher#dependencies_and_files_to_require_after_prune (method)">dependencies_and_files_to_require_after_prune</a></span>
+  <span class='id identifier rubyid_dirs'>dirs</span> <span class='op'>=</span> <span class='id identifier rubyid_files_to_require_after_prune'><a href="#files_to_require_after_prune-instance_method" title="Puma::Launcher#files_to_require_after_prune (method)">files_to_require_after_prune</a></span>
 
   <span class='id identifier rubyid_log'><a href="#log-instance_method" title="Puma::Launcher#log (method)">log</a></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>* Pruning Bundler environment</span><span class='tstring_end'>&#39;</span></span>
   <span class='id identifier rubyid_home'>home</span> <span class='op'>=</span> <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GEM_HOME</span><span class='tstring_end'>&#39;</span></span>]
@@ -712,7 +708,7 @@
     <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GEM_HOME</span><span class='tstring_end'>&#39;</span></span>] <span class='op'>=</span> <span class='id identifier rubyid_home'>home</span>
     <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>BUNDLE_GEMFILE</span><span class='tstring_end'>&#39;</span></span>] <span class='op'>=</span> <span class='id identifier rubyid_bundle_gemfile'>bundle_gemfile</span>
     <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUMA_BUNDLER_PRUNED</span><span class='tstring_end'>&#39;</span></span>] <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>1</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> [<span class='const'>Gem</span>.<span class='id identifier rubyid_ruby'>ruby</span><span class='comma'>,</span> <span class='id identifier rubyid_puma_wild_location'><a href="#puma_wild_location-instance_method" title="Puma::Launcher#puma_wild_location (method)">puma_wild_location</a></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-I</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_dirs'>dirs</span>.<span class='id identifier rubyid_join'>join</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>:</span><span class='tstring_end'>&#39;</span></span>)<span class='comma'>,</span> <span class='id identifier rubyid_deps'>deps</span>.<span class='id identifier rubyid_join'>join</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span>)] <span class='op'>+</span> <span class='ivar'>@original_argv</span>
+    <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> [<span class='const'>Gem</span>.<span class='id identifier rubyid_ruby'>ruby</span><span class='comma'>,</span> <span class='id identifier rubyid_puma_wild_location'><a href="#puma_wild_location-instance_method" title="Puma::Launcher#puma_wild_location (method)">puma_wild_location</a></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-I</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_dirs'>dirs</span>.<span class='id identifier rubyid_join'>join</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>:</span><span class='tstring_end'>&#39;</span></span>)] <span class='op'>+</span> <span class='ivar'>@original_argv</span>
     <span class='comment'># Ruby 2.0+ defaults to true which breaks socket activation
 </span>    <span class='id identifier rubyid_args'>args</span> <span class='op'>+=</span> [{<span class='symbeg'>:</span><span class='id identifier rubyid_close_others'>close_others</span> <span class='op'>=&gt;</span> <span class='kw'>false</span>}]
     <span class='const'>Kernel</span>.<span class='id identifier rubyid_exec'>exec</span>(<span class='op'>*</span><span class='id identifier rubyid_args'>args</span>)
@@ -727,11 +723,11 @@
   <h3 class='signature ro priv'>
     #<strong>prune_bundler?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>, <span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L371-L373'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L367-L369'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='371' data-end='373'></pre>
+  <pre class='lines_num' data-start='367' data-end='369'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 371</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 367</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prune_bundler?'>prune_bundler?</span>
@@ -746,11 +742,11 @@
   <h3 class='signature ro priv'>
     #<strong>puma_wild_location</strong>   <span class="extras">(<span class='readonly'>readonly</span>, <span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L291-L296'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L287-L292'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='291' data-end='296'></pre>
+  <pre class='lines_num' data-start='287' data-end='292'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 291</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 287</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_puma_wild_location'>puma_wild_location</span>
@@ -851,11 +847,11 @@
   <h3 class='signature ro priv'>
     #<strong>title</strong>   <span class="extras">(<span class='readonly'>readonly</span>, <span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L355-L359'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L351-L355'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='355' data-end='359'></pre>
+  <pre class='lines_num' data-start='351' data-end='355'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 355</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 351</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_title'>title</span>
@@ -920,11 +916,11 @@
   <h3 class='signature priv'>
     #<strong>generate_restart_data</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L375-L418'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L371-L414'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='375' data-end='418'></pre>
+  <pre class='lines_num' data-start='371' data-end='414'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 375</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 371</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_restart_data'>generate_restart_data</span>
@@ -980,11 +976,11 @@
   <h3 class='signature priv'>
     #<strong>graceful_stop</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L344-L348'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L340-L344'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='344' data-end='348'></pre>
+  <pre class='lines_num' data-start='340' data-end='344'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 344</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 340</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_graceful_stop'>graceful_stop</span>
@@ -1028,11 +1024,11 @@
   <h3 class='signature priv'>
     #<strong>log</strong>(str)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L331-L333'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L327-L329'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='331' data-end='333'></pre>
+  <pre class='lines_num' data-start='327' data-end='329'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 331</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 327</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_log'>log</span>(<span class='id identifier rubyid_str'>str</span>)
@@ -1096,11 +1092,11 @@
   <h3 class='signature priv'>
     #<strong>require_paths_for_gem</strong>(gem_spec)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L327-L329'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L323-L325'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='327' data-end='329'></pre>
+  <pre class='lines_num' data-start='323' data-end='325'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 327</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 323</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_require_paths_for_gem'>require_paths_for_gem</span>(<span class='id identifier rubyid_gem_spec'>gem_spec</span>)
@@ -1115,11 +1111,11 @@
   <h3 class='signature priv'>
     #<strong>require_rubygems_min_version!</strong>(min_version, feature)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L484-L489'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L480-L485'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='484' data-end='489'></pre>
+  <pre class='lines_num' data-start='480' data-end='485'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 484</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 480</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_require_rubygems_min_version!'>require_rubygems_min_version!</span>(<span class='id identifier rubyid_min_version'>min_version</span><span class='comma'>,</span> <span class='id identifier rubyid_feature'>feature</span>)
@@ -1261,11 +1257,11 @@
   <h3 class='signature priv'>
     #<strong>set_process_title</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L350-L352'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L346-L348'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='350' data-end='352'></pre>
+  <pre class='lines_num' data-start='346' data-end='348'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 350</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 346</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_process_title'>set_process_title</span>
@@ -1280,11 +1276,11 @@
   <h3 class='signature priv'>
     #<strong>set_rack_environment</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L361-L364'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L357-L360'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='361' data-end='364'></pre>
+  <pre class='lines_num' data-start='357' data-end='360'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 361</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 357</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_rack_environment'>set_rack_environment</span>
@@ -1300,11 +1296,11 @@
   <h3 class='signature priv'>
     #<strong>setup_signals</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L420-L482'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L416-L478'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='420' data-end='482'></pre>
+  <pre class='lines_num' data-start='416' data-end='478'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 420</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 416</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setup_signals'>setup_signals</span>
@@ -1379,11 +1375,11 @@
   <h3 class='signature priv'>
     #<strong>spec_for_gem</strong>(gem_name)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L323-L325'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L319-L321'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='323' data-end='325'></pre>
+  <pre class='lines_num' data-start='319' data-end='321'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 323</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 319</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_spec_for_gem'>spec_for_gem</span>(<span class='id identifier rubyid_gem_name'>gem_name</span>)
@@ -1465,11 +1461,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L339-L342'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L335-L338'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='339' data-end='342'></pre>
+  <pre class='lines_num' data-start='335' data-end='338'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 339</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 335</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unsupported'>unsupported</span>(<span class='id identifier rubyid_str'>str</span>)
@@ -1501,11 +1497,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L492-L499'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.2/lib/puma/launcher.rb#L488-L495'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='492' data-end='499'></pre>
+  <pre class='lines_num' data-start='488' data-end='495'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/launcher.rb', line 492</span></pre>
+<pre><span class='info file'># File 'lib/puma/launcher.rb', line 488</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_with_unbundled_env'>with_unbundled_env</span>

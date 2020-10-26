@@ -65,7 +65,8 @@
   <img src="https://puma.io/images/logos/puma-logo-large.png">
 </p>
 <h1>Puma: A Ruby Web Server Built For Concurrency</h1>
-<p><a href="https://github.com/puma/puma/actions"><img src="https://github.com/puma/puma/workflows/CI/badge.svg?branch=master" alt="Actions Build Status" /></a>
+<p><a href="https://github.com/puma/puma/actions?query=workflow%3AMRI"><img src="https://github.com/puma/puma/workflows/MRI/badge.svg?branch=v5.0.3" alt="Actions MRI" /></a>
+<a href="https://github.com/puma/puma/actions?query=workflow%3Anon_MRI"><img src="https://github.com/puma/puma/workflows/non_MRI/badge.svg?branch=v5.0.3" alt="Actions non MRI" /></a>
 <a href="https://codeclimate.com/github/puma/puma"><img src="https://codeclimate.com/github/puma/puma.svg" alt="Code Climate" /></a>
 <a href="https://dependabot.com/compatibility-score.html?dependency-name=puma&amp;package-manager=bundler&amp;version-scheme=semver"><img src="https://api.dependabot.com/badges/compatibility_score?dependency-name=puma&amp;package-manager=bundler&amp;version-scheme=semver" alt="SemVer" /></a>
 <a href="https://stackoverflow.com/questions/tagged/puma"><img src="https://img.shields.io/badge/stackoverflow-Puma-blue.svg" alt="StackOverflow" /></a></p>
@@ -193,17 +194,16 @@ error-tracking service (in this example, <a href="https://rollbar.com" target="_
 <span class='kw'>end</span></code></pre>
 <h2>Deployment</h2>
 <p>Puma has support for Capistrano with an <a href="https://github.com/seuros/capistrano-puma" target="_parent" title="external gem">external gem</a>.</p>
-<p>It is common to use process monitors with Puma. Modern process monitors like systemd or upstart
+<p>It is common to use process monitors with Puma. Modern process monitors like systemd or rc.d
 provide continuous monitoring and restarts for increased
 reliability in production environments:</p>
 <ul>
-<li><a href="https://github.com/puma/puma/tree/master/docs/jungle" target="_parent" title="docs/jungle">docs/jungle</a> for rc.d and upstart</li>
+<li><a href="https://github.com/puma/puma/tree/master/docs/jungle" target="_parent" title="docs/jungle">docs/jungle</a> for rc.d</li>
 <li><a href="https://github.com/puma/puma/blob/master/docs/systemd.md" target="_parent" title="docs/systemd">docs/systemd</a></li>
 </ul>
 <h2>Community Extensions</h2>
 <h3>Plugins</h3>
 <ul>
-<li><a href="https://github.com/puma/puma-heroku" target="_parent" title="puma-heroku">puma-heroku</a> — default Puma configuration for running on Heroku</li>
 <li><a href="https://github.com/harmjanblok/puma-metrics" target="_parent" title="puma-metrics">puma-metrics</a> — export Puma metrics to Prometheus</li>
 <li><a href="https://github.com/yob/puma-plugin-statsd" target="_parent" title="puma-plugin-statsd">puma-plugin-statsd</a> — send Puma metrics to statsd</li>
 <li><a href="https://github.com/sj26/puma-plugin-systemd" target="_parent" title="puma-plugin-systemd">puma-plugin-systemd</a> — deeper integration with systemd for notify, status and watchdog</li>
