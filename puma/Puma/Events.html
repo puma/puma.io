@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::Events &mdash; Puma-5.0.4</title>
+<title>Class: Puma::Events &mdash; Puma-5.1.0</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-5.0.4</a> &raquo; 
+      <a href='../'>Puma-5.1.0</a> &raquo; 
       <a href='../_index.html#alpha_E'>Index (E)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>Events&nbsp;&#x25B2;</a></span>
@@ -84,7 +84,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L13'>lib/puma/events.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L13'>lib/puma/events.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -107,7 +107,7 @@
   <li>
     <span id='DEFAULT-constant' class='summary_signature'>DEFAULT =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L144-L144'># File 'lib/puma/events.rb', line 144</a>    <pre class='code ruby'><span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Events.new (method)">new</a></span>(<span class='const'>STDOUT</span><span class='comma'>,</span> <span class='const'>STDERR</span>)</pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L160-L160'># File 'lib/puma/events.rb', line 160</a>    <pre class='code ruby'><span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Events.new (method)">new</a></span>(<span class='const'>STDOUT</span><span class='comma'>,</span> <span class='const'>STDERR</span>)</pre>
   </li>
 </ul>
 </div>
@@ -216,6 +216,16 @@
   </li>
   <li>
     <span class='summary_signature '>
+      <a href="#fire_on_restart!-instance_method" title="#fire_on_restart! (instance method)">#<strong>fire_on_restart!</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#fire_on_stopped!-instance_method" title="#fire_on_stopped! (instance method)">#<strong>fire_on_stopped!</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
       <a href="#format-instance_method" title="#format (instance method)">#<strong>format</strong>(str)  </a>
     </span>
   </li>
@@ -230,6 +240,16 @@
   <li>
     <span class='summary_signature '>
       <a href="#on_booted-instance_method" title="#on_booted (instance method)">#<strong>on_booted</strong>(&amp;block)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#on_restart-instance_method" title="#on_restart (instance method)">#<strong>on_restart</strong>(&amp;block)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#on_stopped-instance_method" title="#on_stopped (instance method)">#<strong>on_stopped</strong>(&amp;block)  </a>
     </span>
   </li>
   <li>
@@ -287,7 +307,7 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L28-L40'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L28-L40'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='28' data-end='40'></pre>
   <div class='lines_code'>
@@ -317,11 +337,11 @@
   <h3 class='signature  first'>
     .<strong>null</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L157-L160'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L173-L176'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='157' data-end='160'></pre>
+  <pre class='lines_num' data-start='173' data-end='176'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/events.rb', line 157</span></pre>
+<pre><span class='info file'># File 'lib/puma/events.rb', line 173</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_null'>null</span>
@@ -337,11 +357,11 @@
   <h3 class='signature '>
     .<strong>stdio</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L153-L155'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L169-L171'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='153' data-end='155'></pre>
+  <pre class='lines_num' data-start='169' data-end='171'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/events.rb', line 153</span></pre>
+<pre><span class='info file'># File 'lib/puma/events.rb', line 169</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_stdio'>stdio</span>
@@ -363,11 +383,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L149-L151'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L165-L167'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='149' data-end='151'></pre>
+  <pre class='lines_num' data-start='165' data-end='167'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/events.rb', line 149</span></pre>
+<pre><span class='info file'># File 'lib/puma/events.rb', line 165</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_strings'>strings</span>
@@ -383,7 +403,7 @@
   <h3 class='signature rw first'>
     #<strong>formatter</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L43-L43'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L43-L43'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='43' data-end='43'></pre>
   <div class='lines_code'>
@@ -400,7 +420,7 @@
   <h3 class='signature ro'>
     #<strong>stderr</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L42-L42'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L42-L42'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='42' data-end='42'></pre>
   <div class='lines_code'>
@@ -417,7 +437,7 @@
   <h3 class='signature ro'>
     #<strong>stdout</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L42-L42'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L42-L42'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='42' data-end='42'></pre>
   <div class='lines_code'>
@@ -453,7 +473,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L96-L98'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L96-L98'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='96' data-end='98'></pre>
   <div class='lines_code'>
@@ -472,7 +492,7 @@
   <h3 class='signature '>
     #<strong>debug</strong>(str)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L76-L78'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L76-L78'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='76' data-end='78'></pre>
   <div class='lines_code'>
@@ -509,7 +529,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L132-L134'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L132-L134'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='132' data-end='134'></pre>
   <div class='lines_code'>
@@ -535,7 +555,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L82-L85'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L82-L85'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='82' data-end='85'></pre>
   <div class='lines_code'>
@@ -562,7 +582,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L47-L49'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L47-L49'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='47' data-end='49'></pre>
   <div class='lines_code'>
@@ -581,11 +601,11 @@
   <h3 class='signature '>
     #<strong>fire_on_booted!</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L140-L142'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L148-L150'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='140' data-end='142'></pre>
+  <pre class='lines_num' data-start='148' data-end='150'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/events.rb', line 140</span></pre>
+<pre><span class='info file'># File 'lib/puma/events.rb', line 148</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fire_on_booted!'>fire_on_booted!</span>
@@ -596,11 +616,49 @@
 </div>
 </section>
 
+<section class='method_details' id="fire_on_restart!-instance_method">
+  <h3 class='signature '>
+    #<strong>fire_on_restart!</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L152-L154'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='152' data-end='154'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/events.rb', line 152</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fire_on_restart!'>fire_on_restart!</span>
+  <span class='id identifier rubyid_fire'><a href="#fire-instance_method" title="Puma::Events#fire (method)">fire</a></span>(<span class='symbeg'>:</span><span class='id identifier rubyid_on_restart'><a href="#on_restart-instance_method" title="Puma::Events#on_restart (method)">on_restart</a></span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="fire_on_stopped!-instance_method">
+  <h3 class='signature '>
+    #<strong>fire_on_stopped!</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L156-L158'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='156' data-end='158'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/events.rb', line 156</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fire_on_stopped!'>fire_on_stopped!</span>
+  <span class='id identifier rubyid_fire'><a href="#fire-instance_method" title="Puma::Events#fire (method)">fire</a></span>(<span class='symbeg'>:</span><span class='id identifier rubyid_on_stopped'><a href="#on_stopped-instance_method" title="Puma::Events#on_stopped (method)">on_stopped</a></span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
 <section class='method_details' id="format-instance_method">
   <h3 class='signature '>
     #<strong>format</strong>(str)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L87-L89'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L87-L89'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='87' data-end='89'></pre>
   <div class='lines_code'>
@@ -626,7 +684,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L67-L70'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L67-L70'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='67' data-end='70'></pre>
   <div class='lines_code'>
@@ -646,7 +704,7 @@
   <h3 class='signature '>
     #<strong>on_booted</strong>(&amp;block)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L136-L138'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L136-L138'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='136' data-end='138'></pre>
   <div class='lines_code'>
@@ -655,6 +713,44 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_on_booted'>on_booted</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
   <span class='id identifier rubyid_register'><a href="#register-instance_method" title="Puma::Events#register (method)">register</a></span>(<span class='symbeg'>:</span><span class='id identifier rubyid_on_booted'>on_booted</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="on_restart-instance_method">
+  <h3 class='signature '>
+    #<strong>on_restart</strong>(&amp;block)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L140-L142'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='140' data-end='142'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/events.rb', line 140</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_restart'>on_restart</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
+  <span class='id identifier rubyid_register'><a href="#register-instance_method" title="Puma::Events#register (method)">register</a></span>(<span class='symbeg'>:</span><span class='id identifier rubyid_on_restart'>on_restart</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="on_stopped-instance_method">
+  <h3 class='signature '>
+    #<strong>on_stopped</strong>(&amp;block)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L144-L146'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='144' data-end='146'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/events.rb', line 144</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_stopped'>on_stopped</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
+  <span class='id identifier rubyid_register'><a href="#register-instance_method" title="Puma::Events#register (method)">register</a></span>(<span class='symbeg'>:</span><span class='id identifier rubyid_on_stopped'>on_stopped</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -672,7 +768,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L104-L106'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L104-L106'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='104' data-end='106'></pre>
   <div class='lines_code'>
@@ -698,7 +794,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L53-L63'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L53-L63'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='53' data-end='63'></pre>
   <div class='lines_code'>
@@ -746,7 +842,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L112-L117'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L112-L117'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='112' data-end='117'></pre>
   <div class='lines_code'>
@@ -775,7 +871,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L123-L125'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L123-L125'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='123' data-end='125'></pre>
   <div class='lines_code'>
@@ -794,7 +890,7 @@
   <h3 class='signature '>
     #<strong>write</strong>(str)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/events.rb#L72-L74'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/events.rb#L72-L74'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='72' data-end='74'></pre>
   <div class='lines_code'>
