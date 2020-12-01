@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Module: Puma::Request &mdash; Puma-5.0.4</title>
+<title>Module: Puma::Request &mdash; Puma-5.1.0</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-5.0.4</a> &raquo; 
+      <a href='../'>Puma-5.1.0</a> &raquo; 
       <a href='../_index.html#alpha_R'>Index (R)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>Request&nbsp;&#x25B2;</a></span>
@@ -88,7 +88,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/request.rb#L13'>lib/puma/request.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/request.rb#L13'>lib/puma/request.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -120,6 +120,7 @@
 <div>
   <h3 class='inherited'><a href="Const.html" title="Puma::Const (module)">Const</a> - Included</h3>
   <p  class='inherited'>
+    <a href="Const.html#BANNED_HEADER_KEY-constant" title="Puma::Const::BANNED_HEADER_KEY (constant)">BANNED_HEADER_KEY</a>, 
     <a href="Const.html#CGI_VER-constant" title="Puma::Const::CGI_VER (constant)">CGI_VER</a>, 
     <a href="Const.html#CHUNKED-constant" title="Puma::Const::CHUNKED (constant)">CHUNKED</a>, 
     <a href="Const.html#CHUNK_SIZE-constant" title="Puma::Const::CHUNK_SIZE (constant)">CHUNK_SIZE</a>, 
@@ -133,6 +134,7 @@
     <a href="Const.html#CONTENT_LENGTH2-constant" title="Puma::Const::CONTENT_LENGTH2 (constant)">CONTENT_LENGTH2</a>, 
     <a href="Const.html#CONTENT_LENGTH_S-constant" title="Puma::Const::CONTENT_LENGTH_S (constant)">CONTENT_LENGTH_S</a>, 
     <a href="Const.html#CONTINUE-constant" title="Puma::Const::CONTINUE (constant)">CONTINUE</a>, 
+    <a href="Const.html#DQUOTE-constant" title="Puma::Const::DQUOTE (constant)">DQUOTE</a>, 
     <a href="Const.html#EARLY_HINTS-constant" title="Puma::Const::EARLY_HINTS (constant)">EARLY_HINTS</a>, 
     <a href="Const.html#ERROR_RESPONSE-constant" title="Puma::Const::ERROR_RESPONSE (constant)">ERROR_RESPONSE</a>, 
     <a href="Const.html#FAST_TRACK_KA_TIMEOUT-constant" title="Puma::Const::FAST_TRACK_KA_TIMEOUT (constant)">FAST_TRACK_KA_TIMEOUT</a>, 
@@ -152,13 +154,15 @@
     <a href="Const.html#HTTP_11_200-constant" title="Puma::Const::HTTP_11_200 (constant)">HTTP_11_200</a>, 
     <a href="Const.html#HTTP_CONNECTION-constant" title="Puma::Const::HTTP_CONNECTION (constant)">HTTP_CONNECTION</a>, 
     <a href="Const.html#HTTP_EXPECT-constant" title="Puma::Const::HTTP_EXPECT (constant)">HTTP_EXPECT</a>, 
+    <a href="Const.html#HTTP_HEADER_DELIMITER-constant" title="Puma::Const::HTTP_HEADER_DELIMITER (constant)">HTTP_HEADER_DELIMITER</a>, 
     <a href="Const.html#HTTP_HOST-constant" title="Puma::Const::HTTP_HOST (constant)">HTTP_HOST</a>, 
-    <a href="Const.html#HTTP_INJECTION_REGEX-constant" title="Puma::Const::HTTP_INJECTION_REGEX (constant)">HTTP_INJECTION_REGEX</a>, 
     <a href="Const.html#HTTP_VERSION-constant" title="Puma::Const::HTTP_VERSION (constant)">HTTP_VERSION</a>, 
     <a href="Const.html#HTTP_X_FORWARDED_FOR-constant" title="Puma::Const::HTTP_X_FORWARDED_FOR (constant)">HTTP_X_FORWARDED_FOR</a>, 
     <a href="Const.html#HTTP_X_FORWARDED_PROTO-constant" title="Puma::Const::HTTP_X_FORWARDED_PROTO (constant)">HTTP_X_FORWARDED_PROTO</a>, 
     <a href="Const.html#HTTP_X_FORWARDED_SCHEME-constant" title="Puma::Const::HTTP_X_FORWARDED_SCHEME (constant)">HTTP_X_FORWARDED_SCHEME</a>, 
     <a href="Const.html#HTTP_X_FORWARDED_SSL-constant" title="Puma::Const::HTTP_X_FORWARDED_SSL (constant)">HTTP_X_FORWARDED_SSL</a>, 
+    <a href="Const.html#ILLEGAL_HEADER_KEY_REGEX-constant" title="Puma::Const::ILLEGAL_HEADER_KEY_REGEX (constant)">ILLEGAL_HEADER_KEY_REGEX</a>, 
+    <a href="Const.html#ILLEGAL_HEADER_VALUE_REGEX-constant" title="Puma::Const::ILLEGAL_HEADER_VALUE_REGEX (constant)">ILLEGAL_HEADER_VALUE_REGEX</a>, 
     <a href="Const.html#KEEP_ALIVE-constant" title="Puma::Const::KEEP_ALIVE (constant)">KEEP_ALIVE</a>, 
     <a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a>, 
     <a href="Const.html#LOCALHOST-constant" title="Puma::Const::LOCALHOST (constant)">LOCALHOST</a>, 
@@ -240,7 +244,13 @@
   </li>
   <li>
     <span class='summary_signature priv'>
-      <a href="#possible_header_injection%3F-instance_method" title="#possible_header_injection? (instance method)">#<strong>possible_header_injection?</strong>(header_value)  &#x21d2; Boolean </a>
+      <a href="#illegal_header_key%3F-instance_method" title="#illegal_header_key? (instance method)">#<strong>illegal_header_key?</strong>(header_key)  &#x21d2; Boolean </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#illegal_header_value%3F-instance_method" title="#illegal_header_value? (instance method)">#<strong>illegal_header_value?</strong>(header_value)  &#x21d2; Boolean </a>
     </span>
     <span class='note title private'>private</span>
   </li>
@@ -296,7 +306,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/request.rb#L183-L189'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/request.rb#L183-L189'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='183' data-end='189'></pre>
   <div class='lines_code'>
@@ -352,7 +362,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/request.rb#L196-L214'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/request.rb#L196-L214'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='196' data-end='214'></pre>
   <div class='lines_code'>
@@ -414,7 +424,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/request.rb#L220-L222'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/request.rb#L220-L222'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='220' data-end='222'></pre>
   <div class='lines_code'>
@@ -460,7 +470,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/request.rb#L31-L178'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/request.rb#L31-L178'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='31' data-end='178'></pre>
   <div class='lines_code'>
@@ -620,6 +630,74 @@
 </div>
 </section>
 
+<section class='method_details' id="illegal_header_key?-instance_method">
+  <h3 class='signature priv'>
+    #<strong>illegal_header_key?</strong>(header_key)  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Parameters:</p>
+<ul class='param'>
+  <li>
+    <span class='name'>header_key</span>
+    <span class='type'>(#<code>to_s</code>)</span>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/request.rb#L288-L290'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='288' data-end='290'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 288</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_illegal_header_key?'>illegal_header_key?</span>(<span class='id identifier rubyid_header_key'>header_key</span>)
+  <span class='op'>!</span><span class='op'>!</span>(<span class='const'><a href="Const.html#ILLEGAL_HEADER_KEY_REGEX-constant" title="Puma::Const::ILLEGAL_HEADER_KEY_REGEX (constant)">ILLEGAL_HEADER_KEY_REGEX</a></span> <span class='op'>=~</span> <span class='id identifier rubyid_header_key'>header_key</span>.<span class='id identifier rubyid_to_s'>to_s</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="illegal_header_value?-instance_method">
+  <h3 class='signature priv'>
+    #<strong>illegal_header_value?</strong>(header_value)  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Parameters:</p>
+<ul class='param'>
+  <li>
+    <span class='name'>header_value</span>
+    <span class='type'>(#<code>to_s</code>)</span>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/request.rb#L295-L297'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='295' data-end='297'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 295</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_illegal_header_value?'>illegal_header_value?</span>(<span class='id identifier rubyid_header_value'>header_value</span>)
+  <span class='op'>!</span><span class='op'>!</span>(<span class='const'><a href="Const.html#ILLEGAL_HEADER_VALUE_REGEX-constant" title="Puma::Const::ILLEGAL_HEADER_VALUE_REGEX (constant)">ILLEGAL_HEADER_VALUE_REGEX</a></span> <span class='op'>=~</span> <span class='id identifier rubyid_header_value'>header_value</span>.<span class='id identifier rubyid_to_s'>to_s</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
 <section class='method_details' id="normalize_env-instance_method">
   <h3 class='signature '>
     #<strong>normalize_env</strong>(env, client)  
@@ -659,7 +737,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/request.rb#L231-L282'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/request.rb#L231-L282'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='231' data-end='282'></pre>
   <div class='lines_code'>
@@ -723,40 +801,6 @@
 </div>
 </section>
 
-<section class='method_details' id="possible_header_injection?-instance_method">
-  <h3 class='signature priv'>
-    #<strong>possible_header_injection?</strong>(header_value)  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='priv'>private</span>)</span>
-  </h3>
-<div class='docstring'>
-  <div class='discussion'>
-    
-  </div>
-</div>
-<div class='tags'>
-  <p class='tag_title'>Parameters:</p>
-<ul class='param'>
-  <li>
-    <span class='name'>header_value</span>
-    <span class='type'>(#<code>to_s</code>)</span>
-  </li>
-</ul>
-
-</div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/request.rb#L288-L290'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='288' data-end='290'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 288</span></pre>
-<pre class='code ruby'>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_possible_header_injection?'>possible_header_injection?</span>(<span class='id identifier rubyid_header_value'>header_value</span>)
-  <span class='op'>!</span><span class='op'>!</span>(<span class='const'><a href="Const.html#HTTP_INJECTION_REGEX-constant" title="Puma::Const::HTTP_INJECTION_REGEX (constant)">HTTP_INJECTION_REGEX</a></span> <span class='op'>=~</span> <span class='id identifier rubyid_header_value'>header_value</span>.<span class='id identifier rubyid_to_s'>to_s</span>)
-<span class='kw'>end</span>
-</pre>
-  </div>
-</div>
-</section>
-
 <section class='method_details' id="req_env_post_parse-instance_method">
   <h3 class='signature priv'>
     #<strong>req_env_post_parse</strong>(env)   <span class="extras">(<span class='priv'>private</span>)</span>
@@ -789,11 +833,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/request.rb#L302-L326'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/request.rb#L309-L333'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='302' data-end='326'></pre>
+  <pre class='lines_num' data-start='309' data-end='333'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 302</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 309</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_req_env_post_parse'>req_env_post_parse</span>(<span class='id identifier rubyid_env'>env</span>)
@@ -858,19 +902,21 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/request.rb#L334-L347'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/request.rb#L341-L356'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='334' data-end='347'></pre>
+  <pre class='lines_num' data-start='341' data-end='356'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 334</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 341</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_str_early_hints'>str_early_hints</span>(<span class='id identifier rubyid_headers'>headers</span>)
   <span class='id identifier rubyid_eh_str'>eh_str</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HTTP/1.1 103 Early Hints\r\n</span><span class='tstring_end'>&quot;</span></span>.<span class='id identifier rubyid_dup'>dup</span>
   <span class='id identifier rubyid_headers'>headers</span>.<span class='id identifier rubyid_each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_vs'>vs</span><span class='op'>|</span>
+    <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_illegal_header_key?'><a href="#illegal_header_key%3F-instance_method" title="Puma::Request#illegal_header_key? (method)">illegal_header_key?</a></span>(<span class='id identifier rubyid_k'>k</span>)
+
     <span class='kw'>if</span> <span class='id identifier rubyid_vs'>vs</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_to_s'>to_s</span>) <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_vs'>vs</span>.<span class='id identifier rubyid_to_s'>to_s</span>.<span class='id identifier rubyid_empty?'>empty?</span>
       <span class='id identifier rubyid_vs'>vs</span>.<span class='id identifier rubyid_to_s'>to_s</span>.<span class='id identifier rubyid_split'>split</span>(<span class='const'><a href="Const.html#NEWLINE-constant" title="Puma::Const::NEWLINE (constant)">NEWLINE</a></span>).<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
-        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_possible_header_injection?'><a href="#possible_header_injection%3F-instance_method" title="Puma::Request#possible_header_injection? (method)">possible_header_injection?</a></span>(<span class='id identifier rubyid_v'>v</span>)
+        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_illegal_header_value?'><a href="#illegal_header_value%3F-instance_method" title="Puma::Request#illegal_header_value? (method)">illegal_header_value?</a></span>(<span class='id identifier rubyid_v'>v</span>)
         <span class='id identifier rubyid_eh_str'>eh_str</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_k'>k</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_v'>v</span><span class='embexpr_end'>}</span><span class='tstring_content'>\r\n</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>
     <span class='kw'>else</span>
@@ -944,11 +990,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.0.4/lib/puma/request.rb#L358-L435'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.0/lib/puma/request.rb#L367-L448'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='358' data-end='435'></pre>
+  <pre class='lines_num' data-start='367' data-end='448'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 358</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 367</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_str_headers'>str_headers</span>(<span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_res_info'>res_info</span><span class='comma'>,</span> <span class='id identifier rubyid_lines'>lines</span>)
@@ -995,9 +1041,11 @@
   <span class='id identifier rubyid_res_info'>res_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_response_hijack'>response_hijack</span>] <span class='op'>=</span> <span class='kw'>nil</span>
 
   <span class='id identifier rubyid_headers'>headers</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_vs'>vs</span><span class='op'>|</span>
+    <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_illegal_header_key?'><a href="#illegal_header_key%3F-instance_method" title="Puma::Request#illegal_header_key? (method)">illegal_header_key?</a></span>(<span class='id identifier rubyid_k'>k</span>)
+
     <span class='kw'>case</span> <span class='id identifier rubyid_k'>k</span>.<span class='id identifier rubyid_downcase'>downcase</span>
     <span class='kw'>when</span> <span class='const'><a href="Const.html#CONTENT_LENGTH2-constant" title="Puma::Const::CONTENT_LENGTH2 (constant)">CONTENT_LENGTH2</a></span>
-      <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_possible_header_injection?'><a href="#possible_header_injection%3F-instance_method" title="Puma::Request#possible_header_injection? (method)">possible_header_injection?</a></span>(<span class='id identifier rubyid_vs'>vs</span>)
+      <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_illegal_header_value?'><a href="#illegal_header_value%3F-instance_method" title="Puma::Request#illegal_header_value? (method)">illegal_header_value?</a></span>(<span class='id identifier rubyid_vs'>vs</span>)
       <span class='id identifier rubyid_res_info'>res_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>] <span class='op'>=</span> <span class='id identifier rubyid_vs'>vs</span>
       <span class='kw'>next</span>
     <span class='kw'>when</span> <span class='const'><a href="Const.html#TRANSFER_ENCODING-constant" title="Puma::Const::TRANSFER_ENCODING (constant)">TRANSFER_ENCODING</a></span>
@@ -1006,11 +1054,13 @@
     <span class='kw'>when</span> <span class='const'><a href="Const.html#HIJACK-constant" title="Puma::Const::HIJACK (constant)">HIJACK</a></span>
       <span class='id identifier rubyid_res_info'>res_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_response_hijack'>response_hijack</span>] <span class='op'>=</span> <span class='id identifier rubyid_vs'>vs</span>
       <span class='kw'>next</span>
+    <span class='kw'>when</span> <span class='const'><a href="Const.html#BANNED_HEADER_KEY-constant" title="Puma::Const::BANNED_HEADER_KEY (constant)">BANNED_HEADER_KEY</a></span>
+      <span class='kw'>next</span>
     <span class='kw'>end</span>
 
     <span class='kw'>if</span> <span class='id identifier rubyid_vs'>vs</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_to_s'>to_s</span>) <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_vs'>vs</span>.<span class='id identifier rubyid_to_s'>to_s</span>.<span class='id identifier rubyid_empty?'>empty?</span>
       <span class='id identifier rubyid_vs'>vs</span>.<span class='id identifier rubyid_to_s'>to_s</span>.<span class='id identifier rubyid_split'>split</span>(<span class='const'><a href="Const.html#NEWLINE-constant" title="Puma::Const::NEWLINE (constant)">NEWLINE</a></span>).<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
-        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_possible_header_injection?'><a href="#possible_header_injection%3F-instance_method" title="Puma::Request#possible_header_injection? (method)">possible_header_injection?</a></span>(<span class='id identifier rubyid_v'>v</span>)
+        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_illegal_header_value?'><a href="#illegal_header_value%3F-instance_method" title="Puma::Request#illegal_header_value? (method)">illegal_header_value?</a></span>(<span class='id identifier rubyid_v'>v</span>)
         <span class='id identifier rubyid_lines'>lines</span>.<span class='id identifier rubyid_append'>append</span> <span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_colon'>colon</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_line_ending'>line_ending</span>
       <span class='kw'>end</span>
     <span class='kw'>else</span>

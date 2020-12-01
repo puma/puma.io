@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: History &mdash; Puma-5.0.4</title>
+<title>File: History &mdash; Puma-5.1.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='./'>Puma-5.0.4</a> &raquo; 
+      <a href='./'>Puma-5.1.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: History&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,22 +61,32 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<h2>5.1.0</h2>
+<h2>5.1.0 / 2020-11-30</h2>
 <ul>
 <li>
 <p>Features</p>
 <ul>
-<li>Your feature goes here &lt;Most recent on the top, like GitHub&gt; (#Github Number)</li>
-<li>Integrate with systemd's watchdog and notification features (#2438)</li>
-<li>Adds max_fast_inline as a configuration option for the Server object (#2406)</li>
+<li>Phased restart availability is now always logged, even if it is not available.</li>
+<li>Prints the loaded configuration if the environment variable <code>PUMA_LOG_CONFIG</code> is present (<a href="https://github.com/puma/puma/pull/2472" title="PR by @ccverak, merged 2020-11-02">#2472</a>)</li>
+<li>Integrate with systemd's watchdog and notification features (<a href="https://github.com/puma/puma/pull/2438" title="PR by @ekohl, merged 2020-10-26">#2438</a>)</li>
+<li>Adds max_fast_inline as a configuration option for the Server object (<a href="https://github.com/puma/puma/pull/2406" title="PR by @fdel15, merged 2020-10-19">#2406</a>)</li>
+<li>You can now fork workers from worker 0 using SIGURG w/o fork_worker enabled <a href="https://github.com/puma/puma/pull/2449" title="PR by @MSP-Greg, merged 2020-10-28">#2449</a></li>
+<li>Add option to bind to systemd activated sockets (<a href="https://github.com/puma/puma/pull/2362" title="PR by @ekohl, merged 2020-11-10">#2362</a>)</li>
+<li>Add compile option to change the <code>QUERY_STRING</code> max length (<a href="https://github.com/puma/puma/pull/2485" title="PR by @elct9620, merged 2020-11-18">#2485</a>)</li>
 </ul>
 </li>
 <li>
 <p>Bugfixes</p>
 <ul>
-<li>Your bugfix goes here &lt;Most recent on the top, like GitHub&gt; (#Github Number)</li>
-<li>Ignore illegal (by Rack spec) response header (#2439)</li>
-<li>Close idle connections immediately on shutdown (#2460)</li>
+<li>Fix JRuby handling in Puma::DSL#ssl_bind (<a href="https://github.com/puma/puma/pull/2489" title="PR by @MSP-Greg, merged 2020-11-27">#2489</a>)</li>
+<li>control_cli.rb - all normal output should be to @stdout (<a href="https://github.com/puma/puma/pull/2487" title="PR by @MSP-Greg, merged 2020-11-17">#2487</a>)</li>
+<li>Catch 'Error in reactor loop escaped: mode not supported for this object: r' (<a href="https://github.com/puma/puma/pull/2477" title="PR by @MSP-Greg, merged 2020-11-16">#2477</a>)</li>
+<li>Ignore Rails' reaper thread (and any thread marked forksafe) for warning (<a href="https://github.com/puma/puma/pull/2475" title="PR by @nateberkopec, merged 2020-11-02">#2475</a>)</li>
+<li>Ignore illegal (by Rack spec) response header (<a href="https://github.com/puma/puma/pull/2439" title="PR by @kuei0221, merged 2020-10-26">#2439</a>)</li>
+<li>Close idle connections immediately on shutdown (<a href="https://github.com/puma/puma/pull/2460" title="PR by @cjlarose, merged 2020-10-27">#2460</a>)</li>
+<li>Fix some instances of phased restart errors related to the <code>json</code> gem (<a href="https://github.com/puma/puma/pull/2473" title="PR by @cjlarose, merged 2020-11-01">#2473</a>)</li>
+<li>Remove use of <code>json</code> gem to fix phased restart errors (<a href="https://github.com/puma/puma/pull/2479" title="PR by @cjlarose, merged 2020-11-10">#2479</a>)</li>
+<li>Fix grouping regexp of ILLEGAL_HEADER_KEY_REGEX (<a href="https://github.com/puma/puma/pull/2495" title="PR by @JuanitoFatas, merged 2020-11-27">#2495</a>)</li>
 </ul>
 </li>
 </ul>
@@ -84,7 +94,7 @@
 <ul>
 <li>Bugfixes
 <ul>
-<li>Pass preloaded application into new workers if available when using <code>preload_app</code> (#2461)</li>
+<li>Pass preloaded application into new workers if available when using <code>preload_app</code> (<a href="https://github.com/puma/puma/pull/2461" title="PR by @cjlarose, merged 2020-10-27">#2461</a>, <a href="https://github.com/puma/puma/issues/2454" title="Issue by @majksner, closed 2020-10-27">#2454</a>)</li>
 </ul>
 </li>
 </ul>
@@ -111,6 +121,7 @@
 <li>client.rb - remove JRuby specific 'finish' code (<a href="https://github.com/puma/puma/pull/2412" title="PR by @MSP-Greg, merged 2020-10-06">#2412</a>)</li>
 <li>Consolidate fast_write calls in Server, extract early_hints assembly (<a href="https://github.com/puma/puma/pull/2405" title="PR by @MSP-Greg, merged 2020-10-05">#2405</a>)</li>
 <li>Remove upstart from docs (<a href="https://github.com/puma/puma/pull/2408" title="PR by @fliiiix, merged 2020-10-03">#2408</a>)</li>
+<li>Extract worker process into separate class (<a href="https://github.com/puma/puma/pull/2374" title="PR by @cjlarose, merged 2020-09-29">#2374</a>)</li>
 <li>Consolidate option handling in Server, Server small refactors, doc changes (<a href="https://github.com/puma/puma/pull/2389" title="PR by @MSP-Greg, merged 2020-09-29">#2389</a>)</li>
 </ul>
 </li>
@@ -171,7 +182,7 @@
 <li>min_threads now set by environment variables PUMA_MIN_THREADS and MIN_THREADS. (<a href="https://github.com/puma/puma/pull/2143" title="PR by @jalevin, merged 2020-04-21">#2143</a>)</li>
 <li>max_threads now set by environment variables PUMA_MAX_THREADS and MAX_THREADS. (<a href="https://github.com/puma/puma/pull/2143" title="PR by @jalevin, merged 2020-04-21">#2143</a>)</li>
 <li>max_threads default to 5 in MRI or 16 for all other interpreters. (<a href="https://github.com/puma/puma/pull/2143" title="PR by @jalevin, merged 2020-04-21">#2143</a>)</li>
-<li>preload by default if workers &gt; 1 (<a href="https://github.com/puma/puma/pull/2143" title="PR by @jalevin, merged 2020-04-21">#2143</a>)</li>
+<li><code>preload_app!</code> is on by default if number of workers &gt; 1 and set via <code>WEB_CONCURRENCY</code> (<a href="https://github.com/puma/puma/pull/2143" title="PR by @jalevin, merged 2020-04-21">#2143</a>)</li>
 <li>Puma::Plugin.workers_supported? has been removed. Use Puma.forkable? instead. (<a href="https://github.com/puma/puma/pull/2143" title="PR by @jalevin, merged 2020-04-21">#2143</a>)</li>
 <li><code>tcp_mode</code> has been removed without replacement. (<a href="https://github.com/puma/puma/pull/2169" title="PR by @nateberkopec, merged 2020-03-10">#2169</a>)</li>
 <li>Daemonization has been removed without replacement. (<a href="https://github.com/puma/puma/pull/2170" title="PR by @nateberkopec, merged 2020-03-10">#2170</a>)</li>
@@ -237,6 +248,14 @@
 <ul>
 <li>Explicitly include ctype.h to fix compilation warning and build error on macOS with Xcode 12 (<a href="https://github.com/puma/puma/issues/2304" title="Issue by @mpeltomaa, closed 2020-09-05">#2304</a>)</li>
 <li>Don't require json at boot (<a href="https://github.com/puma/puma/pull/2269" title="PR by @MSP-Greg, merged 2020-08-31">#2269</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>4.3.7 / 2020-11-30</h2>
+<ul>
+<li>Bugfixes
+<ul>
+<li>Backport set CONTENT_LENGTH for chunked requests (Originally: <a href="https://github.com/puma/puma/pull/2287" title="PR by @eugeneius, merged 2020-05-31">#2287</a>, backport: <a href="https://github.com/puma/puma/pull/2496" title="PR by @TheRusskiy, merged 2020-11-30">#2496</a>)</li>
 </ul>
 </li>
 </ul>
