@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Signals &mdash; Puma-5.1.1</title>
+<title>File: Signals &mdash; Puma-5.2.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='./'>Puma-5.1.1</a> &raquo; 
+      <a href='.'>Puma-5.2.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Signals&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,39 +61,53 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<p>The <a href="https://en.wikipedia.org/wiki/Unix_signal" target="_parent" title="unix signal">unix signal</a> is a method of sending messages between <a href="https://en.wikipedia.org/wiki/Process_(computing" target="_parent" title="processes">processes</a>). When a signal is sent, the operating system interrupts the target process's normal flow of execution. There are standard signals that are used to stop a process but there are also custom signals that can be used for other purposes. This document is an attempt to list all supported signals that <a href="Puma.html" title="Puma (module)">Puma</a> will respond to. In general, signals need only be sent to the master process of a cluster.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Unix_signal" target="_parent" title="unix signal">unix signal</a> is a method of sending messages between <a href="https://en.wikipedia.org/wiki/Process_(computing" target="_parent" title="processes">processes</a>). When a signal is sent, the operating system interrupts the target process&#39;s normal flow of execution. There are standard signals that are used to stop a process but there are also custom signals that can be used for other purposes. This document is an attempt to list all supported signals that <a href="Puma.html" title="Puma (module)">Puma</a> will respond to. In general, signals need only be sent to the master process of a cluster.</p>
+
 <h2>Sending Signals</h2>
+
 <p>If you are new to signals it can be useful to see how they can be used. When a process is created in a *nix like operating system it will have a <a href="https://en.wikipedia.org/wiki/Process_identifier" target="_parent" title="PID - or process identifier">PID - or process identifier</a> that can be used to send signals to the process. For demonstration we will create an infinitely running process by tailing a file:</p>
+
 <pre class="code sh"><code class="sh">$ echo &quot;foo&quot; &gt;&gt; my.log
 $ irb
 &gt; pid = Process.spawn &#39;tail -f my.log&#39;
 </code></pre>
+
 <p>From here we can see that the tail process is running by using the <code>ps</code> command:</p>
+
 <pre class="code sh"><code class="sh">$ ps aux | grep tail
 schneems        87152   0.0  0.0  2432772    492 s032  S+   12:46PM   0:00.00 tail -f my.log
 </code></pre>
+
 <p>You can send a signal in Ruby using the <a href="https://www.ruby-doc.org/core-2.1.1/Process.html#kill-method" target="_parent" title="Process module">Process module</a>:</p>
+
 <pre class="code ruby"><code class="ruby">$ irb
 &gt; puts pid
 #=&gt; 87152
 Process.detach(pid) # https://ruby-doc.org/core-2.1.1/Process.html#method-c-detach
 Process.kill(&quot;TERM&quot;, pid)</code></pre>
+
 <p>Now you will see via <code>ps</code> that there is no more <code>tail</code> process. Sometimes when referring to signals the <code>SIG</code> prefix will be used for instance <code>SIGTERM</code> is equivalent to sending <code>TERM</code> via <code>Process.kill</code>.</p>
+
 <h2>Puma Signals</h2>
+
 <p>Puma cluster responds to these signals:</p>
+
 <ul>
 <li><code>TTIN</code> increment the worker count by 1</li>
 <li><code>TTOU</code> decrement the worker count by 1</li>
 <li><code>TERM</code> send <code>TERM</code> to worker. Worker will attempt to finish then exit.</li>
 <li><code>USR2</code> restart workers. This also reloads puma configuration file, if there is one.</li>
 <li><code>USR1</code> restart workers in phases, a rolling restart. This will not reload configuration file.</li>
-<li><code>HUP </code> reopen log files defined in stdout_redirect configuration parameter. If there is no stdout_redirect option provided it will behave like <code>INT</code></li>
-<li><code>INT </code> equivalent of sending Ctrl-C to cluster. Will attempt to finish then exit.</li>
+<li><code>HUP</code> reopen log files defined in stdout_redirect configuration parameter. If there is no stdout_redirect option provided it will behave like <code>INT</code></li>
+<li><code>INT</code> equivalent of sending Ctrl-C to cluster. Will attempt to finish then exit.</li>
 <li><code>CHLD</code></li>
-<li><code>URG </code> refork workers in phases from worker 0, if <code>fork_workers</code> option is enabled.</li>
+<li><code>URG</code> refork workers in phases from worker 0, if <code>fork_workers</code> option is enabled.</li>
 </ul>
+
 <h2>Callbacks order in case of different signals</h2>
+
 <h3>Start application</h3>
+
 <pre class="code ruby"><code class="ruby">puma configuration file reloaded, if there is one
 * Pruning Bundler environment
 puma configuration file reloaded, if there is one
@@ -107,7 +121,9 @@ Gemfile in context
 on_worker_boot
 
 Code of the app is loaded and running</code></pre>
+
 <h3>Send USR2</h3>
+
 <pre class="code ruby"><code class="ruby">on_worker_shutdown
 on_restart
 
@@ -122,7 +138,9 @@ Gemfile in context
 on_worker_boot
 
 Code of the app is loaded and running</code></pre>
+
 <h3>Send USR1</h3>
+
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_on_worker_shutdown'>on_worker_shutdown</span>
 <span class='id identifier rubyid_on_worker_fork'>on_worker_fork</span>
 <span class='id identifier rubyid_after_worker_fork'>after_worker_fork</span>

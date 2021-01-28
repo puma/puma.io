@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Restart &mdash; Puma-5.1.1</title>
+<title>File: Restart &mdash; Puma-5.2.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='./'>Puma-5.1.1</a> &raquo; 
+      <a href='.'>Puma-5.2.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Restart&nbsp;&#x25B2;</a></span>
           </div>
@@ -62,57 +62,80 @@
   </header>
 <div id='content' class='file'>
 <p><a href="Puma.html" title="Puma (module)">Puma</a> provides three distinct kinds of restart operations, each for different use cases. Hot restarts and phased restarts are described here. The third kind of restart operation is called &quot;refork&quot; and is described in the documentation for <a href="file.fork_worker.html" title="fork_worker">fork_worker</a>.</p>
+
 <h2>Hot restart</h2>
+
 <p>To perform a &quot;hot&quot; restart, <a href="Puma.html" title="Puma (module)">Puma</a> performs an <code>exec</code> operation to start the process up again, so no memory is shared between the old process and the new process. As a result, it is safe to issue a restart any place where you would manually stop <a href="Puma.html" title="Puma (module)">Puma</a> and start it again. In particular, it is safe to upgrade <a href="Puma.html" title="Puma (module)">Puma</a> itself using a hot restart.</p>
+
 <p>If the new process is unable to load, it will simply exit. You should therefore run <a href="Puma.html" title="Puma (module)">Puma</a> under a process monitor when using it in production.</p>
+
 <h3>How-to</h3>
-<p>Any of the following will cause a <a href="Puma.html" title="Puma (module)">Puma</a> server to perform a hot restart:</p>
+
+<p>Any of the following will cause a <a href="Puma.html" title="Puma (module)">Puma</a> server to perform a hot restart: </p>
+
 <ul>
 <li>Send the <code>puma</code> process the <code>SIGUSR2</code> signal</li>
 <li>Issue a <code>GET</code> request to the <a href="Puma.html" title="Puma (module)">Puma</a> status/control server with the path <code>/restart</code></li>
 <li>Issue <code>pumactl restart</code> (this uses the control server method if available, otherwise sends the <code>SIGUSR2</code> signal to the process)</li>
 </ul>
+
 <h3>Supported configurations</h3>
+
 <ul>
 <li>Works in cluster mode and in single mode</li>
 <li>Supported on all platforms</li>
 </ul>
+
 <h3>Client experience</h3>
+
 <ul>
 <li>All platforms: for clients with an in-flight request, those clients will be served responses before the connection is closed gracefully. <a href="Puma.html" title="Puma (module)">Puma</a> gracefully disconnects any idle HTTP persistent connections before restarting.</li>
 <li>On MRI or TruffleRuby on Linux and BSD: Clients who connect just before the server restarts may experience increased latency while the server stops and starts again, but their connections will not be closed prematurely.</li>
 <li>On Windows and on JRuby: Clients who connect just before a restart may experience &quot;connection reset&quot; errors.</li>
 </ul>
+
 <h3>Additional notes</h3>
+
 <ul>
 <li>Only one version of the application is running at a time.</li>
 <li><code>on_restart</code> is invoked just before the server shuts down. This can be used to clean up resources (like long-lived database connections) gracefully. Since Ruby 2.0, it is not typically necessary to explicitly close file descriptors on restart. This is because any file descriptor opened by Ruby will have the <code>FD_CLOEXEC</code> flag set, meaning that file descriptors are closed on <code>exec</code>. <code>on_restart</code> is useful, though, if your application needs to perform any more graceful protocol-specific shutdown procedures before closing connections.</li>
 </ul>
+
 <h2>Phased restart</h2>
+
 <p>Phased restarts replace all running workers in a <a href="Puma.html" title="Puma (module)">Puma</a> cluster. This is a useful way to gracefully upgrade the application that <a href="Puma.html" title="Puma (module)">Puma</a> is serving. A phased restart works by first killing an old worker, then starting a new worker, waiting until the new worker has successfully started before proceeding to the next worker. This process continues until all workers have been replaced. The master process is not restarted.</p>
+
 <h3>How-to</h3>
-<p>Any of the following will cause a <a href="Puma.html" title="Puma (module)">Puma</a> server to perform a phased restart:</p>
+
+<p>Any of the following will cause a <a href="Puma.html" title="Puma (module)">Puma</a> server to perform a phased restart: </p>
+
 <ul>
 <li>Send the <code>puma</code> process the <code>SIGUSR1</code> signal</li>
 <li>Issue a <code>GET</code> request to the <a href="Puma.html" title="Puma (module)">Puma</a> status/control server with the path <code>/phased-restart</code></li>
 <li>Issue <code>pumactl phased-restart</code> (this uses the control server method if available, otherwise sends the <code>SIGUSR1</code> signal to the process)</li>
 </ul>
+
 <h3>Supported configurations</h3>
+
 <ul>
 <li>Works in cluster mode only</li>
 <li>To support upgrading the application that <a href="Puma.html" title="Puma (module)">Puma</a> is serving, ensure <code>prune_bundler</code> is enabled and that <code>preload_app</code> is disabled (it is disabled by default).</li>
 <li>Supported on all platforms where cluster mode is supported</li>
 </ul>
+
 <h3>Client experience</h3>
+
 <ul>
 <li>In-flight requests are always served responses before the connection is closed gracefully</li>
 <li>Idle persistent connections are gracefully disconnected</li>
 <li>New connections are not lost, and clients will not experience any increase in latency (as long as the number of configured workers is greater than one)</li>
 </ul>
+
 <h3>Additional notes</h3>
+
 <ul>
 <li>When a phased restart begins, the <a href="Puma.html" title="Puma (module)">Puma</a> master process changes its current working directory to the directory specified by the <code>directory</code> option. If <code>directory</code> is set to symlink, this is automatically re-evaluated, so this mechanism can be used to upgrade the application.</li>
-<li>On a single server, it's possible that two versions of the application are running concurrently during a phased restart.</li>
+<li>On a single server, it&#39;s possible that two versions of the application are running concurrently during a phased restart.</li>
 <li><code>on_restart</code> is not invoked</li>
 <li>Phased restarts can be slow for <a href="Puma.html" title="Puma (module)">Puma</a> clusters with many workers. Hot restarts often complete more quickly, but at the cost of increased latency during the restart.</li>
 <li>Phased restarts cannot be used to upgrade any gems loaded by the <a href="Puma.html" title="Puma (module)">Puma</a> master process, including <code>puma</code> itself, anything in <code>extra_runtime_dependencies</code>, or dependencies thereof. Upgrading other gems is safe.</li>
