@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::MiniSSL::Server &mdash; Puma-5.1.1</title>
+<title>Class: Puma::MiniSSL::Server &mdash; Puma-5.2.0</title>
 
 <link rel='stylesheet'  type='text/css' href='../../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../../'>Puma-5.1.1</a> &raquo; 
+      <a href='../../'>Puma-5.2.0</a> &raquo; 
       <a href='../../_index.html#alpha_S'>Index (S)</a> &raquo; 
         <a href="../../Puma.html" title="Puma (module)">Puma</a> &raquo; 
         <a href="../MiniSSL.html" title="Puma::MiniSSL (module)">MiniSSL</a> &raquo; 
@@ -78,7 +78,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.1.1/lib/puma/minissl.rb#L290'>lib/puma/minissl.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.2.0/lib/puma/minissl.rb#L318'>lib/puma/minissl.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -101,6 +101,12 @@
   <li>
     <span class='summary_signature ro'>
       <a href="#addr-instance_method" title="#addr (instance method)">#<strong>addr</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#closed%3F-instance_method" title="#closed? (instance method)">#<strong>closed?</strong>  &#x21d2; Boolean </a>
     </span>
     <span class='note title readonly'>readonly</span>
   </li>
@@ -147,16 +153,17 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.1/lib/puma/minissl.rb#L291-L294'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.2.0/lib/puma/minissl.rb#L319-L323'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='291' data-end='294'></pre>
+  <pre class='lines_num' data-start='319' data-end='323'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 291</span></pre>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 319</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_ctx'>ctx</span>)
   <span class='ivar'>@socket</span> <span class='op'>=</span> <span class='id identifier rubyid_socket'>socket</span>
   <span class='ivar'>@ctx</span> <span class='op'>=</span> <span class='id identifier rubyid_ctx'>ctx</span>
+  <span class='ivar'>@eng_ctx</span> <span class='op'>=</span> <span class='const'><a href="../../Puma.html#IS_JRUBY-constant" title="Puma::IS_JRUBY (constant)">IS_JRUBY</a></span> <span class='op'>?</span> <span class='ivar'>@ctx</span> <span class='op'>:</span> <span class='const'><a href="SSLContext.html" title="Puma::MiniSSL::SSLContext (class)">SSLContext</a></span>.<span class='id identifier rubyid_new'><a href="SSLContext.html#new-class_method" title="Puma::MiniSSL::SSLContext.new (method)">new</a></span>(<span class='id identifier rubyid_ctx'>ctx</span>)
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -184,11 +191,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.1/lib/puma/minissl.rb#L319-L321'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.2.0/lib/puma/minissl.rb#L346-L348'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='319' data-end='321'></pre>
+  <pre class='lines_num' data-start='346' data-end='348'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 319</span></pre>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 346</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_addr'>addr</span>
@@ -199,15 +206,34 @@
 </div>
 </section>
 
+<section class='method_details' id="closed?-instance_method">
+  <h3 class='signature ro'>
+    #<strong>closed?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.2.0/lib/puma/minissl.rb#L354-L356'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='354' data-end='356'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 354</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_closed?'>closed?</span>
+  <span class='ivar'>@socket</span>.<span class='id identifier rubyid_closed?'>closed?</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
 <section class='method_details' id="to_io-instance_method">
   <h3 class='signature ro'>
     #<strong>to_io</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.1/lib/puma/minissl.rb#L297-L299'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.2.0/lib/puma/minissl.rb#L340-L342'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='297' data-end='299'></pre>
+  <pre class='lines_num' data-start='340' data-end='342'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 297</span></pre>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 340</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_io'>to_io</span>
@@ -223,18 +249,17 @@
   <h3 class='signature  first'>
     #<strong>accept</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.1/lib/puma/minissl.rb#L301-L307'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.2.0/lib/puma/minissl.rb#L325-L330'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='301' data-end='307'></pre>
+  <pre class='lines_num' data-start='325' data-end='330'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 301</span></pre>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 325</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_accept'>accept</span>
   <span class='ivar'>@ctx</span>.<span class='id identifier rubyid_check'><a href="../MiniSSL.html#check-class_method" title="Puma::MiniSSL.check (method)">check</a></span>
   <span class='id identifier rubyid_io'>io</span> <span class='op'>=</span> <span class='ivar'>@socket</span>.<span class='id identifier rubyid_accept'>accept</span>
-  <span class='id identifier rubyid_engine'>engine</span> <span class='op'>=</span> <span class='const'><a href="Engine.html" title="Puma::MiniSSL::Engine (class)">Engine</a></span>.<span class='id identifier rubyid_server'><a href="Engine.html#server-class_method" title="Puma::MiniSSL::Engine.server (method)">server</a></span> <span class='ivar'>@ctx</span>
-
+  <span class='id identifier rubyid_engine'>engine</span> <span class='op'>=</span> <span class='const'><a href="Engine.html" title="Puma::MiniSSL::Engine (class)">Engine</a></span>.<span class='id identifier rubyid_server'><a href="Engine.html#server-class_method" title="Puma::MiniSSL::Engine.server (method)">server</a></span> <span class='ivar'>@eng_ctx</span>
   <span class='const'><a href="Socket.html" title="Puma::MiniSSL::Socket (class)">Socket</a></span>.<span class='id identifier rubyid_new'><a href="Socket.html#new-class_method" title="Puma::MiniSSL::Socket.new (method)">new</a></span> <span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='id identifier rubyid_engine'>engine</span>
 <span class='kw'>end</span>
 </pre>
@@ -246,18 +271,17 @@
   <h3 class='signature '>
     #<strong>accept_nonblock</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.1/lib/puma/minissl.rb#L309-L315'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.2.0/lib/puma/minissl.rb#L332-L337'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='309' data-end='315'></pre>
+  <pre class='lines_num' data-start='332' data-end='337'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 309</span></pre>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 332</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_accept_nonblock'>accept_nonblock</span>
   <span class='ivar'>@ctx</span>.<span class='id identifier rubyid_check'><a href="../MiniSSL.html#check-class_method" title="Puma::MiniSSL.check (method)">check</a></span>
   <span class='id identifier rubyid_io'>io</span> <span class='op'>=</span> <span class='ivar'>@socket</span>.<span class='id identifier rubyid_accept_nonblock'>accept_nonblock</span>
-  <span class='id identifier rubyid_engine'>engine</span> <span class='op'>=</span> <span class='const'><a href="Engine.html" title="Puma::MiniSSL::Engine (class)">Engine</a></span>.<span class='id identifier rubyid_server'><a href="Engine.html#server-class_method" title="Puma::MiniSSL::Engine.server (method)">server</a></span> <span class='ivar'>@ctx</span>
-
+  <span class='id identifier rubyid_engine'>engine</span> <span class='op'>=</span> <span class='const'><a href="Engine.html" title="Puma::MiniSSL::Engine (class)">Engine</a></span>.<span class='id identifier rubyid_server'><a href="Engine.html#server-class_method" title="Puma::MiniSSL::Engine.server (method)">server</a></span> <span class='ivar'>@eng_ctx</span>
   <span class='const'><a href="Socket.html" title="Puma::MiniSSL::Socket (class)">Socket</a></span>.<span class='id identifier rubyid_new'><a href="Socket.html#new-class_method" title="Puma::MiniSSL::Socket.new (method)">new</a></span> <span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='id identifier rubyid_engine'>engine</span>
 <span class='kw'>end</span>
 </pre>
@@ -269,15 +293,15 @@
   <h3 class='signature '>
     #<strong>close</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.1.1/lib/puma/minissl.rb#L323-L325'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.2.0/lib/puma/minissl.rb#L350-L352'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='323' data-end='325'></pre>
+  <pre class='lines_num' data-start='350' data-end='352'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/minissl.rb', line 323</span></pre>
+<pre><span class='info file'># File 'lib/puma/minissl.rb', line 350</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
-  <span class='ivar'>@socket</span>.<span class='id identifier rubyid_close'>close</span> <span class='kw'>unless</span> <span class='ivar'>@socket</span>.<span class='id identifier rubyid_closed?'>closed?</span>       <span class='comment'># closed? call is for Windows
+  <span class='ivar'>@socket</span>.<span class='id identifier rubyid_close'>close</span> <span class='kw'>unless</span> <span class='ivar'>@socket</span>.<span class='id identifier rubyid_closed?'><a href="#closed%3F-instance_method" title="Puma::MiniSSL::Server#closed? (method)">closed?</a></span>       <span class='comment'># closed? call is for Windows
 </span><span class='kw'>end</span>
 </pre>
   </div>

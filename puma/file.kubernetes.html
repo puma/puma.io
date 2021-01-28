@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>File: Kubernetes &mdash; Puma-5.2.0</title>
+
+<link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "kubernetes",
+    relpath = '';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='.'>Puma-5.2.0</a> &raquo; 
+      <a href='_index.html'>Index</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>File: Kubernetes&nbsp;&#x25B2;</a></span>
+          </div>
+
+    <a id='list_href' href="class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='file'>
+<h1>Kubernetes</h1>
+
+<h2>Running Puma in Kubernetes</h2>
+
+<p>In general running <a href="Puma.html" title="Puma (module)">Puma</a> in Kubernetes works as-is, no special configuration is needed beyond what you would write anyway to get a new Kubernetes Deployment going. There is one known interaction between the way Kubernetes handles pod termination and how <a href="Puma.html" title="Puma (module)">Puma</a> handles <code>SIGINT</code>, where some request might be sent to <a href="Puma.html" title="Puma (module)">Puma</a> after it has already entered graceful shutdown mode and is no longer accepting requests. This can lead to dropped requests during rolling deploys. A workaround for this is listed at the end of this article.</p>
+
+<h2>Basic setup</h2>
+
+<p>Assuming you already have a running cluster and docker image repository, you can run a simple <a href="Puma.html" title="Puma (module)">Puma</a> app with the following example Dockerfile and Deployment specification. These are meant as examples only and are deliberately very minimal to the point of skipping many options that are recommended for running in production, like healthchecks and envvar configuration with ConfigMaps. In general you should check the <a href="https://kubernetes.io/docs/home/" target="_parent" title="Kubernetes documentation">Kubernetes documentation</a> and <a href="https://docs.docker.com/" target="_parent" title="Docker documentation">Docker documentation</a> for a more comprehensive overview of the available options.</p>
+
+<p>A basic Dockerfile example: </p>
+
+<pre class="code ruby"><code class="ruby">FROM ruby:2.5.1-alpine # can be updated to newer ruby versions
+RUN apk update &amp;&amp; apk add build-base # and any other packages you need 
+
+# Only rebuild gem bundle if Gemfile changes
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+# Copy over the rest of the files
+COPY . .
+
+# Open up port and start the service
+EXPOSE 9292
+CMD bundle exec rackup -o 0.0.0.0</code></pre>
+
+<p>A sample <code>deployment.yaml</code>:</p>
+
+<pre class="code ruby"><code class="ruby">---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-awesome-puma-app
+spec:
+  selector:
+    matchLabels:
+      app: my-awesome-puma-app
+  template:
+    metadata:
+      labels:
+        app: my-awesome-puma-app
+        service: my-awesome-puma-app
+    spec:
+      containers:
+      - name: my-awesome-puma-app
+        image: &lt;your image here&gt;
+        ports:
+        - containerPort: 9292</code></pre>
+
+<h2>Graceful shutdown and pod termination</h2>
+
+<p>For some high-throughput systems, it is possible that some HTTP requests will return responses with response codes in the 5XX range during a rolling deploy to a new version. This is caused by <a href="https://cloud.google.com/blog/products/gcp/kubernetes-best-practices-terminating-with-grace" target="_parent" title="the way that Kubernetes terminates a pod during rolling deploys">the way that Kubernetes terminates a pod during rolling deploys</a>:</p>
+
+<ol>
+<li>The replication controller determines a pod should be shut down.</li>
+<li>The Pod is set to the “Terminating” State and removed from the endpoints list of all Services, so that it receives no more requests.</li>
+<li>The pods pre-stop hook get called. The default for this is to send <code>SIGTERM</code> to the process inside the pod.</li>
+<li>The pod has up to <code>terminationGracePeriodSeconds</code> (default: 30 seconds) to gracefully shut down. Puma will do this (after it receives SIGTERM) by closing down the socket that accepts new requests and finishing any requests already running before exiting the Puma process.</li>
+<li>If the pod is still running after <code>terminationGracePeriodSeconds</code> has elapsed, the pod receives <code>SIGKILL</code> to make sure the process inside it stops. After that, the container exits and all other Kubernetes objects associated with it are cleaned up.</li>
+</ol>
+
+<p>There is a subtle race condition between step 2 and 3: The replication controller does not synchronously remove the pod from the Services AND THEN call the pre-stop hook of the pod, but rather it asynchronously sends &quot;remove this pod from your endpoints&quot; requests to the Services and then immediately proceeds to invoke the pods&#39; pre-stop hook. If the Service controller (typically something like nginx or haproxy) receives this request handles this request &quot;too&quot; late (due to internal lag or network latency between the replication and Service controllers) then it is possible that the Service controller will send one or more requests to a Puma process which has already shut down its listening socket. These requests will then fail with 5XX error codes.</p>
+
+<p>The way Kubernetes works this way, rather than handling step 2 synchronously, is due to the CAP theorem: in a distributed system there is no way to guarantuee that any message will arrive promptly. In particular, waiting for all Service controllers to report back might get stuck for an indefinite time if one of them has already been terminated or if there has been a net split. A way to work around this is to add a sleep to the pre-stop hook of the same time as the <code>terminationGracePeriodSeconds</code> time. This will allow the Puma process to keep serving new requests during the entire grace period, although it will no longer receive new requests after all Service controllers have propagated the removal of the pod from their endpoint lists. Then, after <code>terminationGracePeriodSeconds</code>, the pod receives <code>SIGKILL</code> and closes down. If your process can&#39;t handle SIGKILL properly, for example because it needs to release locks in different services, you can also sleep for a shorter period (and/or increase <code>terminationGracePeriodSeconds</code>) as long as the time slept is longer than the time that your Service controllers take to propagate the pod removal. The downside of this workaround is that all pods will take at minimum the amount of time slept to shut down and this will increase the time required for your rolling deploy.</p>
+
+<p>More discussions and links to relevant articles can be found in <a href="https://github.com/puma/puma/issues/2343">https://github.com/puma/puma/issues/2343</a>.</p>
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>
