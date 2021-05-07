@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Deployment &mdash; Puma-5.2.0</title>
+<title>File: Deployment &mdash; Puma-5.3.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.2.0</a> &raquo; 
+      <a href='.'>Puma-5.3.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Deployment&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,136 +61,112 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<h1>Deployment engineering for <a href="Puma.html" title="Puma (module)">Puma</a></h1>
-
-<p><a href="Puma.html" title="Puma (module)">Puma</a> is software that is expected to be run in a deployed environment eventually.
+<h1>Deployment engineering for <a href="Puma.html" title="Puma (module)"><code>Puma</code></a></h1>
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> is software that is expected to be run in a deployed environment eventually.
 You can certainly use it as your dev server only, but most people look to use
 it in their production deployments as well.</p>
-
 <p>To that end, this is meant to serve as a foundation of wisdom how to do that
 in a way that increases happiness and decreases downtime.</p>
-
 <h2>Specifying Puma</h2>
-
-<p>Most people want to do this by putting <code>gem &quot;puma&quot;</code> into their Gemfile, so we&#39;ll
-go ahead and assume that. Go add it now... we&#39;ll wait.</p>
-
+<p>Most people want to do this by putting <code>gem &quot;puma&quot;</code> into their Gemfile, so we'll
+go ahead and assume that. Go add it now... we'll wait.</p>
 <p>Welcome back!</p>
-
 <h2>Single vs Cluster mode</h2>
-
-<p><a href="Puma.html" title="Puma (module)">Puma</a> was originally conceived as a thread-only webserver, but grew the ability to
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> was originally conceived as a thread-only web server, but grew the ability to
 also use processes in version 2.</p>
-
 <p>To run <code>puma</code> in single mode (e.g. for a development environment) you will need to
 set the number of workers to 0, anything above will run in cluster mode.</p>
-
 <p>Here are some rules of thumb for cluster mode:</p>
-
 <h3>MRI</h3>
-
 <ul>
 <li>Use cluster mode and set the number of workers to 1.5x the number of cpu cores
 in the machine, minimum 2.</li>
 <li>Set the number of threads to desired concurrent requests / number of workers.
-Puma defaults to 5 and that&#39;s a decent number.</li>
+Puma defaults to 5 and that's a decent number.</li>
 </ul>
-
 <h4>Migrating from Unicorn</h4>
-
 <ul>
-<li>If you&#39;re migrating from unicorn though, here are some settings to start with:
-
+<li>If you're migrating from unicorn though, here are some settings to start with:
 <ul>
-<li>Set workers to half the number of unicorn workers you&#39;re using</li>
+<li>Set workers to half the number of unicorn workers you're using</li>
 <li>Set threads to 2</li>
 <li>Enjoy 50% memory savings</li>
-</ul></li>
+</ul>
+</li>
 <li>As you grow more confident in the thread safety of your app, you can tune the
 workers down and the threads up.</li>
 </ul>
-
 <h4>Ubuntu / Systemd (Systemctl) Installation</h4>
-
 <p>See <a href="file.systemd.html" title="systemd.md">systemd.md</a></p>
-
 <h4>Worker utilization</h4>
-
-<p><strong>How do you know if you&#39;ve got enough (or too many workers)?</strong></p>
-
-<p>A good question. Due to MRI&#39;s GIL, only one thread can be executing Ruby code at a time.
-But since so many apps are waiting on <a href="IO.html" title="IO (class)">IO</a> from DBs, etc., they can utilize threads
+<p><strong>How do you know if you've got enough (or too many workers)?</strong></p>
+<p>A good question. Due to MRI's GIL, only one thread can be executing Ruby code at a time.
+But since so many apps are waiting on <a href="IO.html" title="IO (class)"><code>IO</code></a> from DBs, etc., they can utilize threads
 to make better use of the process.</p>
-
 <p>The rule of thumb is you never want processes that are pegged all the time. This
 means that there is more work to do than the process can get through. On the other
-hand, if you have processes that sit around doing nothing, then they&#39;re just eating
+hand, if you have processes that sit around doing nothing, then they're just eating
 up resources.</p>
-
 <p>Watch your CPU utilization over time and aim for about 70% on average. This means
-you&#39;ve got capacity still but aren&#39;t starving threads.</p>
-
+you've got capacity still but aren't starving threads.</p>
 <p><strong>Measuring utilization</strong></p>
-
-<p>Using a timestamp header from an upstream proxy server (eg. nginx or haproxy), it&#39;s
-possible to get an indication of how long requests have been waiting for a <a href="Puma.html" title="Puma (module)">Puma</a>
+<p>Using a timestamp header from an upstream proxy server (eg. nginx or haproxy), it's
+possible to get an indication of how long requests have been waiting for a <a href="Puma.html" title="Puma (module)"><code>Puma</code></a>
 thread to become available.</p>
-
 <ul>
 <li>Have your upstream proxy set a header with the time it received the request:
-
 <ul>
 <li>nginx: <code>proxy_set_header X-Request-Start &quot;${msec}&quot;;</code></li>
 <li>haproxy &gt;= 1.9: <code>http-request set-header X-Request-Start t=%[date()]%[date_us()]</code></li>
 <li>haproxy &lt; 1.9: <code>http-request set-header X-Request-Start t=%[date()]</code></li>
-</ul></li>
-<li>In your <a href="Rack.html" title="Rack (module)">Rack</a> middleware, determine the amount of time elapsed since <code>X-Request-Start</code>.</li>
+</ul>
+</li>
+<li>In your <a href="Rack.html" title="Rack (module)"><code>Rack</code></a> middleware, determine the amount of time elapsed since <code>X-Request-Start</code>.</li>
 <li>To improve accuracy, you will want to subtract time spent waiting for slow clients:
-
 <ul>
-<li><code>env[&#39;puma.request_body_wait&#39;]</code> contains the number of milliseconds Puma spent
+<li><code>env['puma.request_body_wait']</code> contains the number of milliseconds Puma spent
 waiting for the client to send the request body.</li>
 <li>haproxy: <code>%Th</code> (TLS handshake time) and <code>%Ti</code> (idle time before request) can
 can also be added as headers.</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2>Should I daemonize?</h2>
-
-<p>Daemonization was removed in <a href="Puma.html" title="Puma (module)">Puma</a> 5.0. For alternatives, continue reading.</p>
-
+<p>Daemonization was removed in <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 5.0. For alternatives, continue reading.</p>
 <p>I prefer to not daemonize my servers and use something like <code>runit</code> or <code>systemd</code> to
 monitor them as child processes. This gives them fast response to crashes and
 makes it easy to figure out what is going on. Additionally, unlike <code>unicorn</code>,
 puma does not require daemonization to do zero-downtime restarts.</p>
-
 <p>I see people using daemonization because they start puma directly via capistrano
 task and thus want it to live on past the <code>cap deploy</code>. To these people I say:
 You need to be using a process monitor. Nothing is making sure puma stays up in
-this scenario! You&#39;re just waiting for something weird to happen, puma to die,
+this scenario! You're just waiting for something weird to happen, puma to die,
 and to get paged at 3am. Do yourself a favor, at least the process monitoring
 your OS comes with, be it <code>sysvinit</code> or <code>systemd</code>. Or branch out
 and use <code>runit</code> or hell, even <code>monit</code>.</p>
-
 <h2>Restarting</h2>
-
-<p>You probably will want to deploy some new code at some point, and you&#39;d like
+<p>You probably will want to deploy some new code at some point, and you'd like
 puma to start running that new code. Minimizing the amount of time the server
-is unavailable would be nice as well. Here&#39;s how to do it:</p>
-
+is unavailable would be nice as well. Here's how to do it:</p>
 <ol>
-<li><p>Don&#39;t use <code>preload!</code>. This dirties the master process and means it will have
-to shutdown all the workers and re-exec itself to get your new code. It is not compatible with phased-restart and <code>prune_bundler</code> as well.</p></li>
-<li><p>Use <code>prune_bundler</code>. This makes it so that the cluster master will detach itself
+<li>
+<p>Don't use <code>preload!</code>. This dirties the master process and means it will have
+to shutdown all the workers and re-exec itself to get your new code. It is not compatible with phased-restart and <code>prune_bundler</code> as well.</p>
+</li>
+<li>
+<p>Use <code>prune_bundler</code>. This makes it so that the cluster master will detach itself
 from a Bundler context on start. This allows the cluster workers to load your app
 and start a brand new Bundler context within the worker only. This means your
-master remains pristine and can live on between new releases of your code.</p></li>
-<li><p>Use phased-restart (<code>SIGUSR1</code> or <code>pumactl phased-restart</code>). This tells the master
+master remains pristine and can live on between new releases of your code.</p>
+</li>
+<li>
+<p>Use phased-restart (<code>SIGUSR1</code> or <code>pumactl phased-restart</code>). This tells the master
 to kill off one worker at a time and restart them in your new code. This minimizes
 downtime and staggers the restart nicely. <strong>WARNING</strong> This means that both your
 old code and your new code will be running concurrently. Most deployment solutions
-already cause that, but it&#39;s worth warning you about it again. Be careful with your
-migrations, etc!</p></li>
+already cause that, but it's worth warning you about it again. Be careful with your
+migrations, etc!</p>
+</li>
 </ol>
 
 <div id='footer'></div>
