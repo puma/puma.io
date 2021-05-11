@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='./'>Puma-4.3.7</a> &raquo; 
+      <a href='.'>Puma-4.3.7</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Signals&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,7 +61,7 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<p>The <a href="http://en.wikipedia.org/wiki/Unix_signal" target="_parent" title="unix signal">unix signal</a> is a method of sending messages between <a href="http://en.wikipedia.org/wiki/Process_(computing" target="_parent" title="processes">processes</a>). When a signal is sent, the operating system interrupts the target process's normal flow of execution. There are standard signals that are used to stop a process but there are also custom signals that can be used for other purposes. This document is an attempt to list all supported signals that <a href="Puma.html" title="Puma (module)">Puma</a> will respond to. In general, signals need only be sent to the master process of a cluster.</p>
+<p>The <a href="http://en.wikipedia.org/wiki/Unix_signal" target="_parent" title="unix signal">unix signal</a> is a method of sending messages between <a href="http://en.wikipedia.org/wiki/Process_(computing" target="_parent" title="processes">processes</a>). When a signal is sent, the operating system interrupts the target process's normal flow of execution. There are standard signals that are used to stop a process but there are also custom signals that can be used for other purposes. This document is an attempt to list all supported signals that <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> will respond to. In general, signals need only be sent to the master process of a cluster.</p>
 <h2>Sending Signals</h2>
 <p>If you are new to signals it can be useful to see how they can be used. When a process is created in a *nix like operating system it will have a <a href="http://en.wikipedia.org/wiki/Process_identifier" target="_parent" title="PID - or process identifier">PID - or process identifier</a> that can be used to send signals to the process. For demonstration we will create an infinitely running process by tailing a file:</p>
 <pre class="code sh"><code class="sh">$ echo &quot;foo&quot; &gt;&gt; my.log
@@ -122,15 +122,15 @@ on_worker_boot
 
 Code of the app is loaded and running</code></pre>
 <h3>Send USR1</h3>
-<pre class="code ruby"><code class="ruby">on_worker_shutdown
-on_worker_fork
-after_worker_fork
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_on_worker_shutdown'>on_worker_shutdown</span>
+<span class='id identifier rubyid_on_worker_fork'>on_worker_fork</span>
+<span class='id identifier rubyid_after_worker_fork'>after_worker_fork</span>
 
-Gemfile in context
+<span class='const'>Gemfile</span> <span class='kw'>in</span> <span class='id identifier rubyid_context'>context</span>
 
-on_worker_boot
+<span class='id identifier rubyid_on_worker_boot'>on_worker_boot</span>
 
-Code of the app is loaded and running</code></pre>
+<span class='const'>Code</span> <span class='id identifier rubyid_of'>of</span> <span class='id identifier rubyid_the'>the</span> <span class='id identifier rubyid_app'>app</span> <span class='id identifier rubyid_is'>is</span> <span class='id identifier rubyid_loaded'>loaded</span> <span class='kw'>and</span> <span class='id identifier rubyid_running'>running</span></code></pre>
 
 <div id='footer'></div>
 </div> <!-- content  -->

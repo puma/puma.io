@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='./'>Puma-4.3.7</a> &raquo; 
+      <a href='.'>Puma-4.3.7</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Systemd&nbsp;&#x25B2;</a></span>
           </div>
@@ -65,7 +65,7 @@
 <p><a href="https://www.freedesktop.org/wiki/Software/systemd/" target="_parent" title="systemd">systemd</a> is a
 commonly available init system (PID 1) on many Linux distributions. It
 offers process monitoring (including automatic restarts) and other
-useful features for running <a href="Puma.html" title="Puma (module)">Puma</a> in production.</p>
+useful features for running <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> in production.</p>
 <h2>Service Configuration</h2>
 <p>Below is a sample puma.service configuration file for systemd, which
 can be copied or symlinked to /etc/systemd/system/puma.service, or if
@@ -158,13 +158,13 @@ WantedBy=sockets.target
 </code></pre>
 <p>See <a href="https://www.freedesktop.org/software/systemd/man/systemd.socket.html" target="_parent" title="systemd.socket">systemd.socket</a>
 for additional configuration details.</p>
-<p>Note that the above configurations will work with <a href="Puma.html" title="Puma (module)">Puma</a> in either
+<p>Note that the above configurations will work with <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> in either
 single process or cluster mode.</p>
 <h3>Sockets and symlinks</h3>
 <p>When using releases folders, you should set the socket path using the
 shared folder path (ex. <code>/srv/projet/shared/tmp/puma.sock</code>), not the
 release folder path (<code>/srv/projet/releases/1234/tmp/puma.sock</code>).</p>
-<p><a href="Puma.html" title="Puma (module)">Puma</a> will detect the release path socket as different than the one provided by
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> will detect the release path socket as different than the one provided by
 systemd and attempt to bind it again, resulting in the exception
 <code>There is already a server bound to:</code>.</p>
 <h2>Usage</h2>
@@ -249,9 +249,9 @@ stop/start/restart. This use case is incompatible with systemd socket
 activation, so it should not be configured. Below is an alternative
 puma.service config sample, using <code>Type=forking</code> and the <code>--daemon</code>
 flag in <code>ExecStart</code>. Here systemd is playing a role more equivalent to
-SysV init.d, where it is responsible for starting <a href="Puma.html" title="Puma (module)">Puma</a> on boot
+SysV init.d, where it is responsible for starting <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> on boot
 (multi-user.target) and stopping it on shutdown, but is not performing
-continuous restarts. Therefore running <a href="Puma.html" title="Puma (module)">Puma</a> in cluster mode, where the
+continuous restarts. Therefore running <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> in cluster mode, where the
 master can restart workers, is highly recommended. See the systemd
 <a href="https://www.freedesktop.org/software/systemd/man/systemd.service.html#Restart=">Restart</a> directive for details.</p>
 <pre class="code ini"><code class="ini">[Unit]

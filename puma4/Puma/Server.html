@@ -84,7 +84,7 @@
         <div class='box_2'>Instance Chain:</div>
         <div class='box_22'>
           self,
-          <a href="Const.html" title="Puma::Const (module)">Const</a>
+          <a href="Const.html" title="Puma::Const (module)"><code>Const</code></a>
         </div>
       </td>
     </tr>
@@ -96,7 +96,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L32'>lib/puma/server.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L32'>lib/puma/server.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -106,11 +106,11 @@
 <div class='docstring'>
   <div class='discussion'>
     
-<p>The HTTP <code>Server</code> itself. Serves out a single <a href="Rack.html" title="Puma::Rack (module)">Rack</a> app.</p>
+<p>The HTTP <code>Server</code> itself. Serves out a single <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> app.</p>
 
-<p>This class is used by the <a href="Single.html" title="Puma::Single (class)">Single</a> and <a href="Cluster.html" title="Puma::Cluster (class)">Cluster</a> classes to generate one or more <code>Server</code> instances capable of handling requests. Each Puma process will contain one <code>Server</code> instance.</p>
+<p>This class is used by the <a href="Single.html" title="Puma::Single (class)"><code>Single</code></a> and <a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> classes to generate one or more <code>Server</code> instances capable of handling requests. Each Puma process will contain one <code>Server</code> instance.</p>
 
-<p>The <code>Server</code> instance pulls requests from the socket, adds them to a <a href="Reactor.html" title="Puma::Reactor (class)">Reactor</a> where they get eventually passed to a <a href="ThreadPool.html" title="Puma::ThreadPool (class)">ThreadPool</a>.</p>
+<p>The <code>Server</code> instance pulls requests from the socket, adds them to a <a href="Reactor.html" title="Puma::Reactor (class)"><code>Reactor</code></a> where they get eventually passed to a <a href="ThreadPool.html" title="Puma::ThreadPool (class)"><code>ThreadPool</code></a>.</p>
 
 <p>Each <code>Server</code> will have one reactor and one thread pool.</p>
 
@@ -123,15 +123,15 @@
   <li>
     <span id='ThreadLocalKey-constant' class='summary_signature'>ThreadLocalKey =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L1068-L1068'># File 'lib/puma/server.rb', line 1068</a>    <pre class='code ruby'><span class='symbeg'>:</span><span class='id identifier rubyid_puma_server'>puma_server</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L1073-L1073'># File 'lib/puma/server.rb', line 1073</a>    <pre class='code ruby'><span class='symbeg'>:</span><span class='id identifier rubyid_puma_server'>puma_server</span></pre>
   </li>
   <li>
     <span id='UNPACK_TCP_STATE_FROM_TCP_INFO-constant' class='summary_signature'>UNPACK_TCP_STATE_FROM_TCP_INFO =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L106-L106'># File 'lib/puma/server.rb', line 106</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>C</span><span class='tstring_end'>&quot;</span></span>.<span class='id identifier rubyid_freeze'>freeze</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L106-L106'># File 'lib/puma/server.rb', line 106</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>C</span><span class='tstring_end'>&quot;</span></span>.<span class='id identifier rubyid_freeze'>freeze</span></pre>
   </li>
 </ul>
-  <h3 class='inherited'><a href="Const.html" title="Puma::Const (module)">Const</a> - Included</h3>
+  <h3 class='inherited'><a href="Const.html" title="Puma::Const (module)"><code>Const</code></a> - Included</h3>
   <p  class='inherited'>
     <a href="Const.html#CGI_VER-constant" title="Puma::Const::CGI_VER (constant)">CGI_VER</a>, 
     <a href="Const.html#CHUNKED-constant" title="Puma::Const::CHUNKED (constant)">CHUNKED</a>, 
@@ -369,7 +369,7 @@
       <a href="#handle_request-instance_method" title="#handle_request (instance method)">#<strong>handle_request</strong>(req, lines)  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>Takes the request <code>req</code>, invokes the <a href="Rack.html" title="Puma::Rack (module)">Rack</a> application to construct the response and writes it back to <code>req.io</code>.</p></div>
+      <div class='inline'><p>Takes the request <code>req</code>, invokes the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application to construct the response and writes it back to <code>req.io</code>.</p></div>
     </div>
   </li>
   <li>
@@ -512,7 +512,7 @@
     
 <p>Create a server for the rack app <a href="#app-instance_method" title="Puma::Server#app (method)">#app</a>.</p>
 
-<p><a href="#events-instance_method" title="Puma::Server#events (method)">#events</a> is an object which will be called when certain error events occur to be handled. See <a href="Events.html" title="Puma::Events (class)">Events</a> for the list of current methods to implement.</p>
+<p><a href="#events-instance_method" title="Puma::Server#events (method)">#events</a> is an object which will be called when certain error events occur to be handled. See <a href="Events.html" title="Puma::Events (class)"><code>Events</code></a> for the list of current methods to implement.</p>
 
 <p><a href="#run-instance_method" title="Puma::Server#run (method)">#run</a> returns a thread that you can join on to wait for the server to do its work.</p>
 
@@ -521,7 +521,7 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L56-L88'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L56-L88'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='56' data-end='88'></pre>
   <div class='lines_code'>
@@ -571,11 +571,11 @@
   <h3 class='signature  first'>
     .<strong>current</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L1070-L1072'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L1075-L1077'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='1070' data-end='1072'></pre>
+  <pre class='lines_num' data-start='1075' data-end='1077'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 1070</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 1075</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_current'>current</span>
@@ -591,7 +591,7 @@
   <h3 class='signature rw first'>
     #<strong>app</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L39-L39'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L39-L39'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='39' data-end='39'></pre>
   <div class='lines_code'>
@@ -608,7 +608,7 @@
   <h3 class='signature rw'>
     #<strong>auto_trim_time</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L44-L44'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L44-L44'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='44' data-end='44'></pre>
   <div class='lines_code'>
@@ -625,7 +625,7 @@
   <h3 class='signature rw'>
     #<strong>binder</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L90-L90'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L90-L90'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='90' data-end='90'></pre>
   <div class='lines_code'>
@@ -642,7 +642,7 @@
   <h3 class='signature rw'>
     #<strong>early_hints</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L90-L90'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L90-L90'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='90' data-end='90'></pre>
   <div class='lines_code'>
@@ -659,7 +659,7 @@
   <h3 class='signature ro'>
     #<strong>events</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L38-L38'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L38-L38'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='38' data-end='38'></pre>
   <div class='lines_code'>
@@ -676,7 +676,7 @@
   <h3 class='signature rw'>
     #<strong>first_data_timeout</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L46-L46'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L46-L46'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='46' data-end='46'></pre>
   <div class='lines_code'>
@@ -693,7 +693,7 @@
   <h3 class='signature rw'>
     #<strong>leak_stack_on_error</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L90-L90'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L90-L90'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='90' data-end='90'></pre>
   <div class='lines_code'>
@@ -710,7 +710,7 @@
   <h3 class='signature rw'>
     #<strong>max_threads</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L42-L42'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L42-L42'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='42' data-end='42'></pre>
   <div class='lines_code'>
@@ -727,7 +727,7 @@
   <h3 class='signature rw'>
     #<strong>min_threads</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L41-L41'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L41-L41'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='41' data-end='41'></pre>
   <div class='lines_code'>
@@ -744,7 +744,7 @@
   <h3 class='signature rw'>
     #<strong>persistent_timeout</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L43-L43'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L43-L43'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='43' data-end='43'></pre>
   <div class='lines_code'>
@@ -761,7 +761,7 @@
   <h3 class='signature rw'>
     #<strong>reaping_time</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L45-L45'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L45-L45'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='45' data-end='45'></pre>
   <div class='lines_code'>
@@ -778,11 +778,11 @@
   <h3 class='signature ro'>
     #<strong>shutting_down?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L1074-L1076'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L1079-L1081'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='1074' data-end='1076'></pre>
+  <pre class='lines_num' data-start='1079' data-end='1081'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 1074</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 1079</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shutting_down?'>shutting_down?</span>
@@ -797,7 +797,7 @@
   <h3 class='signature ro'>
     #<strong>thread</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L37-L37'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L37-L37'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='37' data-end='37'></pre>
   <div class='lines_code'>
@@ -815,7 +815,7 @@
   <h3 class='signature  first'>
     #<strong>backlog</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L155-L157'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L155-L157'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='155' data-end='157'></pre>
   <div class='lines_code'>
@@ -834,11 +834,11 @@
   <h3 class='signature '>
     #<strong>begin_restart</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L1043-L1045'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L1048-L1050'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='1043' data-end='1045'></pre>
+  <pre class='lines_num' data-start='1048' data-end='1050'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 1043</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 1048</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_restart'>begin_restart</span>
@@ -860,7 +860,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L150-L165'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L150-L165'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='150' data-end='165'></pre>
   <div class='lines_code'>
@@ -901,7 +901,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L144-L150'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L144-L150'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='144' data-end='150'></pre>
   <div class='lines_code'>
@@ -924,11 +924,11 @@
   <h3 class='signature '>
     #<strong>default_server_port</strong>(env)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L607-L613'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L612-L618'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='607' data-end='613'></pre>
+  <pre class='lines_num' data-start='612' data-end='618'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 607</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 612</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_default_server_port'>default_server_port</span>(<span class='id identifier rubyid_env'>env</span>)
@@ -947,11 +947,11 @@
   <h3 class='signature priv'>
     #<strong>fast_write</strong>(io, str)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L1047-L1065'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L1052-L1070'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='1047' data-end='1065'></pre>
+  <pre class='lines_num' data-start='1052' data-end='1070'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 1047</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 1052</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fast_write'>fast_write</span>(<span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='id identifier rubyid_str'>str</span>)
@@ -982,11 +982,11 @@
   <h3 class='signature priv'>
     #<strong>fetch_status_code</strong>(status)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L883-L885'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L888-L890'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='883' data-end='885'></pre>
+  <pre class='lines_num' data-start='888' data-end='890'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 883</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 888</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fetch_status_code'>fetch_status_code</span>(<span class='id identifier rubyid_status'>status</span>)
@@ -1008,11 +1008,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L962-L1011'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L967-L1016'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='962' data-end='1011'></pre>
+  <pre class='lines_num' data-start='967' data-end='1016'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 962</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 967</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_graceful_shutdown'>graceful_shutdown</span>
@@ -1074,11 +1074,11 @@
   <h3 class='signature '>
     #<strong>halt</strong>(sync = false)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L1038-L1041'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L1043-L1046'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='1038' data-end='1041'></pre>
+  <pre class='lines_num' data-start='1043' data-end='1046'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 1038</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 1043</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_halt'>halt</span>(<span class='id identifier rubyid_sync'>sync</span><span class='op'>=</span><span class='kw'>false</span>)
@@ -1097,7 +1097,7 @@
   <div class='note nodoc inline-block'>
     <strong>This method is for internal use only.</strong>
   </div><div></div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L439-L455'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L439-L455'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='439' data-end='455'></pre>
   <div class='lines_code'>
@@ -1133,23 +1133,23 @@
 <div class='docstring'>
   <div class='discussion'>
     
-<p>Takes the request <code>req</code>, invokes the <a href="Rack.html" title="Puma::Rack (module)">Rack</a> application to construct the response and writes it back to <code>req.io</code>.</p>
+<p>Takes the request <code>req</code>, invokes the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application to construct the response and writes it back to <code>req.io</code>.</p>
 
-<p>The second parameter <code>lines</code> is a IO-like object unique to this thread. This is normally an instance of <a href="IOBuffer.html" title="Puma::IOBuffer (class)">IOBuffer</a>.</p>
+<p>The second parameter <code>lines</code> is a IO-like object unique to this thread. This is normally an instance of <a href="IOBuffer.html" title="Puma::IOBuffer (class)"><code>IOBuffer</code></a>.</p>
 
 <p>It&#39;ll return <code>false</code> when the connection is closed, this doesn&#39;t mean that the response wasn&#39;t successful.</p>
 
-<p>It&#39;ll return <code>:async</code> if the connection remains open but will be handled elsewhere, i.e. the connection has been hijacked by the <a href="Rack.html" title="Puma::Rack (module)">Rack</a> application.</p>
+<p>It&#39;ll return <code>:async</code> if the connection remains open but will be handled elsewhere, i.e. the connection has been hijacked by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application.</p>
 
 <p>Finally, it&#39;ll return <code>true</code> on keep-alive connections.</p>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L628-L881'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L633-L886'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='628' data-end='881'></pre>
+  <pre class='lines_num' data-start='633' data-end='886'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 628</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 633</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_handle_request'>handle_request</span>(<span class='id identifier rubyid_req'>req</span><span class='comma'>,</span> <span class='id identifier rubyid_lines'>lines</span>)
@@ -1415,7 +1415,7 @@
   <h3 class='signature '>
     #<strong>handle_servers</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L364-L436'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L364-L436'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='364' data-end='436'></pre>
   <div class='lines_code'>
@@ -1504,7 +1504,7 @@
   <h3 class='signature '>
     #<strong>handle_servers_lopez_mode</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L217-L275'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L217-L275'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='217' data-end='275'></pre>
   <div class='lines_code'>
@@ -1579,7 +1579,7 @@
   <h3 class='signature '>
     #<strong>inherit_binder</strong>(bind)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L94-L96'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L94-L96'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='94' data-end='96'></pre>
   <div class='lines_code'>
@@ -1605,11 +1605,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L944-L958'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L949-L963'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='944' data-end='958'></pre>
+  <pre class='lines_num' data-start='949' data-end='963'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 944</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 949</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lowlevel_error'>lowlevel_error</span>(<span class='id identifier rubyid_e'>e</span><span class='comma'>,</span> <span class='id identifier rubyid_env'>env</span>)
@@ -1643,11 +1643,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L554-L605'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L559-L610'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='554' data-end='605'></pre>
+  <pre class='lines_num' data-start='559' data-end='610'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 554</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 559</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_normalize_env'>normalize_env</span>(<span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span>)
@@ -1711,11 +1711,11 @@
   <h3 class='signature priv'>
     #<strong>notify_safely</strong>(message)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L1013-L1027'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L1018-L1032'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='1013' data-end='1027'></pre>
+  <pre class='lines_num' data-start='1018' data-end='1032'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 1013</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 1018</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_notify_safely'>notify_safely</span>(<span class='id identifier rubyid_message'>message</span>)
@@ -1751,7 +1751,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L171-L173'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L171-L173'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='171' data-end='173'></pre>
   <div class='lines_code'>
@@ -1778,11 +1778,11 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L1078-L1080'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L1083-L1085'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='1078' data-end='1080'></pre>
+  <pre class='lines_num' data-start='1083' data-end='1085'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 1078</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 1083</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_possible_header_injection?'>possible_header_injection?</span>(<span class='id identifier rubyid_header_value'>header_value</span>)
@@ -1806,9 +1806,9 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L463-L549'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L463-L554'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='463' data-end='549'></pre>
+  <pre class='lines_num' data-start='463' data-end='554'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/server.rb', line 463</span></pre>
 <pre class='code ruby'>
@@ -1836,15 +1836,20 @@
 
         <span class='id identifier rubyid_requests'>requests</span> <span class='op'>+=</span> <span class='int'>1</span>
 
-        <span class='id identifier rubyid_check_for_more_data'>check_for_more_data</span> <span class='op'>=</span> <span class='ivar'>@status</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Server#run (method)">run</a></span>
+        <span class='comment'># Closing keepalive sockets after they&#39;ve made a reasonable
+</span>        <span class='comment'># number of requests allows Puma to service many connections
+</span>        <span class='comment'># fairly, even when the number of concurrent connections exceeds
+</span>        <span class='comment'># the size of the threadpool. It also allows cluster mode Pumas
+</span>        <span class='comment'># to keep load evenly distributed across workers, because clients
+</span>        <span class='comment'># are randomly assigned a new worker when opening a new connection.
+</span>        <span class='comment'>#
+</span>        <span class='comment'># Previously, Puma would kick connections in this conditional back
+</span>        <span class='comment'># to the reactor. However, because this causes the todo set to increase
+</span>        <span class='comment'># in size, the wait_until_full mutex would never unlock, leaving
+</span>        <span class='comment'># any additional connections unserviced.
+</span>        <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_requests'>requests</span> <span class='op'>&gt;=</span> <span class='const'><a href="Const.html#MAX_FAST_INLINE-constant" title="Puma::Const::MAX_FAST_INLINE (constant)">MAX_FAST_INLINE</a></span>
 
-        <span class='kw'>if</span> <span class='id identifier rubyid_requests'>requests</span> <span class='op'>&gt;=</span> <span class='const'><a href="Const.html#MAX_FAST_INLINE-constant" title="Puma::Const::MAX_FAST_INLINE (constant)">MAX_FAST_INLINE</a></span>
-          <span class='comment'># This will mean that reset will only try to use the data it already
-</span>          <span class='comment'># has buffered and won&#39;t try to read more data. What this means is that
-</span>          <span class='comment'># every client, independent of their request speed, gets treated like a slow
-</span>          <span class='comment'># one once every MAX_FAST_INLINE requests.
-</span>          <span class='id identifier rubyid_check_for_more_data'>check_for_more_data</span> <span class='op'>=</span> <span class='kw'>false</span>
-        <span class='kw'>end</span>
+        <span class='id identifier rubyid_check_for_more_data'>check_for_more_data</span> <span class='op'>=</span> <span class='ivar'>@status</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Server#run (method)">run</a></span>
 
         <span class='kw'>unless</span> <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_reset'>reset</span>(<span class='id identifier rubyid_check_for_more_data'>check_for_more_data</span>)
           <span class='id identifier rubyid_close_socket'>close_socket</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -1918,11 +1923,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L895-L940'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L900-L945'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='895' data-end='940'></pre>
+  <pre class='lines_num' data-start='900' data-end='945'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 895</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 900</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read_body'>read_body</span>(<span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='id identifier rubyid_cl'>cl</span>)
@@ -1989,7 +1994,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L282-L362'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L282-L362'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='282' data-end='362'></pre>
   <div class='lines_code'>
@@ -2093,7 +2098,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L177-L215'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L177-L215'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='177' data-end='215'></pre>
   <div class='lines_code'>
@@ -2148,7 +2153,7 @@
   <h3 class='signature '>
     #<strong>running</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L159-L161'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L159-L161'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='159' data-end='161'></pre>
   <div class='lines_code'>
@@ -2174,11 +2179,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L1033-L1036'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L1038-L1041'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='1033' data-end='1036'></pre>
+  <pre class='lines_num' data-start='1038' data-end='1041'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/server.rb', line 1033</span></pre>
+<pre><span class='info file'># File 'lib/puma/server.rb', line 1038</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stop'>stop</span>(<span class='id identifier rubyid_sync'>sync</span><span class='op'>=</span><span class='kw'>false</span>)
@@ -2194,7 +2199,7 @@
   <h3 class='signature '>
     #<strong>tcp_mode!</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L98-L100'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L98-L100'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='98' data-end='100'></pre>
   <div class='lines_code'>
@@ -2220,7 +2225,7 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.7/lib/puma/server.rb#L147-L153'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.8/lib/puma/server.rb#L147-L153'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='147' data-end='153'></pre>
   <div class='lines_code'>
