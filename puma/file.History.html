@@ -61,6 +61,14 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
+<h2>5.3.1 / 2021-05-11</h2>
+<ul>
+<li>Security
+<ul>
+<li>Close keepalive connections after the maximum number of fast inlined requests (#2625)</li>
+</ul>
+</li>
+</ul>
 <h2>5.3.0 / 2021-05-07</h2>
 <ul>
 <li>
@@ -106,7 +114,7 @@
 <ul>
 <li>Bugfixes
 <ul>
-<li>Add <code>#flush</code> and <code>#sync</code> methods to <a href="Puma/NullIO.html" title="Puma::NullIO (class)"><code>::Puma::NullIO</code></a>  (<a href="https://github.com/puma/puma/pull/2553" title="PR by @olivierbellone, merged 2021-02-10">#2553</a>)</li>
+<li>Add <code>#flush</code> and <code>#sync</code> methods to <a href="Puma/NullIO.html" title="Puma::NullIO (class)"><code>NullIO</code></a>  (<a href="https://github.com/puma/puma/pull/2553" title="PR by @olivierbellone, merged 2021-02-10">#2553</a>)</li>
 <li>Restore <code>sync=true</code> on <code>STDOUT</code> and <code>STDERR</code> streams (<a href="https://github.com/puma/puma/pull/2557" title="PR by @cjlarose, merged 2021-02-22">#2557</a>)</li>
 </ul>
 </li>
@@ -141,7 +149,7 @@
 <li>Fix ssl bind logging with 0.0.0.0 and localhost (<a href="https://github.com/puma/puma/pull/2533" title="PR by @MSP-Greg, merged 2021-01-24">#2533</a>)</li>
 <li>Fix compiler warnings, but skipped warnings related to ragel state machine generated code (<a href="https://github.com/puma/puma/issues/1953" title="Issue by @nateberkopec, closed 2020-12-01">#1953</a>)</li>
 <li>Fix phased restart errors related to nio4r gem when using the Puma control server (<a href="https://github.com/puma/puma/pull/2516" title="PR by @cjlarose, merged 2020-12-17">#2516</a>)</li>
-<li>Add <code>#string</code> method to <a href="Puma/NullIO.html" title="Puma::NullIO (class)"><code>::Puma::NullIO</code></a> (<a href="https://github.com/puma/puma/pull/2520" title="PR by @dentarg, merged 2021-01-04">#2520</a>)</li>
+<li>Add <code>#string</code> method to <a href="Puma/NullIO.html" title="Puma::NullIO (class)"><code>NullIO</code></a> (<a href="https://github.com/puma/puma/pull/2520" title="PR by @dentarg, merged 2021-01-04">#2520</a>)</li>
 <li>Fix binding via Rack handler to IPv6 addresses (<a href="https://github.com/puma/puma/pull/2521" title="PR by @ojab, merged 2021-01-04">#2521</a>)</li>
 </ul>
 </li>
@@ -313,7 +321,7 @@
 <li>Fixed a few minor concurrency bugs in ThreadPool that may have affected non-GVL Rubies (<a href="https://github.com/puma/puma/pull/2220" title="PR by @wjordan, merged 2020-04-14">#2220</a>)</li>
 <li>Fix <code>out_of_band</code> hook never executed if the number of worker threads is &gt; 1 (<a href="https://github.com/puma/puma/issues/2177" title="Issue by @GuiTeK, closed 2020-04-08">#2177</a>)</li>
 <li>Fix ThreadPool#shutdown timeout accuracy (<a href="https://github.com/puma/puma/pull/2221" title="PR by @wjordan, merged 2020-04-17">#2221</a>)</li>
-<li>Fix <code>UserFileDefaultOptions#fetch</code> to properly use <code>default</code> (<a href="https://github.com/puma/puma/pull/2233" title="PR by @ayufan, merged 2020-04-25">#2233</a>)</li>
+<li>Fix <a href="Puma/UserFileDefaultOptions.html#fetch-instance_method" title="Puma::UserFileDefaultOptions#fetch (method)">Puma::UserFileDefaultOptions#fetch</a> to properly use <code>default</code> (<a href="https://github.com/puma/puma/pull/2233" title="PR by @ayufan, merged 2020-04-25">#2233</a>)</li>
 <li>Improvements to <code>out_of_band</code> hook (<a href="https://github.com/puma/puma/pull/2234" title="PR by @wjordan, merged 2020-04-30">#2234</a>)</li>
 <li>Prefer the rackup file specified by the CLI (<a href="https://github.com/puma/puma/issues/2225" title="Issue by @nateberkopec, closed 2020-04-27">#2225</a>)</li>
 <li>Fix for spawning subprocesses with fork_worker option (<a href="https://github.com/puma/puma/pull/2267" title="PR by @wjordan, merged 2020-05-20">#2267</a>)</li>
@@ -332,14 +340,22 @@
 <p>Refactor</p>
 <ul>
 <li>Remove unused loader argument from Plugin initializer (<a href="https://github.com/puma/puma/pull/2095" title="PR by @bdewater, merged 2019-12-25">#2095</a>)</li>
-<li>Simplify <code>Configuration.random_token</code> and remove insecure fallback (<a href="https://github.com/puma/puma/pull/2102" title="PR by @bdewater, merged 2020-02-07">#2102</a>)</li>
-<li>Simplify <code>Runner#start_control</code> URL parsing (<a href="https://github.com/puma/puma/pull/2111" title="PR by @wjordan, merged 2020-02-20">#2111</a>)</li>
+<li>Simplify <a href="Puma/Configuration.html#random_token-class_method" title="Puma::Configuration.random_token (method)">Puma::Configuration.random_token</a> and remove insecure fallback (<a href="https://github.com/puma/puma/pull/2102" title="PR by @bdewater, merged 2020-02-07">#2102</a>)</li>
+<li>Simplify <a href="Puma/Runner.html#start_control-instance_method" title="Puma::Runner#start_control (method)">Puma::Runner#start_control</a> URL parsing (<a href="https://github.com/puma/puma/pull/2111" title="PR by @wjordan, merged 2020-02-20">#2111</a>)</li>
 <li>Removed the IOBuffer extension and replaced with Ruby (<a href="https://github.com/puma/puma/pull/1980" title="PR by @nateberkopec, merged 2020-02-27">#1980</a>)</li>
 <li>Update <a href="Rack/Handler/Puma.html#run-class_method" title="Rack::Handler::Puma.run (method)">Rack::Handler::Puma.run</a> to use <code>**options</code> (<a href="https://github.com/puma/puma/pull/2189" title="PR by @jkowens, merged 2020-03-19">#2189</a>)</li>
 <li>ThreadPool concurrency refactoring (<a href="https://github.com/puma/puma/pull/2220" title="PR by @wjordan, merged 2020-04-14">#2220</a>)</li>
 <li>JSON parse cluster worker stats instead of regex (<a href="https://github.com/puma/puma/pull/2124" title="PR by @wjordan, merged 2020-04-14">#2124</a>)</li>
 <li>Support parallel tests in verbose progress reporting (<a href="https://github.com/puma/puma/pull/2223" title="PR by @wjordan, merged 2020-04-20">#2223</a>)</li>
 <li>Refactor error handling in server accept loop (<a href="https://github.com/puma/puma/pull/2239" title="PR by @wjordan, merged 2020-05-15">#2239</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>4.3.8 / 2021-05-11</h2>
+<ul>
+<li>Security
+<ul>
+<li>Close keepalive connections after the maximum number of fast inlined requests (#2625)</li>
 </ul>
 </li>
 </ul>
@@ -2360,7 +2376,7 @@ nonblocking SSL</li>
 </li>
 </ul>
 <p>NOTE: SSL support in JRuby is not supported at present. Support will
-be added back in a future date when a java <a href="Puma/MiniSSL.html" title="Puma::MiniSSL (module)"><code>::Puma::MiniSSL</code></a> is added.</p>
+be added back in a future date when a java <a href="Puma/MiniSSL.html" title="Puma::MiniSSL (module)"><code>MiniSSL</code></a> is added.</p>
 <h2>1.6.3 / 2012-09-04</h2>
 <ul>
 <li>1 bug fix:

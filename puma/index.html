@@ -65,8 +65,8 @@
   <img src="https://puma.io/images/logos/puma-logo-large.png">
 </p>
 <h1>Puma: A Ruby Web Server Built For Concurrency</h1>
-<p><a href="https://github.com/puma/puma/actions?query=workflow%3AMRI"><img src="https://github.com/puma/puma/workflows/MRI/badge.svg?branch=v5.3.0" alt="Actions MRI" /></a>
-<a href="https://github.com/puma/puma/actions?query=workflow%3Anon_MRI"><img src="https://github.com/puma/puma/workflows/non_MRI/badge.svg?branch=v5.3.0" alt="Actions non MRI" /></a>
+<p><a href="https://github.com/puma/puma/actions?query=workflow%3AMRI"><img src="https://github.com/puma/puma/workflows/MRI/badge.svg?branch=v5.3.1" alt="Actions MRI" /></a>
+<a href="https://github.com/puma/puma/actions?query=workflow%3Anon_MRI"><img src="https://github.com/puma/puma/workflows/non_MRI/badge.svg?branch=v5.3.1" alt="Actions non MRI" /></a>
 <a href="https://codeclimate.com/github/puma/puma"><img src="https://codeclimate.com/github/puma/puma.svg" alt="Code Climate" /></a>
 <a href="https://dependabot.com/compatibility-score.html?dependency-name=puma&amp;package-manager=bundler&amp;version-scheme=semver"><img src="https://api.dependabot.com/badges/compatibility_score?dependency-name=puma&amp;package-manager=bundler&amp;version-scheme=semver" alt="SemVer" /></a>
 <a href="https://stackoverflow.com/questions/tagged/puma"><img src="https://img.shields.io/badge/stackoverflow-Puma-blue.svg" alt="StackOverflow" /></a></p>
@@ -102,7 +102,7 @@ install/compile, but it will not allow ssl connections.</p>
 <p>You can then start your application using:</p>
 <pre class="code ruby"><code class="ruby">$ bundle exec puma</code></pre>
 <h2>Configuration</h2>
-<p>Puma provides numerous options. Consult <code>puma -h</code> (or <code>puma --help</code>) for a full list of CLI options, or see <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>::Puma::DSL</code></a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/dsl.rb" target="_parent" title="dsl.rb">dsl.rb</a>.</p>
+<p>Puma provides numerous options. Consult <code>puma -h</code> (or <code>puma --help</code>) for a full list of CLI options, or see <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/dsl.rb" target="_parent" title="dsl.rb">dsl.rb</a>.</p>
 <p>You can also find several configuration examples as part of the
 <a href="https://github.com/puma/puma/tree/master/test/config" target="_parent" title="test">test</a> suite.</p>
 <p>For debugging purposes, you can set the environment variable <code>PUMA_LOG_CONFIG</code> with a value
@@ -173,7 +173,7 @@ error-tracking service (in this example, <a href="https://rollbar.com" target="_
 <h3>Control/Status Server</h3>
 <p>Puma has a built-in status and control app that can be used to query and control Puma.</p>
 <pre class="code ruby"><code class="ruby">$ puma --control-url tcp://127.0.0.1:9293 --control-token foo</code></pre>
-<p>Puma will start the control server on localhost port 9293. All requests to the control server will need to include control token (in this case, <code>token=foo</code>) as a query parameter. This allows for simple authentication. Check out <a href="Puma/App/Status.html" title="Puma::App::Status (class)"><code>::Puma::App::Status</code></a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/app/status.rb" target="_parent" title="status.rb">status.rb</a> to see what the status app has available.</p>
+<p>Puma will start the control server on localhost port 9293. All requests to the control server will need to include control token (in this case, <code>token=foo</code>) as a query parameter. This allows for simple authentication. Check out <a href="Puma/App/Status.html" title="Puma::App::Status (class)"><code>App::Status</code></a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/app/status.rb" target="_parent" title="status.rb">status.rb</a> to see what the status app has available.</p>
 <p>You can also interact with the control server via <code>pumactl</code>. This command will restart Puma:</p>
 <pre class="code ruby"><code class="ruby">$ pumactl --control-url &#39;tcp://127.0.0.1:9293&#39; --control-token foo restart</code></pre>
 <p>To see a list of <code>pumactl</code> options, use <code>pumactl --help</code>.</p>
@@ -184,7 +184,7 @@ error-tracking service (in this example, <a href="https://rollbar.com" target="_
 <p>If you want to prevent Puma from looking for a configuration file in those locations, provide a dash as the argument to the <code>-C</code> (or <code>--config</code>) flag:</p>
 <pre class="code ruby"><code class="ruby">$ puma -C &quot;-&quot;</code></pre>
 <p>The other side-effects of setting the environment are whether to show stack traces (in <code>development</code> or <code>test</code>), and setting RACK_ENV may potentially affect middleware looking for this value to change their behavior. The default puma RACK_ENV value is <code>development</code>. You can see all config default values in <a href="Puma/Configuration.html#puma_default_options-instance_method" title="Puma::Configuration#puma_default_options (method)">Puma::Configuration#puma_default_options</a> or <a href="https://github.com/puma/puma/blob/61c6213fbab/lib/puma/configuration.rb#L182-L204" target="_parent" title="configuration.rb">configuration.rb</a>.</p>
-<p>Check out <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>::Puma::DSL</code></a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/dsl.rb" target="_parent" title="dsl.rb">dsl.rb</a> to see all available options.</p>
+<p>Check out <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/dsl.rb" target="_parent" title="dsl.rb">dsl.rb</a> to see all available options.</p>
 <h2>Restart</h2>
 <p>Puma includes the ability to restart itself. When available (MRI, Rubinius, JRuby), Puma performs a &quot;hot restart&quot;. This is the same functionality available in <em>Unicorn</em> and <em>NGINX</em> which keep the server sockets open between restarts. This makes sure that no pending requests are dropped while the restart is taking place.</p>
 <p>For more, see the <a href="file.restart.html" title="Restart documentation">Restart documentation</a>.</p>
