@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo;
-      <a href='./'>Puma-4.3.7</a> &raquo;
+      <a href='.'>Puma-4.3.7</a> &raquo;
       <a href='_index.html'>Index</a> &raquo;
       <span class='title'><a id='t2_doc_top' href='#'>File: README&nbsp;&#x25B2;</a></span>
           </div>
@@ -65,16 +65,15 @@
   <img src="https://puma.io/images/logos/puma-logo-large.png">
 </p>
 <h1>Puma: A Ruby Web Server Built For Concurrency</h1>
-<p><a href="https://gitter.im/puma/puma?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter" /></a>
-<a href="https://github.com/puma/puma/actions"><img src="https://github.com/puma/puma/workflows/MRI%204-3-stable/badge.svg?branch=v4.3.7" alt="Actions Build Status" /></a>
-<a href="https://travis-ci.org/puma/puma"><img src="https://travis-ci.org/puma/puma.svg?branch=master" alt="Travis Build Status" /></a></p>
+<p><a href="https://github.com/puma/puma/actions?query=workflow%3AMRI%204-3-stable"><img src="https://github.com/puma/puma/workflows/MRI%204-3-stable/badge.svg?branch=v4.3.8" alt="Actions MRI" /></a>
+<a href="https://travis-ci.org/puma/puma"><img src="https://travis-ci.org/puma/puma.svg?branch=v4.3.8" alt="Travis Build Status" /></a></p>
 <p><a href="https://codeclimate.com/github/puma/puma"><img src="https://codeclimate.com/github/puma/puma.svg" alt="Code Climate" /></a>
 <a href="https://dependabot.com/compatibility-score.html?dependency-name=puma&amp;package-manager=bundler&amp;version-scheme=semver"><img src="https://api.dependabot.com/badges/compatibility_score?dependency-name=puma&amp;package-manager=bundler&amp;version-scheme=semver" alt="SemVer" /></a></p>
-<p><a href="Puma.html" title="Puma (module)">Puma</a> is a <strong>simple, fast, multi-threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications</strong>.</p>
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> is a <strong>simple, fast, multi-threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications</strong>.</p>
 <h2>Built For Speed &amp; Concurrency</h2>
-<p><a href="Puma.html" title="Puma (module)">Puma</a> processes requests using a C-optimized Ragel extension (inherited from Mongrel) that provides fast, accurate HTTP 1.1 protocol parsing in a portable way. <a href="Puma.html" title="Puma (module)">Puma</a> then serves the request using a thread pool. Each request is served in a separate thread, so truly concurrent Ruby implementations (JRuby, Rubinius) will use all available CPU cores.</p>
-<p><a href="Puma.html" title="Puma (module)">Puma</a> was designed to be the go-to server for <a href="https://rubinius.com" target="_parent" title="Rubinius">Rubinius</a>, but also works well with JRuby and MRI.</p>
-<p>On MRI, there is a Global VM Lock (GVL) that ensures only one thread can run Ruby code at a time. But if you're doing a lot of blocking <a href="IO.html" title="IO (class)">IO</a> (such as HTTP calls to external APIs like Twitter), <a href="Puma.html" title="Puma (module)">Puma</a> still improves MRI's throughput by allowing <a href="IO.html" title="IO (class)">IO</a> waiting to be done in parallel.</p>
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> processes requests using a C-optimized Ragel extension (inherited from Mongrel) that provides fast, accurate HTTP 1.1 protocol parsing in a portable way. <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> then serves the request using a thread pool. Each request is served in a separate thread, so truly concurrent Ruby implementations (JRuby, Rubinius) will use all available CPU cores.</p>
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> was designed to be the go-to server for <a href="https://rubinius.com" target="_parent" title="Rubinius">Rubinius</a>, but also works well with JRuby and MRI.</p>
+<p>On MRI, there is a Global VM Lock (GVL) that ensures only one thread can run Ruby code at a time. But if you're doing a lot of blocking <a href="IO.html" title="IO (class)"><code>IO</code></a> (such as HTTP calls to external APIs like Twitter), <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> still improves MRI's throughput by allowing <a href="IO.html" title="IO (class)"><code>IO</code></a> waiting to be done in parallel.</p>
 <h2>Quick Start</h2>
 <pre class="code ruby"><code class="ruby">$ gem install puma
 $ puma</code></pre>

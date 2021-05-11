@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='./'>Puma-4.3.7</a> &raquo; 
+      <a href='.'>Puma-4.3.7</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Deployment&nbsp;&#x25B2;</a></span>
           </div>
@@ -62,7 +62,7 @@
   </header>
 <div id='content' class='file'>
 <h1>Deployment engineering for puma</h1>
-<p><a href="Puma.html" title="Puma (module)">Puma</a> is software that is expected to be run in a deployed environment eventually.
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> is software that is expected to be run in a deployed environment eventually.
 You can certainly use it as your dev server only, but most people look to use
 it in their production deployments as well.</p>
 <p>To that end, this is meant to serve as a foundation of wisdom how to do that
@@ -72,7 +72,7 @@ in a way that increases happiness and decreases downtime.</p>
 go ahead and assume that. Go add it now... we'll wait.</p>
 <p>Welcome back!</p>
 <h2>Single vs Cluster mode</h2>
-<p><a href="Puma.html" title="Puma (module)">Puma</a> was originally conceived as a thread-only webserver, but grew the ability to
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> was originally conceived as a thread-only webserver, but grew the ability to
 also use processes in version 2.</p>
 <p>Here are some rules of thumb:</p>
 <h3>MRI</h3>
@@ -99,7 +99,7 @@ workers down and the threads up.</li>
 <h4>Worker utilization</h4>
 <p><strong>How do you know if you've got enough (or too many workers)?</strong></p>
 <p>A good question. Due to MRI's GIL, only one thread can be executing Ruby code at a time.
-But since so many apps are waiting on <a href="IO.html" title="IO (class)">IO</a> from DBs, etc., they can utilize threads
+But since so many apps are waiting on <a href="IO.html" title="IO (class)"><code>IO</code></a> from DBs, etc., they can utilize threads
 to make better use of the process.</p>
 <p>The rule of thumb is you never want processes that are pegged all the time. This
 means that there is more work to do than the process can get through. On the other
@@ -109,7 +109,7 @@ up resources.</p>
 you've got capacity still but aren't starving threads.</p>
 <p><strong>Measuring utilization</strong></p>
 <p>Using a timestamp header from an upstream proxy server (eg. nginx or haproxy), it's
-possible to get an indication of how long requests have been waiting for a <a href="Puma.html" title="Puma (module)">Puma</a>
+possible to get an indication of how long requests have been waiting for a <a href="Puma.html" title="Puma (module)"><code>Puma</code></a>
 thread to become available.</p>
 <ul>
 <li>Have your upstream proxy set a header with the time it received the request:
@@ -118,7 +118,7 @@ thread to become available.</p>
 <li>haproxy: <code>http-request set-header X-Request-Start &quot;%t&quot;;</code></li>
 </ul>
 </li>
-<li>In your <a href="Rack.html" title="Rack (module)">Rack</a> middleware, determine the amount of time elapsed since <code>X-Request-Start</code>.</li>
+<li>In your <a href="Rack.html" title="Rack (module)"><code>Rack</code></a> middleware, determine the amount of time elapsed since <code>X-Request-Start</code>.</li>
 <li>To improve accuracy, you will want to subtract time spent waiting for slow clients:
 <ul>
 <li><code>env['puma.request_body_wait']</code> contains the number of milliseconds Puma spent
