@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: History &mdash; Puma-5.3.2</title>
+<title>File: History &mdash; Puma-5.5.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.3.2</a> &raquo; 
+      <a href='.'>Puma-5.5.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: History&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,13 +61,64 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
+<h2>5.5.0 / 2021-09-19</h2>
+<ul>
+<li>
+<p>Features</p>
+<ul>
+<li>Automatic SSL certificate provisioning for localhost, via localhost gem (<a href="https://github.com/puma/puma/pull/2610" title="PR by @ye-lin-aung, merged 2021-08-18">#2610</a>, <a href="https://github.com/puma/puma/issues/2257" title="Issue by @nateberkopec, closed 2021-08-18">#2257</a>)</li>
+<li>add support for the PROXY protocol (v1 only) (<a href="https://github.com/puma/puma/pull/2654" title="PR by @Roguelazer, merged 2021-09-07">#2654</a>, <a href="https://github.com/puma/puma/issues/2651" title="Issue by @Roguelazer, closed 2021-09-07">#2651</a>)</li>
+<li>Add a semantic CLI option for no config file (<a href="https://github.com/puma/puma/pull/2689" title="PR by @jacobherrington, merged 2021-09-05">#2689</a>)</li>
+</ul>
+</li>
+<li>
+<p>Bugfixes</p>
+<ul>
+<li>More elaborate exception handling - lets some dead pumas die. (<a href="https://github.com/puma/puma/pull/2700" title="PR by @ioquatix, merged 2021-09-16">#2700</a>, <a href="https://github.com/puma/puma/issues/2699" title="Issue by @ioquatix, closed 2021-09-16">#2699</a>)</li>
+<li>allow multiple after_worker_fork hooks (<a href="https://github.com/puma/puma/pull/2690" title="PR by @doits, merged 2021-09-06">#2690</a>)</li>
+<li>Preserve BUNDLE_APP_CONFIG on worker fork (<a href="https://github.com/puma/puma/pull/2688" title="PR by @jdelStrother, merged 2021-09-03">#2688</a>, <a href="https://github.com/puma/puma/issues/2687" title="Issue by @jdelStrother, closed 2021-09-03">#2687</a>)</li>
+</ul>
+</li>
+<li>
+<p>Performance</p>
+<ul>
+<li>Fix performance of server-side SSL connection close. (<a href="https://github.com/puma/puma/pull/2675" title="PR by @devwout, merged 2021-09-08">#2675</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>5.4.0 / 2021-07-28</h2>
+<ul>
+<li>
+<p>Features</p>
+<ul>
+<li>Better/expanded names for threadpool threads (<a href="https://github.com/puma/puma/pull/2657" title="PR by @olivierbellone, merged 2021-07-13">#2657</a>)</li>
+<li>Allow pkg_config for OpenSSL (<a href="https://github.com/puma/puma/pull/2648" title="PR by @MSP-Greg, merged 2021-06-27">#2648</a>, <a href="https://github.com/puma/puma/issues/1412" title="Issue by @x-yuri, closed 2021-06-27">#1412</a>)</li>
+<li>Add <code>rack_url_scheme</code> to Puma::DSL, allows setting of <code>rack.url_scheme</code> header (<a href="https://github.com/puma/puma/pull/2586" title="PR by @MSP-Greg, merged 2021-05-26">#2586</a>, <a href="https://github.com/puma/puma/issues/2569" title="Issue by @tarragon, closed 2021-05-26">#2569</a>)</li>
+</ul>
+</li>
+<li>
+<p>Bugfixes</p>
+<ul>
+<li><a href="Puma/Binder.html#parse-instance_method" title="Puma::Binder#parse (method)">Puma::Binder#parse</a> - allow for symlinked unix path, add create_activated_fds debug ENV (<a href="https://github.com/puma/puma/pull/2643" title="PR by @MSP-Greg, merged 2021-06-27">#2643</a>, <a href="https://github.com/puma/puma/issues/2638" title="Issue by @gingerlime, closed 2021-06-27">#2638</a>)</li>
+<li>Fix deprecation warning: minissl.c - Use Random.bytes if available (<a href="https://github.com/puma/puma/pull/2642" title="PR by @MSP-Greg, merged 2021-06-16">#2642</a>)</li>
+<li>Client certificates: set session id context while creating SSLContext (<a href="https://github.com/puma/puma/pull/2633" title="PR by @onlined, merged 2021-06-04">#2633</a>)</li>
+<li>Fix deadlock issue in thread pool (<a href="https://github.com/puma/puma/pull/2656" title="PR by @olivierbellone, merged 2021-07-07">#2656</a>)</li>
+</ul>
+</li>
+<li>
+<p>Refactor</p>
+<ul>
+<li>Replace <code>IO.select</code> with <code>IO#wait_*</code> when checking a single IO (<a href="https://github.com/puma/puma/pull/2666" title="PR by @MSP-Greg, merged 2021-07-25">#2666</a>)</li>
+</ul>
+</li>
+</ul>
 <h2>5.3.2 / 2021-05-21</h2>
 <ul>
 <li>Bugfixes
 <ul>
-<li>Gracefully handle Rack not accepting CLI options (#2630, #2626)</li>
-<li>Fix sigterm misbehavior (#2629)</li>
-<li>Improvements to keepalive-connection shedding (#2628)</li>
+<li>Gracefully handle Rack not accepting CLI options (<a href="https://github.com/puma/puma/pull/2630" title="PR by @seangoedecke, merged 2021-05-20">#2630</a>, <a href="https://github.com/puma/puma/issues/2626" title="Issue by @rorymckinley, closed 2021-05-20">#2626</a>)</li>
+<li>Fix sigterm misbehavior (<a href="https://github.com/puma/puma/pull/2629" title="PR by @ye-lin-aung, merged 2021-05-20">#2629</a>)</li>
+<li>Improvements to keepalive-connection shedding (<a href="https://github.com/puma/puma/pull/2628" title="PR by @wjordan, merged 2021-05-20">#2628</a>)</li>
 </ul>
 </li>
 </ul>
@@ -75,7 +126,7 @@
 <ul>
 <li>Security
 <ul>
-<li>Close keepalive connections after the maximum number of fast inlined requests (#2625)</li>
+<li>Close keepalive connections after the maximum number of fast inlined requests (CVE-2021-29509) (<a href="https://github.com/puma/puma/issues/2625" title="Issue by @jarthod, closed 2021-05-11">#2625</a>)</li>
 </ul>
 </li>
 </ul>
@@ -96,9 +147,9 @@
 <li>systemd - fix event firing (<a href="https://github.com/puma/puma/pull/2591" title="PR by @MSP-Greg, merged 2021-05-05">#2591</a>, <a href="https://github.com/puma/puma/issues/2572" title="Issue by @josefbilendo, closed 2021-05-05">#2572</a>)</li>
 <li>Immediately unlink temporary files (<a href="https://github.com/puma/puma/pull/2613" title="PR by @smcgivern, merged 2021-04-27">#2613</a>)</li>
 <li>Improve parsing of HTTP_HOST header (<a href="https://github.com/puma/puma/pull/2605" title="PR by @pascalbetz, merged 2021-04-26">#2605</a>, <a href="https://github.com/puma/puma/issues/2584" title="Issue by @kaorihinata, closed 2021-04-26">#2584</a>)</li>
-<li>Handle fatal error that has no backtrace (<a href="https://github.com/puma/puma/pull/2607" title="PR by @calvinxiao, merged 2021-04-23">#2607</a>, <a href="https://github.com/puma/puma/issues/2552" title="Issue by @feliperaul, opened 2021-02-09">#2552</a>)</li>
+<li>Handle fatal error that has no backtrace (<a href="https://github.com/puma/puma/pull/2607" title="PR by @calvinxiao, merged 2021-04-23">#2607</a>, <a href="https://github.com/puma/puma/issues/2552" title="Issue by @feliperaul, closed 2021-05-24">#2552</a>)</li>
 <li>Fix timing out requests too early (<a href="https://github.com/puma/puma/pull/2606" title="PR by @wjordan, merged 2021-04-20">#2606</a>, <a href="https://github.com/puma/puma/issues/2574" title="Issue by @darkhelmet, closed 2021-04-20">#2574</a>)</li>
-<li>Handle segfault in Ruby 2.6.6 on thread-locals (<a href="https://github.com/puma/puma/pull/2567" title="PR by @kddeisz, merged 2021-04-19">#2567</a>, <a href="https://github.com/puma/puma/issues/2566" title="Issue by @kddeisz, closed 2021-04-19">#2566</a>)</li>
+<li>Handle segfault in Ruby 2.6.6 on thread-locals (<a href="https://github.com/puma/puma/pull/2567" title="PR by @kddnewton, merged 2021-04-19">#2567</a>, <a href="https://github.com/puma/puma/issues/2566" title="Issue by @kddnewton, closed 2021-04-19">#2566</a>)</li>
 <li>Server#closed_socket? - parameter may be a MiniSSL::Socket (<a href="https://github.com/puma/puma/pull/2596" title="PR by @MSP-Greg, merged 2021-04-18">#2596</a>)</li>
 <li>Define UNPACK_TCP_STATE_FROM_TCP_INFO in the right place (<a href="https://github.com/puma/puma/pull/2588" title="PR by @dentarg, merged 2021-04-02">#2588</a>, <a href="https://github.com/puma/puma/issues/2556" title="Issue by @gamecreature, closed 2021-04-02">#2556</a>)</li>
 <li>request.rb - fix chunked assembly for ascii incompatible encodings, add test (<a href="https://github.com/puma/puma/pull/2585" title="PR by @MSP-Greg, merged 2021-03-26">#2585</a>, <a href="https://github.com/puma/puma/issues/2583" title="Issue by @jboler, closed 2021-03-26">#2583</a>)</li>
@@ -365,7 +416,7 @@
 <ul>
 <li>Security
 <ul>
-<li>Close keepalive connections after the maximum number of fast inlined requests (#2625)</li>
+<li>Close keepalive connections after the maximum number of fast inlined requests (CVE-2021-29509) (<a href="https://github.com/puma/puma/issues/2625" title="Issue by @jarthod, closed 2021-05-11">#2625</a>)</li>
 </ul>
 </li>
 </ul>
