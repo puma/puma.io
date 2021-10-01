@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Module: Puma::Request &mdash; Puma-5.3.2</title>
+<title>Module: Puma::Request &mdash; Puma-5.5.0</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-5.3.2</a> &raquo; 
+      <a href='../'>Puma-5.5.0</a> &raquo; 
       <a href='../_index.html#alpha_R'>Index (R)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>Request&nbsp;&#x25B2;</a></span>
@@ -88,7 +88,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.3.2/lib/puma/request.rb#L13'>lib/puma/request.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.5.0/lib/puma/request.rb#L13'>lib/puma/request.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -175,6 +175,7 @@
     <a href="Const.html#PERSISTENT_TIMEOUT-constant" title="Puma::Const::PERSISTENT_TIMEOUT (constant)">PERSISTENT_TIMEOUT</a>, 
     <a href="Const.html#PORT_443-constant" title="Puma::Const::PORT_443 (constant)">PORT_443</a>, 
     <a href="Const.html#PORT_80-constant" title="Puma::Const::PORT_80 (constant)">PORT_80</a>, 
+    <a href="Const.html#PROXY_PROTOCOL_V1_REGEX-constant" title="Puma::Const::PROXY_PROTOCOL_V1_REGEX (constant)">PROXY_PROTOCOL_V1_REGEX</a>, 
     <a href="Const.html#PUMA_CONFIG-constant" title="Puma::Const::PUMA_CONFIG (constant)">PUMA_CONFIG</a>, 
     <a href="Const.html#PUMA_PEERCERT-constant" title="Puma::Const::PUMA_PEERCERT (constant)">PUMA_PEERCERT</a>, 
     <a href="Const.html#PUMA_SERVER_STRING-constant" title="Puma::Const::PUMA_SERVER_STRING (constant)">PUMA_SERVER_STRING</a>, 
@@ -224,7 +225,7 @@
       <a href="#normalize_env-instance_method" title="#normalize_env (instance method)">#<strong>normalize_env</strong>(env, client)  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>Given a Hash <code>env</code> for the request read from <code>client</code>, add and fixup keys to comply with Rack&#39;s env guidelines.</p></div>
+      <div class='inline'><p>Given a Hash <code>env</code> for the request read from <code>client</code>, add and fixup keys to comply with Rack’s env guidelines.</p></div>
     </div>
   </li>
   <li>
@@ -306,7 +307,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.3.2/lib/puma/request.rb#L185-L191'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.5.0/lib/puma/request.rb#L185-L191'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='185' data-end='191'></pre>
   <div class='lines_code'>
@@ -362,7 +363,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.3.2/lib/puma/request.rb#L198-L216'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.5.0/lib/puma/request.rb#L198-L216'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='198' data-end='216'></pre>
   <div class='lines_code'>
@@ -375,7 +376,7 @@
     <span class='kw'>begin</span>
       <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_syswrite'>syswrite</span> <span class='id identifier rubyid_str'>str</span>
     <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EAGAIN</span><span class='comma'>,</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EWOULDBLOCK</span>
-      <span class='kw'>if</span> <span class='op'>!</span><span class='const'><a href="../IO.html" title="IO (class)">IO</a></span>.<span class='id identifier rubyid_select'>select</span>(<span class='kw'>nil</span><span class='comma'>,</span> [<span class='id identifier rubyid_io'>io</span>]<span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='const'><a href="Const.html#WRITE_TIMEOUT-constant" title="Puma::Const::WRITE_TIMEOUT (constant)">WRITE_TIMEOUT</a></span>)
+      <span class='kw'>unless</span> <span class='id identifier rubyid_io'>io</span>.<span class='id identifier rubyid_wait_writable'>wait_writable</span> <span class='const'><a href="Const.html#WRITE_TIMEOUT-constant" title="Puma::Const::WRITE_TIMEOUT (constant)">WRITE_TIMEOUT</a></span>
         <span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="ConnectionError.html" title="Puma::ConnectionError (class)">ConnectionError</a></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Socket timeout writing data</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>
 
@@ -424,7 +425,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.3.2/lib/puma/request.rb#L222-L224'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.5.0/lib/puma/request.rb#L222-L224'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='222' data-end='224'></pre>
   <div class='lines_code'>
@@ -448,11 +449,11 @@
     
 <p>Takes the request contained in <code>client</code>, invokes the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application to construct the response and writes it back to <code>client.io</code>.</p>
 
-<p>It&#39;ll return <code>false</code> when the connection is closed, this doesn&#39;t mean that the response wasn&#39;t successful.</p>
+<p>It’ll return <code>false</code> when the connection is closed, this doesn’t mean that the response wasn’t successful.</p>
 
-<p>It&#39;ll return <code>:async</code> if the connection remains open but will be handled elsewhere, i.e. the connection has been hijacked by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application.</p>
+<p>It’ll return <code>:async</code> if the connection remains open but will be handled elsewhere, i.e. the connection has been hijacked by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application.</p>
 
-<p>Finally, it&#39;ll return <code>true</code> on keep-alive connections.</p>
+<p>Finally, it’ll return <code>true</code> on keep-alive connections.</p>
 
   </div>
 </div>
@@ -474,7 +475,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.3.2/lib/puma/request.rb#L32-L180'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.5.0/lib/puma/request.rb#L32-L180'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='32' data-end='180'></pre>
   <div class='lines_code'>
@@ -503,7 +504,7 @@
   <span class='id identifier rubyid_head'>head</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#REQUEST_METHOD-constant" title="Puma::Const::REQUEST_METHOD (constant)">REQUEST_METHOD</a></span>] <span class='op'>==</span> <span class='const'><a href="Const.html#HEAD-constant" title="Puma::Const::HEAD (constant)">HEAD</a></span>
 
   <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#RACK_INPUT-constant" title="Puma::Const::RACK_INPUT (constant)">RACK_INPUT</a></span>] <span class='op'>=</span> <span class='id identifier rubyid_body'>body</span>
-  <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#RACK_URL_SCHEME-constant" title="Puma::Const::RACK_URL_SCHEME (constant)">RACK_URL_SCHEME</a></span>] <span class='op'>=</span> <span class='id identifier rubyid_default_server_port'><a href="#default_server_port-instance_method" title="Puma::Request#default_server_port (method)">default_server_port</a></span>(<span class='id identifier rubyid_env'>env</span>) <span class='op'>==</span> <span class='const'><a href="Const.html#PORT_443-constant" title="Puma::Const::PORT_443 (constant)">PORT_443</a></span> <span class='op'>?</span> <span class='const'><a href="Const.html#HTTPS-constant" title="Puma::Const::HTTPS (constant)">HTTPS</a></span> <span class='op'>:</span> <span class='const'><a href="Const.html#HTTP-constant" title="Puma::Const::HTTP (constant)">HTTP</a></span>
+  <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#RACK_URL_SCHEME-constant" title="Puma::Const::RACK_URL_SCHEME (constant)">RACK_URL_SCHEME</a></span>] <span class='op'>||=</span> <span class='id identifier rubyid_default_server_port'><a href="#default_server_port-instance_method" title="Puma::Request#default_server_port (method)">default_server_port</a></span>(<span class='id identifier rubyid_env'>env</span>) <span class='op'>==</span> <span class='const'><a href="Const.html#PORT_443-constant" title="Puma::Const::PORT_443 (constant)">PORT_443</a></span> <span class='op'>?</span> <span class='const'><a href="Const.html#HTTPS-constant" title="Puma::Const::HTTPS (constant)">HTTPS</a></span> <span class='op'>:</span> <span class='const'><a href="Const.html#HTTP-constant" title="Puma::Const::HTTP (constant)">HTTP</a></span>
 
   <span class='kw'>if</span> <span class='ivar'>@early_hints</span>
     <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#EARLY_HINTS-constant" title="Puma::Const::EARLY_HINTS (constant)">EARLY_HINTS</a></span>] <span class='op'>=</span> <span class='id identifier rubyid_lambda'>lambda</span> { <span class='op'>|</span><span class='id identifier rubyid_headers'>headers</span><span class='op'>|</span>
@@ -628,7 +629,7 @@
     <span class='id identifier rubyid_after_reply'>after_reply</span>.<span class='id identifier rubyid_each'>each</span> { <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span> <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_call'>call</span> }
   <span class='kw'>end</span>
 
-  <span class='kw'>return</span> <span class='id identifier rubyid_res_info'>res_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_keep_alive'>keep_alive</span>]
+  <span class='id identifier rubyid_res_info'>res_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_keep_alive'>keep_alive</span>]
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -654,7 +655,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.3.2/lib/puma/request.rb#L294-L296'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.5.0/lib/puma/request.rb#L294-L296'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='294' data-end='296'></pre>
   <div class='lines_code'>
@@ -688,7 +689,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.3.2/lib/puma/request.rb#L301-L303'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.5.0/lib/puma/request.rb#L301-L303'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='301' data-end='303'></pre>
   <div class='lines_code'>
@@ -718,7 +719,7 @@
   </div>
 
 
-<p>Given a Hash <code>env</code> for the request read from <code>client</code>, add and fixup keys to comply with Rack&#39;s env guidelines.</p>
+<p>Given a Hash <code>env</code> for the request read from <code>client</code>, add and fixup keys to comply with Rack’s env guidelines.</p>
 
   </div>
 </div>
@@ -742,7 +743,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.3.2/lib/puma/request.rb#L233-L288'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.5.0/lib/puma/request.rb#L233-L288'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='233' data-end='288'></pre>
   <div class='lines_code'>
@@ -817,7 +818,7 @@
 <div class='docstring'>
   <div class='discussion'>
     
-<p>Fixup any headers with <code>,</code> in the name to have <code>_</code> now. We emit headers with <code>,</code> in them during the parse phase to avoid ambiguity with the <code>-</code> to <code>_</code> conversion for critical headers. But here for compatibility, we&#39;ll convert them back. This code is written to avoid allocation in the common case (ie there are no headers with <code>,</code> in their names), that&#39;s why it has the extra conditionals.</p>
+<p>Fixup any headers with <code>,</code> in the name to have <code>_</code> now. We emit headers with <code>,</code> in them during the parse phase to avoid ambiguity with the <code>-</code> to <code>_</code> conversion for critical headers. But here for compatibility, we’ll convert them back. This code is written to avoid allocation in the common case (ie there are no headers with <code>,</code> in their names), that’s why it has the extra conditionals.</p>
 
   </div>
 </div>
@@ -842,7 +843,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.3.2/lib/puma/request.rb#L315-L339'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.5.0/lib/puma/request.rb#L315-L339'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='315' data-end='339'></pre>
   <div class='lines_code'>
@@ -911,7 +912,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.3.2/lib/puma/request.rb#L347-L362'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.5.0/lib/puma/request.rb#L347-L362'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='347' data-end='362'></pre>
   <div class='lines_code'>
@@ -1010,7 +1011,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.3.2/lib/puma/request.rb#L375-L464'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.5.0/lib/puma/request.rb#L375-L464'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='375' data-end='464'></pre>
   <div class='lines_code'>
@@ -1064,7 +1065,7 @@
 </span>  <span class='comment'># of concurrent connections exceeds the size of the threadpool.
 </span>  <span class='id identifier rubyid_res_info'>res_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_keep_alive'>keep_alive</span>] <span class='op'>&amp;&amp;=</span> <span class='id identifier rubyid_requests'>requests</span> <span class='op'>&lt;</span> <span class='ivar'>@max_fast_inline</span> <span class='op'>||</span>
     <span class='ivar'>@thread_pool</span>.<span class='id identifier rubyid_busy_threads'>busy_threads</span> <span class='op'>&lt;</span> <span class='ivar'>@max_threads</span> <span class='op'>||</span>
-    <span class='op'>!</span><span class='const'><a href="../IO.html" title="IO (class)">IO</a></span>.<span class='id identifier rubyid_select'>select</span>([<span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_listener'>listener</span>]<span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='int'>0</span>)
+    <span class='op'>!</span><span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_listener'>listener</span>.<span class='id identifier rubyid_to_io'>to_io</span>.<span class='id identifier rubyid_wait_readable'>wait_readable</span>(<span class='int'>0</span>)
 
   <span class='id identifier rubyid_res_info'>res_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_response_hijack'>response_hijack</span>] <span class='op'>=</span> <span class='kw'>nil</span>
 
