@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Stats &mdash; Puma-5.5.0</title>
+<title>File: Stats &mdash; Puma-5.5.2</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.5.0</a> &raquo; 
+      <a href='.'>Puma-5.5.2</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Stats&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,7 +61,7 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<h2>accessing stats</h2>
+<h2>Accessing stats</h2>
 <p>Stats can be accessed in two ways:</p>
 <h3>control server</h3>
 <p><code>$ pumactl stats</code> or <code>GET /stats</code></p>
@@ -91,17 +91,17 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span></code></pre>
 <h2>Explanation of stats</h2>
-<p><a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> returns different information and a different structure depending on if Puma is in single vs cluster mode. There is one top-level attribute that is common to both modes:</p>
+<p><a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> returns different information and a different structure depending on if Puma is in single vs. cluster mode. There is one top-level attribute that is common to both modes:</p>
 <ul>
-<li>started_at: when puma was started</li>
+<li>started_at: when Puma was started</li>
 </ul>
 <h3>single mode and individual workers in cluster mode</h3>
-<p>When Puma is run in single mode, these stats are available at the top level. When Puma is run in cluster mode, these stats are available within the <code>worker_status</code> array in a hash labeled <code>last_status</code>, in an array of hashes, one hash for each worker.</p>
+<p>When Puma runs in single mode, these stats are available at the top level. When Puma runs in cluster mode, these stats are available within the <code>worker_status</code> array in a hash labeled <code>last_status</code>, in an array of hashes where one hash represents each worker.</p>
 <ul>
 <li>backlog: requests that are waiting for an available thread to be available. if this is above 0, you need more capacity [always true?]</li>
 <li>running: how many threads are running</li>
-<li>pool_capacity: the number of requests that the server is capable of taking right now. For example if the number is 5 then it means there are 5 threads sitting idle ready to take a request. If one request comes in, then the value would be 4 until it finishes processing. If the minimum threads allowed is zero, this number will still have a maximum value of the maximum threads allowed.</li>
-<li>max_threads: the maximum number of threads puma is configured to spool up per worker</li>
+<li>pool_capacity: the number of requests that the server is capable of taking right now. For example, if the number is 5, then it means there are 5 threads sitting idle ready to take a request. If one request comes in, then the value would be 4 until it finishes processing. If the minimum threads allowed is zero, this number will still have a maximum value of the maximum threads allowed.</li>
+<li>max_threads: the maximum number of threads Puma is configured to spool per worker</li>
 <li>requests_count: the number of requests this worker has served since starting</li>
 </ul>
 <h3>cluster mode</h3>
@@ -114,9 +114,9 @@
 </ul>
 <h3>worker status</h3>
 <ul>
-<li>started_at: when the worker was started</li>
+<li>started_at: when the worker started</li>
 <li>pid: the process id of the worker process</li>
-<li>index: each worker gets a number. if puma is configured to have 3 workers, then this will be 0, 1, or 2</li>
+<li>index: each worker gets a number. if Puma is configured to have 3 workers, then this will be 0, 1, or 2</li>
 <li>booted: if it's done booting [?]</li>
 <li>last_checkin: Last time the worker responded to the master process' heartbeat check.</li>
 <li>last_status: a hash of info about the worker's state handling requests. See the explanation for this in &quot;single mode and individual workers in cluster mode&quot; section above.</li>

@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: README &mdash; Puma-5.5.0</title>
+<title>File: README &mdash; Puma-5.5.2</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -49,9 +49,9 @@
 <div id='y_main' tabindex='-1'>
   <header id='y_header'>
     <div id='y_menu'>
-      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.5.0</a> &raquo; 
-      <a href='_index.html'>Index</a> &raquo; 
+      <a id='home_no_xhr' href='/'>Home</a> &raquo;
+      <a href='.'>Puma-5.5.2</a> &raquo;
+      <a href='_index.html'>Index</a> &raquo;
       <span class='title'><a id='t2_doc_top' href='#'>File: README&nbsp;&#x25B2;</a></span>
           </div>
 
@@ -65,8 +65,8 @@
   <img src="https://puma.io/images/logos/puma-logo-large.png">
 </p>
 <h1>Puma: A Ruby Web Server Built For Parallelism</h1>
-<p><a href="https://github.com/puma/puma/actions?query=workflow%3AMRI"><img src="https://github.com/puma/puma/workflows/MRI/badge.svg?branch=v5.5.0" alt="Actions MRI" /></a>
-<a href="https://github.com/puma/puma/actions?query=workflow%3Anon_MRI"><img src="https://github.com/puma/puma/workflows/non_MRI/badge.svg?branch=v5.5.0" alt="Actions non MRI" /></a>
+<p><a href="https://github.com/puma/puma/actions?query=workflow%3AMRI"><img src="https://github.com/puma/puma/workflows/MRI/badge.svg?branch=v5.5.2" alt="Actions MRI" /></a>
+<a href="https://github.com/puma/puma/actions?query=workflow%3Anon_MRI"><img src="https://github.com/puma/puma/workflows/non_MRI/badge.svg?branch=v5.5.2" alt="Actions non MRI" /></a>
 <a href="https://codeclimate.com/github/puma/puma"><img src="https://codeclimate.com/github/puma/puma.svg" alt="Code Climate" /></a>
 <a href="https://dependabot.com/compatibility-score.html?dependency-name=puma&amp;package-manager=bundler&amp;version-scheme=semver"><img src="https://api.dependabot.com/badges/compatibility_score?dependency-name=puma&amp;package-manager=bundler&amp;version-scheme=semver" alt="SemVer" /></a>
 <a href="https://stackoverflow.com/questions/tagged/puma"><img src="https://img.shields.io/badge/stackoverflow-Puma-blue.svg" alt="StackOverflow" /></a></p>
@@ -102,9 +102,9 @@ install/compile, but it will not allow ssl connections.</p>
 <p>You can then start your application using:</p>
 <pre class="code ruby"><code class="ruby">$ bundle exec puma</code></pre>
 <h2>Configuration</h2>
-<p>Puma provides numerous options. Consult <code>puma -h</code> (or <code>puma --help</code>) for a full list of CLI options, or see <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> or <a href="https://github.com/puma/puma/blob/v5.5.0/lib/puma/dsl.rb" target="_parent" title="dsl.rb">dsl.rb</a>.</p>
+<p>Puma provides numerous options. Consult <code>puma -h</code> (or <code>puma --help</code>) for a full list of CLI options, or see <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/dsl.rb" target="_parent" title="dsl.rb">dsl.rb</a>.</p>
 <p>You can also find several configuration examples as part of the
-<a href="https://github.com/puma/puma/tree/v5.5.0/test/config" target="_parent" title="test">test</a> suite.</p>
+<a href="https://github.com/puma/puma/tree/master/test/config" target="_parent" title="test">test</a> suite.</p>
 <p>For debugging purposes, you can set the environment variable <code>PUMA_LOG_CONFIG</code> with a value
 and the loaded configuration will be printed as part of the boot process.</p>
 <h3>Thread Pool</h3>
@@ -138,7 +138,7 @@ For instance, you could fire a log notification that a worker booted or send som
 <p>Preloading can’t be used with phased restart, since phased restart kills and restarts workers one-by-one, and <code>preload_app!</code> copies the code of master into the workers.</p>
 <h3>Error handling</h3>
 <p>If puma encounters an error outside of the context of your application, it will respond with a 500 and a simple
-textual error message (see <a href="Puma/Server.html#lowlevel_error-instance_method" title="Puma::Server#lowlevel_error (method)">Puma::Server#lowlevel_error</a> or <a href="https://github.com/puma/puma/blob/v5.5.0/lib/puma/server.rb" target="_parent" title="server.rb">server.rb</a>).
+textual error message (see <a href="Puma/Server.html#lowlevel_error-instance_method" title="Puma::Server#lowlevel_error (method)">Puma::Server#lowlevel_error</a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/server.rb" target="_parent" title="server.rb">server.rb</a>).
 You can specify custom behavior for this scenario. For example, you can report the error to your third-party
 error-tracking service (in this example, <a href="https://rollbar.com" target="_parent" title="rollbar">rollbar</a>):</p>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_lowlevel_error_handler'>lowlevel_error_handler</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span>
@@ -154,16 +154,28 @@ error-tracking service (in this example, <a href="https://rollbar.com" target="_
 <pre class="code ruby"><code class="ruby">$ puma -b &#39;unix:///var/run/puma.sock?umask=0111&#39;</code></pre>
 <p>Need a bit of security? Use SSL sockets:</p>
 <pre class="code ruby"><code class="ruby">$ puma -b &#39;ssl://127.0.0.1:9292?key=path_to_key&amp;cert=path_to_cert&#39;</code></pre>
-<h4>Self-signed SSL certificates (via <em>localhost</em> gem, for development use):</h4>
-<p>Puma supports <a href="https://github.com/socketry/localhost" target="_parent" title="localhost">localhost</a> gem for self-signed certificates. This is particularly useful if you want to use Puma with SSL locally, and self-signed certificates will work for your use-case. Currently, <code>localhost-authority</code> can be used only in MRI. To use <a href="https://github.com/socketry/localhost" target="_parent" title="localhost">localhost</a>, you have to <code>require &quot;localhost/authority&quot;</code>:</p>
-<pre class="code ruby"><code class="ruby"># config.ru
-require &#39;./app&#39;
-require &#39;localhost/authority&#39;
-run Sinatra::Application
+<h4>Self-signed SSL certificates (via the <a href="https://github.com/socketry/localhost"><code>localhost</code></a> gem, for development use):</h4>
+<p>Puma supports the <a href="https://github.com/socketry/localhost"><code>localhost</code></a> gem for self-signed certificates. This is particularly useful if you want to use Puma with SSL locally, and self-signed certificates will work for your use-case. Currently, the integration can only be used in MRI.</p>
+<p>Puma automatically configures SSL when the <a href="https://github.com/socketry/localhost"><code>localhost</code></a> gem is loaded in a <code>development</code> environment:</p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># Add the gem to your Gemfile
+</span><span class='id identifier rubyid_group'>group</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_development'>development</span>) <span class='kw'>do</span>
+  <span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span>
 
-#...
+<span class='comment'># And require it implicitly using bundler
+</span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bundler</span><span class='tstring_end'>&quot;</span></span>
+<span class='const'>Bundler</span>.<span class='id identifier rubyid_require'>require</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_default'>default</span><span class='comma'>,</span> <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>RACK_ENV</span><span class='tstring_end'>&quot;</span></span>].<span class='id identifier rubyid_to_sym'>to_sym</span>)
 
-$ puma -b &#39;ssl://localhost:9292&#39; config.ru</code></pre>
+<span class='comment'># Alternatively, you can require the gem in config.ru:
+</span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>./app</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_run'>run</span> <span class='const'>Sinatra</span><span class='op'>::</span><span class='const'>Application</span></code></pre>
+<p>Additionally, Puma must be listening to an SSL socket:</p>
+<pre class="code shell"><code class="shell">$ puma -b &#39;ssl://localhost:9292&#39; config.ru
+
+# The following options allow you to reach Puma over HTTP as well:
+$ puma -b ssl://localhost:9292 -b tcp://localhost:9393 config.ru
+</code></pre>
 <h4>Controlling SSL Cipher Suites</h4>
 <p>To use or avoid specific SSL cipher suites, use <code>ssl_cipher_filter</code> or <code>ssl_cipher_list</code> options.</p>
 <h5>Ruby:</h5>
@@ -183,14 +195,14 @@ $ puma -b &#39;ssl://localhost:9292&#39; config.ru</code></pre>
 <h3>Control/Status Server</h3>
 <p>Puma has a built-in status and control app that can be used to query and control Puma.</p>
 <pre class="code ruby"><code class="ruby">$ puma --control-url tcp://127.0.0.1:9293 --control-token foo</code></pre>
-<p>Puma will start the control server on localhost port 9293. All requests to the control server will need to include control token (in this case, <code>token=foo</code>) as a query parameter. This allows for simple authentication. Check out <a href="Puma/App/Status.html" title="Puma::App::Status (class)"><code>App::Status</code></a> or <a href="https://github.com/puma/puma/blob/v5.5.0/lib/puma/app/status.rb" target="_parent" title="status.rb">status.rb</a> to see what the status app has available.</p>
+<p>Puma will start the control server on localhost port 9293. All requests to the control server will need to include control token (in this case, <code>token=foo</code>) as a query parameter. This allows for simple authentication. Check out <a href="Puma/App/Status.html" title="Puma::App::Status (class)"><code>App::Status</code></a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/app/status.rb" target="_parent" title="status.rb">status.rb</a> to see what the status app has available.</p>
 <p>You can also interact with the control server via <code>pumactl</code>. This command will restart Puma:</p>
 <pre class="code ruby"><code class="ruby">$ pumactl --control-url &#39;tcp://127.0.0.1:9293&#39; --control-token foo restart</code></pre>
 <p>To see a list of <code>pumactl</code> options, use <code>pumactl --help</code>.</p>
 <h3>Configuration File</h3>
 <p>You can also provide a configuration file with the <code>-C</code> (or <code>--config</code>) flag:</p>
 <pre class="code ruby"><code class="ruby">$ puma -C /path/to/config</code></pre>
-<p>If no configuration file is specified, Puma will look for a configuration file at <code>config/puma.rb</code>. If an environment is specified, either via the <code>-e</code> and <code>--environment</code> flags, or through the <code>RACK_ENV</code> or the <code>RAILS_ENV</code> environment variables, Puma first looks for configuration at <code>config/puma/&lt;environment_name&gt;.rb</code>, and then falls back to <code>config/puma.rb</code>.</p>
+<p>If no configuration file is specified, Puma will look for a configuration file at <code>config/puma.rb</code>. If an environment is specified (via the <code>--environment</code> flag or through the <code>APP_ENV</code>, <code>RACK_ENV</code>, or <code>RAILS_ENV</code> environment variables) Puma looks for a configuration file at <code>config/puma/&lt;environment_name&gt;.rb</code> and then falls back to <code>config/puma.rb</code>.</p>
 <p>If you want to prevent Puma from looking for a configuration file in those locations, include the <code>--no-config</code> flag:</p>
 <pre class="code ruby"><code class="ruby">$ puma --no-config
 
@@ -198,7 +210,7 @@ $ puma -b &#39;ssl://localhost:9292&#39; config.ru</code></pre>
 
 $ puma -C &quot;-&quot;</code></pre>
 <p>The other side-effects of setting the environment are whether to show stack traces (in <code>development</code> or <code>test</code>), and setting RACK_ENV may potentially affect middleware looking for this value to change their behavior. The default puma RACK_ENV value is <code>development</code>. You can see all config default values in <a href="Puma/Configuration.html#puma_default_options-instance_method" title="Puma::Configuration#puma_default_options (method)">Puma::Configuration#puma_default_options</a> or <a href="https://github.com/puma/puma/blob/61c6213fbab/lib/puma/configuration.rb#L182-L204" target="_parent" title="configuration.rb">configuration.rb</a>.</p>
-<p>Check out <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> or <a href="https://github.com/puma/puma/blob/v5.5.0/lib/puma/dsl.rb" target="_parent" title="dsl.rb">dsl.rb</a> to see all available options.</p>
+<p>Check out <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/dsl.rb" target="_parent" title="dsl.rb">dsl.rb</a> to see all available options.</p>
 <h2>Restart</h2>
 <p>Puma includes the ability to restart itself. When available (MRI, Rubinius, JRuby), Puma performs a &quot;hot restart&quot;. This is the same functionality available in <em>Unicorn</em> and <em>NGINX</em> which keep the server sockets open between restarts. This makes sure that no pending requests are dropped while the restart is taking place.</p>
 <p>For more, see the <a href="file.restart.html" title="Restart documentation">Restart documentation</a>.</p>
