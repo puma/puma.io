@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Deployment &mdash; Puma-5.5.0</title>
+<title>File: Deployment &mdash; Puma-5.5.2</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.5.0</a> &raquo; 
+      <a href='.'>Puma-5.5.2</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Deployment&nbsp;&#x25B2;</a></span>
           </div>
@@ -62,27 +62,25 @@
   </header>
 <div id='content' class='file'>
 <h1>Deployment engineering for <a href="Puma.html" title="Puma (module)"><code>Puma</code></a></h1>
-<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> is software that is expected to be run in a deployed environment eventually.
-You can certainly use it as your dev server only, but most people look to use
-it in their production deployments as well.</p>
-<p>To that end, this is meant to serve as a foundation of wisdom how to do that
-in a way that increases happiness and decreases downtime.</p>
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> expects to be run in a deployed environment eventually. You can use it as
+your development server, but most people use it in their production deployments.</p>
+<p>To that end, this document serves as a foundation of wisdom regarding deploying
+<a href="Puma.html" title="Puma (module)"><code>Puma</code></a> to production while increasing happiness and decreasing downtime.</p>
 <h2>Specifying Puma</h2>
-<p>Most people want to do this by putting <code>gem &quot;puma&quot;</code> into their Gemfile, so we'll
-go ahead and assume that. Go add it now... we'll wait.</p>
-<p>Welcome back!</p>
-<h2>Single vs Cluster mode</h2>
-<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> was originally conceived as a thread-only web server, but grew the ability to
-also use processes in version 2.</p>
-<p>To run <code>puma</code> in single mode (e.g. for a development environment) you will need to
-set the number of workers to 0, anything above will run in cluster mode.</p>
-<p>Here are some rules of thumb for cluster mode:</p>
+<p>Most people will specify <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> by including <code>gem &quot;puma&quot;</code> in a Gemfile, so we'll
+assume this is how you're using <a href="Puma.html" title="Puma (module)"><code>Puma</code></a>.</p>
+<h2>Single vs. Cluster mode</h2>
+<p>Initially, <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> was conceived as a thread-only web server, but support for
+processes was added in version 2.</p>
+<p>To run <code>puma</code> in single mode (i.e., as a development environment), set the
+number of workers to 0; anything higher will run in cluster mode.</p>
+<p>Here are some tips for cluster mode:</p>
 <h3>MRI</h3>
 <ul>
-<li>Use cluster mode and set the number of workers to 1.5x the number of cpu cores
-in the machine, minimum 2.</li>
-<li>Set the number of threads to desired concurrent requests / number of workers.
-Puma defaults to 5 and that's a decent number.</li>
+<li>Use cluster mode and set the number of workers to 1.5x the number of CPU cores
+in the machine, starting from a minimum of 2.</li>
+<li>Set the number of threads to desired concurrent requests/number of workers.
+Puma defaults to 5, and that's a decent number.</li>
 </ul>
 <h4>Migrating from Unicorn</h4>
 <ul>
@@ -93,26 +91,26 @@ Puma defaults to 5 and that's a decent number.</li>
 <li>Enjoy 50% memory savings</li>
 </ul>
 </li>
-<li>As you grow more confident in the thread safety of your app, you can tune the
+<li>As you grow more confident in the thread-safety of your app, you can tune the
 workers down and the threads up.</li>
 </ul>
 <h4>Ubuntu / Systemd (Systemctl) Installation</h4>
 <p>See <a href="file.systemd.html" title="systemd.md">systemd.md</a></p>
 <h4>Worker utilization</h4>
 <p><strong>How do you know if you've got enough (or too many workers)?</strong></p>
-<p>A good question. Due to MRI's GIL, only one thread can be executing Ruby code at a time.
-But since so many apps are waiting on <a href="IO.html" title="IO (class)"><code>IO</code></a> from DBs, etc., they can utilize threads
-to make better use of the process.</p>
-<p>The rule of thumb is you never want processes that are pegged all the time. This
-means that there is more work to do than the process can get through. On the other
-hand, if you have processes that sit around doing nothing, then they're just eating
-up resources.</p>
-<p>Watch your CPU utilization over time and aim for about 70% on average. This means
-you've got capacity still but aren't starving threads.</p>
+<p>A good question. Due to MRI's GIL, only one thread can be executing Ruby code at
+a time. But since so many apps are waiting on <a href="IO.html" title="IO (class)"><code>IO</code></a> from DBs, etc., they can
+utilize threads to use the process more efficiently.</p>
+<p>Generally, you never want processes that are pegged all the time. That can mean
+there is more work to do than the process can get through. On the other hand, if
+you have processes that sit around doing nothing, then they're just eating up
+resources.</p>
+<p>Watch your CPU utilization over time and aim for about 70% on average. 70%
+utilization means you've got capacity still but aren't starving threads.</p>
 <p><strong>Measuring utilization</strong></p>
-<p>Using a timestamp header from an upstream proxy server (eg. nginx or haproxy), it's
-possible to get an indication of how long requests have been waiting for a <a href="Puma.html" title="Puma (module)"><code>Puma</code></a>
-thread to become available.</p>
+<p>Using a timestamp header from an upstream proxy server (e.g., <code>nginx</code> or
+<code>haproxy</code>) makes it possible to indicate how long requests have been waiting for
+a <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> thread to become available.</p>
 <ul>
 <li>Have your upstream proxy set a header with the time it received the request:
 <ul>
@@ -121,33 +119,36 @@ thread to become available.</p>
 <li>haproxy &lt; 1.9: <code>http-request set-header X-Request-Start t=%[date()]</code></li>
 </ul>
 </li>
-<li>In your <a href="Rack.html" title="Rack (module)"><code>Rack</code></a> middleware, determine the amount of time elapsed since <code>X-Request-Start</code>.</li>
-<li>To improve accuracy, you will want to subtract time spent waiting for slow clients:
+<li>In your <a href="Rack.html" title="Rack (module)"><code>Rack</code></a> middleware, determine the amount of time elapsed since
+<code>X-Request-Start</code>.</li>
+<li>To improve accuracy, you will want to subtract time spent waiting for slow
+clients:
 <ul>
-<li><code>env['puma.request_body_wait']</code> contains the number of milliseconds Puma spent
-waiting for the client to send the request body.</li>
-<li>haproxy: <code>%Th</code> (TLS handshake time) and <code>%Ti</code> (idle time before request) can
-can also be added as headers.</li>
+<li><code>env['puma.request_body_wait']</code> contains the number of milliseconds Puma
+spent waiting for the client to send the request body.</li>
+<li>haproxy: <code>%Th</code> (TLS handshake time) and <code>%Ti</code> (idle time before request)
+can can also be added as headers.</li>
 </ul>
 </li>
 </ul>
 <h2>Should I daemonize?</h2>
-<p>Daemonization was removed in <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 5.0. For alternatives, continue reading.</p>
-<p>I prefer to not daemonize my servers and use something like <code>runit</code> or <code>systemd</code> to
-monitor them as child processes. This gives them fast response to crashes and
+<p>The Puma 5.0 release removed daemonization. For older versions and alternatives,
+continue reading.</p>
+<p>I prefer not to daemonize my servers and use something like <code>runit</code> or <code>systemd</code>
+to monitor them as child processes. This gives them fast response to crashes and
 makes it easy to figure out what is going on. Additionally, unlike <code>unicorn</code>,
-puma does not require daemonization to do zero-downtime restarts.</p>
-<p>I see people using daemonization because they start puma directly via capistrano
-task and thus want it to live on past the <code>cap deploy</code>. To these people I say:
-You need to be using a process monitor. Nothing is making sure puma stays up in
-this scenario! You're just waiting for something weird to happen, puma to die,
-and to get paged at 3am. Do yourself a favor, at least the process monitoring
-your OS comes with, be it <code>sysvinit</code> or <code>systemd</code>. Or branch out
-and use <code>runit</code> or hell, even <code>monit</code>.</p>
+<a href="Puma.html" title="Puma (module)"><code>Puma</code></a> does not require daemonization to do zero-downtime restarts.</p>
+<p>I see people using daemonization because they start puma directly via Capistrano
+task and thus want it to live on past the <code>cap deploy</code>. To these people, I say:
+You need to be using a process monitor. Nothing is making sure <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> stays up in
+this scenario! You're just waiting for something weird to happen, <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> to die,
+and to get paged at 3 AM. Do yourself a favor, at least the process monitoring
+your OS comes with, be it <code>sysvinit</code> or <code>systemd</code>. Or branch out and use <code>runit</code>
+or hell, even <code>monit</code>.</p>
 <h2>Restarting</h2>
 <p>You probably will want to deploy some new code at some point, and you'd like
-puma to start running that new code. There are a few options for restarting
-puma, described separately in our <a href="file.restart.html" title="restart documentation">restart documentation</a>.</p>
+<a href="Puma.html" title="Puma (module)"><code>Puma</code></a> to start running that new code. There are a few options for restarting
+<a href="Puma.html" title="Puma (module)"><code>Puma</code></a>, described separately in our <a href="file.restart.html" title="restart documentation">restart documentation</a>.</p>
 
 <div id='footer'></div>
 </div> <!-- content  -->

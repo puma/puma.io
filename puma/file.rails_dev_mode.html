@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Rails Dev Mode &mdash; Puma-5.5.0</title>
+<title>File: Rails Dev Mode &mdash; Puma-5.5.2</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.5.0</a> &raquo; 
+      <a href='.'>Puma-5.5.2</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Rails Dev Mode&nbsp;&#x25B2;</a></span>
           </div>
@@ -63,11 +63,11 @@
 <div id='content' class='file'>
 <h1>Running Puma in Rails Development Mode</h1>
 <h2>&quot;Loopback requests&quot;</h2>
-<p>Be cautious of &quot;loopback requests&quot;, where a Rails application executes a request to a server that in turn, results in another request back to the same Rails application before the first request is completed. Having a loopback request will trigger <a href="https://guides.rubyonrails.org/threading_and_code_execution.html#load-interlock" target="_parent" title="Rails&#39; load interlock">Rails' load interlock</a> mechanism. The load interlock mechanism prevents a thread from using Rails autoloading mechanism to load constants while the application code is still running inside another thread.</p>
+<p>Be cautious of &quot;loopback requests,&quot; where a Rails application executes a request to a server that, in turn, results in another request back to the same Rails application before the first request completes. Having a loopback request will trigger <a href="https://guides.rubyonrails.org/threading_and_code_execution.html#load-interlock" target="_parent" title="Rails&#39; load interlock">Rails' load interlock</a> mechanism. The load interlock mechanism prevents a thread from using Rails autoloading mechanism to load constants while the application code is still running inside another thread.</p>
 <p>This issue only occurs in the development environment as Rails' load interlock is not used in production environments. Although we're not sure, we believe this issue may not occur with the new <code>zeitwerk</code> code loader.</p>
 <h3>Solutions</h3>
 <h4>1. Bypass Rails' load interlock with <code>.permit_concurrent_loads</code></h4>
-<p>Wrap the first request inside a block that will allow concurrent loads, <a href="https://guides.rubyonrails.org/threading_and_code_execution.html#permit-concurrent-loads" target="_parent" title="ActiveSupport::Dependencies.interlock.permit_concurrent_loads">ActiveSupport::Dependencies.interlock.permit_concurrent_loads</a>. Anything wrapped inside the <code>.permit_concurrent_loads</code> block will bypass the load interlock mechanism, allowing new threads to access the Rails environment and boot properly.</p>
+<p>Wrap the first request inside a block that will allow concurrent loads: <a href="https://guides.rubyonrails.org/threading_and_code_execution.html#permit-concurrent-loads" target="_parent" title="ActiveSupport::Dependencies.interlock.permit_concurrent_loads">ActiveSupport::Dependencies.interlock.permit_concurrent_loads</a>. Anything wrapped inside the <code>.permit_concurrent_loads</code> block will bypass the load interlock mechanism, allowing new threads to access the Rails environment and boot properly.</p>
 <h6>Example</h6>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>ActiveSupport</span><span class='op'>::</span><span class='const'>Dependencies</span>.<span class='id identifier rubyid_interlock'>interlock</span>.<span class='id identifier rubyid_permit_concurrent_loads'>permit_concurrent_loads</span> <span class='kw'>do</span>
   <span class='comment'># Your HTTP request code here. For example:
