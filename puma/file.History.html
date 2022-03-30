@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: History &mdash; Puma-5.5.2</title>
+<title>File: History &mdash; Puma-5.6.4</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.5.2</a> &raquo; 
+      <a href='.'>Puma-5.6.4</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: History&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,6 +61,63 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
+<h2>5.6.4 / 2022-03-30</h2>
+<ul>
+<li>Security
+<ul>
+<li>Close several HTTP Request Smuggling exploits (CVE-2022-24790)</li>
+</ul>
+</li>
+</ul>
+<h2>5.6.2 / 2022-02-11</h2>
+<ul>
+<li>Bugfix/Security
+<ul>
+<li>Response body will always be <code>close</code>d. (GHSA-rmj8-8hhh-gv5h, related to <a href="https://github.com/puma/puma/pull/2809" title="PR by @dentarg, merged 2022-01-26">#2809</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>5.6.1 / 2022-01-26</h2>
+<ul>
+<li>Bugfixes
+<ul>
+<li>Reverted a commit which appeared to be causing occasional blank header values (<a href="https://github.com/puma/puma/pull/2809" title="PR by @dentarg, merged 2022-01-26">#2809</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>5.6.0 / 2022-01-25</h2>
+<ul>
+<li>
+<p>Features</p>
+<ul>
+<li>Support <code>localhost</code> integration in <code>ssl_bind</code> (<a href="https://github.com/puma/puma/pull/2764" title="PR by @dentarg, merged 2022-01-18">#2764</a>, <a href="https://github.com/puma/puma/issues/2708" title="Issue by @erikaxel, closed 2022-01-18">#2708</a>)</li>
+<li>Allow backlog parameter to be set with ssl_bind DSL (<a href="https://github.com/puma/puma/pull/2780" title="PR by @dalibor, merged 2022-01-01">#2780</a>)</li>
+<li>Remove yaml (psych) requirement in StateFile (<a href="https://github.com/puma/puma/pull/2784" title="PR by @MSP-Greg, merged 2022-01-01">#2784</a>)</li>
+<li>Allow culling of oldest workers, previously was only youngest (<a href="https://github.com/puma/puma/pull/2773" title="PR by @ob-stripe, merged 2022-01-01">#2773</a>, <a href="https://github.com/puma/puma/pull/2794" title="PR by @johnnyshields, merged 2022-01-10">#2794</a>)</li>
+<li>Add worker_check_interval configuration option (<a href="https://github.com/puma/puma/pull/2759" title="PR by @ob-stripe, merged 2021-12-11">#2759</a>)</li>
+<li>Always send lowlevel_error response to client (<a href="https://github.com/puma/puma/pull/2731" title="PR by @baelter, merged 2021-11-02">#2731</a>, <a href="https://github.com/puma/puma/issues/2341" title="Issue by @cjlarose, closed 2021-11-02">#2341</a>)</li>
+<li>Support for cert_pem and key_pem with ssl_bind DSL (<a href="https://github.com/puma/puma/pull/2728" title="PR by @dalibor, merged 2021-10-31">#2728</a>)</li>
+</ul>
+</li>
+<li>
+<p>Bugfixes</p>
+<ul>
+<li>Keep thread names under 15 characters, prevents breakage on some OSes (<a href="https://github.com/puma/puma/pull/2733" title="PR by @ob-stripe, merged 2021-12-12">#2733</a>)</li>
+<li>Fix two 'old-style-definition' compile warning (<a href="https://github.com/puma/puma/pull/2807" title="PR by @MSP-Greg, merged 2022-01-25">#2807</a>, <a href="https://github.com/puma/puma/issues/2806" title="Issue by @olleolleolle, closed 2022-01-25">#2806</a>)</li>
+<li>Log environment correctly using option value (<a href="https://github.com/puma/puma/pull/2799" title="PR by @ags, merged 2022-01-22">#2799</a>)</li>
+<li>Fix warning from Ruby master (will be 3.2.0) (<a href="https://github.com/puma/puma/pull/2785" title="PR by @MSP-Greg, merged 2022-01-02">#2785</a>)</li>
+<li>extconf.rb - fix openssl with old Windows builds (<a href="https://github.com/puma/puma/pull/2757" title="PR by @MSP-Greg, merged 2021-11-24">#2757</a>)</li>
+<li>server.rb - rescue handling (<code>Errno::EBADF</code>) for <code>@notify.close</code> (<a href="https://github.com/puma/puma/pull/2745" title="PR by @MSP-Greg, merged 2021-11-03">#2745</a>)</li>
+</ul>
+</li>
+<li>
+<p>Refactor</p>
+<ul>
+<li>server.rb - refactor code using @options[:remote_address] (<a href="https://github.com/puma/puma/pull/2742" title="PR by @MSP-Greg, merged 2021-12-12">#2742</a>)</li>
+<li>[jruby] a couple refactorings - avoid copy-ing bytes (<a href="https://github.com/puma/puma/pull/2730" title="PR by @kares, merged 2021-11-01">#2730</a>)</li>
+</ul>
+</li>
+</ul>
 <h2>5.5.2 / 2021-10-12</h2>
 <ul>
 <li>Bugfixes
@@ -71,7 +128,14 @@
 </ul>
 <h2>5.5.1 / 2021-10-12</h2>
 <ul>
-<li>Security
+<li>
+<p>Feature (added as mistake - we don't normally do this on bugfix releases, sorry!)</p>
+<ul>
+<li>Allow setting APP_ENV in preference to RACK_ENV or RAILS_ENV (<a href="https://github.com/puma/puma/pull/2702" title="PR by @jacobherrington, merged 2021-09-21">#2702</a>)</li>
+</ul>
+</li>
+<li>
+<p>Security</p>
 <ul>
 <li>Do not allow LF as a line ending in a header (CVE-2021-41136)</li>
 </ul>
@@ -425,6 +489,14 @@
 <li>JSON parse cluster worker stats instead of regex (<a href="https://github.com/puma/puma/pull/2124" title="PR by @wjordan, merged 2020-04-14">#2124</a>)</li>
 <li>Support parallel tests in verbose progress reporting (<a href="https://github.com/puma/puma/pull/2223" title="PR by @wjordan, merged 2020-04-20">#2223</a>)</li>
 <li>Refactor error handling in server accept loop (<a href="https://github.com/puma/puma/pull/2239" title="PR by @wjordan, merged 2020-05-15">#2239</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>4.3.10 / 2021-10-12</h2>
+<ul>
+<li>Bugfixes
+<ul>
+<li>Allow UTF-8 in HTTP header values</li>
 </ul>
 </li>
 </ul>

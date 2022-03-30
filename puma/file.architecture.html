@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Architecture &mdash; Puma-5.5.2</title>
+<title>File: Architecture &mdash; Puma-5.6.4</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.5.2</a> &raquo; 
+      <a href='.'>Puma-5.6.4</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Architecture&nbsp;&#x25B2;</a></span>
           </div>
@@ -86,10 +86,10 @@ or boot <code>child</code> processes.</p>
 <ul>
 <li>Upon startup, <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> listens on a TCP or UNIX socket.
 <ul>
-<li>The backlog of this socket is configured (with a default of 1024). The
-backlog determines the size of the queue for unaccepted connections.
-Generally, you'll never hit the backlog cap in production. If the backlog is
-full, the operating system refuses new connections.</li>
+<li>The backlog of this socket is configured with a default of 1024, but the
+actual backlog value is capped by the <code>net.core.somaxconn</code> sysctl value.
+The backlog determines the size of the queue for unaccepted connections. If
+the backlog is full, the operating system is not accepting new connections.</li>
 <li>This socket backlog is distinct from the <code>backlog</code> of work as reported by
 <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> or the control server. The backlog that <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> refers to
 represents the number of connections in the process' <code>todo</code> set waiting for
