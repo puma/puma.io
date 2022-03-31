@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::MiniSSL::Engine &mdash; Puma-4.3.10</title>
+<title>Class: Puma::MiniSSL::Engine &mdash; Puma-4.3.12</title>
 
 <link rel='stylesheet'  type='text/css' href='../../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../../'>Puma-4.3.10</a> &raquo; 
+      <a href='../../'>Puma-4.3.12</a> &raquo; 
       <a href='../../_index.html#alpha_E'>Index (E)</a> &raquo; 
         <a href="../../Puma.html" title="Puma (module)">Puma</a> &raquo; 
         <a href="../MiniSSL.html" title="Puma::MiniSSL (module)">MiniSSL</a> &raquo; 
@@ -78,7 +78,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.10/ext/puma_http11/mini_ssl.c#L483'>ext/puma_http11/mini_ssl.c</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v4.3.12/ext/puma_http11/mini_ssl.c#L518'>ext/puma_http11/mini_ssl.c</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -151,11 +151,11 @@
   <h3 class='signature  first'>
     .<strong>client</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.10/ext/puma_http11/mini_ssl.c#L262-L278'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.12/ext/puma_http11/mini_ssl.c#L297-L313'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='262' data-end='278'></pre>
+  <pre class='lines_num' data-start='297' data-end='313'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 262</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 297</span></pre>
 <pre class='code cpp'>
 
 VALUE engine_init_client(VALUE klass) {
@@ -184,15 +184,15 @@ VALUE engine_init_client(VALUE klass) {
   <h3 class='signature '>
     .<strong>server</strong>(mini_ssl_ctx)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.10/ext/puma_http11/mini_ssl.c#L141-L260'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.12/ext/puma_http11/mini_ssl.c#L162-L295'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='141' data-end='260'></pre>
+  <pre class='lines_num' data-start='162' data-end='295'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 141</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 162</span></pre>
 <pre class='code cpp'>
 
 VALUE engine_init_server(VALUE self, VALUE mini_ssl_ctx) {
-  VALUE obj;
+  VALUE obj, session_id_bytes;
   SSL_CTX* ctx;
   SSL* ssl;
   int min, ssl_options;
@@ -251,7 +251,7 @@ VALUE engine_init_server(VALUE self, VALUE mini_ssl_ctx) {
   else {
     min = TLS1_VERSION;
   }
-  
+
   SSL_CTX_set_min_proto_version(ctx, min);
 
   SSL_CTX_set_options(ctx, ssl_options);
@@ -279,7 +279,21 @@ VALUE engine_init_server(VALUE self, VALUE mini_ssl_ctx) {
     SSL_CTX_set_cipher_list(ctx, &quot;HIGH:!aNULL@STRENGTH&quot;);
   }
 
-  DH *dh = get_dh1024();
+  // Random.bytes available in Ruby 2.5 and later, Random::DEFAULT deprecated in 3.0
+  session_id_bytes = rb_funcall(
+#ifdef HAVE_RANDOM_BYTES
+    rb_cRandom,
+#else
+    rb_const_get(rb_cRandom, rb_intern_const(&quot;DEFAULT&quot;)),
+#endif
+    rb_intern_const(&quot;bytes&quot;),
+    1, ULL2NUM(SSL_MAX_SSL_SESSION_ID_LENGTH));
+
+  SSL_CTX_set_session_id_context(ctx,
+                                 (unsigned char *) RSTRING_PTR(session_id_bytes),
+                                 SSL_MAX_SSL_SESSION_ID_LENGTH);
+
+  DH *dh = get_dh2048();
   SSL_CTX_set_tmp_dh(ctx, dh);
 
 #if OPENSSL_VERSION_NUMBER &lt; 0x10002000L
@@ -321,11 +335,11 @@ VALUE engine_init_server(VALUE self, VALUE mini_ssl_ctx) {
   <h3 class='signature ro first'>
     #<strong>init?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.10/ext/puma_http11/mini_ssl.c#L418-L424'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.12/ext/puma_http11/mini_ssl.c#L453-L459'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='418' data-end='424'></pre>
+  <pre class='lines_num' data-start='453' data-end='459'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 418</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 453</span></pre>
 <pre class='code cpp'>
 
 VALUE engine_init(VALUE self) {
@@ -345,11 +359,11 @@ VALUE engine_init(VALUE self) {
   <h3 class='signature  first'>
     #<strong>extract</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.10/ext/puma_http11/mini_ssl.c#L381-L400'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.12/ext/puma_http11/mini_ssl.c#L416-L435'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='381' data-end='400'></pre>
+  <pre class='lines_num' data-start='416' data-end='435'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 381</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 416</span></pre>
 <pre class='code cpp'>
 
 VALUE engine_extract(VALUE self) {
@@ -381,11 +395,11 @@ VALUE engine_extract(VALUE self) {
   <h3 class='signature '>
     #<strong>inject</strong>(str)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.10/ext/puma_http11/mini_ssl.c#L280-L295'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.12/ext/puma_http11/mini_ssl.c#L315-L330'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='280' data-end='295'></pre>
+  <pre class='lines_num' data-start='315' data-end='330'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 280</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 315</span></pre>
 <pre class='code cpp'>
 
 VALUE engine_inject(VALUE self, VALUE str) {
@@ -413,11 +427,11 @@ VALUE engine_inject(VALUE self, VALUE str) {
   <h3 class='signature '>
     #<strong>peercert</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.10/ext/puma_http11/mini_ssl.c#L426-L463'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.12/ext/puma_http11/mini_ssl.c#L461-L498'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='426' data-end='463'></pre>
+  <pre class='lines_num' data-start='461' data-end='498'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 426</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 461</span></pre>
 <pre class='code cpp'>
 
 VALUE engine_peercert(VALUE self) {
@@ -467,11 +481,11 @@ VALUE engine_peercert(VALUE self) {
   <h3 class='signature '>
     #<strong>read</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.10/ext/puma_http11/mini_ssl.c#L331-L357'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.12/ext/puma_http11/mini_ssl.c#L366-L392'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='331' data-end='357'></pre>
+  <pre class='lines_num' data-start='366' data-end='392'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 331</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 366</span></pre>
 <pre class='code cpp'>
 
 VALUE engine_read(VALUE self) {
@@ -510,11 +524,11 @@ VALUE engine_read(VALUE self) {
   <h3 class='signature '>
     #<strong>shutdown</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.10/ext/puma_http11/mini_ssl.c#L402-L416'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.12/ext/puma_http11/mini_ssl.c#L437-L451'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='402' data-end='416'></pre>
+  <pre class='lines_num' data-start='437' data-end='451'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 402</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 437</span></pre>
 <pre class='code cpp'>
 
 VALUE engine_shutdown(VALUE self) {
@@ -541,11 +555,11 @@ VALUE engine_shutdown(VALUE self) {
   <h3 class='signature '>
     #<strong>write</strong>(str)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.10/ext/puma_http11/mini_ssl.c#L359-L379'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v4.3.12/ext/puma_http11/mini_ssl.c#L394-L414'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='359' data-end='379'></pre>
+  <pre class='lines_num' data-start='394' data-end='414'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 359</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 394</span></pre>
 <pre class='code cpp'>
 
 VALUE engine_write(VALUE self, VALUE str) {

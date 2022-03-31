@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: README &mdash; Puma-5.5.2</title>
+<title>File: README &mdash; Puma-5.6.4</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.5.2</a> &raquo; 
+      <a href='.'>Puma-5.6.4</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: README&nbsp;&#x25B2;</a></span>
           </div>
@@ -65,8 +65,8 @@
   <img src="https://puma.io/images/logos/puma-logo-large.png">
 </p>
 <h1>Puma: A Ruby Web Server Built For Parallelism</h1>
-<p><a href="https://github.com/puma/puma/actions?query=workflow%3AMRI"><img src="https://github.com/puma/puma/workflows/MRI/badge.svg?branch=v5.5.2" alt="Actions MRI" /></a>
-<a href="https://github.com/puma/puma/actions?query=workflow%3Anon_MRI"><img src="https://github.com/puma/puma/workflows/non_MRI/badge.svg?branch=v5.5.2" alt="Actions non MRI" /></a>
+<p><a href="https://github.com/puma/puma/actions?query=workflow%3AMRI"><img src="https://github.com/puma/puma/workflows/MRI/badge.svg?branch=master" alt="Actions MRI" /></a>
+<a href="https://github.com/puma/puma/actions?query=workflow%3Anon_MRI"><img src="https://github.com/puma/puma/workflows/non_MRI/badge.svg?branch=master" alt="Actions non MRI" /></a>
 <a href="https://codeclimate.com/github/puma/puma"><img src="https://codeclimate.com/github/puma/puma.svg" alt="Code Climate" /></a>
 <a href="https://dependabot.com/compatibility-score.html?dependency-name=puma&amp;package-manager=bundler&amp;version-scheme=semver"><img src="https://api.dependabot.com/badges/compatibility_score?dependency-name=puma&amp;package-manager=bundler&amp;version-scheme=semver" alt="SemVer" /></a>
 <a href="https://stackoverflow.com/questions/tagged/puma"><img src="https://img.shields.io/badge/stackoverflow-Puma-blue.svg" alt="StackOverflow" /></a></p>
@@ -130,6 +130,10 @@ and the loaded configuration will be printed as part of the boot process.</p>
 <p>This code can be used to setup the process before booting the application, allowing
 you to do some Puma-specific things that you don't want to embed in your application.
 For instance, you could fire a log notification that a worker booted or send something to statsd. This can be called multiple times.</p>
+<p>Constants loaded by your application (such as <code>Rails</code>) will not be available in <code>on_worker_boot</code>.
+However, these constants <em>will</em> be available if <code>preload_app!</code> is enabled, either explicitly in your <code>puma</code> config or automatically if
+using 2 or more workers in cluster mode.
+If <code>preload_app!</code> is not enabled and 1 worker is used, then <code>on_worker_boot</code> will fire, but your app will not be preloaded and constants will not be available.</p>
 <p><code>before_fork</code> specifies a block to be run before workers are forked:</p>
 <pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
 </span><span class='id identifier rubyid_before_fork'>before_fork</span> <span class='kw'>do</span>
