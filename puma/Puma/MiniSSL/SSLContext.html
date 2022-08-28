@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::MiniSSL::SSLContext &mdash; Puma-5.6.4</title>
+<title>Class: Puma::MiniSSL::SSLContext &mdash; Puma-5.6.5</title>
 
 <link rel='stylesheet'  type='text/css' href='../../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../../'>Puma-5.6.4</a> &raquo; 
+      <a href='../../'>Puma-5.6.5</a> &raquo; 
       <a href='../../_index.html#alpha_S'>Index (S)</a> &raquo; 
         <a href="../../Puma.html" title="Puma (module)">Puma</a> &raquo; 
         <a href="../MiniSSL.html" title="Puma::MiniSSL (module)">MiniSSL</a> &raquo; 
@@ -78,7 +78,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.6.4/ext/puma_http11/mini_ssl.c#L629'>ext/puma_http11/mini_ssl.c</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/ext/puma_http11/mini_ssl.c#L647'>ext/puma_http11/mini_ssl.c</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -100,11 +100,11 @@
   <h3 class='signature  first'>
     .<strong>new</strong>(mini_ssl_ctx)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.4/ext/puma_http11/mini_ssl.c#L204-L368'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/ext/puma_http11/mini_ssl.c#L210-L386'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='204' data-end='368'></pre>
+  <pre class='lines_num' data-start='210' data-end='386'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 204</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 210</span></pre>
 <pre class='code cpp'>
 
 VALUE
@@ -117,7 +117,7 @@ sslctx_initialize(VALUE self, VALUE mini_ssl_ctx) {
   int ssl_options;
   VALUE key, cert, ca, verify_mode, ssl_cipher_filter, no_tlsv1, no_tlsv1_1,
     verification_flags, session_id_bytes, cert_pem, key_pem;
-#ifndef HAVE_SSL_GET1_PEER_CERTIFICATE
+#ifndef HAVE_SSL_CTX_SET_DH_AUTO
   DH *dh;
 #endif
   BIO *bio;
@@ -150,12 +150,18 @@ sslctx_initialize(VALUE self, VALUE mini_ssl_ctx) {
 
   if (!NIL_P(cert)) {
     StringValue(cert);
-    SSL_CTX_use_certificate_chain_file(ctx, RSTRING_PTR(cert));
+
+    if (SSL_CTX_use_certificate_chain_file(ctx, RSTRING_PTR(cert)) != 1) {
+      raise_file_error(&quot;SSL_CTX_use_certificate_chain_file&quot;, RSTRING_PTR(cert));
+    }
   }
 
   if (!NIL_P(key)) {
     StringValue(key);
-    SSL_CTX_use_PrivateKey_file(ctx, RSTRING_PTR(key), SSL_FILETYPE_PEM);
+
+    if (SSL_CTX_use_PrivateKey_file(ctx, RSTRING_PTR(key), SSL_FILETYPE_PEM) != 1) {
+      raise_file_error(&quot;SSL_CTX_use_PrivateKey_file&quot;, RSTRING_PTR(key));
+    }
   }
 
   if (!NIL_P(cert_pem)) {
@@ -163,7 +169,9 @@ sslctx_initialize(VALUE self, VALUE mini_ssl_ctx) {
     BIO_puts(bio, RSTRING_PTR(cert_pem));
     x509 = PEM_read_bio_X509(bio, NULL, NULL, NULL);
 
-    SSL_CTX_use_certificate(ctx, x509);
+    if (SSL_CTX_use_certificate(ctx, x509) != 1) {
+      raise_file_error(&quot;SSL_CTX_use_certificate&quot;, RSTRING_PTR(cert_pem));
+    }
   }
 
   if (!NIL_P(key_pem)) {
@@ -171,7 +179,9 @@ sslctx_initialize(VALUE self, VALUE mini_ssl_ctx) {
     BIO_puts(bio, RSTRING_PTR(key_pem));
     pkey = PEM_read_bio_PrivateKey(bio, NULL, NULL, NULL);
 
-    SSL_CTX_use_PrivateKey(ctx, pkey);
+    if (SSL_CTX_use_PrivateKey(ctx, pkey) != 1) {
+      raise_file_error(&quot;SSL_CTX_use_PrivateKey&quot;, RSTRING_PTR(key_pem));
+    }
   }
 
   verification_flags = rb_funcall(mini_ssl_ctx, rb_intern_const(&quot;verification_flags&quot;), 0);
@@ -184,7 +194,9 @@ sslctx_initialize(VALUE self, VALUE mini_ssl_ctx) {
 
   if (!NIL_P(ca)) {
     StringValue(ca);
-    SSL_CTX_load_verify_locations(ctx, RSTRING_PTR(ca), NULL);
+    if (SSL_CTX_load_verify_locations(ctx, RSTRING_PTR(ca), NULL) != 1) {
+      raise_file_error(&quot;SSL_CTX_load_verify_locations&quot;, RSTRING_PTR(ca));
+    }
   }
 
   ssl_options = SSL_OP_CIPHER_SERVER_PREFERENCE | SSL_OP_SINGLE_ECDH_USE | SSL_OP_NO_COMPRESSION;
@@ -261,7 +273,7 @@ sslctx_initialize(VALUE self, VALUE mini_ssl_ctx) {
 
   // printf(&quot;\ninitialize end security_level %d\n&quot;, SSL_CTX_get_security_level(ctx));
 
-#ifdef HAVE_SSL_GET1_PEER_CERTIFICATE
+#ifdef HAVE_SSL_CTX_SET_DH_AUTO
   // https://www.openssl.org/docs/man3.0/man3/SSL_CTX_set_dh_auto.html
   SSL_CTX_set_dh_auto(ctx, 1);
 #else

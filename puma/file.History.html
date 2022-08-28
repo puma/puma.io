@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: History &mdash; Puma-5.6.4</title>
+<title>File: History &mdash; Puma-5.6.5</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.6.4</a> &raquo; 
+      <a href='.'>Puma-5.6.5</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: History&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,6 +61,25 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
+<h2>5.6.5 / 2022-08-23</h2>
+<ul>
+<li>Bugfixes
+<ul>
+<li>NullIO#closed should return false (<a href="https://github.com/puma/puma/pull/2883" title="PR by @MSP-Greg, merged 2022-06-02">#2883</a>)</li>
+<li>Puma::ControlCLI - allow refork command to be sent as a request (<a href="https://github.com/puma/puma/pull/2868" title="PR by @MSP-Greg, merged 2022-06-02">#2868</a>, <a href="https://github.com/puma/puma/issues/2866" title="Issue by @slondr, closed 2022-06-02">#2866</a>)</li>
+<li>[jruby] Fix TLS verification hang (<a href="https://github.com/puma/puma/pull/2890" title="PR by @kares, merged 2022-06-01">#2890</a>, <a href="https://github.com/puma/puma/issues/2729" title="Issue by @kares, closed 2022-06-01">#2729</a>)</li>
+<li>extconf.rb - don't use pkg_config('openssl') if '--with-openssl-dir' is used (<a href="https://github.com/puma/puma/pull/2885" title="PR by @MSP-Greg, merged 2022-05-30">#2885</a>, <a href="https://github.com/puma/puma/issues/2839" title="Issue by @wlipa, closed 2022-05-30">#2839</a>)</li>
+<li>MiniSSL - detect SSL_CTX_set_dh_auto (<a href="https://github.com/puma/puma/pull/2864" title="PR by @MSP-Greg, merged 2022-04-26">#2864</a>, <a href="https://github.com/puma/puma/issues/2863" title="Issue by @eradman, closed 2022-04-26">#2863</a>)</li>
+<li>Fix rack.after_reply exceptions breaking connections (<a href="https://github.com/puma/puma/pull/2861" title="PR by @BlakeWilliams, merged 2022-04-17">#2861</a>, <a href="https://github.com/puma/puma/issues/2856" title="Issue by @nateberkopec, closed 2022-04-17">#2856</a>)</li>
+<li>Escape SSL cert and filenames (<a href="https://github.com/puma/puma/pull/2855" title="PR by @stanhu, merged 2022-04-09">#2855</a>)</li>
+<li>Fail hard if SSL certs or keys are invalid (<a href="https://github.com/puma/puma/pull/2848" title="PR by @stanhu, merged 2022-04-02">#2848</a>)</li>
+<li>Fail hard if SSL certs or keys cannot be read by user (<a href="https://github.com/puma/puma/pull/2847" title="PR by @stanhu, merged 2022-04-02">#2847</a>)</li>
+<li>Fix build with Opaque DH in LibreSSL 3.5. (<a href="https://github.com/puma/puma/pull/2838" title="PR by @epsilon-0, merged 2022-03-03">#2838</a>)</li>
+<li>Pre-existing socket file removed when TERM is issued after USR2 (if puma is running in cluster mode) (<a href="https://github.com/puma/puma/pull/2817" title="PR by @khustochka, merged 2022-02-20">#2817</a>)</li>
+<li>Fix Puma::StateFile#load incompatibility (<a href="https://github.com/puma/puma/pull/2810" title="PR by @kzkn, merged 2022-01-27">#2810</a>)</li>
+</ul>
+</li>
+</ul>
 <h2>5.6.4 / 2022-03-30</h2>
 <ul>
 <li>Security
@@ -279,7 +298,7 @@
 <li>10x latency improvement for MRI on ssl connections by reducing overhead (<a href="https://github.com/puma/puma/pull/2519" title="PR by @MSP-Greg, merged 2021-01-26">#2519</a>)</li>
 <li>Add option to specify the desired IO selector backend for libev (<a href="https://github.com/puma/puma/pull/2522" title="PR by @jcmfernandes, merged 2021-01-12">#2522</a>)</li>
 <li>Add ability to set OpenSSL verification flags (MRI only) (<a href="https://github.com/puma/puma/pull/2490" title="PR by @Bonias, merged 2020-12-07">#2490</a>)</li>
-<li>Uses <code>flush</code> after writing messages to avoid mutating $stdout and $stderr using <code>sync=true</code> (<a href="https://github.com/puma/puma/pull/2486" title="PR by @ccverak, merged 2020-12-02">#2486</a>)</li>
+<li>Uses <code>flush</code> after writing messages to avoid mutating $stdout and $stderr using <code>sync=true</code> (<a href="https://github.com/puma/puma/pull/2486" title="PR by @karloscodes, merged 2020-12-02">#2486</a>)</li>
 </ul>
 </li>
 <li>
@@ -317,7 +336,7 @@
 <p>Features</p>
 <ul>
 <li>Phased restart availability is now always logged, even if it is not available.</li>
-<li>Prints the loaded configuration if the environment variable <code>PUMA_LOG_CONFIG</code> is present (<a href="https://github.com/puma/puma/pull/2472" title="PR by @ccverak, merged 2020-11-02">#2472</a>)</li>
+<li>Prints the loaded configuration if the environment variable <code>PUMA_LOG_CONFIG</code> is present (<a href="https://github.com/puma/puma/pull/2472" title="PR by @karloscodes, merged 2020-11-02">#2472</a>)</li>
 <li>Integrate with systemd's watchdog and notification features (<a href="https://github.com/puma/puma/pull/2438" title="PR by @ekohl, merged 2020-10-26">#2438</a>)</li>
 <li>Adds max_fast_inline as a configuration option for the Server object (<a href="https://github.com/puma/puma/pull/2406" title="PR by @fdel15, merged 2020-10-19">#2406</a>)</li>
 <li>You can now fork workers from worker 0 using SIGURG w/o fork_worker enabled <a href="https://github.com/puma/puma/pull/2449" title="PR by @MSP-Greg, merged 2020-10-28">#2449</a></li>
@@ -1706,7 +1725,7 @@ the config file later (if set).</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/709" title="PR by @lian, merged 2015-06-10">#709</a> from lian/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/711" title="PR by @julik, merged 2015-06-10">#711</a> from julik/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/712" title="PR by @chewi, merged 2015-07-14">#712</a> from yakara-ltd/pumactl-default-config</li>
-<li>Merge pull request <a href="https://github.com/puma/puma/pull/715" title="PR by @0RaymondJiang0, merged 2015-07-14">#715</a> from RobotJiang/master</li>
+<li>Merge pull request <a href="https://github.com/puma/puma/pull/715" title="PR by @raymondmars, merged 2015-07-14">#715</a> from RobotJiang/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/725" title="PR by @rwz, merged 2015-07-14">#725</a> from rwz/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/726" title="PR by @jshafton, merged 2015-07-14">#726</a> from strenuus/handle-client-disconnect</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/729" title="PR by @allaire, merged 2015-07-14">#729</a> from allaire/patch-1</li>
