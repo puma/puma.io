@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Module: Puma::Util &mdash; Puma-5.6.5</title>
+
+<link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::Util",
+    relpath = '../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../'>Puma-5.6.5</a> &raquo; 
+      <a href='../_index.html#alpha_U'>Index (U)</a> &raquo; 
+        <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>Util&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='module'>
+<h1>Module: Puma::Util</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='box_h' colspan='2'>Namespace Children</td></tr>
+    <tr><td colspan='2'>
+      <div class='box_1'>Classes:</div>
+      <div class='box_11'>
+          <a href="Util/HeaderHash.html" title="Puma::Util::HeaderHash (class)"><code>HeaderHash</code></a>      </div>
+    </td></tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/util.rb#L6'>lib/puma/util.rb</a>      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
+<div>
+<ul class='constants summary full'>
+  <li>
+    <span id='DEFAULT_SEP-constant' class='summary_signature'>DEFAULT_SEP =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/util.rb#L53-L53'># File 'lib/puma/util.rb', line 53</a>    <pre class='code ruby'><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[&amp;;] *</span><span class='regexp_end'>/n</span></span></pre>
+  </li>
+</ul>
+</div>
+
+<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#escape-class_method" title=".escape (class method)">.<strong>escape</strong>(s, encoding = nil)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#nakayoshi_gc-class_method" title=".nakayoshi_gc (class method)">.<strong>nakayoshi_gc</strong>(events)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#parse_query-class_method" title=".parse_query (class method)">.<strong>parse_query</strong>(qs, d = nil, &amp;unescaper)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Stolen from Mongrel, with some small modifications: Parses a query string by breaking it up at the ‘&amp;’ and ‘;’ characters.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#pipe-class_method" title=".pipe (class method)">.<strong>pipe</strong>  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#purge_interrupt_queue-class_method" title=".purge_interrupt_queue (class method)">.<strong>purge_interrupt_queue</strong>  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+    <div class='summary_desc'>
+      <div class='inline'><p>An instance method on Thread has been provided to address <a href="https://bugs.ruby-lang.org/issues/13632">bugs.ruby-lang.org/issues/13632</a>, which currently effects some older versions of Ruby: 2.2.7 2.2.8 2.2.9 2.2.10 2.3.4 2.4.1 Additional context: <a href="https://github.com/puma/puma/pull/1345">github.com/puma/puma/pull/1345</a>.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature mf'>
+      <a href="#unescape-class_method" title=".unescape (class method)">.<strong>unescape</strong>(s, encoding = nil)  </a>
+    </span>
+    <span class='mod_func note title'>mod_func</span>
+  </li>
+</ul>
+</div>  <!-- class_method_summary -->
+<h2 class='y_details'>Class Method Details</h2>
+<section class='method_details first' id="escape-class_method">
+  <h3 class='signature private first'>
+    .<strong>escape</strong>(s, encoding = nil)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/util.rb#L32-L34'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='32' data-end='34'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 32</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_escape'>escape</span>(<span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_encoding'>encoding</span> <span class='op'>=</span> <span class='const'>Encoding</span><span class='op'>::</span><span class='const'>UTF_8</span>)
+  <span class='const'>URI</span>.<span class='id identifier rubyid_encode_www_form_component'>encode_www_form_component</span>(<span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_encoding'>encoding</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="nakayoshi_gc-class_method">
+  <h3 class='signature private'>
+    .<strong>nakayoshi_gc</strong>(events)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/util.rb#L43-L51'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='43' data-end='51'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 43</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_nakayoshi_gc'>nakayoshi_gc</span>(<span class='id identifier rubyid_events'>events</span>)
+  <span class='id identifier rubyid_events'>events</span>.<span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Promoting existing objects to old generation...</span><span class='tstring_end'>&quot;</span></span>
+  <span class='int'>4</span>.<span class='id identifier rubyid_times'>times</span> { <span class='const'>GC</span>.<span class='id identifier rubyid_start'>start</span>(<span class='label'>full_mark:</span> <span class='kw'>false</span>) }
+  <span class='kw'>if</span> <span class='const'>GC</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_compact'>compact</span>)
+    <span class='id identifier rubyid_events'>events</span>.<span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Compacting...</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>GC</span>.<span class='id identifier rubyid_compact'>compact</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_events'>events</span>.<span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>! Friendly fork preparation complete.</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="parse_query-class_method">
+  <h3 class='signature private'>
+    .<strong>parse_query</strong>(qs, d = nil, &amp;unescaper)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Stolen from Mongrel, with some small modifications: Parses a query string by breaking it up at the ‘&amp;’ and ‘;’ characters.  You can also use this to parse cookies by changing the characters used in the second parameter (which defaults to ‘&amp;;’).</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/util.rb#L60-L81'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='60' data-end='81'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 60</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_query'>parse_query</span>(<span class='id identifier rubyid_qs'>qs</span><span class='comma'>,</span> <span class='id identifier rubyid_d'>d</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_unescaper'>unescaper</span>)
+  <span class='id identifier rubyid_unescaper'>unescaper</span> <span class='op'>||=</span> <span class='id identifier rubyid_method'>method</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_unescape'><a href="#unescape-class_method" title="Puma::Util.unescape (method)">unescape</a></span>)
+
+  <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> {}
+
+  (<span class='id identifier rubyid_qs'>qs</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>).<span class='id identifier rubyid_split'>split</span>(<span class='id identifier rubyid_d'>d</span> <span class='op'>?</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_d'>d</span><span class='embexpr_end'>}</span><span class='tstring_content'>] *</span><span class='regexp_end'>/n</span></span> <span class='op'>:</span> <span class='const'><a href="#DEFAULT_SEP-constant" title="Puma::Util::DEFAULT_SEP (constant)">DEFAULT_SEP</a></span>).<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_p'>p</span><span class='op'>|</span>
+    <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_p'>p</span>.<span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_p'>p</span>.<span class='id identifier rubyid_split'>split</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>=</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>2</span>).<span class='id identifier rubyid_map'>map</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_unescaper'>unescaper</span>)
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_cur'>cur</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span>[<span class='id identifier rubyid_k'>k</span>]
+      <span class='kw'>if</span> <span class='id identifier rubyid_cur'>cur</span>.<span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>Array</span>
+        <span class='id identifier rubyid_params'>params</span>[<span class='id identifier rubyid_k'>k</span>] <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_v'>v</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_params'>params</span>[<span class='id identifier rubyid_k'>k</span>] <span class='op'>=</span> [<span class='id identifier rubyid_cur'>cur</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span>]
+      <span class='kw'>end</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_params'>params</span>[<span class='id identifier rubyid_k'>k</span>] <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_params'>params</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="pipe-class_method">
+  <h3 class='signature private'>
+    .<strong>pipe</strong>   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/util.rb#L9-L11'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='9' data-end='11'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 9</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pipe'>pipe</span>
+  <span class='const'><a href="../IO.html" title="IO (class)">IO</a></span>.<span class='id identifier rubyid_pipe'>pipe</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="purge_interrupt_queue-class_method">
+  <h3 class='signature private'>
+    .<strong>purge_interrupt_queue</strong>   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>An instance method on Thread has been provided to address <a href="https://bugs.ruby-lang.org/issues/13632">bugs.ruby-lang.org/issues/13632</a>, which currently effects some older versions of Ruby: 2.2.7 2.2.8 2.2.9 2.2.10 2.3.4 2.4.1 Additional context: <a href="https://github.com/puma/puma/pull/1345">github.com/puma/puma/pull/1345</a></p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/util.rb#L16-L18'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='16' data-end='18'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 16</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span>
+  <span class='const'>Thread</span>.<span class='id identifier rubyid_current'>current</span>.<span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span> <span class='kw'>if</span> <span class='const'>Thread</span>.<span class='id identifier rubyid_current'>current</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_purge_interrupt_queue'>purge_interrupt_queue</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="unescape-class_method">
+  <h3 class='signature private'>
+    .<strong>unescape</strong>(s, encoding = nil)   <span class="extras">(<span class='mod_func'>mod_func</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/util.rb#L36-L38'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='36' data-end='38'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/util.rb', line 36</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_unescape'>unescape</span>(<span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_encoding'>encoding</span> <span class='op'>=</span> <span class='const'>Encoding</span><span class='op'>::</span><span class='const'>UTF_8</span>)
+  <span class='const'>URI</span>.<span class='id identifier rubyid_decode_www_form_component'>decode_www_form_component</span>(<span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_encoding'>encoding</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>

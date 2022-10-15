@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>File: 5.0-Upgrade &mdash; Puma-5.6.5</title>
+
+<link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "5.0-Upgrade",
+    relpath = '';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='.'>Puma-5.6.5</a> &raquo; 
+      <a href='_index.html'>Index</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>File: 5.0-Upgrade&nbsp;&#x25B2;</a></span>
+          </div>
+
+    <a id='list_href' href="class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='file'>
+<h1>Welcome to <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 5: Spoony Bard.</h1>
+<p><img src="https://i1.kym-cdn.com/entries/icons/original/000/006/385/Spoony_Bard.jpg" alt="Spoony Bard" title="Spoony Bard" /></p>
+<blockquote>
+<p>Note: <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 5 now automatically uses <code>WEB_CONCURRENCY</code> env var if set see <a href="https://github.com/puma/puma/issues/2393#issuecomment-702352208">this post for an explanation</a>. If your memory use goes up after upgrading to <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 5 it indicates you're now running with multiple workers (processes). You can decrease memory use by tuning this number to be lower.</p>
+</blockquote>
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 5 brings new experimental performance features, a few quality-of-life features and loads of bugfixes. Here's what you should do:</p>
+<ol>
+<li>Review the Upgrade section below to see if any of 5.0's breaking changes will affect you.</li>
+<li>Upgrade to version 5.0 in your Gemfile and deploy.</li>
+<li>Try the new performance experiments outlined below and report your results back to the <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> issue tracker.</li>
+</ol>
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 5 was named Spoony Bard by our newest supercontributor, <a href="https://github.com/puma/puma/commits?author=wjordan">@wjordan</a>. Will brought you one of our new perf features for this release, as well as <a href="https://github.com/puma/puma/commits?author=wjordan">many other fixes and refactors.</a> If you'd like to name a <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> release in the future, take a look at <a href="file.CONTRIBUTING.html">CONTRIBUTING.md</a> and get started helping us out :)</p>
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 5 also welcomes <a href="https://github.com/puma/puma/commits?author=MSP-Greg">@MSP-Greg</a> as our newest committer. Greg has been instrumental in improving our CI setup and SSL features. Greg also <a href="https://github.com/puma/puma/releases/tag/v4.3.0">named our 4.3.0 release</a>: Mysterious Traveller.</p>
+<h2>What's New</h2>
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 5 contains three new &quot;experimental&quot; performance features for cluster-mode Pumas running on MRI.</p>
+<p>If you try any of these features, please report your results to <a href="https://github.com/puma/puma/issues/2258">our report issue</a>.</p>
+<p>Part of the reason we're calling them <em>experimental</em> is because we're not sure if they'll actually have any benefit. People's workloads in the real world are often not what we anticipate, and synthetic benchmarks are usually not of any help in figuring out if a change will be beneficial or not.</p>
+<p>We do not believe any of the new features will have a negative effect or impact the stability of your application. This is either a &quot;it works&quot; or &quot;it does nothing&quot; experiment.</p>
+<p>If any of the features turn out to be particularly beneficial, we may make them defaults in future versions of <a href="Puma.html" title="Puma (module)"><code>Puma</code></a>.</p>
+<h3>Lower latency, better throughput</h3>
+<p>From our friends at GitLab, the new experimental <code>wait_for_less_busy_worker</code> config option may reduce latency and improve throughput for high-load <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> apps on MRI. See the <a href="https://github.com/puma/puma/pull/2079">pull request</a> for more discussion.</p>
+<p>Users of this option should see reduced request queue latency and possibly less overall latency.</p>
+<p>Add the following to your <code>puma.rb</code> to try it:</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_wait_for_less_busy_worker'>wait_for_less_busy_worker</span>
+<span class='comment'># or
+</span><span class='id identifier rubyid_wait_for_less_busy_worker'>wait_for_less_busy_worker</span> <span class='float'>0.001</span></code></pre>
+<p>Production testing at GitLab suggests values between <code>0.001</code> and <code>0.010</code> are best.</p>
+<h3>Better memory usage</h3>
+<p>5.0 brings two new options to your config which may improve memory usage.</p>
+<h4>nakayoshi_fork</h4>
+<p><code>nakayoshi_fork</code> calls GC a handful of times and compacts the heap on Ruby 2.7+ before forking. This may reduce memory usage of Puma on MRI with preload enabled. It's inspired by <a href="https://github.com/ko1/nakayoshi_fork">Koichi Sasada's work</a>.</p>
+<p>To use it, you can add this to your <code>puma.rb</code>:</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_nakayoshi_fork'>nakayoshi_fork</span></code></pre>
+<h4>fork_worker</h4>
+<p>Puma 5 introduces an experimental new cluster-mode configuration option, <code>fork_worker</code> (<code>--fork-worker</code> from the CLI). This mode causes Puma to fork additional workers from worker 0, instead of directly from the master process:</p>
+<pre class="code ruby"><code class="ruby">10000   \_ puma 4.3.3 (tcp://0.0.0.0:9292) [puma]
+10001       \_ puma: cluster worker 0: 10000 [puma]
+10002           \_ puma: cluster worker 1: 10000 [puma]
+10003           \_ puma: cluster worker 2: 10000 [puma]
+10004           \_ puma: cluster worker 3: 10000 [puma]</code></pre>
+<p>It is compatible with phased restarts. It also may improve memory usage because the worker process loads additional code after processing requests.</p>
+<p>To learn more about using <code>refork</code> and <code>fork_worker</code>, see <a href="file.fork_worker.html">'Fork Worker'</a>.</p>
+<h3>What else is new?</h3>
+<ul>
+<li><strong>Loads of bugfixes</strong>.</li>
+<li>Faster phased restarts and worker timeouts.</li>
+<li>pumactl now has a <code>thread-backtraces</code> command to print thread backtraces, bringing thread backtrace printing to all platforms, not just *BSD and Mac. (#2053)</li>
+<li>Added incrementing <code>requests_count</code> to <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a>. (#2106)</li>
+<li>Faster phased restart and worker timeout. (#2220)</li>
+<li>Added <code>state_permission</code> to config DSL to set state file permissions (#2238)</li>
+<li>Ruby 2.2 support will be dropped in Puma 6. This is the final major release series for Ruby 2.2.</li>
+</ul>
+<h2>Upgrade</h2>
+<ul>
+<li>Setting the <code>WEB_CONCURRENCY</code> environment variable will now configure the number of workers (processes) that Puma will boot and enable preloading of the application.</li>
+<li>If you did not explicitly set <code>environment</code> before, Puma now checks <code>RAILS_ENV</code> and will use that, if available in addition to <code>RACK_ENV</code>.</li>
+<li>If you have been using the <code>--control</code> CLI option, update your scripts to use <code>--control-url</code>.</li>
+<li>If you are using <code>worker_directory</code> in your config file, change it to <code>directory</code>.</li>
+<li>If you are running MRI, default thread count on Puma is now 5, not 16. This may change the amount of threads running in your threadpool. We believe 5 is a better default for most Ruby web applications on MRI. Higher settings increase latency by causing GVL contention.</li>
+<li>If you are using a worker count of more than 1, set using <code>WEB_CONCURRENCY</code>, Puma will now preload the application by default (disable with <code>preload_app! false</code>). We believe this is a better default, but may cause issues in non-Rails applications if you do not have the proper <code>before</code> and <code>after</code> fork hooks configured. See documentation for your framework. Rails users do not need to change anything. <strong>Please note that it is not possible to use <a href="file.restart.html">the phased restart</a> with preloading.</strong></li>
+<li>tcp mode and daemonization have been removed without replacement. For daemonization, please use a modern process management solution, such as systemd or monit.</li>
+<li><code>connected_port</code> was renamed to <code>connected_ports</code> and now returns an Array, not an Integer.</li>
+</ul>
+<p>Then, update your Gemfile:</p>
+<p><code>gem 'puma', '&lt; 6'</code></p>
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>
