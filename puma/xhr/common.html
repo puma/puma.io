@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div    id='settings'    class='hidden'>
+      <div class='text'>
+        <div class='a_1'></div>
+        <div class='b_1'>Window</div>
+        <div class='c_1'>Screen</div>
+      </div>
+      <div class='text'>
+        <div class='a_1'>Docked Panes</div>
+        <div id='b2' class='b_1'></div>
+        <div id='c2' class='c_1'></div>
+      </div>
+      <div class='text'>
+        <div class='a_1'>Mono Chars</div>
+        <div   id='b3' class='b_1'></div>
+        <div id='c3' class='c_1'></div>
+       </div>
+      <div class='stg_btn'>
+        <div class='a_2' id='a5'>Font 15px</div>
+        <div class='b_2'><button id='font_sml' class='vis' title='Smaller Font'>A<span>A</span></button></div>
+        <div class='c_2'><button id='font_lrg' class='vis' title='Larger Font'><span>A</span>A</button></div>
+      </div>
+      <div class='border'></div>
+      <div id='setting_loc'>
+        <div class='stg_btn'>
+          <div class='a_2'>LIST pane</div>
+          <div class='b_2'><button id='list_dock' title='LIST Pane - Docked'>Dock</button></div>
+          <div class='c_2'><button id='list_float' title='LIST Pane - Floating'>Float</button></div>
+        </div>
+        <div class='stg_btn'>
+          <div class='a_2' >TOC pane</div>
+          <div class='b_2'><button id='toc_dock' title='TOC Pane - Docked'>Dock</button></div>
+          <div class='c_2'><button id='toc_float' title='TOC Pane - Floating'>Float</button></div>
+        </div>
+      </div>
+    </div>
+    <header id='y_header'    style='display: none;'>
+      <div id='hdr_button'>
+        <button id='src' class='c' title='Source Show / Hide'>S<svg class='c' viewBox='0 0 36 28'>
+            <rect x='8'  y='12' width='28' height='4'  rx='1.0' ry='1.0'></rect>
+            <rect x='20' y='0'  width='4'  height='28' rx='1.0' ry='1.0'></rect>
+          </svg><svg class='o' viewBox='0 0 34 28'>
+            <rect x='8'  y='12' width='28' height='4'  rx='1.0' ry='1.0'></rect>
+          </svg>
+        </button>
+        <button id='list_vis' title='LIST Show / Hide'>LIST</button>
+        <button id='toc_vis' title='TOC Show / Hide'>TOC</button>
+        <button id='sh_settings' title='Settings'>
+          <svg class='svg_settings' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d='M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z'></path>
+          </svg>
+        </button>
+      </div>
+      <div id='y_debug'></div>
+    </header>
+    <header id='toc_header'  style='display: none;'>
+      <button id='toc_sizer' class='y_sizer' title='TOC Resizer'></button>
+      <div>Table of Contents</div>
+      <input  id='toc_search_text' type='search' placeholder='Method Search' size='12' value='' autocomplete='off' class='search_input'/>
+      <svg id='toc_search_icon' viewBox='0 0 30 30'>
+        <path class='s_main' d='M21.189,17.213C22.022,15.726,22.5,14.014,22.5,12.188C22.5,6.493,17.884,1.875,12.188,1.875S1.875,6.493,1.875,12.188C1.875,17.882,6.491,22.5,12.188,22.5c1.826,0,3.536-0.48,5.025-1.311l6.113,6.113C23.873,27.851,24.593,28.125,25.313,28.125s1.44-0.274,1.989-0.823c1.099-1.099,1.099-2.878,0-3.977L21.189,17.213z M12.188,19.329c-3.943,0-7.14-3.197-7.14-7.142c0.0-3.943,3.197-7.14,7.14-7.14c3.941,0,7.14,3.195,7.14,7.14C19.328,16.133,16.129,19.329,12.188,19.329z'></path>
+        <path class='s_clear' d='M 4.414, 1.586 A 1,1 0 1,0 1.586, 4.414 L 21.586,24.414 A 1,1 0 1,0 24.414,21.586 z'></path>
+        <path class='s_clear' d='M 1.586,21.586 A 1,1 0 1,0 4.414,24.414 L 24.414, 4.414 A 1,1 0 1,0 21.586, 1.586 z'></path>
+      </svg>
+      <button class='y_minus' title='Collapse All'></button>
+      <button class='y_plus' title='Expand All' ></button>
+    </header>
+    <header id='list_header' style='display: none;'>
+      <div id='list_title'>Class List</div>
+      <div id='list_menu'>
+        <button id='list_sizer' class='y_sizer' title='LIST Resizer'></button>
+        <span><a href='class_list.html' class='clicked'>Classes</a></span>
+        <span><a href='method_list.html'>Methods</a></span>
+        <span><a href='constant_list.html'>Constants</a></span>
+        <span>Docs</span>
+      </div>
+      <input  id='list_search_text' type='search' placeholder='List Search' size='12' value='' autocomplete='off' class='search_input'/>
+      <svg id='list_search_icon' viewBox='0 0 30 30'>
+        <path class='s_main' d='M21.189,17.213C22.022,15.726,22.5,14.014,22.5,12.188C22.5,6.493,17.884,1.875,12.188,1.875S1.875,6.493,1.875,12.188C1.875,17.882,6.491,22.5,12.188,22.5c1.826,0,3.536-0.48,5.025-1.311l6.113,6.113C23.873,27.851,24.593,28.125,25.313,28.125s1.44-0.274,1.989-0.823c1.099-1.099,1.099-2.878,0-3.977L21.189,17.213z M12.188,19.329c-3.943,0-7.14-3.197-7.14-7.142c0.0-3.943,3.197-7.14,7.14-7.14c3.941,0,7.14,3.195,7.14,7.14C19.328,16.133,16.129,19.329,12.188,19.329z'/>
+        <path class='s_clear' d='M 4.414, 1.586 A 1,1 0 1,0 1.586, 4.414 L 21.586,24.414 A 1,1 0 1,0 24.414,21.586 z' />
+        <path class='s_clear' d='M 1.586,21.586 A 1,1 0 1,0 4.414,24.414 L 24.414, 4.414 A 1,1 0 1,0 21.586, 1.586 z' />
+      </svg>
+      <button class='y_minus'></button>
+      <button class='y_plus' ></button>
+    </header>
+  </body>
+</html>
