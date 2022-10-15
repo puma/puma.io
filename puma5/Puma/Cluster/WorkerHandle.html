@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Class: Puma::Cluster::WorkerHandle &mdash; Puma-5.6.5</title>
+
+<link rel='stylesheet'  type='text/css' href='../../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::Cluster::WorkerHandle",
+    relpath = '../../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../../'>Puma-5.6.5</a> &raquo; 
+      <a href='../../_index.html#alpha_W'>Index (W)</a> &raquo; 
+        <a href="../../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+        <a href="../Cluster.html" title="Puma::Cluster (class)">Cluster</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>WorkerHandle&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='class'>
+<h1>Class: Puma::Cluster::WorkerHandle</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id='t2_inherits' class='box_2'>Inherits:</td>
+      <td class='box_rel'>
+        <span class='inheritName'><a href="../../Object.html" title="Object (class)">Object</a></span>
+      </td>
+    </tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L10'>lib/puma/cluster/worker_handle.rb</a>      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>This class represents a worker process from the perspective of the puma master process. It contains information about the process and its health and it exposes methods to control the process via IPC. It does not include the actual logic executed by the worker process itself. For that, see <a href="Worker.html" title="Puma::Cluster::Worker (class)"><code>Worker</code></a>.</p>
+
+  </div>
+</div>
+</div>
+<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#new-class_method" title=".new (class method)">.<strong>new</strong>(idx, pid, phase, options)  &#x21d2; WorkerHandle </a>
+    </span>
+    <span class='note title constructor'>constructor</span>
+  </li>
+</ul>
+</div>  <!-- class_method_summary -->
+
+<h2 class='h2_sum' id='instance_attribute_summary'>Instance Attribute Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#booted%3F-instance_method" title="#booted? (instance method)">#<strong>booted?</strong>  &#x21d2; Boolean </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#index-instance_method" title="#index (instance method)">#<strong>index</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#last_checkin-instance_method" title="#last_checkin (instance method)">#<strong>last_checkin</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#last_status-instance_method" title="#last_status (instance method)">#<strong>last_status</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature rw'>
+      <a href="#phase-instance_method" title="#phase (instance method)">#<strong>phase</strong>  </a>
+    </span>
+    <span class='note title rw'>rw</span>
+  </li>
+  <li>
+    <span class='summary_signature rw'>
+      <a href="#phase=-instance_method" title="#phase= (instance method)">#<strong>phase=</strong>(value)  </a>
+    </span>
+    <span class='note title rw'>rw</span>
+  </li>
+  <li>
+    <span class='summary_signature rw'>
+      <a href="#pid-instance_method" title="#pid (instance method)">#<strong>pid</strong>  </a>
+    </span>
+    <span class='note title rw'>rw</span>
+  </li>
+  <li>
+    <span class='summary_signature rw'>
+      <a href="#pid=-instance_method" title="#pid= (instance method)">#<strong>pid=</strong>(value)  </a>
+    </span>
+    <span class='note title rw'>rw</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#signal-instance_method" title="#signal (instance method)">#<strong>signal</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#started_at-instance_method" title="#started_at (instance method)">#<strong>started_at</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#term%3F-instance_method" title="#term? (instance method)">#<strong>term?</strong>  &#x21d2; Boolean </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+</ul>
+</div>  <!-- instance_attribute_summary -->
+
+<h2 class='h2_sum' id='instance_method_summary'>Instance Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#boot!-instance_method" title="#boot! (instance method)">#<strong>boot!</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#hup-instance_method" title="#hup (instance method)">#<strong>hup</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#kill-instance_method" title="#kill (instance method)">#<strong>kill</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#ping!-instance_method" title="#ping! (instance method)">#<strong>ping!</strong>(status)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#ping_timeout-instance_method" title="#ping_timeout (instance method)">#<strong>ping_timeout</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#term-instance_method" title="#term (instance method)">#<strong>term</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#term!-instance_method" title="#term! (instance method)">#<strong>term!</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#uptime-instance_method" title="#uptime (instance method)">#<strong>uptime</strong>  </a>
+    </span>
+  </li>
+</ul>
+</div>  <!-- instance_method_summary -->
+<h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
+
+  <section class='method_details first' id="new-class_method">
+  <h3 class='signature  first'>
+    .<strong>new</strong>(idx, pid, phase, options)  &#x21d2; <code>WorkerHandle</code> 
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L11-L23'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='11' data-end='23'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 11</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_idx'>idx</span><span class='comma'>,</span> <span class='id identifier rubyid_pid'><a href="#pid-instance_method" title="Puma::Cluster::WorkerHandle#pid (method)">pid</a></span><span class='comma'>,</span> <span class='id identifier rubyid_phase'><a href="#phase-instance_method" title="Puma::Cluster::WorkerHandle#phase (method)">phase</a></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>)
+  <span class='ivar'>@index</span> <span class='op'>=</span> <span class='id identifier rubyid_idx'>idx</span>
+  <span class='ivar'>@pid</span> <span class='op'>=</span> <span class='id identifier rubyid_pid'><a href="#pid-instance_method" title="Puma::Cluster::WorkerHandle#pid (method)">pid</a></span>
+  <span class='ivar'>@phase</span> <span class='op'>=</span> <span class='id identifier rubyid_phase'><a href="#phase-instance_method" title="Puma::Cluster::WorkerHandle#phase (method)">phase</a></span>
+  <span class='ivar'>@stage</span> <span class='op'>=</span> <span class='symbeg'>:</span><span class='id identifier rubyid_started'>started</span>
+  <span class='ivar'>@signal</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TERM</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@options</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span>
+  <span class='ivar'>@first_term_sent</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@started_at</span> <span class='op'>=</span> <span class='const'>Time</span>.<span class='id identifier rubyid_now'>now</span>
+  <span class='ivar'>@last_checkin</span> <span class='op'>=</span> <span class='const'>Time</span>.<span class='id identifier rubyid_now'>now</span>
+  <span class='ivar'>@last_status</span> <span class='op'>=</span> {}
+  <span class='ivar'>@term</span> <span class='op'>=</span> <span class='kw'>false</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Attribute Details</h2>
+<section class='method_details first' id="booted?-instance_method">
+  <h3 class='signature ro first'>
+    #<strong>booted?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L30-L32'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='30' data-end='32'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 30</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_booted?'>booted?</span>
+  <span class='ivar'>@stage</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid_booted'>booted</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="index-instance_method">
+  <h3 class='signature ro'>
+    #<strong>index</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L25-L25'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='25' data-end='25'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 25</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_pid'><a href="#pid-instance_method" title="Puma::Cluster::WorkerHandle#pid (method)">pid</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_phase'><a href="#phase-instance_method" title="Puma::Cluster::WorkerHandle#phase (method)">phase</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_signal'><a href="#signal-instance_method" title="Puma::Cluster::WorkerHandle#signal (method)">signal</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_checkin'><a href="#last_checkin-instance_method" title="Puma::Cluster::WorkerHandle#last_checkin (method)">last_checkin</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_status'><a href="#last_status-instance_method" title="Puma::Cluster::WorkerHandle#last_status (method)">last_status</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_started_at'><a href="#started_at-instance_method" title="Puma::Cluster::WorkerHandle#started_at (method)">started_at</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="last_checkin-instance_method">
+  <h3 class='signature ro'>
+    #<strong>last_checkin</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L25-L25'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='25' data-end='25'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 25</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_index'><a href="#index-instance_method" title="Puma::Cluster::WorkerHandle#index (method)">index</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_pid'><a href="#pid-instance_method" title="Puma::Cluster::WorkerHandle#pid (method)">pid</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_phase'><a href="#phase-instance_method" title="Puma::Cluster::WorkerHandle#phase (method)">phase</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_signal'><a href="#signal-instance_method" title="Puma::Cluster::WorkerHandle#signal (method)">signal</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_checkin'>last_checkin</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_status'><a href="#last_status-instance_method" title="Puma::Cluster::WorkerHandle#last_status (method)">last_status</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_started_at'><a href="#started_at-instance_method" title="Puma::Cluster::WorkerHandle#started_at (method)">started_at</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="last_status-instance_method">
+  <h3 class='signature ro'>
+    #<strong>last_status</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L25-L25'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='25' data-end='25'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 25</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_index'><a href="#index-instance_method" title="Puma::Cluster::WorkerHandle#index (method)">index</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_pid'><a href="#pid-instance_method" title="Puma::Cluster::WorkerHandle#pid (method)">pid</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_phase'><a href="#phase-instance_method" title="Puma::Cluster::WorkerHandle#phase (method)">phase</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_signal'><a href="#signal-instance_method" title="Puma::Cluster::WorkerHandle#signal (method)">signal</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_checkin'><a href="#last_checkin-instance_method" title="Puma::Cluster::WorkerHandle#last_checkin (method)">last_checkin</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_status'>last_status</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_started_at'><a href="#started_at-instance_method" title="Puma::Cluster::WorkerHandle#started_at (method)">started_at</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="phase-instance_method">
+  <h3 class='signature rw'>
+    #<strong>phase</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L25-L25'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='25' data-end='25'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 25</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_index'><a href="#index-instance_method" title="Puma::Cluster::WorkerHandle#index (method)">index</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_pid'><a href="#pid-instance_method" title="Puma::Cluster::WorkerHandle#pid (method)">pid</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_phase'>phase</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_signal'><a href="#signal-instance_method" title="Puma::Cluster::WorkerHandle#signal (method)">signal</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_checkin'><a href="#last_checkin-instance_method" title="Puma::Cluster::WorkerHandle#last_checkin (method)">last_checkin</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_status'><a href="#last_status-instance_method" title="Puma::Cluster::WorkerHandle#last_status (method)">last_status</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_started_at'><a href="#started_at-instance_method" title="Puma::Cluster::WorkerHandle#started_at (method)">started_at</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="phase=-instance_method">
+  <h3 class='signature rw'>
+    #<strong>phase=</strong>(value)   <span class="extras">(<span class='rw'>rw</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L28-L28'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='28' data-end='28'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 28</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_writer'>attr_writer</span> <span class='symbeg'>:</span><span class='id identifier rubyid_pid'><a href="#pid-instance_method" title="Puma::Cluster::WorkerHandle#pid (method)">pid</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_phase'><a href="#phase-instance_method" title="Puma::Cluster::WorkerHandle#phase (method)">phase</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="pid-instance_method">
+  <h3 class='signature rw'>
+    #<strong>pid</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L25-L25'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='25' data-end='25'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 25</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_index'><a href="#index-instance_method" title="Puma::Cluster::WorkerHandle#index (method)">index</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_pid'>pid</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_phase'><a href="#phase-instance_method" title="Puma::Cluster::WorkerHandle#phase (method)">phase</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_signal'><a href="#signal-instance_method" title="Puma::Cluster::WorkerHandle#signal (method)">signal</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_checkin'><a href="#last_checkin-instance_method" title="Puma::Cluster::WorkerHandle#last_checkin (method)">last_checkin</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_status'><a href="#last_status-instance_method" title="Puma::Cluster::WorkerHandle#last_status (method)">last_status</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_started_at'><a href="#started_at-instance_method" title="Puma::Cluster::WorkerHandle#started_at (method)">started_at</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="pid=-instance_method">
+  <h3 class='signature rw'>
+    #<strong>pid=</strong>(value)   <span class="extras">(<span class='rw'>rw</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L28-L28'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='28' data-end='28'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 28</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_writer'>attr_writer</span> <span class='symbeg'>:</span><span class='id identifier rubyid_pid'><a href="#pid-instance_method" title="Puma::Cluster::WorkerHandle#pid (method)">pid</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_phase'><a href="#phase-instance_method" title="Puma::Cluster::WorkerHandle#phase (method)">phase</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="signal-instance_method">
+  <h3 class='signature ro'>
+    #<strong>signal</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L25-L25'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='25' data-end='25'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 25</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_index'><a href="#index-instance_method" title="Puma::Cluster::WorkerHandle#index (method)">index</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_pid'><a href="#pid-instance_method" title="Puma::Cluster::WorkerHandle#pid (method)">pid</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_phase'><a href="#phase-instance_method" title="Puma::Cluster::WorkerHandle#phase (method)">phase</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_signal'>signal</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_checkin'><a href="#last_checkin-instance_method" title="Puma::Cluster::WorkerHandle#last_checkin (method)">last_checkin</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_status'><a href="#last_status-instance_method" title="Puma::Cluster::WorkerHandle#last_status (method)">last_status</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_started_at'><a href="#started_at-instance_method" title="Puma::Cluster::WorkerHandle#started_at (method)">started_at</a></span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="started_at-instance_method">
+  <h3 class='signature ro'>
+    #<strong>started_at</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L25-L25'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='25' data-end='25'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 25</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_index'><a href="#index-instance_method" title="Puma::Cluster::WorkerHandle#index (method)">index</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_pid'><a href="#pid-instance_method" title="Puma::Cluster::WorkerHandle#pid (method)">pid</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_phase'><a href="#phase-instance_method" title="Puma::Cluster::WorkerHandle#phase (method)">phase</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_signal'><a href="#signal-instance_method" title="Puma::Cluster::WorkerHandle#signal (method)">signal</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_checkin'><a href="#last_checkin-instance_method" title="Puma::Cluster::WorkerHandle#last_checkin (method)">last_checkin</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_last_status'><a href="#last_status-instance_method" title="Puma::Cluster::WorkerHandle#last_status (method)">last_status</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_started_at'>started_at</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="term?-instance_method">
+  <h3 class='signature ro'>
+    #<strong>term?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L47-L49'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='47' data-end='49'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 47</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_term?'>term?</span>
+  <span class='ivar'>@term</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Method Details</h2>
+<section class='method_details first' id="boot!-instance_method">
+  <h3 class='signature  first'>
+    #<strong>boot!</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L38-L41'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='38' data-end='41'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 38</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_boot!'>boot!</span>
+  <span class='ivar'>@last_checkin</span> <span class='op'>=</span> <span class='const'>Time</span>.<span class='id identifier rubyid_now'>now</span>
+  <span class='ivar'>@stage</span> <span class='op'>=</span> <span class='symbeg'>:</span><span class='id identifier rubyid_booted'>booted</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="hup-instance_method">
+  <h3 class='signature '>
+    #<strong>hup</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L88-L91'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='88' data-end='91'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 88</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hup'>hup</span>
+  <span class='const'>Process</span>.<span class='id identifier rubyid_kill'><a href="#kill-instance_method" title="Puma::Cluster::WorkerHandle#kill (method)">kill</a></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HUP</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='ivar'>@pid</span>
+<span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>ESRCH</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="kill-instance_method">
+  <h3 class='signature '>
+    #<strong>kill</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L83-L86'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='83' data-end='86'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 83</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_kill'>kill</span>
+  <span class='ivar'>@signal</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>KILL</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_term'><a href="#term-instance_method" title="Puma::Cluster::WorkerHandle#term (method)">term</a></span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="ping!-instance_method">
+  <h3 class='signature '>
+    #<strong>ping!</strong>(status)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L51-L58'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='51' data-end='58'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 51</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ping!'>ping!</span>(<span class='id identifier rubyid_status'>status</span>)
+  <span class='ivar'>@last_checkin</span> <span class='op'>=</span> <span class='const'>Time</span>.<span class='id identifier rubyid_now'>now</span>
+  <span class='id identifier rubyid_captures'>captures</span> <span class='op'>=</span> <span class='id identifier rubyid_status'>status</span>.<span class='id identifier rubyid_match'>match</span>(<span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>{ &quot;backlog&quot;:(?&lt;backlog&gt;\d*), &quot;running&quot;:(?&lt;running&gt;\d*), &quot;pool_capacity&quot;:(?&lt;pool_capacity&gt;\d*), &quot;max_threads&quot;: (?&lt;max_threads&gt;\d*), &quot;requests_count&quot;: (?&lt;requests_count&gt;\d*) }</span><span class='regexp_end'>/</span></span>)
+  <span class='ivar'>@last_status</span> <span class='op'>=</span> <span class='id identifier rubyid_captures'>captures</span>.<span class='id identifier rubyid_names'>names</span>.<span class='id identifier rubyid_inject'>inject</span>({}) <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_hash'>hash</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='op'>|</span>
+    <span class='id identifier rubyid_hash'>hash</span>[<span class='id identifier rubyid_key'>key</span>.<span class='id identifier rubyid_to_sym'>to_sym</span>] <span class='op'>=</span> <span class='id identifier rubyid_captures'>captures</span>[<span class='id identifier rubyid_key'>key</span>].<span class='id identifier rubyid_to_i'>to_i</span>
+    <span class='id identifier rubyid_hash'>hash</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="ping_timeout-instance_method">
+  <h3 class='signature '>
+    #<strong>ping_timeout</strong>  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+    <p class='tag_title'>See Also:</p>
+  <ul class='see'>
+      <li><a href="../Cluster.html#check_workers-instance_method" title="Puma::Cluster#check_workers (method)">Puma::Cluster#check_workers</a></li>
+      </ul>
+<p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L62-L68'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='62' data-end='68'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 62</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ping_timeout'>ping_timeout</span>
+  <span class='ivar'>@last_checkin</span> <span class='op'>+</span>
+    (<span class='id identifier rubyid_booted?'><a href="#booted%3F-instance_method" title="Puma::Cluster::WorkerHandle#booted? (method)">booted?</a></span> <span class='op'>?</span>
+      <span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_worker_timeout'>worker_timeout</span>] <span class='op'>:</span>
+      <span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_worker_boot_timeout'>worker_boot_timeout</span>]
+    )
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="term-instance_method">
+  <h3 class='signature ro'>
+    #<strong>term</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L70-L81'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='70' data-end='81'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 70</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_term'>term</span>
+  <span class='kw'>begin</span>
+    <span class='kw'>if</span> <span class='ivar'>@first_term_sent</span> <span class='op'>&amp;&amp;</span> (<span class='const'>Time</span>.<span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='ivar'>@first_term_sent</span>) <span class='op'>&gt;</span> <span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_worker_shutdown_timeout'>worker_shutdown_timeout</span>]
+      <span class='ivar'>@signal</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>KILL</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@term</span> <span class='op'>||=</span> <span class='kw'>true</span>
+      <span class='ivar'>@first_term_sent</span> <span class='op'>||=</span> <span class='const'>Time</span>.<span class='id identifier rubyid_now'>now</span>
+    <span class='kw'>end</span>
+    <span class='const'>Process</span>.<span class='id identifier rubyid_kill'><a href="#kill-instance_method" title="Puma::Cluster::WorkerHandle#kill (method)">kill</a></span> <span class='ivar'>@signal</span><span class='comma'>,</span> <span class='ivar'>@pid</span> <span class='kw'>if</span> <span class='ivar'>@pid</span>
+  <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>ESRCH</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="term!-instance_method">
+  <h3 class='signature '>
+    #<strong>term!</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L43-L45'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='43' data-end='45'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 43</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_term!'>term!</span>
+  <span class='ivar'>@term</span> <span class='op'>=</span> <span class='kw'>true</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="uptime-instance_method">
+  <h3 class='signature '>
+    #<strong>uptime</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/cluster/worker_handle.rb#L34-L36'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='34' data-end='36'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cluster/worker_handle.rb', line 34</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_uptime'>uptime</span>
+  <span class='const'>Time</span>.<span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='id identifier rubyid_started_at'><a href="#started_at-instance_method" title="Puma::Cluster::WorkerHandle#started_at (method)">started_at</a></span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>

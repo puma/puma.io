@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Class: Puma::Single &mdash; Puma-5.6.5</title>
+
+<link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::Single",
+    relpath = '../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../'>Puma-5.6.5</a> &raquo; 
+      <a href='../_index.html#alpha_S'>Index (S)</a> &raquo; 
+        <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>Single&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='class'>
+<h1>Class: Puma::Single</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='box_h' colspan='2'>Super Chains via Extension / Inclusion / Inheritance</td></tr>
+    <tr>
+      <td colspan='2'>
+        <div class='box_2'>Class Chain:</div>
+        <div class='box_22'>
+          self,
+          <a href="Runner.html" title="Puma::Runner (class)"><code>Runner</code></a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan='2'>
+        <div class='box_2'>Instance Chain:</div>
+        <div class='box_22'>
+          self,
+          <a href="Runner.html" title="Puma::Runner (class)"><code>Runner</code></a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td id='t2_inherits' class='box_2 o'>Inherits:</td>
+      <td class='box_rel'>
+        <span class='inheritName'><a href="Runner.html" title="Puma::Runner (class)">Puma::Runner</a></span>
+        <ul class='fullTree'>
+          <li><a href="../Object.html" title="Object (class)"><code>::Object</code></a></li>
+          <li class='next'><a href="Runner.html" title="Puma::Runner (class)">Puma::Runner</a></li>
+          <li class='next'>Puma::Single</li>
+        </ul>
+      </td>
+    </tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/single.rb#L15'>lib/puma/single.rb</a>      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>This class is instantiated by the <a href="Launcher.html" title="Puma::Launcher (class)"><code>Launcher</code></a> and used to boot and serve a Ruby application when no puma “workers” are needed i.e. only using “threaded” mode. For example <code>$ puma -t 1:5</code></p>
+
+<p>At the core of this class is running an instance of <a href="Server.html" title="Puma::Server (class)"><code>Server</code></a> which gets created via the <code>start_server</code> method from the <a href="Runner.html" title="Puma::Runner (class)"><code>Runner</code></a> class that this inherits from.</p>
+
+  </div>
+</div>
+</div>
+<h2 class='h2_sum' id='class_Method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+
+<h3 class='inherited'><a href="Runner.html" title="Puma::Runner (class)"><code>Runner</code></a> - Inherited</h3>
+<div class='inherited'><table class='inherited'>
+  <tbody>
+    <tr>
+      <td colspan='2'>
+        <a class='i_m ' href="Runner.html#new-class_method" title="Puma::Runner.new (method)">.new</a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>  <!-- class_method_summary -->
+
+<h2 class='h2_sum' id='instance_attribute_summary'>Instance Attribute Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#stats-instance_method" title="#stats (instance method)">#<strong>stats</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+</ul>
+
+<h3 class='inherited'><a href="Runner.html" title="Puma::Runner (class)"><code>Runner</code></a> - Inherited</h3>
+<div class='inherited'><table class='inherited'>
+  <tbody>
+    <tr>
+      <td colspan='2'>
+        <a class='i_m ro' href="Runner.html#app-instance_method" title="Puma::Runner#app (method)">#app</a>,
+        <a class='i_m ro' href="Runner.html#development%3F-instance_method" title="Puma::Runner#development? (method)">#development?</a>,
+        <a class='i_m ro' href="Runner.html#redirected_io%3F-instance_method" title="Puma::Runner#redirected_io? (method)">#redirected_io?</a>,
+        <a class='i_m ro' href="Runner.html#ruby_engine-instance_method" title="Puma::Runner#ruby_engine (method)">#ruby_engine</a>,
+        <a class='i_m ro' href="Runner.html#test%3F-instance_method" title="Puma::Runner#test? (method)">#test?</a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>  <!-- instance_attribute_summary -->
+
+<h2 class='h2_sum' id='instance_method_summary'>Instance Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#halt-instance_method" title="#halt (instance method)">#<strong>halt</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#restart-instance_method" title="#restart (instance method)">#<strong>restart</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#run-instance_method" title="#run (instance method)">#<strong>run</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#stop-instance_method" title="#stop (instance method)">#<strong>stop</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#stop_blocked-instance_method" title="#stop_blocked (instance method)">#<strong>stop_blocked</strong>  </a>
+    </span>
+  </li>
+</ul>
+
+<h3 class='inherited'><a href="Runner.html" title="Puma::Runner (class)"><code>Runner</code></a> - Inherited</h3>
+<div class='inherited'><table class='inherited'>
+  <tbody>
+    <tr>
+      <td colspan='2'>
+        <a class='i_m ' href="Runner.html#close_control_listeners-instance_method" title="Puma::Runner#close_control_listeners (method)">#close_control_listeners</a>,
+        <a class='i_m ' href="Runner.html#debug-instance_method" title="Puma::Runner#debug (method)">#debug</a>,
+        <a class='i_m ' href="Runner.html#error-instance_method" title="Puma::Runner#error (method)">#error</a>,
+        <a class='i_m ' href="Runner.html#load_and_bind-instance_method" title="Puma::Runner#load_and_bind (method)">#load_and_bind</a>,
+        <a class='i_m ' href="Runner.html#log-instance_method" title="Puma::Runner#log (method)">#log</a>,
+        <a class='i_m ' href="Runner.html#output_header-instance_method" title="Puma::Runner#output_header (method)">#output_header</a>,
+        <a class='i_m ' href="Runner.html#redirect_io-instance_method" title="Puma::Runner#redirect_io (method)">#redirect_io</a>,
+        <a class='i_m ' href="Runner.html#start_control-instance_method" title="Puma::Runner#start_control (method)">#start_control</a>,
+        <a class='i_m ' href="Runner.html#start_server-instance_method" title="Puma::Runner#start_server (method)">#start_server</a>,
+        <a class='i_m ' href="Runner.html#stop_control-instance_method" title="Puma::Runner#stop_control (method)">#stop_control</a>,
+        <a class='i_m ' href="Runner.html#wakeup!-instance_method" title="Puma::Runner#wakeup! (method)">#wakeup!</a>,
+        <a class='i_m priv' href="Runner.html#ensure_output_directory_exists-instance_method" title="Puma::Runner#ensure_output_directory_exists (method)">#ensure_output_directory_exists</a>
+      </td>
+    </tr>
+  </tbody>
+</table></div>
+</div>  <!-- instance_method_summary -->
+<h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
+
+  <p class='notice'>This class inherits a constructor from <a href="Runner.html#new-class_method" title="Puma::Runner.new (method)">Puma::Runner</a></p>
+<h2 class='y_details'>Instance Attribute Details</h2>
+<section class='method_details first' id="stats-instance_method">
+  <h3 class='signature ro first'>
+    #<strong>stats</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/single.rb#L17-L21'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='17' data-end='21'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/single.rb', line 17</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_stats'>stats</span>
+  {
+    <span class='label'>started_at:</span> <span class='ivar'>@started_at</span>.<span class='id identifier rubyid_utc'>utc</span>.<span class='id identifier rubyid_iso8601'>iso8601</span>
+  }.<span class='id identifier rubyid_merge'>merge</span>(<span class='ivar'>@server</span>.<span class='id identifier rubyid_stats'>stats</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Method Details</h2>
+<section class='method_details first' id="halt-instance_method">
+  <h3 class='signature  first'>
+    #<strong>halt</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/single.rb#L31-L33'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='31' data-end='33'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/single.rb', line 31</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_halt'>halt</span>
+  <span class='ivar'>@server</span>.<span class='id identifier rubyid_halt'>halt</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="restart-instance_method">
+  <h3 class='signature '>
+    #<strong>restart</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/single.rb#L23-L25'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='23' data-end='25'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/single.rb', line 23</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_restart'>restart</span>
+  <span class='ivar'>@server</span>.<span class='id identifier rubyid_begin_restart'>begin_restart</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="run-instance_method">
+  <h3 class='signature '>
+    #<strong>run</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/single.rb#L41-L65'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='41' data-end='65'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/single.rb', line 41</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>
+  <span class='id identifier rubyid_output_header'>output_header</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>single</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='id identifier rubyid_load_and_bind'>load_and_bind</span>
+
+  <span class='const'><a href="../Puma.html#Plugins-constant" title="Puma::Plugins (constant)">Plugins</a></span>.<span class='id identifier rubyid_fire_background'>fire_background</span>
+
+  <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_write_state'>write_state</span>
+
+  <span class='id identifier rubyid_start_control'>start_control</span>
+
+  <span class='ivar'>@server</span> <span class='op'>=</span> <span class='id identifier rubyid_server'>server</span> <span class='op'>=</span> <span class='id identifier rubyid_start_server'>start_server</span>
+  <span class='id identifier rubyid_server_thread'>server_thread</span> <span class='op'>=</span> <span class='id identifier rubyid_server'>server</span>.<span class='id identifier rubyid_run'>run</span>
+
+  <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Use Ctrl-C to stop</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_redirect_io'>redirect_io</span>
+
+  <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_events'>events</span>.<span class='id identifier rubyid_fire_on_booted!'>fire_on_booted!</span>
+
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_server_thread'>server_thread</span>.<span class='id identifier rubyid_join'>join</span>
+  <span class='kw'>rescue</span> <span class='const'>Interrupt</span>
+    <span class='comment'># Swallow it
+</span>  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="stop-instance_method">
+  <h3 class='signature '>
+    #<strong>stop</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/single.rb#L27-L29'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='27' data-end='29'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/single.rb', line 27</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_stop'>stop</span>
+  <span class='ivar'>@server</span>.<span class='id identifier rubyid_stop'>stop</span>(<span class='kw'>false</span>) <span class='kw'>if</span> <span class='ivar'>@server</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="stop_blocked-instance_method">
+  <h3 class='signature '>
+    #<strong>stop_blocked</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/single.rb#L35-L39'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='35' data-end='39'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/single.rb', line 35</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_stop_blocked'>stop_blocked</span>
+  <span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>- Gracefully stopping, waiting for requests to finish</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@control</span>.<span class='id identifier rubyid_stop'><a href="#stop-instance_method" title="Puma::Single#stop (method)">stop</a></span>(<span class='kw'>true</span>) <span class='kw'>if</span> <span class='ivar'>@control</span>
+  <span class='ivar'>@server</span>.<span class='id identifier rubyid_stop'><a href="#stop-instance_method" title="Puma::Single#stop (method)">stop</a></span>(<span class='kw'>true</span>) <span class='kw'>if</span> <span class='ivar'>@server</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>

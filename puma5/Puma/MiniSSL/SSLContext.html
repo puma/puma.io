@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Class: Puma::MiniSSL::SSLContext &mdash; Puma-5.6.5</title>
+
+<link rel='stylesheet'  type='text/css' href='../../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::MiniSSL::SSLContext",
+    relpath = '../../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../../'>Puma-5.6.5</a> &raquo; 
+      <a href='../../_index.html#alpha_S'>Index (S)</a> &raquo; 
+        <a href="../../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+        <a href="../MiniSSL.html" title="Puma::MiniSSL (module)">MiniSSL</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>SSLContext&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='class'>
+<h1>Class: Puma::MiniSSL::SSLContext</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id='t2_inherits' class='box_2'>Inherits:</td>
+      <td class='box_rel'>
+        <span class='inheritName'><a href="../../Object.html" title="Object (class)">Object</a></span>
+      </td>
+    </tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/ext/puma_http11/mini_ssl.c#L647'>ext/puma_http11/mini_ssl.c</a>      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#new-class_method" title=".new (class method)">.<strong>new</strong>(mini_ssl_ctx)  </a>
+    </span>
+    <span class='note title constructor'>constructor</span>
+  </li>
+</ul>
+</div>  <!-- class_method_summary -->
+<h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
+
+  <section class='method_details first' id="new-class_method">
+  <h3 class='signature  first'>
+    .<strong>new</strong>(mini_ssl_ctx)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/ext/puma_http11/mini_ssl.c#L210-L386'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='210' data-end='386'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 210</span></pre>
+<pre class='code cpp'>
+
+VALUE
+sslctx_initialize(VALUE self, VALUE mini_ssl_ctx) {
+  SSL_CTX* ctx;
+
+#ifdef HAVE_SSL_CTX_SET_MIN_PROTO_VERSION
+  int min;
+#endif
+  int ssl_options;
+  VALUE key, cert, ca, verify_mode, ssl_cipher_filter, no_tlsv1, no_tlsv1_1,
+    verification_flags, session_id_bytes, cert_pem, key_pem;
+#ifndef HAVE_SSL_CTX_SET_DH_AUTO
+  DH *dh;
+#endif
+  BIO *bio;
+  X509 *x509;
+  EVP_PKEY *pkey;
+
+#if OPENSSL_VERSION_NUMBER &lt; 0x10002000L
+  EC_KEY *ecdh;
+#endif
+
+  TypedData_Get_Struct(self, SSL_CTX, &amp;sslctx_type, ctx);
+
+  key = rb_funcall(mini_ssl_ctx, rb_intern_const(&quot;key&quot;), 0);
+
+  cert = rb_funcall(mini_ssl_ctx, rb_intern_const(&quot;cert&quot;), 0);
+
+  ca = rb_funcall(mini_ssl_ctx, rb_intern_const(&quot;ca&quot;), 0);
+
+  cert_pem = rb_funcall(mini_ssl_ctx, rb_intern_const(&quot;cert_pem&quot;), 0);
+
+  key_pem = rb_funcall(mini_ssl_ctx, rb_intern_const(&quot;key_pem&quot;), 0);
+
+  verify_mode = rb_funcall(mini_ssl_ctx, rb_intern_const(&quot;verify_mode&quot;), 0);
+
+  ssl_cipher_filter = rb_funcall(mini_ssl_ctx, rb_intern_const(&quot;ssl_cipher_filter&quot;), 0);
+
+  no_tlsv1 = rb_funcall(mini_ssl_ctx, rb_intern_const(&quot;no_tlsv1&quot;), 0);
+
+  no_tlsv1_1 = rb_funcall(mini_ssl_ctx, rb_intern_const(&quot;no_tlsv1_1&quot;), 0);
+
+  if (!NIL_P(cert)) {
+    StringValue(cert);
+
+    if (SSL_CTX_use_certificate_chain_file(ctx, RSTRING_PTR(cert)) != 1) {
+      raise_file_error(&quot;SSL_CTX_use_certificate_chain_file&quot;, RSTRING_PTR(cert));
+    }
+  }
+
+  if (!NIL_P(key)) {
+    StringValue(key);
+
+    if (SSL_CTX_use_PrivateKey_file(ctx, RSTRING_PTR(key), SSL_FILETYPE_PEM) != 1) {
+      raise_file_error(&quot;SSL_CTX_use_PrivateKey_file&quot;, RSTRING_PTR(key));
+    }
+  }
+
+  if (!NIL_P(cert_pem)) {
+    bio = BIO_new(BIO_s_mem());
+    BIO_puts(bio, RSTRING_PTR(cert_pem));
+    x509 = PEM_read_bio_X509(bio, NULL, NULL, NULL);
+
+    if (SSL_CTX_use_certificate(ctx, x509) != 1) {
+      raise_file_error(&quot;SSL_CTX_use_certificate&quot;, RSTRING_PTR(cert_pem));
+    }
+  }
+
+  if (!NIL_P(key_pem)) {
+    bio = BIO_new(BIO_s_mem());
+    BIO_puts(bio, RSTRING_PTR(key_pem));
+    pkey = PEM_read_bio_PrivateKey(bio, NULL, NULL, NULL);
+
+    if (SSL_CTX_use_PrivateKey(ctx, pkey) != 1) {
+      raise_file_error(&quot;SSL_CTX_use_PrivateKey&quot;, RSTRING_PTR(key_pem));
+    }
+  }
+
+  verification_flags = rb_funcall(mini_ssl_ctx, rb_intern_const(&quot;verification_flags&quot;), 0);
+
+  if (!NIL_P(verification_flags)) {
+    X509_VERIFY_PARAM *param = SSL_CTX_get0_param(ctx);
+    X509_VERIFY_PARAM_set_flags(param, NUM2INT(verification_flags));
+    SSL_CTX_set1_param(ctx, param);
+  }
+
+  if (!NIL_P(ca)) {
+    StringValue(ca);
+    if (SSL_CTX_load_verify_locations(ctx, RSTRING_PTR(ca), NULL) != 1) {
+      raise_file_error(&quot;SSL_CTX_load_verify_locations&quot;, RSTRING_PTR(ca));
+    }
+  }
+
+  ssl_options = SSL_OP_CIPHER_SERVER_PREFERENCE | SSL_OP_SINGLE_ECDH_USE | SSL_OP_NO_COMPRESSION;
+
+#ifdef HAVE_SSL_CTX_SET_MIN_PROTO_VERSION
+  if (RTEST(no_tlsv1_1)) {
+    min = TLS1_2_VERSION;
+  }
+  else if (RTEST(no_tlsv1)) {
+    min = TLS1_1_VERSION;
+  }
+  else {
+    min = TLS1_VERSION;
+  }
+
+  SSL_CTX_set_min_proto_version(ctx, min);
+
+  SSL_CTX_set_options(ctx, ssl_options);
+
+#else
+  /* As of 1.0.2f, SSL_OP_SINGLE_DH_USE key use is always on */
+  ssl_options |= SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3 | SSL_OP_SINGLE_DH_USE;
+
+  if (RTEST(no_tlsv1)) {
+    ssl_options |= SSL_OP_NO_TLSv1;
+  }
+  if(RTEST(no_tlsv1_1)) {
+    ssl_options |= SSL_OP_NO_TLSv1 | SSL_OP_NO_TLSv1_1;
+  }
+  SSL_CTX_set_options(ctx, ssl_options);
+#endif
+
+  SSL_CTX_set_session_cache_mode(ctx, SSL_SESS_CACHE_OFF);
+
+  if (!NIL_P(ssl_cipher_filter)) {
+    StringValue(ssl_cipher_filter);
+    SSL_CTX_set_cipher_list(ctx, RSTRING_PTR(ssl_cipher_filter));
+  }
+  else {
+    SSL_CTX_set_cipher_list(ctx, &quot;HIGH:!aNULL@STRENGTH&quot;);
+  }
+
+#if OPENSSL_VERSION_NUMBER &lt; 0x10002000L
+  // Remove this case if OpenSSL 1.0.1 (now EOL) support is no
+  // longer needed.
+  ecdh = EC_KEY_new_by_curve_name(NID_X9_62_prime256v1);
+  if (ecdh) {
+    SSL_CTX_set_tmp_ecdh(ctx, ecdh);
+    EC_KEY_free(ecdh);
+  }
+#elif OPENSSL_VERSION_NUMBER &lt; 0x10100000L || defined(LIBRESSL_VERSION_NUMBER)
+  SSL_CTX_set_ecdh_auto(ctx, 1);
+#endif
+
+  if (NIL_P(verify_mode)) {
+    /* SSL_CTX_set_verify(ctx, SSL_VERIFY_NONE, NULL); */
+  } else {
+    SSL_CTX_set_verify(ctx, NUM2INT(verify_mode), engine_verify_callback);
+  }
+
+  // Random.bytes available in Ruby 2.5 and later, Random::DEFAULT deprecated in 3.0
+  session_id_bytes = rb_funcall(
+#ifdef HAVE_RANDOM_BYTES
+    rb_cRandom,
+#else
+    rb_const_get(rb_cRandom, rb_intern_const(&quot;DEFAULT&quot;)),
+#endif
+    rb_intern_const(&quot;bytes&quot;),
+    1, ULL2NUM(SSL_MAX_SSL_SESSION_ID_LENGTH));
+
+  SSL_CTX_set_session_id_context(ctx,
+                                 (unsigned char *) RSTRING_PTR(session_id_bytes),
+                                 SSL_MAX_SSL_SESSION_ID_LENGTH);
+
+  // printf(&quot;\ninitialize end security_level %d\n&quot;, SSL_CTX_get_security_level(ctx));
+
+#ifdef HAVE_SSL_CTX_SET_DH_AUTO
+  // https://www.openssl.org/docs/man3.0/man3/SSL_CTX_set_dh_auto.html
+  SSL_CTX_set_dh_auto(ctx, 1);
+#else
+  dh = get_dh2048();
+  SSL_CTX_set_tmp_dh(ctx, dh);
+#endif
+
+  rb_obj_freeze(self);
+  return self;
+}
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>

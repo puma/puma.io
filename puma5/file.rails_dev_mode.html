@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>File: Running Puma in Rails Development Mode &mdash; Puma-5.6.5</title>
+
+<link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "rails_dev_mode",
+    relpath = '';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='.'>Puma-5.6.5</a> &raquo; 
+      <a href='_index.html'>Index</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>File: Running Puma in Rails Development Mode&nbsp;&#x25B2;</a></span>
+          </div>
+
+    <a id='list_href' href="class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='file'>
+<h1>Running Puma in Rails Development Mode</h1>
+<h2>&quot;Loopback requests&quot;</h2>
+<p>Be cautious of &quot;loopback requests,&quot; where a Rails application executes a request to a server that, in turn, results in another request back to the same Rails application before the first request completes. Having a loopback request will trigger <a href="https://guides.rubyonrails.org/threading_and_code_execution.html#load-interlock">Rails' load interlock</a> mechanism. The load interlock mechanism prevents a thread from using Rails autoloading mechanism to load constants while the application code is still running inside another thread.</p>
+<p>This issue only occurs in the development environment as Rails' load interlock is not used in production environments. Although we're not sure, we believe this issue may not occur with the new <code>zeitwerk</code> code loader.</p>
+<h3>Solutions</h3>
+<h4>1. Bypass Rails' load interlock with <code>.permit_concurrent_loads</code></h4>
+<p>Wrap the first request inside a block that will allow concurrent loads: <a href="https://guides.rubyonrails.org/threading_and_code_execution.html#permit-concurrent-loads"><code>ActiveSupport::Dependencies.interlock.permit_concurrent_loads</code></a>. Anything wrapped inside the <code>.permit_concurrent_loads</code> block will bypass the load interlock mechanism, allowing new threads to access the Rails environment and boot properly.</p>
+<h6>Example</h6>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>ActiveSupport</span><span class='op'>::</span><span class='const'>Dependencies</span>.<span class='id identifier rubyid_interlock'>interlock</span>.<span class='id identifier rubyid_permit_concurrent_loads'>permit_concurrent_loads</span> <span class='kw'>do</span>
+  <span class='comment'># Your HTTP request code here. For example:
+</span>  <span class='const'>Faraday</span>.<span class='id identifier rubyid_post'>post</span> <span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>foo</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span>
+
+<span class='id identifier rubyid_do_something_with'>do_something_with</span> <span class='id identifier rubyid_response'>response</span></code></pre>
+<h4>2. Use multiple processes on Puma</h4>
+<p>Alternatively, you may also enable multiple (single-threaded) workers on Puma. By doing so, you are sidestepping the problem by creating multiple processes rather than new threads. However, this workaround is not ideal because debugging tools such as <a href="https://github.com/deivid-rodriguez/byebug/issues/487">byebug</a> and <a href="https://github.com/pry/pry/issues/2153">pry</a>, work poorly with any multi-process web server.</p>
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>
