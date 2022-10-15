@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Module: Puma::MiniSSL &mdash; Puma-6.0.0</title>
+
+<link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::MiniSSL",
+    relpath = '../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../'>Puma-6.0.0</a> &raquo; 
+      <a href='../_index.html#alpha_M'>Index (M)</a> &raquo; 
+        <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>MiniSSL&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='module'>
+<h1>Module: Puma::MiniSSL</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='box_h' colspan='2'>Namespace Children</td></tr>
+    <tr><td colspan='2'>
+      <div class='box_1'>Classes:</div>
+      <div class='box_11'>
+          <a href="MiniSSL/Context.html" title="Puma::MiniSSL::Context (class)"><code>Context</code></a>,
+        <a href="MiniSSL/ContextBuilder.html" title="Puma::MiniSSL::ContextBuilder (class)"><code>ContextBuilder</code></a>,
+        <a href="MiniSSL/Engine.html" title="Puma::MiniSSL::Engine (class)"><code>Engine</code></a>,
+        <a href="MiniSSL/SSLContext.html" title="Puma::MiniSSL::SSLContext (class)"><code>SSLContext</code></a>,
+        <a href="MiniSSL/Server.html" title="Puma::MiniSSL::Server (class)"><code>Server</code></a>,
+        <a href="MiniSSL/Socket.html" title="Puma::MiniSSL::Socket (class)"><code>Socket</code></a>      </div>
+    </td></tr>
+    <tr><td colspan='2'>
+      <div class='box_1'>Exceptions:</div>
+      <div class='box_11'>
+          <a href="MiniSSL/SSLError.html" title="Puma::MiniSSL::SSLError (class)"><code>SSLError</code></a>      </div>
+    </td></tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2 o'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma.rb#L36'>lib/puma.rb</a><span class='defines'>,<br /><a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/ext/puma_http11/mini_ssl.c#L740'>ext/puma_http11/mini_ssl.c</a>,<br/> <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/ext/puma_http11/mini_ssl.c#L663'>ext/puma_http11/mini_ssl.c</a>,<br/> <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/minissl.rb#L13'>lib/puma/minissl.rb</a>,<br/> <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/minissl/context_builder.rb#L2'>lib/puma/minissl/context_builder.rb</a></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
+<div>
+<ul class='constants summary full'>
+  <li>
+    <span id='HAS_TLS1_3-constant' class='summary_signature'>HAS_TLS1_3 =</span>
+    <div class='docstring'>
+  <div class='discussion'>
+    
+<p>Define constant at runtime, as it’s easy to determine at built time, but <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> could (it shouldn’t) be loaded with an older OpenSSL version</p>
+
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Version:</p>
+<ul class='version'>
+  <li>
+    <div class='inline'>
+<p>5.0.0</p>
+</div>
+  </li>
+</ul>
+
+</div>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/minissl.rb#L17-L19'># File 'lib/puma/minissl.rb', line 17</a>    <pre class='code ruby'><span class='const'><a href="../Puma.html#IS_JRUBY-constant" title="Puma::IS_JRUBY (constant)">IS_JRUBY</a></span> <span class='op'>||</span>
+        ((<span class='const'><a href="#OPENSSL_VERSION-constant" title="Puma::MiniSSL::OPENSSL_VERSION (constant)">OPENSSL_VERSION</a></span>[<span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'> \d\.\d\.\d+</span><span class='regexp_end'>/</span></span>].<span class='id identifier rubyid_split'>split</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span>).<span class='id identifier rubyid_map'>map</span>(<span class='op'>&amp;</span><span class='symbeg'>:</span><span class='id identifier rubyid_to_i'>to_i</span>) <span class='op'>&lt;=&gt;</span> [<span class='int'>1</span><span class='comma'>,</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>1</span>]) <span class='op'>!=</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>&amp;&amp;</span>
+(<span class='const'><a href="#OPENSSL_LIBRARY_VERSION-constant" title="Puma::MiniSSL::OPENSSL_LIBRARY_VERSION (constant)">OPENSSL_LIBRARY_VERSION</a></span>[<span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'> \d\.\d\.\d+</span><span class='regexp_end'>/</span></span>].<span class='id identifier rubyid_split'>split</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.</span><span class='tstring_end'>&#39;</span></span>).<span class='id identifier rubyid_map'>map</span>(<span class='op'>&amp;</span><span class='symbeg'>:</span><span class='id identifier rubyid_to_i'>to_i</span>) <span class='op'>&lt;=&gt;</span> [<span class='int'>1</span><span class='comma'>,</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>1</span>]) <span class='op'>!=</span><span class='op'>-</span><span class='int'>1</span>)</pre>
+  </li>
+  <li>
+    <span id='OPENSSL_LIBRARY_VERSION-constant' class='summary_signature'>OPENSSL_LIBRARY_VERSION =</span>
+    <div class='docstring'>
+  <div class='discussion'>
+    
+<p>Version of OpenSSL that <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> loaded with</p>
+
+  </div>
+</div>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/ext/puma_http11/mini_ssl.c#L681'># File 'ext/puma_http11/mini_ssl.c', line 681</a>    <pre class='code c'><span class='id identifier rubyid_rb_str_new2'>rb_str_new2</span>(<span class='const'>OpenSSL_version</span>(<span class='const'><a href="#OPENSSL_VERSION-constant" title="Puma::MiniSSL::OPENSSL_VERSION (constant)">OPENSSL_VERSION</a></span>))</pre>
+  </li>
+  <li>
+    <span id='OPENSSL_NO_SSL3-constant' class='summary_signature'>OPENSSL_NO_SSL3 =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/minissl.rb#L198-L198'># File 'lib/puma/minissl.rb', line 198</a>    <pre class='code ruby'><span class='kw'>false</span></pre>
+  </li>
+  <li>
+    <span id='OPENSSL_NO_TLS1-constant' class='summary_signature'>OPENSSL_NO_TLS1 =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/minissl.rb#L199-L199'># File 'lib/puma/minissl.rb', line 199</a>    <pre class='code ruby'><span class='kw'>false</span></pre>
+  </li>
+  <li>
+    <span id='OPENSSL_NO_TLS1_1-constant' class='summary_signature'>OPENSSL_NO_TLS1_1 =</span>
+    <div class='docstring'>
+  <div class='discussion'>
+    
+<p>True if TLS1_1 is not available</p>
+
+  </div>
+</div>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/ext/puma_http11/mini_ssl.c#L702'># File 'ext/puma_http11/mini_ssl.c', line 702</a>    <pre class='code c'><span class='const'>Qtrue</span></pre>
+  </li>
+  <li>
+    <span id='OPENSSL_VERSION-constant' class='summary_signature'>OPENSSL_VERSION =</span>
+    <div class='docstring'>
+  <div class='discussion'>
+    
+<p>Version of OpenSSL that <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> was compiled with</p>
+
+  </div>
+</div>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/ext/puma_http11/mini_ssl.c#L677'># File 'ext/puma_http11/mini_ssl.c', line 677</a>    <pre class='code c'><span class='id identifier rubyid_rb_str_new2'>rb_str_new2</span>(<span class='const'>OPENSSL_VERSION_TEXT</span>)</pre>
+  </li>
+  <li>
+    <span id='VERIFICATION_FLAGS-constant' class='summary_signature'>VERIFICATION_FLAGS =</span>
+    <div class='docstring'>
+  <div class='discussion'>
+    
+<p><a href="https://github.com/openssl/openssl/blob/master/include/openssl/x509_vfy.h.in">github.com/openssl/openssl/blob/master/include/openssl/x509_vfy.h.in</a> /* Certificate verify flags */</p>
+
+  </div>
+</div>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/minissl.rb#L371-L393'># File 'lib/puma/minissl.rb', line 371</a>    <pre class='code ruby'>{
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>USE_CHECK_TIME</span><span class='tstring_end'>&quot;</span></span>       <span class='op'>=&gt;</span> <span class='int'>0x2</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CRL_CHECK</span><span class='tstring_end'>&quot;</span></span>            <span class='op'>=&gt;</span> <span class='int'>0x4</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CRL_CHECK_ALL</span><span class='tstring_end'>&quot;</span></span>        <span class='op'>=&gt;</span> <span class='int'>0x8</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>IGNORE_CRITICAL</span><span class='tstring_end'>&quot;</span></span>      <span class='op'>=&gt;</span> <span class='int'>0x10</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>X509_STRICT</span><span class='tstring_end'>&quot;</span></span>          <span class='op'>=&gt;</span> <span class='int'>0x20</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ALLOW_PROXY_CERTS</span><span class='tstring_end'>&quot;</span></span>    <span class='op'>=&gt;</span> <span class='int'>0x40</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>POLICY_CHECK</span><span class='tstring_end'>&quot;</span></span>         <span class='op'>=&gt;</span> <span class='int'>0x80</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>EXPLICIT_POLICY</span><span class='tstring_end'>&quot;</span></span>      <span class='op'>=&gt;</span> <span class='int'>0x100</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>INHIBIT_ANY</span><span class='tstring_end'>&quot;</span></span>          <span class='op'>=&gt;</span> <span class='int'>0x200</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>INHIBIT_MAP</span><span class='tstring_end'>&quot;</span></span>          <span class='op'>=&gt;</span> <span class='int'>0x400</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>NOTIFY_POLICY</span><span class='tstring_end'>&quot;</span></span>        <span class='op'>=&gt;</span> <span class='int'>0x800</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>EXTENDED_CRL_SUPPORT</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='int'>0x1000</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>USE_DELTAS</span><span class='tstring_end'>&quot;</span></span>           <span class='op'>=&gt;</span> <span class='int'>0x2000</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CHECK_SS_SIGNATURE</span><span class='tstring_end'>&quot;</span></span>   <span class='op'>=&gt;</span> <span class='int'>0x4000</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TRUSTED_FIRST</span><span class='tstring_end'>&quot;</span></span>        <span class='op'>=&gt;</span> <span class='int'>0x8000</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SUITEB_128_LOS_ONLY</span><span class='tstring_end'>&quot;</span></span>  <span class='op'>=&gt;</span> <span class='int'>0x10000</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SUITEB_192_LOS</span><span class='tstring_end'>&quot;</span></span>       <span class='op'>=&gt;</span> <span class='int'>0x20000</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SUITEB_128_LOS</span><span class='tstring_end'>&quot;</span></span>       <span class='op'>=&gt;</span> <span class='int'>0x30000</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PARTIAL_CHAIN</span><span class='tstring_end'>&quot;</span></span>        <span class='op'>=&gt;</span> <span class='int'>0x80000</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>NO_ALT_CHAINS</span><span class='tstring_end'>&quot;</span></span>        <span class='op'>=&gt;</span> <span class='int'>0x100000</span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>NO_CHECK_TIME</span><span class='tstring_end'>&quot;</span></span>        <span class='op'>=&gt;</span> <span class='int'>0x200000</span>
+}.<span class='id identifier rubyid_freeze'>freeze</span></pre>
+  </li>
+  <li>
+    <span id='VERIFY_FAIL_IF_NO_PEER_CERT-constant' class='summary_signature'>VERIFY_FAIL_IF_NO_PEER_CERT =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/minissl.rb#L367-L367'># File 'lib/puma/minissl.rb', line 367</a>    <pre class='code ruby'><span class='int'>2</span></pre>
+  </li>
+  <li>
+    <span id='VERIFY_NONE-constant' class='summary_signature'>VERIFY_NONE =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/minissl.rb#L365-L365'># File 'lib/puma/minissl.rb', line 365</a>    <pre class='code ruby'><span class='int'>0</span></pre>
+  </li>
+  <li>
+    <span id='VERIFY_PEER-constant' class='summary_signature'>VERIFY_PEER =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/minissl.rb#L366-L366'># File 'lib/puma/minissl.rb', line 366</a>    <pre class='code ruby'><span class='int'>1</span></pre>
+  </li>
+</ul>
+</div>
+
+<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#check-class_method" title=".check (class method)">.<strong>check</strong>  </a>
+    </span>
+  </li>
+</ul>
+</div>  <!-- class_method_summary -->
+<h2 class='y_details'>Class Method Details</h2>
+<section class='method_details first' id="check-class_method">
+  <h3 class='signature  first'>
+    .<strong>check</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/ext/puma_http11/mini_ssl.c#L646-L648'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='646' data-end='648'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 646</span></pre>
+<pre class='code cpp'>
+
+VALUE noop(VALUE self) {
+  return Qnil;
+}
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>

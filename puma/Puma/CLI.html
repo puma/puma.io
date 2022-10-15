@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Class: Puma::CLI &mdash; Puma-6.0.0</title>
+
+<link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::CLI",
+    relpath = '../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../'>Puma-6.0.0</a> &raquo; 
+      <a href='../_index.html#alpha_C'>Index (C)</a> &raquo; 
+        <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>CLI&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='class'>
+<h1>Class: Puma::CLI</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id='t2_inherits' class='box_2'>Inherits:</td>
+      <td class='box_rel'>
+        <span class='inheritName'><a href="../Object.html" title="Object (class)">Object</a></span>
+      </td>
+    </tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/cli.rb#L23'>lib/puma/cli.rb</a>      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Handles invoke a <a href="Server.html" title="Puma::Server (class)"><code>Server</code></a> in a command line style.</p>
+
+  </div>
+</div>
+</div>
+<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#new-class_method" title=".new (class method)">.<strong>new</strong>(argv, log_writer = LogWriter.stdio, events = Events.new)  &#x21d2; CLI </a>
+    </span>
+    <span class='note title constructor'>constructor</span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Create a new <code>CLI</code> object using <code>argv</code> as the command line arguments.</p></div>
+    </div>
+  </li>
+</ul>
+</div>  <!-- class_method_summary -->
+
+<h2 class='h2_sum' id='instance_attribute_summary'>Instance Attribute Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#launcher-instance_method" title="#launcher (instance method)">#<strong>launcher</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+</ul>
+</div>  <!-- instance_attribute_summary -->
+
+<h2 class='h2_sum' id='instance_method_summary'>Instance Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#run-instance_method" title="#run (instance method)">#<strong>run</strong>  </a>
+    </span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Parse the options, load the rackup, start the server and wait for it to finish.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#configure_control_url-instance_method" title="#configure_control_url (instance method)">#<strong>configure_control_url</strong>(command_line_arg)  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#setup_options-instance_method" title="#setup_options (instance method)">#<strong>setup_options</strong>  </a>
+    </span>
+    <span class='note title private'>private</span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Build the OptionParser object to handle the available options.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
+      <a href="#unsupported-instance_method" title="#unsupported (instance method)">#<strong>unsupported</strong>(str)  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+</ul>
+</div>  <!-- instance_method_summary -->
+<h2 id='Constructor_Details' class='y_details'>Constructor Details</h2>
+
+  <section class='method_details first' id="new-class_method">
+  <h3 class='signature  first'>
+    .<strong>new</strong>(argv, log_writer = LogWriter.stdio, events = Events.new)  &#x21d2; <code>CLI</code> 
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Create a new <code>CLI</code> object using <code>argv</code> as the command line arguments.</p>
+
+  </div>
+</div>
+<div class='tags'>
+  
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/cli.rb#L27-L67'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='27' data-end='67'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cli.rb', line 27</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_argv'>argv</span><span class='comma'>,</span> <span class='id identifier rubyid_log_writer'>log_writer</span> <span class='op'>=</span> <span class='const'><a href="LogWriter.html" title="Puma::LogWriter (class)">LogWriter</a></span>.<span class='id identifier rubyid_stdio'><a href="LogWriter.html#stdio-class_method" title="Puma::LogWriter.stdio (method)">stdio</a></span><span class='comma'>,</span> <span class='id identifier rubyid_events'>events</span> <span class='op'>=</span> <span class='const'><a href="Events.html" title="Puma::Events (class)">Events</a></span>.<span class='id identifier rubyid_new'><a href="Events.html#new-class_method" title="Puma::Events.new (method)">new</a></span>)
+  <span class='ivar'>@debug</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@argv</span> <span class='op'>=</span> <span class='id identifier rubyid_argv'>argv</span>.<span class='id identifier rubyid_dup'>dup</span>
+  <span class='ivar'>@log_writer</span> <span class='op'>=</span> <span class='id identifier rubyid_log_writer'>log_writer</span>
+  <span class='ivar'>@events</span> <span class='op'>=</span> <span class='id identifier rubyid_events'>events</span>
+
+  <span class='ivar'>@conf</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+  <span class='ivar'>@stdout</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@stderr</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@append</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+  <span class='ivar'>@control_url</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@control_options</span> <span class='op'>=</span> {}
+
+  <span class='id identifier rubyid_setup_options'><a href="#setup_options-instance_method" title="Puma::CLI#setup_options (method)">setup_options</a></span>
+
+  <span class='kw'>begin</span>
+    <span class='ivar'>@parser</span>.<span class='id identifier rubyid_parse!'>parse!</span> <span class='ivar'>@argv</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='ivar'>@argv</span>.<span class='id identifier rubyid_shift'>shift</span>
+      <span class='ivar'>@conf</span>.<span class='id identifier rubyid_configure'>configure</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user_config'>user_config</span><span class='comma'>,</span> <span class='id identifier rubyid_file_config'>file_config</span><span class='op'>|</span>
+        <span class='id identifier rubyid_file_config'>file_config</span>.<span class='id identifier rubyid_rackup'>rackup</span> <span class='id identifier rubyid_file'>file</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'><a href="UnsupportedOption.html" title="Puma::UnsupportedOption (class)">UnsupportedOption</a></span>
+    <span class='id identifier rubyid_exit'>exit</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@conf</span>.<span class='id identifier rubyid_configure'>configure</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user_config'>user_config</span><span class='comma'>,</span> <span class='id identifier rubyid_file_config'>file_config</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='ivar'>@stdout</span> <span class='op'>||</span> <span class='ivar'>@stderr</span>
+      <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_stdout_redirect'>stdout_redirect</span> <span class='ivar'>@stdout</span><span class='comma'>,</span> <span class='ivar'>@stderr</span><span class='comma'>,</span> <span class='ivar'>@append</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>if</span> <span class='ivar'>@control_url</span>
+      <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_activate_control_app'>activate_control_app</span> <span class='ivar'>@control_url</span><span class='comma'>,</span> <span class='ivar'>@control_options</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@launcher</span> <span class='op'>=</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Launcher.html" title="Puma::Launcher (class)">Launcher</a></span>.<span class='id identifier rubyid_new'><a href="Launcher.html#new-class_method" title="Puma::Launcher.new (method)">new</a></span>(<span class='ivar'>@conf</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_log_writer'>log_writer</span> <span class='op'>=&gt;</span> <span class='ivar'>@log_writer</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'>events</span> <span class='op'>=&gt;</span> <span class='ivar'>@events</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_argv'>argv</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_argv'>argv</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Attribute Details</h2>
+<section class='method_details first' id="launcher-instance_method">
+  <h3 class='signature ro first'>
+    #<strong>launcher</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/cli.rb#L69-L69'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='69' data-end='69'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cli.rb', line 69</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_launcher'>launcher</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Instance Method Details</h2>
+<section class='method_details first' id="configure_control_url-instance_method">
+  <h3 class='signature priv first'>
+    #<strong>configure_control_url</strong>(command_line_arg)   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/cli.rb#L84-L90'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='84' data-end='90'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cli.rb', line 84</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_configure_control_url'>configure_control_url</span>(<span class='id identifier rubyid_command_line_arg'>command_line_arg</span>)
+  <span class='kw'>if</span> <span class='id identifier rubyid_command_line_arg'>command_line_arg</span>
+    <span class='ivar'>@control_url</span> <span class='op'>=</span> <span class='id identifier rubyid_command_line_arg'>command_line_arg</span>
+  <span class='kw'>elsif</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span>.<span class='id identifier rubyid_jruby?'><a href="../Puma.html#jruby%3F-class_method" title="Puma.jruby? (method)">jruby?</a></span>
+    <span class='id identifier rubyid_unsupported'><a href="#unsupported-instance_method" title="Puma::CLI#unsupported (method)">unsupported</a></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No default url available on JRuby</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="run-instance_method">
+  <h3 class='signature '>
+    #<strong>run</strong>  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Parse the options, load the rackup, start the server and wait for it to finish.</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/cli.rb#L74-L76'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='74' data-end='76'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cli.rb', line 74</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>
+  <span class='ivar'>@launcher</span>.<span class='id identifier rubyid_run'>run</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="setup_options-instance_method">
+  <h3 class='signature priv'>
+    #<strong>setup_options</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Build the OptionParser object to handle the available options.</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/cli.rb#L95-L237'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='95' data-end='237'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cli.rb', line 95</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setup_options'>setup_options</span>
+  <span class='ivar'>@conf</span> <span class='op'>=</span> <span class='const'><a href="Configuration.html" title="Puma::Configuration (class)">Configuration</a></span>.<span class='id identifier rubyid_new'><a href="Configuration.html#new-class_method" title="Puma::Configuration.new (method)">new</a></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user_config'>user_config</span><span class='comma'>,</span> <span class='id identifier rubyid_file_config'>file_config</span><span class='op'>|</span>
+    <span class='ivar'>@parser</span> <span class='op'>=</span> <span class='const'>OptionParser</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::CLI.new (method)">new</a></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-b</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--bind URI</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>URI to bind to (tcp://, unix://, ssl://)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_bind'>bind</span> <span class='id identifier rubyid_arg'>arg</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--bind-to-activated-sockets [only]</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bind to all activated sockets</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_bind_to_activated_sockets'>bind_to_activated_sockets</span>(<span class='id identifier rubyid_arg'>arg</span> <span class='op'>||</span> <span class='kw'>true</span>)
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-C</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--config PATH</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Load PATH as a config file</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_file_config'>file_config</span>.<span class='id identifier rubyid_load'>load</span> <span class='id identifier rubyid_arg'>arg</span>
+      <span class='kw'>end</span>
+
+      <span class='comment'># Identical to supplying --config &quot;-&quot;, but more semantic
+</span>      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--no-config</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Prevent Puma from searching for a config file</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_file_config'>file_config</span>.<span class='id identifier rubyid_load'>load</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--control-url URL</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The bind url to use for the control server. Use &#39;auto&#39; to use temp unix server</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_configure_control_url'><a href="#configure_control_url-instance_method" title="Puma::CLI#configure_control_url (method)">configure_control_url</a></span>(<span class='id identifier rubyid_arg'>arg</span>)
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--control-token TOKEN</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The token to use as authentication for the control server</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='ivar'>@control_options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_auth_token'>auth_token</span>] <span class='op'>=</span> <span class='id identifier rubyid_arg'>arg</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--debug</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Log lowlevel debugging information</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_debug'>debug</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--dir DIR</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Change to DIR before starting</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_d'>d</span><span class='op'>|</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_directory'>directory</span> <span class='id identifier rubyid_d'>d</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-e</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--environment ENVIRONMENT</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The environment to run the Rack app on (default development)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_environment'>environment</span> <span class='id identifier rubyid_arg'>arg</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-f</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--fork-worker=[REQUESTS]</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>OptionParser</span><span class='op'>::</span><span class='const'>DecimalInteger</span><span class='comma'>,</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Fork new workers from existing worker. Cluster mode only</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Auto-refork after REQUESTS (default 1000)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='op'>|</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_fork_worker'>fork_worker</span>(<span class='op'>*</span><span class='id identifier rubyid_args'>args</span>.<span class='id identifier rubyid_compact'>compact</span>)
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-I</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--include PATH</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Specify $LOAD_PATH directories</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='gvar'>$LOAD_PATH</span>.<span class='id identifier rubyid_unshift'>unshift</span>(<span class='op'>*</span><span class='id identifier rubyid_arg'>arg</span>.<span class='id identifier rubyid_split'>split</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>:</span><span class='tstring_end'>&#39;</span></span>))
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-p</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--port PORT</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Define the TCP port to bind to</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Use -b for more advanced options</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_bind'>bind</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tcp://</span><span class='embexpr_beg'>#{</span><span class='const'><a href="Configuration.html" title="Puma::Configuration (class)">Configuration</a></span><span class='op'>::</span><span class='const'><a href="Configuration.html#DEFAULTS-constant" title="Puma::Configuration::DEFAULTS (constant)">DEFAULTS</a></span>[<span class='symbeg'>:</span><span class='id identifier rubyid_tcp_host'>tcp_host</span>]<span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_arg'>arg</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--pidfile PATH</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Use PATH as a pidfile</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_pidfile'>pidfile</span> <span class='id identifier rubyid_arg'>arg</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--preload</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Preload the app. Cluster mode only</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_preload_app!'>preload_app!</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--prune-bundler</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Prune out the bundler env if possible</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_prune_bundler'>prune_bundler</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--extra-runtime-dependencies GEM1,GEM2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Defines any extra needed gems when using --prune-bundler</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_extra_runtime_dependencies'>extra_runtime_dependencies</span> <span class='id identifier rubyid_arg'>arg</span>.<span class='id identifier rubyid_split'>split</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span>)
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-q</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--quiet</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Do not log requests internally (default true)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_quiet'>quiet</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-v</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--log-requests</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Log requests as they occur</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_log_requests'>log_requests</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-R</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--restart-cmd CMD</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The puma command to run during a hot restart</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Default: inferred</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_cmd'>cmd</span><span class='op'>|</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_restart_command'>restart_command</span> <span class='id identifier rubyid_cmd'>cmd</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-s</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--silent</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Do not log prompt messages other than errors</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+        <span class='ivar'>@log_writer</span> <span class='op'>=</span> <span class='const'><a href="LogWriter.html" title="Puma::LogWriter (class)">LogWriter</a></span>.<span class='id identifier rubyid_new'><a href="LogWriter.html#new-class_method" title="Puma::LogWriter.new (method)">new</a></span>(<span class='const'><a href="NullIO.html" title="Puma::NullIO (class)">NullIO</a></span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::CLI.new (method)">new</a></span><span class='comma'>,</span> <span class='gvar'>$stderr</span>)
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-S</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--state PATH</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Where to store the state details</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_state_path'>state_path</span> <span class='id identifier rubyid_arg'>arg</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-t</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>--threads INT</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>min:max threads to use (default 0:16)</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span> <span class='op'>=</span> <span class='id identifier rubyid_arg'>arg</span>.<span class='id identifier rubyid_split'>split</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span>)
+        <span class='kw'>if</span> <span class='id identifier rubyid_max'>max</span>
+          <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_threads'>threads</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span>
+        <span class='kw'>else</span>
+          <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_threads'>threads</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--early-hints</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Enable early hints support</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_early_hints'>early_hints</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-V</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--version</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Print the version information</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puma version </span><span class='embexpr_beg'>#{</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'>VERSION</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_exit'>exit</span> <span class='int'>0</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-w</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--workers COUNT</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Activate cluster mode: How many worker processes to create</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_workers'>workers</span> <span class='id identifier rubyid_arg'>arg</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--tag NAME</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Additional text to display in process listing</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_tag'>tag</span> <span class='id identifier rubyid_arg'>arg</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--redirect-stdout FILE</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Redirect STDOUT to a specific file</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='ivar'>@stdout</span> <span class='op'>=</span> <span class='id identifier rubyid_arg'>arg</span>.<span class='id identifier rubyid_to_s'>to_s</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--redirect-stderr FILE</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Redirect STDERR to a specific file</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_arg'>arg</span><span class='op'>|</span>
+        <span class='ivar'>@stderr</span> <span class='op'>=</span> <span class='id identifier rubyid_arg'>arg</span>.<span class='id identifier rubyid_to_s'>to_s</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on'>on</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--[no-]redirect-append</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Append to redirected files</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_val'>val</span><span class='op'>|</span>
+        <span class='ivar'>@append</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_banner'>banner</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puma &lt;options&gt; &lt;rackup file&gt;</span><span class='tstring_end'>&quot;</span></span>
+
+      <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_on_tail'>on_tail</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-h</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--help</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Show help</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+        <span class='gvar'>$stdout</span>.<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_o'>o</span>
+        <span class='id identifier rubyid_exit'>exit</span> <span class='int'>0</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="unsupported-instance_method">
+  <h3 class='signature priv'>
+    #<strong>unsupported</strong>(str)   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Raises:</p>
+<ul class='raise'>
+  <li>
+    <span class='type'>(<a href="UnsupportedOption.html" title="Puma::UnsupportedOption (class)">UnsupportedOption</a>)</span>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/cli.rb#L79-L82'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='79' data-end='82'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/cli.rb', line 79</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_unsupported'>unsupported</span>(<span class='id identifier rubyid_str'>str</span>)
+  <span class='ivar'>@log_writer</span>.<span class='id identifier rubyid_error'>error</span>(<span class='id identifier rubyid_str'>str</span>)
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="UnsupportedOption.html" title="Puma::UnsupportedOption (class)">UnsupportedOption</a></span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>
