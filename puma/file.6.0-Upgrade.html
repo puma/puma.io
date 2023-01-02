@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: 6.0-Upgrade &mdash; Puma-6.0.0</title>
+<title>File: 6.0-Upgrade &mdash; Puma-6.0.2</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.0.0</a> &raquo; 
+      <a href='.'>Puma-6.0.2</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: 6.0-Upgrade&nbsp;&#x25B2;</a></span>
           </div>
@@ -88,6 +88,7 @@
 <h2>Upgrade</h2>
 <p>Check the following list to see if you're depending on any of these behaviors:</p>
 <ol>
+<li>Configuration constants like <code>DefaultRackup</code> removed, see <a href="https://github.com/puma/puma/pull/2928/files#diff-2dc4e3e83be7fd97cebc482ae07d6a8216944003de82458783fb00b5ae9524c8">#2928</a> for the full list.</li>
 <li>We have changed the names of the following environment variables: <code>DISABLE_SSL</code> is now <code>PUMA_DISABLE_SSL</code>, <code>MAKE_WARNINGS_INTO_ERRORS</code> is now <code>PUMA_MAKE_WARNINGS_INTO_ERRORS</code>, and <code>WAIT_FOR_LESS_BUSY_WORKERS</code> is now <code>PUMA_WAIT_FOR_LESS_BUSY_WORKERS</code>.</li>
 <li>Nakayoshi GC (<code>nakayoshi_fork</code> option in config) has been removed without replacement.</li>
 <li><code>wait_for_less_busy_worker</code> is now on by default. If you don't want to use this feature, you must add <code>wait_for_less_busy_worker false</code> in your config.</li>
@@ -95,7 +96,7 @@
 <li>We've removed the following constants: <code>Puma::StateFile::FIELDS</code>, <code>Puma::CLI::KEYS_NOT_TO_PERSIST_IN_STATE</code> and <code>Puma::Launcher::KEYS_NOT_TO_PERSIST_IN_STATE</code>, and <code>Puma::ControlCLI::COMMANDS</code>.</li>
 <li>We no longer support Ruby 2.2, 2.3, or JRuby on Java 1.7 or below.</li>
 <li>The behavior of <code>remote_addr</code> has changed. When using the set_remote_address header: &quot;header_name&quot; functionality, if the header is not passed, REMOTE_ADDR is now set to the physical peeraddr instead of always being set to 127.0.0.1. When an error occurs preventing the physical peeraddr from being fetched, REMOTE_ADDR is now set to the unspecified source address ('0.0.0.0') instead of to '127.0.0.1'</li>
-<li>If you are creating your own <a href="Puma/Server.html" title="Puma::Server (class)"><code>Server</code></a> objects, it's initialize signature has changed. In 5.x and below, it was <code>def initialize(app, events=Events.stdio, options={})</code>. Now it is <code>def initialize(app, log_writer=LogWriter.stdio, events=Events.new, options = {})</code>.</li>
+<li>Previously, <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> supported anything as an HTTP method and passed it to the app. We now only accept the 8 HTTP methods defined in RFC 9110.</li>
 </ol>
 <p>Then, update your Gemfile:</p>
 <p><code>gem 'puma', '&lt; 7'</code></p>

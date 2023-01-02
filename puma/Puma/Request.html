@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Module: Puma::Request &mdash; Puma-6.0.0</title>
+<title>Module: Puma::Request &mdash; Puma-6.0.2</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-6.0.0</a> &raquo; 
+      <a href='../'>Puma-6.0.2</a> &raquo; 
       <a href='../_index.html#alpha_R'>Index (R)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a class='nodoc' id='t2_doc_top' href='#'>Request&nbsp;&#x25B2;</a></span>
@@ -91,7 +91,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L15'>lib/puma/request.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L15'>lib/puma/request.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -127,43 +127,43 @@
     <div class='docstring'>
   <div class='discussion'>
     
-<p>determines whether to write body to io_buffer first, or straight to socket also fixes max size of chunked body read when bosy is an <a href="../IO.html" title="IO (class)"><code>::IO</code></a>.</p>
+<p><a href="Single.html" title="Puma::Single (class)"><code>Single</code></a> element array body: smaller bodies are written to io_buffer first, then a single write from io_buffer. Larger sizes are written separately. Also fixes max size of chunked file body read.</p>
 
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L19-L19'># File 'lib/puma/request.rb', line 19</a>    <pre class='code ruby'><span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>256</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L20-L20'># File 'lib/puma/request.rb', line 20</a>    <pre class='code ruby'><span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>256</span></pre>
   </li>
   <li>
     <span id='CUSTOM_STAT-constant' class='summary_signature nodoc'>CUSTOM_STAT =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L29-L29'># File 'lib/puma/request.rb', line 29</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CUSTOM</span><span class='tstring_end'>&#39;</span></span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L32-L32'># File 'lib/puma/request.rb', line 32</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CUSTOM</span><span class='tstring_end'>&#39;</span></span></pre>
   </li>
   <li>
     <span id='IO_BODY_MAX-constant' class='summary_signature nodoc'>IO_BODY_MAX =</span>
     <div class='docstring'>
   <div class='discussion'>
     
-<p>size divide for using copy_stream on body</p>
+<p>File body: smaller bodies are combined with io_buffer, then written to socket.  Larger bodies are written separately using <code>copy_stream</code></p>
 
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L22-L22'># File 'lib/puma/request.rb', line 22</a>    <pre class='code ruby'><span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>64</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L24-L24'># File 'lib/puma/request.rb', line 24</a>    <pre class='code ruby'><span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>64</span></pre>
   </li>
   <li>
     <span id='IO_BUFFER_LEN_MAX-constant' class='summary_signature nodoc'>IO_BUFFER_LEN_MAX =</span>
     <div class='docstring'>
   <div class='discussion'>
     
-<p>max size for io_buffer, force write when exceeded</p>
+<p>Array body: elements are collected in io_buffer.  When io_buffer’s size exceeds value, they are written to the socket.</p>
 
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L25-L25'># File 'lib/puma/request.rb', line 25</a>    <pre class='code ruby'><span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>4</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L28-L28'># File 'lib/puma/request.rb', line 28</a>    <pre class='code ruby'><span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>512</span></pre>
   </li>
   <li>
     <span id='SOCKET_WRITE_ERR_MSG-constant' class='summary_signature nodoc'>SOCKET_WRITE_ERR_MSG =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L27-L27'># File 'lib/puma/request.rb', line 27</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Socket timeout writing data</span><span class='tstring_end'>&quot;</span></span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L30-L30'># File 'lib/puma/request.rb', line 30</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Socket timeout writing data</span><span class='tstring_end'>&quot;</span></span></pre>
   </li>
 </ul>
   <h3 class='inherited'><a href="Const.html" title="Puma::Const (module)"><code>Const</code></a> - Included</h3>
@@ -182,13 +182,11 @@
     <a href="Const.html#CONTENT_LENGTH2-constant" title="Puma::Const::CONTENT_LENGTH2 (constant)">CONTENT_LENGTH2</a>, 
     <a href="Const.html#CONTENT_LENGTH_S-constant" title="Puma::Const::CONTENT_LENGTH_S (constant)">CONTENT_LENGTH_S</a>, 
     <a href="Const.html#CONTINUE-constant" title="Puma::Const::CONTINUE (constant)">CONTINUE</a>, 
-    <a href="Const.html#DELETE-constant" title="Puma::Const::DELETE (constant)">DELETE</a>, 
     <a href="Const.html#DQUOTE-constant" title="Puma::Const::DQUOTE (constant)">DQUOTE</a>, 
     <a href="Const.html#EARLY_HINTS-constant" title="Puma::Const::EARLY_HINTS (constant)">EARLY_HINTS</a>, 
     <a href="Const.html#ERROR_RESPONSE-constant" title="Puma::Const::ERROR_RESPONSE (constant)">ERROR_RESPONSE</a>, 
     <a href="Const.html#FAST_TRACK_KA_TIMEOUT-constant" title="Puma::Const::FAST_TRACK_KA_TIMEOUT (constant)">FAST_TRACK_KA_TIMEOUT</a>, 
     <a href="Const.html#GATEWAY_INTERFACE-constant" title="Puma::Const::GATEWAY_INTERFACE (constant)">GATEWAY_INTERFACE</a>, 
-    <a href="Const.html#GET-constant" title="Puma::Const::GET (constant)">GET</a>, 
     <a href="Const.html#HALT_COMMAND-constant" title="Puma::Const::HALT_COMMAND (constant)">HALT_COMMAND</a>, 
     <a href="Const.html#HEAD-constant" title="Puma::Const::HEAD (constant)">HEAD</a>, 
     <a href="Const.html#HIJACK-constant" title="Puma::Const::HIJACK (constant)">HIJACK</a>, 
@@ -220,12 +218,9 @@
     <a href="Const.html#MAX_BODY-constant" title="Puma::Const::MAX_BODY (constant)">MAX_BODY</a>, 
     <a href="Const.html#MAX_HEADER-constant" title="Puma::Const::MAX_HEADER (constant)">MAX_HEADER</a>, 
     <a href="Const.html#NEWLINE-constant" title="Puma::Const::NEWLINE (constant)">NEWLINE</a>, 
-    <a href="Const.html#OPTIONS-constant" title="Puma::Const::OPTIONS (constant)">OPTIONS</a>, 
-    <a href="Const.html#PATCH-constant" title="Puma::Const::PATCH (constant)">PATCH</a>, 
     <a href="Const.html#PATH_INFO-constant" title="Puma::Const::PATH_INFO (constant)">PATH_INFO</a>, 
     <a href="Const.html#PORT_443-constant" title="Puma::Const::PORT_443 (constant)">PORT_443</a>, 
     <a href="Const.html#PORT_80-constant" title="Puma::Const::PORT_80 (constant)">PORT_80</a>, 
-    <a href="Const.html#POST-constant" title="Puma::Const::POST (constant)">POST</a>, 
     <a href="Const.html#PROXY_PROTOCOL_V1_REGEX-constant" title="Puma::Const::PROXY_PROTOCOL_V1_REGEX (constant)">PROXY_PROTOCOL_V1_REGEX</a>, 
     <a href="Const.html#PUMA_CONFIG-constant" title="Puma::Const::PUMA_CONFIG (constant)">PUMA_CONFIG</a>, 
     <a href="Const.html#PUMA_PEERCERT-constant" title="Puma::Const::PUMA_PEERCERT (constant)">PUMA_PEERCERT</a>, 
@@ -233,7 +228,6 @@
     <a href="Const.html#PUMA_SOCKET-constant" title="Puma::Const::PUMA_SOCKET (constant)">PUMA_SOCKET</a>, 
     <a href="Const.html#PUMA_TMP_BASE-constant" title="Puma::Const::PUMA_TMP_BASE (constant)">PUMA_TMP_BASE</a>, 
     <a href="Const.html#PUMA_VERSION-constant" title="Puma::Const::PUMA_VERSION (constant)">PUMA_VERSION</a>, 
-    <a href="Const.html#PUT-constant" title="Puma::Const::PUT (constant)">PUT</a>, 
     <a href="Const.html#QUERY_STRING-constant" title="Puma::Const::QUERY_STRING (constant)">QUERY_STRING</a>, 
     <a href="Const.html#RACK_AFTER_REPLY-constant" title="Puma::Const::RACK_AFTER_REPLY (constant)">RACK_AFTER_REPLY</a>, 
     <a href="Const.html#RACK_INPUT-constant" title="Puma::Const::RACK_INPUT (constant)">RACK_INPUT</a>, 
@@ -249,7 +243,6 @@
     <a href="Const.html#SERVER_SOFTWARE-constant" title="Puma::Const::SERVER_SOFTWARE (constant)">SERVER_SOFTWARE</a>, 
     <a href="Const.html#STOP_COMMAND-constant" title="Puma::Const::STOP_COMMAND (constant)">STOP_COMMAND</a>, 
     <a href="Const.html#SUPPORTED_HTTP_METHODS-constant" title="Puma::Const::SUPPORTED_HTTP_METHODS (constant)">SUPPORTED_HTTP_METHODS</a>, 
-    <a href="Const.html#TRACE-constant" title="Puma::Const::TRACE (constant)">TRACE</a>, 
     <a href="Const.html#TRANSFER_ENCODING-constant" title="Puma::Const::TRANSFER_ENCODING (constant)">TRANSFER_ENCODING</a>, 
     <a href="Const.html#TRANSFER_ENCODING2-constant" title="Puma::Const::TRANSFER_ENCODING2 (constant)">TRANSFER_ENCODING2</a>, 
     <a href="Const.html#TRANSFER_ENCODING_CHUNKED-constant" title="Puma::Const::TRANSFER_ENCODING_CHUNKED (constant)">TRANSFER_ENCODING_CHUNKED</a>, 
@@ -269,7 +262,7 @@
   </li>
   <li>
     <span class='summary_signature nodoc'>
-      <a href="#handle_request-instance_method" title="#handle_request (instance method)">#<strong>handle_request</strong>(client, io_buffer, requests)  &#x21d2; Boolean, :async </a>
+      <a href="#handle_request-instance_method" title="#handle_request (instance method)">#<strong>handle_request</strong>(client, requests)  &#x21d2; Boolean, :async </a>
     </span>
     <div class='summary_desc'>
       <div class='inline'><p>Takes the request contained in <code>client</code>, invokes the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application to construct the response and writes it back to <code>client.io</code>.</p></div>
@@ -277,7 +270,7 @@
   </li>
   <li>
     <span class='summary_signature nodoc'>
-      <a href="#prepare_response-instance_method" title="#prepare_response (instance method)">#<strong>prepare_response</strong>(status, headers, app_body, io_buffer, requests, client)  &#x21d2; Boolean, :async </a>
+      <a href="#prepare_response-instance_method" title="#prepare_response (instance method)">#<strong>prepare_response</strong>(status, headers, res_body, requests, client)  &#x21d2; Boolean, :async </a>
     </span>
     <div class='summary_desc'>
       <div class='inline'><p>Assembles the headers and prepares the body for actually sending the response via <a href="#fast_write_response-instance_method" title="Puma::Request#fast_write_response (method)">#fast_write_response</a>.</p></div>
@@ -348,7 +341,7 @@
   </li>
   <li>
     <span class='summary_signature priv nodoc'>
-      <a href="#str_headers-instance_method" title="#str_headers (instance method)">#<strong>str_headers</strong>(env, status, headers, res_body, io_buffer, requests, client)  &#x21d2; Hash </a>
+      <a href="#str_headers-instance_method" title="#str_headers (instance method)">#<strong>str_headers</strong>(env, status, headers, res_body, io_buffer, force_keep_alive)  &#x21d2; Hash </a>
     </span>
     <span class='note title private'>private</span>
     <div class='summary_desc'>
@@ -380,11 +373,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L230-L236'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L251-L257'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='230' data-end='236'></pre>
+  <pre class='lines_num' data-start='251' data-end='257'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 230</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 251</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_default_server_port'>default_server_port</span>(<span class='id identifier rubyid_env'>env</span>)
@@ -435,7 +428,7 @@
 </div>
   </li>
   <li>
-    <span class='name'>chunk</span>
+    <span class='name'>chunked</span>
     <span class='type'>(<code>Boolean</code>)</span>
   </li>
 </ul>
@@ -447,43 +440,44 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L273-L331'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L295-L371'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='273' data-end='331'></pre>
+  <pre class='lines_num' data-start='295' data-end='371'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 273</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 295</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fast_write_response'>fast_write_response</span>(<span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_chunked'>chunked</span><span class='comma'>,</span> <span class='id identifier rubyid_content_length'>content_length</span>)
-  <span class='kw'>if</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='op'>::</span><span class='const'>File</span>) <span class='op'>||</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_read'>read</span>) <span class='op'>||</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_readpartial'>readpartial</span>)
+  <span class='kw'>if</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='op'>::</span><span class='const'>File</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_read'>read</span>)
     <span class='kw'>if</span> <span class='id identifier rubyid_chunked'>chunked</span>  <span class='comment'># would this ever happen?
 </span>      <span class='kw'>while</span> <span class='id identifier rubyid_part'>part</span> <span class='op'>=</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_read'>read</span>(<span class='const'><a href="#BODY_LEN_MAX-constant" title="Puma::Request::BODY_LEN_MAX (constant)">BODY_LEN_MAX</a></span>)
         <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_append'>append</span> <span class='id identifier rubyid_part'>part</span>.<span class='id identifier rubyid_bytesize'>bytesize</span>.<span class='id identifier rubyid_to_s'>to_s</span>(<span class='int'>16</span>)<span class='comma'>,</span> <span class='const'><a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a></span><span class='comma'>,</span> <span class='id identifier rubyid_part'>part</span><span class='comma'>,</span> <span class='const'><a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a></span>
       <span class='kw'>end</span>
-      <span class='id identifier rubyid_io_buffer'>io_buffer</span> <span class='op'>&lt;&lt;</span> <span class='const'><a href="Const.html#CLOSE_CHUNKED-constant" title="Puma::Const::CLOSE_CHUNKED (constant)">CLOSE_CHUNKED</a></span>
-      <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_to_s'>to_s</span>
+      <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='const'><a href="Const.html#CLOSE_CHUNKED-constant" title="Puma::Const::CLOSE_CHUNKED (constant)">CLOSE_CHUNKED</a></span>
     <span class='kw'>else</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_content_length'>content_length</span> <span class='op'>&lt;=</span> <span class='const'><a href="#IO_BODY_MAX-constant" title="Puma::Request::IO_BODY_MAX (constant)">IO_BODY_MAX</a></span>
-        <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_write'>write</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_sysread'>sysread</span>(<span class='id identifier rubyid_content_length'>content_length</span>)
-        <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_to_s'>to_s</span>
+        <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_write'>write</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_read'>read</span>(<span class='id identifier rubyid_content_length'>content_length</span>)
+        <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_read_and_reset'>read_and_reset</span>
       <span class='kw'>else</span>
-        <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_to_s'>to_s</span>
+        <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_read_and_reset'>read_and_reset</span>
         <span class='const'><a href="../IO.html" title="IO (class)">IO</a></span>.<span class='id identifier rubyid_copy_stream'>copy_stream</span> <span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='id identifier rubyid_socket'>socket</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
-    <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_close'>close</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='op'>::</span><span class='const'>Array</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>1</span>
-    <span class='id identifier rubyid_body_first'>body_first</span> <span class='op'>=</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_first'>first</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_body_first'>body_first</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='op'>::</span><span class='const'>String</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_body_first'>body_first</span>.<span class='id identifier rubyid_bytesize'>bytesize</span> <span class='op'>&gt;=</span> <span class='const'><a href="#BODY_LEN_MAX-constant" title="Puma::Request::BODY_LEN_MAX (constant)">BODY_LEN_MAX</a></span>
-      <span class='comment'># large body, write both header &amp; body to socket
-</span>      <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_to_s'>to_s</span>
-      <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_body_first'>body_first</span>
-    <span class='kw'>else</span>
-      <span class='comment'># smaller body, write to stream first
+    <span class='id identifier rubyid_body_first'>body_first</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='comment'># using body_first = body.first causes issues?
+</span>    <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_each'>each</span> { <span class='op'>|</span><span class='id identifier rubyid_str'>str</span><span class='op'>|</span> <span class='id identifier rubyid_body_first'>body_first</span> <span class='op'>||=</span> <span class='id identifier rubyid_str'>str</span> }
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_body_first'>body_first</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='op'>::</span><span class='const'>String</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_body_first'>body_first</span>.<span class='id identifier rubyid_bytesize'>bytesize</span> <span class='op'>&lt;</span> <span class='const'><a href="#BODY_LEN_MAX-constant" title="Puma::Request::BODY_LEN_MAX (constant)">BODY_LEN_MAX</a></span>
+      <span class='comment'># smaller body, write to io_buffer first
 </span>      <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_write'>write</span> <span class='id identifier rubyid_body_first'>body_first</span>
-      <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_to_s'>to_s</span>
+      <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_read_and_reset'>read_and_reset</span>
+    <span class='kw'>else</span>
+      <span class='comment'># large body, write both header &amp; body to socket
+</span>      <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_read_and_reset'>read_and_reset</span>
+      <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_body_first'>body_first</span>
     <span class='kw'>end</span>
-  <span class='kw'>else</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='op'>::</span><span class='const'>Array</span>)
     <span class='comment'># for array bodies, flush io_buffer to socket when size is greater than
 </span>    <span class='comment'># IO_BUFFER_LEN_MAX
 </span>    <span class='kw'>if</span> <span class='id identifier rubyid_chunked'>chunked</span>
@@ -491,8 +485,7 @@
         <span class='kw'>next</span> <span class='kw'>if</span> (<span class='id identifier rubyid_byte_size'>byte_size</span> <span class='op'>=</span> <span class='id identifier rubyid_part'>part</span>.<span class='id identifier rubyid_bytesize'>bytesize</span>).<span class='id identifier rubyid_zero?'>zero?</span>
         <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_append'>append</span> <span class='id identifier rubyid_byte_size'>byte_size</span>.<span class='id identifier rubyid_to_s'>to_s</span>(<span class='int'>16</span>)<span class='comma'>,</span> <span class='const'><a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a></span><span class='comma'>,</span> <span class='id identifier rubyid_part'>part</span><span class='comma'>,</span> <span class='const'><a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a></span>
         <span class='kw'>if</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='const'><a href="#IO_BUFFER_LEN_MAX-constant" title="Puma::Request::IO_BUFFER_LEN_MAX (constant)">IO_BUFFER_LEN_MAX</a></span>
-          <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_to_s'>to_s</span>
-          <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_reset'>reset</span>
+          <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_read_and_reset'>read_and_reset</span>
         <span class='kw'>end</span>
       <span class='kw'>end</span>
       <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_write'>write</span> <span class='const'><a href="Const.html#CLOSE_CHUNKED-constant" title="Puma::Const::CLOSE_CHUNKED (constant)">CLOSE_CHUNKED</a></span>
@@ -501,13 +494,31 @@
         <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_part'>part</span>.<span class='id identifier rubyid_bytesize'>bytesize</span>.<span class='id identifier rubyid_zero?'>zero?</span>
         <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_write'>write</span> <span class='id identifier rubyid_part'>part</span>
         <span class='kw'>if</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='const'><a href="#IO_BUFFER_LEN_MAX-constant" title="Puma::Request::IO_BUFFER_LEN_MAX (constant)">IO_BUFFER_LEN_MAX</a></span>
-          <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_to_s'>to_s</span>
-          <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_reset'>reset</span>
+          <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_read_and_reset'>read_and_reset</span>
         <span class='kw'>end</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
-    <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span>(<span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_to_s'>to_s</span>) <span class='kw'>unless</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_length'>length</span>.<span class='id identifier rubyid_zero?'>zero?</span>
+    <span class='comment'># may write last body part for non-chunked, also headers if array is empty
+</span>    <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span>(<span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_read_and_reset'>read_and_reset</span>) <span class='kw'>unless</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_length'>length</span>.<span class='id identifier rubyid_zero?'>zero?</span>
+  <span class='kw'>else</span>
+    <span class='comment'># for enum bodies
+</span>    <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_read_and_reset'>read_and_reset</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_chunked'>chunked</span>
+      <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_part'>part</span><span class='op'>|</span>
+        <span class='kw'>next</span> <span class='kw'>if</span> (<span class='id identifier rubyid_byte_size'>byte_size</span> <span class='op'>=</span> <span class='id identifier rubyid_part'>part</span>.<span class='id identifier rubyid_bytesize'>bytesize</span>).<span class='id identifier rubyid_zero?'>zero?</span>
+         <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> (<span class='id identifier rubyid_byte_size'>byte_size</span>.<span class='id identifier rubyid_to_s'>to_s</span>(<span class='int'>16</span>) <span class='op'>&lt;&lt;</span> <span class='const'><a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a></span>)
+         <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_part'>part</span>
+         <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='const'><a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a></span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='const'><a href="Const.html#CLOSE_CHUNKED-constant" title="Puma::Const::CLOSE_CHUNKED (constant)">CLOSE_CHUNKED</a></span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_part'>part</span><span class='op'>|</span>
+        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_part'>part</span>.<span class='id identifier rubyid_bytesize'>bytesize</span>.<span class='id identifier rubyid_zero?'>zero?</span>
+        <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_part'>part</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
   <span class='kw'>end</span>
+  <span class='id identifier rubyid_socket'>socket</span>.<span class='id identifier rubyid_flush'>flush</span>
 <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EAGAIN</span><span class='comma'>,</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EWOULDBLOCK</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="ConnectionError.html" title="Puma::ConnectionError (class)">ConnectionError</a></span><span class='comma'>,</span> <span class='const'><a href="#SOCKET_WRITE_ERR_MSG-constant" title="Puma::Request::SOCKET_WRITE_ERR_MSG (constant)">SOCKET_WRITE_ERR_MSG</a></span>
 <span class='kw'>rescue</span>  <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EPIPE</span><span class='comma'>,</span> <span class='const'>SystemCallError</span><span class='comma'>,</span> <span class='const'><a href="../IOError.html" title="IOError (class)">IOError</a></span>
@@ -525,7 +536,7 @@
 <div class='docstring'>
   <div class='discussion'>
     
-<p>Used to write ‘early hints’, ‘no body’ responses, ‘hijacked’ responses, and body segments (called by <a href="#fast_write_response-instance_method" title="Puma::Request#fast_write_response (method)">#fast_write_response</a>). Writes a string to an io (normally <a href="Client.html#io-instance_method" title="Puma::Client#io (method)">Client#io</a>) using <code>write_nonblock</code>. Large strings may not be written in one pass, especially if <code>io</code> is a <a href="MiniSSL/Socket.html" title="Puma::MiniSSL::Socket (class)"><code>MiniSSL::Socket</code></a>.</p>
+<p>Used to write ‘early hints’, ‘no body’ responses, ‘hijacked’ responses, and body segments (called by <a href="#fast_write_response-instance_method" title="Puma::Request#fast_write_response (method)">#fast_write_response</a>). Writes a string to a socket (normally <a href="Client.html#io-instance_method" title="Puma::Client#io (method)">Client#io</a>) using <code>write_nonblock</code>. Large strings may not be written in one pass, especially if <code>io</code> is a <a href="MiniSSL/Socket.html" title="Puma::MiniSSL::Socket (class)"><code>MiniSSL::Socket</code></a>.</p>
 
   </div>
 </div>
@@ -533,10 +544,10 @@
   <p class='tag_title'>Parameters:</p>
 <ul class='param'>
   <li>
-    <span class='name'>io</span>
+    <span class='name'>socket</span>
     <span class='type'>(#<code>write_nonblock</code>)</span>
 &mdash;    <div class='inline'>
-<p>the io to write to</p>
+<p>the request/response socket</p>
 </div>
   </li>
   <li>
@@ -555,11 +566,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L247-L262'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L268-L283'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='247' data-end='262'></pre>
+  <pre class='lines_num' data-start='268' data-end='283'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 247</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 268</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fast_write_str'>fast_write_str</span>(<span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_str'>str</span>)
@@ -567,7 +578,7 @@
   <span class='id identifier rubyid_byte_size'>byte_size</span> <span class='op'>=</span> <span class='id identifier rubyid_str'>str</span>.<span class='id identifier rubyid_bytesize'>bytesize</span>
   <span class='kw'>while</span> <span class='id identifier rubyid_n'>n</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_byte_size'>byte_size</span>
     <span class='kw'>begin</span>
-      <span class='id identifier rubyid_n'>n</span> <span class='op'>+=</span> <span class='id identifier rubyid_socket'>socket</span>.<span class='id identifier rubyid_syswrite'>syswrite</span>(<span class='id identifier rubyid_n'>n</span>.<span class='id identifier rubyid_zero?'>zero?</span> <span class='op'>?</span> <span class='id identifier rubyid_str'>str</span> <span class='op'>:</span> <span class='id identifier rubyid_str'>str</span>.<span class='id identifier rubyid_byteslice'>byteslice</span>(<span class='id identifier rubyid_n'>n</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span>))
+      <span class='id identifier rubyid_n'>n</span> <span class='op'>+=</span> <span class='id identifier rubyid_socket'>socket</span>.<span class='id identifier rubyid_write_nonblock'>write_nonblock</span>(<span class='id identifier rubyid_n'>n</span>.<span class='id identifier rubyid_zero?'>zero?</span> <span class='op'>?</span> <span class='id identifier rubyid_str'>str</span> <span class='op'>:</span> <span class='id identifier rubyid_str'>str</span>.<span class='id identifier rubyid_byteslice'>byteslice</span>(<span class='id identifier rubyid_n'>n</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span>))
     <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EAGAIN</span><span class='comma'>,</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EWOULDBLOCK</span>
       <span class='kw'>unless</span> <span class='id identifier rubyid_socket'>socket</span>.<span class='id identifier rubyid_wait_writable'>wait_writable</span> <span class='const'><a href="Const.html#WRITE_TIMEOUT-constant" title="Puma::Const::WRITE_TIMEOUT (constant)">WRITE_TIMEOUT</a></span>
         <span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="ConnectionError.html" title="Puma::ConnectionError (class)">ConnectionError</a></span><span class='comma'>,</span> <span class='const'><a href="#SOCKET_WRITE_ERR_MSG-constant" title="Puma::Request::SOCKET_WRITE_ERR_MSG (constant)">SOCKET_WRITE_ERR_MSG</a></span>
@@ -614,11 +625,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L487-L489'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L527-L529'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='487' data-end='489'></pre>
+  <pre class='lines_num' data-start='527' data-end='529'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 487</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 527</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fetch_status_code'>fetch_status_code</span>(<span class='id identifier rubyid_status'>status</span>)
@@ -631,7 +642,7 @@
 
 <section class='method_details' id="handle_request-instance_method">
   <h3 class='signature nodoc'>
-    #<strong>handle_request</strong>(client, io_buffer, requests)  &#x21d2; <code>Boolean</code>, <code>:async</code> 
+    #<strong>handle_request</strong>(client, requests)  &#x21d2; <code>Boolean</code>, <code>:async</code> 
   </h3>
 <div class='docstring'>
   <div class='discussion'>
@@ -654,27 +665,25 @@
     <span class='type'>(<a href="Client.html" title="Puma::Client (class)">Puma::Client</a>)</span>
   </li>
   <li>
-    <span class='name'>io_buffer</span>
-    <span class='type'>(<a href="IOBuffer.html" title="Puma::IOBuffer (class)">Puma::IOBuffer</a>)</span>
-  </li>
-  <li>
     <span class='name'>requests</span>
     <span class='type'>(<code>Integer</code>)</span>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L48-L118'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L50-L137'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='48' data-end='118'></pre>
+  <pre class='lines_num' data-start='50' data-end='137'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 48</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 50</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_handle_request'>handle_request</span>(<span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_requests'>requests</span>)
+<span class='kw'>def</span> <span class='id identifier rubyid_handle_request'>handle_request</span>(<span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_requests'>requests</span>)
   <span class='id identifier rubyid_env'>env</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_env'>env</span>
+  <span class='id identifier rubyid_io_buffer'>io_buffer</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_io_buffer'>io_buffer</span>
   <span class='id identifier rubyid_socket'>socket</span>  <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_io'>io</span>   <span class='comment'># io may be a MiniSSL::Socket
-</span>
+</span>  <span class='id identifier rubyid_app_body'>app_body</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_closed_socket?'>closed_socket?</span>(<span class='id identifier rubyid_socket'>socket</span>)
 
   <span class='id identifier rubyid_normalize_env'><a href="#normalize_env-instance_method" title="Puma::Request#normalize_env (method)">normalize_env</a></span> <span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span>
@@ -711,13 +720,17 @@
 
   <span class='kw'>begin</span>
     <span class='kw'>if</span> <span class='const'><a href="Const.html#SUPPORTED_HTTP_METHODS-constant" title="Puma::Const::SUPPORTED_HTTP_METHODS (constant)">SUPPORTED_HTTP_METHODS</a></span>.<span class='id identifier rubyid_include?'>include?</span>(<span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#REQUEST_METHOD-constant" title="Puma::Const::REQUEST_METHOD (constant)">REQUEST_METHOD</a></span>])
-      <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_res_body'>res_body</span> <span class='op'>=</span> <span class='ivar'>@thread_pool</span>.<span class='id identifier rubyid_with_force_shutdown'>with_force_shutdown</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_app_body'>app_body</span> <span class='op'>=</span> <span class='ivar'>@thread_pool</span>.<span class='id identifier rubyid_with_force_shutdown'>with_force_shutdown</span> <span class='kw'>do</span>
         <span class='ivar'>@app</span>.<span class='id identifier rubyid_call'>call</span>(<span class='id identifier rubyid_env'>env</span>)
       <span class='kw'>end</span>
     <span class='kw'>else</span>
       <span class='ivar'>@log_writer</span>.<span class='id identifier rubyid_log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unsupported HTTP method used: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#REQUEST_METHOD-constant" title="Puma::Const::REQUEST_METHOD (constant)">REQUEST_METHOD</a></span>]<span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-      <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_res_body'>res_body</span> <span class='op'>=</span> [<span class='int'>501</span><span class='comma'>,</span> {}<span class='comma'>,</span> [<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#REQUEST_METHOD-constant" title="Puma::Const::REQUEST_METHOD (constant)">REQUEST_METHOD</a></span>]<span class='embexpr_end'>}</span><span class='tstring_content'> method is not supported</span><span class='tstring_end'>&quot;</span></span>]]
+      <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_app_body'>app_body</span> <span class='op'>=</span> [<span class='int'>501</span><span class='comma'>,</span> {}<span class='comma'>,</span> [<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#REQUEST_METHOD-constant" title="Puma::Const::REQUEST_METHOD (constant)">REQUEST_METHOD</a></span>]<span class='embexpr_end'>}</span><span class='tstring_content'> method is not supported</span><span class='tstring_end'>&quot;</span></span>]]
     <span class='kw'>end</span>
+
+    <span class='comment'># app_body needs to always be closed, hold value in case lowlevel_error
+</span>    <span class='comment'># is called
+</span>    <span class='id identifier rubyid_res_body'>res_body</span> <span class='op'>=</span> <span class='id identifier rubyid_app_body'>app_body</span>
 
     <span class='kw'>return</span> <span class='symbeg'>:</span><span class='id identifier rubyid_async'>async</span> <span class='kw'>if</span> <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_hijacked'>hijacked</span>
 
@@ -740,7 +753,18 @@
 
     <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_res_body'>res_body</span> <span class='op'>=</span> <span class='id identifier rubyid_lowlevel_error'>lowlevel_error</span>(<span class='id identifier rubyid_e'>e</span><span class='comma'>,</span> <span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='int'>500</span>)
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_prepare_response'><a href="#prepare_response-instance_method" title="Puma::Request#prepare_response (method)">prepare_response</a></span>(<span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_res_body'>res_body</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_requests'>requests</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span>)
+  <span class='id identifier rubyid_prepare_response'><a href="#prepare_response-instance_method" title="Puma::Request#prepare_response (method)">prepare_response</a></span>(<span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_res_body'>res_body</span><span class='comma'>,</span> <span class='id identifier rubyid_requests'>requests</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span>)
+<span class='kw'>ensure</span>
+  <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_reset'>reset</span>
+  <span class='id identifier rubyid_uncork_socket'>uncork_socket</span> <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_io'>io</span>
+  <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_close'>close</span> <span class='kw'>if</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_close'>close</span>
+  <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_tempfile'>tempfile</span><span class='op'>&amp;.</span><span class='id identifier rubyid_unlink'>unlink</span>
+  <span class='id identifier rubyid_after_reply'>after_reply</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#RACK_AFTER_REPLY-constant" title="Puma::Const::RACK_AFTER_REPLY (constant)">RACK_AFTER_REPLY</a></span>] <span class='op'>||</span> []
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_after_reply'>after_reply</span>.<span class='id identifier rubyid_each'>each</span> { <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span> <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_call'>call</span> }
+  <span class='kw'>rescue</span> <span class='const'><a href="../StandardError.html" title="StandardError (class)">StandardError</a></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='ivar'>@log_writer</span>.<span class='id identifier rubyid_debug_error'>debug_error</span> <span class='id identifier rubyid_e'>e</span>
+  <span class='kw'>end</span> <span class='kw'>unless</span> <span class='id identifier rubyid_after_reply'>after_reply</span>.<span class='id identifier rubyid_empty?'>empty?</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -766,11 +790,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L413-L415'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L453-L455'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='413' data-end='415'></pre>
+  <pre class='lines_num' data-start='453' data-end='455'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 413</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 453</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_illegal_header_key?'>illegal_header_key?</span>(<span class='id identifier rubyid_header_key'>header_key</span>)
@@ -800,11 +824,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L420-L422'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L460-L462'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='420' data-end='422'></pre>
+  <pre class='lines_num' data-start='460' data-end='462'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 420</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 460</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_illegal_header_value?'>illegal_header_value?</span>(<span class='id identifier rubyid_header_value'>header_value</span>)
@@ -846,11 +870,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L340-L407'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L380-L447'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='340' data-end='407'></pre>
+  <pre class='lines_num' data-start='380' data-end='447'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 340</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 380</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_normalize_env'>normalize_env</span>(<span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span>)
@@ -928,7 +952,7 @@
 
 <section class='method_details' id="prepare_response-instance_method">
   <h3 class='signature nodoc'>
-    #<strong>prepare_response</strong>(status, headers, app_body, io_buffer, requests, client)  &#x21d2; <code>Boolean</code>, <code>:async</code> 
+    #<strong>prepare_response</strong>(status, headers, res_body, requests, client)  &#x21d2; <code>Boolean</code>, <code>:async</code> 
   </h3>
 <div class='docstring'>
   <div class='discussion'>
@@ -955,17 +979,10 @@
 </div>
   </li>
   <li>
-    <span class='name'>app_body</span>
+    <span class='name'>res_body</span>
     <span class='type'>(<code>Array</code>)</span>
 &mdash;    <div class='inline'>
-<p>the body returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application or a call to ‘lowlevel_error`</p>
-</div>
-  </li>
-  <li>
-    <span class='name'>io_buffer</span>
-    <span class='type'>(<a href="IOBuffer.html" title="Puma::IOBuffer (class)">Puma::IOBuffer</a>)</span>
-&mdash;    <div class='inline'>
-<p>modified in place</p>
+<p>the body returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application or a call to ‘Server#lowlevel_error`</p>
 </div>
   </li>
   <li>
@@ -980,55 +997,77 @@
     <span class='type'>(<a href="Client.html" title="Puma::Client (class)">Puma::Client</a>)</span>
   </li>
 </ul>
+<p class='tag_title'>Returns:</p>
+<ul class='return'>
+  <li>
+    <span class='type'>(<code>Boolean</code>, <code>:async</code>)</span>
+&mdash;    <div class='inline'>
+<p>keep-alive status or <code>:async</code></p>
+</div>
+  </li>
+</ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L131-L225'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L149-L246'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='131' data-end='225'></pre>
+  <pre class='lines_num' data-start='149' data-end='246'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 131</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 149</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_prepare_response'>prepare_response</span>(<span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_app_body'>app_body</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_requests'>requests</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span>)
+<span class='kw'>def</span> <span class='id identifier rubyid_prepare_response'>prepare_response</span>(<span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_res_body'>res_body</span><span class='comma'>,</span> <span class='id identifier rubyid_requests'>requests</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span>)
   <span class='id identifier rubyid_env'>env</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_env'>env</span>
-  <span class='id identifier rubyid_socket'>socket</span>  <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_io'>io</span>
-
-  <span class='id identifier rubyid_after_reply'>after_reply</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span>[<span class='const'><a href="Const.html#RACK_AFTER_REPLY-constant" title="Puma::Const::RACK_AFTER_REPLY (constant)">RACK_AFTER_REPLY</a></span>] <span class='op'>||</span> []
+  <span class='id identifier rubyid_socket'>socket</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_io'>io</span>
+  <span class='id identifier rubyid_io_buffer'>io_buffer</span> <span class='op'>=</span> <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_io_buffer'>io_buffer</span>
 
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_closed_socket?'>closed_socket?</span>(<span class='id identifier rubyid_socket'>socket</span>)
 
-  <span class='id identifier rubyid_resp_info'>resp_info</span> <span class='op'>=</span> <span class='id identifier rubyid_str_headers'><a href="#str_headers-instance_method" title="Puma::Request#str_headers (method)">str_headers</a></span>(<span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_app_body'>app_body</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_requests'>requests</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span>)
+  <span class='comment'># Close the connection after a reasonable number of inline requests
+</span>  <span class='comment'># if the server is at capacity and the listener has a new connection ready.
+</span>  <span class='comment'># This allows Puma to service connections fairly when the number
+</span>  <span class='comment'># of concurrent connections exceeds the size of the threadpool.
+</span>  <span class='id identifier rubyid_force_keep_alive'>force_keep_alive</span> <span class='op'>=</span> <span class='id identifier rubyid_requests'>requests</span> <span class='op'>&lt;</span> <span class='ivar'>@max_fast_inline</span> <span class='op'>||</span>
+    <span class='ivar'>@thread_pool</span>.<span class='id identifier rubyid_busy_threads'>busy_threads</span> <span class='op'>&lt;</span> <span class='ivar'>@max_threads</span> <span class='op'>||</span>
+    <span class='op'>!</span><span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_listener'>listener</span>.<span class='id identifier rubyid_to_io'>to_io</span>.<span class='id identifier rubyid_wait_readable'>wait_readable</span>(<span class='int'>0</span>)
+
+  <span class='id identifier rubyid_resp_info'>resp_info</span> <span class='op'>=</span> <span class='id identifier rubyid_str_headers'><a href="#str_headers-instance_method" title="Puma::Request#str_headers (method)">str_headers</a></span>(<span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_res_body'>res_body</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_force_keep_alive'>force_keep_alive</span>)
+
+  <span class='id identifier rubyid_close_body'>close_body</span> <span class='op'>=</span> <span class='kw'>false</span>
 
   <span class='comment'># below converts app_body into body, dependent on app_body&#39;s characteristics, and
 </span>  <span class='comment'># resp_info[:content_length] will be set if it can be determined
 </span>  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>] <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_transfer_encoding'>transfer_encoding</span>] <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_status'>status</span> <span class='op'>!=</span> <span class='int'>204</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_to_ary'>to_ary</span>)
-      <span class='id identifier rubyid_length'>length</span> <span class='op'>=</span> <span class='int'>0</span>
-      <span class='kw'>if</span> <span class='id identifier rubyid_array_body'>array_body</span> <span class='op'>=</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_to_ary'>to_ary</span>
-        <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='id identifier rubyid_array_body'>array_body</span>.<span class='id identifier rubyid_map'>map</span> { <span class='op'>|</span><span class='id identifier rubyid_part'>part</span><span class='op'>|</span> <span class='id identifier rubyid_length'>length</span> <span class='op'>+=</span> <span class='id identifier rubyid_part'>part</span>.<span class='id identifier rubyid_bytesize'>bytesize</span><span class='semicolon'>;</span> <span class='id identifier rubyid_part'>part</span> }
-      <span class='kw'>elsif</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='op'>::</span><span class='const'>File</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_size'>size</span>)
-        <span class='id identifier rubyid_length'>length</span> <span class='op'>=</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_size'>size</span>
-      <span class='kw'>elsif</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_each'>each</span>)
-        <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> []
-        <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_each'>each</span> { <span class='op'>|</span><span class='id identifier rubyid_part'>part</span><span class='op'>|</span> <span class='id identifier rubyid_length'>length</span> <span class='op'>+=</span> <span class='id identifier rubyid_part'>part</span>.<span class='id identifier rubyid_bytesize'>bytesize</span><span class='semicolon'>;</span> <span class='id identifier rubyid_body'>body</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_part'>part</span> }
-      <span class='kw'>end</span>
-      <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>] <span class='op'>=</span> <span class='id identifier rubyid_length'>length</span>
-    <span class='kw'>elsif</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='const'>File</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_size'>size</span>)
-      <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>] <span class='op'>=</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_size'>size</span>
-      <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='id identifier rubyid_app_body'>app_body</span>
-    <span class='kw'>elsif</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_to_path'>to_path</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_each'>each</span>) <span class='op'>&amp;&amp;</span>
-        <span class='const'>File</span>.<span class='id identifier rubyid_readable?'>readable?</span>(<span class='id identifier rubyid_fn'>fn</span> <span class='op'>=</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_to_path'>to_path</span>)
+    <span class='kw'>if</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_to_ary'>to_ary</span>) <span class='op'>&amp;&amp;</span> (<span class='id identifier rubyid_array_body'>array_body</span> <span class='op'>=</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_to_ary'>to_ary</span>)
+      <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='id identifier rubyid_array_body'>array_body</span>
+      <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>] <span class='op'>=</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_sum'>sum</span>(<span class='op'>&amp;</span><span class='symbeg'>:</span><span class='id identifier rubyid_bytesize'>bytesize</span>)
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='const'>File</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_size'>size</span>)
+      <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='id identifier rubyid_res_body'>res_body</span>
+      <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>] <span class='op'>=</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_size'>size</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_to_path'>to_path</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_each'>each</span>) <span class='op'>&amp;&amp;</span>
+        <span class='const'>File</span>.<span class='id identifier rubyid_readable?'>readable?</span>(<span class='id identifier rubyid_fn'>fn</span> <span class='op'>=</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_to_path'>to_path</span>)
       <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='const'>File</span>.<span class='id identifier rubyid_open'>open</span> <span class='id identifier rubyid_fn'>fn</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rb</span><span class='tstring_end'>&#39;</span></span>
       <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>] <span class='op'>=</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_size'>size</span>
+      <span class='id identifier rubyid_close_body'>close_body</span> <span class='op'>=</span> <span class='kw'>true</span>
     <span class='kw'>else</span>
-      <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='id identifier rubyid_app_body'>app_body</span>
+      <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='id identifier rubyid_res_body'>res_body</span>
     <span class='kw'>end</span>
-  <span class='kw'>elsif</span> <span class='op'>!</span><span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='op'>::</span><span class='const'>File</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_to_path'>to_path</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_each'>each</span>) <span class='op'>&amp;&amp;</span>
-      <span class='const'>File</span>.<span class='id identifier rubyid_readable?'>readable?</span>(<span class='id identifier rubyid_fn'>fn</span> <span class='op'>=</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_to_path'>to_path</span>)
+  <span class='kw'>elsif</span> <span class='op'>!</span><span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='op'>::</span><span class='const'>File</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_to_path'>to_path</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_each'>each</span>) <span class='op'>&amp;&amp;</span>
+      <span class='const'>File</span>.<span class='id identifier rubyid_readable?'>readable?</span>(<span class='id identifier rubyid_fn'>fn</span> <span class='op'>=</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_to_path'>to_path</span>)
     <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='const'>File</span>.<span class='id identifier rubyid_open'>open</span> <span class='id identifier rubyid_fn'>fn</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rb</span><span class='tstring_end'>&#39;</span></span>
     <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>] <span class='op'>=</span> <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_size'>size</span>
+    <span class='id identifier rubyid_close_body'>close_body</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>elsif</span> <span class='op'>!</span><span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_is_a?'>is_a?</span>(<span class='op'>::</span><span class='const'>File</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_filename'>filename</span>) <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_each'>each</span>) <span class='op'>&amp;&amp;</span>
+      <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_bytesize'>bytesize</span>) <span class='op'>&amp;&amp;</span> <span class='const'>File</span>.<span class='id identifier rubyid_readable?'>readable?</span>(<span class='id identifier rubyid_fn'>fn</span> <span class='op'>=</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_filename'>filename</span>)
+    <span class='comment'># Sprockets::Asset
+</span>    <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>] <span class='op'>=</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_bytesize'>bytesize</span> <span class='kw'>unless</span> <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>]
+    <span class='kw'>if</span> <span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_to_hash'>to_hash</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_source'>source</span>]   <span class='comment'># use each to return @source
+</span>      <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='id identifier rubyid_res_body'>res_body</span>
+    <span class='kw'>else</span>                           <span class='comment'># avoid each and use a File object
+</span>      <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='const'>File</span>.<span class='id identifier rubyid_open'>open</span> <span class='id identifier rubyid_fn'>fn</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rb</span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_close_body'>close_body</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='kw'>end</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='id identifier rubyid_app_body'>app_body</span>
+    <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='id identifier rubyid_res_body'>res_body</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_line_ending'>line_ending</span> <span class='op'>=</span> <span class='const'><a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a></span>
@@ -1036,8 +1075,8 @@
   <span class='id identifier rubyid_content_length'>content_length</span> <span class='op'>=</span> <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>]
   <span class='id identifier rubyid_keep_alive'>keep_alive</span>     <span class='op'>=</span> <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_keep_alive'>keep_alive</span>]
 
-  <span class='kw'>if</span> <span class='id identifier rubyid_app_body'>app_body</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_each'>each</span>)
-    <span class='id identifier rubyid_response_hijack'>response_hijack</span> <span class='op'>=</span> <span class='id identifier rubyid_app_body'>app_body</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_res_body'>res_body</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_res_body'>res_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_each'>each</span>)
+    <span class='id identifier rubyid_response_hijack'>response_hijack</span> <span class='op'>=</span> <span class='id identifier rubyid_res_body'>res_body</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_response_hijack'>response_hijack</span> <span class='op'>=</span> <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_response_hijack'>response_hijack</span>]
   <span class='kw'>end</span>
@@ -1050,7 +1089,8 @@
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_io_buffer'>io_buffer</span> <span class='op'>&lt;&lt;</span> <span class='const'><a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a></span>
-    <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_read_and_reset'>read_and_reset</span>
+    <span class='id identifier rubyid_socket'>socket</span>.<span class='id identifier rubyid_flush'>flush</span>
     <span class='kw'>return</span> <span class='id identifier rubyid_keep_alive'>keep_alive</span>
   <span class='kw'>end</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_content_length'>content_length</span>
@@ -1064,25 +1104,14 @@
   <span class='id identifier rubyid_io_buffer'>io_buffer</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line_ending'>line_ending</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_response_hijack'>response_hijack</span>
-    <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='id identifier rubyid_fast_write_str'><a href="#fast_write_str-instance_method" title="Puma::Request#fast_write_str (method)">fast_write_str</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_read_and_reset'>read_and_reset</span>
     <span class='id identifier rubyid_response_hijack'>response_hijack</span>.<span class='id identifier rubyid_call'>call</span> <span class='id identifier rubyid_socket'>socket</span>
     <span class='kw'>return</span> <span class='symbeg'>:</span><span class='id identifier rubyid_async'>async</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_fast_write_response'><a href="#fast_write_response-instance_method" title="Puma::Request#fast_write_response (method)">fast_write_response</a></span> <span class='id identifier rubyid_socket'>socket</span><span class='comma'>,</span> <span class='id identifier rubyid_body'>body</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_chunked'>chunked</span><span class='comma'>,</span> <span class='id identifier rubyid_content_length'>content_length</span>.<span class='id identifier rubyid_to_i'>to_i</span>
+  <span class='id identifier rubyid_body'>body</span>.<span class='id identifier rubyid_close'>close</span> <span class='kw'>if</span> <span class='id identifier rubyid_close_body'>close_body</span>
   <span class='id identifier rubyid_keep_alive'>keep_alive</span>
-<span class='kw'>ensure</span>
-  <span class='id identifier rubyid_io_buffer'>io_buffer</span>.<span class='id identifier rubyid_reset'>reset</span>
-  <span class='id identifier rubyid_resp_info'>resp_info</span> <span class='op'>=</span> <span class='kw'>nil</span>
-  <span class='id identifier rubyid_uncork_socket'>uncork_socket</span> <span class='id identifier rubyid_socket'>socket</span>
-  <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_close'>close</span> <span class='kw'>if</span> <span class='id identifier rubyid_app_body'>app_body</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_close'>close</span>
-  <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_tempfile'>tempfile</span><span class='op'>&amp;.</span><span class='id identifier rubyid_unlink'>unlink</span>
-
-  <span class='kw'>begin</span>
-    <span class='id identifier rubyid_after_reply'>after_reply</span>.<span class='id identifier rubyid_each'>each</span> { <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span> <span class='id identifier rubyid_o'>o</span>.<span class='id identifier rubyid_call'>call</span> }
-  <span class='kw'>rescue</span> <span class='const'><a href="../StandardError.html" title="StandardError (class)">StandardError</a></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
-    <span class='ivar'>@log_writer</span>.<span class='id identifier rubyid_debug_error'>debug_error</span> <span class='id identifier rubyid_e'>e</span>
-  <span class='kw'>end</span> <span class='kw'>unless</span> <span class='id identifier rubyid_after_reply'>after_reply</span>.<span class='id identifier rubyid_empty?'>empty?</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -1121,11 +1150,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L434-L458'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L474-L498'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='434' data-end='458'></pre>
+  <pre class='lines_num' data-start='474' data-end='498'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 434</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 474</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_req_env_post_parse'>req_env_post_parse</span>(<span class='id identifier rubyid_env'>env</span>)
@@ -1190,11 +1219,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L466-L481'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L506-L521'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='466' data-end='481'></pre>
+  <pre class='lines_num' data-start='506' data-end='521'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 466</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 506</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_str_early_hints'>str_early_hints</span>(<span class='id identifier rubyid_headers'>headers</span>)
@@ -1220,7 +1249,7 @@
 
 <section class='method_details' id="str_headers-instance_method">
   <h3 class='signature priv  nodoc'>
-    #<strong>str_headers</strong>(env, status, headers, res_body, io_buffer, requests, client)  &#x21d2; <code>Hash</code>  <span class="extras">(<span class='priv'>private</span>)</span>
+    #<strong>str_headers</strong>(env, status, headers, res_body, io_buffer, force_keep_alive)  &#x21d2; <code>Hash</code>  <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
@@ -1268,15 +1297,11 @@
 </div>
   </li>
   <li>
-    <span class='name'>requests</span>
-    <span class='type'>(<code>Integer</code>)</span>
+    <span class='name'>force_keep_alive</span>
+    <span class='type'>(<code>Boolean</code>)</span>
 &mdash;    <div class='inline'>
-<p>number of inline requests handled</p>
+<p>‘anded’ with keep_alive, based on system status and ‘@max_fast_inline`</p>
 </div>
-  </li>
-  <li>
-    <span class='name'>client</span>
-    <span class='type'>(<a href="Client.html" title="Puma::Client (class)">Puma::Client</a>)</span>
   </li>
 </ul>
 <p class='tag_title'>Returns:</p>
@@ -1298,14 +1323,15 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.0/lib/puma/request.rb#L504-L604'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/request.rb#L544-L641'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='504' data-end='604'></pre>
+  <pre class='lines_num' data-start='544' data-end='641'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/request.rb', line 504</span></pre>
+<pre><span class='info file'># File 'lib/puma/request.rb', line 544</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_str_headers'>str_headers</span>(<span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_res_body'>res_body</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_requests'>requests</span><span class='comma'>,</span> <span class='id identifier rubyid_client'>client</span>)
+<span class='kw'>def</span> <span class='id identifier rubyid_str_headers'>str_headers</span>(<span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_headers'>headers</span><span class='comma'>,</span> <span class='id identifier rubyid_res_body'>res_body</span><span class='comma'>,</span> <span class='id identifier rubyid_io_buffer'>io_buffer</span><span class='comma'>,</span> <span class='id identifier rubyid_force_keep_alive'>force_keep_alive</span>)
+
   <span class='id identifier rubyid_line_ending'>line_ending</span> <span class='op'>=</span> <span class='const'><a href="Const.html#LINE_END-constant" title="Puma::Const::LINE_END (constant)">LINE_END</a></span>
   <span class='id identifier rubyid_colon'>colon</span> <span class='op'>=</span> <span class='const'><a href="Const.html#COLON-constant" title="Puma::Const::COLON (constant)">COLON</a></span>
 
@@ -1348,13 +1374,8 @@
 </span>  <span class='comment'># if running without request queueing
 </span>  <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_keep_alive'>keep_alive</span>] <span class='op'>&amp;&amp;=</span> <span class='ivar'>@queue_requests</span>
 
-  <span class='comment'># Close the connection after a reasonable number of inline requests
-</span>  <span class='comment'># if the server is at capacity and the listener has a new connection ready.
-</span>  <span class='comment'># This allows Puma to service connections fairly when the number
-</span>  <span class='comment'># of concurrent connections exceeds the size of the threadpool.
-</span>  <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_keep_alive'>keep_alive</span>] <span class='op'>&amp;&amp;=</span> <span class='id identifier rubyid_requests'>requests</span> <span class='op'>&lt;</span> <span class='ivar'>@max_fast_inline</span> <span class='op'>||</span>
-    <span class='ivar'>@thread_pool</span>.<span class='id identifier rubyid_busy_threads'>busy_threads</span> <span class='op'>&lt;</span> <span class='ivar'>@max_threads</span> <span class='op'>||</span>
-    <span class='op'>!</span><span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_listener'>listener</span>.<span class='id identifier rubyid_to_io'>to_io</span>.<span class='id identifier rubyid_wait_readable'>wait_readable</span>(<span class='int'>0</span>)
+  <span class='comment'># see prepare_response
+</span>  <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_keep_alive'>keep_alive</span>] <span class='op'>&amp;&amp;=</span> <span class='id identifier rubyid_force_keep_alive'>force_keep_alive</span>
 
   <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_response_hijack'>response_hijack</span>] <span class='op'>=</span> <span class='kw'>nil</span>
 
@@ -1364,7 +1385,8 @@
     <span class='kw'>case</span> <span class='id identifier rubyid_k'>k</span>.<span class='id identifier rubyid_downcase'>downcase</span>
     <span class='kw'>when</span> <span class='const'><a href="Const.html#CONTENT_LENGTH2-constant" title="Puma::Const::CONTENT_LENGTH2 (constant)">CONTENT_LENGTH2</a></span>
       <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_illegal_header_value?'><a href="#illegal_header_value%3F-instance_method" title="Puma::Request#illegal_header_value? (method)">illegal_header_value?</a></span>(<span class='id identifier rubyid_vs'>vs</span>)
-      <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>] <span class='op'>=</span> <span class='id identifier rubyid_vs'>vs</span>
+      <span class='comment'># nil.to_i is 0, nil&amp;.to_i is nil
+</span>      <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_content_length'>content_length</span>] <span class='op'>=</span> <span class='id identifier rubyid_vs'>vs</span><span class='op'>&amp;.</span><span class='id identifier rubyid_to_i'>to_i</span>
       <span class='kw'>next</span>
     <span class='kw'>when</span> <span class='const'><a href="Const.html#TRANSFER_ENCODING-constant" title="Puma::Const::TRANSFER_ENCODING (constant)">TRANSFER_ENCODING</a></span>
       <span class='id identifier rubyid_resp_info'>resp_info</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_allow_chunked'>allow_chunked</span>] <span class='op'>=</span> <span class='kw'>false</span>
