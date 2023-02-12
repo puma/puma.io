@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen'       content='yes'>
+<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>Module: Puma::SdNotify &mdash; Puma-6.1.0</title>
+
+<link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='../css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "Puma::SdNotify",
+    relpath = '../';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='../js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='../js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='../'>Puma-6.1.0</a> &raquo; 
+      <a href='../_index.html#alpha_S'>Index (S)</a> &raquo; 
+        <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>SdNotify&nbsp;&#x25B2;</a></span>
+    </div>
+
+    <a id='list_href' href="../class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='module'>
+<h1>Module: Puma::SdNotify</h1>
+<div id='t2_rel_sf_div'>
+<table id='t2_rel_sf' class='y_box'>
+  <thead>
+    <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
+  </thead>
+  <tbody>
+    <tr><td class='box_h' colspan='2'>Namespace Children</td></tr>
+    <tr><td colspan='2'>
+      <div class='box_1'>Exceptions:</div>
+      <div class='box_11'>
+          <a href="SdNotify/NotifyError.html" title="Puma::SdNotify::NotifyError (class)"><code>NotifyError</code></a>      </div>
+    </td></tr>
+    <tr class='single'>
+      <td id='t2_defined_in' class='box_2'>Defined in:</td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L39'>lib/puma/sd_notify.rb</a>      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>The MIT License</p>
+
+<p>Copyright © 2017-2022 Agis Anastasopoulos</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+<p>This is a copy of <a href="https://github.com/agis/ruby-sdnotify">github.com/agis/ruby-sdnotify</a> as of commit cca575c The only changes made was “rehoming” it within the <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> module to avoid namespace collisions and applying standard’s code formatting style.</p>
+
+<p><code>SdNotify</code> is a pure-Ruby implementation of sd_notify(3). It can be used to notify systemd about state changes. Methods of this package are no-op on non-systemd systems (eg. Darwin).</p>
+
+<p>The API maps closely to the original implementation of sd_notify(3), therefore be sure to check the official man pages prior to using <code>SdNotify</code>.</p>
+
+  </div>
+</div>
+<div class='tags'>
+    <p class='tag_title'>See Also:</p>
+  <ul class='see'>
+      <li><a href="https://www.freedesktop.org/software/systemd/man/sd_notify.html" target="_parent" title="https://www.freedesktop.org/software/systemd/man/sd_notify.html">https://www.freedesktop.org/software/systemd/man/sd_notify.html</a></li>
+      </ul>
+
+</div>
+</div>
+<h2 id='t2_cnst' class='h2_sum'>Constant Summary</h2>
+<div>
+<ul class='constants summary full'>
+  <li>
+    <span id='ERRNO-constant' class='summary_signature'>ERRNO =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L47-L47'># File 'lib/puma/sd_notify.rb', line 47</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ERRNO=</span><span class='tstring_end'>&quot;</span></span></pre>
+  </li>
+  <li>
+    <span id='FDSTORE-constant' class='summary_signature'>FDSTORE =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L50-L50'># File 'lib/puma/sd_notify.rb', line 50</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>FDSTORE=1</span><span class='tstring_end'>&quot;</span></span></pre>
+  </li>
+  <li>
+    <span id='MAINPID-constant' class='summary_signature'>MAINPID =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L48-L48'># File 'lib/puma/sd_notify.rb', line 48</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>MAINPID=</span><span class='tstring_end'>&quot;</span></span></pre>
+  </li>
+  <li>
+    <span id='READY-constant' class='summary_signature'>READY =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L43-L43'># File 'lib/puma/sd_notify.rb', line 43</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>READY=1</span><span class='tstring_end'>&quot;</span></span></pre>
+  </li>
+  <li>
+    <span id='RELOADING-constant' class='summary_signature'>RELOADING =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L44-L44'># File 'lib/puma/sd_notify.rb', line 44</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>RELOADING=1</span><span class='tstring_end'>&quot;</span></span></pre>
+  </li>
+  <li>
+    <span id='STATUS-constant' class='summary_signature'>STATUS =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L46-L46'># File 'lib/puma/sd_notify.rb', line 46</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>STATUS=</span><span class='tstring_end'>&quot;</span></span></pre>
+  </li>
+  <li>
+    <span id='STOPPING-constant' class='summary_signature'>STOPPING =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L45-L45'># File 'lib/puma/sd_notify.rb', line 45</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>STOPPING=1</span><span class='tstring_end'>&quot;</span></span></pre>
+  </li>
+  <li>
+    <span id='WATCHDOG-constant' class='summary_signature'>WATCHDOG =</span>
+    <br/>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L49-L49'># File 'lib/puma/sd_notify.rb', line 49</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>WATCHDOG=1</span><span class='tstring_end'>&quot;</span></span></pre>
+  </li>
+</ul>
+</div>
+
+<h2 class='h2_sum' id='class_attribute_summary'>Class Attribute Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#watchdog%3F-class_method" title=".watchdog? (class method)">.<strong>watchdog?</strong>  &#x21d2; Boolean </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+    <div class='summary_desc'>
+      <div class='inline'><p>If the $WATCHDOG_USEC environment variable is set, and the $WATCHDOG_PID variable is unset or set to the PID of the current process.</p></div>
+    </div>
+  </li>
+</ul>
+</div>  <!-- class_attribute_summary -->
+
+<h2 class='h2_sum' id='class_method_summary'>Class Method Summary</h2>
+<div class='div_sum'>
+<ul class='summary full'>
+  <li>
+    <span class='summary_signature '>
+      <a href="#errno-class_method" title=".errno (class method)">.<strong>errno</strong>(errno, unset_env = false)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#fdstore-class_method" title=".fdstore (class method)">.<strong>fdstore</strong>(unset_env = false)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#mainpid-class_method" title=".mainpid (class method)">.<strong>mainpid</strong>(pid, unset_env = false)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#notify-class_method" title=".notify (class method)">.<strong>notify</strong>(state, unset_env = false)  &#x21d2; Fixnum<sup>?</sup> </a>
+    </span>
+    <div class='summary_desc'>
+      <div class='inline'><p>Notify systemd with the provided state, via the notification socket, if any.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#ready-class_method" title=".ready (class method)">.<strong>ready</strong>(unset_env = false)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#reloading-class_method" title=".reloading (class method)">.<strong>reloading</strong>(unset_env = false)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#status-class_method" title=".status (class method)">.<strong>status</strong>(status, unset_env = false)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#stopping-class_method" title=".stopping (class method)">.<strong>stopping</strong>(unset_env = false)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#watchdog-class_method" title=".watchdog (class method)">.<strong>watchdog</strong>(unset_env = false)  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+</ul>
+</div>  <!-- class_method_summary -->
+<h2 class='y_details'>Class Attribute Details</h2>
+<section class='method_details first' id="watchdog?-class_method">
+  <h3 class='signature ro first'>
+    .<strong>watchdog?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'>
+<p>Unlike sd_watchdog_enabled(3), this method does not mutate the environment.</p>
+</div>
+  </div>
+
+
+<p>If the $WATCHDOG_USEC environment variable is set, and the $WATCHDOG_PID variable is unset or set to the PID of the current process</p>
+
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Parameters:</p>
+<ul class='param'>
+  <li>
+    <span class='name'>true</span>
+    <span class='type'>(<code>Boolean</code>)</span>
+&mdash;    <div class='inline'>
+<p>if the service manager expects watchdog keep-alive notification messages to be sent from this process.</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L97-L113'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='97' data-end='113'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/sd_notify.rb', line 97</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_watchdog?'>watchdog?</span>
+  <span class='id identifier rubyid_wd_usec'>wd_usec</span> <span class='op'>=</span> <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>WATCHDOG_USEC</span><span class='tstring_end'>&quot;</span></span>]
+  <span class='id identifier rubyid_wd_pid'>wd_pid</span> <span class='op'>=</span> <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>WATCHDOG_PID</span><span class='tstring_end'>&quot;</span></span>]
+
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_wd_usec'>wd_usec</span>
+
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_wd_usec'>wd_usec</span> <span class='op'>=</span> <span class='const'>Integer</span>(<span class='id identifier rubyid_wd_usec'>wd_usec</span>)
+  <span class='kw'>rescue</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_wd_usec'>wd_usec</span> <span class='op'>&lt;=</span> <span class='int'>0</span>
+  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_wd_pid'>wd_pid</span> <span class='op'>||</span> <span class='id identifier rubyid_wd_pid'>wd_pid</span> <span class='op'>==</span> <span class='gvar'>$$</span>.<span class='id identifier rubyid_to_s'>to_s</span>
+
+  <span class='kw'>false</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<h2 class='y_details'>Class Method Details</h2>
+<section class='method_details first' id="errno-class_method">
+  <h3 class='signature  first'>
+    .<strong>errno</strong>(errno, unset_env = false)  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Parameters:</p>
+<ul class='param'>
+  <li>
+    <span class='name'>errno</span>
+    <span class='type'>(<code>Integer</code>)</span>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L71-L73'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='71' data-end='73'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/sd_notify.rb', line 71</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_errno'>errno</span>(<span class='id identifier rubyid_errno'>errno</span><span class='comma'>,</span> <span class='id identifier rubyid_unset_env'>unset_env</span><span class='op'>=</span><span class='kw'>false</span>)
+  <span class='id identifier rubyid_notify'><a href="#notify-class_method" title="Puma::SdNotify.notify (method)">notify</a></span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'><a href="#ERRNO-constant" title="Puma::SdNotify::ERRNO (constant)">ERRNO</a></span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_errno'>errno</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_unset_env'>unset_env</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="fdstore-class_method">
+  <h3 class='signature '>
+    .<strong>fdstore</strong>(unset_env = false)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L84-L86'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='84' data-end='86'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/sd_notify.rb', line 84</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_fdstore'>fdstore</span>(<span class='id identifier rubyid_unset_env'>unset_env</span><span class='op'>=</span><span class='kw'>false</span>)
+  <span class='id identifier rubyid_notify'><a href="#notify-class_method" title="Puma::SdNotify.notify (method)">notify</a></span>(<span class='const'><a href="#FDSTORE-constant" title="Puma::SdNotify::FDSTORE (constant)">FDSTORE</a></span><span class='comma'>,</span> <span class='id identifier rubyid_unset_env'>unset_env</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="mainpid-class_method">
+  <h3 class='signature '>
+    .<strong>mainpid</strong>(pid, unset_env = false)  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Parameters:</p>
+<ul class='param'>
+  <li>
+    <span class='name'>pid</span>
+    <span class='type'>(<code>Integer</code>)</span>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L76-L78'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='76' data-end='78'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/sd_notify.rb', line 76</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_mainpid'>mainpid</span>(<span class='id identifier rubyid_pid'>pid</span><span class='comma'>,</span> <span class='id identifier rubyid_unset_env'>unset_env</span><span class='op'>=</span><span class='kw'>false</span>)
+  <span class='id identifier rubyid_notify'><a href="#notify-class_method" title="Puma::SdNotify.notify (method)">notify</a></span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'><a href="#MAINPID-constant" title="Puma::SdNotify::MAINPID (constant)">MAINPID</a></span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pid'>pid</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_unset_env'>unset_env</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="notify-class_method">
+  <h3 class='signature '>
+    .<strong>notify</strong>(state, unset_env = false)  &#x21d2; <code>Fixnum</code><sup>?</sup> 
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Notify systemd with the provided state, via the notification socket, if any.</p>
+
+<p>Generally this method will be used indirectly through the other methods of the library.</p>
+
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Parameters:</p>
+<ul class='param'>
+  <li>
+    <span class='name'>state</span>
+    <span class='type'>(<code>String</code>)</span>
+  </li>
+  <li>
+    <span class='name'>unset_env</span>
+    <span class='type'>(<code>Boolean</code>)</span>
+    <em class='default'>(defaults to: <tt>false</tt>)</em>
+  </li>
+</ul>
+<p class='tag_title'>Returns:</p>
+<ul class='return'>
+  <li>
+    <span class='type'>(<code>Fixnum</code>, <code>nil</code>)</span>
+&mdash;    <div class='inline'>
+<p>the number of bytes written to the notification socket or nil if there was no socket to report to (eg. the program wasn’t started by systemd)</p>
+</div>
+  </li>
+</ul>
+<p class='tag_title'>Raises:</p>
+<ul class='raise'>
+  <li>
+    <span class='type'>(<a href="SdNotify/NotifyError.html" title="Puma::SdNotify::NotifyError (class)">NotifyError</a>)</span>
+&mdash;    <div class='inline'>
+<p>if there was an error communicating with the systemd socket</p>
+</div>
+  </li>
+</ul>
+  <p class='tag_title'>See Also:</p>
+  <ul class='see'>
+      <li><a href="https://www.freedesktop.org/software/systemd/man/sd_notify.html" target="_parent" title="https://www.freedesktop.org/software/systemd/man/sd_notify.html">https://www.freedesktop.org/software/systemd/man/sd_notify.html</a></li>
+      </ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L132-L147'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='132' data-end='147'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/sd_notify.rb', line 132</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_notify'>notify</span>(<span class='id identifier rubyid_state'>state</span><span class='comma'>,</span> <span class='id identifier rubyid_unset_env'>unset_env</span><span class='op'>=</span><span class='kw'>false</span>)
+  <span class='id identifier rubyid_sock'>sock</span> <span class='op'>=</span> <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>NOTIFY_SOCKET</span><span class='tstring_end'>&quot;</span></span>]
+
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_sock'>sock</span>
+
+  <span class='const'>ENV</span>.<span class='id identifier rubyid_delete'>delete</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>NOTIFY_SOCKET</span><span class='tstring_end'>&quot;</span></span>) <span class='kw'>if</span> <span class='id identifier rubyid_unset_env'>unset_env</span>
+
+  <span class='kw'>begin</span>
+    <span class='const'>Addrinfo</span>.<span class='id identifier rubyid_unix'>unix</span>(<span class='id identifier rubyid_sock'>sock</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='const'>DGRAM</span>).<span class='id identifier rubyid_connect'>connect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
+      <span class='id identifier rubyid_s'>s</span>.<span class='id identifier rubyid_close_on_exec'>close_on_exec</span> <span class='op'>=</span> <span class='kw'>true</span>
+      <span class='id identifier rubyid_s'>s</span>.<span class='id identifier rubyid_write'>write</span>(<span class='id identifier rubyid_state'>state</span>)
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'><a href="../StandardError.html" title="StandardError (class)">StandardError</a></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><a href="SdNotify/NotifyError.html" title="Puma::SdNotify::NotifyError (class)">NotifyError</a></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span>.<span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span>.<span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_e'>e</span>.<span class='id identifier rubyid_backtrace'>backtrace</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="ready-class_method">
+  <h3 class='signature '>
+    .<strong>ready</strong>(unset_env = false)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L52-L54'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='52' data-end='54'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/sd_notify.rb', line 52</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_ready'>ready</span>(<span class='id identifier rubyid_unset_env'>unset_env</span><span class='op'>=</span><span class='kw'>false</span>)
+  <span class='id identifier rubyid_notify'><a href="#notify-class_method" title="Puma::SdNotify.notify (method)">notify</a></span>(<span class='const'><a href="#READY-constant" title="Puma::SdNotify::READY (constant)">READY</a></span><span class='comma'>,</span> <span class='id identifier rubyid_unset_env'>unset_env</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="reloading-class_method">
+  <h3 class='signature '>
+    .<strong>reloading</strong>(unset_env = false)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L56-L58'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='56' data-end='58'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/sd_notify.rb', line 56</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_reloading'>reloading</span>(<span class='id identifier rubyid_unset_env'>unset_env</span><span class='op'>=</span><span class='kw'>false</span>)
+  <span class='id identifier rubyid_notify'><a href="#notify-class_method" title="Puma::SdNotify.notify (method)">notify</a></span>(<span class='const'><a href="#RELOADING-constant" title="Puma::SdNotify::RELOADING (constant)">RELOADING</a></span><span class='comma'>,</span> <span class='id identifier rubyid_unset_env'>unset_env</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="status-class_method">
+  <h3 class='signature '>
+    .<strong>status</strong>(status, unset_env = false)  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Parameters:</p>
+<ul class='param'>
+  <li>
+    <span class='name'>status</span>
+    <span class='type'>(<code>String</code>)</span>
+&mdash;    <div class='inline'>
+<p>a custom status string that describes the current state of the service</p>
+</div>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L66-L68'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='66' data-end='68'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/sd_notify.rb', line 66</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_status'>status</span>(<span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_unset_env'>unset_env</span><span class='op'>=</span><span class='kw'>false</span>)
+  <span class='id identifier rubyid_notify'><a href="#notify-class_method" title="Puma::SdNotify.notify (method)">notify</a></span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'><a href="#STATUS-constant" title="Puma::SdNotify::STATUS (constant)">STATUS</a></span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_status'>status</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_unset_env'>unset_env</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="stopping-class_method">
+  <h3 class='signature '>
+    .<strong>stopping</strong>(unset_env = false)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L60-L62'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='60' data-end='62'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/sd_notify.rb', line 60</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_stopping'>stopping</span>(<span class='id identifier rubyid_unset_env'>unset_env</span><span class='op'>=</span><span class='kw'>false</span>)
+  <span class='id identifier rubyid_notify'><a href="#notify-class_method" title="Puma::SdNotify.notify (method)">notify</a></span>(<span class='const'><a href="#STOPPING-constant" title="Puma::SdNotify::STOPPING (constant)">STOPPING</a></span><span class='comma'>,</span> <span class='id identifier rubyid_unset_env'>unset_env</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="watchdog-class_method">
+  <h3 class='signature ro'>
+    .<strong>watchdog</strong>(unset_env = false)   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L80-L82'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='80' data-end='82'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/sd_notify.rb', line 80</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_watchdog'>watchdog</span>(<span class='id identifier rubyid_unset_env'>unset_env</span><span class='op'>=</span><span class='kw'>false</span>)
+  <span class='id identifier rubyid_notify'><a href="#notify-class_method" title="Puma::SdNotify.notify (method)">notify</a></span>(<span class='const'><a href="#WATCHDOG-constant" title="Puma::SdNotify::WATCHDOG (constant)">WATCHDOG</a></span><span class='comma'>,</span> <span class='id identifier rubyid_unset_env'>unset_env</span>)
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>
