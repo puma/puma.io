@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::Events::PidFormatter &mdash; Puma-5.6.5</title>
+<title>Exception: Puma::SdNotify::NotifyError &mdash; Puma-6.1.0</title>
 
 <link rel='stylesheet'  type='text/css' href='../../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../../css/highlight.github.css' />
@@ -17,7 +17,7 @@
 <link rel='stylesheet'  type='text/css' href='../../css/y_color.css' />
 
 <script type='text/javascript'>
-  var pathId = "Puma::Events::PidFormatter",
+  var pathId = "Puma::SdNotify::NotifyError",
     relpath = '../../';
 
   var t2Info = {
@@ -50,11 +50,11 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../../'>Puma-5.6.5</a> &raquo; 
-      <a href='../../_index.html#alpha_P'>Index (P)</a> &raquo; 
+      <a href='../../'>Puma-6.1.0</a> &raquo; 
+      <a href='../../_index.html#alpha_N'>Index (N)</a> &raquo; 
         <a href="../../Puma.html" title="Puma (module)">Puma</a> &raquo; 
-        <a href="../Events.html" title="Puma::Events (class)">Events</a> &raquo; 
-      <span class='title'><a id='t2_doc_top' href='#'>PidFormatter&nbsp;&#x25B2;</a></span>
+        <a href="../SdNotify.html" title="Puma::SdNotify (module)">SdNotify</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>NotifyError&nbsp;&#x25B2;</a></span>
     </div>
 
     <a id='list_href' href="../../class_list.html"></a>
@@ -63,57 +63,60 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='class'>
-<h1>Class: Puma::Events::PidFormatter</h1>
+<h1>Exception: Puma::SdNotify::NotifyError</h1>
 <div id='t2_rel_sf_div'>
 <table id='t2_rel_sf' class='y_box'>
   <thead>
     <tr><td id='t2_relations' colspan='2'>Relationships & Source Files</td></tr>
   </thead>
   <tbody>
+    <tr><td class='box_h' colspan='2'>Super Chains via Extension / Inclusion / Inheritance</td></tr>
     <tr>
-      <td id='t2_inherits' class='box_2'>Inherits:</td>
+      <td colspan='2'>
+        <div class='box_2'>Class Chain:</div>
+        <div class='box_22'>
+          self,
+          RuntimeError
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan='2'>
+        <div class='box_2'>Instance Chain:</div>
+        <div class='box_22'>
+          self,
+          RuntimeError
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td id='t2_inherits' class='box_2 o'>Inherits:</td>
       <td class='box_rel'>
-        <span class='inheritName'><a href="../../Object.html" title="Object (class)">Object</a></span>
+        <span class='inheritName'>RuntimeError</span>
+        <ul class='fullTree'>
+          <li><a href="../../Object.html" title="Object (class)"><code>::Object</code></a></li>
+          <li class='next'>RuntimeError</li>
+          <li class='next'>Puma::SdNotify::NotifyError</li>
+        </ul>
       </td>
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/events.rb#L20'>lib/puma/events.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/sd_notify.rb#L41'>lib/puma/sd_notify.rb</a>      </td>
     </tr>
   </tbody>
 </table>
 </div>
-<h2 class='h2_sum' id='instance_method_summary'>Instance Method Summary</h2>
-<div class='div_sum'>
-<ul class='summary full'>
-  <li>
-    <span class='summary_signature '>
-      <a href="#call-instance_method" title="#call (instance method)">#<strong>call</strong>(str)  </a>
-    </span>
-  </li>
-</ul>
-</div>  <!-- instance_method_summary -->
-<h2 class='y_details'>Instance Method Details</h2>
-<section class='method_details first' id="call-instance_method">
-  <h3 class='signature  first'>
-    #<strong>call</strong>(str)  
-  </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v5.6.5/lib/puma/events.rb#L21-L23'>GitHub</a>&#8202;]</span>
-<div class='source_code h'>
-  <pre class='lines_num' data-start='21' data-end='23'></pre>
-  <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/events.rb', line 21</span></pre>
-<pre class='code ruby'>
+<h2 id='h2_overview'>Overview</h2>
+<div id='overview_ds'>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>Exception raised when there’s an error writing to the notification socket</p>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span>(<span class='id identifier rubyid_str'>str</span>)
-  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='gvar'>$$</span><span class='embexpr_end'>}</span><span class='tstring_content'>] </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-<span class='kw'>end</span>
-</pre>
   </div>
 </div>
-</section>
-
-
+</div>
 <div id='footer'></div>
 </div> <!-- content  -->
 </div> <!-- y_main   -->

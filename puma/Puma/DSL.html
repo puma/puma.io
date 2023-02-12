@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::DSL &mdash; Puma-6.0.2</title>
+<title>Class: Puma::DSL &mdash; Puma-6.1.0</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-6.0.2</a> &raquo; 
+      <a href='../'>Puma-6.1.0</a> &raquo; 
       <a href='../_index.html#alpha_D'>Index (D)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>DSL&nbsp;&#x25B2;</a></span>
@@ -77,7 +77,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L51'>lib/puma/dsl.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L51'>lib/puma/dsl.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -132,7 +132,7 @@ port 3002</code></pre>
   <li>
     <span id='ON_WORKER_KEY-constant' class='summary_signature'>ON_WORKER_KEY =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L52-L52'># File 'lib/puma/dsl.rb', line 52</a>    <pre class='code ruby'>[<span class='const'>String</span><span class='comma'>,</span> <span class='const'>Symbol</span>].<span class='id identifier rubyid_freeze'>freeze</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L52-L52'># File 'lib/puma/dsl.rb', line 52</a>    <pre class='code ruby'>[<span class='const'>String</span><span class='comma'>,</span> <span class='const'>Symbol</span>].<span class='id identifier rubyid_freeze'>freeze</span></pre>
   </li>
 </ul>
 </div>
@@ -318,6 +318,14 @@ port 3002</code></pre>
     <span class='summary_signature '>
       <a href="#get-instance_method" title="#get (instance method)">#<strong>get</strong>(key, default = nil)  </a>
     </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#http_content_length_limit-instance_method" title="#http_content_length_limit (instance method)">#<strong>http_content_length_limit</strong>(limit)  </a>
+    </span>
+    <div class='summary_desc'>
+      <div class='inline'><p>The default value for http_content_length_limit is nil.</p></div>
+    </div>
   </li>
   <li>
     <span class='summary_signature '>
@@ -682,11 +690,11 @@ port 3002</code></pre>
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L121-L126'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L122-L127'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='121' data-end='126'></pre>
+  <pre class='lines_num' data-start='122' data-end='127'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 121</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 122</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='id identifier rubyid_config'>config</span>)
@@ -719,9 +727,9 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L57-L119'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L57-L120'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='57' data-end='119'></pre>
+  <pre class='lines_num' data-start='57' data-end='120'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/dsl.rb', line 57</span></pre>
 <pre class='code ruby'>
@@ -737,6 +745,7 @@ port 3002</code></pre>
 
   <span class='id identifier rubyid_ca_additions'>ca_additions</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;ca=</span><span class='embexpr_beg'>#{</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Util.html" title="Puma::Util (module)">Util</a></span>.<span class='id identifier rubyid_escape'><a href="Util.html#escape-class_method" title="Puma::Util.escape (method)">escape</a></span>(<span class='id identifier rubyid_opts'>opts</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_ca'>ca</span>])<span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> [<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>peer</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>force_peer</span><span class='tstring_end'>&#39;</span></span>].<span class='id identifier rubyid_include?'>include?</span>(<span class='id identifier rubyid_verify'>verify</span>)
 
+  <span class='id identifier rubyid_low_latency_str'>low_latency_str</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span>.<span class='id identifier rubyid_key?'>key?</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_low_latency'>low_latency</span>) <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;low_latency=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_opts'>opts</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_low_latency'>low_latency</span>]<span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
   <span class='id identifier rubyid_backlog_str'>backlog_str</span> <span class='op'>=</span> <span class='id identifier rubyid_opts'>opts</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_backlog'>backlog</span>] <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&amp;backlog=</span><span class='embexpr_beg'>#{</span><span class='const'>Integer</span>(<span class='id identifier rubyid_opts'>opts</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_backlog'>backlog</span>])<span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
 
   <span class='kw'>if</span> <span class='kw'>defined?</span>(<span class='const'>JRUBY_VERSION</span>)
@@ -786,7 +795,7 @@ port 3002</code></pre>
       <span class='kw'>end</span>
 
     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ssl://</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_host'>host</span><span class='embexpr_end'>}</span><span class='tstring_content'>:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_port'><a href="#port-instance_method" title="Puma::DSL#port (method)">port</a></span><span class='embexpr_end'>}</span><span class='tstring_content'>?</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_cert_flags'>cert_flags</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key_flags'>key_flags</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ssl_cipher_filter'>ssl_cipher_filter</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> \
-      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_reuse_flag'>reuse_flag</span><span class='embexpr_end'>}</span><span class='tstring_content'>&amp;verify_mode=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_verify'>verify</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tls_str'>tls_str</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ca_additions'>ca_additions</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_v_flags'>v_flags</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_backlog_str'>backlog_str</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_reuse_flag'>reuse_flag</span><span class='embexpr_end'>}</span><span class='tstring_content'>&amp;verify_mode=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_verify'>verify</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_tls_str'>tls_str</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ca_additions'>ca_additions</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_v_flags'>v_flags</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_backlog_str'>backlog_str</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_low_latency_str'>low_latency_str</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </pre>
@@ -799,11 +808,11 @@ port 3002</code></pre>
   <h3 class='signature  first'>
     #<strong>_load_from</strong>(path)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L128-L135'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L129-L136'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='128' data-end='135'></pre>
+  <pre class='lines_num' data-start='129' data-end='136'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 128</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 129</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__load_from'>_load_from</span>(<span class='id identifier rubyid_path'>path</span>)
@@ -823,11 +832,11 @@ port 3002</code></pre>
   <h3 class='signature '>
     #<strong>_offer_plugins</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L137-L146'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L138-L147'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='137' data-end='146'></pre>
+  <pre class='lines_num' data-start='138' data-end='147'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 137</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 138</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__offer_plugins'>_offer_plugins</span>
@@ -867,11 +876,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L211-L234'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L212-L235'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='211' data-end='234'></pre>
+  <pre class='lines_num' data-start='212' data-end='235'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 211</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 212</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_activate_control_app'>activate_control_app</span>(<span class='id identifier rubyid_url'>url</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>auto</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span><span class='op'>=</span>{})
@@ -914,11 +923,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L1029-L1043'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L1043-L1057'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='1029' data-end='1043'></pre>
+  <pre class='lines_num' data-start='1043' data-end='1057'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 1029</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 1043</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_pem_values_to_options_store'>add_pem_values_to_options_store</span>(<span class='id identifier rubyid_opts'>opts</span>)
@@ -952,11 +961,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L664-L664'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L665-L665'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='664' data-end='664'></pre>
+  <pre class='lines_num' data-start='665' data-end='665'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 664</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 665</span></pre>
 <pre class='code ruby'>
 
 <span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbeg'>:</span><span class='id identifier rubyid_after_worker_boot'>after_worker_boot</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_after_worker_fork'><a href="#after_worker_fork-instance_method" title="Puma::DSL#after_worker_fork (method)">after_worker_fork</a></span>
@@ -996,11 +1005,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L660-L662'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L661-L663'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='660' data-end='662'></pre>
+  <pre class='lines_num' data-start='661' data-end='663'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 660</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 661</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_after_worker_fork'>after_worker_fork</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
@@ -1044,11 +1053,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L189-L195'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L190-L196'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='189' data-end='195'></pre>
+  <pre class='lines_num' data-start='190' data-end='196'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 189</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 190</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_app'>app</span>(<span class='id identifier rubyid_obj'>obj</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
@@ -1093,11 +1102,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L601-L604'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L602-L605'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='601' data-end='604'></pre>
+  <pre class='lines_num' data-start='602' data-end='605'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 601</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 602</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_before_fork'>before_fork</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
@@ -1166,11 +1175,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L272-L275'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L273-L276'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='272' data-end='275'></pre>
+  <pre class='lines_num' data-start='273' data-end='276'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 272</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 273</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bind'>bind</span>(<span class='id identifier rubyid_url'>url</span>)
@@ -1191,7 +1200,7 @@ port 3002</code></pre>
     
 <p>Bind to (systemd) activated sockets, regardless of configured binds.</p>
 
-<p><a href="Systemd.html" title="Puma::Systemd (class)"><code>Systemd</code></a> can present sockets as file descriptors that are already opened. By default <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> will use these but only if it was explicitly told to bind to the socket. If not, it will close the activated sockets. This means all configuration is duplicated.</p>
+<p>Systemd can present sockets as file descriptors that are already opened. By default <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> will use these but only if it was explicitly told to bind to the socket. If not, it will close the activated sockets. This means all configuration is duplicated.</p>
 
 <p>Binds can contain additional configuration, but only SSL config is really relevant since the unix and TCP socket options are ignored.</p>
 
@@ -1215,11 +1224,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L303-L305'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L304-L306'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='303' data-end='305'></pre>
+  <pre class='lines_num' data-start='304' data-end='306'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 303</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 304</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bind_to_activated_sockets'>bind_to_activated_sockets</span>(<span class='id identifier rubyid_bind'><a href="#bind-instance_method" title="Puma::DSL#bind (method)">bind</a></span><span class='op'>=</span><span class='kw'>true</span>)
@@ -1241,11 +1250,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L330-L332'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L331-L333'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='330' data-end='332'></pre>
+  <pre class='lines_num' data-start='331' data-end='333'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 330</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 331</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clean_thread_locals'>clean_thread_locals</span>(<span class='id identifier rubyid_which'>which</span><span class='op'>=</span><span class='kw'>true</span>)
@@ -1260,11 +1269,11 @@ port 3002</code></pre>
   <h3 class='signature '>
     #<strong>clear_binds!</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L277-L279'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L278-L280'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='277' data-end='279'></pre>
+  <pre class='lines_num' data-start='278' data-end='280'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 277</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 278</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear_binds!'>clear_binds!</span>
@@ -1286,11 +1295,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L423-L425'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L424-L426'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='423' data-end='425'></pre>
+  <pre class='lines_num' data-start='424' data-end='426'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 423</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 424</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_debug'>debug</span>
@@ -1305,11 +1314,11 @@ port 3002</code></pre>
   <h3 class='signature '>
     #<strong>default_host</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L152-L154'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L153-L155'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='152' data-end='154'></pre>
+  <pre class='lines_num' data-start='153' data-end='155'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 152</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 153</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_default_host'>default_host</span>
@@ -1340,11 +1349,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L707-L709'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L708-L710'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='707' data-end='709'></pre>
+  <pre class='lines_num' data-start='708' data-end='710'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 707</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 708</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_directory'>directory</span>(<span class='id identifier rubyid_dir'>dir</span>)
@@ -1373,11 +1382,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L339-L341'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L340-L342'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='339' data-end='341'></pre>
+  <pre class='lines_num' data-start='340' data-end='342'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 339</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 340</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_drain_on_shutdown'>drain_on_shutdown</span>(<span class='id identifier rubyid_which'>which</span><span class='op'>=</span><span class='kw'>true</span>)
@@ -1392,11 +1401,11 @@ port 3002</code></pre>
   <h3 class='signature '>
     #<strong>early_hints</strong>(answer = true)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L444-L446'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L445-L447'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='444' data-end='446'></pre>
+  <pre class='lines_num' data-start='445' data-end='447'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 444</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 445</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_early_hints'>early_hints</span>(<span class='id identifier rubyid_answer'>answer</span><span class='op'>=</span><span class='kw'>true</span>)
@@ -1427,11 +1436,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L350-L352'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L351-L353'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='350' data-end='352'></pre>
+  <pre class='lines_num' data-start='351' data-end='353'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 350</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 351</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_environment'>environment</span>(<span class='id identifier rubyid_environment'>environment</span>)
@@ -1467,11 +1476,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L784-L786'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L785-L787'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='784' data-end='786'></pre>
+  <pre class='lines_num' data-start='785' data-end='787'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 784</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 785</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extra_runtime_dependencies'>extra_runtime_dependencies</span>(<span class='id identifier rubyid_answer'>answer</span> <span class='op'>=</span> [])
@@ -1500,11 +1509,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L324-L326'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L325-L327'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='324' data-end='326'></pre>
+  <pre class='lines_num' data-start='325' data-end='327'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 324</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 325</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_first_data_timeout'>first_data_timeout</span>(<span class='id identifier rubyid_seconds'>seconds</span>)
@@ -1535,11 +1544,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L362-L373'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L363-L374'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='362' data-end='373'></pre>
+  <pre class='lines_num' data-start='363' data-end='374'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 362</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 363</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_force_shutdown_after'>force_shutdown_after</span>(<span class='id identifier rubyid_val'>val</span><span class='op'>=</span><span class='symbeg'>:</span><span class='id identifier rubyid_forever'>forever</span>)
@@ -1593,11 +1602,11 @@ port 3002</code></pre>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L991-L993'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L992-L994'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='991' data-end='993'></pre>
+  <pre class='lines_num' data-start='992' data-end='994'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 991</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 992</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fork_worker'>fork_worker</span>(<span class='id identifier rubyid_after_requests'>after_requests</span><span class='op'>=</span><span class='int'>1000</span>)
@@ -1612,11 +1621,11 @@ port 3002</code></pre>
   <h3 class='signature '>
     #<strong>get</strong>(key, default = nil)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L160-L162'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L161-L163'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='160' data-end='162'></pre>
+  <pre class='lines_num' data-start='161' data-end='163'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 160</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 161</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get'>get</span>(<span class='id identifier rubyid_key'>key</span><span class='comma'>,</span><span class='id identifier rubyid_default'>default</span><span class='op'>=</span><span class='kw'>nil</span>)
@@ -1627,15 +1636,41 @@ port 3002</code></pre>
 </div>
 </section>
 
+<section class='method_details' id="http_content_length_limit-instance_method">
+  <h3 class='signature '>
+    #<strong>http_content_length_limit</strong>(limit)  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>The default value for http_content_length_limit is nil.</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L1035-L1037'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='1035' data-end='1037'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 1035</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_http_content_length_limit'>http_content_length_limit</span>(<span class='id identifier rubyid_limit'>limit</span>)
+  <span class='ivar'>@options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_http_content_length_limit'>http_content_length_limit</span>] <span class='op'>=</span> <span class='id identifier rubyid_limit'>limit</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
 <section class='method_details' id="inject-instance_method">
   <h3 class='signature '>
     #<strong>inject</strong>(&amp;blk)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L156-L158'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L157-L159'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='156' data-end='158'></pre>
+  <pre class='lines_num' data-start='157' data-end='159'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 156</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 157</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inject'>inject</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_blk'>blk</span>)
@@ -1670,11 +1705,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L1017-L1019'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L1018-L1020'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='1017' data-end='1019'></pre>
+  <pre class='lines_num' data-start='1018' data-end='1020'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 1017</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 1018</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_io_selector_backend'>io_selector_backend</span>(<span class='id identifier rubyid_backend'>backend</span>)
@@ -1696,11 +1731,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L238-L241'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L239-L242'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='238' data-end='241'></pre>
+  <pre class='lines_num' data-start='239' data-end='242'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 238</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 239</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load'>load</span>(<span class='id identifier rubyid_file'>file</span>)
@@ -1716,11 +1751,11 @@ port 3002</code></pre>
   <h3 class='signature '>
     #<strong>log_formatter</strong>(&amp;block)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L461-L463'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L462-L464'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='461' data-end='463'></pre>
+  <pre class='lines_num' data-start='462' data-end='464'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 461</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 462</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_log_formatter'>log_formatter</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
@@ -1742,11 +1777,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L417-L419'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L418-L420'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='417' data-end='419'></pre>
+  <pre class='lines_num' data-start='418' data-end='420'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 417</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 418</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_log_requests'>log_requests</span>(<span class='id identifier rubyid_which'>which</span><span class='op'>=</span><span class='kw'>true</span>)
@@ -1777,11 +1812,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L728-L732'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L729-L733'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='728' data-end='732'></pre>
+  <pre class='lines_num' data-start='729' data-end='733'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 728</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 729</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lowlevel_error_handler'>lowlevel_error_handler</span>(<span class='id identifier rubyid_obj'>obj</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
@@ -1805,11 +1840,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L998-L1000'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L999-L1001'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='998' data-end='1000'></pre>
+  <pre class='lines_num' data-start='999' data-end='1001'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 998</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 999</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_max_fast_inline'>max_fast_inline</span>(<span class='id identifier rubyid_num_of_requests'>num_of_requests</span>)
@@ -1824,11 +1859,11 @@ port 3002</code></pre>
   <h3 class='signature '>
     #<strong>mutate_stdout_and_stderr_to_sync_on_write</strong>(enabled = true)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L1021-L1023'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L1022-L1024'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='1021' data-end='1023'></pre>
+  <pre class='lines_num' data-start='1022' data-end='1024'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 1021</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 1022</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mutate_stdout_and_stderr_to_sync_on_write'>mutate_stdout_and_stderr_to_sync_on_write</span>(<span class='id identifier rubyid_enabled'>enabled</span><span class='op'>=</span><span class='kw'>true</span>)
@@ -1879,11 +1914,11 @@ port 3002</code></pre>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L684-L686'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L685-L687'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='684' data-end='686'></pre>
+  <pre class='lines_num' data-start='685' data-end='687'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 684</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 685</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_on_refork'>on_refork</span>(<span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
@@ -1916,11 +1951,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L384-L387'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L385-L388'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='384' data-end='387'></pre>
+  <pre class='lines_num' data-start='385' data-end='388'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 384</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 385</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_on_restart'>on_restart</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
@@ -1962,11 +1997,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L616-L618'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L617-L619'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='616' data-end='618'></pre>
+  <pre class='lines_num' data-start='617' data-end='619'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 616</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 617</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_on_worker_boot'>on_worker_boot</span>(<span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
@@ -2007,11 +2042,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L646-L648'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L647-L649'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='646' data-end='648'></pre>
+  <pre class='lines_num' data-start='647' data-end='649'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 646</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 647</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_on_worker_fork'>on_worker_fork</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
@@ -2052,11 +2087,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L632-L634'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L633-L635'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='632' data-end='634'></pre>
+  <pre class='lines_num' data-start='633' data-end='635'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 632</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 633</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_on_worker_shutdown'>on_worker_shutdown</span>(<span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
@@ -2082,11 +2117,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L697-L699'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L698-L700'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='697' data-end='699'></pre>
+  <pre class='lines_num' data-start='698' data-end='700'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 697</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 698</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_out_of_band'>out_of_band</span>(<span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
@@ -2115,11 +2150,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L318-L320'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L319-L321'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='318' data-end='320'></pre>
+  <pre class='lines_num' data-start='319' data-end='321'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 318</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 319</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_persistent_timeout'>persistent_timeout</span>(<span class='id identifier rubyid_seconds'>seconds</span>)
@@ -2148,11 +2183,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L403-L405'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L404-L406'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='403' data-end='405'></pre>
+  <pre class='lines_num' data-start='404' data-end='406'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 403</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 404</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pidfile'>pidfile</span>(<span class='id identifier rubyid_path'>path</span>)
@@ -2174,11 +2209,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L166-L168'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L167-L169'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='166' data-end='168'></pre>
+  <pre class='lines_num' data-start='167' data-end='169'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 166</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 167</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_plugin'>plugin</span>(<span class='id identifier rubyid_name'>name</span>)
@@ -2207,11 +2242,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L311-L314'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L312-L315'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='311' data-end='314'></pre>
+  <pre class='lines_num' data-start='312' data-end='315'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 311</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 312</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_port'>port</span>(<span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='id identifier rubyid_host'>host</span><span class='op'>=</span><span class='kw'>nil</span>)
@@ -2249,11 +2284,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L717-L719'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L718-L720'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='717' data-end='719'></pre>
+  <pre class='lines_num' data-start='718' data-end='720'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 717</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 718</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_preload_app!'>preload_app!</span>(<span class='id identifier rubyid_answer'>answer</span><span class='op'>=</span><span class='kw'>true</span>)
@@ -2268,11 +2303,11 @@ port 3002</code></pre>
   <h3 class='signature priv'>
     #<strong>process_hook</strong>(options_key, key, block, meth)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L1045-L1054'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L1059-L1068'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='1045' data-end='1054'></pre>
+  <pre class='lines_num' data-start='1059' data-end='1068'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 1045</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 1059</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_hook'>process_hook</span>(<span class='id identifier rubyid_options_key'>options_key</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_block'>block</span><span class='comma'>,</span> <span class='id identifier rubyid_meth'>meth</span>)
@@ -2327,11 +2362,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L751-L753'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L752-L754'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='751' data-end='753'></pre>
+  <pre class='lines_num' data-start='752' data-end='754'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 751</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 752</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prune_bundler'>prune_bundler</span>(<span class='id identifier rubyid_answer'>answer</span><span class='op'>=</span><span class='kw'>true</span>)
@@ -2364,11 +2399,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L898-L900'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L899-L901'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='898' data-end='900'></pre>
+  <pre class='lines_num' data-start='899' data-end='901'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 898</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 899</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_queue_requests'>queue_requests</span>(<span class='id identifier rubyid_answer'>answer</span><span class='op'>=</span><span class='kw'>true</span>)
@@ -2397,11 +2432,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L411-L413'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L412-L414'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='411' data-end='413'></pre>
+  <pre class='lines_num' data-start='412' data-end='414'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 411</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 412</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_quiet'>quiet</span>(<span class='id identifier rubyid_which'>which</span><span class='op'>=</span><span class='kw'>true</span>)
@@ -2423,11 +2458,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L440-L442'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L441-L443'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='440' data-end='442'></pre>
+  <pre class='lines_num' data-start='441' data-end='443'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 440</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 441</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rack_url_scheme'>rack_url_scheme</span>(<span class='id identifier rubyid_scheme'>scheme</span><span class='op'>=</span><span class='kw'>nil</span>)
@@ -2458,11 +2493,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L433-L435'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L434-L436'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='433' data-end='435'></pre>
+  <pre class='lines_num' data-start='434' data-end='436'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 433</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 434</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rackup'>rackup</span>(<span class='id identifier rubyid_path'>path</span>)
@@ -2498,11 +2533,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L767-L769'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L768-L770'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='767' data-end='769'></pre>
+  <pre class='lines_num' data-start='768' data-end='770'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 767</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 768</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_raise_exception_on_sigterm'>raise_exception_on_sigterm</span>(<span class='id identifier rubyid_answer'>answer</span><span class='op'>=</span><span class='kw'>true</span>)
@@ -2531,11 +2566,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L395-L397'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L396-L398'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='395' data-end='397'></pre>
+  <pre class='lines_num' data-start='396' data-end='398'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 395</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 396</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_restart_command'>restart_command</span>(<span class='id identifier rubyid_cmd'>cmd</span>)
@@ -2550,11 +2585,11 @@ port 3002</code></pre>
   <h3 class='signature '>
     #<strong>set_default_host</strong>(host)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L148-L150'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L149-L151'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='148' data-end='150'></pre>
+  <pre class='lines_num' data-start='149' data-end='151'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 148</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 149</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_default_host'>set_default_host</span>(<span class='id identifier rubyid_host'>host</span>)
@@ -2589,11 +2624,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L949-L976'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L950-L977'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='949' data-end='976'></pre>
+  <pre class='lines_num' data-start='950' data-end='977'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 949</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 950</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_remote_address'>set_remote_address</span>(<span class='id identifier rubyid_val'>val</span><span class='op'>=</span><span class='symbeg'>:</span><span class='id identifier rubyid_socket'>socket</span>)
@@ -2640,11 +2675,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L906-L908'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L907-L909'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='906' data-end='908'></pre>
+  <pre class='lines_num' data-start='907' data-end='909'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 906</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 907</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shutdown_debug'>shutdown_debug</span>(<span class='id identifier rubyid_val'>val</span><span class='op'>=</span><span class='kw'>true</span>)
@@ -2680,11 +2715,11 @@ port 3002</code></pre>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L583-L585'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L584-L586'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='583' data-end='585'></pre>
+  <pre class='lines_num' data-start='584' data-end='586'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 583</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 584</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_silence_single_worker_warning'>silence_single_worker_warning</span>
@@ -2749,11 +2784,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L533-L536'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L534-L537'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='533' data-end='536'></pre>
+  <pre class='lines_num' data-start='534' data-end='537'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 533</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 534</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ssl_bind'>ssl_bind</span>(<span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'><a href="#port-instance_method" title="Puma::DSL#port (method)">port</a></span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> {})
@@ -2783,11 +2818,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L543-L545'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L544-L546'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='543' data-end='545'></pre>
+  <pre class='lines_num' data-start='544' data-end='546'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 543</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 544</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_state_path'>state_path</span>(<span class='id identifier rubyid_path'>path</span>)
@@ -2824,11 +2859,11 @@ port 3002</code></pre>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L553-L555'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L554-L556'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='553' data-end='555'></pre>
+  <pre class='lines_num' data-start='554' data-end='556'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 553</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 554</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_state_permission'>state_permission</span>(<span class='id identifier rubyid_permission'>permission</span>)
@@ -2858,11 +2893,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L455-L459'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L456-L460'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='455' data-end='459'></pre>
+  <pre class='lines_num' data-start='456' data-end='460'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 455</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 456</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stdout_redirect'>stdout_redirect</span>(<span class='id identifier rubyid_stdout'>stdout</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_append'>append</span><span class='op'>=</span><span class='kw'>false</span>)
@@ -2896,11 +2931,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L797-L799'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L798-L800'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='797' data-end='799'></pre>
+  <pre class='lines_num' data-start='798' data-end='800'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 797</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 798</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tag'>tag</span>(<span class='id identifier rubyid_string'>string</span>)
@@ -2934,11 +2969,11 @@ port 3002</code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L477-L490'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L478-L491'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='477' data-end='490'></pre>
+  <pre class='lines_num' data-start='478' data-end='491'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 477</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 478</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_threads'>threads</span>(<span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span>)
@@ -2989,11 +3024,11 @@ port 3002</code></pre>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L920-L922'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L921-L923'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='920' data-end='922'></pre>
+  <pre class='lines_num' data-start='921' data-end='923'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 920</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 921</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wait_for_less_busy_worker'>wait_for_less_busy_worker</span>(<span class='id identifier rubyid_val'>val</span><span class='op'>=</span><span class='float'>0.005</span>)
@@ -3036,11 +3071,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L847-L849'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L848-L850'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='847' data-end='849'></pre>
+  <pre class='lines_num' data-start='848' data-end='850'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 847</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 848</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_worker_boot_timeout'>worker_boot_timeout</span>(<span class='id identifier rubyid_timeout'>timeout</span>)
@@ -3083,11 +3118,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L810-L812'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L811-L813'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='810' data-end='812'></pre>
+  <pre class='lines_num' data-start='811' data-end='813'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 810</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 811</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_worker_check_interval'>worker_check_interval</span>(<span class='id identifier rubyid_interval'>interval</span>)
@@ -3135,11 +3170,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L874-L882'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L875-L883'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='874' data-end='882'></pre>
+  <pre class='lines_num' data-start='875' data-end='883'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 874</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 875</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_worker_culling_strategy'>worker_culling_strategy</span>(<span class='id identifier rubyid_strategy'>strategy</span>)
@@ -3182,11 +3217,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L856-L858'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L857-L859'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='856' data-end='858'></pre>
+  <pre class='lines_num' data-start='857' data-end='859'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 856</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 857</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_worker_shutdown_timeout'>worker_shutdown_timeout</span>(<span class='id identifier rubyid_timeout'>timeout</span>)
@@ -3229,11 +3264,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L826-L835'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L827-L836'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='826' data-end='835'></pre>
+  <pre class='lines_num' data-start='827' data-end='836'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 826</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 827</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_worker_timeout'>worker_timeout</span>(<span class='id identifier rubyid_timeout'>timeout</span>)
@@ -3279,11 +3314,11 @@ port 3002</code></pre>
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.0.2/lib/puma/dsl.rb#L565-L567'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/puma/dsl.rb#L566-L568'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='565' data-end='567'></pre>
+  <pre class='lines_num' data-start='566' data-end='568'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/dsl.rb', line 565</span></pre>
+<pre><span class='info file'># File 'lib/puma/dsl.rb', line 566</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_workers'>workers</span>(<span class='id identifier rubyid_count'>count</span>)

@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: History &mdash; Puma-6.0.2</title>
+<title>File: History &mdash; Puma-6.1.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.0.2</a> &raquo; 
+      <a href='.'>Puma-6.1.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: History&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,6 +61,32 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
+<h2>6.1.0 / 2022-02-12</h2>
+<ul>
+<li>
+<p>Features</p>
+<ul>
+<li>WebSocket support via partial hijack (<a href="https://github.com/puma/puma/pull/3058" title="PR by @dentarg, merged 2023-01-29">#3058</a>, <a href="https://github.com/puma/puma/issues/3007" title="Issue by @MSP-Greg, closed 2023-01-29">#3007</a>)</li>
+<li>Add built-in systemd notify support (<a href="https://github.com/puma/puma/pull/3011" title="PR by @joaomarcos96, merged 2023-01-03">#3011</a>)</li>
+<li>Periodically send status to systemd (<a href="https://github.com/puma/puma/pull/3006" title="PR by @QWYNG, merged 2023-02-09">#3006</a>, <a href="https://github.com/puma/puma/issues/2604" title="Issue by @dgoetz, closed 2023-02-09">#2604</a>)</li>
+<li>Introduce the ability to return 413: payload too large for requests (<a href="https://github.com/puma/puma/pull/3040" title="PR by @shayonj, merged 2023-01-02">#3040</a>)</li>
+<li>Log loaded extensions when <code>PUMA_DEBUG</code> is set (<a href="https://github.com/puma/puma/pull/3036" title="PR by @MSP-Greg, merged 2023-01-13">#3036</a>, <a href="https://github.com/puma/puma/issues/3020" title="Issue by @dentarg, closed 2023-01-13">#3020</a>)</li>
+</ul>
+</li>
+<li>
+<p>Bugfixes</p>
+<ul>
+<li>Fix issue with rack 3 compatibility re: rackup (<a href="https://github.com/puma/puma/pull/3061" title="PR by @MSP-Greg, merged 2023-02-12">#3061</a>, <a href="https://github.com/puma/puma/issues/3057" title="Issue by @mmarvb8h, closed 2023-02-12">#3057</a>)</li>
+<li>Allow setting TCP low_latency with SSL listener (<a href="https://github.com/puma/puma/pull/3065" title="PR by @MSP-Greg, merged 2023-02-11">#3065</a>)</li>
+</ul>
+</li>
+<li>
+<p>Performance</p>
+<ul>
+<li>Reduce memory usage for large file uploads (<a href="https://github.com/puma/puma/pull/3062" title="PR by @willkoehler, merged 2023-01-29">#3062</a>)</li>
+</ul>
+</li>
+</ul>
 <h2>6.0.2 / 2023-01-01</h2>
 <ul>
 <li>Refactor
@@ -590,7 +616,7 @@
 <li>Simplify <a href="Puma/Configuration.html#random_token-class_method" title="Puma::Configuration.random_token (method)">Puma::Configuration.random_token</a> and remove insecure fallback (<a href="https://github.com/puma/puma/pull/2102" title="PR by @bdewater, merged 2020-02-07">#2102</a>)</li>
 <li>Simplify <a href="Puma/Runner.html#start_control-instance_method" title="Puma::Runner#start_control (method)">Puma::Runner#start_control</a> URL parsing (<a href="https://github.com/puma/puma/pull/2111" title="PR by @wjordan, merged 2020-02-20">#2111</a>)</li>
 <li>Removed the IOBuffer extension and replaced with Ruby (<a href="https://github.com/puma/puma/pull/1980" title="PR by @nateberkopec, merged 2020-02-27">#1980</a>)</li>
-<li>Update <a href="Rack/Handler/Puma.html#run-class_method" title="Rack::Handler::Puma.run (method)">Rack::Handler::Puma.run</a> to use <code>**options</code> (<a href="https://github.com/puma/puma/pull/2189" title="PR by @jkowens, merged 2020-03-19">#2189</a>)</li>
+<li>Update <code>Rack::Handler::Puma.run</code> to use <code>**options</code> (<a href="https://github.com/puma/puma/pull/2189" title="PR by @jkowens, merged 2020-03-19">#2189</a>)</li>
 <li>ThreadPool concurrency refactoring (<a href="https://github.com/puma/puma/pull/2220" title="PR by @wjordan, merged 2020-04-14">#2220</a>)</li>
 <li>JSON parse cluster worker stats instead of regex (<a href="https://github.com/puma/puma/pull/2124" title="PR by @wjordan, merged 2020-04-14">#2124</a>)</li>
 <li>Support parallel tests in verbose progress reporting (<a href="https://github.com/puma/puma/pull/2223" title="PR by @wjordan, merged 2020-04-20">#2223</a>)</li>
