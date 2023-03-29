@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: README &mdash; Puma-6.1.0</title>
+<title>File: README &mdash; Puma-6.2.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.1.0</a> &raquo; 
+      <a href='.'>Puma-6.2.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: README&nbsp;&#x25B2;</a></span>
           </div>
@@ -65,7 +65,7 @@
   <img src="https://puma.io/images/logos/puma-logo-large.png">
 </p>
 <h1>Puma: A Ruby Web Server Built For Parallelism</h1>
-<p><a href="https://github.com/puma/puma/actions?query=workflow%3ATests"><img src="https://github.com/puma/puma/workflows/Tests/badge.svg?branch=v6.1.0" alt="Actions" /></a>
+<p><a href="https://github.com/puma/puma/actions?query=branch%3Av6.2.0"><img src="https://github.com/puma/puma/workflows/Tests/badge.svg?branch=v6.2.0" alt="Actions" /></a>
 <a href="https://codeclimate.com/github/puma/puma"><img src="https://codeclimate.com/github/puma/puma.svg" alt="Code Climate" /></a>
 <a href="https://stackoverflow.com/questions/tagged/puma"><img src="https://img.shields.io/badge/stackoverflow-Puma-blue.svg" alt="StackOverflow" /></a></p>
 <p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> is a <strong>simple, fast, multi-threaded, and highly parallel HTTP 1.1 server for Ruby/Rack applications</strong>.</p>
@@ -137,6 +137,11 @@ unless preloading is enabled.</p>
 <p>You can also specify a block to be run before workers are forked, using <code>before_fork</code>:</p>
 <pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
 </span><span class='id identifier rubyid_before_fork'>before_fork</span> <span class='kw'>do</span>
+  <span class='comment'># configuration here
+</span><span class='kw'>end</span></code></pre>
+<p>You can also specify a block to be run after puma is booted using <code>on_booted</code>:</p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
+</span><span class='id identifier rubyid_on_booted'>on_booted</span> <span class='kw'>do</span>
   <span class='comment'># configuration here
 </span><span class='kw'>end</span></code></pre>
 <h3>Error handling</h3>
@@ -235,10 +240,16 @@ $ puma -C &quot;-&quot;</code></pre>
   <span class='kw'>end</span>
 <span class='kw'>end</span></code></pre>
 <h2>Deployment</h2>
+<ul>
+<li>
 <p>Puma has support for Capistrano with an <a href="https://github.com/seuros/capistrano-puma">external gem</a>.</p>
+</li>
+<li>
+<p>Additionally, Puma has support for built-in daemonization via the <a href="https://github.com/kigster/puma-daemon">puma-daemon</a> ruby gem. The gem restores the <code>daemonize</code> option that was removed from Puma starting version 5, but only for MRI Ruby.</p>
+</li>
+</ul>
 <p>It is common to use process monitors with Puma. Modern process monitors like systemd or rc.d
-provide continuous monitoring and restarts for increased
-reliability in production environments:</p>
+provide continuous monitoring and restarts for increased reliability in production environments:</p>
 <ul>
 <li><a href="file.README.html">rc.d</a></li>
 <li><a href="file.systemd.html">systemd</a></li>

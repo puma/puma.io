@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: History &mdash; Puma-6.1.0</title>
+<title>File: History &mdash; Puma-6.2.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.1.0</a> &raquo; 
+      <a href='.'>Puma-6.2.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: History&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,7 +61,35 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<h2>6.1.0 / 2022-02-12</h2>
+<h2>6.2.0 / 2023-03-29</h2>
+<ul>
+<li>
+<p>Features</p>
+<ul>
+<li>Ability to supply a custom logger (<a href="https://github.com/puma/puma/pull/2770" title="PR by @vzajkov, merged 2023-03-29">#2770</a>, <a href="https://github.com/puma/puma/issues/2511" title="Issue by @jchristie55332, closed 2021-12-12">#2511</a>)</li>
+<li>Warn when clustered-only hooks are defined in single mode (<a href="https://github.com/puma/puma/pull/3089" title="PR by @Vuta, merged 2023-03-06">#3089</a>)</li>
+<li>Adds the on_booted event (<a href="https://github.com/puma/puma/pull/2709" title="PR by @rodzyn, merged 2023-02-20">#2709</a>)</li>
+</ul>
+</li>
+<li>
+<p>Bugfixes</p>
+<ul>
+<li>Loggers - internal_write - catch Errno::EINVAL (<a href="https://github.com/puma/puma/pull/3091" title="PR by @MSP-Greg, merged 2023-03-28">#3091</a>)</li>
+<li>commonlogger.rb - fix HIJACK time format, use constants, not strings (<a href="https://github.com/puma/puma/pull/3074" title="PR by @MSP-Greg, merged 2023-03-14">#3074</a>)</li>
+<li>Fixed some edge cases regarding request hijacking (<a href="https://github.com/puma/puma/pull/3072" title="PR by @MSP-Greg, merged 2023-02-17">#3072</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>6.1.1 / 2023-02-28</h2>
+<ul>
+<li>Bugfixes
+<ul>
+<li>We no longer try to use the systemd plugin for JRuby (<a href="https://github.com/puma/puma/pull/3079" title="PR by @mohamedhafez, merged 2023-02-24">#3079</a>)</li>
+<li>Allow ::Rack::Handler::Puma.run to work regardless of whether Rack/Rackup are loaded (<a href="https://github.com/puma/puma/pull/3080" title="PR by @MSP-Greg, merged 2023-02-16">#3080</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>6.1.0 / 2023-02-12</h2>
 <ul>
 <li>
 <p>Features</p>

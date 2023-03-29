@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Module: Puma::RackHandler &mdash; Puma-6.1.0</title>
+<title>Module: Puma::RackHandler &mdash; Puma-6.2.0</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-6.1.0</a> &raquo; 
+      <a href='../'>Puma-6.2.0</a> &raquo; 
       <a href='../_index.html#alpha_R'>Index (R)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>RackHandler&nbsp;&#x25B2;</a></span>
@@ -79,7 +79,7 @@
     </td></tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/rack/handler/puma.rb#L5'>lib/rack/handler/puma.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.2.0/lib/rack/handler/puma.rb#L5'>lib/rack/handler/puma.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -90,7 +90,7 @@
   <li>
     <span id='DEFAULT_OPTIONS-constant' class='summary_signature'>DEFAULT_OPTIONS =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/rack/handler/puma.rb#L6-L9'># File 'lib/rack/handler/puma.rb', line 6</a>    <pre class='code ruby'>{
+    <a class='repo' href='https://github.com/puma/puma/blob/v6.2.0/lib/rack/handler/puma.rb#L6-L9'># File 'lib/rack/handler/puma.rb', line 6</a>    <pre class='code ruby'>{
   <span class='symbeg'>:</span><span class='const'>Verbose</span> <span class='op'>=&gt;</span> <span class='kw'>false</span><span class='comma'>,</span>
   <span class='symbeg'>:</span><span class='const'>Silent</span>  <span class='op'>=&gt;</span> <span class='kw'>false</span>
 }</pre>
@@ -128,9 +128,9 @@
   <h3 class='signature  first'>
     #<strong>config</strong>(app, options = {})  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/rack/handler/puma.rb#L11-L59'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.2.0/lib/rack/handler/puma.rb#L11-L61'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='11' data-end='59'></pre>
+  <pre class='lines_num' data-start='11' data-end='61'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/rack/handler/puma.rb', line 11</span></pre>
 <pre class='code ruby'>
@@ -154,7 +154,9 @@
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_conf'>conf</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Configuration.html" title="Puma::Configuration (class)">Configuration</a></span>.<span class='id identifier rubyid_new'><a href="Configuration.html#new-class_method" title="Puma::Configuration.new (method)">new</a></span>(<span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='id identifier rubyid_default_options'>default_options</span>) <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user_config'>user_config</span><span class='comma'>,</span> <span class='id identifier rubyid_file_config'>file_config</span><span class='comma'>,</span> <span class='id identifier rubyid_default_config'>default_config</span><span class='op'>|</span>
+  <span class='ivar'>@events</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_events'>events</span>] <span class='op'>||</span> <span class='op'>::</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Events.html" title="Puma::Events (class)">Events</a></span>.<span class='id identifier rubyid_new'><a href="Events.html#new-class_method" title="Puma::Events.new (method)">new</a></span>
+
+  <span class='id identifier rubyid_conf'>conf</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Configuration.html" title="Puma::Configuration (class)">Configuration</a></span>.<span class='id identifier rubyid_new'><a href="Configuration.html#new-class_method" title="Puma::Configuration.new (method)">new</a></span>(<span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='id identifier rubyid_default_options'>default_options</span>.<span class='id identifier rubyid_merge'>merge</span>({<span class='label'>events:</span> <span class='ivar'>@events</span>})) <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user_config'>user_config</span><span class='comma'>,</span> <span class='id identifier rubyid_file_config'>file_config</span><span class='comma'>,</span> <span class='id identifier rubyid_default_config'>default_config</span><span class='op'>|</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span>.<span class='id identifier rubyid_delete'>delete</span>(<span class='symbeg'>:</span><span class='const'>Verbose</span>)
       <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rack/common_logger</span><span class='tstring_end'>&#39;</span></span>
       <span class='id identifier rubyid_app'>app</span> <span class='op'>=</span> <span class='const'><a href="Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'><a href="CommonLogger.html" title="Puma::CommonLogger (class)">CommonLogger</a></span>.<span class='id identifier rubyid_new'>new</span>(<span class='id identifier rubyid_app'>app</span><span class='comma'>,</span> <span class='const'>STDOUT</span>)
@@ -207,19 +209,19 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/rack/handler/puma.rb#L61-L76'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.2.0/lib/rack/handler/puma.rb#L63-L78'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='61' data-end='76'></pre>
+  <pre class='lines_num' data-start='63' data-end='78'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/rack/handler/puma.rb', line 61</span></pre>
+<pre><span class='info file'># File 'lib/rack/handler/puma.rb', line 63</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>(<span class='id identifier rubyid_app'>app</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span>)
-  <span class='id identifier rubyid_conf'>conf</span>   <span class='op'>=</span> <span class='kw'>self</span>.<span class='id identifier rubyid_config'><a href="#config-instance_method" title="Puma::RackHandler#config (method)">config</a></span>(<span class='id identifier rubyid_app'>app</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>)
+  <span class='id identifier rubyid_conf'>conf</span> <span class='op'>=</span> <span class='kw'>self</span>.<span class='id identifier rubyid_config'><a href="#config-instance_method" title="Puma::RackHandler#config (method)">config</a></span>(<span class='id identifier rubyid_app'>app</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span>)
 
   <span class='id identifier rubyid_log_writer'>log_writer</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span>.<span class='id identifier rubyid_delete'>delete</span>(<span class='symbeg'>:</span><span class='const'>Silent</span>) <span class='op'>?</span> <span class='op'>::</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="LogWriter.html" title="Puma::LogWriter (class)">LogWriter</a></span>.<span class='id identifier rubyid_strings'><a href="LogWriter.html#strings-class_method" title="Puma::LogWriter.strings (method)">strings</a></span> <span class='op'>:</span> <span class='op'>::</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="LogWriter.html" title="Puma::LogWriter (class)">LogWriter</a></span>.<span class='id identifier rubyid_stdio'><a href="LogWriter.html#stdio-class_method" title="Puma::LogWriter.stdio (method)">stdio</a></span>
 
-  <span class='id identifier rubyid_launcher'>launcher</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Launcher.html" title="Puma::Launcher (class)">Launcher</a></span>.<span class='id identifier rubyid_new'><a href="Launcher.html#new-class_method" title="Puma::Launcher.new (method)">new</a></span>(<span class='id identifier rubyid_conf'>conf</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_log_writer'>log_writer</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_log_writer'>log_writer</span>)
+  <span class='id identifier rubyid_launcher'>launcher</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Launcher.html" title="Puma::Launcher (class)">Launcher</a></span>.<span class='id identifier rubyid_new'><a href="Launcher.html#new-class_method" title="Puma::Launcher.new (method)">new</a></span>(<span class='id identifier rubyid_conf'>conf</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_log_writer'>log_writer</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_log_writer'>log_writer</span><span class='comma'>,</span> <span class='label'>events:</span> <span class='ivar'>@events</span>)
 
   <span class='kw'>yield</span> <span class='id identifier rubyid_launcher'>launcher</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
   <span class='kw'>begin</span>
@@ -239,11 +241,11 @@
   <h3 class='signature '>
     #<strong>set_host_port_to_config</strong>(host, port, config)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/rack/handler/puma.rb#L87-L107'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.2.0/lib/rack/handler/puma.rb#L89-L109'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='87' data-end='107'></pre>
+  <pre class='lines_num' data-start='89' data-end='109'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/rack/handler/puma.rb', line 87</span></pre>
+<pre><span class='info file'># File 'lib/rack/handler/puma.rb', line 89</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_host_port_to_config'>set_host_port_to_config</span>(<span class='id identifier rubyid_host'>host</span><span class='comma'>,</span> <span class='id identifier rubyid_port'>port</span><span class='comma'>,</span> <span class='id identifier rubyid_config'><a href="#config-instance_method" title="Puma::RackHandler#config (method)">config</a></span>)
@@ -276,11 +278,11 @@
   <h3 class='signature '>
     #<strong>valid_options</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.1.0/lib/rack/handler/puma.rb#L78-L85'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.2.0/lib/rack/handler/puma.rb#L80-L87'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='78' data-end='85'></pre>
+  <pre class='lines_num' data-start='80' data-end='87'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/rack/handler/puma.rb', line 78</span></pre>
+<pre><span class='info file'># File 'lib/rack/handler/puma.rb', line 80</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_valid_options'>valid_options</span>
