@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Plugins &mdash; Puma-6.2.1</title>
+<title>File: Plugins &mdash; Puma-6.3.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.2.1</a> &raquo; 
+      <a href='.'>Puma-6.3.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Plugins&nbsp;&#x25B2;</a></span>
           </div>
@@ -62,9 +62,12 @@
   </header>
 <div id='content' class='file'>
 <h2>Plugins</h2>
+
 <p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 3.0 added support for plugins that can augment configuration and service
 operations.</p>
+
 <p>There are two canonical plugins to aid in the development of new plugins:</p>
+
 <ul>
 <li><a href="https://github.com/puma/puma/blob/master/lib/puma/plugin/tmp_restart.rb">tmp_restart</a>:
 Restarts the server if the file <code>tmp/restart.txt</code> is touched</li>
@@ -72,20 +75,30 @@ Restarts the server if the file <code>tmp/restart.txt</code> is touched</li>
 Packages up the default configuration used by Puma on Heroku (being sunset
 with the release of Puma 5.0)</li>
 </ul>
-<p>Plugins are activated in a <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> configuration file (such as <code>config/puma.rb'</code>)
+
+<p>Plugins are activated in a <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> configuration file (such as <code>config/puma.rb&#39;</code>)
 by adding <code>plugin &quot;name&quot;</code>, such as <code>plugin &quot;heroku&quot;</code>.</p>
+
 <p>Plugins are activated based on path requirements so, activating the <code>heroku</code>
 plugin is much like <code>require &quot;puma/plugin/heroku&quot;</code>. This allows gems to provide
 multiple plugins (as well as unrelated gems to provide <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> plugins).</p>
+
 <p>The <code>tmp_restart</code> plugin comes with <a href="Puma.html" title="Puma (module)"><code>Puma</code></a>, so it is always available.</p>
+
 <p>To use the <code>heroku</code> plugin, add <code>puma-heroku</code> to your Gemfile or install it.</p>
+
 <h3>API</h3>
+
 <h2>Server-wide hooks</h2>
+
 <p>Plugins can use a couple of hooks at the server level: <code>start</code> and <code>config</code>.</p>
+
 <p><code>start</code> runs when the server has started and allows the plugin to initiate other
 functionality to augment <a href="Puma.html" title="Puma (module)"><code>Puma</code></a>.</p>
+
 <p><code>config</code> runs when the server is being configured and receives a <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>DSL</code></a>
 object that is useful for additional configuration.</p>
+
 <p>Public methods in <a href="../lib/puma/plugin.rb"><a href="Puma/Plugin.html" title="Puma::Plugin (class)"><code>Plugin</code></a></a> are treated as a
 public API for plugins.</p>
 

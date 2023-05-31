@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: 6.0-Upgrade &mdash; Puma-6.2.1</title>
+<title>File: 6.0-Upgrade &mdash; Puma-6.3.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.2.1</a> &raquo; 
+      <a href='.'>Puma-6.3.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: 6.0-Upgrade&nbsp;&#x25B2;</a></span>
           </div>
@@ -62,44 +62,67 @@
   </header>
 <div id='content' class='file'>
 <h1>Welcome to <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 6: Sunflower.</h1>
-<p><img src="https://user-images.githubusercontent.com/845662/192706685-774d3d0d-f4a9-4b93-b27b-5a3b7f44ff31.jpg" alt="Image by Todd Trapani, Unsplash" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/845662/192706685-774d3d0d-f4a9-4b93-b27b-5a3b7f44ff31.jpg" alt="Image by Todd Trapani, Unsplash"></p>
+
 <p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 6 brings performance improvements for most applications, experimental <a href="Rack.html" title="Rack (module)"><code>Rack</code></a> 3 support, support for Sidekiq 7 Capsules, and more.</p>
-<p>Here's what you should do:</p>
+
+<p>Here&#39;s what you should do:</p>
+
 <ol>
 <li>Review the Upgrade section below to look for breaking changes that could affect you.</li>
 <li>Upgrade to version 6.0 in your Gemfile and deploy.</li>
 <li>Open up a new bug issue if you find any problems.</li>
 <li>Join us in building Puma! We welcome first-timers. See <a href="file.CONTRIBUTING.html">CONTRIBUTING.md</a>.</li>
 </ol>
+
 <p>For a complete list of changes, see <a href="file.History.html">History.md</a>.</p>
-<h2>What's New</h2>
-<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 6 is mostly about a few nice-to-have performance changes, and then a few breaking API changes we've been putting off for a while.</p>
+
+<h2>What&#39;s New</h2>
+
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 6 is mostly about a few nice-to-have performance changes, and then a few breaking API changes we&#39;ve been putting off for a while.</p>
+
 <h3>Improved Performance</h3>
-<p>We've improved throughput and latency in <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 6 in a few areas.</p>
+
+<p>We&#39;ve improved throughput and latency in <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 6 in a few areas.</p>
+
 <ol>
 <li><strong>Large chunked response body throughput 3-10x higher</strong> Chunked response bodies &gt;100kb should be 3 to 10 times faster than in <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 5. String response bodies should be ~10% faster.</li>
 <li><strong>File response throughput is 3x higher.</strong> File responses (e.g. assets) should be about 3x faster.</li>
-<li><strong>wait_for_less_busy_worker is now default, meaning lower latencies for high-utilization servers</strong> <code>wait_for_less_busy_worker</code> was an experimental feature in <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 5 and it's now the default in <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 6. This feature makes each <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> child worker in cluster mode wait before listening on the socket, and that wait time is proportional to N * <code>number_of_threads_responding_to_requests</code>. This means that it's more likely that a request is picked up by the least-loaded <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> child worker listening on the socket. Many users reported back that this option was stable and decreased average latency, particularly in environments with high load and utilization.</li>
+<li><strong>wait_for_less_busy_worker is now default, meaning lower latencies for high-utilization servers</strong> <code>wait_for_less_busy_worker</code> was an experimental feature in <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 5 and it&#39;s now the default in <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 6. This feature makes each <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> child worker in cluster mode wait before listening on the socket, and that wait time is proportional to N * <code>number_of_threads_responding_to_requests</code>. This means that it&#39;s more likely that a request is picked up by the least-loaded <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> child worker listening on the socket. Many users reported back that this option was stable and decreased average latency, particularly in environments with high load and utilization.</li>
 </ol>
+
 <h3>Experimental Rack 3 Support</h3>
-<p>[Rack 3 is now out]) and we've started on <a href="Rack.html" title="Rack (module)"><code>Rack</code></a> 3 support. Please open a bug if you find any incompatibilites.</p>
+
+<p>[Rack 3 is now out]) and we&#39;ve started on <a href="Rack.html" title="Rack (module)"><code>Rack</code></a> 3 support. Please open a bug if you find any incompatibilites.</p>
+
 <h3>Sidekiq 7 Capsules</h3>
-<p>Sidekiq 7 (releasing soon) introduces Capsules, which allows you to run a Sidekiq server inside your <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> server (or any other Ruby process for that matter). We've added support by allowing you to pass data into <code>run_hooks</code>, see <a href="https://github.com/puma/puma/issues/2915">issue #2915</a>.</p>
+
+<p>Sidekiq 7 (releasing soon) introduces Capsules, which allows you to run a Sidekiq server inside your <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> server (or any other Ruby process for that matter). We&#39;ve added support by allowing you to pass data into <code>run_hooks</code>, see <a href="https://github.com/puma/puma/issues/2915">issue #2915</a>.</p>
+
 <h2>Upgrade</h2>
-<p>Check the following list to see if you're depending on any of these behaviors:</p>
+
+<p>Check the following list to see if you&#39;re depending on any of these behaviors:</p>
+
 <ol>
 <li>Configuration constants like <code>DefaultRackup</code> removed, see <a href="https://github.com/puma/puma/pull/2928/files#diff-2dc4e3e83be7fd97cebc482ae07d6a8216944003de82458783fb00b5ae9524c8">#2928</a> for the full list.</li>
 <li>We have changed the names of the following environment variables: <code>DISABLE_SSL</code> is now <code>PUMA_DISABLE_SSL</code>, <code>MAKE_WARNINGS_INTO_ERRORS</code> is now <code>PUMA_MAKE_WARNINGS_INTO_ERRORS</code>, and <code>WAIT_FOR_LESS_BUSY_WORKERS</code> is now <code>PUMA_WAIT_FOR_LESS_BUSY_WORKERS</code>.</li>
 <li>Nakayoshi GC (<code>nakayoshi_fork</code> option in config) has been removed without replacement.</li>
-<li><code>wait_for_less_busy_worker</code> is now on by default. If you don't want to use this feature, you must add <code>wait_for_less_busy_worker false</code> in your config.</li>
-<li>We've removed the following public methods on Puma::Server: <a href="Puma/Server.html#min_threads-instance_method" title="Puma::Server#min_threads (method)">Puma::Server#min_threads</a>, <a href="Puma/Server.html#max_threads-instance_method" title="Puma::Server#max_threads (method)">Puma::Server#max_threads</a>. Instead, you can pass in configuration as an option to Puma::Server#new. This might make certain gems break (<code>capybara</code> for example).</li>
-<li>We've removed the following constants: <code>Puma::StateFile::FIELDS</code>, <code>Puma::CLI::KEYS_NOT_TO_PERSIST_IN_STATE</code> and <code>Puma::Launcher::KEYS_NOT_TO_PERSIST_IN_STATE</code>, and <code>Puma::ControlCLI::COMMANDS</code>.</li>
+<li><code>wait_for_less_busy_worker</code> is now on by default. If you don&#39;t want to use this feature, you must add <code>wait_for_less_busy_worker false</code> in your config.</li>
+<li>We&#39;ve removed the following public methods on Puma::Server: <a href="Puma/Server.html#min_threads-instance_method" title="Puma::Server#min_threads (method)">Puma::Server#min_threads</a>, <a href="Puma/Server.html#max_threads-instance_method" title="Puma::Server#max_threads (method)">Puma::Server#max_threads</a>. Instead, you can pass in configuration as an option to Puma::Server#new. This might make certain gems break (<code>capybara</code> for example).</li>
+<li>We&#39;ve removed the following constants: <code>Puma::StateFile::FIELDS</code>, <code>Puma::CLI::KEYS_NOT_TO_PERSIST_IN_STATE</code> and <code>Puma::Launcher::KEYS_NOT_TO_PERSIST_IN_STATE</code>, and <code>Puma::ControlCLI::COMMANDS</code>.</li>
 <li>We no longer support Ruby 2.2, 2.3, or JRuby on Java 1.7 or below.</li>
-<li>The behavior of <code>remote_addr</code> has changed. When using the set_remote_address header: &quot;header_name&quot; functionality, if the header is not passed, REMOTE_ADDR is now set to the physical peeraddr instead of always being set to 127.0.0.1. When an error occurs preventing the physical peeraddr from being fetched, REMOTE_ADDR is now set to the unspecified source address ('0.0.0.0') instead of to '127.0.0.1'</li>
-<li>Previously, <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> supported anything as an HTTP method and passed it to the app. We now only accept the 8 HTTP methods defined in RFC 9110.</li>
+<li>The behavior of <code>remote_addr</code> has changed. When using the set_remote_address header: &quot;header_name&quot; functionality, if the header is not passed, REMOTE_ADDR is now set to the physical peeraddr instead of always being set to 127.0.0.1. When an error occurs preventing the physical peeraddr from being fetched, REMOTE_ADDR is now set to the unspecified source address (&#39;0.0.0.0&#39;) instead of to &#39;127.0.0.1&#39;</li>
+<li>Previously, <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> supported anything as an HTTP method and passed it to the app. We now only accept the following 8 HTTP methods, based on <a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-9.1">RFC 9110, section 9.1</a>.  The <a href="https://www.iana.org/assignments/http-methods/http-methods.xhtml">IANA HTTP Method Registry</a> contains a full list of HTTP methods.
+<code>
+HEAD GET POST PUT DELETE OPTIONS TRACE PATCH
+</code>
+As of Puma 6.2, these can be overridden by <code>supported_http_methods</code> in your config file, see <a href="Puma/DSL.html#supported_http_methods-instance_method" title="Puma::DSL#supported_http_methods (method)">Puma::DSL#supported_http_methods</a>.</li>
 </ol>
+
 <p>Then, update your Gemfile:</p>
-<p><code>gem 'puma', '&lt; 7'</code></p>
+
+<p><code>gem &#39;puma&#39;, &#39;&lt; 7&#39;</code></p>
 
 <div id='footer'></div>
 </div> <!-- content  -->
