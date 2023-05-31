@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Testing - test/rackup/ci-*.ru files &mdash; Puma-6.2.1</title>
+<title>File: Testing - test/rackup/ci-*.ru files &mdash; Puma-6.3.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.2.1</a> &raquo; 
+      <a href='.'>Puma-6.3.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Testing - test/rackup/ci-*.ru files&nbsp;&#x25B2;</a></span>
           </div>
@@ -62,13 +62,17 @@
   </header>
 <div id='content' class='file'>
 <h1>Testing - test/rackup/ci-*.ru files</h1>
+
 <h2>Overview</h2>
+
 <p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> should efficiently handle a variety of response bodies, varying both by size
 and by the type of object used for the body.</p>
-<p>Five rackup files are located in 'test/rackup' that can be used.  All have their
+
+<p>Five rackup files are located in &#39;test/rackup&#39; that can be used.  All have their
 request body size (in kB) set via <code>Body-Conf</code> header or with <code>ENV['CI_BODY_CONF']</code>.
-Additionally, the ci_select.ru file can have it's body type set via a starting
+Additionally, the ci_select.ru file can have it&#39;s body type set via a starting
 character.</p>
+
 <ul>
 <li><strong>ci_array.ru</strong> - body is an <code>Array</code> of 1kB strings.  <code>Content-Length</code> is not set.</li>
 <li><strong>ci_chunked.ru</strong> - body is an <code>Enumerator</code> of 1kB strings.  <code>Content-Length</code> is not set.</li>
@@ -76,20 +80,27 @@ character.</p>
 <li><strong>ci_string.ru</strong> - body is a single string.  <code>Content-Length</code> is set.</li>
 <li><strong>ci_select.ru</strong> - can be any of the above.</li>
 </ul>
+
 <p>All responses have 25 headers, total length approx 1kB.  ci_array.ru and ci_chunked.ru
 contain 1kB items.</p>
+
 <p>All can be delayed by a float value (seconds) specified by the <code>Dly</code> header</p>
+
 <p>Note that rhe <code>Body-Conf</code> header takes precedence, and <code>ENV['CI_BODY_CONF']</code> is
 only read on load.</p>
+
 <h2>ci_select.ru</h2>
+
 <p>The ci_select.ru file allows a starting character to specify the body type in the
 <code>Body-Conf</code> header or with <code>ENV['CI_BODY_CONF']</code>.</p>
+
 <ul>
 <li><strong>a</strong> - array of strings</li>
 <li><strong>c</strong> - chunked (enum)</li>
 <li><strong>s</strong> - single string</li>
 <li><strong>i</strong> - File/IO</li>
 </ul>
+
 <p>A value of <code>a100</code> would return a body as an array of 100 1kB strings.</p>
 
 <div id='footer'></div>

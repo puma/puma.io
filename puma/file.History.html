@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: History &mdash; Puma-6.2.1</title>
+<title>File: History &mdash; Puma-6.3.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.2.1</a> &raquo; 
+      <a href='.'>Puma-6.3.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: History&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,98 +61,143 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<h2>6.2.1 / 2023-03-31</h2>
+<h2>6.3.0 / 2023-05-31</h2>
+
+<ul>
+<li><p>Features</p>
+
+<ul>
+<li>Add dsl method <code>supported_http_methods</code> (<a href="https://github.com/puma/puma/pull/3106" title="PR by @MSP-Greg, merged 2023-05-29">#3106</a>, <a href="https://github.com/puma/puma/issues/3014" title="Issue by @kyledrake, closed 2023-05-29">#3014</a>)</li>
+<li>Puma error responses no longer have any fingerprints to indicate Puma (<a href="https://github.com/puma/puma/pull/3161" title="PR by @MSP-Greg, merged 2023-05-27">#3161</a>, <a href="https://github.com/puma/puma/issues/3037" title="Issue by @daisy1754, closed 2023-05-27">#3037</a>)</li>
+<li>Support decryption of SSL key (<a href="https://github.com/puma/puma/pull/3133" title="PR by @stanhu, merged 2023-04-30">#3133</a>, <a href="https://github.com/puma/puma/issues/3132" title="Issue by @stanhu, closed 2023-04-30">#3132</a>)</li>
+</ul></li>
+<li><p>Bugfixes</p>
+
+<ul>
+<li>Don&#39;t send 103 early hints response when only invalid headers are used (<a href="https://github.com/puma/puma/pull/3163" title="PR by @MSP-Greg, merged 2023-05-27">#3163</a>)</li>
+<li>Handle malformed request path (<a href="https://github.com/puma/puma/pull/3155" title="PR by @dentarg, merged 2023-05-14">#3155</a>, <a href="https://github.com/puma/puma/issues/3148" title="Issue by @dentarg, closed 2023-05-14">#3148</a>)</li>
+<li>Misc lib file fixes - trapping additional errors, CI helper (<a href="https://github.com/puma/puma/pull/3129" title="PR by @MSP-Greg, merged 2023-05-02">#3129</a>)</li>
+<li>Fixup req form data file upload with &quot;r\n&quot; line endings (<a href="https://github.com/puma/puma/pull/3137" title="PR by @MSP-Greg, merged 2023-04-30">#3137</a>)</li>
+<li>Restore rack 1.6 compatibility Restore rack 1.6 compatibility (<a href="https://github.com/puma/puma/pull/3156" title="PR by @severin, merged 2023-05-16">#3156</a>)</li>
+</ul></li>
+<li><p>Refactor</p>
+
+<ul>
+<li>const.rb - Update Puma::HTTP_STATUS_CODES (<a href="https://github.com/puma/puma/pull/3162" title="PR by @MSP-Greg, merged 2023-05-23">#3162</a>)</li>
+<li>Clarify Reactor#initialize (<a href="https://github.com/puma/puma/pull/3151" title="PR by @nateberkopec, merged 2023-05-12">#3151</a>)</li>
+</ul></li>
+</ul>
+
+<h2>6.2.2 / 2023-04-17</h2>
+
 <ul>
 <li>Bugfixes
+
+<ul>
+<li>Fix Rack-related NameError by adding :: operator (<a href="https://github.com/puma/puma/pull/3118" title="PR by @ninoseki, merged 2023-04-01">#3118</a>, <a href="https://github.com/puma/puma/issues/3117" title="Issue by @ninoseki, closed 2023-04-01">#3117</a>)</li>
+</ul></li>
+</ul>
+
+<h2>6.2.1 / 2023-03-31</h2>
+
+<ul>
+<li>Bugfixes
+
 <ul>
 <li>Fix java 8 compatibility (<a href="https://github.com/puma/puma/pull/3109" title="PR by @ahorek, merged 2023-03-31">#3109</a>, <a href="https://github.com/puma/puma/issues/3108" title="Issue by @treviateo, closed 2023-03-31">#3108</a>)</li>
 <li>Always write io_buffer when in &quot;enum bodies&quot; branch. (<a href="https://github.com/puma/puma/pull/3113" title="PR by @collinsauve, merged 2023-03-31">#3113</a>, <a href="https://github.com/puma/puma/issues/3112" title="Issue by @dmke, closed 2023-03-31">#3112</a>)</li>
 <li>Fix warn_if_in_single_mode incorrect message (<a href="https://github.com/puma/puma/pull/3111" title="PR by @adzap, merged 2023-03-30">#3111</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>6.2.0 / 2023-03-29</h2>
+
 <ul>
-<li>
-<p>Features</p>
+<li><p>Features</p>
+
 <ul>
 <li>Ability to supply a custom logger (<a href="https://github.com/puma/puma/pull/2770" title="PR by @vzajkov, merged 2023-03-29">#2770</a>, <a href="https://github.com/puma/puma/issues/2511" title="Issue by @jchristie55332, closed 2021-12-12">#2511</a>)</li>
 <li>Warn when clustered-only hooks are defined in single mode (<a href="https://github.com/puma/puma/pull/3089" title="PR by @Vuta, merged 2023-03-06">#3089</a>)</li>
 <li>Adds the on_booted event (<a href="https://github.com/puma/puma/pull/2709" title="PR by @rodzyn, merged 2023-02-20">#2709</a>)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>Loggers - internal_write - catch Errno::EINVAL (<a href="https://github.com/puma/puma/pull/3091" title="PR by @MSP-Greg, merged 2023-03-28">#3091</a>)</li>
 <li>commonlogger.rb - fix HIJACK time format, use constants, not strings (<a href="https://github.com/puma/puma/pull/3074" title="PR by @MSP-Greg, merged 2023-03-14">#3074</a>)</li>
 <li>Fixed some edge cases regarding request hijacking (<a href="https://github.com/puma/puma/pull/3072" title="PR by @MSP-Greg, merged 2023-02-17">#3072</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>6.1.1 / 2023-02-28</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>We no longer try to use the systemd plugin for JRuby (<a href="https://github.com/puma/puma/pull/3079" title="PR by @mohamedhafez, merged 2023-02-24">#3079</a>)</li>
 <li>Allow ::Rack::Handler::Puma.run to work regardless of whether Rack/Rackup are loaded (<a href="https://github.com/puma/puma/pull/3080" title="PR by @MSP-Greg, merged 2023-02-16">#3080</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>6.1.0 / 2023-02-12</h2>
+
 <ul>
-<li>
-<p>Features</p>
+<li><p>Features</p>
+
 <ul>
 <li>WebSocket support via partial hijack (<a href="https://github.com/puma/puma/pull/3058" title="PR by @dentarg, merged 2023-01-29">#3058</a>, <a href="https://github.com/puma/puma/issues/3007" title="Issue by @MSP-Greg, closed 2023-01-29">#3007</a>)</li>
 <li>Add built-in systemd notify support (<a href="https://github.com/puma/puma/pull/3011" title="PR by @joaomarcos96, merged 2023-01-03">#3011</a>)</li>
 <li>Periodically send status to systemd (<a href="https://github.com/puma/puma/pull/3006" title="PR by @QWYNG, merged 2023-02-09">#3006</a>, <a href="https://github.com/puma/puma/issues/2604" title="Issue by @dgoetz, closed 2023-02-09">#2604</a>)</li>
 <li>Introduce the ability to return 413: payload too large for requests (<a href="https://github.com/puma/puma/pull/3040" title="PR by @shayonj, merged 2023-01-02">#3040</a>)</li>
 <li>Log loaded extensions when <code>PUMA_DEBUG</code> is set (<a href="https://github.com/puma/puma/pull/3036" title="PR by @MSP-Greg, merged 2023-01-13">#3036</a>, <a href="https://github.com/puma/puma/issues/3020" title="Issue by @dentarg, closed 2023-01-13">#3020</a>)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>Fix issue with rack 3 compatibility re: rackup (<a href="https://github.com/puma/puma/pull/3061" title="PR by @MSP-Greg, merged 2023-02-12">#3061</a>, <a href="https://github.com/puma/puma/issues/3057" title="Issue by @mmarvb8h, closed 2023-02-12">#3057</a>)</li>
 <li>Allow setting TCP low_latency with SSL listener (<a href="https://github.com/puma/puma/pull/3065" title="PR by @MSP-Greg, merged 2023-02-11">#3065</a>)</li>
-</ul>
-</li>
-<li>
-<p>Performance</p>
+</ul></li>
+<li><p>Performance</p>
+
 <ul>
 <li>Reduce memory usage for large file uploads (<a href="https://github.com/puma/puma/pull/3062" title="PR by @willkoehler, merged 2023-01-29">#3062</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>6.0.2 / 2023-01-01</h2>
+
 <ul>
 <li>Refactor
+
 <ul>
 <li>Remove use of etc and time gems in Puma (<a href="https://github.com/puma/puma/pull/3035" title="PR by @MSP-Greg, merged 2022-12-24">#3035</a>, <a href="https://github.com/puma/puma/issues/3033" title="Issue by @jules-w2, closed 2022-12-24">#3033</a>)</li>
 <li>Refactor const.rb - freeze (<a href="https://github.com/puma/puma/pull/3016" title="PR by @MSP-Greg, merged 2022-12-24">#3016</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>6.0.1 / 2022-12-20</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>Handle waking up a closed selector in Reactor#add (<a href="https://github.com/puma/puma/pull/3005" title="PR by @JuanitoFatas, merged 2022-11-04">#3005</a>)</li>
 <li>Fixup response processing, enumerable bodies (<a href="https://github.com/puma/puma/pull/3004" title="PR by @MSP-Greg, merged 2022-11-24">#3004</a>, <a href="https://github.com/puma/puma/issues/3000" title="Issue by @dentarg, closed 2022-11-24">#3000</a>)</li>
 <li>Correctly close app body for all code paths (<a href="https://github.com/puma/puma/pull/3002" title="PR by @MSP-Greg, merged 2022-11-03">#3002</a>, <a href="https://github.com/puma/puma/issues/2999" title="Issue by @aymeric-ledorze, closed 2022-11-03">#2999</a>)</li>
-</ul>
-</li>
-<li>Refactor
+</ul></li>
+<li>Refactor 
+
 <ul>
 <li>Add IOBuffer to Client, remove from ThreadPool thread instances (<a href="https://github.com/puma/puma/pull/3013" title="PR by @MSP-Greg, merged 2022-11-13">#3013</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>6.0.0 / 2022-10-14</h2>
+
 <ul>
-<li>
-<p>Breaking Changes</p>
+<li><p>Breaking Changes</p>
+
 <ul>
 <li>Dropping Ruby 2.2 and 2.3 support (now 2.4+) (<a href="https://github.com/puma/puma/pull/2919" title="PR by @MSP-Greg, merged 2022-08-30">#2919</a>)</li>
 <li>Remote_addr functionality has changed (<a href="https://github.com/puma/puma/issues/2652" title="Issue by @Roguelazer, closed 2022-09-04">#2652</a>, <a href="https://github.com/puma/puma/pull/2653" title="PR by @Roguelazer, closed 2022-03-07">#2653</a>)</li>
@@ -161,65 +206,62 @@
 <li>wait_for_less_busy_worker is now default on (<a href="https://github.com/puma/puma/pull/2940" title="PR by @cafedomancer, merged 2022-09-10">#2940</a>)</li>
 <li>Prefix all environment variables with <code>PUMA_</code> (<a href="https://github.com/puma/puma/pull/2924" title="PR by @cafedomancer, merged 2022-09-07">#2924</a>, <a href="https://github.com/puma/puma/issues/2853" title="Issue by @nateberkopec, closed 2022-09-07">#2853</a>)</li>
 <li>Removed some constants (<a href="https://github.com/puma/puma/pull/2957" title="PR by @JuanitoFatas, merged 2022-09-16">#2957</a>, <a href="https://github.com/puma/puma/pull/2958" title="PR by @JuanitoFatas, merged 2022-09-16">#2958</a>, <a href="https://github.com/puma/puma/pull/2959" title="PR by @JuanitoFatas, merged 2022-09-16">#2959</a>, <a href="https://github.com/puma/puma/pull/2960" title="PR by @JuanitoFatas, merged 2022-09-16">#2960</a>)</li>
-<li>The following classes are now part of Puma's private API: <a href="Puma/Client.html" title="Puma::Client (class)"><code>Client</code></a>, <a href="Puma/Cluster/Worker.html" title="Puma::Cluster::Worker (class)"><code>Cluster::Worker</code></a>, <a href="Puma/Cluster/Worker.html" title="Puma::Cluster::Worker (class)"><code>Cluster::Worker</code></a>, <code>HandleRequest</code>. (<a href="https://github.com/puma/puma/pull/2988" title="PR by @MSP-Greg, merged 2022-10-12">#2988</a>)</li>
+<li>The following classes are now part of Puma&#39;s private API: <a href="Puma/Client.html" title="Puma::Client (class)"><code>Client</code></a>, <a href="Puma/Cluster/Worker.html" title="Puma::Cluster::Worker (class)"><code>Cluster::Worker</code></a>, <a href="Puma/Cluster/Worker.html" title="Puma::Cluster::Worker (class)"><code>Cluster::Worker</code></a>, <code>HandleRequest</code>. (<a href="https://github.com/puma/puma/pull/2988" title="PR by @MSP-Greg, merged 2022-10-12">#2988</a>)</li>
 <li>Configuration constants like <code>DefaultRackup</code> removed (<a href="https://github.com/puma/puma/pull/2928" title="PR by @nateberkopec, merged 2022-09-10">#2928</a>)</li>
 <li>Extracted <a href="Puma/LogWriter.html" title="Puma::LogWriter (class)"><code>LogWriter</code></a> from <a href="Puma/Events.html" title="Puma::Events (class)"><code>Events</code></a> (<a href="https://github.com/puma/puma/pull/2798" title="PR by @johnnyshields, merged 2022-02-05">#2798</a>)</li>
 <li>Only accept the standard 8 HTTP methods, others rejected with 501. (<a href="https://github.com/puma/puma/pull/2932" title="PR by @mrzasa, merged 2022-09-12">#2932</a>)</li>
-</ul>
-</li>
-<li>
-<p>Features</p>
+</ul></li>
+<li><p>Features</p>
+
 <ul>
 <li>Increase throughput on large (100kb+) response bodies by 3-10x (<a href="https://github.com/puma/puma/pull/2896" title="PR by @MSP-Greg, merged 2022-09-13">#2896</a>, <a href="https://github.com/puma/puma/pull/2892" title="PR by @guilleiguaran, closed 2022-09-13">#2892</a>)</li>
 <li>Increase throughput on file responses (<a href="https://github.com/puma/puma/pull/2923" title="PR by @nateberkopec, merged 2022-09-09">#2923</a>)</li>
 <li>Add support for streaming bodies in Rack. (<a href="https://github.com/puma/puma/pull/2740" title="PR by @ioquatix, merged 2022-01-29">#2740</a>)</li>
-<li>Allow OpenSSL session reuse via a 'reuse' ssl_bind method or bind string query parameter (<a href="https://github.com/puma/puma/issues/2845" title="Issue by @donv, closed 2022-03-22">#2845</a>)</li>
+<li>Allow OpenSSL session reuse via a &#39;reuse&#39; ssl_bind method or bind string query parameter (<a href="https://github.com/puma/puma/issues/2845" title="Issue by @donv, closed 2022-03-22">#2845</a>)</li>
 <li>Allow <code>run_hooks</code> to pass a hash to blocks for use later (<a href="https://github.com/puma/puma/pull/2917" title="PR by @MSP-Greg, merged 2022-09-19">#2917</a>, <a href="https://github.com/puma/puma/issues/2915" title="Issue by @mperham, closed 2022-09-19">#2915</a>)</li>
 <li>Allow using <code>preload_app!</code> with <code>fork_worker</code> (<a href="https://github.com/puma/puma/pull/2907" title="PR by @casperisfine, merged 2022-09-15">#2907</a>)</li>
 <li>Support request_body_wait metric with higher precision (<a href="https://github.com/puma/puma/pull/2953" title="PR by @JuanitoFatas, merged 2022-09-14">#2953</a>)</li>
 <li>Allow header values to be arrays (Rack 3) (<a href="https://github.com/puma/puma/pull/2936" title="PR by @MSP-Greg, merged 2022-09-09">#2936</a>, <a href="https://github.com/puma/puma/issues/2931" title="Issue by @dentarg, closed 2022-09-09">#2931</a>)</li>
 <li>Export Puma/Ruby versions in /stats (<a href="https://github.com/puma/puma/pull/2875" title="PR by @ylecuyer, merged 2022-05-19">#2875</a>)</li>
 <li>Allow configuring request uri max length &amp; request path max length (<a href="https://github.com/puma/puma/pull/2840" title="PR by @LukaszMaslej, merged 2022-04-13">#2840</a>)</li>
-<li>Add a couple of public accessors (<a href="https://github.com/puma/puma/pull/2774" title="PR by @ob-stripe, merged 2022-01-31">#2774</a>)</li>
+<li>Add a couple of public accessors (<a href="https://github.com/puma/puma/pull/2774" title="PR by @ob-stripe, merged 2022-01-31">#2774</a>) </li>
 <li>Log entire backtrace when worker start fails (<a href="https://github.com/puma/puma/pull/2891" title="PR by @gingerlime, merged 2022-06-02">#2891</a>)</li>
 <li>[jruby] Enable TLSv1.3 support (<a href="https://github.com/puma/puma/pull/2886" title="PR by @kares, merged 2022-05-30">#2886</a>)</li>
 <li>[jruby] support setting TLS protocols + rename ssl_cipher_list (<a href="https://github.com/puma/puma/pull/2899" title="PR by @kares, merged 2022-07-04">#2899</a>)</li>
 <li>[jruby] Support a truststore option (<a href="https://github.com/puma/puma/pull/2849" title="PR by @kares, merged 2022-04-09">#2849</a>, <a href="https://github.com/puma/puma/pull/2904" title="PR by @kares, merged 2022-08-27">#2904</a>, <a href="https://github.com/puma/puma/pull/2884" title="PR by @kares, merged 2022-05-30">#2884</a>)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>Load the configuration before passing it to the binder (<a href="https://github.com/puma/puma/pull/2897" title="PR by @Edouard-chin, merged 2022-08-27">#2897</a>)</li>
-<li>Do not raise error raised on HTTP methods we don't recognize or support, like CONNECT (<a href="https://github.com/puma/puma/pull/2932" title="PR by @mrzasa, merged 2022-09-12">#2932</a>, <a href="https://github.com/puma/puma/issues/1441" title="Issue by @nirvdrum, closed 2022-09-12">#1441</a>)</li>
+<li>Do not raise error raised on HTTP methods we don&#39;t recognize or support, like CONNECT (<a href="https://github.com/puma/puma/pull/2932" title="PR by @mrzasa, merged 2022-09-12">#2932</a>, <a href="https://github.com/puma/puma/issues/1441" title="Issue by @nirvdrum, closed 2022-09-12">#1441</a>)</li>
 <li>Fixed a memory leak when creating a new SSL listener (<a href="https://github.com/puma/puma/pull/2956" title="PR by @MSP-Greg, merged 2022-09-15">#2956</a>)</li>
-</ul>
-</li>
-<li>
-<p>Refactor</p>
+</ul></li>
+<li><p>Refactor</p>
+
 <ul>
 <li>log_writer.rb - add internal_write method (<a href="https://github.com/puma/puma/pull/2888" title="PR by @MSP-Greg, merged 2022-06-01">#2888</a>)</li>
-<li>Extract prune_bundler code into it's own class. (<a href="https://github.com/puma/puma/pull/2797" title="PR by @johnnyshields, merged 2022-02-01">#2797</a>)</li>
+<li>Extract prune_bundler code into it&#39;s own class. (<a href="https://github.com/puma/puma/pull/2797" title="PR by @johnnyshields, merged 2022-02-01">#2797</a>)</li>
 <li>Refactor Launcher#run to increase readability (no logic change) (<a href="https://github.com/puma/puma/pull/2795" title="PR by @johnnyshields, merged 2022-01-31">#2795</a>)</li>
-<li>Ruby 3.2 will have native IO#wait_* methods, don't require io/wait (<a href="https://github.com/puma/puma/pull/2903" title="PR by @MSP-Greg, merged 2022-08-27">#2903</a>)</li>
+<li>Ruby 3.2 will have native IO#wait_* methods, don&#39;t require io/wait (<a href="https://github.com/puma/puma/pull/2903" title="PR by @MSP-Greg, merged 2022-08-27">#2903</a>)</li>
 <li>Various internal API refactorings (<a href="https://github.com/puma/puma/pull/2942" title="PR by @nateberkopec, merged 2022-09-15">#2942</a>, <a href="https://github.com/puma/puma/issues/2921" title="Issue by @MSP-Greg, closed 2022-09-15">#2921</a>, <a href="https://github.com/puma/puma/issues/2922" title="Issue by @MSP-Greg, closed 2022-09-10">#2922</a>, <a href="https://github.com/puma/puma/pull/2955" title="PR by @cafedomancer, merged 2022-09-15">#2955</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.6.5 / 2022-08-23</h2>
+
 <ul>
-<li>
-<p>Feature</p>
+<li><p>Feature</p>
+
 <ul>
 <li>Puma::ControlCLI - allow refork command to be sent as a request (<a href="https://github.com/puma/puma/pull/2868" title="PR by @MSP-Greg, merged 2022-06-02">#2868</a>, <a href="https://github.com/puma/puma/issues/2866" title="Issue by @slondr, closed 2022-06-02">#2866</a>)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>NullIO#closed should return false (<a href="https://github.com/puma/puma/pull/2883" title="PR by @MSP-Greg, merged 2022-06-02">#2883</a>)</li>
 <li>[jruby] Fix TLS verification hang (<a href="https://github.com/puma/puma/pull/2890" title="PR by @kares, merged 2022-06-01">#2890</a>, <a href="https://github.com/puma/puma/issues/2729" title="Issue by @kares, closed 2022-06-01">#2729</a>)</li>
-<li>extconf.rb - don't use pkg_config('openssl') if '--with-openssl-dir' is used (<a href="https://github.com/puma/puma/pull/2885" title="PR by @MSP-Greg, merged 2022-05-30">#2885</a>, <a href="https://github.com/puma/puma/issues/2839" title="Issue by @wlipa, closed 2022-05-30">#2839</a>)</li>
+<li>extconf.rb - don&#39;t use pkg_config(&#39;openssl&#39;) if &#39;--with-openssl-dir&#39; is used (<a href="https://github.com/puma/puma/pull/2885" title="PR by @MSP-Greg, merged 2022-05-30">#2885</a>, <a href="https://github.com/puma/puma/issues/2839" title="Issue by @wlipa, closed 2022-05-30">#2839</a>)</li>
 <li>MiniSSL - detect SSL_CTX_set_dh_auto (<a href="https://github.com/puma/puma/pull/2864" title="PR by @MSP-Greg, merged 2022-04-26">#2864</a>, <a href="https://github.com/puma/puma/issues/2863" title="Issue by @eradman, closed 2022-04-26">#2863</a>)</li>
 <li>Fix rack.after_reply exceptions breaking connections (<a href="https://github.com/puma/puma/pull/2861" title="PR by @BlakeWilliams, merged 2022-04-17">#2861</a>, <a href="https://github.com/puma/puma/issues/2856" title="Issue by @nateberkopec, closed 2022-04-17">#2856</a>)</li>
 <li>Escape SSL cert and filenames (<a href="https://github.com/puma/puma/pull/2855" title="PR by @stanhu, merged 2022-04-09">#2855</a>)</li>
@@ -228,171 +270,180 @@
 <li>Fix build with Opaque DH in LibreSSL 3.5. (<a href="https://github.com/puma/puma/pull/2838" title="PR by @epsilon-0, merged 2022-03-03">#2838</a>)</li>
 <li>Pre-existing socket file removed when TERM is issued after USR2 (if puma is running in cluster mode) (<a href="https://github.com/puma/puma/pull/2817" title="PR by @khustochka, merged 2022-02-20">#2817</a>)</li>
 <li>Fix Puma::StateFile#load incompatibility (<a href="https://github.com/puma/puma/pull/2810" title="PR by @kzkn, merged 2022-01-27">#2810</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.6.4 / 2022-03-30</h2>
+
 <ul>
 <li>Security
+
 <ul>
 <li>Close several HTTP Request Smuggling exploits (CVE-2022-24790)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.6.2 / 2022-02-11</h2>
+
 <ul>
 <li>Bugfix/Security
+
 <ul>
 <li>Response body will always be <code>close</code>d. (GHSA-rmj8-8hhh-gv5h, related to <a href="https://github.com/puma/puma/pull/2809" title="PR by @dentarg, merged 2022-01-26">#2809</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.6.1 / 2022-01-26</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>Reverted a commit which appeared to be causing occasional blank header values (<a href="https://github.com/puma/puma/pull/2809" title="PR by @dentarg, merged 2022-01-26">#2809</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.6.0 / 2022-01-25</h2>
+
 <ul>
-<li>
-<p>Features</p>
+<li><p>Features</p>
+
 <ul>
 <li>Support <code>localhost</code> integration in <code>ssl_bind</code> (<a href="https://github.com/puma/puma/pull/2764" title="PR by @dentarg, merged 2022-01-18">#2764</a>, <a href="https://github.com/puma/puma/issues/2708" title="Issue by @erikaxel, closed 2022-01-18">#2708</a>)</li>
 <li>Allow backlog parameter to be set with ssl_bind DSL (<a href="https://github.com/puma/puma/pull/2780" title="PR by @dalibor, merged 2022-01-01">#2780</a>)</li>
 <li>Remove yaml (psych) requirement in StateFile (<a href="https://github.com/puma/puma/pull/2784" title="PR by @MSP-Greg, merged 2022-01-01">#2784</a>)</li>
 <li>Allow culling of oldest workers, previously was only youngest (<a href="https://github.com/puma/puma/pull/2773" title="PR by @ob-stripe, merged 2022-01-01">#2773</a>, <a href="https://github.com/puma/puma/pull/2794" title="PR by @johnnyshields, merged 2022-01-10">#2794</a>)</li>
 <li>Add worker_check_interval configuration option (<a href="https://github.com/puma/puma/pull/2759" title="PR by @ob-stripe, merged 2021-12-11">#2759</a>)</li>
-<li>Always send lowlevel_error response to client (<a href="https://github.com/puma/puma/pull/2731" title="PR by @baelter, merged 2021-11-02">#2731</a>, <a href="https://github.com/puma/puma/issues/2341" title="Issue by @cjlarose, closed 2021-11-02">#2341</a>)</li>
+<li>Always send lowlevel_error response to client (<a href="https://github.com/puma/puma/pull/2731" title="PR by @baelter, merged 2021-11-02">#2731</a>, <a href="https://github.com/puma/puma/issues/2341" title="Issue by @cjlarose, opened 2020-08-18">#2341</a>)</li>
 <li>Support for cert_pem and key_pem with ssl_bind DSL (<a href="https://github.com/puma/puma/pull/2728" title="PR by @dalibor, merged 2021-10-31">#2728</a>)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>Keep thread names under 15 characters, prevents breakage on some OSes (<a href="https://github.com/puma/puma/pull/2733" title="PR by @ob-stripe, merged 2021-12-12">#2733</a>)</li>
-<li>Fix two 'old-style-definition' compile warning (<a href="https://github.com/puma/puma/pull/2807" title="PR by @MSP-Greg, merged 2022-01-25">#2807</a>, <a href="https://github.com/puma/puma/issues/2806" title="Issue by @olleolleolle, closed 2022-01-25">#2806</a>)</li>
+<li>Fix two &#39;old-style-definition&#39; compile warning (<a href="https://github.com/puma/puma/pull/2807" title="PR by @MSP-Greg, merged 2022-01-25">#2807</a>, <a href="https://github.com/puma/puma/issues/2806" title="Issue by @olleolleolle, closed 2022-01-25">#2806</a>)</li>
 <li>Log environment correctly using option value (<a href="https://github.com/puma/puma/pull/2799" title="PR by @ags, merged 2022-01-22">#2799</a>)</li>
 <li>Fix warning from Ruby master (will be 3.2.0) (<a href="https://github.com/puma/puma/pull/2785" title="PR by @MSP-Greg, merged 2022-01-02">#2785</a>)</li>
 <li>extconf.rb - fix openssl with old Windows builds (<a href="https://github.com/puma/puma/pull/2757" title="PR by @MSP-Greg, merged 2021-11-24">#2757</a>)</li>
 <li>server.rb - rescue handling (<code>Errno::EBADF</code>) for <code>@notify.close</code> (<a href="https://github.com/puma/puma/pull/2745" title="PR by @MSP-Greg, merged 2021-11-03">#2745</a>)</li>
-</ul>
-</li>
-<li>
-<p>Refactor</p>
+</ul></li>
+<li><p>Refactor</p>
+
 <ul>
-<li>server.rb - refactor code using @options[:remote_address] (<a href="https://github.com/puma/puma/pull/2742" title="PR by @MSP-Greg, merged 2021-12-12">#2742</a>)</li>
+<li>server.rb - refactor code using @options<a href="%5B#2742%5D">:remote_address</a></li>
 <li>[jruby] a couple refactorings - avoid copy-ing bytes (<a href="https://github.com/puma/puma/pull/2730" title="PR by @kares, merged 2021-11-01">#2730</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.5.2 / 2021-10-12</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>Allow UTF-8 in HTTP header values</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.5.1 / 2021-10-12</h2>
+
 <ul>
-<li>
-<p>Feature (added as mistake - we don't normally do this on bugfix releases, sorry!)</p>
+<li><p>Feature (added as mistake - we don&#39;t normally do this on bugfix releases, sorry!)</p>
+
 <ul>
 <li>Allow setting APP_ENV in preference to RACK_ENV or RAILS_ENV (<a href="https://github.com/puma/puma/pull/2702" title="PR by @jacobherrington, merged 2021-09-21">#2702</a>)</li>
-</ul>
-</li>
-<li>
-<p>Security</p>
+</ul></li>
+<li><p>Security</p>
+
 <ul>
 <li>Do not allow LF as a line ending in a header (CVE-2021-41136)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.5.0 / 2021-09-19</h2>
+
 <ul>
-<li>
-<p>Features</p>
+<li><p>Features</p>
+
 <ul>
 <li>Automatic SSL certificate provisioning for localhost, via localhost gem (<a href="https://github.com/puma/puma/pull/2610" title="PR by @ye-lin-aung, merged 2021-08-18">#2610</a>, <a href="https://github.com/puma/puma/issues/2257" title="Issue by @nateberkopec, closed 2021-08-18">#2257</a>)</li>
 <li>add support for the PROXY protocol (v1 only) (<a href="https://github.com/puma/puma/pull/2654" title="PR by @Roguelazer, merged 2021-09-07">#2654</a>, <a href="https://github.com/puma/puma/issues/2651" title="Issue by @Roguelazer, closed 2021-09-07">#2651</a>)</li>
 <li>Add a semantic CLI option for no config file (<a href="https://github.com/puma/puma/pull/2689" title="PR by @jacobherrington, merged 2021-09-05">#2689</a>)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>More elaborate exception handling - lets some dead pumas die. (<a href="https://github.com/puma/puma/pull/2700" title="PR by @ioquatix, merged 2021-09-16">#2700</a>, <a href="https://github.com/puma/puma/issues/2699" title="Issue by @ioquatix, closed 2021-09-16">#2699</a>)</li>
 <li>allow multiple after_worker_fork hooks (<a href="https://github.com/puma/puma/pull/2690" title="PR by @doits, merged 2021-09-06">#2690</a>)</li>
 <li>Preserve BUNDLE_APP_CONFIG on worker fork (<a href="https://github.com/puma/puma/pull/2688" title="PR by @jdelStrother, merged 2021-09-03">#2688</a>, <a href="https://github.com/puma/puma/issues/2687" title="Issue by @jdelStrother, closed 2021-09-03">#2687</a>)</li>
-</ul>
-</li>
-<li>
-<p>Performance</p>
+</ul></li>
+<li><p>Performance</p>
+
 <ul>
 <li>Fix performance of server-side SSL connection close. (<a href="https://github.com/puma/puma/pull/2675" title="PR by @devwout, merged 2021-09-08">#2675</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.4.0 / 2021-07-28</h2>
+
 <ul>
-<li>
-<p>Features</p>
+<li><p>Features</p>
+
 <ul>
 <li>Better/expanded names for threadpool threads (<a href="https://github.com/puma/puma/pull/2657" title="PR by @olivierbellone, merged 2021-07-13">#2657</a>)</li>
 <li>Allow pkg_config for OpenSSL (<a href="https://github.com/puma/puma/pull/2648" title="PR by @MSP-Greg, merged 2021-06-27">#2648</a>, <a href="https://github.com/puma/puma/issues/1412" title="Issue by @x-yuri, closed 2021-06-27">#1412</a>)</li>
 <li>Add <code>rack_url_scheme</code> to Puma::DSL, allows setting of <code>rack.url_scheme</code> header (<a href="https://github.com/puma/puma/pull/2586" title="PR by @MSP-Greg, merged 2021-05-26">#2586</a>, <a href="https://github.com/puma/puma/issues/2569" title="Issue by @tarragon, closed 2021-05-26">#2569</a>)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
 <li><a href="Puma/Binder.html#parse-instance_method" title="Puma::Binder#parse (method)">Puma::Binder#parse</a> - allow for symlinked unix path, add create_activated_fds debug ENV (<a href="https://github.com/puma/puma/pull/2643" title="PR by @MSP-Greg, merged 2021-06-27">#2643</a>, <a href="https://github.com/puma/puma/issues/2638" title="Issue by @gingerlime, closed 2021-06-27">#2638</a>)</li>
 <li>Fix deprecation warning: minissl.c - Use Random.bytes if available (<a href="https://github.com/puma/puma/pull/2642" title="PR by @MSP-Greg, merged 2021-06-16">#2642</a>)</li>
 <li>Client certificates: set session id context while creating SSLContext (<a href="https://github.com/puma/puma/pull/2633" title="PR by @onlined, merged 2021-06-04">#2633</a>)</li>
 <li>Fix deadlock issue in thread pool (<a href="https://github.com/puma/puma/pull/2656" title="PR by @olivierbellone, merged 2021-07-07">#2656</a>)</li>
-</ul>
-</li>
-<li>
-<p>Refactor</p>
+</ul></li>
+<li><p>Refactor</p>
+
 <ul>
 <li>Replace <code>IO.select</code> with <code>IO#wait_*</code> when checking a single IO (<a href="https://github.com/puma/puma/pull/2666" title="PR by @MSP-Greg, merged 2021-07-25">#2666</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.3.2 / 2021-05-21</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>Gracefully handle Rack not accepting CLI options (<a href="https://github.com/puma/puma/pull/2630" title="PR by @seangoedecke, merged 2021-05-20">#2630</a>, <a href="https://github.com/puma/puma/issues/2626" title="Issue by @rorymckinley, closed 2021-05-20">#2626</a>)</li>
 <li>Fix sigterm misbehavior (<a href="https://github.com/puma/puma/pull/2629" title="PR by @ye-lin-aung, merged 2021-05-20">#2629</a>)</li>
 <li>Improvements to keepalive-connection shedding (<a href="https://github.com/puma/puma/pull/2628" title="PR by @wjordan, merged 2021-05-20">#2628</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.3.1 / 2021-05-11</h2>
+
 <ul>
 <li>Security
+
 <ul>
 <li>Close keepalive connections after the maximum number of fast inlined requests (CVE-2021-29509) (<a href="https://github.com/puma/puma/issues/2625" title="Issue by @jarthod, closed 2021-05-11">#2625</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.3.0 / 2021-05-07</h2>
+
 <ul>
-<li>
-<p>Features</p>
+<li><p>Features</p>
+
 <ul>
-<li>Add support for Linux's abstract sockets (<a href="https://github.com/puma/puma/pull/2564" title="PR by @MSP-Greg, merged 2021-04-24">#2564</a>, <a href="https://github.com/puma/puma/issues/2526" title="Issue by @nerdrew, closed 2021-04-24">#2526</a>)</li>
+<li>Add support for Linux&#39;s abstract sockets (<a href="https://github.com/puma/puma/pull/2564" title="PR by @MSP-Greg, merged 2021-04-24">#2564</a>, <a href="https://github.com/puma/puma/issues/2526" title="Issue by @nerdrew, closed 2021-04-24">#2526</a>)</li>
 <li>Add debug to worker timeout and startup (<a href="https://github.com/puma/puma/pull/2559" title="PR by @ylecuyer, merged 2021-03-11">#2559</a>, <a href="https://github.com/puma/puma/issues/2528" title="Issue by @cjlarose, closed 2021-03-11">#2528</a>)</li>
 <li>Print warning when running one-worker cluster (<a href="https://github.com/puma/puma/pull/2565" title="PR by @CGA1123, merged 2021-03-09">#2565</a>, <a href="https://github.com/puma/puma/issues/2534" title="Issue by @nateberkopec, closed 2021-03-09">#2534</a>)</li>
-<li>Don't close systemd activated socket on pumactl restart (<a href="https://github.com/puma/puma/pull/2563" title="PR by @MSP-Greg, merged 2021-03-06">#2563</a>, <a href="https://github.com/puma/puma/issues/2504" title="Issue by @fsateler, closed 2021-03-06">#2504</a>)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+<li>Don&#39;t close systemd activated socket on pumactl restart (<a href="https://github.com/puma/puma/pull/2563" title="PR by @MSP-Greg, merged 2021-03-06">#2563</a>, <a href="https://github.com/puma/puma/issues/2504" title="Issue by @fsateler, closed 2021-03-06">#2504</a>)</li>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>systemd - fix event firing (<a href="https://github.com/puma/puma/pull/2591" title="PR by @MSP-Greg, merged 2021-05-05">#2591</a>, <a href="https://github.com/puma/puma/issues/2572" title="Issue by @josefbilendo, closed 2021-05-05">#2572</a>)</li>
 <li>Immediately unlink temporary files (<a href="https://github.com/puma/puma/pull/2613" title="PR by @smcgivern, merged 2021-04-27">#2613</a>)</li>
@@ -403,125 +454,131 @@
 <li>Server#closed_socket? - parameter may be a MiniSSL::Socket (<a href="https://github.com/puma/puma/pull/2596" title="PR by @MSP-Greg, merged 2021-04-18">#2596</a>)</li>
 <li>Define UNPACK_TCP_STATE_FROM_TCP_INFO in the right place (<a href="https://github.com/puma/puma/pull/2588" title="PR by @dentarg, merged 2021-04-02">#2588</a>, <a href="https://github.com/puma/puma/issues/2556" title="Issue by @gamecreature, closed 2021-04-02">#2556</a>)</li>
 <li>request.rb - fix chunked assembly for ascii incompatible encodings, add test (<a href="https://github.com/puma/puma/pull/2585" title="PR by @MSP-Greg, merged 2021-03-26">#2585</a>, <a href="https://github.com/puma/puma/issues/2583" title="Issue by @jboler, closed 2021-03-26">#2583</a>)</li>
-</ul>
-</li>
-<li>
-<p>Performance</p>
+</ul></li>
+<li><p>Performance</p>
+
 <ul>
 <li>Reset peerip only if remote_addr_header is set (<a href="https://github.com/puma/puma/pull/2609" title="PR by @calvinxiao, merged 2021-04-26">#2609</a>)</li>
 <li>Reduce puma_parser struct size (<a href="https://github.com/puma/puma/pull/2590" title="PR by @calvinxiao, merged 2021-04-05">#2590</a>)</li>
-</ul>
-</li>
-<li>
-<p>Refactor</p>
+</ul></li>
+<li><p>Refactor</p>
+
 <ul>
 <li>Refactor drain on shutdown (<a href="https://github.com/puma/puma/pull/2600" title="PR by @wjordan, merged 2021-04-30">#2600</a>)</li>
 <li>Micro optimisations in <code>wait_for_less_busy_worker</code> feature (<a href="https://github.com/puma/puma/pull/2579" title="PR by @ghiculescu, merged 2021-03-17">#2579</a>)</li>
 <li>Lots of test fixes</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.2.2 / 2021-02-22</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>Add <code>#flush</code> and <code>#sync</code> methods to <a href="Puma/NullIO.html" title="Puma::NullIO (class)"><code>NullIO</code></a>  (<a href="https://github.com/puma/puma/pull/2553" title="PR by @olivierbellone, merged 2021-02-10">#2553</a>)</li>
 <li>Restore <code>sync=true</code> on <code>STDOUT</code> and <code>STDERR</code> streams (<a href="https://github.com/puma/puma/pull/2557" title="PR by @cjlarose, merged 2021-02-22">#2557</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.2.1 / 2021-02-05</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>Fix TCP cork/uncork operations to work with ssl clients (<a href="https://github.com/puma/puma/pull/2550" title="PR by @MSP-Greg, merged 2021-02-05">#2550</a>)</li>
 <li>Require rack/common_logger explicitly if :verbose is true (<a href="https://github.com/puma/puma/pull/2547" title="PR by @wildmaples, merged 2021-02-03">#2547</a>)</li>
 <li>MiniSSL::Socket#write - use data.byteslice(wrote..-1) (<a href="https://github.com/puma/puma/pull/2543" title="PR by @MSP-Greg, merged 2021-02-01">#2543</a>)</li>
 <li>Set <code>@env[CONTENT_LENGTH]</code> value as string. (<a href="https://github.com/puma/puma/pull/2549" title="PR by @nmb, merged 2021-02-04">#2549</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.2.0 / 2021-01-27</h2>
+
 <ul>
-<li>
-<p>Features</p>
+<li><p>Features</p>
+
 <ul>
 <li>10x latency improvement for MRI on ssl connections by reducing overhead (<a href="https://github.com/puma/puma/pull/2519" title="PR by @MSP-Greg, merged 2021-01-26">#2519</a>)</li>
 <li>Add option to specify the desired IO selector backend for libev (<a href="https://github.com/puma/puma/pull/2522" title="PR by @jcmfernandes, merged 2021-01-12">#2522</a>)</li>
 <li>Add ability to set OpenSSL verification flags (MRI only) (<a href="https://github.com/puma/puma/pull/2490" title="PR by @Bonias, merged 2020-12-07">#2490</a>)</li>
 <li>Uses <code>flush</code> after writing messages to avoid mutating $stdout and $stderr using <code>sync=true</code> (<a href="https://github.com/puma/puma/pull/2486" title="PR by @karloscodes, merged 2020-12-02">#2486</a>)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>MiniSSL - Update dhparam to 2048 bit for use with SSL_CTX_set_tmp_dh (<a href="https://github.com/puma/puma/pull/2535" title="PR by @MSP-Greg, merged 2021-01-27">#2535</a>)</li>
-<li>Change 'Goodbye!' message to be output after listeners are closed (<a href="https://github.com/puma/puma/pull/2529" title="PR by @MSP-Greg, merged 2021-01-24">#2529</a>)</li>
+<li>Change &#39;Goodbye!&#39; message to be output after listeners are closed (<a href="https://github.com/puma/puma/pull/2529" title="PR by @MSP-Greg, merged 2021-01-24">#2529</a>)</li>
 <li>Fix ssl bind logging with 0.0.0.0 and localhost (<a href="https://github.com/puma/puma/pull/2533" title="PR by @MSP-Greg, merged 2021-01-24">#2533</a>)</li>
 <li>Fix compiler warnings, but skipped warnings related to ragel state machine generated code (<a href="https://github.com/puma/puma/issues/1953" title="Issue by @nateberkopec, closed 2020-12-01">#1953</a>)</li>
 <li>Fix phased restart errors related to nio4r gem when using the Puma control server (<a href="https://github.com/puma/puma/pull/2516" title="PR by @cjlarose, merged 2020-12-17">#2516</a>)</li>
 <li>Add <code>#string</code> method to <a href="Puma/NullIO.html" title="Puma::NullIO (class)"><code>NullIO</code></a> (<a href="https://github.com/puma/puma/pull/2520" title="PR by @dentarg, merged 2021-01-04">#2520</a>)</li>
 <li>Fix binding via Rack handler to IPv6 addresses (<a href="https://github.com/puma/puma/pull/2521" title="PR by @ojab, merged 2021-01-04">#2521</a>)</li>
-</ul>
-</li>
-<li>
-<p>Refactor</p>
+</ul></li>
+<li><p>Refactor</p>
+
 <ul>
 <li>Refactor MiniSSL::Context on MRI, fix MiniSSL::Socket#write (<a href="https://github.com/puma/puma/pull/2519" title="PR by @MSP-Greg, merged 2021-01-26">#2519</a>)</li>
 <li>Remove <code>Server#read_body</code> (<a href="https://github.com/puma/puma/pull/2531" title="PR by @wjordan, merged 2021-01-19">#2531</a>)</li>
 <li>Fail build if compiling extensions raises warnings on GH Actions, configurable via <code>MAKE_WARNINGS_INTO_ERRORS</code> (<a href="https://github.com/puma/puma/issues/1953" title="Issue by @nateberkopec, closed 2020-12-01">#1953</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.1.1 / 2020-12-10</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>Fix over eager matching against banned header names (<a href="https://github.com/puma/puma/pull/2510" title="PR by @micke, merged 2020-12-10">#2510</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.1.0 / 2020-11-30</h2>
+
 <ul>
-<li>
-<p>Features</p>
+<li><p>Features</p>
+
 <ul>
 <li>Phased restart availability is now always logged, even if it is not available.</li>
 <li>Prints the loaded configuration if the environment variable <code>PUMA_LOG_CONFIG</code> is present (<a href="https://github.com/puma/puma/pull/2472" title="PR by @karloscodes, merged 2020-11-02">#2472</a>)</li>
-<li>Integrate with systemd's watchdog and notification features (<a href="https://github.com/puma/puma/pull/2438" title="PR by @ekohl, merged 2020-10-26">#2438</a>)</li>
+<li>Integrate with systemd&#39;s watchdog and notification features (<a href="https://github.com/puma/puma/pull/2438" title="PR by @ekohl, merged 2020-10-26">#2438</a>)</li>
 <li>Adds max_fast_inline as a configuration option for the Server object (<a href="https://github.com/puma/puma/pull/2406" title="PR by @fdel15, merged 2020-10-19">#2406</a>)</li>
 <li>You can now fork workers from worker 0 using SIGURG w/o fork_worker enabled <a href="https://github.com/puma/puma/pull/2449" title="PR by @MSP-Greg, merged 2020-10-28">#2449</a></li>
 <li>Add option to bind to systemd activated sockets (<a href="https://github.com/puma/puma/pull/2362" title="PR by @ekohl, merged 2020-11-10">#2362</a>)</li>
 <li>Add compile option to change the <code>QUERY_STRING</code> max length (<a href="https://github.com/puma/puma/pull/2485" title="PR by @elct9620, merged 2020-11-18">#2485</a>)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>Fix JRuby handling in Puma::DSL#ssl_bind (<a href="https://github.com/puma/puma/pull/2489" title="PR by @MSP-Greg, merged 2020-11-27">#2489</a>)</li>
 <li>control_cli.rb - all normal output should be to @stdout (<a href="https://github.com/puma/puma/pull/2487" title="PR by @MSP-Greg, merged 2020-11-17">#2487</a>)</li>
-<li>Catch 'Error in reactor loop escaped: mode not supported for this object: r' (<a href="https://github.com/puma/puma/pull/2477" title="PR by @MSP-Greg, merged 2020-11-16">#2477</a>)</li>
-<li>Ignore Rails' reaper thread (and any thread marked forksafe) for warning (<a href="https://github.com/puma/puma/pull/2475" title="PR by @nateberkopec, merged 2020-11-02">#2475</a>)</li>
+<li>Catch &#39;Error in reactor loop escaped: mode not supported for this object: r&#39; (<a href="https://github.com/puma/puma/pull/2477" title="PR by @MSP-Greg, merged 2020-11-16">#2477</a>)</li>
+<li>Ignore Rails&#39; reaper thread (and any thread marked forksafe) for warning (<a href="https://github.com/puma/puma/pull/2475" title="PR by @nateberkopec, merged 2020-11-02">#2475</a>)</li>
 <li>Ignore illegal (by Rack spec) response header (<a href="https://github.com/puma/puma/pull/2439" title="PR by @kuei0221, merged 2020-10-26">#2439</a>)</li>
 <li>Close idle connections immediately on shutdown (<a href="https://github.com/puma/puma/pull/2460" title="PR by @cjlarose, merged 2020-10-27">#2460</a>)</li>
 <li>Fix some instances of phased restart errors related to the <code>json</code> gem (<a href="https://github.com/puma/puma/pull/2473" title="PR by @cjlarose, merged 2020-11-01">#2473</a>)</li>
 <li>Remove use of <code>json</code> gem to fix phased restart errors (<a href="https://github.com/puma/puma/pull/2479" title="PR by @cjlarose, merged 2020-11-10">#2479</a>)</li>
 <li>Fix grouping regexp of ILLEGAL_HEADER_KEY_REGEX (<a href="https://github.com/puma/puma/pull/2495" title="PR by @JuanitoFatas, merged 2020-11-27">#2495</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.0.4 / 2020-10-27</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>Pass preloaded application into new workers if available when using <code>preload_app</code> (<a href="https://github.com/puma/puma/pull/2461" title="PR by @cjlarose, merged 2020-10-27">#2461</a>, <a href="https://github.com/puma/puma/issues/2454" title="Issue by @majksner, closed 2020-10-27">#2454</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.0.3 / 2020-10-26</h2>
+
 <ul>
-<li>
-<p>Bugfixes</p>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>Add Client#io_ok?, check before Reactor#register (<a href="https://github.com/puma/puma/pull/2432" title="PR by @MSP-Greg, merged 2020-10-25">#2432</a>)</li>
 <li>Fix hang on shutdown in refork (<a href="https://github.com/puma/puma/pull/2442" title="PR by @wjordan, merged 2020-10-22">#2442</a>)</li>
@@ -529,35 +586,37 @@
 <li>Server run thread safety fix (<a href="https://github.com/puma/puma/pull/2435" title="PR by @wjordan, merged 2020-10-20">#2435</a>)</li>
 <li>Fire <code>on_booted</code> after server starts (<a href="https://github.com/puma/puma/pull/2431" title="PR by @wjordan, merged 2020-10-16">#2431</a>, <a href="https://github.com/puma/puma/issues/2212" title="Issue by @junaruga, closed 2020-10-16">#2212</a>)</li>
 <li>Cleanup daemonization in rc.d script (<a href="https://github.com/puma/puma/pull/2409" title="PR by @fliiiix, merged 2020-10-03">#2409</a>)</li>
-</ul>
-</li>
-<li>
-<p>Refactor</p>
+</ul></li>
+<li><p>Refactor</p>
+
 <ul>
 <li>Remove accept_nonblock.rb, add test_integration_ssl.rb (<a href="https://github.com/puma/puma/pull/2448" title="PR by @MSP-Greg, merged 2020-10-25">#2448</a>)</li>
 <li>Refactor status.rb - dry it up a bit (<a href="https://github.com/puma/puma/pull/2450" title="PR by @MSP-Greg, merged 2020-10-25">#2450</a>)</li>
 <li>Extract req/resp methods to new request.rb from server.rb (<a href="https://github.com/puma/puma/pull/2419" title="PR by @MSP-Greg, merged 2020-10-09">#2419</a>)</li>
 <li>Refactor Reactor and Client request buffering (<a href="https://github.com/puma/puma/pull/2279" title="PR by @wjordan, merged 2020-10-06">#2279</a>)</li>
-<li>client.rb - remove JRuby specific 'finish' code (<a href="https://github.com/puma/puma/pull/2412" title="PR by @MSP-Greg, merged 2020-10-06">#2412</a>)</li>
+<li>client.rb - remove JRuby specific &#39;finish&#39; code (<a href="https://github.com/puma/puma/pull/2412" title="PR by @MSP-Greg, merged 2020-10-06">#2412</a>)</li>
 <li>Consolidate fast_write calls in Server, extract early_hints assembly (<a href="https://github.com/puma/puma/pull/2405" title="PR by @MSP-Greg, merged 2020-10-05">#2405</a>)</li>
 <li>Remove upstart from docs (<a href="https://github.com/puma/puma/pull/2408" title="PR by @fliiiix, merged 2020-10-03">#2408</a>)</li>
 <li>Extract worker process into separate class (<a href="https://github.com/puma/puma/pull/2374" title="PR by @cjlarose, merged 2020-09-29">#2374</a>)</li>
 <li>Consolidate option handling in Server, Server small refactors, doc changes (<a href="https://github.com/puma/puma/pull/2389" title="PR by @MSP-Greg, merged 2020-09-29">#2389</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.0.2 / 2020-09-28</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>Reverted API changes to Server.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.0.1 / 2020-09-28</h2>
+
 <ul>
-<li>
-<p>Bugfixes</p>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>Fix LoadError in CentOS 8 (<a href="https://github.com/puma/puma/pull/2381" title="PR by @joergschray, merged 2020-09-24">#2381</a>)</li>
 <li>Better error handling during force shutdown (<a href="https://github.com/puma/puma/pull/2271" title="PR by @wjordan, merged 2020-09-24">#2271</a>)</li>
@@ -565,22 +624,22 @@
 <li>Fix error backtrace debug logging &amp;&amp; Do not log request dump if it is not parsed (<a href="https://github.com/puma/puma/pull/2376" title="PR by @alexeevit, merged 2020-09-22">#2376</a>)</li>
 <li>Split TCP_CORK and TCP_INFO (<a href="https://github.com/puma/puma/pull/2372" title="PR by @ahorek, merged 2020-09-22">#2372</a>)</li>
 <li>Do not log EOFError when a client connection is closed without write (<a href="https://github.com/puma/puma/pull/2384" title="PR by @schneems, merged 2020-09-27">#2384</a>)</li>
-</ul>
-</li>
-<li>
-<p>Refactor</p>
+</ul></li>
+<li><p>Refactor</p>
+
 <ul>
 <li>Change Events#ssl_error signature from (error, peeraddr, peercert) to (error, ssl_socket) (<a href="https://github.com/puma/puma/pull/2375" title="PR by @MSP-Greg, merged 2020-09-23">#2375</a>)</li>
 <li>Consolidate option handling in Server, Server small refactors, doc chang (<a href="https://github.com/puma/puma/pull/2373" title="PR by @MSP-Greg, merged 2020-09-23">#2373</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>5.0.0 / 2020-09-17</h2>
+
 <ul>
-<li>
-<p>Features</p>
+<li><p>Features</p>
+
 <ul>
-<li>Allow compiling without OpenSSL and dynamically load files needed for SSL, add 'no ssl' CI (<a href="https://github.com/puma/puma/pull/2305" title="PR by @MSP-Greg, merged 2020-09-14">#2305</a>)</li>
+<li>Allow compiling without OpenSSL and dynamically load files needed for SSL, add &#39;no ssl&#39; CI (<a href="https://github.com/puma/puma/pull/2305" title="PR by @MSP-Greg, merged 2020-09-14">#2305</a>)</li>
 <li>EXPERIMENTAL: Add <code>fork_worker</code> option and <code>refork</code> command for reduced memory usage by forking from a worker process instead of the master process. (<a href="https://github.com/puma/puma/pull/2099" title="PR by @wjordan, merged 2020-05-11">#2099</a>)</li>
 <li>EXPERIMENTAL: Added <code>wait_for_less_busy_worker</code> config. This may reduce latency on MRI through inserting a small delay before re-listening on the socket if worker is busy (<a href="https://github.com/puma/puma/pull/2079" title="PR by @ayufan, merged 2020-05-11">#2079</a>).</li>
 <li>EXPERIMENTAL: Added <code>nakayoshi_fork</code> option. Reduce memory usage in preloaded cluster-mode apps by GCing before fork and compacting, where available. (<a href="https://github.com/puma/puma/pull/2093" title="PR by @schneems, merged 2019-12-18">#2093</a>, <a href="https://github.com/puma/puma/pull/2256" title="PR by @nateberkopec, merged 2020-05-11">#2256</a>)</li>
@@ -592,10 +651,9 @@
 <li>Added <code>state_permission</code> to config DSL to set state file permissions (<a href="https://github.com/puma/puma/pull/2238" title="PR by @sthirugn, merged 2020-05-07">#2238</a>)</li>
 <li>Added <a href="Puma.html#stats_hash-class_method" title="Puma.stats_hash (method)">Puma.stats_hash</a>, which returns a stats in Hash instead of a JSON string (<a href="https://github.com/puma/puma/pull/2086" title="PR by @bdewater, merged 2019-12-17">#2086</a>, <a href="https://github.com/puma/puma/pull/2253" title="PR by @schneems, merged 2020-05-11">#2253</a>)</li>
 <li><code>rack.multithread</code> and <code>rack.multiprocess</code> now dynamically resolved by <code>max_thread</code> and <code>workers</code> respectively (<a href="https://github.com/puma/puma/pull/2288" title="PR by @FTLam11, merged 2020-06-02">#2288</a>)</li>
-</ul>
-</li>
-<li>
-<p>Deprecations, Removals and Breaking API Changes</p>
+</ul></li>
+<li><p>Deprecations, Removals and Breaking API Changes</p>
+
 <ul>
 <li><code>--control</code> has been removed. Use <code>--control-url</code> (<a href="https://github.com/puma/puma/pull/1487" title="PR by @jxa, merged 2018-05-09">#1487</a>)</li>
 <li><code>worker_directory</code> has been removed. Use <code>directory</code>.</li>
@@ -607,12 +665,11 @@
 <li><code>tcp_mode</code> has been removed without replacement. (<a href="https://github.com/puma/puma/pull/2169" title="PR by @nateberkopec, merged 2020-03-10">#2169</a>)</li>
 <li>Daemonization has been removed without replacement. (<a href="https://github.com/puma/puma/pull/2170" title="PR by @nateberkopec, merged 2020-03-10">#2170</a>)</li>
 <li>Changed #connected_port to #connected_ports (<a href="https://github.com/puma/puma/pull/2076" title="PR by @drews256, merged 2020-02-27">#2076</a>)</li>
-<li>Configuration: <code>environment</code> is read from <code>RAILS_ENV</code>, if <code>RACK_ENV</code> can't be found (<a href="https://github.com/puma/puma/pull/2022" title="PR by @olleolleolle, merged 2019-11-11">#2022</a>)</li>
+<li>Configuration: <code>environment</code> is read from <code>RAILS_ENV</code>, if <code>RACK_ENV</code> can&#39;t be found (<a href="https://github.com/puma/puma/pull/2022" title="PR by @olleolleolle, merged 2019-11-11">#2022</a>)</li>
 <li>Log binding on http:// for TCP bindings to make it clickable  (<a href="https://github.com/puma/puma/pull/2300" title="PR by @alexeevit, merged 2020-07-06">#2300</a>)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>Fix JSON loading issues on phased-restarts (<a href="https://github.com/puma/puma/pull/2269" title="PR by @MSP-Greg, merged 2020-08-31">#2269</a>)</li>
 <li>Improve shutdown reliability (<a href="https://github.com/puma/puma/pull/2312" title="PR by @MSP-Greg, merged 2020-07-20">#2312</a>, <a href="https://github.com/puma/puma/issues/2338" title="Issue by @micahhainlinestitchfix, closed 2020-08-18">#2338</a>)</li>
@@ -645,10 +702,9 @@
 <li>Ensure that TCP_CORK is usable</li>
 <li>Fix corner case when request body is chunked (<a href="https://github.com/puma/puma/pull/2326" title="PR by @rkistner, closed 2020-09-04">#2326</a>)</li>
 <li>Fix filehandle leak in MiniSSL (<a href="https://github.com/puma/puma/issues/2299" title="Issue by @JohnPhillips31416, closed 2020-09-17">#2299</a>)</li>
-</ul>
-</li>
-<li>
-<p>Refactor</p>
+</ul></li>
+<li><p>Refactor</p>
+
 <ul>
 <li>Remove unused loader argument from Plugin initializer (<a href="https://github.com/puma/puma/pull/2095" title="PR by @bdewater, merged 2019-12-25">#2095</a>)</li>
 <li>Simplify <a href="Puma/Configuration.html#random_token-class_method" title="Puma::Configuration.random_token (method)">Puma::Configuration.random_token</a> and remove insecure fallback (<a href="https://github.com/puma/puma/pull/2102" title="PR by @bdewater, merged 2020-02-07">#2102</a>)</li>
@@ -659,137 +715,164 @@
 <li>JSON parse cluster worker stats instead of regex (<a href="https://github.com/puma/puma/pull/2124" title="PR by @wjordan, merged 2020-04-14">#2124</a>)</li>
 <li>Support parallel tests in verbose progress reporting (<a href="https://github.com/puma/puma/pull/2223" title="PR by @wjordan, merged 2020-04-20">#2223</a>)</li>
 <li>Refactor error handling in server accept loop (<a href="https://github.com/puma/puma/pull/2239" title="PR by @wjordan, merged 2020-05-15">#2239</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.3.12 / 2022-03-30</h2>
+
 <ul>
 <li>Security
+
 <ul>
 <li>Close several HTTP Request Smuggling exploits (CVE-2022-24790)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.3.11 / 2022-02-11</h2>
+
 <ul>
 <li>Security
+
 <ul>
 <li>Always close the response body (GHSA-rmj8-8hhh-gv5h)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.3.10 / 2021-10-12</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>Allow UTF-8 in HTTP header values</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.3.9 / 2021-10-12</h2>
+
 <ul>
 <li>Security
+
 <ul>
 <li>Do not allow LF as a line ending in a header (CVE-2021-41136)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.3.8 / 2021-05-11</h2>
+
 <ul>
 <li>Security
+
 <ul>
 <li>Close keepalive connections after the maximum number of fast inlined requests (CVE-2021-29509) (<a href="https://github.com/puma/puma/issues/2625" title="Issue by @jarthod, closed 2021-05-11">#2625</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.3.7 / 2020-11-30</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>Backport set CONTENT_LENGTH for chunked requests (Originally: <a href="https://github.com/puma/puma/pull/2287" title="PR by @eugeneius, merged 2020-05-31">#2287</a>, backport: <a href="https://github.com/puma/puma/pull/2496" title="PR by @TheRusskiy, merged 2020-11-30">#2496</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.3.6 / 2020-09-05</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
 <li>Explicitly include ctype.h to fix compilation warning and build error on macOS with Xcode 12 (<a href="https://github.com/puma/puma/issues/2304" title="Issue by @mpeltomaa, closed 2020-09-05">#2304</a>)</li>
-<li>Don't require json at boot (<a href="https://github.com/puma/puma/pull/2269" title="PR by @MSP-Greg, merged 2020-08-31">#2269</a>)</li>
+<li>Don&#39;t require json at boot (<a href="https://github.com/puma/puma/pull/2269" title="PR by @MSP-Greg, merged 2020-08-31">#2269</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.3.4/4.3.5 and 3.12.5/3.12.6 / 2020-05-22</h2>
+
 <p>Each patchlevel release contains a separate security fix. We recommend simply upgrading to 4.3.5/3.12.6.</p>
+
 <ul>
 <li>Security
+
 <ul>
 <li>Fix: Fixed two separate HTTP smuggling vulnerabilities that used the Transfer-Encoding header. CVE-2020-11076 and CVE-2020-11077.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.3.3 and 3.12.4 / 2020-02-28</h2>
+
 <ul>
 <li>Bugfixes
+
 <ul>
-<li>Fix: Fixes a problem where we weren't splitting headers correctly on newlines (<a href="https://github.com/puma/puma/issues/2132" title="Issue by @bmclean, closed 2020-02-28">#2132</a>)</li>
-</ul>
-</li>
+<li>Fix: Fixes a problem where we weren&#39;t splitting headers correctly on newlines (<a href="https://github.com/puma/puma/issues/2132" title="Issue by @bmclean, closed 2020-02-28">#2132</a>)</li>
+</ul></li>
 <li>Security
+
 <ul>
 <li>Fix: Prevent HTTP Response splitting via CR in early hints. CVE-2020-5249.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.3.2 and 3.12.3 / 2020-02-27 (YANKED)</h2>
+
 <ul>
 <li>Security
+
 <ul>
 <li>Fix: Prevent HTTP Response splitting via CR/LF in header values. CVE-2020-5247.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.3.1 and 3.12.2 / 2019-12-05</h2>
+
 <ul>
 <li>Security
+
 <ul>
-<li>Fix: a poorly-behaved client could use keepalive requests to monopolize Puma's reactor and create a denial of service attack. CVE-2019-16770.</li>
+<li>Fix: a poorly-behaved client could use keepalive requests to monopolize Puma&#39;s reactor and create a denial of service attack. CVE-2019-16770.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.3.0 / 2019-11-07</h2>
+
 <ul>
-<li>
-<p>Features</p>
+<li><p>Features</p>
+
 <ul>
 <li>Strip whitespace at end of HTTP headers (<a href="https://github.com/puma/puma/pull/2010" title="PR by @nateberkopec, merged 2019-10-07">#2010</a>)</li>
 <li>Optimize HTTP parser for JRuby (<a href="https://github.com/puma/puma/pull/2012" title="PR by @headius, merged 2019-10-07">#2012</a>)</li>
 <li>Add SSL support for the control app and cli (<a href="https://github.com/puma/puma/pull/2046" title="PR by @composerinteralia, merged 2019-10-21">#2046</a>, <a href="https://github.com/puma/puma/pull/2052" title="PR by @composerinteralia, merged 2019-11-02">#2052</a>)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
 <li>Fix Errno::EINVAL when SSL is enabled and browser rejects cert (<a href="https://github.com/puma/puma/issues/1564" title="Issue by @perlun, closed 2019-10-07">#1564</a>)</li>
 <li>Fix pumactl defaulting puma to development if an environment was not specified (<a href="https://github.com/puma/puma/pull/2035" title="PR by @AndrewSpeed, merged 2019-10-18">#2035</a>)</li>
 <li>Fix closing file stream when reading pid from pidfile (<a href="https://github.com/puma/puma/pull/2048" title="PR by @hahmed, merged 2019-10-21">#2048</a>)</li>
 <li>Fix a typo in configuration option <code>--extra_runtime_dependencies</code> (<a href="https://github.com/puma/puma/pull/2050" title="PR by @olleolleolle, merged 2019-10-25">#2050</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.2.1 / 2019-10-07</h2>
+
 <ul>
 <li>3 bugfixes
+
 <ul>
 <li>Fix socket activation of systemd (pre-existing) unix binder files (<a href="https://github.com/puma/puma/issues/1842" title="Issue by @nateberkopec, closed 2019-09-18">#1842</a>, <a href="https://github.com/puma/puma/issues/1988" title="Issue by @mcg, closed 2019-10-01">#1988</a>)</li>
 <li>Deal with multiple calls to bind correctly (<a href="https://github.com/puma/puma/issues/1986" title="Issue by @flaminestone, closed 2019-10-01">#1986</a>, <a href="https://github.com/puma/puma/issues/1994" title="Issue by @LimeBlast, closed 2019-10-01">#1994</a>, <a href="https://github.com/puma/puma/pull/2006" title="PR by @nateberkopec, merged 2019-10-01">#2006</a>)</li>
 <li>Accepts symbols for <code>verify_mode</code> (<a href="https://github.com/puma/puma/issues/1222" title="Issue by @seanmckinley, closed 2019-10-04">#1222</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.2.0 / 2019-09-23</h2>
+
 <ul>
 <li>6 features
+
 <ul>
 <li>Pumactl has a new -e environment option and reads <code>config/puma/&lt;environment&gt;.rb</code> config files (<a href="https://github.com/puma/puma/pull/1885" title="PR by @spk, merged 2019-08-10">#1885</a>)</li>
 <li>Semicolons are now allowed in URL paths (MRI only), useful for Angular or Redmine (<a href="https://github.com/puma/puma/pull/1934" title="PR by @zarelit, merged 2019-08-28">#1934</a>)</li>
@@ -797,41 +880,43 @@
 <li>Puma now reports the correct port when binding to port 0, also reports other listeners when binding to localhost (<a href="https://github.com/puma/puma/pull/1786" title="PR by @evanphx, merged 2019-09-11">#1786</a>)</li>
 <li>Sending SIGINFO to any Puma worker now prints currently active threads and their backtraces (<a href="https://github.com/puma/puma/pull/1320" title="PR by @nateberkopec, merged 2019-09-12">#1320</a>)</li>
 <li>Puma threads all now have their name set on Ruby 2.3+ (<a href="https://github.com/puma/puma/pull/1968" title="PR by @nateberkopec, merged 2019-09-15">#1968</a>)</li>
-</ul>
-</li>
+</ul></li>
 <li>4 bugfixes
+
 <ul>
 <li>Fix some misbehavior with phased restart and externally SIGTERMed workers (<a href="https://github.com/puma/puma/pull/1908" title="PR by @MSP-Greg, merged 2019-08-23">#1908</a>, <a href="https://github.com/puma/puma/pull/1952" title="PR by @MSP-Greg, merged 2019-09-19">#1952</a>)</li>
 <li>Fix socket closing on error (<a href="https://github.com/puma/puma/pull/1941" title="PR by @MSP-Greg, merged 2019-09-02">#1941</a>)</li>
 <li>Removed unnecessary SIGINT trap for JRuby that caused some race conditions (<a href="https://github.com/puma/puma/pull/1961" title="PR by @nateberkopec, merged 2019-09-11">#1961</a>)</li>
 <li>Fix socket files being left around after process stopped (<a href="https://github.com/puma/puma/pull/1970" title="PR by @MSP-Greg, merged 2019-09-18">#1970</a>)</li>
-</ul>
-</li>
+</ul></li>
 <li>Absolutely thousands of lines of test improvements and fixes thanks to @MSP-Greg</li>
 </ul>
+
 <h2>4.1.1 / 2019-09-05</h2>
+
 <ul>
 <li>3 bugfixes
+
 <ul>
 <li>Revert our attempt to not dup STDOUT/STDERR (<a href="https://github.com/puma/puma/pull/1946" title="PR by @nateberkopec, merged 2019-09-02">#1946</a>)</li>
 <li>Fix socket close on error (<a href="https://github.com/puma/puma/pull/1941" title="PR by @MSP-Greg, merged 2019-09-02">#1941</a>)</li>
 <li>Fix workers not shutting down correctly (<a href="https://github.com/puma/puma/pull/1908" title="PR by @MSP-Greg, merged 2019-08-23">#1908</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.1.0 / 2019-08-08</h2>
+
 <ul>
-<li>
-<p>4 features</p>
+<li><p>4 features</p>
+
 <ul>
 <li>Add REQUEST_PATH on parse error message (<a href="https://github.com/puma/puma/pull/1831" title="PR by @spk, merged 2019-07-27">#1831</a>)</li>
 <li>You can now easily add custom log formatters with the <code>log_formatter</code> config option (<a href="https://github.com/puma/puma/pull/1816" title="PR by @ylecuyer, merged 2019-08-01">#1816</a>)</li>
 <li>Puma.stats now provides process start times (<a href="https://github.com/puma/puma/pull/1844" title="PR by @ylecuyer, merged 2019-08-01">#1844</a>)</li>
 <li>Add support for disabling TLSv1.1 (<a href="https://github.com/puma/puma/pull/1836" title="PR by @MSP-Greg, merged 2019-08-06">#1836</a>)</li>
-</ul>
-</li>
-<li>
-<p>7 bugfixes</p>
+</ul></li>
+<li><p>7 bugfixes</p>
+
 <ul>
 <li>Fix issue where Puma was creating zombie process entries (<a href="https://github.com/puma/puma/pull/1887" title="PR by @MSP-Greg, merged 2019-08-06">#1887</a>)</li>
 <li>Fix bugs with line-endings and chunked encoding (<a href="https://github.com/puma/puma/pull/1812" title="PR by @kou, merged 2019-08-03">#1812</a>)</li>
@@ -840,43 +925,44 @@
 <li>SSL read_nonblock no longer blocks (<a href="https://github.com/puma/puma/pull/1857" title="PR by @Jesus, merged 2019-08-03">#1857</a>)</li>
 <li>Swallow connection errors when sending early hints (<a href="https://github.com/puma/puma/pull/1822" title="PR by @Jesus, merged 2019-08-01">#1822</a>)</li>
 <li>Backtrace no longer dumped when invalid pumactl commands are run (<a href="https://github.com/puma/puma/pull/1863" title="PR by @dzunk, merged 2019-08-04">#1863</a>)</li>
-</ul>
-</li>
-<li>
-<p>5 other</p>
+</ul></li>
+<li><p>5 other</p>
+
 <ul>
 <li>Avoid casting worker_timeout twice (<a href="https://github.com/puma/puma/pull/1838" title="PR by @bogn83, merged 2019-07-14">#1838</a>)</li>
-<li>Removed a call to private that wasn't doing anything (<a href="https://github.com/puma/puma/pull/1882" title="PR by @okuramasafumi, merged 2019-08-06">#1882</a>)</li>
+<li>Removed a call to private that wasn&#39;t doing anything (<a href="https://github.com/puma/puma/pull/1882" title="PR by @okuramasafumi, merged 2019-08-06">#1882</a>)</li>
 <li>README, Rakefile, docs and test cleanups (<a href="https://github.com/puma/puma/pull/1848" title="PR by @nateberkopec, merged 2019-07-16">#1848</a>, <a href="https://github.com/puma/puma/pull/1847" title="PR by @nateberkopec, merged 2019-07-16">#1847</a>, <a href="https://github.com/puma/puma/pull/1846" title="PR by @nateberkopec, merged 2019-07-16">#1846</a>, <a href="https://github.com/puma/puma/pull/1853" title="PR by @Jesus, merged 2019-07-18">#1853</a>, #1859, <a href="https://github.com/puma/puma/pull/1850" title="PR by @nateberkopec, merged 2019-07-27">#1850</a>, <a href="https://github.com/puma/puma/pull/1866" title="PR by @josacar, merged 2019-07-28">#1866</a>, <a href="https://github.com/puma/puma/pull/1870" title="PR by @MSP-Greg, merged 2019-07-30">#1870</a>, <a href="https://github.com/puma/puma/pull/1872" title="PR by @MSP-Greg, merged 2019-07-30">#1872</a>, <a href="https://github.com/puma/puma/issues/1833" title="Issue by @julik, closed 2019-07-09">#1833</a>, <a href="https://github.com/puma/puma/pull/1888" title="PR by @ClikeX, merged 2019-08-06">#1888</a>)</li>
 <li>Puma.io has proper documentation now (<a href="https://puma.io/puma/">https://puma.io/puma/</a>)</li>
 <li>Added the Contributor Covenant CoC</li>
-</ul>
-</li>
-<li>
-<p>1 known issue</p>
+</ul></li>
+<li><p>1 known issue</p>
+
 <ul>
 <li>Some users are still experiencing issues surrounding socket activation and Unix sockets (<a href="https://github.com/puma/puma/issues/1842" title="Issue by @nateberkopec, closed 2019-09-18">#1842</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.0.1 / 2019-07-11</h2>
+
 <ul>
 <li>2 bugfixes
+
 <ul>
 <li>Fix socket removed after reload - should fix problems with systemd socket activation. (<a href="https://github.com/puma/puma/pull/1829" title="PR by @Fudoshiki, merged 2019-07-09">#1829</a>)</li>
 <li>Add extconf tests for DTLS_method &amp; TLS_server_method, use in minissl.rb. Should fix &quot;undefined symbol: DTLS_method&quot; when compiling against old OpenSSL versions. (<a href="https://github.com/puma/puma/pull/1832" title="PR by @MSP-Greg, merged 2019-07-08">#1832</a>)</li>
-</ul>
-</li>
+</ul></li>
 <li>1 other
+
 <ul>
 <li>Removed unnecessary RUBY_VERSION checks. (<a href="https://github.com/puma/puma/pull/1827" title="PR by @amrrbakry, merged 2019-06-27">#1827</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>4.0.0 / 2019-06-25</h2>
+
 <ul>
-<li>
-<p>9 features</p>
+<li><p>9 features</p>
+
 <ul>
 <li>Add support for disabling TLSv1.0 (<a href="https://github.com/puma/puma/pull/1562" title="PR by @skrobul, merged 2019-02-20">#1562</a>)</li>
 <li>Request body read time metric (<a href="https://github.com/puma/puma/pull/1569" title="PR by @rianmcguire, merged 2019-02-20">#1569</a>)</li>
@@ -887,146 +973,154 @@
 <li>Allow mutual TLS CA to be set using <code>ssl_bind</code> DSL (<a href="https://github.com/puma/puma/pull/1689" title="PR by @michaelherold, merged 2019-03-11">#1689</a>)</li>
 <li>Reactor now uses nio4r instead of <code>select</code> (<a href="https://github.com/puma/puma/pull/1728" title="PR by @evanphx, merged 2019-03-20">#1728</a>)</li>
 <li>Add status to pumactl with pidfile (<a href="https://github.com/puma/puma/pull/1824" title="PR by @spk, merged 2019-06-24">#1824</a>)</li>
-</ul>
-</li>
-<li>
-<p>10 bugfixes</p>
+</ul></li>
+<li><p>10 bugfixes</p>
+
 <ul>
 <li>Do not accept new requests on shutdown (<a href="https://github.com/puma/puma/pull/1685" title="PR by @mainameiz, merged 2019-02-20">#1685</a>, <a href="https://github.com/puma/puma/pull/1808" title="PR by @schneems, merged 2019-06-10">#1808</a>)</li>
 <li>Fix 3 corner cases when request body is chunked (<a href="https://github.com/puma/puma/pull/1508" title="PR by @florin555, merged 2019-02-20">#1508</a>)</li>
-<li>Change pid existence check's condition branches (<a href="https://github.com/puma/puma/pull/1650" title="PR by @adam101, merged 2019-02-20">#1650</a>)</li>
-<li>Don't call .stop on a server that doesn't exist (<a href="https://github.com/puma/puma/pull/1655" title="PR by @mipearson, merged 2019-02-20">#1655</a>)</li>
+<li>Change pid existence check&#39;s condition branches (<a href="https://github.com/puma/puma/pull/1650" title="PR by @adam101, merged 2019-02-20">#1650</a>)</li>
+<li>Don&#39;t call .stop on a server that doesn&#39;t exist (<a href="https://github.com/puma/puma/pull/1655" title="PR by @mipearson, merged 2019-02-20">#1655</a>)</li>
 <li>Implemented NID_X9_62_prime256v1 (P-256) curve over P-521 (<a href="https://github.com/puma/puma/pull/1671" title="PR by @eric-norcross, merged 2019-02-20">#1671</a>)</li>
-<li>Fix @notify.close can't modify frozen IOError (RuntimeError) (<a href="https://github.com/puma/puma/pull/1583" title="PR by @chwevans, merged 2019-02-20">#1583</a>)</li>
+<li>Fix @notify.close can&#39;t modify frozen IOError (RuntimeError) (<a href="https://github.com/puma/puma/pull/1583" title="PR by @chwevans, merged 2019-02-20">#1583</a>)</li>
 <li>Fix Java 8 support (<a href="https://github.com/puma/puma/pull/1773" title="PR by @enebo, merged 2019-04-14">#1773</a>)</li>
 <li>Fix error <code>uninitialized constant Puma::Cluster</code> (<a href="https://github.com/puma/puma/issues/1731" title="Issue by @Fudoshiki, closed 2019-03-20">#1731</a>)</li>
 <li>Fix <code>not_token</code> being able to be set to true (<a href="https://github.com/puma/puma/pull/1803" title="PR by @Jesus, merged 2019-05-28">#1803</a>)</li>
 <li>Fix &quot;Hang on SIGTERM with ruby 2.6 in clustered mode&quot; (PR <a href="https://github.com/puma/puma/pull/1741" title="PR by @MSP-Greg, merged 2019-03-19">#1741</a>, <a href="https://github.com/puma/puma/issues/1674" title="Issue by @atitan, closed 2019-06-12">#1674</a>, <a href="https://github.com/puma/puma/issues/1720" title="Issue by @voxik, closed 2019-03-20">#1720</a>, <a href="https://github.com/puma/puma/issues/1730" title="Issue by @nearapogee, closed 2019-07-16">#1730</a>, <a href="https://github.com/puma/puma/issues/1755" title="Issue by @vbalazs, closed 2019-07-26">#1755</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.12.1 / 2019-03-19</h2>
+
 <ul>
 <li>1 features
+
 <ul>
 <li>Internal strings are frozen (<a href="https://github.com/puma/puma/pull/1649" title="PR by @schneems, merged 2018-10-17">#1649</a>)</li>
-</ul>
-</li>
+</ul></li>
 <li>3 bugfixes
+
 <ul>
 <li>Fix chunked ending check (<a href="https://github.com/puma/puma/pull/1607" title="PR by @harmdewit, merged 2018-08-15">#1607</a>)</li>
 <li>Rack handler should use provided default host (<a href="https://github.com/puma/puma/pull/1700" title="PR by @schneems, merged 2019-01-05">#1700</a>)</li>
 <li>Better support for detecting runtimes that support <code>fork</code> (<a href="https://github.com/puma/puma/pull/1630" title="PR by @eregon, merged 2018-09-11">#1630</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.12.0 / 2018-07-13</h2>
+
 <ul>
-<li>
-<p>5 features:</p>
+<li><p>5 features:</p>
+
 <ul>
 <li>You can now specify which SSL ciphers the server should support, default is unchanged (<a href="https://github.com/puma/puma/pull/1478" title="PR by @eallison91, merged 2018-05-09">#1478</a>)</li>
-<li>The setting for Puma's <code>max_threads</code> is now in <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> (<a href="https://github.com/puma/puma/pull/1604" title="PR by @schneems, merged 2018-07-02">#1604</a>)</li>
+<li>The setting for Puma&#39;s <code>max_threads</code> is now in <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> (<a href="https://github.com/puma/puma/pull/1604" title="PR by @schneems, merged 2018-07-02">#1604</a>)</li>
 <li>Pool capacity is now in <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> (<a href="https://github.com/puma/puma/pull/1579" title="PR by @schneems, merged 2018-06-14">#1579</a>)</li>
 <li>Installs restricted to Ruby 2.2+ (<a href="https://github.com/puma/puma/pull/1506" title="PR by @dekellum, merged 2018-05-09">#1506</a>)</li>
 <li><code>--control</code> is now deprecated in favor of <code>--control-url</code> (<a href="https://github.com/puma/puma/pull/1487" title="PR by @jxa, merged 2018-05-09">#1487</a>)</li>
-</ul>
-</li>
-<li>
-<p>2 bugfixes:</p>
+</ul></li>
+<li><p>2 bugfixes:</p>
+
 <ul>
 <li>Workers will no longer accept more web requests than they have capacity to process. This prevents an issue where one worker would accept lots of requests while starving other workers (<a href="https://github.com/puma/puma/pull/1563" title="PR by @dannyfallon, merged 2018-05-01">#1563</a>)</li>
 <li>In a test env puma now emits the stack on an exception (<a href="https://github.com/puma/puma/pull/1557" title="PR by @swrobel, merged 2018-05-09">#1557</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.11.4 / 2018-04-12</h2>
+
 <ul>
 <li>2 features:
+
 <ul>
 <li>Manage puma as a service using rc.d (<a href="https://github.com/puma/puma/pull/1529" title="PR by @desnudopenguino, merged 2018-03-20">#1529</a>)</li>
 <li>Server stats are now available from a top level method (<a href="https://github.com/puma/puma/pull/1532" title="PR by @schneems, merged 2018-03-21">#1532</a>)</li>
-</ul>
-</li>
+</ul></li>
 <li>5 bugfixes:
+
 <ul>
 <li>Fix parsing CLI options (<a href="https://github.com/puma/puma/pull/1482" title="PR by @shayonj, merged 2018-03-19">#1482</a>)</li>
 <li>Order of stderr and stdout is made before redirecting to a log file (<a href="https://github.com/puma/puma/pull/1511" title="PR by @jemiam, merged 2018-03-19">#1511</a>)</li>
 <li>Init.d fix of <code>ps -p</code> to check if pid exists (<a href="https://github.com/puma/puma/pull/1545" title="PR by @hoshinotsuyoshi, merged 2018-03-28">#1545</a>)</li>
 <li>Early hints bugfix (<a href="https://github.com/puma/puma/pull/1550" title="PR by @eileencodes, merged 2018-03-29">#1550</a>)</li>
 <li>Purge interrupt queue when closing socket fails (<a href="https://github.com/puma/puma/pull/1553" title="PR by @eugeneius, merged 2018-04-02">#1553</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.11.3 / 2018-03-05</h2>
+
 <ul>
 <li>3 bugfixes:
+
 <ul>
 <li>Add closed? to MiniSSL::Socket for use in reactor (<a href="https://github.com/puma/puma/issues/1510" title="Issue by @vincentwoo, closed 2018-03-06">#1510</a>)</li>
 <li>Handle EOFError at the toplevel of the server threads (<a href="https://github.com/puma/puma/pull/1524" title="PR by @tuwukee, closed 2018-03-06">#1524</a>) (<a href="https://github.com/puma/puma/issues/1507" title="Issue by @vincentwoo, closed 2018-03-19">#1507</a>)</li>
 <li>Deal with zero sized bodies when using SSL (<a href="https://github.com/puma/puma/issues/1483" title="Issue by @igravious, closed 2018-03-06">#1483</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.11.2 / 2018-01-19</h2>
+
 <ul>
 <li>1 bugfix:
+
 <ul>
 <li>Deal with read_nonblock returning nil early</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.11.1 / 2018-01-18</h2>
+
 <ul>
 <li>1 bugfix:
+
 <ul>
 <li>Handle read_nonblock returning nil when the socket close (<a href="https://github.com/puma/puma/issues/1502" title="Issue by @vincentwoo, closed 2020-03-09">#1502</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.11.0 / 2017-11-20</h2>
+
 <ul>
-<li>
-<p>2 features:</p>
+<li><p>2 features:</p>
+
 <ul>
 <li>HTTP 103 Early Hints (<a href="https://github.com/puma/puma/pull/1403" title="PR by @eileencodes, merged 2017-10-04">#1403</a>)</li>
 <li>421/451 status codes now have correct status messages attached (<a href="https://github.com/puma/puma/pull/1435" title="PR by @juliancheal, merged 2017-10-11">#1435</a>)</li>
-</ul>
-</li>
-<li>
-<p>9 bugfixes:</p>
+</ul></li>
+<li><p>9 bugfixes:</p>
+
 <ul>
 <li>Environment config files (/config/puma/<ENV>.rb) load correctly (<a href="https://github.com/puma/puma/pull/1340" title="PR by @ViliusLuneckas, merged 2017-10-16">#1340</a>)</li>
 <li>Specify windows dependencies correctly (<a href="https://github.com/puma/puma/pull/1434" title="PR by @jumbosushi, merged 2017-10-10">#1434</a>, <a href="https://github.com/puma/puma/pull/1436" title="PR by @luislavena, merged 2017-10-11">#1436</a>)</li>
 <li>puma/events required in test helper (<a href="https://github.com/puma/puma/pull/1418" title="PR by @eileencodes, merged 2017-09-22">#1418</a>)</li>
-<li>Correct control CLI's option help text (<a href="https://github.com/puma/puma/pull/1416" title="PR by @hiimtaylorjones, merged 2017-09-22">#1416</a>)</li>
+<li>Correct control CLI&#39;s option help text (<a href="https://github.com/puma/puma/pull/1416" title="PR by @hiimtaylorjones, merged 2017-09-22">#1416</a>)</li>
 <li>Remove a warning for unused variable in mini_ssl (<a href="https://github.com/puma/puma/pull/1409" title="PR by @olleolleolle, merged 2017-09-13">#1409</a>)</li>
 <li>Correct pumactl docs argument ordering (<a href="https://github.com/puma/puma/issues/1427" title="Issue by @garybernhardt, closed 2017-10-04">#1427</a>)</li>
 <li>Fix an uninitialized variable warning in server.rb (<a href="https://github.com/puma/puma/pull/1430" title="PR by @MSP-Greg, merged 2017-10-09">#1430</a>)</li>
 <li>Fix docs typo/error in Launcher init (<a href="https://github.com/puma/puma/pull/1429" title="PR by @perlun, merged 2017-10-09">#1429</a>)</li>
 <li>Deal with leading spaces in RUBYOPT (<a href="https://github.com/puma/puma/pull/1455" title="PR by @perlun, merged 2017-11-16">#1455</a>)</li>
-</ul>
-</li>
-<li>
-<p>2 other:</p>
+</ul></li>
+<li><p>2 other:</p>
+
 <ul>
 <li>Add docs about internals (<a href="https://github.com/puma/puma/pull/1425" title="PR by @vizcay, merged 2017-10-01">#1425</a>, <a href="https://github.com/puma/puma/pull/1452" title="PR by @eprothro, merged 2017-11-16">#1452</a>)</li>
 <li>Tons of test fixes from @MSP-Greg (<a href="https://github.com/puma/puma/pull/1439" title="PR by @MSP-Greg, merged 2017-10-16">#1439</a>, <a href="https://github.com/puma/puma/pull/1442" title="PR by @MSP-Greg, merged 2017-10-19">#1442</a>, <a href="https://github.com/puma/puma/pull/1464" title="PR by @MSP-Greg, merged 2017-11-20">#1464</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.10.0 / 2017-08-17</h2>
+
 <ul>
-<li>
-<p>3 features:</p>
+<li><p>3 features:</p>
+
 <ul>
 <li>The status server has a new /gc and /gc-status command. (<a href="https://github.com/puma/puma/pull/1384" title="PR by @noahgibbs, merged 2017-08-03">#1384</a>)</li>
 <li>The persistent and first data timeouts are now configurable (<a href="https://github.com/puma/puma/pull/1111" title="PR by @alexlance, merged 2017-06-04">#1111</a>)</li>
 <li>Implemented RFC 2324 (<a href="https://github.com/puma/puma/pull/1392" title="PR by @hoffm, merged 2017-08-11">#1392</a>)</li>
-</ul>
-</li>
-<li>
-<p>12 bugfixes:</p>
+</ul></li>
+<li><p>12 bugfixes:</p>
+
 <ul>
 <li>Not really a Puma bug, but @NickolasVashchenko created a gem to workaround a Ruby bug that some users of Puma may be experiencing. See README for more. (<a href="https://github.com/puma/puma/pull/1347" title="PR by @NikolayRys, merged 2017-06-28">#1347</a>)</li>
 <li>Fix hangups with SSL and persistent connections. (<a href="https://github.com/puma/puma/pull/1334" title="PR by @respire, merged 2017-06-13">#1334</a>)</li>
@@ -1040,43 +1134,43 @@
 <li>If RUBYOPT is nil, we no longer blow up on restart. (<a href="https://github.com/puma/puma/pull/1385" title="PR by @grosser, merged 2017-08-16">#1385</a>)</li>
 <li>Correct response to SIGINT (<a href="https://github.com/puma/puma/pull/1377" title="PR by @shayonj, merged 2017-08-16">#1377</a>)</li>
 <li>Proper exit code returned when we receive a TERM signal (<a href="https://github.com/puma/puma/pull/1337" title="PR by @shayonj, merged 2017-08-16">#1337</a>)</li>
-</ul>
-</li>
-<li>
-<p>3 refactors:</p>
+</ul></li>
+<li><p>3 refactors:</p>
+
 <ul>
 <li>Various test improvements from @grosser</li>
 <li>Rubocop (<a href="https://github.com/puma/puma/pull/1325" title="PR by @palkan, merged 2017-06-04">#1325</a>)</li>
 <li>Hoe has been removed (<a href="https://github.com/puma/puma/pull/1395" title="PR by @junaruga, merged 2017-08-16">#1395</a>)</li>
-</ul>
-</li>
-<li>
-<p>1 known issue:</p>
+</ul></li>
+<li><p>1 known issue:</p>
+
 <ul>
-<li>Socket activation doesn't work in JRuby. Their fault, not ours. (<a href="https://github.com/puma/puma/issues/1367" title="Issue by @dekellum, closed 2017-08-17">#1367</a>)</li>
+<li>Socket activation doesn&#39;t work in JRuby. Their fault, not ours. (<a href="https://github.com/puma/puma/issues/1367" title="Issue by @dekellum, closed 2017-08-17">#1367</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.9.1 / 2017-06-03</h2>
+
 <ul>
 <li>2 bugfixes:
+
 <ul>
 <li>Fixed compatibility with older Bundler versions (<a href="https://github.com/puma/puma/pull/1314" title="PR by @grosser, merged 2017-06-02">#1314</a>)</li>
 <li>Some internal test/development cleanup (<a href="https://github.com/puma/puma/pull/1311" title="PR by @grosser, merged 2017-06-02">#1311</a>, <a href="https://github.com/puma/puma/pull/1313" title="PR by @grosser, merged 2017-06-03">#1313</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.9.0 / 2017-06-01</h2>
+
 <ul>
-<li>
-<p>2 features:</p>
+<li><p>2 features:</p>
+
 <ul>
 <li>The ENV is now reset to its original values when Puma restarts via USR1/USR2 (<a href="https://github.com/puma/puma/pull/1260" title="PR by @grosser, merged 2017-04-11">#1260</a>) (MRI only, no JRuby support)</li>
 <li>Puma will no longer accept more clients than the maximum number of threads. (<a href="https://github.com/puma/puma/pull/1278" title="PR by @evanphx, merged 2017-04-28">#1278</a>)</li>
-</ul>
-</li>
-<li>
-<p>9 bugfixes:</p>
+</ul></li>
+<li><p>9 bugfixes:</p>
+
 <ul>
 <li>Reduce information leakage by preventing HTTP parse errors from writing environment hashes to STDERR (<a href="https://github.com/puma/puma/pull/1306" title="PR by @jules2689, merged 2017-05-31">#1306</a>)</li>
 <li>Fix SSL/WebSocket compatibility (<a href="https://github.com/puma/puma/pull/1274" title="PR by @evanphx, merged 2017-05-01">#1274</a>)</li>
@@ -1087,72 +1181,76 @@
 <li>Fix compat w/LibreSSL (<a href="https://github.com/puma/puma/pull/1285" title="PR by @fmauNeko, merged 2017-05-12">#1285</a>)</li>
 <li>Fix restarting Puma w/symlinks and a new Gemfile (<a href="https://github.com/puma/puma/pull/1282" title="PR by @grosser, merged 2017-05-09">#1282</a>)</li>
 <li>Replace Dir.exists? with Dir.exist? (<a href="https://github.com/puma/puma/pull/1294" title="PR by @masry707, merged 2017-05-15">#1294</a>)</li>
-</ul>
-</li>
-<li>
-<p>1 known issue:</p>
+</ul></li>
+<li><p>1 known issue:</p>
+
 <ul>
 <li>A bug in MRI 2.2+ can result in IOError: stream closed. See <a href="https://github.com/puma/puma/pull/1206" title="PR by @NikolayRys, closed 2017-06-27">#1206</a>. This issue has existed since at least Puma 3.6, and probably further back.</li>
-</ul>
-</li>
-<li>
-<p>1 refactor:</p>
+</ul></li>
+<li><p>1 refactor:</p>
+
 <ul>
 <li>Lots of test fixups from @grosser.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.8.2 / 2017-03-14</h2>
+
 <ul>
 <li>1 bugfix:
+
 <ul>
-<li>Deal with getsockopt with TCP_INFO failing for sockets that say they're TCP but aren't really. (<a href="https://github.com/puma/puma/issues/1241" title="Issue by @renchap, closed 2017-03-14">#1241</a>)</li>
+<li>Deal with getsockopt with TCP_INFO failing for sockets that say they&#39;re TCP but aren&#39;t really. (<a href="https://github.com/puma/puma/issues/1241" title="Issue by @renchap, closed 2017-03-14">#1241</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.8.1 / 2017-03-10</h2>
+
 <ul>
 <li>1 bugfix:
+
 <ul>
 <li>Remove method call to method that no longer exists (<a href="https://github.com/puma/puma/pull/1239" title="PR by @schneems, merged 2017-03-10">#1239</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.8.0 / 2017-03-09</h2>
+
 <ul>
-<li>
-<p>2 bugfixes:</p>
+<li><p>2 bugfixes:</p>
+
 <ul>
 <li>Port from rack handler does not take precedence over config file in Rails 5.1.0.beta2+ and 5.0.1.rc3+ (<a href="https://github.com/puma/puma/pull/1234" title="PR by @schneems, merged 2017-03-09">#1234</a>)</li>
 <li>The <code>tmp/restart.txt</code> plugin no longer restricts the user from running more than one server from the same folder at a time (<a href="https://github.com/puma/puma/pull/1226" title="PR by @eileencodes, merged 2017-03-09">#1226</a>)</li>
-</ul>
-</li>
-<li>
-<p>1 feature:</p>
+</ul></li>
+<li><p>1 feature:</p>
+
 <ul>
 <li>Closed clients are aborted to save capacity (<a href="https://github.com/puma/puma/pull/1227" title="PR by @sirupsen, merged 2017-02-27">#1227</a>)</li>
-</ul>
-</li>
-<li>
-<p>1 refactor:</p>
+</ul></li>
+<li><p>1 refactor:</p>
+
 <ul>
 <li>Bundler is no longer a dependency from tests (<a href="https://github.com/puma/puma/pull/1213" title="PR by @junaruga, merged 2017-02-28">#1213</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.7.1 / 2017-02-20</h2>
+
 <ul>
 <li>2 bugfixes:
+
 <ul>
 <li>Fix typo which blew up MiniSSL (<a href="https://github.com/puma/puma/issues/1182" title="Issue by @brunowego, closed 2017-02-09">#1182</a>)</li>
 <li>Stop overriding command-line options with the config file (<a href="https://github.com/puma/puma/pull/1203" title="PR by @twalpole, merged 2017-02-09">#1203</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.7.0 / 2017-01-04</h2>
+
 <ul>
-<li>
-<p>6 minor features:</p>
+<li><p>6 minor features:</p>
+
 <ul>
 <li>Allow rack handler to accept ssl host. (<a href="https://github.com/puma/puma/pull/1129" title="PR by @chtitux, merged 2016-12-12">#1129</a>)</li>
 <li>Refactor TTOU processing. TTOU now handles multiple signals at once. (<a href="https://github.com/puma/puma/pull/1165" title="PR by @sriedel, merged 2016-12-21">#1165</a>)</li>
@@ -1160,20 +1258,18 @@
 <li>Prevent short term thread churn - increased auto trim default to 30 seconds.</li>
 <li>Raise error when <code>stdout</code> or <code>stderr</code> is not writable. (<a href="https://github.com/puma/puma/pull/1175" title="PR by @jemiam, merged 2016-12-21">#1175</a>)</li>
 <li>Add Rack 2.0 support to gemspec. (<a href="https://github.com/puma/puma/pull/1068" title="PR by @junaruga, merged 2016-09-05">#1068</a>)</li>
-</ul>
-</li>
-<li>
-<p>5 refactors:</p>
+</ul></li>
+<li><p>5 refactors:</p>
+
 <ul>
 <li>Compare host and server name only once per call. (<a href="https://github.com/puma/puma/pull/1091" title="PR by @frodsan, merged 2016-09-17">#1091</a>)</li>
 <li>Minor refactor on Thread pool (<a href="https://github.com/puma/puma/pull/1088" title="PR by @frodsan, merged 2016-11-20">#1088</a>)</li>
 <li>Removed a ton of unused constants, variables and files.</li>
 <li>Use MRI macros when allocating heap memory</li>
 <li>Use hooks for on_booted event. (<a href="https://github.com/puma/puma/pull/1160" title="PR by @frodsan, merged 2016-11-24">#1160</a>)</li>
-</ul>
-</li>
-<li>
-<p>14 bugfixes:</p>
+</ul></li>
+<li><p>14 bugfixes:</p>
+
 <ul>
 <li>Add eof? method to NullIO? (<a href="https://github.com/puma/puma/pull/1169" title="PR by @scbrubaker02, merged 2016-12-12">#1169</a>)</li>
 <li>Fix Puma startup in provided init.d script (<a href="https://github.com/puma/puma/pull/1061" title="PR by @michaelsauter, merged 2016-09-05">#1061</a>)</li>
@@ -1189,32 +1285,33 @@
 <li>Use same write log logic for hijacked requests. (<a href="https://github.com/puma/puma/pull/1081" title="PR by @frodsan, merged 2016-09-08">#1081</a>)</li>
 <li>Fix <code>uninitialized constant Puma::StateFile</code> (<a href="https://github.com/puma/puma/pull/1138" title="PR by @steakknife, merged 2016-12-13">#1138</a>)</li>
 <li>Fix access priorities of each level in LeveledOptions (<a href="https://github.com/puma/puma/pull/1118" title="PR by @hiroara, merged 2016-11-20">#1118</a>)</li>
-</ul>
-</li>
-<li>
-<p>3 others:</p>
+</ul></li>
+<li><p>3 others:</p>
+
 <ul>
 <li>Lots of tests added/fixed/improved. Switched to Minitest from Test::Unit. Big thanks to @frodsan.</li>
 <li>Lots of documentation added/improved.</li>
 <li>Add license indicators to the HTTP extension. (<a href="https://github.com/puma/puma/issues/1075" title="Issue by @pvalena, closed 2016-09-06">#1075</a>)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.6.2 / 2016-11-22</h2>
+
 <ul>
-<li>
-<p>1 bug fix:</p>
+<li><p>1 bug fix:</p>
+
 <ul>
 <li>Revert <a href="https://github.com/puma/puma/pull/1118" title="PR by @hiroara, merged 2016-11-20">#1118</a>/Fix access priorities of each level in LeveledOptions. This
 had an unintentional side effect of changing the importance of command line
 options, such as -p.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.6.1 / 2016-11-21</h2>
+
 <ul>
-<li>
-<p>8 bug fixes:</p>
+<li><p>8 bug fixes:</p>
+
 <ul>
 <li>Fix Puma start in init.d script.</li>
 <li>Fix default SSL mode back to none. Fixes <a href="https://github.com/puma/puma/issues/1036" title="Issue by @matobinder, closed 2016-08-03">#1036</a></li>
@@ -1224,68 +1321,71 @@ options, such as -p.</li>
 <li>Provide write as &lt;&lt;. Fixes <a href="https://github.com/puma/puma/issues/1089" title="Issue by @AdamBialas, closed 2016-09-17">#1089</a></li>
 <li>Fix access priorities of each level in LeveledOptions - fixes TTIN.</li>
 <li>Stub description files updated for init.d.</li>
-</ul>
-</li>
-<li>
-<p>2 new project committers:</p>
+</ul></li>
+<li><p>2 new project committers:</p>
+
 <ul>
 <li>Nate Berkopec (@nateberkopec)</li>
 <li>Richard Schneeman (@schneems)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.6.0 / 2016-07-24</h2>
+
 <ul>
 <li>12 bug fixes:
+
 <ul>
 <li>Add ability to detect a shutting down server. Fixes <a href="https://github.com/puma/puma/issues/932" title="Issue by @everplays, closed 2016-07-24">#932</a></li>
 <li>Add support for Expect: 100-continue. Fixes <a href="https://github.com/puma/puma/issues/519" title="Issue by @tmornini, closed 2016-07-25">#519</a></li>
 <li>Check SSLContext better. Fixes <a href="https://github.com/puma/puma/issues/828" title="Issue by @Zapotek, closed 2016-07-24">#828</a></li>
-<li>Clarify behavior of '-t num'. Fixes <a href="https://github.com/puma/puma/issues/984" title="Issue by @erichmenge, closed 2016-07-24">#984</a></li>
-<li>Don't default to VERIFY_PEER. Fixes <a href="https://github.com/puma/puma/issues/1028" title="Issue by @matobinder, closed 2016-07-24">#1028</a></li>
-<li>Don't use ENV['PWD'] on windows. Fixes <a href="https://github.com/puma/puma/issues/1023" title="Issue by @fera2k, closed 2016-07-24">#1023</a></li>
+<li>Clarify behavior of &#39;-t num&#39;. Fixes <a href="https://github.com/puma/puma/issues/984" title="Issue by @erichmenge, closed 2016-07-24">#984</a></li>
+<li>Don&#39;t default to VERIFY_PEER. Fixes <a href="https://github.com/puma/puma/issues/1028" title="Issue by @matobinder, closed 2016-07-24">#1028</a></li>
+<li>Don&#39;t use ENV[&#39;PWD&#39;] on windows. Fixes <a href="https://github.com/puma/puma/issues/1023" title="Issue by @fera2k, closed 2016-07-24">#1023</a></li>
 <li>Enlarge the scope of catching app exceptions. Fixes <a href="https://github.com/puma/puma/issues/1027" title="Issue by @rosenfeld, closed 2016-07-24">#1027</a></li>
 <li>Execute background hooks after daemonizing. Fixes <a href="https://github.com/puma/puma/issues/925" title="Issue by @lokenmakwana, closed 2016-07-24">#925</a></li>
 <li>Handle HUP as a stop unless there is IO redirection. Fixes <a href="https://github.com/puma/puma/issues/911" title="Issue by @veganstraightedge, closed 2016-07-24">#911</a></li>
 <li>Implement chunked request handling. Fixes <a href="https://github.com/puma/puma/issues/620" title="Issue by @javanthropus, closed 2016-07-25">#620</a></li>
 <li>Just rescue exception to return a 500. Fixes <a href="https://github.com/puma/puma/issues/1027" title="Issue by @rosenfeld, closed 2016-07-24">#1027</a></li>
 <li>Redirect IO in the jruby daemon mode. Fixes <a href="https://github.com/puma/puma/issues/778" title="Issue by @niedhui, closed 2016-07-24">#778</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.5.2 / 2016-07-20</h2>
+
 <ul>
-<li>
-<p>1 bug fix:</p>
+<li><p>1 bug fix:</p>
+
 <ul>
-<li>Don't let persistent_timeout be nil</li>
-</ul>
-</li>
-<li>
-<p>1 PR merged:</p>
+<li>Don&#39;t let persistent_timeout be nil</li>
+</ul></li>
+<li><p>1 PR merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/1021" title="PR by @sarahzrf, merged 2016-07-20">#1021</a> from benzrf/patch-1</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.5.1 / 2016-07-20</h2>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
 <li>Be sure to only listen on host:port combos once. Fixes <a href="https://github.com/puma/puma/issues/1022" title="Issue by @AKovtunov, closed 2017-08-16">#1022</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.5.0 / 2016-07-18</h2>
+
 <ul>
-<li>
-<p>1 minor features:</p>
+<li><p>1 minor features:</p>
+
 <ul>
 <li>Allow persistent_timeout to be configured via the dsl.</li>
-</ul>
-</li>
-<li>
-<p>9 bug fixes:</p>
+</ul></li>
+<li><p>9 bug fixes:</p>
+
 <ul>
 <li>Allow a bare % in a query string. Fixes <a href="https://github.com/puma/puma/issues/958" title="Issue by @lalitlogical, closed 2016-04-23">#958</a></li>
 <li>Explicitly listen on all localhost addresses. Fixes <a href="https://github.com/puma/puma/issues/782" title="Issue by @Tonkpils, closed 2016-07-19">#782</a></li>
@@ -1296,20 +1396,18 @@ options, such as -p.</li>
 <li>Silence connection errors in the reactor. Fixes <a href="https://github.com/puma/puma/issues/959" title="Issue by @mwpastore, closed 2016-04-22">#959</a></li>
 <li>Tiny fixes in hook documentation for <a href="https://github.com/puma/puma/issues/840" title="Issue by @maxkwallace, closed 2016-04-07">#840</a></li>
 <li>It should not log requests if we want it to be quiet</li>
-</ul>
-</li>
-<li>
-<p>5 doc fixes:</p>
+</ul></li>
+<li><p>5 doc fixes:</p>
+
 <ul>
 <li>Add How to stop Puma on Heroku using plugins to the example directory</li>
 <li>Provide both hot and phased restart in jungle script</li>
 <li>Update reference to the instances management script</li>
 <li>Update default number of threads</li>
 <li>Fix typo in example config</li>
-</ul>
-</li>
-<li>
-<p>14 PRs merged:</p>
+</ul></li>
+<li><p>14 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/1007" title="PR by @willnet, merged 2016-06-24">#1007</a> from willnet/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/1014" title="PR by @szymon-jez, merged 2016-07-11">#1014</a> from jeznet/patch-1</li>
@@ -1325,213 +1423,206 @@ options, such as -p.</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/977" title="PR by @snow, merged 2016-05-10">#977</a> from snow/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/981" title="PR by @zach-chai, merged 2016-07-19">#981</a> from zach-chai/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/993" title="PR by @scorix, merged 2016-07-19">#993</a> from scorix/master</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.4.0 / 2016-04-07</h2>
+
 <ul>
-<li>
-<p>2 minor features:</p>
+<li><p>2 minor features:</p>
+
 <ul>
 <li>Add ability to force threads to stop on shutdown. Fixes <a href="https://github.com/puma/puma/issues/938" title="Issue by @vandrijevik, closed 2016-04-07">#938</a></li>
 <li>Detect and commit seppuku when fork(2) fails. Fixes <a href="https://github.com/puma/puma/issues/529" title="Issue by @mperham, closed 2016-04-07">#529</a></li>
-</ul>
-</li>
-<li>
-<p>3 unknowns:</p>
+</ul></li>
+<li><p>3 unknowns:</p>
+
 <ul>
 <li>Ignore errors trying to update the backport tables. Fixes <a href="https://github.com/puma/puma/issues/788" title="Issue by @herregroen, closed 2016-04-07">#788</a></li>
 <li>Invoke the lowlevel_error in more places to allow for exception tracking. Fixes <a href="https://github.com/puma/puma/issues/894" title="Issue by @rafbm, closed 2016-04-07">#894</a></li>
 <li>Update the query string when an absolute URI is used. Fixes <a href="https://github.com/puma/puma/issues/937" title="Issue by @huangxiangdan, closed 2016-04-07">#937</a></li>
-</ul>
-</li>
-<li>
-<p>5 doc fixes:</p>
+</ul></li>
+<li><p>5 doc fixes:</p>
+
 <ul>
 <li>Add Process Monitors section to top-level README</li>
 <li>Better document the hooks. Fixes <a href="https://github.com/puma/puma/issues/840" title="Issue by @maxkwallace, closed 2016-04-07">#840</a></li>
 <li>docs/system.md sample config refinements and elaborations</li>
 <li>Fix typos at couple of places.</li>
 <li>Cleanup warnings</li>
-</ul>
-</li>
-<li>
-<p>3 PRs merged:</p>
+</ul></li>
+<li><p>3 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/945" title="PR by @dekellum, merged 2016-04-07">#945</a> from dekellum/systemd-docs-refined</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/946" title="PR by @vipulnsward, merged 2016-04-07">#946</a> from vipulnsward/rm-pid</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/947" title="PR by @vipulnsward, merged 2016-04-07">#947</a> from vipulnsward/housekeeping-typos</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.3.0 / 2016-04-05</h2>
+
 <ul>
-<li>
-<p>2 minor features:</p>
+<li><p>2 minor features:</p>
+
 <ul>
 <li>Allow overriding options of Configuration object</li>
 <li>Rename to inherit_ssl_listener like inherit_tcp|unix</li>
-</ul>
-</li>
-<li>
-<p>2 doc fixes:</p>
+</ul></li>
+<li><p>2 doc fixes:</p>
+
 <ul>
 <li>Add docs/systemd.md (with socket activation sub-section)</li>
 <li>Document UNIX signals with cluster on README.md</li>
-</ul>
-</li>
-<li>
-<p>3 PRs merged:</p>
+</ul></li>
+<li><p>3 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/936" title="PR by @prathamesh-sonpatki, merged 2016-04-01">#936</a> from prathamesh-sonpatki/allow-overriding-config-options</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/940" title="PR by @kyledrake, merged 2016-04-01">#940</a> from kyledrake/signalsdoc</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/942" title="PR by @dekellum, merged 2016-04-01">#942</a> from dekellum/socket-activate-improve</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.2.0 / 2016-03-20</h2>
+
 <ul>
-<li>
-<p>1 deprecation removal:</p>
+<li><p>1 deprecation removal:</p>
+
 <ul>
 <li>Delete capistrano.rb</li>
-</ul>
-</li>
-<li>
-<p>3 bug fixes:</p>
+</ul></li>
+<li><p>3 bug fixes:</p>
+
 <ul>
 <li>Detect gems.rb as well as Gemfile</li>
 <li>Simplify and fix logic for directory to use when restarting for all phases</li>
 <li>Speed up phased-restart start</li>
-</ul>
-</li>
-<li>
-<p>2 PRs merged:</p>
+</ul></li>
+<li><p>2 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/927" title="PR by @jlecour, merged 2016-03-18">#927</a> from jlecour/gemfile_variants</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/931" title="PR by @runlevel5, merged 2016-03-18">#931</a> from joneslee85/patch-10</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.1.1 / 2016-03-17</h2>
+
 <ul>
-<li>
-<p>4 bug fixes:</p>
+<li><p>4 bug fixes:</p>
+
 <ul>
 <li>Disable USR1 usage on JRuby</li>
 <li>Fixes <a href="https://github.com/puma/puma/issues/922" title="Issue by @LavirtheWhiolet, closed 2016-03-07">#922</a> - Correctly define file encoding as UTF-8</li>
 <li>Set a more explicit SERVER_SOFTWARE Rack variable</li>
 <li>Show RUBY_ENGINE_VERSION if available. Fixes <a href="https://github.com/puma/puma/issues/923" title="Issue by @donv, closed 2016-03-06">#923</a></li>
-</ul>
-</li>
-<li>
-<p>3 PRs merged:</p>
+</ul></li>
+<li><p>3 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/912" title="PR by @tricknotes, merged 2016-03-06">#912</a> from tricknotes/fix-allow-failures-in-travis-yml</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/921" title="PR by @swrobel, merged 2016-03-06">#921</a> from swrobel/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/924" title="PR by @tbrisker, merged 2016-03-07">#924</a> from tbrisker/patch-1</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.1.0 / 2016-03-05</h2>
+
 <ul>
-<li>
-<p>1 minor feature:</p>
+<li><p>1 minor feature:</p>
+
 <ul>
-<li>Add 'import' directive to config file. Fixes <a href="https://github.com/puma/puma/issues/916" title="Issue by @ma11hew28, closed 2016-03-06">#916</a></li>
-</ul>
-</li>
-<li>
-<p>5 bug fixes:</p>
+<li>Add &#39;import&#39; directive to config file. Fixes <a href="https://github.com/puma/puma/issues/916" title="Issue by @ma11hew28, closed 2016-03-06">#916</a></li>
+</ul></li>
+<li><p>5 bug fixes:</p>
+
 <ul>
-<li>Add 'fetch' to options. Fixes <a href="https://github.com/puma/puma/issues/913" title="Issue by @Casara, closed 2016-03-06">#913</a></li>
+<li>Add &#39;fetch&#39; to options. Fixes <a href="https://github.com/puma/puma/issues/913" title="Issue by @Casara, closed 2016-03-06">#913</a></li>
 <li>Fix jruby daemonization. Fixes <a href="https://github.com/puma/puma/issues/918" title="Issue by @rodrigdav, closed 2016-03-06">#918</a></li>
 <li>Recreate the proper args manually. Fixes <a href="https://github.com/puma/puma/issues/910" title="Issue by @ball-hayden, closed 2016-03-05">#910</a></li>
-<li>Require 'time' to get iso8601. Fixes <a href="https://github.com/puma/puma/issues/914" title="Issue by @osheroff, closed 2016-03-06">#914</a></li>
+<li>Require &#39;time&#39; to get iso8601. Fixes <a href="https://github.com/puma/puma/issues/914" title="Issue by @osheroff, closed 2016-03-06">#914</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.0.2 / 2016-02-26</h2>
+
 <ul>
-<li>
-<p>5 bug fixes:</p>
+<li><p>5 bug fixes:</p>
+
 <ul>
-<li>Fix 'undefined local variable or method <code>pid</code> for #<a href="Puma::ControlCLI:0x007f185fcef968">Puma::ControlCLI:0x007f185fcef968</a>' when execute pumactl with <code>--pid</code> option.</li>
-<li>Fix 'undefined method <code>windows?</code> for Puma:Module' when execute pumactl.</li>
+<li>Fix &#39;undefined local variable or method <code>pid</code> for #<a href="Puma::ControlCLI:0x007f185fcef968">Puma::ControlCLI:0x007f185fcef968</a>&#39; when execute pumactl with <code>--pid</code> option.</li>
+<li>Fix &#39;undefined method <code>windows?</code> for Puma:Module&#39; when execute pumactl.</li>
 <li>Harden tmp_restart against errors related to the restart file</li>
 <li>Make <code>plugin :tmp_restart</code> behavior correct in Windows.</li>
 <li>fix uninitialized constant Puma::ControlCLI::StateFile</li>
-</ul>
-</li>
-<li>
-<p>3 PRs merged:</p>
+</ul></li>
+<li><p>3 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/901" title="PR by @mitto, merged 2016-02-26">#901</a> from mitto/fix-pumactl-uninitialized-constant-statefile</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/902" title="PR by @corrupt952, merged 2016-02-26">#902</a> from corrupt952/fix_undefined_method_and_variable_when_execute_pumactl</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/905" title="PR by @Eric-Guo, merged 2016-02-26">#905</a> from Eric-Guo/master</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.0.1 / 2016-02-25</h2>
+
 <ul>
-<li>
-<p>1 bug fix:</p>
+<li><p>1 bug fix:</p>
+
 <ul>
 <li>Removed the experimental support for async.callback as it broke
 websockets entirely. Seems no server has both hijack and async.callback
-and thus faye is totally confused what to do and doesn't work.</li>
+and thus faye is totally confused what to do and doesn&#39;t work.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>3.0.0 / 2016-02-25</h2>
+
 <ul>
-<li>
-<p>2 major changes:</p>
+<li><p>2 major changes:</p>
+
 <ul>
-<li>Ruby pre-2.0 is no longer supported. We'll do our best to not add
+<li>Ruby pre-2.0 is no longer supported. We&#39;ll do our best to not add
 features that break those rubies but will no longer be testing
 with them.</li>
-<li>Don't log requests by default. Fixes <a href="https://github.com/puma/puma/issues/852" title="Issue by @asia653, closed 2016-02-25">#852</a></li>
-</ul>
-</li>
-<li>
-<p>2 major features:</p>
+<li>Don&#39;t log requests by default. Fixes <a href="https://github.com/puma/puma/issues/852" title="Issue by @asia653, closed 2016-02-25">#852</a></li>
+</ul></li>
+<li><p>2 major features:</p>
+
 <ul>
 <li>Plugin support! Plugins can interact with configuration as well
 as provide augment server functionality!</li>
-<li>Experimental env['async.callback'] support</li>
-</ul>
-</li>
-<li>
-<p>4 minor features:</p>
+<li>Experimental env[&#39;async.callback&#39;] support</li>
+</ul></li>
+<li><p>4 minor features:</p>
+
 <ul>
 <li>Listen to unix socket with provided backlog if any</li>
 <li>Improves the clustered stats to report worker stats</li>
 <li>Pass the env to the lowlevel_error handler. Fixes <a href="https://github.com/puma/puma/issues/854" title="Issue by @ollym, closed 2016-02-25">#854</a></li>
 <li>Treat path-like hosts as unix sockets. Fixes <a href="https://github.com/puma/puma/issues/824" title="Issue by @MattWalston, closed 2016-02-25">#824</a></li>
-</ul>
-</li>
-<li>
-<p>5 bug fixes:</p>
+</ul></li>
+<li><p>5 bug fixes:</p>
+
 <ul>
 <li>Clean thread locals when using keepalive. Fixes <a href="https://github.com/puma/puma/issues/823" title="Issue by @pneuman, closed 2016-02-25">#823</a></li>
 <li>Cleanup compiler warnings. Fixes <a href="https://github.com/puma/puma/issues/815" title="Issue by @nate-dipiazza, closed 2016-02-25">#815</a></li>
 <li>Expose closed? for use by the reactor. Fixes <a href="https://github.com/puma/puma/issues/835" title="Issue by @mwpastore, closed 2016-02-25">#835</a></li>
 <li>Move signal handlers to separate method to prevent space leak. Fixes <a href="https://github.com/puma/puma/issues/798" title="Issue by @schneems, closed 2016-02-25">#798</a></li>
 <li>Signal not full on worker exit <a href="https://github.com/puma/puma/issues/876" title="Issue by @osheroff, closed 2016-02-25">#876</a></li>
-</ul>
-</li>
-<li>
-<p>5 doc fixes:</p>
+</ul></li>
+<li><p>5 doc fixes:</p>
+
 <ul>
 <li>Update README.md with various grammar fixes</li>
 <li>Use newest version of Minitest</li>
 <li>Add directory configuration docs, fix typo [ci skip]</li>
 <li>Remove old COPYING notice. Fixes <a href="https://github.com/puma/puma/issues/849" title="Issue by @apotheon, closed 2016-02-25">#849</a></li>
-</ul>
-</li>
-<li>
-<p>10 merged PRs:</p>
+</ul></li>
+<li><p>10 merged PRs:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/871" title="PR by @deepj, merged 2016-02-25">#871</a> from deepj/travis</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/874" title="PR by @wallclockbuilder, merged 2016-02-25">#874</a> from wallclockbuilder/master</li>
@@ -1543,43 +1634,41 @@ as provide augment server functionality!</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/893" title="PR by @spastorino, merged 2016-02-25">#893</a> from spastorino/add_missing_require</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/897" title="PR by @vanchi-zendesk, merged 2016-02-25">#897</a> from zendesk/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/899" title="PR by @kch, merged 2016-02-25">#899</a> from kch/kch-readme-fixes</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.16.0 / 2016-01-27</h2>
+
 <ul>
-<li>
-<p>7 minor features:</p>
+<li><p>7 minor features:</p>
+
 <ul>
-<li>Add 'set_remote_address' config option</li>
+<li>Add &#39;set_remote_address&#39; config option</li>
 <li>Allow to run puma in silent mode</li>
 <li>Expose cli options in DSL</li>
 <li>Support passing JRuby keystore info in ssl_bind DSL</li>
 <li>Allow umask for unix:/// style control urls</li>
 <li>Expose <code>old_worker_count</code> in stats url</li>
 <li>Support TLS client auth (verify_mode) in jruby</li>
-</ul>
-</li>
-<li>
-<p>7 bug fixes:</p>
+</ul></li>
+<li><p>7 bug fixes:</p>
+
 <ul>
-<li>Don't persist before_fork hook in state file</li>
+<li>Don&#39;t persist before_fork hook in state file</li>
 <li>Reload bundler before pulling in rack. Fixes <a href="https://github.com/puma/puma/issues/859" title="Issue by @boxofrad, closed 2016-01-28">#859</a></li>
 <li>Remove NEWRELIC_DISPATCHER env variable</li>
 <li>Cleanup C code</li>
 <li>Use Timeout.timeout instead of Object.timeout</li>
 <li>Make phased restarts faster</li>
 <li>Ignore the case of certain headers, because HTTP</li>
-</ul>
-</li>
-<li>
-<p>1 doc changes:</p>
+</ul></li>
+<li><p>1 doc changes:</p>
+
 <ul>
 <li>Test against the latest Ruby 2.1, 2.2, 2.3, head and JRuby 9.0.4.0 on Travis</li>
-</ul>
-</li>
-<li>
-<p>12 merged PRs</p>
+</ul></li>
+<li><p>12 merged PRs</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/822" title="PR by @kwugirl, merged 2016-01-28">#822</a> from kwugirl/remove_NEWRELIC_DISPATCHER</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/833" title="PR by @joemiller, merged 2016-01-28">#833</a> from joemiller/jruby-client-tls-auth</li>
@@ -1593,48 +1682,51 @@ as provide augment server functionality!</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/858" title="PR by @mlarraz, merged 2016-01-28">#858</a> from mlarraz/fix_some_warnings</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/860" title="PR by @osheroff, merged 2016-01-15">#860</a> from zendesk/expose_old_worker_count</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/861" title="PR by @osheroff, merged 2016-01-15">#861</a> from zendesk/allow_control_url_umask</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.15.3 / 2015-11-07</h2>
+
 <ul>
-<li>
-<p>1 bug fix:</p>
+<li><p>1 bug fix:</p>
+
 <ul>
 <li>Fix JRuby parser</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.15.2 / 2015-11-06</h2>
+
 <ul>
-<li>
-<p>2 bug fixes:</p>
+<li><p>2 bug fixes:</p>
+
 <ul>
 <li>ext/puma_http11: handle duplicate headers as per RFC</li>
-<li>Only set ctx.ca iff there is a params['ca'] to set with.</li>
-</ul>
-</li>
-<li>
-<p>2 PRs merged:</p>
+<li>Only set ctx.ca iff there is a params[&#39;ca&#39;] to set with.</li>
+</ul></li>
+<li><p>2 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/818" title="PR by @unleashed, merged 2015-11-06">#818</a> from unleashed/support-duplicate-headers</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/819" title="PR by @VictorLowther, merged 2015-11-06">#819</a> from VictorLowther/fix-ca-and-verify_null-exception</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.15.1 / 2015-11-06</h2>
+
 <ul>
-<li>
-<p>1 bug fix:</p>
+<li><p>1 bug fix:</p>
+
 <ul>
 <li>Allow older openssl versions</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.15.0 / 2015-11-06</h2>
+
 <ul>
-<li>
-<p>6 minor features:</p>
+<li><p>6 minor features:</p>
+
 <ul>
 <li>Allow setting ca without setting a verify mode</li>
 <li>Make jungle for init.d support rbenv</li>
@@ -1642,35 +1734,32 @@ as provide augment server functionality!</li>
 <li>cluster: add worker_boot_timeout option</li>
 <li>configuration: allow empty tags to mean no tag desired</li>
 <li>puma/cli: support specifying STD<code>OUT,ERR</code> redirections and append mode</li>
-</ul>
-</li>
-<li>
-<p>5 bug fixes:</p>
+</ul></li>
+<li><p>5 bug fixes:</p>
+
 <ul>
 <li>Disable SSL Compression</li>
 <li>Fix bug setting worker_directory when using a symlink directory</li>
 <li>Fix error message in DSL that was slightly inaccurate</li>
 <li>Pumactl: set correct process name. Fixes <a href="https://github.com/puma/puma/issues/563" title="Issue by @deathbob, closed 2015-11-06">#563</a></li>
 <li>thread_pool: fix race condition when shutting down workers</li>
-</ul>
-</li>
-<li>
-<p>10 doc fixes:</p>
+</ul></li>
+<li><p>10 doc fixes:</p>
+
 <ul>
 <li>Add before_fork explanation in Readme.md</li>
 <li>Correct spelling in DEPLOYMENT.md</li>
 <li>Correct spelling in docs/nginx.md</li>
 <li>Fix spelling errors.</li>
 <li>Fix typo in deployment description</li>
-<li>Fix typos (it's -&gt; its) in events.rb and server.rb</li>
+<li>Fix typos (it&#39;s -&gt; its) in events.rb and server.rb</li>
 <li>fixing for typo mentioned in <a href="https://github.com/puma/puma/issues/803" title="Issue by @burningTyger, closed 2016-04-07">#803</a></li>
 <li>Spelling correction for README</li>
 <li>thread_pool: fix typos in comment</li>
 <li>More explicit docs for worker_timeout</li>
-</ul>
-</li>
-<li>
-<p>18 PRs merged:</p>
+</ul></li>
+<li><p>18 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/768" title="PR by @nathansamson, merged 2015-11-06">#768</a> from nathansamson/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/773" title="PR by @rossta, merged 2015-11-06">#773</a> from rossta/spelling_corrections</li>
@@ -1690,98 +1779,107 @@ as provide augment server functionality!</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/810" title="PR by @vlmonk, merged 2015-11-06">#810</a> from vlmonk/fix-pumactl-restart-bug</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/814" title="PR by @schneems, merged 2015-11-04">#814</a> from schneems/schneems/worker_timeout-docs</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/817" title="PR by @unleashed, merged 2015-11-06">#817</a> from unleashed/worker-boot-timeout</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.14.0 / 2015-09-18</h2>
+
 <ul>
-<li>
-<p>1 minor feature:</p>
+<li><p>1 minor feature:</p>
+
 <ul>
 <li>Make building with SSL support optional</li>
-</ul>
-</li>
-<li>
-<p>1 bug fix:</p>
+</ul></li>
+<li><p>1 bug fix:</p>
+
 <ul>
 <li>Use Rack::Builder if available. Fixes <a href="https://github.com/puma/puma/issues/735" title="Issue by @trekr5, closed 2015-08-04">#735</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.13.4 / 2015-08-16</h2>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
 <li>Use the environment possible set by the config early and from
 the config file later (if set).</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.13.3 / 2015-08-15</h2>
+
 <p>Seriously, I need to revamp config with tests.</p>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
 <li>Fix preserving options before cleaning for state. Fixes <a href="https://github.com/puma/puma/issues/769" title="Issue by @dovestyle, closed 2015-08-16">#769</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.13.2 / 2015-08-15</h2>
-<p>The &quot;clearly I don't have enough tests for the config&quot; release.</p>
+
+<p>The &quot;clearly I don&#39;t have enough tests for the config&quot; release.</p>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
-<li>Fix another place binds wasn't initialized. Fixes <a href="https://github.com/puma/puma/issues/767" title="Issue by @kapso, closed 2015-08-15">#767</a></li>
+<li>Fix another place binds wasn&#39;t initialized. Fixes <a href="https://github.com/puma/puma/issues/767" title="Issue by @kapso, closed 2015-08-15">#767</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.13.1 / 2015-08-15</h2>
+
 <ul>
 <li>2 bug fixes:
+
 <ul>
 <li>Fix binds being masked in config files. Fixes <a href="https://github.com/puma/puma/issues/765" title="Issue by @monfresh, closed 2015-08-15">#765</a></li>
 <li>Use options from the config file properly in pumactl. Fixes <a href="https://github.com/puma/puma/issues/764" title="Issue by @keithpitt, closed 2015-08-15">#764</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.13.0 / 2015-08-14</h2>
+
 <ul>
-<li>
-<p>1 minor feature:</p>
+<li><p>1 minor feature:</p>
+
 <ul>
 <li>Add before_fork hooks option.</li>
-</ul>
-</li>
-<li>
-<p>3 bug fixes:</p>
+</ul></li>
+<li><p>3 bug fixes:</p>
+
 <ul>
 <li>Check for OPENSSL_NO_ECDH before using ECDH</li>
 <li>Eliminate logging overhead from JRuby SSL</li>
 <li>Prefer cli options over config file ones. Fixes <a href="https://github.com/puma/puma/pull/669" title="PR by @chulkilee, closed 2015-08-14">#669</a></li>
-</ul>
-</li>
-<li>
-<p>1 deprecation:</p>
+</ul></li>
+<li><p>1 deprecation:</p>
+
 <ul>
 <li>Add deprecation warning to capistrano.rb. Fixes <a href="https://github.com/puma/puma/pull/673" title="PR by @chulkilee, closed 2015-08-14">#673</a></li>
-</ul>
-</li>
-<li>
-<p>4 PRs merged:</p>
+</ul></li>
+<li><p>4 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/668" title="PR by @kcollignon, merged 2015-08-14">#668</a> from kcollignon/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/754" title="PR by @nathansamson, merged 2015-08-14">#754</a> from nathansamson/before_boot</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/759" title="PR by @BenV, merged 2015-08-14">#759</a> from BenV/fix-centos6-build</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/761" title="PR by @dmarcotte, merged 2015-08-14">#761</a> from looker/no-log</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.12.3 / 2015-08-03</h2>
+
 <ul>
-<li>
-<p>8 minor bugs fixed:</p>
+<li><p>8 minor bugs fixed:</p>
+
 <ul>
-<li>Fix Capistrano 'uninitialized constant Puma' error.</li>
+<li>Fix Capistrano &#39;uninitialized constant Puma&#39; error.</li>
 <li>Fix some ancient and incorrect error handling code</li>
 <li>Fix uninitialized constant error</li>
 <li>Remove toplevel rack interspection, require rack on load instead</li>
@@ -1789,64 +1887,64 @@ the config file later (if set).</li>
 <li>Switch from inject to each in config_ru_binds iteration</li>
 <li>Wrap SSLv3 spec in version guard.</li>
 <li>ruby 1.8.7 compatibility patches</li>
-</ul>
-</li>
-<li>
-<p>4 PRs merged:</p>
+</ul></li>
+<li><p>4 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/742" title="PR by @deivid-rodriguez, merged 2015-07-17">#742</a> from deivid-rodriguez/fix_missing_require</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/743" title="PR by @matthewd, merged 2015-07-18">#743</a> from matthewd/skip-empty-chunks</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/749" title="PR by @huacnlee, merged 2015-08-04">#749</a> from huacnlee/fix-cap-uninitialized-puma-error</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/751" title="PR by @costi, merged 2015-07-31">#751</a> from costi/compat_1_8_7</li>
-</ul>
-</li>
-<li>
-<p>1 test fix:</p>
+</ul></li>
+<li><p>1 test fix:</p>
+
 <ul>
 <li>Add 1.8.7, rbx-1 (allow failures) to Travis.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.12.2 / 2015-07-17</h2>
+
 <ul>
 <li>2 bug fix:
+
 <ul>
 <li>Pull over and use Rack::URLMap. Fixes <a href="https://github.com/puma/puma/issues/741" title="Issue by @GUI, closed 2015-07-17">#741</a></li>
 <li>Stub out peercert on JRuby for now. Fixes <a href="https://github.com/puma/puma/issues/739" title="Issue by @hab278, closed 2015-07-17">#739</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.12.1 / 2015-07-16</h2>
+
 <ul>
-<li>
-<p>2 bug fixes:</p>
+<li><p>2 bug fixes:</p>
+
 <ul>
 <li>Use a constant format. Fixes <a href="https://github.com/puma/puma/issues/737" title="Issue by @dmill, closed 2015-07-16">#737</a></li>
 <li>Use strerror for Windows sake. Fixes <a href="https://github.com/puma/puma/issues/733" title="Issue by @Eric-Guo, closed 2015-07-15">#733</a></li>
-</ul>
-</li>
-<li>
-<p>1 doc change:</p>
+</ul></li>
+<li><p>1 doc change:</p>
+
 <ul>
 <li>typo fix: occured -&gt; occurred</li>
-</ul>
-</li>
-<li>
-<p>1 PR merged:</p>
+</ul></li>
+<li><p>1 PR merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/736" title="PR by @paulanunda, merged 2015-07-15">#736</a> from paulanunda/paulanunda/typo-fix</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.12.0 / 2015-07-14</h2>
+
 <ul>
-<li>
-<p>13 bug fixes:</p>
+<li><p>13 bug fixes:</p>
+
 <ul>
 <li>Add thread reaping to thread pool</li>
 <li>Do not automatically use chunked responses when hijacked</li>
 <li>Do not suppress Content-Length on partial hijack</li>
-<li>Don't allow any exceptions to terminate a thread</li>
+<li>Don&#39;t allow any exceptions to terminate a thread</li>
 <li>Handle ENOTCONN client disconnects when setting REMOTE_ADDR</li>
 <li>Handle very early exit of cluster mode. Fixes <a href="https://github.com/puma/puma/issues/722" title="Issue by @mikeki, closed 2015-07-14">#722</a></li>
 <li>Install rack when running tests on travis to use rack/lint</li>
@@ -1856,10 +1954,9 @@ the config file later (if set).</li>
 <li>Remove rack dependency. Fixes <a href="https://github.com/puma/puma/issues/705" title="Issue by @TheTeaNerd, closed 2015-07-14">#705</a></li>
 <li>Remove the default Content-Type: text/plain</li>
 <li>Add Client Side Certificate Auth</li>
-</ul>
-</li>
-<li>
-<p>8 doc/test changes:</p>
+</ul></li>
+<li><p>8 doc/test changes:</p>
+
 <ul>
 <li>Added example sourcing of environment vars</li>
 <li>Added tests for bind configuration on rackup file</li>
@@ -1869,17 +1966,15 @@ the config file later (if set).</li>
 <li>ci: Improve Travis settings</li>
 <li>ci: Start running tests against JRuby 9k on Travis</li>
 <li>ci: Convert to container infrastructure for travisci</li>
-</ul>
-</li>
-<li>
-<p>2 ops changes:</p>
+</ul></li>
+<li><p>2 ops changes:</p>
+
 <ul>
 <li>Check for system-wide rbenv</li>
 <li>capistrano: Add additional env when start rails</li>
-</ul>
-</li>
-<li>
-<p>16 PRs merged:</p>
+</ul></li>
+<li><p>16 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/686" title="PR by @jjb, merged 2015-06-10">#686</a> from jjb/patch-2</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/693" title="PR by @rob-murray, merged 2015-06-10">#693</a> from rob-murray/update-example-config</li>
@@ -1897,53 +1992,51 @@ the config file later (if set).</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/726" title="PR by @jshafton, merged 2015-07-14">#726</a> from strenuus/handle-client-disconnect</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/729" title="PR by @allaire, merged 2015-07-14">#729</a> from allaire/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/730" title="PR by @iamjarvo, merged 2015-07-14">#730</a> from iamjarvo/container-infrastructure</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.11.3 / 2015-05-18</h2>
+
 <ul>
-<li>
-<p>5 bug fixes:</p>
+<li><p>5 bug fixes:</p>
+
 <ul>
 <li>Be sure to unlink tempfiles after a request. Fixes <a href="https://github.com/puma/puma/issues/690" title="Issue by @bachue, closed 2015-04-21">#690</a></li>
 <li>Coerce the key to a string before checking. (thar be symbols). Fixes <a href="https://github.com/puma/puma/issues/684" title="Issue by @tomquas, closed 2015-04-13">#684</a></li>
 <li>Fix hang on bad SSL handshake</li>
 <li>Remove <code>enable_SSLv3</code> support from JRuby</li>
-</ul>
-</li>
-<li>
-<p>1 PR merged:</p>
+</ul></li>
+<li><p>1 PR merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/698" title="PR by @dmarcotte, merged 2015-05-04">#698</a> from looker/hang-handshake</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.11.2 / 2015-04-11</h2>
+
 <ul>
-<li>
-<p>2 minor features:</p>
+<li><p>2 minor features:</p>
+
 <ul>
-<li>Add <code>on_worker_fork</code> hook, which allows to mimic Unicorn's behavior</li>
+<li>Add <code>on_worker_fork</code> hook, which allows to mimic Unicorn&#39;s behavior</li>
 <li>Add shutdown_debug config option</li>
-</ul>
-</li>
-<li>
-<p>4 bug fixes:</p>
+</ul></li>
+<li><p>4 bug fixes:</p>
+
 <ul>
 <li>Fix the Config constants not being available in the DSL. Fixes <a href="https://github.com/puma/puma/issues/683" title="Issue by @indirect, closed 2015-04-11">#683</a></li>
 <li>Ignore multiple port declarations</li>
-<li>Proper 'Connection' header handling compatible with HTTP 1.[01] protocols</li>
+<li>Proper &#39;Connection&#39; header handling compatible with HTTP 1.[01] protocols</li>
 <li>Use &quot;Puma&quot; instead of &quot;puma&quot; to reporting to New Relic</li>
-</ul>
-</li>
-<li>
-<p>1 doc fixes:</p>
+</ul></li>
+<li><p>1 doc fixes:</p>
+
 <ul>
 <li>Add Gitter badge.</li>
-</ul>
-</li>
-<li>
-<p>6 PRs merged:</p>
+</ul></li>
+<li><p>6 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/657" title="PR by @schneems, merged 2015-02-19">#657</a> from schneems/schneems/puma-once-port</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/658" title="PR by @tomohiro, merged 2015-02-23">#658</a> from Tomohiro/newrelic-dispatcher-default-update</li>
@@ -1951,44 +2044,44 @@ the config file later (if set).</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/664" title="PR by @fxposter, merged 2015-03-09">#664</a> from fxposter/on-worker-fork</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/667" title="PR by @JuanitoFatas, merged 2015-03-12">#667</a> from JuanitoFatas/doc/gemspec</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/672" title="PR by @chulkilee, merged 2015-03-15">#672</a> from chulkilee/refactor</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.11.1 / 2015-02-11</h2>
+
 <ul>
-<li>
-<p>2 bug fixes:</p>
+<li><p>2 bug fixes:</p>
+
 <ul>
 <li>Avoid crash in strange restart conditions</li>
-<li>Inject the GEM_HOME that bundler into puma-wild's env. Fixes <a href="https://github.com/puma/puma/issues/653" title="Issue by @dvrensk, closed 2015-02-11">#653</a></li>
-</ul>
-</li>
-<li>
-<p>2 PRs merged:</p>
+<li>Inject the GEM_HOME that bundler into puma-wild&#39;s env. Fixes <a href="https://github.com/puma/puma/issues/653" title="Issue by @dvrensk, closed 2015-02-11">#653</a></li>
+</ul></li>
+<li><p>2 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/644" title="PR by @bpaquet, merged 2015-01-29">#644</a> from bpaquet/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/646" title="PR by @mkonecny, merged 2015-02-05">#646</a> from mkonecny/master</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.11.0 / 2015-01-20</h2>
+
 <ul>
-<li>
-<p>9 bug fixes:</p>
+<li><p>9 bug fixes:</p>
+
 <ul>
 <li>Add mode as an additional bind option to unix sockets. Fixes <a href="https://github.com/puma/puma/issues/630" title="Issue by @jelmd, closed 2015-01-20">#630</a></li>
 <li>Advertise HTTPS properly after a hot restart</li>
-<li>Don't write lowlevel_error_handler to state</li>
+<li>Don&#39;t write lowlevel_error_handler to state</li>
 <li>Fix phased restart with stuck requests</li>
 <li>Handle spaces in the path properly. Fixes <a href="https://github.com/puma/puma/issues/622" title="Issue by @sabamotto, closed 2015-01-20">#622</a></li>
 <li>Set a default REMOTE_ADDR to avoid using peeraddr on unix sockets. Fixes <a href="https://github.com/puma/puma/issues/583" title="Issue by @rwojsznis, closed 2015-01-20">#583</a></li>
 <li>Skip device number checking on jruby. Fixes <a href="https://github.com/puma/puma/issues/586" title="Issue by @ponchik, closed 2015-01-20">#586</a></li>
 <li>Update extconf.rb to compile correctly on OS X</li>
 <li>redirect io right after daemonizing so startup errors are shown. Fixes <a href="https://github.com/puma/puma/issues/359" title="Issue by @natew, closed 2014-12-13">#359</a></li>
-</ul>
-</li>
-<li>
-<p>6 minor features:</p>
+</ul></li>
+<li><p>6 minor features:</p>
+
 <ul>
 <li>Add a configuration option that prevents puma from queueing requests.</li>
 <li>Add reload_worker_directory</li>
@@ -1996,10 +2089,9 @@ the config file later (if set).</li>
 <li>Add the proctitle tag to the worker. Fixes <a href="https://github.com/puma/puma/issues/633" title="Issue by @joevandyk, closed 2015-01-20">#633</a></li>
 <li>Infer a proctitle tag based on the directory</li>
 <li>Update lowlevel error message to be more meaningful.</li>
-</ul>
-</li>
-<li>
-<p>10 PRs merged:</p>
+</ul></li>
+<li><p>10 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/478" title="PR by @rubencaro, merged 2015-01-20">#478</a> from rubencaro/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/610" title="PR by @kwilczynski, merged 2014-11-27">#610</a> from kwilczynski/master</li>
@@ -2011,62 +2103,65 @@ the config file later (if set).</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/637" title="PR by @raskhadafi, merged 2015-01-20">#637</a> from raskhadafi/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/639" title="PR by @ebeigarts, merged 2015-01-20">#639</a> from ebeigarts/fix-phased-restarts</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/640" title="PR by @bailsman, merged 2015-01-20">#640</a> from codehotter/issue-612-dependent-requests-deadlock</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.10.2 / 2014-11-26</h2>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
 <li>Conditionalize thread local cleaning, fixes perf degradation fix
 The code to clean out all Thread locals adds pretty significant
 overhead to a each request, so it has to be turned on explicitly
 if a user needs it.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.10.1 / 2014-11-24</h2>
+
 <ul>
-<li>
-<p>1 bug fix:</p>
+<li>1 bug fix:
+
 <ul>
 <li>Load the app after daemonizing because the app might start threads.</li>
+</ul></li>
 </ul>
+
 <p>This change means errors loading the app are now reported only in the redirected
-stdout/stderr.</p>
-<p>If you're app has problems starting up, start it without daemon mode initially
-to test.</p>
-</li>
-</ul>
+  stdout/stderr.</p>
+
+<p>If you&#39;re app has problems starting up, start it without daemon mode initially
+  to test.</p>
+
 <h2>2.10.0 / 2014-11-23</h2>
+
 <ul>
-<li>
-<p>3 minor features:</p>
+<li><p>3 minor features:</p>
+
 <ul>
 <li>Added on_worker_shutdown hook mechanism</li>
 <li>Allow binding to ipv6 addresses for ssl URIs</li>
 <li>Warn about any threads started during app preload</li>
-</ul>
-</li>
-<li>
-<p>5 bug fixes:</p>
+</ul></li>
+<li><p>5 bug fixes:</p>
+
 <ul>
 <li>Clean out a threads local data before doing work</li>
 <li>Disable SSLv3. Fixes <a href="https://github.com/puma/puma/issues/591" title="Issue by @renier, closed 2014-11-24">#591</a></li>
 <li>First change the directory to use the correct Gemfile.</li>
 <li>Only use config.ru binds if specified. Fixes <a href="https://github.com/puma/puma/issues/606" title="Issue by @, closed 2014-11-24">#606</a></li>
 <li>Strongish cipher suite with FS support for some browsers</li>
-</ul>
-</li>
-<li>
-<p>2 doc changes:</p>
+</ul></li>
+<li><p>2 doc changes:</p>
+
 <ul>
 <li>Change umask examples to more permissive values</li>
 <li>fix typo in README.md</li>
-</ul>
-</li>
-<li>
-<p>9 Merged PRs:</p>
+</ul></li>
+<li><p>9 Merged PRs:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/560" title="PR by @raskhadafi, merged 2014-11-24">#560</a> from raskhadafi/prune_bundler-bug</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/566" title="PR by @sheltond, merged 2014-11-24">#566</a> from sheltond/master</li>
@@ -2077,13 +2172,14 @@ to test.</p>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/602" title="PR by @1334, merged 2014-11-24">#602</a> from 1334/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/608" title="PR by @Gu1, merged 2014-11-24">#608</a> from Gu1/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/538" title="PR by @memiux, merged 2014-11-24">#538</a> from memiux/?</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.9.2 / 2014-10-25</h2>
+
 <ul>
-<li>
-<p>8 bug fixes:</p>
+<li><p>8 bug fixes:</p>
+
 <ul>
 <li>Fix puma-wild handling a restart properly. Fixes <a href="https://github.com/puma/puma/issues/550" title="Issue by @, closed 2014-10-30">#550</a></li>
 <li>JRuby SSL POODLE update</li>
@@ -2093,10 +2189,9 @@ to test.</p>
 <li>Use the correct Windows names for OpenSSL.</li>
 <li>Better error logging during startup</li>
 <li>Fixing sexist error messages</li>
-</ul>
-</li>
-<li>
-<p>6 PRs merged:</p>
+</ul></li>
+<li><p>6 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/549" title="PR by @bsnape, merged 2014-10-16">#549</a> from bsnape/log-shutdown-time</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/553" title="PR by @lowjoel, merged 2014-10-16">#553</a> from lowjoel/master</li>
@@ -2104,55 +2199,53 @@ to test.</p>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/578" title="PR by @danielbuechele, merged 2014-10-16">#578</a> from danielbuechele/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/581" title="PR by @alexch, merged 2014-10-16">#581</a> from alexch/slightly-better-logging</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/590" title="PR by @dmarcotte, merged 2014-10-16">#590</a> from looker/jruby_disable_sslv3</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.9.1 / 2014-09-05</h2>
+
 <ul>
-<li>
-<p>4 bug fixes:</p>
+<li><p>4 bug fixes:</p>
+
 <ul>
 <li>Cleanup the SSL related structures properly, fixes memory leak</li>
 <li>Fix thread spawning edge case.</li>
-<li>Force a worker check after a worker boots, don't wait 5sec. Fixes <a href="https://github.com/puma/puma/issues/574" title="Issue by @minasmart, closed 2014-09-05">#574</a></li>
+<li>Force a worker check after a worker boots, don&#39;t wait 5sec. Fixes <a href="https://github.com/puma/puma/issues/574" title="Issue by @minasmart, closed 2014-09-05">#574</a></li>
 <li>Implement SIGHUP for logs reopening</li>
-</ul>
-</li>
-<li>
-<p>2 PRs merged:</p>
+</ul></li>
+<li><p>2 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/561" title="PR by @krasnoukhov, merged 2014-08-04">#561</a> from theoldreader/sighup</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/570" title="PR by @havenwood, merged 2014-08-20">#570</a> from havenwood/spawn-thread-edge-case</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.9.0 / 2014-07-12</h2>
+
 <ul>
-<li>
-<p>1 minor feature:</p>
+<li><p>1 minor feature:</p>
+
 <ul>
 <li>Add SSL support for JRuby</li>
-</ul>
-</li>
-<li>
-<p>3 bug fixes:</p>
+</ul></li>
+<li><p>3 bug fixes:</p>
+
 <ul>
 <li>Typo BUNDLER_GEMFILE -&gt; BUNDLE_GEMFILE</li>
-<li>Use fast_write because we can't trust syswrite</li>
+<li>Use fast_write because we can&#39;t trust syswrite</li>
 <li>pumactl - do not modify original ARGV</li>
-</ul>
-</li>
-<li>
-<p>4 doc fixes:</p>
+</ul></li>
+<li><p>4 doc fixes:</p>
+
 <ul>
 <li>BSD-3-Clause over BSD to avoid confusion</li>
 <li>Deploy doc: clarification of the GIL</li>
 <li>Fix typo in DEPLOYMENT.md</li>
 <li>Update README.md</li>
-</ul>
-</li>
-<li>
-<p>6 PRs merged:</p>
+</ul></li>
+<li><p>6 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/520" title="PR by @misfo, merged 2014-06-16">#520</a> from misfo/patch-2</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/530" title="PR by @dmarcotte, merged 2014-06-16">#530</a> from looker/jruby-ssl</li>
@@ -2160,31 +2253,30 @@ to test.</p>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/540" title="PR by @allaire, merged 2014-05-27">#540</a> from allaire/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/544" title="PR by @chulkilee, merged 2014-06-03">#544</a> from chulkilee/bsd-3-clause</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/551" title="PR by @jcxplorer, merged 2014-07-02">#551</a> from jcxplorer/patch-1</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.8.2 / 2014-04-12</h2>
+
 <ul>
-<li>
-<p>4 bug fixes:</p>
+<li><p>4 bug fixes:</p>
+
 <ul>
 <li>During upgrade, change directory in main process instead of workers.</li>
 <li>Close the client properly on error</li>
 <li>Capistrano: fallback from phased restart to start when not started</li>
 <li>Allow tag option in conf file</li>
-</ul>
-</li>
-<li>
-<p>4 doc fixes:</p>
+</ul></li>
+<li><p>4 doc fixes:</p>
+
 <ul>
 <li>Fix Puma daemon service README typo</li>
 <li><code>preload_app!</code> instead of <code>preload_app</code></li>
 <li>add preload_app and prune_bundler to example config</li>
 <li>allow changing of worker_timeout in config file</li>
-</ul>
-</li>
-<li>
-<p>11 PRs merged:</p>
+</ul></li>
+<li><p>11 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/487" title="PR by @, merged 2014-03-06">#487</a> from ckuttruff/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/492" title="PR by @, merged 2014-03-06">#492</a> from ckuttruff/master</li>
@@ -2197,39 +2289,39 @@ to test.</p>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/514" title="PR by @nanaya, merged 2014-04-12">#514</a> from edogawaconan/refactor_env</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/517" title="PR by @misfo, merged 2014-04-12">#517</a> from misfo/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/518" title="PR by @alxgsv, merged 2014-04-12">#518</a> from LongMan/master</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.8.1 / 2014-03-06</h2>
+
 <ul>
-<li>
-<p>1 bug fixes:</p>
+<li><p>1 bug fixes:</p>
+
 <ul>
 <li>Run puma-wild with proper deps for prune_bundler</li>
-</ul>
-</li>
-<li>
-<p>2 doc changes:</p>
+</ul></li>
+<li><p>2 doc changes:</p>
+
 <ul>
 <li>Described the configuration file finding behavior added in 2.8.0 and how to disable it.</li>
 <li>Start the deployment doc</li>
-</ul>
-</li>
-<li>
-<p>6 PRs merged:</p>
+</ul></li>
+<li><p>6 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/471" title="PR by @arthurnn, merged 2014-02-28">#471</a> from arthurnn/fix_test</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/485" title="PR by @runlevel5, merged 2014-03-01">#485</a> from joneslee85/patch-9</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/486" title="PR by @joshwlewis, merged 2014-03-02">#486</a> from joshwlewis/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/490" title="PR by @tobinibot, merged 2014-03-06">#490</a> from tobinibot/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/491" title="PR by @brianknight10, merged 2014-03-06">#491</a> from brianknight10/clarify-no-config</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.8.0 / 2014-02-28</h2>
+
 <ul>
-<li>
-<p>8 minor features:</p>
+<li><p>8 minor features:</p>
+
 <ul>
 <li>Add ability to autoload a config file. Fixes <a href="https://github.com/puma/puma/issues/438" title="Issue by @mperham, closed 2014-01-25">#438</a></li>
 <li>Add ability to detect and terminate hung workers. Fixes <a href="https://github.com/puma/puma/issues/333" title="Issue by @SamSaffron, closed 2014-01-26">#333</a></li>
@@ -2239,10 +2331,9 @@ to test.</p>
 <li>Add worker indexes, expose them via on_worker_boot. Fixes <a href="https://github.com/puma/puma/issues/440" title="Issue by @sudara, closed 2014-01-25">#440</a></li>
 <li>Add pretty process name</li>
 <li>Show the ruby version in use</li>
-</ul>
-</li>
-<li>
-<p>7 bug fixes:</p>
+</ul></li>
+<li><p>7 bug fixes:</p>
+
 <ul>
 <li>Added 408 status on timeout.</li>
 <li>Be more hostile with sockets that write block. Fixes <a href="https://github.com/puma/puma/issues/449" title="Issue by @cezarsa, closed 2014-02-04">#449</a></li>
@@ -2251,19 +2342,17 @@ to test.</p>
 <li>JRuby raises IOError if the socket is there. Fixes <a href="https://github.com/puma/puma/issues/377" title="Issue by @mrbrdo, closed 2014-01-26">#377</a></li>
 <li>Process requests fairly. Fixes <a href="https://github.com/puma/puma/issues/406" title="Issue by @simonrussell, closed 2014-01-25">#406</a></li>
 <li>Rescue SystemCallError as well. Fixes <a href="https://github.com/puma/puma/issues/425" title="Issue by @jhass, closed 2014-01-26">#425</a></li>
-</ul>
-</li>
-<li>
-<p>4 doc changes:</p>
+</ul></li>
+<li><p>4 doc changes:</p>
+
 <ul>
 <li>Add 2.1.0 to the matrix</li>
 <li>Add Code Climate badge to README</li>
 <li>Create signals.md</li>
 <li>Set the license to BSD. Fixes <a href="https://github.com/puma/puma/pull/432" title="PR by @anatol, closed 2014-01-25">#432</a></li>
-</ul>
-</li>
-<li>
-<p>14 PRs merged:</p>
+</ul></li>
+<li><p>14 PRs merged:</p>
+
 <ul>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/428" title="PR by @alexeyfrank, merged 2014-01-25">#428</a> from alexeyfrank/capistrano_default_hooks</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/429" title="PR by @namusyaka, merged 2013-12-16">#429</a> from namusyaka/revert-const_defined</li>
@@ -2279,29 +2368,31 @@ to test.</p>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/481" title="PR by @schneems, merged 2014-02-25">#481</a> from schneems/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/482" title="PR by @prathamesh-sonpatki, merged 2014-02-26">#482</a> from prathamesh-sonpatki/signals-doc-cleanup</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/483" title="PR by @maxilev, merged 2014-02-26">#483</a> from YotpoLtd/master</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.7.1 / 2013-12-05</h2>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
 <li>Keep STDOUT/STDERR the right mode. Fixes <a href="https://github.com/puma/puma/issues/422" title="Issue by @alexandru-calinoiu, closed 2013-12-05">#422</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.7.0 / 2013-12-03</h2>
+
 <ul>
-<li>
-<p>1 minor feature:</p>
+<li><p>1 minor feature:</p>
+
 <ul>
 <li>Adding TTIN and TTOU to increment/decrement workers</li>
-</ul>
-</li>
-<li>
-<p>N bug fixes:</p>
+</ul></li>
+<li><p>N bug fixes:</p>
+
 <ul>
-<li>Always use our Process.daemon because it's not busted</li>
+<li>Always use our Process.daemon because it&#39;s not busted</li>
 <li>Add capistrano restart failback to start.</li>
 <li>Change position of <code>cd</code> so that rvm gemset is loaded</li>
 <li>Clarify some platform specifics</li>
@@ -2311,49 +2402,51 @@ to test.</p>
 <li>Handle IOError closed stream in IO.select</li>
 <li>Increase the max URI path length to 2048 chars from 1024 chars</li>
 <li>Upstart jungle use config/puma.rb instead</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.6.0 / 2013-09-13</h2>
+
 <ul>
-<li>
-<p>2 minor features:</p>
+<li><p>2 minor features:</p>
+
 <ul>
 <li>Add support for event hooks
 ** Add a hook for state transitions</li>
 <li>Add phased restart to capistrano recipe.</li>
-</ul>
-</li>
-<li>
-<p>4 bug fixes:</p>
+</ul></li>
+<li><p>4 bug fixes:</p>
+
 <ul>
 <li>Convince workers to stop by SIGKILL after timeout</li>
 <li>Define RSTRING_NOT_MODIFIED for Rubinius performance</li>
 <li>Handle BrokenPipe, StandardError and IOError in fat_wrote and break out</li>
 <li>Return success status to the invoking environment</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.5.1 / 2013-08-13</h2>
+
 <ul>
 <li>2 bug fixes:
+
 <ul>
 <li>Keep jruby daemon mode from retrying on a hot restart</li>
 <li>Extract version from const.rb in gemspec</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.5.0 / 2013-08-08</h2>
+
 <ul>
-<li>
-<p>2 minor features:</p>
+<li><p>2 minor features:</p>
+
 <ul>
 <li>Allow configuring pumactl with config.rb</li>
 <li>make <code>pumactl restart</code> start puma if not running</li>
-</ul>
-</li>
-<li>
-<p>6 bug fixes:</p>
+</ul></li>
+<li><p>6 bug fixes:</p>
+
 <ul>
 <li>Autodetect ruby managers and home directory in upstart script</li>
 <li>Convert header values to string before sending.</li>
@@ -2361,10 +2454,9 @@ to test.</p>
 <li>Fix pidfile creation/deletion race on jruby daemonization</li>
 <li>Use integers when comparing thread counts</li>
 <li>Fix typo in using lopez express (raw tcp) mode</li>
-</ul>
-</li>
-<li>
-<p>6 misc changes:</p>
+</ul></li>
+<li><p>6 misc changes:</p>
+
 <ul>
 <li>Fix typo in phased-restart response</li>
 <li>Uncomment setuid/setgid by default in upstart</li>
@@ -2372,156 +2464,162 @@ to test.</p>
 <li>Update upstart comments to reflect new commandline</li>
 <li>Remove obsolete pumactl instructions; refer to pumactl for details</li>
 <li>Make Bundler used puma.gemspec version agnostic</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.4.1 / 2013-08-07</h2>
+
 <ul>
 <li>1 experimental feature:
+
 <ul>
 <li>Support raw tcp servers (aka Lopez Express mode)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.4.0 / 2013-07-22</h2>
+
 <ul>
-<li>
-<p>5 minor features:</p>
+<li><p>5 minor features:</p>
+
 <ul>
 <li>Add PUMA_JRUBY_DAEMON_OPTS to get around agent starting twice</li>
 <li>Add ability to drain accept socket on shutdown</li>
 <li>Add port to DSL</li>
 <li>Adds support for using puma config file in capistrano deploys.</li>
 <li>Make phased_restart fallback to restart if not available</li>
-</ul>
-</li>
-<li>
-<p>10 bug fixes:</p>
+</ul></li>
+<li><p>10 bug fixes:</p>
+
 <ul>
 <li>Be sure to only delete the pid in the master. Fixes <a href="https://github.com/puma/puma/issues/334" title="Issue by @srgpqt, closed 2013-07-18">#334</a></li>
 <li>Call out -C/--config flags</li>
 <li>Change parser symbol names to avoid clash. Fixes <a href="https://github.com/puma/puma/issues/179" title="Issue by @betelgeuse, closed 2013-07-18">#179</a></li>
 <li>Convert thread pool sizes to integers</li>
-<li>Detect when the jruby daemon child doesn't start properly</li>
+<li>Detect when the jruby daemon child doesn&#39;t start properly</li>
 <li>Fix typo in CLI help</li>
 <li>Improve the logging output when hijack is used. Fixes <a href="https://github.com/puma/puma/issues/332" title="Issue by @SamSaffron, closed 2013-07-18">#332</a></li>
 <li>Remove unnecessary thread pool size conversions</li>
 <li>Setup :worker_boot as an Array. Fixes <a href="https://github.com/puma/puma/issues/317" title="Issue by @masterkain, closed 2013-07-11">#317</a></li>
 <li>Use 127.0.0.1 as REMOTE_ADDR of unix client. Fixes <a href="https://github.com/puma/puma/issues/309" title="Issue by @masterkain, closed 2013-07-09">#309</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.3.2 / 2013-07-08</h2>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
 <li>Move starting control server to after daemonization.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.3.1 / 2013-07-06</h2>
+
 <ul>
-<li>
-<p>2 bug fixes:</p>
+<li><p>2 bug fixes:</p>
+
 <ul>
 <li>Include the right files in the Manifest.</li>
 <li>Disable inheriting connections on restart on windows. Fixes <a href="https://github.com/puma/puma/issues/166" title="Issue by @emassip, closed 2013-07-06">#166</a></li>
-</ul>
-</li>
-<li>
-<p>1 doc change:</p>
+</ul></li>
+<li><p>1 doc change:</p>
+
 <ul>
 <li>Better document some platform constraints</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.3.0 / 2013-07-05</h2>
+
 <ul>
-<li>
-<p>1 major bug fix:</p>
+<li><p>1 major bug fix:</p>
+
 <ul>
 <li>Stabilize control server, add support in cluster mode</li>
-</ul>
-</li>
-<li>
-<p>5 minor bug fixes:</p>
+</ul></li>
+<li><p>5 minor bug fixes:</p>
+
 <ul>
 <li>Add ability to cleanup stale unix sockets</li>
 <li>Check status data better. Fixes <a href="https://github.com/puma/puma/issues/292" title="Issue by @pulse00, closed 2013-07-06">#292</a></li>
 <li>Convert raw IO errors to ConnectionError. Fixes <a href="https://github.com/puma/puma/issues/274" title="Issue by @mrbrdo, closed 2013-07-06">#274</a></li>
 <li>Fix sending Content-Type and Content-Length for no body status. Fixes <a href="https://github.com/puma/puma/issues/304" title="Issue by @nandosola, closed 2013-07-06">#304</a></li>
 <li>Pass state path through to <code>pumactl start</code>. Fixes <a href="https://github.com/puma/puma/issues/287" title="Issue by @runlevel5, closed 2013-07-06">#287</a></li>
-</ul>
-</li>
-<li>
-<p>2 internal changes:</p>
+</ul></li>
+<li><p>2 internal changes:</p>
+
 <ul>
 <li>Refactored modes into seperate classes that CLI uses</li>
 <li>Changed CLI to take an Events object instead of stdout/stderr (API change)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.2.2 / 2013-07-02</h2>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
 <li>Fix restart_command in the config</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.2.1 / 2013-07-02</h2>
+
 <ul>
-<li>
-<p>1 minor feature:</p>
+<li><p>1 minor feature:</p>
+
 <ul>
 <li>Introduce preload flag</li>
-</ul>
-</li>
-<li>
-<p>1 bug fix:</p>
+</ul></li>
+<li><p>1 bug fix:</p>
+
 <ul>
 <li>Pass custom restart command in JRuby</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.2.0 / 2013-07-01</h2>
+
 <ul>
-<li>
-<p>1 major feature:</p>
+<li><p>1 major feature:</p>
+
 <ul>
 <li>Add ability to preload rack app</li>
-</ul>
-</li>
-<li>
-<p>2 minor bugfixes:</p>
+</ul></li>
+<li><p>2 minor bugfixes:</p>
+
 <ul>
-<li>Don't leak info when not in development. Fixes <a href="https://github.com/puma/puma/issues/256" title="Issue by @rkh, closed 2013-07-01">#256</a></li>
+<li>Don&#39;t leak info when not in development. Fixes <a href="https://github.com/puma/puma/issues/256" title="Issue by @rkh, closed 2013-07-01">#256</a></li>
 <li>Load the app, then bind the ports</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.1.1 / 2013-06-20</h2>
+
 <ul>
-<li>
-<p>2 minor bug fixes:</p>
+<li><p>2 minor bug fixes:</p>
+
 <ul>
 <li>Fix daemonization on jruby</li>
 <li>Load the application before daemonizing. Fixes <a href="https://github.com/puma/puma/issues/285" title="Issue by @mkwiatkowski, closed 2013-06-20">#285</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.1.0 / 2013-06-18</h2>
+
 <ul>
-<li>
-<p>3 minor features:</p>
+<li><p>3 minor features:</p>
+
 <ul>
 <li>Allow listening socket to be configured via Capistrano variable</li>
-<li>Output results from 'stat's command when using pumactl</li>
+<li>Output results from &#39;stat&#39;s command when using pumactl</li>
 <li>Support systemd socket activation</li>
-</ul>
-</li>
-<li>
-<p>15 bug fixes:</p>
+</ul></li>
+<li><p>15 bug fixes:</p>
+
 <ul>
 <li>Deal with pipes closing while stopping. Fixes <a href="https://github.com/puma/puma/issues/270" title="Issue by @iamroody, closed 2013-06-01">#270</a></li>
 <li>Error out early if there is no app configured</li>
@@ -2538,158 +2636,162 @@ to test.</p>
 <li>Handle all engine data when possible. Fixes <a href="https://github.com/puma/puma/issues/251" title="Issue by @cure, closed 2013-06-18">#251</a>.</li>
 <li>Handle all read exceptions properly. Fixes <a href="https://github.com/puma/puma/issues/252" title="Issue by @vixns, closed 2013-06-01">#252</a></li>
 <li>Handle errors from the server better</li>
-</ul>
-</li>
-<li>
-<p>3 doc changes:</p>
+</ul></li>
+<li><p>3 doc changes:</p>
+
 <ul>
 <li>Add note about on_worker_boot hook</li>
 <li>Add some documentation for Clustered mode</li>
 <li>Added quotes to /etc/puma.conf</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.0.1 / 2013-04-30</h2>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
 <li>Fix not starting on JRuby properly</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.0.0 / 2013-04-29</h2>
+
 <p>RailsConf 2013 edition!</p>
+
 <ul>
-<li>
-<p>2 doc changes:</p>
+<li><p>2 doc changes:</p>
+
 <ul>
 <li>Start with rackup -s Puma, NOT rackup -s puma.</li>
 <li>Minor doc fixes in the README.md, Capistrano section</li>
-</ul>
-</li>
-<li>
-<p>2 bug fixes:</p>
+</ul></li>
+<li><p>2 bug fixes:</p>
+
 <ul>
 <li>Fix reading RACK_ENV properly. Fixes <a href="https://github.com/puma/puma/issues/234" title="Issue by @jgarber, closed 2013-04-08">#234</a></li>
 <li>Make cap recipe handle tmp/sockets; fixes <a href="https://github.com/puma/puma/issues/228" title="Issue by @joelmats, closed 2013-04-29">#228</a></li>
-</ul>
-</li>
-<li>
-<p>3 minor changes:</p>
+</ul></li>
+<li><p>3 minor changes:</p>
+
 <ul>
 <li>Fix capistrano recipe</li>
 <li>Fix stdout/stderr logs to sync outputs</li>
 <li>allow binding to IPv6 addresses</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.0.0.b7 / 2013-03-18</h2>
+
 <ul>
-<li>
-<p>5 minor enhancements:</p>
+<li><p>5 minor enhancements:</p>
+
 <ul>
 <li>Add -q option for :start</li>
 <li>Add -V, --version</li>
 <li>Add default Rack handler helper</li>
 <li>Upstart support</li>
 <li>Set worker directory from configuration file</li>
-</ul>
-</li>
-<li>
-<p>12 bug fixes:</p>
+</ul></li>
+<li><p>12 bug fixes:</p>
+
 <ul>
 <li>Close the binder in the right place. Fixes <a href="https://github.com/puma/puma/issues/192" title="Issue by @steverandy, closed 2013-02-09">#192</a></li>
 <li>Handle early term in workers. Fixes <a href="https://github.com/puma/puma/issues/206" title="Issue by @moll, closed 2013-03-19">#206</a></li>
-<li>Make sure that the default port is 80 when the request doesn't include HTTP_X_FORWARDED_PROTO.</li>
+<li>Make sure that the default port is 80 when the request doesn&#39;t include HTTP_X_FORWARDED_PROTO.</li>
 <li>Prevent Errno::EBADF errors on restart when running ruby 2.0</li>
 <li>Record the proper @master_pid</li>
-<li>Respect the header HTTP_X_FORWARDED_PROTO when the host doesn't include a port number.</li>
+<li>Respect the header HTTP_X_FORWARDED_PROTO when the host doesn&#39;t include a port number.</li>
 <li>Retry EAGAIN/EWOULDBLOCK during syswrite</li>
 <li>Run exec properly to restart. Fixes <a href="https://github.com/puma/puma/issues/154" title="Issue by @trevor, closed 2013-03-19">#154</a></li>
 <li>Set Rack run_once to false</li>
 <li>Syncronize all access to @timeouts. Fixes <a href="https://github.com/puma/puma/issues/208" title="Issue by @ochronus, closed 2013-03-18">#208</a></li>
 <li>Write out the state post-daemonize. Fixes <a href="https://github.com/puma/puma/issues/189" title="Issue by @tolot27, closed 2013-02-09">#189</a></li>
 <li>Prevent crash when all workers are gone</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.0.0.b6 / 2013-02-06</h2>
+
 <ul>
-<li>
-<p>2 minor enhancements:</p>
+<li><p>2 minor enhancements:</p>
+
 <ul>
 <li>Add hook for running when a worker boots</li>
 <li>Advertise the Configuration object for apps to use.</li>
-</ul>
-</li>
-<li>
-<p>1 bug fix:</p>
+</ul></li>
+<li><p>1 bug fix:</p>
+
 <ul>
 <li>Change directory in working during upgrade. Fixes <a href="https://github.com/puma/puma/issues/185" title="Issue by @nicolai86, closed 2013-02-06">#185</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.0.0.b5 / 2013-02-05</h2>
+
 <ul>
-<li>
-<p>2 major features:</p>
+<li><p>2 major features:</p>
+
 <ul>
 <li>Add phased worker upgrade</li>
 <li>Add support for the rack hijack protocol</li>
-</ul>
-</li>
-<li>
-<p>2 minor features:</p>
+</ul></li>
+<li><p>2 minor features:</p>
+
 <ul>
 <li>Add -R to specify the restart command</li>
 <li>Add config file option to specify the restart command</li>
-</ul>
-</li>
-<li>
-<p>5 bug fixes:</p>
+</ul></li>
+<li><p>5 bug fixes:</p>
+
 <ul>
 <li>Cleanup pipes properly. Fixes <a href="https://github.com/puma/puma/issues/182" title="Issue by @sriedel, closed 2013-02-05">#182</a></li>
-<li>Daemonize earlier so that we don't lose app threads. Fixes <a href="https://github.com/puma/puma/issues/183" title="Issue by @concept47, closed 2013-02-05">#183</a></li>
+<li>Daemonize earlier so that we don&#39;t lose app threads. Fixes <a href="https://github.com/puma/puma/issues/183" title="Issue by @concept47, closed 2013-02-05">#183</a></li>
 <li>Drain the notification pipe. Fixes <a href="https://github.com/puma/puma/issues/176" title="Issue by @cryo28, closed 2013-02-05">#176</a>, thanks @cryo28</li>
 <li>Move write_pid to after we daemonize. Fixes <a href="https://github.com/puma/puma/issues/180" title="Issue by @tscolari, closed 2013-02-05">#180</a></li>
 <li>Redirect IO properly and emit message for checkpointing</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.0.0.b4 / 2012-12-12</h2>
+
 <ul>
 <li>4 bug fixes:
+
 <ul>
-<li>Properly check #syswrite's value for variable sized buffers. Fixes <a href="https://github.com/puma/puma/issues/170" title="Issue by @nixme, closed 2012-11-29">#170</a></li>
+<li>Properly check #syswrite&#39;s value for variable sized buffers. Fixes <a href="https://github.com/puma/puma/issues/170" title="Issue by @nixme, closed 2012-11-29">#170</a></li>
 <li>Shutdown status server properly</li>
 <li>Handle char vs byte and mixing syswrite with write properly</li>
 <li>made MiniSSL validate key/cert file existence</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.0.0.b3 / 2012-11-22</h2>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
 <li>Package right files in gem</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.0.0.b2 / 2012-11-18</h2>
+
 <ul>
-<li>
-<p>5 minor feature:</p>
+<li><p>5 minor feature:</p>
+
 <ul>
 <li>Now Puma is bundled with an capistrano recipe. Just require
-'puma/capistrano' in you deploy.rb</li>
+&#39;puma/capistrano&#39; in you deploy.rb</li>
 <li>Only inject CommonLogger in development mode</li>
 <li>Add -p option to pumactl</li>
 <li>Add ability to use pumactl to start a server</li>
 <li>Add options to daemonize puma</li>
-</ul>
-</li>
-<li>
-<p>7 bug fixes:</p>
+</ul></li>
+<li><p>7 bug fixes:</p>
+
 <ul>
 <li>Reset the IOBuffer properly. Fixes <a href="https://github.com/puma/puma/issues/148" title="Issue by @rafaelss, closed 2012-11-18">#148</a></li>
 <li>Shutdown gracefully on JRuby with Ctrl-C</li>
@@ -2698,67 +2800,77 @@ to test.</p>
 <li>Force ECONNRESET when read returns nil</li>
 <li>Be sure to empty the drain the todo before shutting down. Fixes <a href="https://github.com/puma/puma/issues/155" title="Issue by @ehlertij, closed 2012-10-13">#155</a></li>
 <li>allow for alternate locations for status app</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>2.0.0.b1 / 2012-09-11</h2>
+
 <ul>
-<li>
-<p>1 major feature:</p>
+<li><p>1 major feature:</p>
+
 <ul>
 <li>Optional worker process mode (-w) to allow for process scaling in
 addition to thread scaling</li>
-</ul>
-</li>
-<li>
-<p>1 bug fix:</p>
+</ul></li>
+<li><p>1 bug fix:</p>
+
 <ul>
 <li>Introduce Puma::MiniSSL to be able to properly control doing
 nonblocking SSL</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <p>NOTE: SSL support in JRuby is not supported at present. Support will
 be added back in a future date when a java <a href="Puma/MiniSSL.html" title="Puma::MiniSSL (module)"><code>MiniSSL</code></a> is added.</p>
+
 <h2>1.6.3 / 2012-09-04</h2>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
 <li>Close sockets waiting in the reactor when a hot restart is performed
 so that browsers reconnect on the next request</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.6.2 / 2012-08-27</h2>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
 <li>Rescue StandardError instead of IOError to handle SystemCallErrors
 as well as other application exceptions inside the reactor.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.6.1 / 2012-07-23</h2>
+
 <ul>
 <li>1 packaging bug fixed:
+
 <ul>
 <li>Include missing files</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.6.0 / 2012-07-23</h2>
+
 <ul>
 <li>1 major bug fix:
+
 <ul>
 <li>Prevent slow clients from starving the server by introducing a
 dedicated IO reactor thread. Credit for reporting goes to @meh.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.5.0 / 2012-07-19</h2>
+
 <ul>
-<li>
-<p>7 contributors to this release:</p>
+<li><p>7 contributors to this release:</p>
+
 <ul>
 <li>Christian Mayer</li>
 <li>Darío Javier Cravero</li>
@@ -2767,10 +2879,9 @@ dedicated IO reactor thread. Credit for reporting goes to @meh.</li>
 <li>Santiago Pastorino</li>
 <li>Thibault Jouan</li>
 <li>tomykaira</li>
-</ul>
-</li>
-<li>
-<p>6 bug fixes:</p>
+</ul></li>
+<li><p>6 bug fixes:</p>
+
 <ul>
 <li>Define RSTRING_NOT_MODIFIED for Rubinius</li>
 <li>Convert status to integer. Fixes <a href="https://github.com/puma/puma/pull/123" title="PR by @jcoene, closed 2012-07-19">#123</a></li>
@@ -2778,161 +2889,167 @@ dedicated IO reactor thread. Credit for reporting goes to @meh.</li>
 <li>Allow compilation with -Werror=format-security option</li>
 <li>Fix wrong HTTP version for a HTTP/1.0 request</li>
 <li>Use String#bytesize instead of String#length</li>
-</ul>
-</li>
-<li>
-<p>3 minor features:</p>
+</ul></li>
+<li><p>3 minor features:</p>
+
 <ul>
 <li>Added support for setting RACK_ENV via the CLI, config file, and rack app</li>
 <li>Allow Server#run to run sync. Fixes <a href="https://github.com/puma/puma/pull/111" title="PR by @kenkeiter, closed 2012-07-19">#111</a></li>
 <li>Puma can now run on windows</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.4.0 / 2012-06-04</h2>
+
 <ul>
-<li>
-<p>1 bug fix:</p>
+<li><p>1 bug fix:</p>
+
 <ul>
 <li>SCRIPT_NAME should be passed from env to allow mounting apps</li>
-</ul>
-</li>
-<li>
-<p>1 experimental feature:</p>
+</ul></li>
+<li><p>1 experimental feature:</p>
+
 <ul>
 <li>Add puma.socket key for direct socket access</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.3.1 / 2012-05-15</h2>
+
 <ul>
 <li>2 bug fixes:
+
 <ul>
 <li>use #bytesize instead of #length for Content-Length header</li>
 <li>Use StringIO properly. Fixes <a href="https://github.com/puma/puma/pull/98" title="PR by @Flink, closed 2012-05-15">#98</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.3.0 / 2012-05-08</h2>
+
 <ul>
-<li>
-<p>2 minor features:</p>
+<li><p>2 minor features:</p>
+
 <ul>
 <li>Return valid Rack responses (passes Lint) from status server</li>
 <li>Add -I option to specify $LOAD_PATH directories</li>
-</ul>
-</li>
-<li>
-<p>4 bug fixes:</p>
+</ul></li>
+<li><p>4 bug fixes:</p>
+
 <ul>
-<li>Don't join the server thread inside the signal handle. Fixes <a href="https://github.com/puma/puma/issues/94" title="Issue by @ender672, closed 2012-05-08">#94</a></li>
+<li>Don&#39;t join the server thread inside the signal handle. Fixes <a href="https://github.com/puma/puma/issues/94" title="Issue by @ender672, closed 2012-05-08">#94</a></li>
 <li>Make NullIO#read mimic IO#read</li>
-<li>Only stop the status server if it's started. Fixes <a href="https://github.com/puma/puma/issues/84" title="Issue by @sigursoft, closed 2012-04-29">#84</a></li>
+<li>Only stop the status server if it&#39;s started. Fixes <a href="https://github.com/puma/puma/issues/84" title="Issue by @sigursoft, closed 2012-04-29">#84</a></li>
 <li>Set RACK_ENV early in cli also. Fixes <a href="https://github.com/puma/puma/issues/78" title="Issue by @dstrelau, closed 2012-04-28">#78</a></li>
-</ul>
-</li>
-<li>
-<p>1 new contributor:</p>
+</ul></li>
+<li><p>1 new contributor:</p>
+
 <ul>
 <li>Jesse Cooke</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.2.2 / 2012-04-28</h2>
+
 <ul>
 <li>4 bug fixes:
+
 <ul>
 <li>Report a lowlevel error to stderr</li>
 <li>Set a fallback SERVER_NAME and SERVER_PORT</li>
 <li>Keep the encoding of the body correct. Fixes <a href="https://github.com/puma/puma/issues/79" title="Issue by @jammi, closed 2012-04-28">#79</a></li>
 <li>show error.to_s along with backtrace for low-level error</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.2.1 / 2012-04-11</h2>
+
 <ul>
 <li>1 bug fix:
+
 <ul>
 <li>Fix rack.url_scheme for SSL servers. Fixes <a href="https://github.com/puma/puma/issues/65" title="Issue by @bporterfield, closed 2012-04-11">#65</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.2.0 / 2012-04-11</h2>
+
 <ul>
-<li>
-<p>1 major feature:</p>
-</li>
-<li>
-<p>When possible, the internal restart does a &quot;hot restart&quot; meaning
-the server sockets remains open, so no connections are lost.</p>
-</li>
-<li>
-<p>1 minor feature:</p>
+<li><p>1 major feature:</p>
+
+<ul>
+<li>When possible, the internal restart does a &quot;hot restart&quot; meaning
+the server sockets remains open, so no connections are lost.</li>
+</ul></li>
+<li><p>1 minor feature:</p>
+
 <ul>
 <li>More helpful fallback error message</li>
-</ul>
-</li>
-<li>
-<p>6 bug fixes:</p>
+</ul></li>
+<li><p>6 bug fixes:</p>
+
 <ul>
 <li>Pass the proper args to unknown_error. Fixes <a href="https://github.com/puma/puma/issues/54" title="Issue by @masterkain, closed 2012-04-10">#54</a>, <a href="https://github.com/puma/puma/pull/58" title="PR by @paneq, closed 2012-04-10">#58</a></li>
 <li>Stop the control server before restarting. Fixes <a href="https://github.com/puma/puma/issues/61" title="Issue by @dustalov, closed 2012-04-10">#61</a></li>
 <li>Fix reporting https only on a true SSL connection</li>
-<li>Set the default content type to 'text/plain'. Fixes <a href="https://github.com/puma/puma/issues/63" title="Issue by @seamusabshere, closed 2012-04-11">#63</a></li>
+<li>Set the default content type to &#39;text/plain&#39;. Fixes <a href="https://github.com/puma/puma/issues/63" title="Issue by @seamusabshere, closed 2012-04-11">#63</a></li>
 <li>Use REUSEADDR. Fixes <a href="https://github.com/puma/puma/issues/60" title="Issue by @paneq, closed 2012-04-11">#60</a></li>
 <li>Shutdown gracefully on SIGTERM. Fixes <a href="https://github.com/puma/puma/pull/53" title="PR by @sxua, closed 2012-04-11">#53</a></li>
-</ul>
-</li>
-<li>
-<p>2 new contributors:</p>
+</ul></li>
+<li><p>2 new contributors:</p>
+
 <ul>
 <li>Seamus Abshere</li>
 <li>Steve Richert</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.1.1 / 2012-03-30</h2>
+
 <ul>
 <li>1 bugfix:
+
 <ul>
 <li>Include puma/compat.rb in the gem (oops!)</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.1.0 / 2012-03-30</h2>
+
 <ul>
-<li>
-<p>1 bugfix:</p>
+<li><p>1 bugfix:</p>
+
 <ul>
 <li>Make sure that the unix socket has the perms 0777 by default</li>
-</ul>
-</li>
-<li>
-<p>1 minor feature:</p>
+</ul></li>
+<li><p>1 minor feature:</p>
+
 <ul>
 <li>Add umask param to the unix:// bind to set the umask</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h2>1.0.0 / 2012-03-29</h2>
+
 <ul>
 <li>Released!</li>
 </ul>
+
 <h2>Ignore - this is for maintainers to copy-paste during release</h2>
+
 <h2>Master</h2>
+
 <ul>
-<li>
-<p>Features</p>
+<li><p>Features</p>
+
 <ul>
-<li>Your feature goes here &lt;Most recent on the top, like GitHub&gt; (#Github Number)</li>
-</ul>
-</li>
-<li>
-<p>Bugfixes</p>
+<li>Your feature goes here <Most recent on the top, like GitHub> (#Github Number)</li>
+</ul></li>
+<li><p>Bugfixes</p>
+
 <ul>
-<li>Your bugfix goes here &lt;Most recent on the top, like GitHub&gt; (#Github Number)</li>
-</ul>
-</li>
+<li>Your bugfix goes here <Most recent on the top, like GitHub> (#Github Number)</li>
+</ul></li>
 </ul>
 
 <div id='footer'></div>

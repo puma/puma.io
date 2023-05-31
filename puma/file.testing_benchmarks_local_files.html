@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Testing - benchmark/local files &mdash; Puma-6.2.1</title>
+<title>File: Testing - benchmark/local files &mdash; Puma-6.3.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.2.1</a> &raquo; 
+      <a href='.'>Puma-6.3.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Testing - benchmark/local files&nbsp;&#x25B2;</a></span>
           </div>
@@ -62,16 +62,21 @@
   </header>
 <div id='content' class='file'>
 <h1>Testing - benchmark/local files</h1>
-<p>These files generate data that shows request-per-second (RPS), etc. Typically, files are in
-pairs, a shell script and a Ruby script. The shell script starts the server, then runs the
+
+<p>These files generate data that shows request-per-second (RPS), etc. Typically, files are in 
+pairs, a shell script and a Ruby script. The shell script starts the server, then runs the 
 Ruby file, which starts client request stream(s), then collects and logs metrics.</p>
+
 <h2>response_time_wrk.sh</h2>
-<p>This uses <a href="https://github.com/ioquatix/wrk">wrk</a> for generating data. One or more wrk runs are performed. Summarizes RPS and
-wrk latency times. The default for the <code>-b</code> argument runs 28 different client request streams,
-and takes a bit over 5 minutes.  See 'Request Stream Configuration' below for <code>-b</code> argument
+
+<p>This uses <a href="https://github.com/ioquatix/wrk">wrk</a> for generating data. One or more wrk runs are performed. Summarizes RPS and 
+wrk latency times. The default for the <code>-b</code> argument runs 28 different client request streams, 
+and takes a bit over 5 minutes.  See &#39;Request Stream Configuration&#39; below for <code>-b</code> argument
 description.</p>
-<details>
-  <summary>Summary output for<br/><code>benchmarks/local/response_time_wrk.sh -w2 -t5:5 -s tcp6</code>:</summary>
+
+<p><details>
+  <summary>Summary output for<br/><code>benchmarks/local/response_time_wrk.sh -w2 -t5:5 -s tcp6</code>:</summary></p>
+
 <pre class="code ruby"><code class="ruby">Type   req/sec    50%     75%     90%     99%    100%  Resp Size
 ─────────────────────────────────────────────────────────────────    1kB
 array   13710    0.74    2.52    5.23    7.76   37.45      1024
@@ -130,63 +135,82 @@ ruby 3.2.0dev (2022-06-14T01:21:55Z master 048f14221c) +YJIT [x86_64-linux]
 [2136] - Goodbye!
 
  5:15 Total Time</code></pre>
-</details><br/>
+
+<p></details><br/></p>
+
 <h2>bench_base.sh, bench_base.rb</h2>
-<p>These two files setup parameters for the Puma server, which is normally started in a shell
-script. It then starts a Ruby file (a subclass of BenchBase), passing arguments to it. The
+
+<p>These two files setup parameters for the Puma server, which is normally started in a shell 
+script. It then starts a Ruby file (a subclass of BenchBase), passing arguments to it. The 
 Ruby file is normally used to generate a client request stream(s).</p>
+
 <h3>Puma Configuration</h3>
+
 <p>The following arguments are used for the Puma server:</p>
+
 <ul>
 <li><strong><code>-C</code></strong> - configuration file</li>
 <li><strong><code>-d</code></strong> - app delay</li>
 <li><strong><code>-r</code></strong> - rackup file, often defaults to test/rackup/ci_select.ru</li>
 <li><strong><code>-s</code></strong> - bind socket type, default is tcp/tcp4, also tcp6, ssl/ssl4, ssl6, unix, or aunix
 (unix &amp; abstract unix are not available with wrk).</li>
-<li><strong><code>-t</code></strong> - threads, expressed as '5:5', same as Puma --thread</li>
+<li><strong><code>-t</code></strong> - threads, expressed as &#39;5:5&#39;, same as Puma --thread</li>
 <li><strong><code>-w</code></strong> - workers, same as Puma --worker</li>
 <li><strong><code>-Y</code></strong> - enable Ruby YJIT</li>
 </ul>
+
 <h3>Request Stream Configuration</h3>
+
 <p>The following arguments are used for request streams:</p>
+
 <ul>
 <li><strong><code>-b</code></strong> - response body configuration. Body type options are a array, c chunked, s string,
 and i for File/IO. None or any combination can be specified, they should start the option.
 Then, any combination of comma separated integers can be used for the response body size
-in kB. The string 'ac50,100' would create four runs, 50kb array, 50kB chunked, 100kB array,
-and 100kB chunked. See 'Testing - test/rackup/ci-*.ru files' for more info.</li>
+in kB. The string &#39;ac50,100&#39; would create four runs, 50kb array, 50kB chunked, 100kB array,
+and 100kB chunked. See &#39;Testing - test/rackup/ci-*.ru files&#39; for more info.</li>
 <li><strong><code>-c</code></strong> - connections per client request stream thread, defaults to 2 for wrk.</li>
 <li><strong><code>-D</code></strong> - duration of client request stream in seconds.</li>
 <li><strong><code>-T</code></strong> - number of threads in the client request stream. For wrk, this defaults to
 80% of Puma workers * max_threads.</li>
 </ul>
+
 <h3>Notes - Configuration</h3>
+
 <p>The above lists script arguments.</p>
+
 <p><code>bench_base.sh</code> contains most server defaults. Many can be set via ENV variables.</p>
+
 <p><code>bench_base.rb</code> contains the client request stream defaults. The default value for
 <code>-b</code> is <code>acsi1,10,100,256,512,1024,2048</code>, which is a 4 x 7 matrix, and hence, runs
 28 jobs. Also, the i body type (File/IO) generates files, they are placed in the
 <code>&quot;#{Dir.tmpdir}/.puma_response_body_io&quot;</code> directory, which is created.</p>
+
 <h3>Notes - wrk</h3>
-<p>The shell scripts use <code>-T</code> for wrk's thread count, since <code>-t</code> is used for Puma
+
+<p>The shell scripts use <code>-T</code> for wrk&#39;s thread count, since <code>-t</code> is used for Puma
 server threads.  Regarding the <code>-c</code> argument, wrk has an interesting behavior.
 The total number of connections is set by <code>(connections/threads).to_i</code>. The scripts
 here use <code>-c</code> as connections per thread.  Hence, using <code>-T4 -c2</code> will yield a total
 of eight wrk connections, two per thread. The equivalent wrk arguments would be <code>-t4 -c8</code>.</p>
+
 <p>Puma can only process so many requests, and requests will queue in the backlog
 until Puma can respond to them. With wrk, if the number of total connections is
 too high, one will see the upper latency times increase, pushing into the lower
-latency times as the connections are increased. The default values for wrk's
-threads and connections were chosen to minimize requests' time in the backlog.</p>
+latency times as the connections are increased. The default values for wrk&#39;s
+threads and connections were chosen to minimize requests&#39; time in the backlog.</p>
+
 <p>An example with four wrk runs using <code>-b s10</code>.  Notice that <code>req/sec</code> varies by
 less than 1%, but the <code>75%</code> times increase by an order of magnitude:</p>
+
 <pre class="code ruby"><code class="ruby">req/sec    50%     75%     90%     99%    100%  Resp Size   wrk cmd line
 ─────────────────────────────────────────────────────────────────────────────
  13597   0.755   2.550   5.260   7.800  13.310     12040    wrk -t8  -c16 -d10
  13549   0.793   4.430   8.140  11.220  16.600     12002    wrk -t10 -c20 -d10
  13570   1.040  25.790  40.010  49.070  58.300     11982    wrk -t8  -c64 -d10
  13684   1.050  25.820  40.080  49.160  66.190     12033    wrk -t16 -c64 -d10</code></pre>
-<p>Finally, wrk's output may cause rounding errors, so the response body size calculation is
+
+<p>Finally, wrk&#39;s output may cause rounding errors, so the response body size calculation is
 imprecise.</p>
 
 <div id='footer'></div>
