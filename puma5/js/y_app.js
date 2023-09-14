@@ -2,7 +2,7 @@
 
 var t2GA;
 
-if ( /msp-greg\.github\.io/i.test(location.hostname) ) {
+if ( /github\.io/i.test(location.hostname) ) {
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -3389,12 +3389,12 @@ function addContent(content) {
 
   // for javascript files
   if ( typeof hljs !== 'undefined' &&
-      hljs.highlightBlock instanceof Function ) {
+      hljs.highlightElement instanceof Function ) {
 //    var nl = content.querySelectorAll('pre.code.javascript, pre.code.cpp');
     var nl = content.querySelectorAll('pre.code');
     for (var i = 0, el; el = nl[i]; i++) {
       if ( !(el.classList.contains('ruby') || el.classList.contains('example') ) )
-        hljs.highlightBlock(el);
+        hljs.highlightElement(el);
     }
   }
 
@@ -4291,6 +4291,12 @@ function eDOMContent(e) {
   waitHTML();
   commonLoad();
   firstLoad();
+
+  if ( typeof hljs !== 'undefined' && hljs.highlightElement instanceof Function ) {
+    hljs.configure({
+      ignoreUnescapedHTML: true
+    });
+  };
 }
 
 //} @!endgroup

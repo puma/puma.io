@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Compile Options &mdash; Puma-5.6.5</title>
+<title>File: Compile Options &mdash; Puma-5.6.7</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.6.5</a> &raquo; 
+      <a href='.'>Puma-5.6.7</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Compile Options&nbsp;&#x25B2;</a></span>
           </div>
@@ -62,14 +62,21 @@
   </header>
 <div id='content' class='file'>
 <h1>Compile Options</h1>
-<p>There are some <code>cflags</code> provided to change Puma's default configuration for its
+
+<p>There are some <code>cflags</code> provided to change Puma&#39;s default configuration for its
 C extension.</p>
+
 <h2>Query String, <code>PUMA_QUERY_STRING_MAX_LENGTH</code></h2>
+
 <p>By default, the max length of <code>QUERY_STRING</code> is <code>1024 * 10</code>. But you may want to
 adjust it to accept longer queries in GET requests.</p>
+
 <p>For manual install, pass the <code>PUMA_QUERY_STRING_MAX_LENGTH</code> option like this:</p>
+
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_puma'>puma</span> <span class='op'>-</span><span class='op'>-</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_with'>with</span><span class='op'>-</span><span class='id identifier rubyid_cflags'>cflags</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-D PUMA_QUERY_STRING_MAX_LENGTH=64000</span><span class='tstring_end'>&quot;</span></span></code></pre>
+
 <p>For Bundler, use its configuration system:</p>
+
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_config'>config</span> <span class='id identifier rubyid_build'>build</span>.<span class='id identifier rubyid_puma'>puma</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--with-cflags=&#39;-D PUMA_QUERY_STRING_MAX_LENGTH=64000&#39;</span><span class='tstring_end'>&quot;</span></span></code></pre>
 
 <div id='footer'></div>
