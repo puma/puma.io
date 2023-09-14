@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Stats &mdash; Puma-5.6.5</title>
+<title>File: Stats &mdash; Puma-5.6.7</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.6.5</a> &raquo; 
+      <a href='.'>Puma-5.6.7</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Stats&nbsp;&#x25B2;</a></span>
           </div>
@@ -62,14 +62,23 @@
   </header>
 <div id='content' class='file'>
 <h2>Accessing stats</h2>
+
 <p>Stats can be accessed in two ways:</p>
+
 <h3>control server</h3>
+
 <p><code>$ pumactl stats</code> or <code>GET /stats</code></p>
+
 <p><a href="https://github.com/puma/puma#controlstatus-server">Read more about <code>pumactl</code> and the control server in the README.</a>.</p>
+
 <h3>Puma.stats</h3>
+
 <p><a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> produces a JSON string. <a href="Puma.html#stats_hash-class_method" title="Puma.stats_hash (method)">Puma.stats_hash</a> produces a ruby hash.</p>
+
 <h4>in single mode</h4>
+
 <p>Invoke <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> anywhere in runtime, e.g. in a rails initializer:</p>
+
 <pre class="code ruby"><code class="ruby"><span class='comment'># config/initializers/puma_stats.rb
 </span>
 <span class='const'>Thread</span>.<span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
@@ -78,8 +87,11 @@
     <span class='id identifier rubyid_puts'>puts</span> <span class='const'><a href="Puma.html" title="Puma (module)">Puma</a></span>.<span class='id identifier rubyid_stats'><a href="Puma.html#stats-class_method" title="Puma.stats (method)">stats</a></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></code></pre>
+
 <h4>in cluster mode</h4>
+
 <p>Invoke <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> from the master process</p>
+
 <pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
 </span>
 <span class='id identifier rubyid_before_fork'>before_fork</span> <span class='kw'>do</span>
@@ -90,13 +102,19 @@
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></code></pre>
+
 <h2>Explanation of stats</h2>
+
 <p><a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> returns different information and a different structure depending on if Puma is in single vs. cluster mode. There is one top-level attribute that is common to both modes:</p>
+
 <ul>
 <li>started_at: when Puma was started</li>
 </ul>
+
 <h3>single mode and individual workers in cluster mode</h3>
+
 <p>When Puma runs in single mode, these stats are available at the top level. When Puma runs in cluster mode, these stats are available within the <code>worker_status</code> array in a hash labeled <code>last_status</code>, in an array of hashes where one hash represents each worker.</p>
+
 <ul>
 <li>backlog: requests that are waiting for an available thread to be available. if this is above 0, you need more capacity [always true?]</li>
 <li>running: how many threads are running</li>
@@ -104,7 +122,9 @@
 <li>max_threads: the maximum number of threads Puma is configured to spool per worker</li>
 <li>requests_count: the number of requests this worker has served since starting</li>
 </ul>
+
 <h3>cluster mode</h3>
+
 <ul>
 <li>phase: which phase of restart the process is in, during [phased restart])</li>
 <li>workers: ??</li>
@@ -112,18 +132,24 @@
 <li>old_workers: ??</li>
 <li>worker_status: array of hashes of info for each worker (see below)</li>
 </ul>
+
 <h3>worker status</h3>
+
 <ul>
 <li>started_at: when the worker started</li>
 <li>pid: the process id of the worker process</li>
 <li>index: each worker gets a number. if Puma is configured to have 3 workers, then this will be 0, 1, or 2</li>
-<li>booted: if it's done booting [?]</li>
-<li>last_checkin: Last time the worker responded to the master process' heartbeat check.</li>
-<li>last_status: a hash of info about the worker's state handling requests. See the explanation for this in &quot;single mode and individual workers in cluster mode&quot; section above.</li>
+<li>booted: if it&#39;s done booting [?]</li>
+<li>last_checkin: Last time the worker responded to the master process&#39; heartbeat check.</li>
+<li>last_status: a hash of info about the worker&#39;s state handling requests. See the explanation for this in &quot;single mode and individual workers in cluster mode&quot; section above.</li>
 </ul>
+
 <h2>Examples</h2>
+
 <p>Here are two example stats hashes produced by <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a>:</p>
+
 <h3>single</h3>
+
 <pre class="code json"><code class="json">{
   &quot;started_at&quot;: &quot;2021-01-14T07:12:35Z&quot;,
   &quot;backlog&quot;: 0,
@@ -133,7 +159,9 @@
   &quot;requests_count&quot;: 3
 }
 </code></pre>
+
 <h3>cluster</h3>
+
 <pre class="code json"><code class="json">{
   &quot;started_at&quot;: &quot;2021-01-14T07:09:17Z&quot;,
   &quot;workers&quot;: 2,

@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Architecture &mdash; Puma-5.6.5</title>
+<title>File: Architecture &mdash; Puma-5.6.7</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-5.6.5</a> &raquo; 
+      <a href='.'>Puma-5.6.7</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Architecture&nbsp;&#x25B2;</a></span>
           </div>
@@ -62,15 +62,20 @@
   </header>
 <div id='content' class='file'>
 <h1>Architecture</h1>
+
 <h2>Overview</h2>
-<p><img src="images/puma-general-arch.png" alt="https://bit.ly/2iJuFky" /></p>
+
+<p><img src="images/puma-general-arch.png" alt="https://bit.ly/2iJuFky"></p>
+
 <p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> is a threaded Ruby HTTP application server processing requests across a TCP
 and/or UNIX socket.</p>
+
 <p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> processes (there can be one or many) accept connections from the socket via
 a thread (in the <a href="../lib/puma/reactor.rb"><a href="Puma/Reactor.html" title="Puma::Reactor (class)"><code>Reactor</code></a></a> class). The connection,
 once fully buffered and read, moves into the <code>todo</code> list, where an available
 thread will pick it up (in the <a href="../lib/puma/thread_pool.rb"><a href="Puma/ThreadPool.html" title="Puma::ThreadPool (class)"><code>ThreadPool</code></a></a>
 class).</p>
+
 <p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> works in two main modes: cluster and single. In single mode, only one <a href="Puma.html" title="Puma (module)"><code>Puma</code></a>
 process boots. In cluster mode, a <code>master</code> process is booted, which prepares
 (and may boot) the application and then uses the <code>fork()</code> system call to create
@@ -78,13 +83,18 @@ one or more <code>child</code> processes. These <code>child</code> processes all
 socket. The <code>master</code> process does not listen to the socket or process requests -
 its purpose is primarily to manage and listen for UNIX signals and possibly kill
 or boot <code>child</code> processes.</p>
+
 <p>We sometimes call <code>child</code> processes (or <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> processes in <code>single</code> mode)
-<em>workers</em>, and we sometimes call the threads created by Puma's
+<em>workers</em>, and we sometimes call the threads created by Puma&#39;s
 <a href="../lib/puma/thread_pool.rb"><a href="Puma/ThreadPool.html" title="Puma::ThreadPool (class)"><code>ThreadPool</code></a></a> <em>worker threads</em>.</p>
+
 <h2>How Requests Work</h2>
-<p><img src="images/puma-connection-flow.png" alt="https://bit.ly/2zwzhEK" /></p>
+
+<p><img src="images/puma-connection-flow.png" alt="https://bit.ly/2zwzhEK"></p>
+
 <ul>
 <li>Upon startup, <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> listens on a TCP or UNIX socket.
+
 <ul>
 <li>The backlog of this socket is configured with a default of 1024, but the
 actual backlog value is capped by the <code>net.core.somaxconn</code> sysctl value.
@@ -92,28 +102,25 @@ The backlog determines the size of the queue for unaccepted connections. If
 the backlog is full, the operating system is not accepting new connections.</li>
 <li>This socket backlog is distinct from the <code>backlog</code> of work as reported by
 <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> or the control server. The backlog that <a href="Puma.html#stats-class_method" title="Puma.stats (method)">Puma.stats</a> refers to
-represents the number of connections in the process' <code>todo</code> set waiting for
+represents the number of connections in the process&#39; <code>todo</code> set waiting for
 a thread from the <a href="../lib/puma/thread_pool.rb"><a href="Puma/ThreadPool.html" title="Puma::ThreadPool (class)"><code>ThreadPool</code></a></a>.</li>
-</ul>
-</li>
+</ul></li>
 <li>By default, a single, separate thread (created by the
 <a href="../lib/puma/reactor.rb"><a href="Puma/Reactor.html" title="Puma::Reactor (class)"><code>Reactor</code></a></a> class) reads and buffers requests from the
 socket.
+
 <ul>
 <li>When at least one worker thread is available for work, the reactor thread
 listens to the socket and accepts a request (if one is waiting).</li>
-<li>The reactor thread waits for the entire HTTP request to be received.
-<ul>
+<li>The reactor thread waits for the entire HTTP request to be received.</li>
 <li>Puma exposes the time spent waiting for the HTTP request body to be
-received to the Rack app as <code>env['puma.request_body_wait']</code>
+received to the Rack app as <code>env[&#39;puma.request_body_wait&#39;]</code>
 (milliseconds).</li>
-</ul>
-</li>
 <li>Once fully buffered and received, the connection is pushed into the &quot;todo&quot;
 set.</li>
-</ul>
-</li>
+</ul></li>
 <li>Worker threads pop work off the &quot;todo&quot; set for processing.
+
 <ul>
 <li>The worker thread processes the request via <code>call</code>ing the configured Rack
 application. The Rack application generates the HTTP response.</li>
@@ -122,15 +129,19 @@ requests via a separate thread, it does not use a separate thread for
 responses.</li>
 <li>Once done, the thread becomes available to process another connection in the
 &quot;todo&quot; set.</li>
+</ul></li>
 </ul>
-</li>
-</ul>
+
 <h3><code>queue_requests</code></h3>
-<p><img src="images/puma-connection-flow-no-reactor.png" alt="https://bit.ly/2zxCJ1Z" /></p>
+
+<p><img src="images/puma-connection-flow-no-reactor.png" alt="https://bit.ly/2zxCJ1Z"></p>
+
 <p>The <code>queue_requests</code> option is <code>true</code> by default, enabling the separate reactor
 thread used to buffer requests as described above.</p>
+
 <p>If set to <code>false</code>, this buffer will not be used for connections while waiting
 for the request to arrive.</p>
+
 <p>In this mode, when a connection is accepted, it is added to the &quot;todo&quot; queue
 immediately, and a worker will synchronously do any waiting necessary to read
 the HTTP request from the socket.</p>
