@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: README &mdash; Puma-6.3.0</title>
+<title>File: README &mdash; Puma-6.4.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.3.0</a> &raquo; 
+      <a href='.'>Puma-6.4.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: README&nbsp;&#x25B2;</a></span>
           </div>
@@ -67,7 +67,7 @@
 
 <h1>Puma: A Ruby Web Server Built For Parallelism</h1>
 
-<p><a href="https://github.com/puma/puma/actions?query=branch%3Av6.3.0"><img src="https://github.com/puma/puma/workflows/Tests/badge.svg?branch=v6.3.0" alt="Actions"></a>
+<p><a href="https://github.com/puma/puma/actions?query=branch%3Av6.4.0"><img src="https://github.com/puma/puma/workflows/Tests/badge.svg?branch=v6.4.0" alt="Actions"></a>
 <a href="https://codeclimate.com/github/puma/puma"><img src="https://codeclimate.com/github/puma/puma.svg" alt="Code Climate"></a>
 <a href="https://stackoverflow.com/questions/tagged/puma"><img src="https://img.shields.io/badge/stackoverflow-Puma-blue.svg" alt="StackOverflow"></a></p>
 
@@ -75,11 +75,18 @@
 
 <h2>Built For Speed &amp; Parallelism</h2>
 
-<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> processes requests using a C-optimized Ragel extension (inherited from Mongrel) that provides fast, accurate HTTP 1.1 protocol parsing in a portable way. <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> then serves the request using a thread pool. Each request is served in a separate thread, so truly parallel Ruby implementations (JRuby, Rubinius) will use all available CPU cores.</p>
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> is a server for <a href="https://github.com/rack/rack">Rack</a>-powered HTTP applications written in Ruby.  It is: </p>
+
+<ul>
+<li><strong>Multi-threaded</strong>. Each request is served in a separate thread. This helps you serve more requests per second with less memory use.</li>
+<li><strong>Multi-process</strong>. &quot;Pre-forks&quot; in cluster mode, using less memory per-process thanks to copy-on-write memory.</li>
+<li><strong>Standalone</strong>. With SSL support, zero-downtime rolling restarts and a built-in request bufferer, you can deploy <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> without any reverse proxy.</li>
+<li><strong>Battle-tested</strong>. Our HTTP parser is inherited from Mongrel and has over 15 years of production use. <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> is currently the most popular Ruby webserver, and is the default server for Ruby on Rails.</li>
+</ul>
 
 <p>Originally designed as a server for <a href="https://github.com/rubinius/rubinius">Rubinius</a>, <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> also works well with Ruby (MRI) and JRuby.</p>
 
-<p>On MRI, there is a Global VM Lock (GVL) that ensures only one thread can run Ruby code at a time. But if you&#39;re doing a lot of blocking <a href="IO.html" title="IO (class)"><code>IO</code></a> (such as HTTP calls to external APIs like Twitter), <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> still improves MRI&#39;s throughput by allowing <a href="IO.html" title="IO (class)"><code>IO</code></a> waiting to be done in parallel.</p>
+<p>On MRI, there is a Global VM Lock (GVL) that ensures only one thread can run Ruby code at a time. But if you&#39;re doing a lot of blocking <a href="IO.html" title="IO (class)"><code>IO</code></a> (such as HTTP calls to external APIs like Twitter), <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> still improves MRI&#39;s throughput by allowing <a href="IO.html" title="IO (class)"><code>IO</code></a> waiting to be done in parallel. Truly parallel Ruby implementations (TruffleRuby, JRuby) don&#39;t have this limitation.</p>
 
 <h2>Quick Start</h2>
 
@@ -159,6 +166,8 @@ and the loaded configuration will be printed as part of the boot process.</p>
 
 <p>Note that threads are still used in clustered mode, and the <code>-t</code> thread flag setting is per worker, so <code>-w 2 -t 16:16</code> will spawn 32 threads in total, with 16 in each worker process.</p>
 
+<p>For an in-depth discussion of the tradeoffs of thread and process count settings, [see our docs]#workers-per-pod-and-other-config-issues).</p>
+
 <p>In clustered mode, Puma can &quot;preload&quot; your application. This loads all the application code <em>prior</em> to forking. Preloading reduces total memory usage of your application via an operating system feature called <a href="https://en.wikipedia.org/wiki/Copy-on-write">copy-on-write</a>.</p>
 
 <p>If the <code>WEB_CONCURRENCY</code> environment variable is set to a value &gt; 1 (and <code>--prune-bundler</code> has not been specified), preloading will be enabled by default. Otherwise, you can use the <code>--preload</code> flag from the command line:</p>
@@ -237,26 +246,28 @@ error-tracking service (in this example, <a href="https://rollbar.com">rollbar</
 
 <p>Puma automatically configures SSL when the <a href="https://github.com/socketry/localhost"><code>localhost</code></a> gem is loaded in a <code>development</code> environment:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='comment'># Add the gem to your Gemfile
-</span><span class='id identifier rubyid_group'>group</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_development'>development</span>) <span class='kw'>do</span>
+<p>Add the gem to your Gemfile:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_group'>group</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_development'>development</span>) <span class='kw'>do</span>
   <span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span>
-<span class='kw'>end</span>
+<span class='kw'>end</span></code></pre>
 
-<span class='comment'># And require it implicitly using bundler
-</span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bundler</span><span class='tstring_end'>&quot;</span></span>
-<span class='const'>Bundler</span>.<span class='id identifier rubyid_require'>require</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_default'>default</span><span class='comma'>,</span> <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>RACK_ENV</span><span class='tstring_end'>&quot;</span></span>].<span class='id identifier rubyid_to_sym'>to_sym</span>)
+<p>And require it implicitly using bundler:</p>
 
-<span class='comment'># Alternatively, you can require the gem in config.ru:
-</span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>./app</span><span class='tstring_end'>&#39;</span></span>
-<span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span>
-<span class='id identifier rubyid_run'>run</span> <span class='const'>Sinatra</span><span class='op'>::</span><span class='const'>Application</span></code></pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bundler</span><span class='tstring_end'>&quot;</span></span>
+<span class='const'>Bundler</span>.<span class='id identifier rubyid_require'>require</span>(<span class='symbeg'>:</span><span class='id identifier rubyid_default'>default</span><span class='comma'>,</span> <span class='const'>ENV</span>[<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>RACK_ENV</span><span class='tstring_end'>&quot;</span></span>].<span class='id identifier rubyid_to_sym'>to_sym</span>)</code></pre>
+
+<p>Alternatively, you can require the gem in your configuration file, either <code>config/puma/development.rb</code>, <code>config/puma.rb</code>, or set via the <code>-C</code> cli option:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span>
+<span class='comment'># configuration methods (from Puma::DSL) as needed</span></code></pre>
 
 <p>Additionally, Puma must be listening to an SSL socket:</p>
 
-<pre class="code shell"><code class="shell">$ puma -b &#39;ssl://localhost:9292&#39; config.ru
+<pre class="code shell"><code class="shell">$ puma -b &#39;ssl://localhost:9292&#39; -C config/use_local_host.rb
 
 # The following options allow you to reach Puma over HTTP as well:
-$ puma -b ssl://localhost:9292 -b tcp://localhost:9393 config.ru
+$ puma -b ssl://localhost:9292 -b tcp://localhost:9393 -C config/use_local_host.rb
 </code></pre>
 
 <h4>Controlling SSL Cipher Suites</h4>
