@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: History &mdash; Puma-6.3.0</title>
+<title>File: History &mdash; Puma-6.4.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.3.0</a> &raquo; 
+      <a href='.'>Puma-6.4.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: History&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,6 +61,43 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
+<h2>6.4.0 / 2023-09-21</h2>
+
+<ul>
+<li><p>Features</p>
+
+<ul>
+<li>on_thread_exit hook (<a href="https://github.com/puma/puma/pull/2920" title="PR by @biinari, merged 2023-07-11">#2920</a>)</li>
+<li>on_thread_start_hook (<a href="https://github.com/puma/puma/pull/3195" title="PR by @binarygit, merged 2023-08-15">#3195</a>) </li>
+<li>Shutdown on idle (<a href="https://github.com/puma/puma/pull/3209" title="PR by @joshuay03, merged 2023-09-04">#3209</a>, <a href="https://github.com/puma/puma/issues/2580" title="Issue by @schuetzm, closed 2023-09-04">#2580</a>)</li>
+<li>New error message when control server port taken (<a href="https://github.com/puma/puma/pull/3204" title="PR by @dhavalsingh, merged 2023-08-25">#3204</a>)</li>
+</ul></li>
+<li><p>Refactor</p>
+
+<ul>
+<li>Remove <code>Forwardable</code> dependency (<a href="https://github.com/puma/puma/pull/3191" title="PR by @MSP-Greg, merged 2023-08-31">#3191</a>, #3190)</li>
+<li>Update URLMap Regexp usage for Ruby v3.3 (<a href="https://github.com/puma/puma/pull/3165" title="PR by @fallwith, merged 2023-06-06">#3165</a>)</li>
+</ul></li>
+<li><p>Bugfixes</p>
+
+<ul>
+<li>Bring the cert_pem: parameter into parity with the cert: parameter to ssl_bind. (<a href="https://github.com/puma/puma/pull/3174" title="PR by @copiousfreetime, merged 2023-06-11">#3174</a>)</li>
+<li>Fix using control server with IPv6 host (<a href="https://github.com/puma/puma/pull/3181" title="PR by @MSP-Greg, merged 2023-06-23">#3181</a>) </li>
+<li>control_cli.rb - add require_relative &#39;log_writer&#39; (<a href="https://github.com/puma/puma/pull/3187" title="PR by @MSP-Greg, merged 2023-06-30">#3187</a>)</li>
+<li>Fix cases where fallback Rack response wasn&#39;t sent to the client (<a href="https://github.com/puma/puma/pull/3094" title="PR by @Vuta, merged 2023-07-23">#3094</a>)</li>
+</ul></li>
+</ul>
+
+<h2>6.3.1 / 2023-08-18</h2>
+
+<ul>
+<li>Security 
+
+<ul>
+<li>Address HTTP request smuggling vulnerabilities with zero-length Content Length header and trailer fields (<a href="https://github.com/puma/puma/security/advisories/GHSA-68xg-gqqm-vgj8">GHSA-68xg-gqqm-vgj8</a>)</li>
+</ul></li>
+</ul>
+
 <h2>6.3.0 / 2023-05-31</h2>
 
 <ul>
@@ -78,7 +115,7 @@
 <li>Handle malformed request path (<a href="https://github.com/puma/puma/pull/3155" title="PR by @dentarg, merged 2023-05-14">#3155</a>, <a href="https://github.com/puma/puma/issues/3148" title="Issue by @dentarg, closed 2023-05-14">#3148</a>)</li>
 <li>Misc lib file fixes - trapping additional errors, CI helper (<a href="https://github.com/puma/puma/pull/3129" title="PR by @MSP-Greg, merged 2023-05-02">#3129</a>)</li>
 <li>Fixup req form data file upload with &quot;r\n&quot; line endings (<a href="https://github.com/puma/puma/pull/3137" title="PR by @MSP-Greg, merged 2023-04-30">#3137</a>)</li>
-<li>Restore rack 1.6 compatibility Restore rack 1.6 compatibility (<a href="https://github.com/puma/puma/pull/3156" title="PR by @severin, merged 2023-05-16">#3156</a>)</li>
+<li>Restore rack 1.6 compatibility (<a href="https://github.com/puma/puma/pull/3156" title="PR by @severin, merged 2023-05-16">#3156</a>)</li>
 </ul></li>
 <li><p>Refactor</p>
 
@@ -248,6 +285,26 @@
 </ul></li>
 </ul>
 
+<h2>5.6.7 / 2023-08-18</h2>
+
+<ul>
+<li>Security 
+
+<ul>
+<li>Address HTTP request smuggling vulnerabilities with zero-length Content Length header and trailer fields (<a href="https://github.com/puma/puma/security/advisories/GHSA-68xg-gqqm-vgj8">GHSA-68xg-gqqm-vgj8</a>)</li>
+</ul></li>
+</ul>
+
+<h2>5.6.6 / 2023-06-21</h2>
+
+<ul>
+<li>Bugfix
+
+<ul>
+<li>Prevent loading with rack 3 (<a href="https://github.com/puma/puma/pull/3166" title="PR by @JoeDupuis, merged 2023-06-08">#3166</a>)</li>
+</ul></li>
+</ul>
+
 <h2>5.6.5 / 2022-08-23</h2>
 
 <ul>
@@ -314,7 +371,7 @@
 <li>Remove yaml (psych) requirement in StateFile (<a href="https://github.com/puma/puma/pull/2784" title="PR by @MSP-Greg, merged 2022-01-01">#2784</a>)</li>
 <li>Allow culling of oldest workers, previously was only youngest (<a href="https://github.com/puma/puma/pull/2773" title="PR by @ob-stripe, merged 2022-01-01">#2773</a>, <a href="https://github.com/puma/puma/pull/2794" title="PR by @johnnyshields, merged 2022-01-10">#2794</a>)</li>
 <li>Add worker_check_interval configuration option (<a href="https://github.com/puma/puma/pull/2759" title="PR by @ob-stripe, merged 2021-12-11">#2759</a>)</li>
-<li>Always send lowlevel_error response to client (<a href="https://github.com/puma/puma/pull/2731" title="PR by @baelter, merged 2021-11-02">#2731</a>, <a href="https://github.com/puma/puma/issues/2341" title="Issue by @cjlarose, opened 2020-08-18">#2341</a>)</li>
+<li>Always send lowlevel_error response to client (<a href="https://github.com/puma/puma/pull/2731" title="PR by @baelter, merged 2021-11-02">#2731</a>, <a href="https://github.com/puma/puma/issues/2341" title="Issue by @cjlarose, closed 2023-07-23">#2341</a>)</li>
 <li>Support for cert_pem and key_pem with ssl_bind DSL (<a href="https://github.com/puma/puma/pull/2728" title="PR by @dalibor, merged 2021-10-31">#2728</a>)</li>
 </ul></li>
 <li><p>Bugfixes</p>

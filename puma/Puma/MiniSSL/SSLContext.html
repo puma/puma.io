@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::MiniSSL::SSLContext &mdash; Puma-6.3.0</title>
+<title>Class: Puma::MiniSSL::SSLContext &mdash; Puma-6.4.0</title>
 
 <link rel='stylesheet'  type='text/css' href='../../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../../'>Puma-6.3.0</a> &raquo; 
+      <a href='../../'>Puma-6.4.0</a> &raquo; 
       <a href='../../_index.html#alpha_S'>Index (S)</a> &raquo; 
         <a href="../../Puma.html" title="Puma (module)">Puma</a> &raquo; 
         <a href="../MiniSSL.html" title="Puma::MiniSSL (module)">MiniSSL</a> &raquo; 
@@ -78,7 +78,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.3.0/ext/puma_http11/mini_ssl.c#L696'>ext/puma_http11/mini_ssl.c</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.4.0/ext/puma_http11/mini_ssl.c#L751'>ext/puma_http11/mini_ssl.c</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -100,11 +100,11 @@
   <h3 class='signature  first'>
     .<strong>new</strong>(mini_ssl_ctx)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.3.0/ext/puma_http11/mini_ssl.c#L222-L435'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.0/ext/puma_http11/mini_ssl.c#L228-L490'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='222' data-end='435'></pre>
+  <pre class='lines_num' data-start='228' data-end='490'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 222</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/mini_ssl.c', line 228</span></pre>
 <pre class='code cpp'>
 
 VALUE
@@ -114,7 +114,7 @@ sslctx_initialize(VALUE self, VALUE mini_ssl_ctx) {
   VALUE key, cert, ca, verify_mode, ssl_cipher_filter, no_tlsv1, no_tlsv1_1,
     verification_flags, session_id_bytes, cert_pem, key_pem, key_password_command, key_password;
   BIO *bio;
-  X509 *x509;
+  X509 *x509 = NULL;
   EVP_PKEY *pkey;
   pem_password_cb *password_cb = NULL;
   const char *password = NULL;
@@ -186,16 +186,65 @@ sslctx_initialize(VALUE self, VALUE mini_ssl_ctx) {
   }
 
   if (!NIL_P(cert_pem)) {
+    X509 *ca = NULL;
+    unsigned long err;
+
     bio = BIO_new(BIO_s_mem());
     BIO_puts(bio, RSTRING_PTR(cert_pem));
-    x509 = PEM_read_bio_X509(bio, NULL, NULL, NULL);
 
-    if (SSL_CTX_use_certificate(ctx, x509) != 1) {
-      BIO_free(bio);
-      raise_file_error(&quot;SSL_CTX_use_certificate&quot;, RSTRING_PTR(cert_pem));
+    /**
+     * Much of this pulled as a simplified version of the `use_certificate_chain_file` method
+     * from openssl&#39;s `ssl_rsa.c` file.
+     */
+
+    /* first read the cert as the first item in the pem file */
+    x509 = PEM_read_bio_X509(bio, NULL, NULL, NULL);
+    if (NULL == x509) {
+      BIO_free_all(bio);
+      raise_param_error(&quot;PEM_read_bio_X509&quot;, &quot;cert_pem&quot;);
     }
-    X509_free(x509);
-    BIO_free(bio);
+
+    /* Add the cert to the context */
+    /* 1 is success - otherwise check the error codes */
+    if (1 != SSL_CTX_use_certificate(ctx, x509)) {
+      BIO_free_all(bio);
+      raise_param_error(&quot;SSL_CTX_use_certificate&quot;, &quot;cert_pem&quot;);
+    }
+
+    X509_free(x509); /* no longer need our reference */
+
+    /* Now lets load up the rest of the certificate chain */
+    /* 1 is success 0 is error */
+    if (0 == SSL_CTX_clear_chain_certs(ctx)) {
+      BIO_free_all(bio);
+      raise_param_error(&quot;SSL_CTX_clear_chain_certs&quot;,&quot;cert_pem&quot;);
+    }
+
+    while (1) {
+      ca = PEM_read_bio_X509(bio, NULL, NULL, NULL);
+
+      if (NULL == ca) {
+        break;
+      }
+
+      if (0 == SSL_CTX_add0_chain_cert(ctx, ca)) {
+        BIO_free_all(bio);
+        raise_param_error(&quot;SSL_CTX_add0_chain_cert&quot;,&quot;cert_pem&quot;);
+      }
+      /* don&#39;t free ca - its now owned by the context */
+    }
+
+    /* ca is NULL - so its either the end of the file or an error */
+    err = ERR_peek_last_error();
+
+    /* If its the end of the file - then we are done, in any case free the bio */
+    BIO_free_all(bio);
+
+    if ((ERR_GET_LIB(err) == ERR_LIB_PEM) &amp;&amp; (ERR_GET_REASON(err) == PEM_R_NO_START_LINE)) {
+      ERR_clear_error();
+    } else {
+      raise_param_error(&quot;PEM_read_bio_X509&quot;,&quot;cert_pem&quot;);
+    }
   }
 
   if (!NIL_P(key_pem)) {

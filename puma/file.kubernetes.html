@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Kubernetes &mdash; Puma-6.3.0</title>
+<title>File: Kubernetes &mdash; Puma-6.4.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.3.0</a> &raquo; 
+      <a href='.'>Puma-6.4.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Kubernetes&nbsp;&#x25B2;</a></span>
           </div>
@@ -127,6 +127,19 @@ spec:
 <p>The way Kubernetes works this way, rather than handling step 2 synchronously, is due to the CAP theorem: in a distributed system there is no way to guarantee that any message will arrive promptly. In particular, waiting for all Service controllers to report back might get stuck for an indefinite time if one of them has already been terminated or if there has been a net split. A way to work around this is to add a sleep to the pre-stop hook of the same time as the <code>terminationGracePeriodSeconds</code> time. This will allow the Puma process to keep serving new requests during the entire grace period, although it will no longer receive new requests after all Service controllers have propagated the removal of the pod from their endpoint lists. Then, after <code>terminationGracePeriodSeconds</code>, the pod receives <code>SIGKILL</code> and closes down. If your process can&#39;t handle SIGKILL properly, for example because it needs to release locks in different services, you can also sleep for a shorter period (and/or increase <code>terminationGracePeriodSeconds</code>) as long as the time slept is longer than the time that your Service controllers take to propagate the pod removal. The downside of this workaround is that all pods will take at minimum the amount of time slept to shut down and this will increase the time required for your rolling deploy.</p>
 
 <p>More discussions and links to relevant articles can be found in <a href="https://github.com/puma/puma/issues/2343">https://github.com/puma/puma/issues/2343</a>.</p>
+
+<h2>Workers Per Pod, and Other Config Issues</h2>
+
+<p>With containerization, you will have to make a decision about how &quot;big&quot; to make each pod. Should you run 2 pods with 50 workers each? 25 pods, each with 4 workers? 100 pods, with each Puma running in single mode? Each scenario represents the same total amount of capacity (100 Puma processes that can respond to requests), but there are tradeoffs to make.</p>
+
+<ul>
+<li>Worker counts should be somewhere between 4 and 32 in most cases. You want more than 4 in order to minimize time spent in request queueing for a free Puma worker, but probably less than ~32 because otherwise autoscaling is working in too large of an increment or they probably won&#39;t fit very well into your nodes.</li>
+<li>Unless you have a very I/O-heavy application (50%+ time spent waiting on IO), use the default thread count (5 for MRI). Using higher numbers of threads with low I/O wait (&lt;50%) will lead to additional request queueing time (latency!) and additional memory usage.</li>
+<li>More processes per pod reduces memory usage per process, because of copy-on-write memory and because the cost of the single master process is &quot;amortized&quot; over more child processes.</li>
+<li>Don&#39;t run less than 4 processes per pod if you can. Low numbers of processes per pod will lead to high request queueing, which means you will have to run more pods.</li>
+<li>If multithreaded, allocate 1 CPU per worker. If single threaded, allocate 0.75 cpus per worker. Most web applications spend about 25% of their time in I/O - but when you&#39;re running multi-threaded, your Puma process will have higher CPU usage and should be able to fully saturate a CPU core.</li>
+<li>Most Puma processes will use about ~512MB-1GB per worker, and about 1GB for the master process. However, you probably shouldn&#39;t bother with setting memory limits lower than around 2GB per process, because most places you are deploying will have 2GB of RAM per CPU. A sensible memory limit for a Puma configuration of 4 child workers might be something like 8 GB (1 GB for the master, 7GB for the 4 children).</li>
+</ul>
 
 <div id='footer'></div>
 </div> <!-- content  -->
