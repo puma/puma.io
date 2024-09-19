@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Restart &mdash; Puma-6.4.0</title>
+<title>File: Restart &mdash; Puma-6.4.3</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.4.0</a> &raquo; 
+      <a href='.'>Puma-6.4.3</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Restart&nbsp;&#x25B2;</a></span>
           </div>
@@ -97,6 +97,7 @@
 <h3>Additional notes</h3>
 
 <ul>
+<li>The newly started <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> process changes its current working directory to the directory specified by the <code>directory</code> option. If <code>directory</code> is set to symlink, this is automatically re-evaluated, so this mechanism can be used to upgrade the application.</li>
 <li>Only one version of the application is running at a time.</li>
 <li><code>on_restart</code> is invoked just before the server shuts down. This can be used to clean up resources (like long-lived database connections) gracefully. Since Ruby 2.0, it is not typically necessary to explicitly close file descriptors on restart. This is because any file descriptor opened by Ruby will have the <code>FD_CLOEXEC</code> flag set, meaning that file descriptors are closed on <code>exec</code>. <code>on_restart</code> is useful, though, if your application needs to perform any more graceful protocol-specific shutdown procedures before closing connections.</li>
 </ul>
