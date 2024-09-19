@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Kubernetes &mdash; Puma-6.4.0</title>
+<title>File: Kubernetes &mdash; Puma-6.4.3</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.4.0</a> &raquo; 
+      <a href='.'>Puma-6.4.3</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Kubernetes&nbsp;&#x25B2;</a></span>
           </div>
@@ -73,42 +73,42 @@
 
 <p>A basic Dockerfile example: </p>
 
-<pre class="code ruby"><code class="ruby">FROM ruby:2.5.1-alpine # can be updated to newer ruby versions
-RUN apk update &amp;&amp; apk add build-base # and any other packages you need 
+<pre class="code ruby"><code class="ruby"><span class='const'>FROM</span> <span class='label'>ruby:</span><span class='float'>2.5</span><span class='op'>-</span><span class='id identifier rubyid_alpine'>alpine</span> <span class='comment'># can be updated to newer ruby versions
+</span><span class='const'>RUN</span> <span class='id identifier rubyid_apk'>apk</span> <span class='id identifier rubyid_update'>update</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_apk'>apk</span> <span class='id identifier rubyid_add'>add</span> <span class='id identifier rubyid_build'>build</span><span class='op'>-</span><span class='id identifier rubyid_base'>base</span> <span class='comment'># and any other packages you need 
+</span>
+<span class='comment'># Only rebuild gem bundle if Gemfile changes
+</span><span class='const'>COPY</span> <span class='const'>Gemfile</span> <span class='const'>Gemfile</span>.<span class='id identifier rubyid_lock'>lock</span> .<span class='op'>/</span>
+<span class='const'>RUN</span> <span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_install'>install</span>
 
-# Only rebuild gem bundle if Gemfile changes
-COPY Gemfile Gemfile.lock ./
-RUN bundle install
+<span class='comment'># Copy over the rest of the files
+</span><span class='const'>COPY</span> . .
 
-# Copy over the rest of the files
-COPY . .
-
-# Open up port and start the service
-EXPOSE 9292
-CMD bundle exec rackup -o 0.0.0.0</code></pre>
+<span class='comment'># Open up port and start the service
+</span><span class='const'>EXPOSE</span> <span class='int'>9292</span>
+<span class='const'>CMD</span> <span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_rackup'>rackup</span> <span class='op'>-</span><span class='id identifier rubyid_o'>o</span> <span class='float'>0.0</span></code></pre>
 
 <p>A sample <code>deployment.yaml</code>:</p>
 
-<pre class="code ruby"><code class="ruby">---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: my-awesome-puma-app
-spec:
-  selector:
-    matchLabels:
-      app: my-awesome-puma-app
-  template:
-    metadata:
-      labels:
-        app: my-awesome-puma-app
-        service: my-awesome-puma-app
-    spec:
-      containers:
-      - name: my-awesome-puma-app
-        image: &lt;your image here&gt;
-        ports:
-        - containerPort: 9292</code></pre>
+<pre class="code ruby"><code class="ruby"><span class='op'>-</span><span class='op'>-</span><span class='op'>-</span>
+<span class='id identifier rubyid_apiVersion'>apiVersion</span><span class='op'>:</span> <span class='id identifier rubyid_apps'>apps</span><span class='op'>/</span><span class='id identifier rubyid_v1'>v1</span>
+<span class='id identifier rubyid_kind'>kind</span><span class='op'>:</span> <span class='const'>Deployment</span>
+<span class='id identifier rubyid_metadata'>metadata</span><span class='op'>:</span>
+  <span class='id identifier rubyid_name'>name</span><span class='op'>:</span> <span class='id identifier rubyid_my'>my</span><span class='op'>-</span><span class='id identifier rubyid_awesome'>awesome</span><span class='op'>-</span><span class='id identifier rubyid_puma'>puma</span><span class='op'>-</span><span class='id identifier rubyid_app'>app</span>
+<span class='id identifier rubyid_spec'>spec</span><span class='op'>:</span>
+  <span class='id identifier rubyid_selector'>selector</span><span class='op'>:</span>
+    <span class='id identifier rubyid_matchLabels'>matchLabels</span><span class='op'>:</span>
+      <span class='id identifier rubyid_app'>app</span><span class='op'>:</span> <span class='id identifier rubyid_my'>my</span><span class='op'>-</span><span class='id identifier rubyid_awesome'>awesome</span><span class='op'>-</span><span class='id identifier rubyid_puma'>puma</span><span class='op'>-</span><span class='id identifier rubyid_app'>app</span>
+  <span class='id identifier rubyid_template'>template</span><span class='op'>:</span>
+    <span class='id identifier rubyid_metadata'>metadata</span><span class='op'>:</span>
+      <span class='id identifier rubyid_labels'>labels</span><span class='op'>:</span>
+        <span class='id identifier rubyid_app'>app</span><span class='op'>:</span> <span class='id identifier rubyid_my'>my</span><span class='op'>-</span><span class='id identifier rubyid_awesome'>awesome</span><span class='op'>-</span><span class='id identifier rubyid_puma'>puma</span><span class='op'>-</span><span class='id identifier rubyid_app'>app</span>
+        <span class='id identifier rubyid_service'>service</span><span class='op'>:</span> <span class='id identifier rubyid_my'>my</span><span class='op'>-</span><span class='id identifier rubyid_awesome'>awesome</span><span class='op'>-</span><span class='id identifier rubyid_puma'>puma</span><span class='op'>-</span><span class='id identifier rubyid_app'>app</span>
+    <span class='id identifier rubyid_spec'>spec</span><span class='op'>:</span>
+      <span class='id identifier rubyid_containers'>containers</span><span class='op'>:</span>
+      <span class='op'>-</span> <span class='id identifier rubyid_name'>name</span><span class='op'>:</span> <span class='id identifier rubyid_my'>my</span><span class='op'>-</span><span class='id identifier rubyid_awesome'>awesome</span><span class='op'>-</span><span class='id identifier rubyid_puma'>puma</span><span class='op'>-</span><span class='id identifier rubyid_app'>app</span>
+        <span class='id identifier rubyid_image'>image</span><span class='op'>:</span> <span class='op'>&lt;</span><span class='id identifier rubyid_your'>your</span> <span class='id identifier rubyid_image'>image</span> <span class='id identifier rubyid_here'>here</span><span class='op'>&gt;</span>
+        <span class='id identifier rubyid_ports'>ports</span><span class='op'>:</span>
+        <span class='op'>-</span> <span class='id identifier rubyid_containerPort'>containerPort</span><span class='op'>:</span> <span class='int'>9292</span></code></pre>
 
 <h2>Graceful shutdown and pod termination</h2>
 
@@ -133,7 +133,7 @@ spec:
 <p>With containerization, you will have to make a decision about how &quot;big&quot; to make each pod. Should you run 2 pods with 50 workers each? 25 pods, each with 4 workers? 100 pods, with each Puma running in single mode? Each scenario represents the same total amount of capacity (100 Puma processes that can respond to requests), but there are tradeoffs to make.</p>
 
 <ul>
-<li>Worker counts should be somewhere between 4 and 32 in most cases. You want more than 4 in order to minimize time spent in request queueing for a free Puma worker, but probably less than ~32 because otherwise autoscaling is working in too large of an increment or they probably won&#39;t fit very well into your nodes.</li>
+<li>Worker counts should be somewhere between 4 and 32 in most cases. You want more than 4 in order to minimize time spent in request queueing for a free Puma worker, but probably less than ~32 because otherwise autoscaling is working in too large of an increment or they probably won&#39;t fit very well into your nodes. In any queueing system, queue time is proportional to 1/n, where n is the number of things pulling from the queue. Each pod will have its own request queue (i.e., the socket backlog). If you have 4 pods with 1 worker each (4 request queues), wait times are, proportionally, about 4 times higher than if you had 1 pod with 4 workers (1 request queue).</li>
 <li>Unless you have a very I/O-heavy application (50%+ time spent waiting on IO), use the default thread count (5 for MRI). Using higher numbers of threads with low I/O wait (&lt;50%) will lead to additional request queueing time (latency!) and additional memory usage.</li>
 <li>More processes per pod reduces memory usage per process, because of copy-on-write memory and because the cost of the single master process is &quot;amortized&quot; over more child processes.</li>
 <li>Don&#39;t run less than 4 processes per pod if you can. Low numbers of processes per pod will lead to high request queueing, which means you will have to run more pods.</li>
