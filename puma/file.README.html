@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: README &mdash; Puma-6.4.3</title>
+<title>File: README &mdash; Puma-6.5.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.4.3</a> &raquo; 
+      <a href='.'>Puma-6.5.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: README&nbsp;&#x25B2;</a></span>
           </div>
@@ -67,7 +67,7 @@
 
 <h1>Puma: A Ruby Web Server Built For Parallelism</h1>
 
-<p><a href="https://github.com/puma/puma/actions?query=workflow%3ATests&query=branch%3Av6.4.3"><img src="https://github.com/puma/puma/workflows/Tests/badge.svg?branch=v6.4.3" alt="Actions"></a>
+<p><a href="https://github.com/puma/puma/actions/runs/11981929261"><img src="https://github.com/puma/puma/workflows/Tests/badge.svg?branch=master" alt="Actions"></a>
 <a href="https://codeclimate.com/github/puma/puma"><img src="https://codeclimate.com/github/puma/puma.svg" alt="Code Climate"></a>
 <a href="https://stackoverflow.com/questions/tagged/puma"><img src="https://img.shields.io/badge/stackoverflow-Puma-blue.svg" alt="StackOverflow"></a></p>
 
@@ -75,7 +75,7 @@
 
 <h2>Built For Speed &amp; Parallelism</h2>
 
-<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> is a server for <a href="https://github.com/rack/rack">Rack</a>-powered HTTP applications written in Ruby.  It is: </p>
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> is a server for <a href="https://github.com/rack/rack">Rack</a>-powered HTTP applications written in Ruby.  It is:</p>
 
 <ul>
 <li><strong>Multi-threaded</strong>. Each request is served in a separate thread. This helps you serve more requests per second with less memory use.</li>
@@ -166,6 +166,8 @@ and the loaded configuration will be printed as part of the boot process.</p>
 
 <p>Note that threads are still used in clustered mode, and the <code>-t</code> thread flag setting is per worker, so <code>-w 2 -t 16:16</code> will spawn 32 threads in total, with 16 in each worker process.</p>
 
+<p>If the <code>WEB_CONCURRENCY</code> environment variable is set to <code>&quot;auto&quot;</code> and the <code>concurrent-ruby</code> gem is available in your application, Puma will set the worker process count to the result of <a href="https://ruby-concurrency.github.io/concurrent-ruby/master/Concurrent.html#available_processor_count-class_method">available processors</a>.</p>
+
 <p>For an in-depth discussion of the tradeoffs of thread and process count settings, [see our docs]#workers-per-pod-and-other-config-issues).</p>
 
 <p>In clustered mode, Puma can &quot;preload&quot; your application. This loads all the application code <em>prior</em> to forking. Preloading reduces total memory usage of your application via an operating system feature called <a href="https://en.wikipedia.org/wiki/Copy-on-write">copy-on-write</a>.</p>
@@ -182,44 +184,90 @@ and the loaded configuration will be printed as part of the boot process.</p>
 
 <p>Preloading can’t be used with phased restart, since phased restart kills and restarts workers one-by-one, and preloading copies the code of master into the workers.</p>
 
-<p>When using clustered mode, you can specify a block in your configuration file that will be run on boot of each worker:</p>
+<h4>Clustered mode hooks</h4>
 
-<pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
-</span><span class='id identifier rubyid_on_worker_boot'>on_worker_boot</span> <span class='kw'>do</span>
-  <span class='comment'># configuration here
-</span><span class='kw'>end</span></code></pre>
+<p>When using clustered mode, Puma&#39;s configuration DSL provides <code>before_fork</code> and <code>on_worker_boot</code>
+hooks to run code when the master process forks and child workers are booted respectively.</p>
 
-<p>This code can be used to setup the process before booting the application, allowing
-you to do some Puma-specific things that you don&#39;t want to embed in your application.
-For instance, you could fire a log notification that a worker booted or send something to statsd. This can be called multiple times.</p>
-
-<p>Constants loaded by your application (such as <code>Rails</code>) will not be available in <code>on_worker_boot</code>
-unless preloading is enabled.</p>
-
-<p>You can also specify a block to be run before workers are forked, using <code>before_fork</code>:</p>
+<p>It is recommended to use these hooks with <code>preload_app!</code>, otherwise constants loaded by your
+application (such as <code>Rails</code>) will not be available inside the hooks.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
 </span><span class='id identifier rubyid_before_fork'>before_fork</span> <span class='kw'>do</span>
-  <span class='comment'># configuration here
+  <span class='comment'># Add code to run inside the Puma master process before it forks a worker child.
+</span><span class='kw'>end</span>
+
+<span class='id identifier rubyid_on_worker_boot'>on_worker_boot</span> <span class='kw'>do</span>
+  <span class='comment'># Add code to run inside the Puma worker process after forking.
 </span><span class='kw'>end</span></code></pre>
 
-<p>You can also specify a block to be run after puma is booted using <code>on_booted</code>:</p>
+<p>In addition, there is an <code>on_refork</code> hook which is used only in <a href="file.fork_worker.html"><code>fork_worker</code> mode</a>,
+when the worker 0 child process forks a grandchild worker:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_on_refork'>on_refork</span> <span class='kw'>do</span>
+  <span class='comment'># Used only when fork_worker mode is enabled. Add code to run inside the Puma worker 0
+</span>  <span class='comment'># child process before it forks a grandchild worker.
+</span><span class='kw'>end</span></code></pre>
+
+<p>Importantly, note the following considerations when Ruby forks a child process: </p>
+
+<ol>
+<li>File descriptors such as network sockets <strong>are</strong> copied from the parent to the forked
+child process. Dual-use of the same sockets by parent and child will result in I/O conflicts
+such as <code>SocketError</code>, <code>Errno::EPIPE</code>, and <code>EOFError</code>.</li>
+<li>Background Ruby threads, including threads used by various third-party gems for connection
+monitoring, etc., are <strong>not</strong> copied to the child process. Often this does not cause
+immediate problems until a third-party connection goes down, at which point there will
+be no supervisor to reconnect it.</li>
+</ol>
+
+<p>Therefore, we recommend the following:</p>
+
+<ol>
+<li>If possible, do not establish any socket connections (HTTP, database connections, etc.)
+inside Puma&#39;s master process when booting.</li>
+<li>If (1) is not possible, use <code>before_fork</code> and <code>on_refork</code> to disconnect the parent&#39;s socket
+connections when forking, so that they are not accidentally copied to the child process.</li>
+<li>Use <code>on_worker_boot</code> to restart any background threads on the forked child.</li>
+</ol>
+
+<h4>Master process lifecycle hooks</h4>
+
+<p>Puma&#39;s configuration DSL provides master process lifecycle hooks <code>on_booted</code>, <code>on_restart</code>, and <code>on_stopped</code>
+which may be used to specify code blocks to run on each event:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
 </span><span class='id identifier rubyid_on_booted'>on_booted</span> <span class='kw'>do</span>
-  <span class='comment'># configuration here
+  <span class='comment'># Add code to run in the Puma master process after it boots,
+</span>  <span class='comment'># and also after a phased restart completes.
+</span><span class='kw'>end</span>
+
+<span class='id identifier rubyid_on_restart'>on_restart</span> <span class='kw'>do</span>
+  <span class='comment'># Add code to run in the Puma master process when it receives
+</span>  <span class='comment'># a restart command but before it restarts.
+</span><span class='kw'>end</span>
+
+<span class='id identifier rubyid_on_stopped'>on_stopped</span> <span class='kw'>do</span>
+  <span class='comment'># Add code to run in the Puma master process when it receives
+</span>  <span class='comment'># a stop command but before it shuts down.
 </span><span class='kw'>end</span></code></pre>
 
 <h3>Error handling</h3>
 
-<p>If puma encounters an error outside of the context of your application, it will respond with a 500 and a simple
+<p>If Puma encounters an error outside of the context of your application, it will respond with a 400/500 and a simple
 textual error message (see <a href="Puma/Server.html#lowlevel_error-instance_method" title="Puma::Server#lowlevel_error (method)">Puma::Server#lowlevel_error</a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/server.rb">server.rb</a>).
 You can specify custom behavior for this scenario. For example, you can report the error to your third-party
 error-tracking service (in this example, <a href="https://rollbar.com">rollbar</a>):</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_lowlevel_error_handler'>lowlevel_error_handler</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span>
-  <span class='const'>Rollbar</span>.<span class='id identifier rubyid_critical'>critical</span>(<span class='id identifier rubyid_e'>e</span>)
-  [<span class='int'>500</span><span class='comma'>,</span> {}<span class='comma'>,</span> [<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>An error has occurred, and engineers have been informed. Please reload the page. If you continue to have problems, contact support@example.com\n</span><span class='tstring_end'>&quot;</span></span>]]
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_lowlevel_error_handler'>lowlevel_error_handler</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='comma'>,</span> <span class='id identifier rubyid_env'>env</span><span class='comma'>,</span> <span class='id identifier rubyid_status'>status</span><span class='op'>|</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_status'>status</span> <span class='op'>==</span> <span class='int'>400</span>
+    <span class='id identifier rubyid_message'>message</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The server could not process the request due to an error, such as an incorrectly typed URL, malformed syntax, or a URL that contains illegal characters.\n</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_message'>message</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>An error has occurred, and engineers have been informed. Please reload the page. If you continue to have problems, contact support@example.com\n</span><span class='tstring_end'>&quot;</span></span>
+    <span class='const'>Rollbar</span>.<span class='id identifier rubyid_critical'>critical</span>(<span class='id identifier rubyid_e'>e</span>)
+  <span class='kw'>end</span>
+
+  [<span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> {}<span class='comma'>,</span> [<span class='id identifier rubyid_message'>message</span>]]
 <span class='kw'>end</span></code></pre>
 
 <h3>Binding TCP / Sockets</h3>
@@ -272,7 +320,7 @@ $ puma -b ssl://localhost:9292 -b tcp://localhost:9393 -C config/use_local_host.
 
 <h4>Controlling SSL Cipher Suites</h4>
 
-<p>To use or avoid specific SSL cipher suites, use <code>ssl_cipher_filter</code> or <code>ssl_cipher_list</code> options.</p>
+<p>To use or avoid specific SSL ciphers for TLSv1.2 and below, use <code>ssl_cipher_filter</code> or <code>ssl_cipher_list</code> options.</p>
 
 <h5>Ruby:</h5>
 
@@ -281,6 +329,12 @@ $ puma -b ssl://localhost:9292 -b tcp://localhost:9393 -C config/use_local_host.
 <h5>JRuby:</h5>
 
 <pre class="code ruby"><code class="ruby"><span class='gvar'>$ </span><span class='id identifier rubyid_puma'>puma</span> <span class='op'>-</span><span class='id identifier rubyid_b'>b</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ssl://127.0.0.1:9292?keystore=path_to_keystore&amp;keystore-pass=keystore_password&amp;ssl_cipher_list=TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA</span><span class='tstring_end'>&#39;</span></span></code></pre>
+
+<p>To configure the available TLSv1.3 ciphersuites, use <code>ssl_ciphersuites</code> option (not available for JRuby).</p>
+
+<h5>Ruby:</h5>
+
+<pre class="code ruby"><code class="ruby"><span class='gvar'>$ </span><span class='id identifier rubyid_puma'>puma</span> <span class='op'>-</span><span class='id identifier rubyid_b'>b</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ssl://127.0.0.1:9292?key=path_to_key&amp;cert=path_to_cert&amp;ssl_ciphersuites=TLS_AES_256_GCM_SHA384:TLS_AES_128_GCM_SHA256</span><span class='tstring_end'>&#39;</span></span></code></pre>
 
 <p>See <a href="https://www.openssl.org/docs/man1.1.1/man1/ciphers.html">https://www.openssl.org/docs/man1.1.1/man1/ciphers.html</a> for cipher filter format and full list of cipher suites.</p>
 
@@ -294,7 +348,7 @@ $ puma -b ssl://localhost:9292 -b tcp://localhost:9393 -C config/use_local_host.
 
 <pre class="code ruby"><code class="ruby"><span class='gvar'>$ </span><span class='id identifier rubyid_puma'>puma</span> <span class='op'>-</span><span class='id identifier rubyid_b'>b</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ssl://127.0.0.1:9292?key=path_to_key&amp;cert=path_to_cert&amp;verification_flags=PARTIAL_CHAIN</span><span class='tstring_end'>&#39;</span></span></code></pre>
 
-<p>You can also set multiple verification flags (by separating them with coma):</p>
+<p>You can also set multiple verification flags (by separating them with a comma):</p>
 
 <pre class="code ruby"><code class="ruby"><span class='gvar'>$ </span><span class='id identifier rubyid_puma'>puma</span> <span class='op'>-</span><span class='id identifier rubyid_b'>b</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ssl://127.0.0.1:9292?key=path_to_key&amp;cert=path_to_cert&amp;verification_flags=PARTIAL_CHAIN,CRL_CHECK</span><span class='tstring_end'>&#39;</span></span></code></pre>
 

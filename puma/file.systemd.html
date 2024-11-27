@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: systemd &mdash; Puma-6.4.3</title>
+<title>File: systemd &mdash; Puma-6.5.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.4.3</a> &raquo; 
+      <a href='.'>Puma-6.5.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: systemd&nbsp;&#x25B2;</a></span>
           </div>
@@ -160,9 +160,11 @@ ListenStream=0.0.0.0:9293
 # ListenStream=/run/puma.sock
 
 # Socket options matching {Puma} defaults
-NoDelay=true
 ReusePort=true
 Backlog=1024
+# Enable this if you&#39;re using {Puma} with the &quot;low_latency&quot; option, read more in {Puma} DSL docs and systemd docs:
+# https://www.freedesktop.org/software/systemd/man/latest/systemd.socket.html#NoDelay=
+# NoDelay=true
 
 [Install]
 WantedBy=sockets.target
@@ -294,6 +296,11 @@ likely be the same as the capistrano3-puma <code>:puma_user</code> option.</p>
 cap $stage puma:start --dry-run
 cap $stage puma:stop  --dry-run
 </code></pre>
+
+<h3>Disabling Puma Systemd Integration</h3>
+
+<p>If you would like to disable Puma&#39;s systemd integration, for example if you handle it elsewhere
+in your code yourself, simply set the the environment variable <code>PUMA_SKIP_SYSTEMD</code> to any value.</p>
 
 <div id='footer'></div>
 </div> <!-- content  -->

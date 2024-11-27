@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::NullIO &mdash; Puma-6.4.3</title>
+<title>Class: Puma::NullIO &mdash; Puma-6.5.0</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-6.4.3</a> &raquo; 
+      <a href='../'>Puma-6.5.0</a> &raquo; 
       <a href='../_index.html#alpha_N'>Index (N)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>NullIO&nbsp;&#x25B2;</a></span>
@@ -77,7 +77,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L7'>lib/puma/null_io.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L7'>lib/puma/null_io.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -95,6 +95,18 @@
 <h2 class='h2_sum' id='instance_attribute_summary'>Instance Attribute Summary</h2>
 <div class='div_sum'>
 <ul class='summary full'>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#binmode-instance_method" title="#binmode (instance method)">#<strong>binmode</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
+      <a href="#binmode%3F-instance_method" title="#binmode? (instance method)">#<strong>binmode?</strong>  &#x21d2; Boolean </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
   <li>
     <span class='summary_signature ro'>
       <a href="#closed%3F-instance_method" title="#closed? (instance method)">#<strong>closed?</strong>  &#x21d2; Boolean </a>
@@ -140,12 +152,25 @@
   </li>
   <li>
     <span class='summary_signature '>
+      <a href="#external_encoding-instance_method" title="#external_encoding (instance method)">#<strong>external_encoding</strong>  </a>
+    </span>
+    <div class='summary_desc'>
+      <div class='inline'><p>per rack spec.</p></div>
+    </div>
+  </li>
+  <li>
+    <span class='summary_signature '>
       <a href="#flush-instance_method" title="#flush (instance method)">#<strong>flush</strong>  </a>
     </span>
   </li>
   <li>
     <span class='summary_signature '>
       <a href="#gets-instance_method" title="#gets (instance method)">#<strong>gets</strong>  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#pos-instance_method" title="#pos (instance method)">#<strong>pos</strong>  </a>
     </span>
   </li>
   <li>
@@ -168,6 +193,16 @@
   </li>
   <li>
     <span class='summary_signature '>
+      <a href="#seek-instance_method" title="#seek (instance method)">#<strong>seek</strong>(pos, whence = 0)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
+      <a href="#set_encoding-instance_method" title="#set_encoding (instance method)">#<strong>set_encoding</strong>(enc)  </a>
+    </span>
+  </li>
+  <li>
+    <span class='summary_signature '>
       <a href="#size-instance_method" title="#size (instance method)">#<strong>size</strong>  </a>
     </span>
   </li>
@@ -184,8 +219,46 @@
 </ul>
 </div>  <!-- instance_method_summary -->
 <h2 class='y_details'>Instance Attribute Details</h2>
-<section class='method_details first' id="closed?-instance_method">
+<section class='method_details first' id="binmode-instance_method">
   <h3 class='signature ro first'>
+    #<strong>binmode</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L93-L95'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='93' data-end='95'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 93</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_binmode'>binmode</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="binmode?-instance_method">
+  <h3 class='signature ro'>
+    #<strong>binmode?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L97-L99'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='97' data-end='99'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 97</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_binmode?'>binmode?</span>
+  <span class='kw'>true</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="closed?-instance_method">
+  <h3 class='signature ro'>
     #<strong>closed?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
 <div class='docstring'>
@@ -198,11 +271,11 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L71-L73'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L80-L82'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='71' data-end='73'></pre>
+  <pre class='lines_num' data-start='80' data-end='82'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/null_io.rb', line 71</span></pre>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 80</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_closed?'>closed?</span>
@@ -217,11 +290,11 @@
   <h3 class='signature ro'>
     #<strong>eof?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L49-L51'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L58-L60'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='49' data-end='51'></pre>
+  <pre class='lines_num' data-start='58' data-end='60'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/null_io.rb', line 49</span></pre>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 58</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_eof?'>eof?</span>
@@ -236,11 +309,11 @@
   <h3 class='signature rw'>
     #<strong>sync</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L53-L55'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L62-L64'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='53' data-end='55'></pre>
+  <pre class='lines_num' data-start='62' data-end='64'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/null_io.rb', line 53</span></pre>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 62</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sync'>sync</span>
@@ -255,11 +328,11 @@
   <h3 class='signature rw'>
     #<strong>sync=</strong>(v)   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L57-L58'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L66-L67'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='57' data-end='58'></pre>
+  <pre class='lines_num' data-start='66' data-end='67'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/null_io.rb', line 57</span></pre>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 66</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sync='>sync=</span>(<span class='id identifier rubyid_v'>v</span>)
@@ -274,11 +347,11 @@
   <h3 class='signature  first'>
     #<strong>close</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L42-L43'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L51-L52'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='42' data-end='43'></pre>
+  <pre class='lines_num' data-start='51' data-end='52'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/null_io.rb', line 42</span></pre>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 51</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
@@ -292,7 +365,7 @@
   <h3 class='signature '>
     #<strong>each</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L16-L17'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L16-L17'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='16' data-end='17'></pre>
   <div class='lines_code'>
@@ -306,15 +379,41 @@
 </div>
 </section>
 
+<section class='method_details' id="external_encoding-instance_method">
+  <h3 class='signature '>
+    #<strong>external_encoding</strong>  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+<p>per rack spec</p>
+
+  </div>
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L89-L91'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='89' data-end='91'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 89</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_external_encoding'>external_encoding</span>
+  <span class='const'>Encoding</span><span class='op'>::</span><span class='const'>ASCII_8BIT</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
 <section class='method_details' id="flush-instance_method">
   <h3 class='signature '>
     #<strong>flush</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L66-L68'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L75-L77'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='66' data-end='68'></pre>
+  <pre class='lines_num' data-start='75' data-end='77'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/null_io.rb', line 66</span></pre>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 75</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_flush'>flush</span>
@@ -329,7 +428,7 @@
   <h3 class='signature '>
     #<strong>gets</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L8-L10'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L8-L10'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='8' data-end='10'></pre>
   <div class='lines_code'>
@@ -344,15 +443,34 @@
 </div>
 </section>
 
+<section class='method_details' id="pos-instance_method">
+  <h3 class='signature '>
+    #<strong>pos</strong>  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L19-L21'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='19' data-end='21'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 19</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pos'>pos</span>
+  <span class='int'>0</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
 <section class='method_details' id="puts-instance_method">
   <h3 class='signature '>
     #<strong>puts</strong>(*ary)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L60-L61'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L69-L70'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='60' data-end='61'></pre>
+  <pre class='lines_num' data-start='69' data-end='70'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/null_io.rb', line 60</span></pre>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 69</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_puts'>puts</span>(<span class='op'>*</span><span class='id identifier rubyid_ary'>ary</span>)
@@ -373,11 +491,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L21-L37'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L25-L41'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='21' data-end='37'></pre>
+  <pre class='lines_num' data-start='25' data-end='41'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/null_io.rb', line 21</span></pre>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 25</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read'>read</span>(<span class='id identifier rubyid_length'>length</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_buffer'>buffer</span> <span class='op'>=</span> <span class='kw'>nil</span>)
@@ -406,14 +524,67 @@
   <h3 class='signature '>
     #<strong>rewind</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L39-L40'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L43-L44'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='39' data-end='40'></pre>
+  <pre class='lines_num' data-start='43' data-end='44'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/null_io.rb', line 39</span></pre>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 43</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rewind'>rewind</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="seek-instance_method">
+  <h3 class='signature '>
+    #<strong>seek</strong>(pos, whence = 0)  
+  </h3>
+<div class='docstring'>
+  <div class='discussion'>
+    
+  </div>
+</div>
+<div class='tags'>
+  <p class='tag_title'>Raises:</p>
+<ul class='raise'>
+  <li>
+    <span class='type'>(<code>ArgumentError</code>)</span>
+  </li>
+</ul>
+
+</div>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L46-L49'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='46' data-end='49'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 46</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_seek'>seek</span>(<span class='id identifier rubyid_pos'><a href="#pos-instance_method" title="Puma::NullIO#pos (method)">pos</a></span><span class='comma'>,</span> <span class='id identifier rubyid_whence'>whence</span> <span class='op'>=</span> <span class='int'>0</span>)
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>negative length </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_pos'><a href="#pos-instance_method" title="Puma::NullIO#pos (method)">pos</a></span><span class='embexpr_end'>}</span><span class='tstring_content'> given</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_pos'><a href="#pos-instance_method" title="Puma::NullIO#pos (method)">pos</a></span>.<span class='id identifier rubyid_negative?'>negative?</span>
+  <span class='int'>0</span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="set_encoding-instance_method">
+  <h3 class='signature '>
+    #<strong>set_encoding</strong>(enc)  
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L84-L86'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='84' data-end='86'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 84</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_encoding'>set_encoding</span>(<span class='id identifier rubyid_enc'>enc</span>)
+  <span class='kw'>self</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -424,11 +595,11 @@
   <h3 class='signature '>
     #<strong>size</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L45-L47'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L54-L56'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='45' data-end='47'></pre>
+  <pre class='lines_num' data-start='54' data-end='56'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/null_io.rb', line 45</span></pre>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 54</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_size'>size</span>
@@ -443,7 +614,7 @@
   <h3 class='signature '>
     #<strong>string</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L12-L14'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L12-L14'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='12' data-end='14'></pre>
   <div class='lines_code'>
@@ -462,11 +633,11 @@
   <h3 class='signature '>
     #<strong>write</strong>(*ary)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.4.3/lib/puma/null_io.rb#L63-L64'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v6.5.0/lib/puma/null_io.rb#L72-L73'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='63' data-end='64'></pre>
+  <pre class='lines_num' data-start='72' data-end='73'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/null_io.rb', line 63</span></pre>
+<pre><span class='info file'># File 'lib/puma/null_io.rb', line 72</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write'>write</span>(<span class='op'>*</span><span class='id identifier rubyid_ary'>ary</span>)

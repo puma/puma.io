@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: History &mdash; Puma-6.4.3</title>
+<title>File: History &mdash; Puma-6.5.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.4.3</a> &raquo; 
+      <a href='.'>Puma-6.5.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: History&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,6 +61,70 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
+<h2>6.5.0 / 2024-11-23</h2>
+
+<ul>
+<li><p>Features</p>
+
+<ul>
+<li>Print RUBY_DESCRIPTION when Puma starts (<a href="https://github.com/puma/puma/pull/3407" title="PR by @JacobEvelyn, merged 2024-11-05">#3407</a>)</li>
+<li>Set the worker process count automatically when using WEB_CONCURRENCY=auto (<a href="https://github.com/puma/puma/pull/3439" title="PR by @codergeek121, merged 2024-11-04">#3439</a>, <a href="https://github.com/puma/puma/issues/3437" title="Issue by @rafaelfranca, closed 2024-11-04">#3437</a>)</li>
+<li>Mark as ractor-safe (<a href="https://github.com/puma/puma/pull/3486" title="PR by @mohamedhafez, merged 2024-09-26">#3486</a>, <a href="https://github.com/puma/puma/issues/3422" title="Issue by @mohamedhafez, closed 2024-09-26">#3422</a>)</li>
+<li>Add option <code>enable_keep_alive</code>. <code>true</code> mimics existing behavior, but now can use <code>false</code> to disable keepalive to reduce queue tail latency (<a href="https://github.com/puma/puma/pull/3496" title="PR by @slizco, merged 2024-09-26">#3496</a>)</li>
+<li>Add parameters to Puma methods to allow CI to change ENV in isolation (<a href="https://github.com/puma/puma/pull/3485" title="PR by @MSP-Greg, merged 2024-09-21">#3485</a>)</li>
+<li>Add <code>ssl_ciphersuites</code> option for TLSv1.3 ciphers (<a href="https://github.com/puma/puma/pull/3359" title="PR by @willayton, merged 2024-04-11">#3359</a>, <a href="https://github.com/puma/puma/issues/3343" title="Issue by @willayton, closed 2024-04-11">#3343</a>)</li>
+<li>You can now use <code>--threads 5</code> or <code>threads 5</code> to config max/min threads with a single number (used to need to say <code>5:5</code>) (<a href="https://github.com/puma/puma/pull/3309" title="PR by @byroot, merged 2024-01-09">#3309</a>)</li>
+<li>Option to turn off systemd plugin (<a href="https://github.com/puma/puma/pull/3425" title="PR by @mohamedhafez, merged 2024-07-14">#3425</a>, <a href="https://github.com/puma/puma/issues/3424" title="Issue by @mohamedhafez, closed 2024-07-14">#3424</a>)</li>
+<li>Add <code>on_stopped</code> hook (<a href="https://github.com/puma/puma/pull/3411" title="PR by @OuYangJinTing, merged 2024-06-15">#3411</a>, <a href="https://github.com/puma/puma/pull/3380" title="PR by @emilyst, closed 2024-06-15">#3380</a>)</li>
+</ul></li>
+<li><p>Bugfixes</p>
+
+<ul>
+<li>Handle blank environment variables when loading config (<a href="https://github.com/puma/puma/pull/3539" title="PR by @caius, merged 2024-11-20">#3539</a>)</li>
+<li>lib/rack/handler/puma.rb - fix for rackup v1.0.1, adjust Gemfile (<a href="https://github.com/puma/puma/pull/3532" title="PR by @MSP-Greg, merged 2024-10-24">#3532</a>, <a href="https://github.com/puma/puma/issues/3531" title="Issue by @tagliala, closed 2024-10-24">#3531</a>)</li>
+<li>null_io.rb - add <code>external_encoding</code>, <code>set_encoding</code>, <code>binmode</code>, <code>binmode?</code> (<a href="https://github.com/puma/puma/pull/3214" title="PR by @MSP-Greg, merged 2024-10-15">#3214</a>)</li>
+<li>Implement NullIO#seek and #pos to mimic IO (<a href="https://github.com/puma/puma/pull/3468" title="PR by @foca, merged 2024-10-04">#3468</a>)</li>
+<li>add support in rack handler &amp; fix regression in binder for linux abstract namespace sockets (<a href="https://github.com/puma/puma/pull/3508" title="PR by @MayCXC, merged 2024-10-02">#3508</a>)</li>
+<li>Use actual thread local for <a href="Puma/Server.html#current-class_method" title="Puma::Server.current (method)">Puma::Server.current</a>. (<a href="https://github.com/puma/puma/pull/3360" title="PR by @ioquatix, merged 2024-04-24">#3360</a>)</li>
+<li>client.rb - fix request chunked body handling (<a href="https://github.com/puma/puma/pull/3338" title="PR by @MSP-Greg, merged 2024-04-11">#3338</a>, <a href="https://github.com/puma/puma/issues/3337" title="Issue by @skliew, closed 2024-04-11">#3337</a>)</li>
+<li>Properly handle two requests seen in the initial buffer (<a href="https://github.com/puma/puma/pull/3332" title="PR by @evanphx, merged 2024-02-18">#3332</a>)</li>
+<li>Fix response repeated status line when request is invalid or errors are raised (<a href="https://github.com/puma/puma/pull/3308" title="PR by @MSP-Greg, merged 2024-01-31">#3308</a>, <a href="https://github.com/puma/puma/issues/3307" title="Issue by @nateberkopec, closed 2024-01-31">#3307</a>)</li>
+<li>Fix child processes not being reaped when <code>Process.detach</code> used (<a href="https://github.com/puma/puma/pull/3314" title="PR by @stanhu, merged 2024-01-26">#3314</a>, <a href="https://github.com/puma/puma/issues/3313" title="Issue by @stanhu, closed 2024-01-26">#3313</a>)</li>
+</ul></li>
+<li><p>JRuby</p>
+
+<ul>
+<li>Make HTTP length constants configurable (<a href="https://github.com/puma/puma/pull/3518" title="PR by @roque86, merged 2024-11-15">#3518</a>)</li>
+<li>Fixup jruby_restart.rb &amp; launcher.rb to work with ARM64 macOS JRuby (<a href="https://github.com/puma/puma/pull/3467" title="PR by @MSP-Greg, merged 2024-09-21">#3467</a>)</li>
+</ul></li>
+<li><p>Performance</p>
+
+<ul>
+<li>Avoid checking if all workers reached timeout unless idle timeout is configured (<a href="https://github.com/puma/puma/pull/3341" title="PR by @joshuay03, merged 2024-03-11">#3341</a>)</li>
+<li>Request body - increase read size to 64 kB (<a href="https://github.com/puma/puma/pull/3548" title="PR by @MSP-Greg, merged 2024-11-21">#3548</a>)</li>
+<li>single mode skip wait_for_less_busy_worker (<a href="https://github.com/puma/puma/pull/3325" title="PR by @OuYangJinTing, merged 2024-10-22">#3325</a>)</li>
+</ul></li>
+<li><p>Refactor</p>
+
+<ul>
+<li>A ton of CI/test improvements by @MSP-Greg, as usual.</li>
+<li>Add ThreadPool#stats and adjust Server#stats to use it (<a href="https://github.com/puma/puma/pull/3527" title="PR by @MSP-Greg, merged 2024-10-26">#3527</a>)</li>
+<li>normalize whitespace in worker stats string (<a href="https://github.com/puma/puma/pull/3513" title="PR by @jjb, merged 2024-10-11">#3513</a>)</li>
+<li>rack/handler/puma.rb - ssl - use <code>start_with?</code>, add test (<a href="https://github.com/puma/puma/pull/3510" title="PR by @MSP-Greg, merged 2024-10-03">#3510</a>)</li>
+<li>extconf.rb - add logging for OpenSSL versions (<a href="https://github.com/puma/puma/pull/3370" title="PR by @MSP-Greg, merged 2024-04-15">#3370</a>)</li>
+<li>Lazily require <a href="Puma/Rack/Builder.html" title="Puma::Rack::Builder (class)"><code>Rack::Builder</code></a> (<a href="https://github.com/puma/puma/pull/3340" title="PR by @joshuay03, merged 2024-03-10">#3340</a>)</li>
+<li>Refactor: Constantize worker pipe request types (<a href="https://github.com/puma/puma/pull/3318" title="PR by @joshuay03, merged 2024-01-15">#3318</a>)</li>
+</ul></li>
+<li><p>Docs</p>
+
+<ul>
+<li>stats.md improvements (<a href="https://github.com/puma/puma/pull/3514" title="PR by @jjb, merged 2024-10-11">#3514</a>)</li>
+<li>control_cli.rb: Harmonize help message with bin/puma (<a href="https://github.com/puma/puma/pull/3434" title="PR by @olleolleolle, merged 2024-09-19">#3434</a>)</li>
+<li>dsl.rb: Clarify a callback&#39;s argument (<a href="https://github.com/puma/puma/pull/3435" title="PR by @olleolleolle, merged 2024-09-19">#3435</a>)</li>
+<li>lib/rack/handler/puma.rb - relocate and fixup module comment (<a href="https://github.com/puma/puma/pull/3495" title="PR by @MSP-Greg, merged 2024-09-19">#3495</a>)</li>
+</ul></li>
+</ul>
+
 <h2>6.4.3 / 2024-09-19</h2>
 
 <ul>
@@ -345,6 +409,11 @@
 
 <ul>
 <li>Discards any headers using underscores if the non-underscore version also exists. Without this, an attacker could overwrite values set by intermediate proxies (e.g. X-Forwarded-For). (<a href="https://github.com/puma/puma/security/advisories/GHSA-9hf4-67fc-4vf4">CVE-2024-45614</a>/GHSA-9hf4-67fc-4vf4)</li>
+</ul></li>
+<li>JRuby
+
+<ul>
+<li>Must use at least Java &gt;= 9 to compile. You can no longer build from source on Java 8.</li>
 </ul></li>
 </ul>
 
@@ -1807,7 +1876,7 @@ as provide augment server functionality!</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/845" title="PR by @deepj, merged 2016-01-28">#845</a> from deepj/timeout-deprecation</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/846" title="PR by @sriedel, merged 2016-01-15">#846</a> from sriedel/strip_before_fork</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/850" title="PR by @deepj, merged 2016-01-15">#850</a> from deepj/travis</li>
-<li>Merge pull request <a href="https://github.com/puma/puma/pull/853" title="PR by @Jeffrey6052, merged 2016-01-28">#853</a> from Jeffrey6052/patch-1</li>
+<li>Merge pull request <a href="https://github.com/puma/puma/pull/853" title="PR by @xuqiyong666, merged 2016-01-28">#853</a> from Jeffrey6052/patch-1</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/857" title="PR by @osheroff, merged 2016-01-15">#857</a> from zendesk/faster_phased_restarts</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/858" title="PR by @mlarraz, merged 2016-01-28">#858</a> from mlarraz/fix_some_warnings</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/860" title="PR by @osheroff, merged 2016-01-15">#860</a> from zendesk/expose_old_worker_count</li>

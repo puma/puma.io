@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Stats &mdash; Puma-6.4.3</title>
+<title>File: Stats &mdash; Puma-6.5.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.4.3</a> &raquo; 
+      <a href='.'>Puma-6.5.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Stats&nbsp;&#x25B2;</a></span>
           </div>
@@ -117,7 +117,8 @@
 
 <ul>
 <li>backlog: requests that are waiting for an available thread to be available. if this is above 0, you need more capacity [always true?]</li>
-<li>running: how many threads are running</li>
+<li>running: how many threads are spawned. A spawned thread may be busy processing a request or waiting for a new request. If <code>min_threads</code> and <code>max_threads</code> are set to the same number,
+this will be a never-changing number (other than rare cases when a thread dies, etc).</li>
 <li>pool_capacity: the number of requests that the server is capable of taking right now. For example, if the number is 5, then it means there are 5 threads sitting idle ready to take a request. If one request comes in, then the value would be 4 until it finishes processing. If the minimum threads allowed is zero, this number will still have a maximum value of the maximum threads allowed.</li>
 <li>max_threads: the maximum number of threads Puma is configured to spool per worker</li>
 <li>requests_count: the number of requests this worker has served since starting</li>
