@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: History &mdash; Puma-6.5.0</title>
+<title>File: History &mdash; Puma-6.6.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.5.0</a> &raquo; 
+      <a href='.'>Puma-6.6.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: History&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,6 +61,42 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
+<h2>6.6.0 / 2025-01-29</h2>
+
+<ul>
+<li><p>Features</p>
+
+<ul>
+<li>Option to turn off SIGUSR2 trapping (<a href="https://github.com/puma/puma/pull/3570" title="PR by @mohamedhafez, merged 2024-12-30">#3570</a>, <a href="https://github.com/puma/puma/issues/3567" title="Issue by @mohamedhafez, closed 2024-12-30">#3567</a>)</li>
+<li>Shorten <a href="Puma/ThreadPool.html" title="Puma::ThreadPool (class)"><code>ThreadPool</code></a> trimmer and reaper thread names (<a href="https://github.com/puma/puma/pull/3383" title="PR by @joshuay03, merged 2024-11-29">#3383</a>)</li>
+<li>Add after_refork hook (<a href="https://github.com/puma/puma/pull/3386" title="PR by @Drakula2k, merged 2024-11-27">#3386</a>)</li>
+<li>Add busy threads stat (<a href="https://github.com/puma/puma/pull/3517" title="PR by @jjb, merged 2024-11-26">#3517</a>)</li>
+<li>Add a debug log before running each type of hook (<a href="https://github.com/puma/puma/pull/3375" title="PR by @joshuay03, merged 2024-11-23">#3375</a>)</li>
+<li>Allow alternative schemes in Binder (<a href="https://github.com/puma/puma/pull/3348" title="PR by @tomurb, merged 2024-11-23">#3348</a>, <a href="https://github.com/puma/puma/issues/3302" title="Issue by @benburkert, closed 2024-11-23">#3302</a>)</li>
+<li>Avoid spawning <code>Threadpool#trim</code> thread if pool size is fixed (<a href="https://github.com/puma/puma/pull/3384" title="PR by @joshuay03, merged 2024-11-23">#3384</a>)</li>
+</ul></li>
+<li><p>Bugfixes</p>
+
+<ul>
+<li>Change <a href="Puma/HttpParserError.html" title="Puma::HttpParserError (class)"><code>HttpParserError</code></a> to be subclass of <a href="StandardError.html" title="StandardError (class)"><code>StandardError</code></a> (<a href="https://github.com/puma/puma/pull/3590" title="PR by @MSP-Greg, merged 2025-01-01">#3590</a>, <a href="https://github.com/puma/puma/issues/3552" title="Issue by @utay, closed 2025-01-01">#3552</a>)</li>
+<li>added test cases</li>
+<li>fix update phased restart symlink folder</li>
+</ul></li>
+<li><p>Performance</p>
+
+<ul>
+<li>Only ping worker 0 during phased restart if using fork worker (<a href="https://github.com/puma/puma/pull/3568" title="PR by @joshuay03, merged 2024-12-11">#3568</a>)</li>
+</ul></li>
+<li><p>Refactor</p>
+
+<ul>
+<li>Fix multi-delimiter split to get status app token (<a href="https://github.com/puma/puma/pull/3505" title="PR by @AnthonyClark, merged 2025-01-27">#3505</a>)</li>
+<li>Change ping to use const (<a href="https://github.com/puma/puma/pull/3595" title="PR by @nateberkopec, merged 2025-01-07">#3595</a>)</li>
+<li>Fixup use of Puma::Const::PipeRequest constants (<a href="https://github.com/puma/puma/pull/3565" title="PR by @MSP-Greg, merged 2024-11-28">#3565</a>)</li>
+<li>Update DSL hook processing logic to be consistent (<a href="https://github.com/puma/puma/pull/3376" title="PR by @joshuay03, merged 2024-11-23">#3376</a>)</li>
+</ul></li>
+</ul>
+
 <h2>6.5.0 / 2024-11-23</h2>
 
 <ul>
@@ -1593,7 +1629,7 @@ options, such as -p.</li>
 <li>Fix puma/puma[#968] Default verify_mode to peer</li>
 <li>Log any exceptions in ThreadPool. Fixes <a href="https://github.com/puma/puma/issues/1010" title="Issue by @mneumark, closed 2016-07-19">#1010</a></li>
 <li>Silence connection errors in the reactor. Fixes <a href="https://github.com/puma/puma/issues/959" title="Issue by @mwpastore, closed 2016-04-22">#959</a></li>
-<li>Tiny fixes in hook documentation for <a href="https://github.com/puma/puma/issues/840" title="Issue by @maxkwallace, closed 2016-04-07">#840</a></li>
+<li>Tiny fixes in hook documentation for <a href="https://github.com/puma/puma/issues/840" title="Issue by @marisawallace, closed 2016-04-07">#840</a></li>
 <li>It should not log requests if we want it to be quiet</li>
 </ul></li>
 <li><p>5 doc fixes:</p>
@@ -1614,7 +1650,7 @@ options, such as -p.</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/1017" title="PR by @jorihardman, merged 2016-07-19">#1017</a> from jorihardman/configurable_persistent_timeout</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/954" title="PR by @jf, merged 2016-04-12">#954</a> from jf/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/955" title="PR by @jf, merged 2016-04-22">#955</a> from jf/add-request-info-to-standard-error-rescue</li>
-<li>Merge pull request <a href="https://github.com/puma/puma/pull/956" title="PR by @maxkwallace, merged 2016-04-12">#956</a> from maxkwallace/master</li>
+<li>Merge pull request <a href="https://github.com/puma/puma/pull/956" title="PR by @marisawallace, merged 2016-04-12">#956</a> from maxkwallace/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/960" title="PR by @kmayer, merged 2016-04-15">#960</a> from kmayer/kmayer-plugins-heroku-restart</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/969" title="PR by @frankwong15, merged 2016-05-10">#969</a> from frankwong15/master</li>
 <li>Merge pull request <a href="https://github.com/puma/puma/pull/970" title="PR by @willnet, merged 2016-04-26">#970</a> from willnet/delete-blank-document</li>
@@ -1645,7 +1681,7 @@ options, such as -p.</li>
 
 <ul>
 <li>Add Process Monitors section to top-level README</li>
-<li>Better document the hooks. Fixes <a href="https://github.com/puma/puma/issues/840" title="Issue by @maxkwallace, closed 2016-04-07">#840</a></li>
+<li>Better document the hooks. Fixes <a href="https://github.com/puma/puma/issues/840" title="Issue by @marisawallace, closed 2016-04-07">#840</a></li>
 <li>docs/system.md sample config refinements and elaborations</li>
 <li>Fix typos at couple of places.</li>
 <li>Cleanup warnings</li>

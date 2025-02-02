@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Java Options &mdash; Puma-6.5.0</title>
+<title>File: Java Options &mdash; Puma-6.6.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.5.0</a> &raquo; 
+      <a href='.'>Puma-6.6.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Java Options&nbsp;&#x25B2;</a></span>
           </div>
@@ -92,6 +92,11 @@ Moreover, default values may be used in case of invalid inputs.</p>
 <td style="text-align: center">1024 * 12</td>
 <td style="text-align: center">Positive natural number</td>
 </tr>
+<tr>
+<td>PUMA_SKIP_SIGUSR2</td>
+<td style="text-align: center">nil</td>
+<td style="text-align: center">n/a</td>
+</tr>
 </tbody></table>
 
 <h2>Examples</h2>
@@ -121,6 +126,12 @@ Puma caught this error: HTTP element REQUEST_PATH is longer than the 9 allowed l
 foo@bar:~ export path=/12345678 # 9 chars
 foo@bar:~ curl </span><span class='tstring_end'>&quot;</span></span><span class='id identifier rubyid_http'>http</span><span class='symbeg'>:</span><span class='op'>/</span><span class='op'>/</span><span class='id identifier rubyid_localhost'>localhost</span><span class='symbeg'>:</span><span class='int'>9292</span><span class='gvar'>$</span>{<span class='id identifier rubyid_path'>path</span>}<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>
 Hello World</span></code></pre>
+
+<h3>Java Flight Recorder Compatibility</h3>
+
+<p>Unfortunately Java Flight Recorder uses <code>SIGUSR2</code> internally. If you wish to 
+use JFR, turn off Puma&#39;s trapping of <code>SIGUSR2</code> by setting the environment variable
+<code>PUMA_SKIP_SIGUSR2</code> to any value.</p>
 
 <div id='footer'></div>
 </div> <!-- content  -->
