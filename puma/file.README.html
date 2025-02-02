@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: README &mdash; Puma-6.5.0</title>
+<title>File: README &mdash; Puma-6.6.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.5.0</a> &raquo; 
+      <a href='.'>Puma-6.6.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: README&nbsp;&#x25B2;</a></span>
           </div>
@@ -67,7 +67,7 @@
 
 <h1>Puma: A Ruby Web Server Built For Parallelism</h1>
 
-<p><a href="https://github.com/puma/puma/actions/runs/11981929261"><img src="https://github.com/puma/puma/workflows/Tests/badge.svg?branch=master" alt="Actions"></a>
+<p><a href="https://github.com/puma/puma/actions/runs/13021148139"><img src="https://github.com/puma/puma/actions/workflows/tests.yml/badge.svg?branch=v6.6.0" alt="Actions"></a>
 <a href="https://codeclimate.com/github/puma/puma"><img src="https://codeclimate.com/github/puma/puma.svg" alt="Code Climate"></a>
 <a href="https://stackoverflow.com/questions/tagged/puma"><img src="https://img.shields.io/badge/stackoverflow-Puma-blue.svg" alt="StackOverflow"></a></p>
 
@@ -201,12 +201,17 @@ application (such as <code>Rails</code>) will not be available inside the hooks.
   <span class='comment'># Add code to run inside the Puma worker process after forking.
 </span><span class='kw'>end</span></code></pre>
 
-<p>In addition, there is an <code>on_refork</code> hook which is used only in <a href="file.fork_worker.html"><code>fork_worker</code> mode</a>,
+<p>In addition, there is an <code>on_refork</code> and <code>after_refork</code> hooks which are used only in <a href="file.fork_worker.html"><code>fork_worker</code> mode</a>,
 when the worker 0 child process forks a grandchild worker:</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_on_refork'>on_refork</span> <span class='kw'>do</span>
   <span class='comment'># Used only when fork_worker mode is enabled. Add code to run inside the Puma worker 0
 </span>  <span class='comment'># child process before it forks a grandchild worker.
+</span><span class='kw'>end</span></code></pre>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_after_refork'>after_refork</span> <span class='kw'>do</span>
+  <span class='comment'># Used only when fork_worker mode is enabled. Add code to run inside the Puma worker 0
+</span>  <span class='comment'># child process after it forks a grandchild worker.
 </span><span class='kw'>end</span></code></pre>
 
 <p>Importantly, note the following considerations when Ruby forks a child process: </p>
@@ -229,6 +234,7 @@ inside Puma&#39;s master process when booting.</li>
 <li>If (1) is not possible, use <code>before_fork</code> and <code>on_refork</code> to disconnect the parent&#39;s socket
 connections when forking, so that they are not accidentally copied to the child process.</li>
 <li>Use <code>on_worker_boot</code> to restart any background threads on the forked child.</li>
+<li>Use <code>after_refork</code> to restart any background threads on the parent.</li>
 </ol>
 
 <h4>Master process lifecycle hooks</h4>
