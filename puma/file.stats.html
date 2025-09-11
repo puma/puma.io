@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Stats &mdash; Puma-6.6.0</title>
+<title>File: Stats &mdash; Puma-7.0.2</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-6.6.0</a> &raquo; 
+      <a href='.'>Puma-7.0.2</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Stats&nbsp;&#x25B2;</a></span>
           </div>
@@ -126,6 +126,8 @@ and <code>max_threads</code> are configured to the same number, this is simply <
 and is not used for any internal decisions, unlike <code>busy_theads</code>, which is usually a more useful stat.</li>
 <li>max_threads: the maximum number of threads Puma is configured to spool per worker</li>
 <li>requests_count: the number of requests this worker has served since starting</li>
+<li>reactor_max: the maximum observed number of requests held in Puma&#39;s &quot;reactor&quot; which is used for asyncronously buffering request bodies. This stat is reset on every call, so it&#39;s the maximum value observed since the last stat call.</li>
+<li>backlog_max: the maximum number of requests that have been fully buffered by the reactor and placed in a ready queue, but have not yet been picked up by a server thread. This stat is reset on every call, so it&#39;s the maximum value observed since the last stat call.</li>
 </ul>
 
 <h3>cluster mode</h3>
