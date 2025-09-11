@@ -1,0 +1,396 @@
+:focus { outline: none; }
+::-moz-focus-inner {border: 0 none; }
+
+#hdr_button, #toc_header, #list_header, #y_debug, h2 {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+#y_list { min-width: 18rem; max-width: 40rem; background: rgb(253,253,253); }
+#y_toc  { min-width: 18rem; max-width: 30rem; background: rgb(253,253,253); }
+
+/* d = docked   f = floating   h = hidden   t = touch  */
+#y_list.d,   #y_toc.d   {
+   z-index: 500;
+  position: relative;
+/*  height: 100vh; GJL*/
+   height: 100%;
+  border-right: 0.066667rem solid #e0e0e0;
+}
+
+#y_list.f,   #y_toc.f   {
+/*  max-height: calc(100% - 4.8em); */
+         top: 4.4rem;
+       right: 2.0rem;
+     display: block;
+     z-index: 500;
+    position: absolute;
+/*    position: fixed; GJL */
+    border: 0.066667rem solid #aaa;
+  border-radius: 0.4rem;
+  box-shadow: -0.466667rem 0.333333rem 1.0rem rgba(128,128,128,0.5);
+}
+
+#y_list.h, #y_list.h button.y_sizer,
+ #y_toc.h,  #y_toc.h button.y_sizer { z-index: -500; }
+
+#y_list.d.h, #y_toc.d.h { display: none; }
+
+#y_list.f.h, #y_toc.f.h { visibility: hidden; }
+
+#y_list.f.t, #y_toc.f.t { right: 0.533333em; }
+
+#list_header { height: 5.866667rem;
+  padding-left: 0.4rem;
+   padding-top: 0.133333rem;
+  position: relative;
+}
+
+#list_footer { display: none; }
+
+button.y_minus, button.y_plus {
+  position: absolute;
+   height: 1.6rem;
+    width: 1.6rem;
+  padding: 0;
+   margin: 0;
+   border: 0 none transparent;
+   bottom: 0.333333rem;
+  border-radius: 0.266667rem;
+  cursor: pointer;
+  background-color: transparent;
+  background-repeat: no-repeat;
+    background-size: 0.933334rem;
+  background-position: center center;
+}
+
+#list_header button:hover, #toc_header button:hover {
+  background-color: #fff;
+  box-shadow: 0.133333rem 0.133333rem 0.2rem rgba(160,160,160, 0.5);
+}
+
+button.y_minus { right: 2.2em;
+  background-image: url("data:image/svg+xml,%3Csvg fill='%23999' viewBox='0 0 14 14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='6' width='14' height='2'/%3E%3C/svg%3E");
+}
+/* <svg fill='#999' viewBox='0 0 14 14' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='6' width='14' height='2'/></svg> */
+
+button.y_plus  { right: 0.3333em;
+  background-image: url("data:image/svg+xml,%3Csvg fill='%23999' viewBox='0 0 14 14' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='6' width='14' height='2'/%3E%3Crect x='6' y='0' width='2' height='14'/%3E%3C/svg%3E");
+}
+/* <svg fill='#999' viewBox='0 0 14 14' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='6' width='14' height='2'/><rect x='6' y='0' width='2' height='14'/></svg> */
+
+button.y_minus:disabled, button.y_plus:disabled { visibility: hidden; }
+
+#toc_header { padding-top: 0.13333em; position: relative; }
+
+/* List Titles */
+#list_title, #toc_header div { font-size: 1.13333em; }
+
+#list_title {
+  padding: 0;
+  text-align: right;
+  width: 9.0em;
+  text-transform: capitalize;
+  display: none;
+}
+
+#toc_header div {
+    font-size: 1.2em;
+      padding: 0 0.166667em;
+       height: 1.333333em;
+   margin-top: 0.111111em;
+  margin-left: 0.5em; }
+
+header button.y_sizer {
+   padding: 0;
+     width: 2.4em;
+    height: 1.2em;
+    cursor: col-resize;
+   z-index: 500;
+  border: 0 none transparent;
+  border-radius: 0.2667em;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 1.80em;
+  background-image: url("data:image/svg+xml,%3Csvg fill='%23999' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 41 20'%3E%3Cpath d='M18 0 L0 10 18 20'/%3E%3Cpath d='M23 0 L41 10 23 20'/%3E%3C/svg%3E");
+}
+
+/* <svg fill='#999' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 41 20'><path d='M18 0 L0 10 18 20'/><path d='M23 0 L41 10 23 20'/></svg> */
+
+button.y_sizer:hover { background-color: #fff; }
+
+div.d button.y_sizer { float: right; }
+div.f button.y_sizer { float: left;  }
+
+#list_header a, #list_header a:visited { text-decoration: none; }
+
+/*----------------------------------------------------------------- list_menu */
+
+#list_menu {
+    display: block;
+      color: #aaa;
+    padding: 0;
+   overflow: hidden;
+      width: 100%;
+}
+
+#list_menu > span, #list_menu > a {
+  display: inline-block;
+    font-size: 1.2rem;
+  line-height: 1.6rem;
+      padding: 0 0.2rem 0;
+       margin: 0 0 0.2rem 0;
+  text-align: center;
+}
+
+#list_menu > span { color: hsl(240, 5%, 65%); }
+
+#list_menu > a {
+  border: 0 none;
+  border-radius: 0.4rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: linear-gradient( rgb(242,242,242), rgb(252,252,252) );
+}
+
+#list_menu > a:hover   {
+  background: hsl(240, 5%, 99%);
+  box-shadow: 0.133333rem 0.133333rem 0.266667rem rgba(136,136,136, 0.5);
+}
+#list_menu > a.clicked { background: hsl(240, 5%, 100%);
+  color: hsl(240, 5%, 10%);
+}
+#list_menu > a.clicked:hover {
+  cursor: default;
+  background: hsl(240, 5%, 100%);
+  box-shadow: none;
+}
+
+/*------------------------------------------------------- LIST and TOC Search */
+
+#list_search_text,
+#toc_search_text {
+  position: absolute;
+  box-sizing: border-box;
+  background-color: #fff;
+  border: 0.1em solid #ccc;
+  border-radius: 0.2rem;
+      font-size: 1.0rem;
+         height: 1.6rem;
+         bottom: 0.4rem;
+           left: 0.4rem;
+          width: calc(100% - 7.0rem);
+   padding-left: 0.2rem;   
+         margin: 0;
+  -webkit-appearance: none;
+}
+
+#list_search_text    , #toc_search_text,
+#list_search_items em, #toc_search_items em {
+  font-style: normal;
+  color: hsl(320, 80%, 35%);
+  letter-spacing: 0;
+}
+
+#list_search_items em { padding-left: 0; padding-right: 0; }
+
+#list_search_icon,
+#toc_search_icon {
+  position: absolute;
+  vertical-align: top;
+   width: 2.0rem;
+  height: 1.6rem;
+  bottom: 0.4rem;
+   right: 4.4rem;
+  margin: 0;
+}
+
+#list_search_icon > path.s_clear,
+#toc_search_icon  > path.s_clear { fill: hsl(320, 80%, 35%); display: none; }
+
+#list_search_icon.s_clr,
+ #toc_search_icon.s_clr { cursor: pointer; }
+
+#list_search_icon.s_clr > path.s_clear,
+ #toc_search_icon.s_clr > path.s_clear { display: block; }
+
+#list_search_icon > path.s_main,
+ #toc_search_icon > path.s_main        { fill: rgb(136,136,136); }
+
+ #list_search_icon.s_clr > path.s_main,
+ #toc_search_icon.s_clr  > path.s_main { fill: rgb(142,142,142); }
+
+ 
+/* -------------------------------------------------------------------------- */
+ 
+#y_list.d #list_nav,
+ #y_toc.d #toc_nav  {
+  position: absolute;
+   right: 0;
+  bottom: 0;
+    left: 0;
+}
+
+#y_list.d #list_nav { top: 5.866667rem; overflow-x: hidden; }
+
+#y_toc.d  #toc_nav  { top: 4.00rem; }
+
+/* 4.0 + 0.4 + 5.86667 + 0.4 = 10.66667 */
+#y_list.f #list_nav { max-height: calc(100vh - 10.666667rem); }
+
+/* 4.0 + 0.4 + 4.0 + 0.4 = 8.800 */
+#y_toc.f  #toc_nav  { max-height: calc(100vh - 8.8rem); }
+
+#list_search_list li.clicked em { color: rgb(240,72,176); }
+
+#list_items li, #toc_nav li { display: block; }
+
+#list_items li.yl_closed > ul,
+#toc_items  li.yl_closed > ol { display: none; }
+
+#list_nav, #toc_nav { width: 100%; }
+
+/* below for Firefox - scrollbar issue */
+nav.y_nav > ul, nav.y_nav > ol { padding-bottom: 1px; }
+
+nav.y_nav ul, nav.y_nav ol {
+  width: 100%;
+  list-style: none;
+  overflow: hidden;
+  cursor: pointer;
+  padding-left: 0;
+}
+
+nav.y_nav li > a, nav.y_nav ul li > div  {
+  min-height: 1.866667rem;
+     display: block;
+}
+
+nav.y_nav ol li > div  {
+  min-height: 1.800000rem;
+     display: block;
+}
+
+/* anchor vertical centering, also exception ns nodes */
+nav ul li a, nav ul li div.exc_grp { padding-top: 0.266667rem; }
+
+nav ul li div.exc_grp { display: inline-block; }
+
+/* nav ol li > a, nav ol li div  { padding-top: 0.200000em; } */
+nav ol li a { padding-top: 0.200000rem; }
+
+
+nav.y_nav div > a { display: inline-block; padding-bottom: 0.2rem; }
+
+
+nav.y_nav div.item span,
+nav.y_nav div.item span a { display: block; }
+
+nav.y_nav ul.exception a,
+nav.y_nav ul.file a,
+nav.y_nav div.item span a { padding-left: 0.80rem; }
+
+nav ul.method   li,
+nav ul.property li {
+  height: 2.666667rem;
+  padding-left: 0.60rem;
+   margin-left: 1px;
+   border-left: 2px solid transparent;
+   padding-top: 0.133334rem;
+}
+
+nav.y_nav ul.method   a,
+nav.y_nav ul.property a {
+  padding: 0;
+  min-height: 0;
+  height: 1.266667rem;
+}
+
+nav ul.method   small,
+nav ul.property small { display: block; font-size: 0.866667rem; }
+
+nav ul.method   li:hover a,
+nav ul.property li:hover a   { background: transparent;  }
+
+nav li.deprecated a { text-decoration: line-through;
+  font-style: italic; letter-spacing: 0.666667px; }
+
+nav.y_nav button  {
+  margin-top: 0;
+  height: 1.866667rem;
+  vertical-align: top;
+  display: inline-block;
+  border: 0 none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: right 0.266667rem top 0.466667rem;
+  background-size: 1.0rem 0.8rem;
+  cursor: pointer;
+  outline: 0;
+}
+
+nav.y_nav button:hover { background-color: transparent; }
+
+nav.y_nav button:active { outline: 0; }
+
+nav ol a { padding-bottom: 0.2em; padding-right: 0.4em; } /* TOC word wrap */
+
+/* need all of the descendant selectors or all will match */
+ol.lvl0 > li > a, ul.lvl0 > li > a { padding-left:  1.4rem; }
+ol.lvl1 > li > a, ul.lvl1 > li > a { padding-left:  2.4rem; }
+ol.lvl2 > li > a, ul.lvl2 > li > a { padding-left:  3.4rem; }
+ol.lvl3 > li > a, ul.lvl3 > li > a { padding-left:  4.4rem; }
+ol.lvl4 > li > a, ul.lvl4 > li > a { padding-left:  5.4rem; }
+ol.lvl5 > li > a, ul.lvl5 > li > a { padding-left:  6.4rem; }
+ol.lvl6 > li > a, ul.lvl6 > li > a { padding-left:  7.4rem; }
+ol.lvl7 > li > a, ul.lvl7 > li > a { padding-left:  8.4rem; }
+ol.lvl8 > li > a, ul.lvl8 > li > a { padding-left:  9.4rem; }
+ol.lvl9 > li > a, ul.lvl9 > li > a { padding-left: 10.4rem; }
+
+/* below needed to set a to full width, needed for proper ctrl-click response */
+.lvl0 > li > div > a { width: calc(100% -  1.6rem); }
+.lvl1 > li > div > a { width: calc(100% -  2.6rem); }
+.lvl2 > li > div > a { width: calc(100% -  3.6rem); }
+.lvl3 > li > div > a { width: calc(100% -  4.6rem); }
+.lvl4 > li > div > a { width: calc(100% -  5.6rem); }
+.lvl5 > li > div > a { width: calc(100% -  6.6rem); }
+.lvl6 > li > div > a { width: calc(100% -  7.6rem); }
+.lvl7 > li > div > a { width: calc(100% -  8.6rem); }
+.lvl8 > li > div > a { width: calc(100% -  9.6rem); }
+.lvl9 > li > div > a { width: calc(100% - 10.6rem); }
+
+
+/* 2px difference is from border */
+ol.lvl0 > li > div > button, ul.lvl0 > li > div > button { width:  1.533334rem; }
+ol.lvl1 > li > div > button, ul.lvl1 > li > div > button { width:  2.533334rem; }
+ol.lvl2 > li > div > button, ul.lvl2 > li > div > button { width:  3.533334rem; }
+ol.lvl3 > li > div > button, ul.lvl3 > li > div > button { width:  4.533334rem; }
+ol.lvl4 > li > div > button, ul.lvl4 > li > div > button { width:  5.533334rem; }
+ol.lvl5 > li > div > button, ul.lvl5 > li > div > button { width:  6.533334rem; }
+ol.lvl6 > li > div > button, ul.lvl6 > li > div > button { width:  7.533334rem; }
+ol.lvl7 > li > div > button, ul.lvl7 > li > div > button { width:  8.533334rem; }
+ol.lvl8 > li > div > button, ul.lvl8 > li > div > button { width:  9.533334rem; }
+ol.lvl9 > li > div > button, ul.lvl9 > li > div > button { width: 10.533334rem; }
+
+#toc_items         li > a,
+#toc_items         li > div > button,
+#list_items.class  li > a,
+#list_items.class  li > div > button { border-left: 2px solid transparent; margin-left: 1px; }
+
+#list_items { white-space: nowrap; }
+#list_items li small.search_info { display: none; }
+
+#list_items.class li.odd,
+#list_items.class li.even { background: none; }
+#list_items.class small   { display: none; }
+
+#list_items.method li.nodoc,
+#list_items.class  li >   a.nodoc,
+#list_items.class  li > div.nodoc > button { border-left-color: hsl( 0, 100%, 45%); }
+
+#toc_items button  {   height: 1.8rem; }
