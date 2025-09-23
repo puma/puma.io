@@ -8,7 +8,7 @@
 <meta name='apple-mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: History &mdash; Puma-7.0.3</title>
+<title>File: History &mdash; Puma-7.0.4</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-7.0.3</a> &raquo; 
+      <a href='.'>Puma-7.0.4</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: History&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,6 +61,23 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
+<h2>7.0.4 / 2025-09-23</h2>
+
+<ul>
+<li><p>Bugfixes</p>
+
+<ul>
+<li>Fix SSL_shutdown error handling (<a href="https://github.com/puma/puma/pull/3703" title="PR by @marshall-lee, merged 2025-09-20">#3703</a>)</li>
+<li>Strip whitespace from the beginnings of request header values. (<a href="https://github.com/puma/puma/pull/3742" title="PR by @kenballus, merged 2025-09-18">#3742</a>)</li>
+</ul></li>
+<li><p>Performance</p>
+
+<ul>
+<li>puma_http11.c: Use interned UTF-8 strings for hash keys (<a href="https://github.com/puma/puma/pull/3754" title="PR by @byroot, merged 2025-09-18">#3754</a>)</li>
+<li>Move sleep cluster logic to its own class (<a href="https://github.com/puma/puma/pull/3746" title="PR by @schneems, merged 2025-09-18">#3746</a>, <a href="https://github.com/puma/puma/issues/3740" title="Issue by @joshuay03, closed 2025-09-18">#3740</a>)</li>
+</ul></li>
+</ul>
+
 <h2>7.0.3 / 2025-09-13</h2>
 
 <ul>
@@ -109,7 +126,8 @@
 <li>Raise an ArgumentError if no block given to hooks (<a href="https://github.com/puma/puma/pull/3377" title="PR by @joshuay03, merged 2025-08-12">#3377</a>)</li>
 <li>Don&#39;t set env[&#39;HTTP_VERSION&#39;] for Rack &gt; 3.1 (<a href="https://github.com/puma/puma/pull/3711" title="PR by @MSP-Greg, merged 2025-08-28">#3711</a>, <a href="https://github.com/puma/puma/issues/3576" title="Issue by @pdalberti, closed 2025-08-28">#3576</a>)</li>
 <li>Runner.rb - remove <code>ruby_engine</code> method, deprecated Nov-2024 (<a href="https://github.com/puma/puma/pull/3701" title="PR by @MSP-Greg, merged 2025-08-26">#3701</a>)</li>
-<li>Set conditional config defaults after CLI options are parsed and config files are loaded (<a href="https://github.com/puma/puma/pull/3297" title="PR by @joshuay03, merged 2025-08-26">#3297</a>)</li>
+<li>Config <code>preload_app!</code> is now the default for clustered mode (<a href="https://github.com/puma/puma/pull/3297" title="PR by @joshuay03, merged 2025-08-26">#3297</a>)</li>
+<li>Config instance must be <code>clamp</code>-d before reading any values (<a href="https://github.com/puma/puma/pull/3297" title="PR by @joshuay03, merged 2025-08-26">#3297</a>)</li>
 <li>Response headers set to lowercase (<a href="https://github.com/puma/puma/pull/3704" title="PR by @schneems, merged 2025-08-25">#3704</a>)</li>
 <li>Update minimum Ruby version to 3.0 (<a href="https://github.com/puma/puma/pull/3698" title="PR by @schneems, merged 2025-08-21">#3698</a>)</li>
 <li>Rename callback hooks (<a href="https://github.com/puma/puma/pull/3438" title="PR by @tannakartikey, merged 2025-08-25">#3438</a>)</li>
