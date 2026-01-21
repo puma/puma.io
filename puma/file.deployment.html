@@ -4,8 +4,8 @@
 
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
-<meta name='apple-touch-fullscreen'       content='yes'>
-<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
 <title>File: Deployment engineering for Puma &mdash; Puma-7.1.0</title>
@@ -79,39 +79,40 @@ assume this is how you&#39;re using <a href="Puma.html" title="Puma (module)"><c
 <p>Initially, <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> was conceived as a thread-only web server, but support for
 processes was added in version 2.</p>
 
+<p>In general, use single mode only if:</p>
+
+<ul>
+<li>You are using JRuby, TruffleRuby or another fully-multithreaded implementation of Ruby</li>
+<li>You are using MRI but in an environment where only 1 CPU core is available.</li>
+</ul>
+
+<p>Otherwise, you&#39;ll want to use cluster mode to utilize all available CPU resources.</p>
+
 <p>To run <code>puma</code> in single mode (i.e., as a development environment), set the
 number of workers to 0; anything higher will run in cluster mode.</p>
 
-<p>Here are some tips for cluster mode:</p>
+<h2>Cluster Mode Tips</h2>
 
-<h3>MRI</h3>
+<p>For the purposes of <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> provisioning, &quot;CPU cores&quot; means:</p>
+
+<ol>
+<li>On ARM, the number of physical cores.</li>
+<li>On x86, the number of logical cores, hyperthreads, or vCPUs (these words all mean the same thing).</li>
+</ol>
+
+<p>Set your config with the following process:</p>
 
 <ul>
-<li>Use cluster mode and set the number of workers to 1.5x the number of CPU cores
-in the machine, starting from a minimum of 2.</li>
+<li>Use cluster mode and set <code>workers :auto</code> (requires the <code>concurrent-ruby</code> gem) to match the number of CPU cores on the machine (minimum 2, otherwise use single mode!). If you can&#39;t add the gem, set the worker count manually to the available CPU cores.</li>
 <li>Set the number of threads to desired concurrent requests/number of workers.
 Puma defaults to 5, and that&#39;s a decent number.</li>
 </ul>
 
-<h4>Migrating from Unicorn</h4>
+<p>For most deployments, adding <code>concurrent-ruby</code> and using <code>workers :auto</code> is the right starting point.</p>
 
-<ul>
-<li>If you&#39;re migrating from unicorn though, here are some settings to start with:
+<p>See <a href="../lib/puma/dsl.rb"><code>workers :auto</code> gotchas</a>.</p>
 
-<ul>
-<li>Set workers to half the number of unicorn workers you&#39;re using</li>
-<li>Set threads to 2</li>
-<li>Enjoy 50% memory savings</li>
-</ul></li>
-<li>As you grow more confident in the thread-safety of your app, you can tune the
-workers down and the threads up.</li>
-</ul>
-
-<h4>Ubuntu / Systemd (Systemctl) Installation</h4>
-
-<p>See <a href="file.systemd.html">systemd.md</a></p>
-
-<h4>Worker utilization</h4>
+<h2>Worker utilization</h2>
 
 <p><strong>How do you know if you&#39;ve got enough (or too many workers)?</strong></p>
 
@@ -120,14 +121,38 @@ a time. But since so many apps are waiting on IO from DBs, etc., they can
 utilize threads to use the process more efficiently.</p>
 
 <p>Generally, you never want processes that are pegged all the time. That can mean
-there is more work to do than the process can get through. On the other hand, if
-you have processes that sit around doing nothing, then they&#39;re just eating up
-resources.</p>
+there is more work to do than the process can get through, and requests will end up with additional latency. On the other hand, if
+you have processes that sit around doing nothing, then you&#39;re wasting resources and money.</p>
 
-<p>Watch your CPU utilization over time and aim for about 70% on average. 70%
-utilization means you&#39;ve got capacity still but aren&#39;t starving threads.</p>
+<p>In general, you are making a tradeoff between:</p>
 
-<p><strong>Measuring utilization</strong></p>
+<ol>
+<li>CPU and memory utilization.</li>
+<li>Time spent queueing for a <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> worker to <code>accept</code> requests and additional latency caused by CPU contention.</li>
+</ol>
+
+<p>If latency is important to you, you will have to accept lower utilization, and vice versa.</p>
+
+<h2>Container/VPS sizing</h2>
+
+<p>You will have to make a decision about how &quot;big&quot; to make each pod/VPS/server/dyno.</p>
+
+<p><strong>TL:DR;</strong>: 80% of <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> apps will end up deploying &quot;pods&quot; of 4 workers, 5 threads each, 4 vCPU and 8GB of RAM.</p>
+
+<p>For the rest of this discussion, we&#39;ll adopt the Kubernetes term of &quot;pods&quot;.</p>
+
+<p>Should you run 2 pods with 50 workers each? 25 pods, each with 4 workers? 100 pods, with each <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> running in single mode? Each scenario represents the same total amount of capacity (100 <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> processes that can respond to requests), but there are tradeoffs to make:</p>
+
+<ul>
+<li><strong>Increasing worker counts decreases latency, but means you scale in bigger &quot;chunks&quot;</strong>. Worker counts should be somewhere between 4 and 32 in most cases. You want more than 4 in order to minimize time spent in request queueing for a free <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> worker, but probably less than ~32 because otherwise autoscaling is working in too large of an increment or they probably won&#39;t fit very well into your nodes. In any queueing system, queue time is proportional to 1/n, where n is the number of things pulling from the queue. Each pod will have its own request queue (i.e., the socket backlog). If you have 4 pods with 1 worker each (4 request queues), wait times are, proportionally, about 4 times higher than if you had 1 pod with 4 workers (1 request queue).</li>
+<li><strong>Increasing thread counts will increase throughput, but also latency and memory use</strong> Unless you have a very I/O-heavy application (50%+ time spent waiting on IO), use the default thread count (5 for MRI). Using higher numbers of threads with low I/O wait (&lt;50% of wall clock time) will lead to additional request latency and additional memory usage.</li>
+<li><strong>Increasing worker counts decreases memory per worker on average</strong>. More processes per pod reduces memory usage per process, because of copy-on-write memory and because the cost of the single master process is &quot;amortized&quot; over more child processes.</li>
+<li><strong>Low worker counts (&lt;4) have exceptionally poor throughput</strong>. Don&#39;t run less than 4 processes per pod if you can. Low numbers of processes per pod will lead to high request queueing (see discussion above), which means you will have to run more pods and resources.</li>
+<li><strong>CPU-core-to-worker ratios should be around 1</strong>. If running <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> with <code>threads &gt; 1</code>, allocate 1 CPU core (see definition above!) per worker. If single threaded, allocate ~0.75 cpus per worker. Most web applications spend about 25% of their time in I/O - but when you&#39;re running multi-threaded, your <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> process will have higher CPU usage and should be able to fully saturate a CPU core. Using <code>workers :auto</code> will size workers to this guidance on most platforms.</li>
+<li><strong>Don&#39;t set memory limits unless necessary</strong>. Most Puma processes will use about ~512MB-1GB per worker, and about 1GB for the master process. However, you probably shouldn&#39;t bother with setting memory limits lower than around 2GB per process, because most places you are deploying will have 2GB of RAM per CPU. A sensible memory limit for a <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> configuration of 4 child workers might be something like 8 GB (1 GB for the master, 7GB for the 4 children).</li>
+</ul>
+
+<p><strong>Measuring utilization and queue time</strong></p>
 
 <p>Using a timestamp header from an upstream proxy server (e.g., <code>nginx</code> or
 <code>haproxy</code>) makes it possible to indicate how long requests have been waiting for
@@ -151,7 +176,7 @@ clients:
 <li><code>env[&#39;puma.request_body_wait&#39;]</code> contains the number of milliseconds Puma
 spent waiting for the client to send the request body.</li>
 <li>haproxy: <code>%Th</code> (TLS handshake time) and <code>%Ti</code> (idle time before request)
-can can also be added as headers.</li>
+can also be added as headers.</li>
 </ul></li>
 </ul>
 
@@ -178,6 +203,24 @@ or hell, even <code>monit</code>.</p>
 <p>You probably will want to deploy some new code at some point, and you&#39;d like
 <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> to start running that new code. There are a few options for restarting
 <a href="Puma.html" title="Puma (module)"><code>Puma</code></a>, described separately in our <a href="file.restart.html">restart documentation</a>.</p>
+
+<h2>Migrating from Unicorn</h2>
+
+<ul>
+<li>If you&#39;re migrating from unicorn though, here are some settings to start with:
+
+<ul>
+<li>Set workers to half the number of unicorn workers you&#39;re using</li>
+<li>Set threads to 2</li>
+<li>Enjoy 50% memory savings</li>
+</ul></li>
+<li>As you grow more confident in the thread-safety of your app, you can tune the
+workers down and the threads up.</li>
+</ul>
+
+<h2>Ubuntu / Systemd (Systemctl) Installation</h2>
+
+<p>See <a href="file.systemd.html">systemd.md</a></p>
 
 <div id='footer'></div>
 </div> <!-- content  -->

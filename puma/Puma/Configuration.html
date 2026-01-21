@@ -4,8 +4,8 @@
 
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
-<meta name='apple-touch-fullscreen'       content='yes'>
-<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
 <title>Class: Puma::Configuration &mdash; Puma-7.1.0</title>
@@ -208,6 +208,12 @@
 <ul class='summary full'>
   <li>
     <span class='summary_signature ro'>
+      <a href="#_options-instance_method" title="#_options (instance method)">#<strong>_options</strong>  </a>
+    </span>
+    <span class='note title readonly'>readonly</span>
+  </li>
+  <li>
+    <span class='summary_signature ro'>
       <a href="#app_configured%3F-instance_method" title="#app_configured? (instance method)">#<strong>app_configured?</strong>  &#x21d2; Boolean </a>
     </span>
     <span class='note title readonly'>readonly</span>
@@ -336,6 +342,12 @@
   </li>
   <li>
     <span class='summary_signature priv'>
+      <a href="#parse_workers-instance_method" title="#parse_workers (instance method)">#<strong>parse_workers</strong>(value)  </a>
+    </span>
+    <span class='note title private'>private</span>
+  </li>
+  <li>
+    <span class='summary_signature priv'>
       <a href="#rack_builder-instance_method" title="#rack_builder (instance method)">#<strong>rack_builder</strong>  </a>
     </span>
     <span class='note title private'>private</span>
@@ -414,11 +426,11 @@
   <h3 class='signature  first'>
     .<strong>random_token</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L371-L375'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L367-L371'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='371' data-end='375'></pre>
+  <pre class='lines_num' data-start='367' data-end='371'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 371</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 367</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_random_token'>random_token</span>
@@ -435,11 +447,11 @@
   <h3 class='signature '>
     .<strong>temp_path</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L364-L369'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L360-L365'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='364' data-end='369'></pre>
+  <pre class='lines_num' data-start='360' data-end='365'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 364</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 360</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_temp_path'>temp_path</span>
@@ -454,8 +466,25 @@
 </section>
 
 <h2 class='y_details'>Instance Attribute Details</h2>
-<section class='method_details first' id="app_configured?-instance_method">
+<section class='method_details first' id="_options-instance_method">
   <h3 class='signature ro first'>
+    #<strong>_options</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L200-L200'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='200' data-end='200'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 200</span></pre>
+<pre class='code ruby'>
+
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_plugins'><a href="#plugins-instance_method" title="Puma::Configuration#plugins (method)">plugins</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'><a href="#events-instance_method" title="Puma::Configuration#events (method)">events</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hooks'><a href="#hooks-instance_method" title="Puma::Configuration#hooks (method)">hooks</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid__options'>_options</span>
+</pre>
+  </div>
+</div>
+</section>
+
+<section class='method_details' id="app_configured?-instance_method">
+  <h3 class='signature ro'>
     #<strong>app_configured?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
 <div class='docstring'>
@@ -468,11 +497,11 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L306-L308'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L302-L304'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='306' data-end='308'></pre>
+  <pre class='lines_num' data-start='302' data-end='304'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 306</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 302</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_app_configured?'>app_configured?</span>
@@ -494,7 +523,7 @@
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 200</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_plugins'><a href="#plugins-instance_method" title="Puma::Configuration#plugins (method)">plugins</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'>events</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hooks'><a href="#hooks-instance_method" title="Puma::Configuration#hooks (method)">hooks</a></span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_plugins'><a href="#plugins-instance_method" title="Puma::Configuration#plugins (method)">plugins</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'>events</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hooks'><a href="#hooks-instance_method" title="Puma::Configuration#hooks (method)">hooks</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid__options'><a href="#_options-instance_method" title="Puma::Configuration#_options (method)">_options</a></span>
 </pre>
   </div>
 </div>
@@ -511,7 +540,7 @@
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 200</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_plugins'><a href="#plugins-instance_method" title="Puma::Configuration#plugins (method)">plugins</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'><a href="#events-instance_method" title="Puma::Configuration#events (method)">events</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hooks'>hooks</span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_plugins'><a href="#plugins-instance_method" title="Puma::Configuration#plugins (method)">plugins</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'><a href="#events-instance_method" title="Puma::Configuration#events (method)">events</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hooks'>hooks</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid__options'><a href="#_options-instance_method" title="Puma::Configuration#_options (method)">_options</a></span>
 </pre>
   </div>
 </div>
@@ -528,7 +557,7 @@
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 200</span></pre>
 <pre class='code ruby'>
 
-<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_plugins'>plugins</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'><a href="#events-instance_method" title="Puma::Configuration#events (method)">events</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hooks'><a href="#hooks-instance_method" title="Puma::Configuration#hooks (method)">hooks</a></span>
+<span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbeg'>:</span><span class='id identifier rubyid_plugins'>plugins</span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_events'><a href="#events-instance_method" title="Puma::Configuration#events (method)">events</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid_hooks'><a href="#hooks-instance_method" title="Puma::Configuration#hooks (method)">hooks</a></span><span class='comma'>,</span> <span class='symbeg'>:</span><span class='id identifier rubyid__options'><a href="#_options-instance_method" title="Puma::Configuration#_options (method)">_options</a></span>
 </pre>
   </div>
 </div>
@@ -546,11 +575,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L317-L327'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L313-L323'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='317' data-end='327'></pre>
+  <pre class='lines_num' data-start='313' data-end='323'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 317</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 313</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_app'>app</span>
@@ -582,11 +611,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L282-L289'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L278-L285'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='282' data-end='289'></pre>
+  <pre class='lines_num' data-start='278' data-end='285'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 282</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 278</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clamp'>clamp</span>
@@ -620,11 +649,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L263-L276'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L259-L272'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='263' data-end='276'></pre>
+  <pre class='lines_num' data-start='259' data-end='272'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 263</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 259</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_config_files'>config_files</span>
@@ -680,11 +709,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L330-L332'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L326-L328'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='330' data-end='332'></pre>
+  <pre class='lines_num' data-start='326' data-end='328'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 330</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 326</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_environment'>environment</span>
@@ -699,11 +728,11 @@
   <h3 class='signature '>
     #<strong>final_options</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L360-L362'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L356-L358'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='360' data-end='362'></pre>
+  <pre class='lines_num' data-start='356' data-end='358'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 360</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 356</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_final_options'>final_options</span>
@@ -778,11 +807,11 @@
   <h3 class='signature '>
     #<strong>load</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L257-L261'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L253-L257'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='257' data-end='261'></pre>
+  <pre class='lines_num' data-start='253' data-end='257'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 257</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 253</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load'>load</span>
@@ -799,11 +828,11 @@
   <h3 class='signature '>
     #<strong>load_plugin</strong>(name)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L334-L336'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L330-L332'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='334' data-end='336'></pre>
+  <pre class='lines_num' data-start='330' data-end='332'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 334</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 330</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load_plugin'>load_plugin</span>(<span class='id identifier rubyid_name'>name</span>)
@@ -818,11 +847,11 @@
   <h3 class='signature priv'>
     #<strong>load_rackup</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L411-L427'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L418-L434'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='411' data-end='427'></pre>
+  <pre class='lines_num' data-start='418' data-end='434'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 411</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 418</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load_rackup'>load_rackup</span>
@@ -882,6 +911,32 @@
 </div>
 </section>
 
+<section class='method_details' id="parse_workers-instance_method">
+  <h3 class='signature priv'>
+    #<strong>parse_workers</strong>(value)   <span class="extras">(<span class='priv'>private</span>)</span>
+  </h3>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L385-L394'>GitHub</a>&#8202;]</span>
+<div class='source_code h'>
+  <pre class='lines_num' data-start='385' data-end='394'></pre>
+  <div class='lines_code'>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 385</span></pre>
+<pre class='code ruby'>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_workers'>parse_workers</span>(<span class='id identifier rubyid_value'>value</span>)
+  <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>==</span> <span class='symbeg'>:</span><span class='id identifier rubyid_auto'>auto</span> <span class='op'>||</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>auto</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_require_processor_counter'><a href="#require_processor_counter-instance_method" title="Puma::Configuration#require_processor_counter (method)">require_processor_counter</a></span>
+    <span class='const'>Integer</span>(<span class='op'>::</span><span class='const'>Concurrent</span>.<span class='id identifier rubyid_available_processor_count'>available_processor_count</span>)
+  <span class='kw'>else</span>
+    <span class='const'>Integer</span>(<span class='id identifier rubyid_value'>value</span>)
+  <span class='kw'>end</span>
+<span class='kw'>rescue</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='const'>TypeError</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>workers must be an Integer or :auto</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span>
+</pre>
+  </div>
+</div>
+</section>
+
 <section class='method_details' id="puma_default_options-instance_method">
   <h3 class='signature '>
     #<strong>puma_default_options</strong>(env = ENV)  
@@ -907,9 +962,9 @@
   <h3 class='signature '>
     #<strong>puma_options_from_env</strong>(env = ENV)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L237-L255'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L237-L251'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='237' data-end='255'></pre>
+  <pre class='lines_num' data-start='237' data-end='251'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/configuration.rb', line 237</span></pre>
 <pre class='code ruby'>
@@ -918,18 +973,14 @@
   <span class='id identifier rubyid_min'>min</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUMA_MIN_THREADS</span><span class='tstring_end'>&#39;</span></span>] <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MIN_THREADS</span><span class='tstring_end'>&#39;</span></span>]
   <span class='id identifier rubyid_max'>max</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUMA_MAX_THREADS</span><span class='tstring_end'>&#39;</span></span>] <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>MAX_THREADS</span><span class='tstring_end'>&#39;</span></span>]
   <span class='id identifier rubyid_persistent_timeout'>persistent_timeout</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUMA_PERSISTENT_TIMEOUT</span><span class='tstring_end'>&#39;</span></span>]
-  <span class='id identifier rubyid_workers'>workers</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>WEB_CONCURRENCY</span><span class='tstring_end'>&#39;</span></span>] <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>auto</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_require_processor_counter'><a href="#require_processor_counter-instance_method" title="Puma::Configuration#require_processor_counter (method)">require_processor_counter</a></span>
-    <span class='op'>::</span><span class='const'>Concurrent</span>.<span class='id identifier rubyid_available_processor_count'>available_processor_count</span>
-  <span class='kw'>else</span>
-    <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>WEB_CONCURRENCY</span><span class='tstring_end'>&#39;</span></span>]
-  <span class='kw'>end</span>
+  <span class='id identifier rubyid_workers_env'>workers_env</span> <span class='op'>=</span> <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>WEB_CONCURRENCY</span><span class='tstring_end'>&#39;</span></span>]
+  <span class='id identifier rubyid_workers'>workers</span> <span class='op'>=</span> <span class='id identifier rubyid_workers_env'>workers_env</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_workers_env'>workers_env</span>.<span class='id identifier rubyid_strip'>strip</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>?</span> <span class='id identifier rubyid_parse_workers'><a href="#parse_workers-instance_method" title="Puma::Configuration#parse_workers (method)">parse_workers</a></span>(<span class='id identifier rubyid_workers_env'>workers_env</span>.<span class='id identifier rubyid_strip'>strip</span>) <span class='op'>:</span> <span class='kw'>nil</span>
 
   {
     <span class='label'>min_threads:</span> <span class='id identifier rubyid_min'>min</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_min'>min</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&amp;&amp;</span> <span class='const'>Integer</span>(<span class='id identifier rubyid_min'>min</span>)<span class='comma'>,</span>
     <span class='label'>max_threads:</span> <span class='id identifier rubyid_max'>max</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_max'>max</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&amp;&amp;</span> <span class='const'>Integer</span>(<span class='id identifier rubyid_max'>max</span>)<span class='comma'>,</span>
     <span class='label'>persistent_timeout:</span> <span class='id identifier rubyid_persistent_timeout'>persistent_timeout</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_persistent_timeout'>persistent_timeout</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&amp;&amp;</span> <span class='const'>Integer</span>(<span class='id identifier rubyid_persistent_timeout'>persistent_timeout</span>)<span class='comma'>,</span>
-    <span class='label'>workers:</span> <span class='id identifier rubyid_workers'>workers</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_workers'>workers</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&amp;&amp;</span> <span class='const'>Integer</span>(<span class='id identifier rubyid_workers'>workers</span>)<span class='comma'>,</span>
+    <span class='label'>workers:</span> <span class='id identifier rubyid_workers'>workers</span><span class='comma'>,</span>
     <span class='label'>environment:</span> <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>APP_ENV</span><span class='tstring_end'>&#39;</span></span>] <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>RACK_ENV</span><span class='tstring_end'>&#39;</span></span>] <span class='op'>||</span> <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>RAILS_ENV</span><span class='tstring_end'>&#39;</span></span>]<span class='comma'>,</span>
   }
 <span class='kw'>end</span>
@@ -949,11 +1000,11 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L391-L409'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L398-L416'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='391' data-end='409'></pre>
+  <pre class='lines_num' data-start='398' data-end='416'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 391</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 398</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rack_builder'>rack_builder</span>
@@ -984,11 +1035,11 @@
   <h3 class='signature '>
     #<strong>rackup</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L310-L312'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L306-L308'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='310' data-end='312'></pre>
+  <pre class='lines_num' data-start='306' data-end='308'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 310</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 306</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rackup'>rackup</span>
@@ -1003,18 +1054,18 @@
   <h3 class='signature priv'>
     #<strong>require_processor_counter</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L379-L387'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L375-L383'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='379' data-end='387'></pre>
+  <pre class='lines_num' data-start='375' data-end='383'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 379</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 375</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_require_processor_counter'>require_processor_counter</span>
   <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>concurrent/utility/processor_counter</span><span class='tstring_end'>&#39;</span></span>
 <span class='kw'>rescue</span> <span class='const'>LoadError</span>
   <span class='id identifier rubyid_warn'>warn</span> <span class='heredoc_beg'>&lt;&lt;~MESSAGE</span>
-<span class='ignored_sp'>    </span><span class='tstring_content'>WEB_CONCURRENCY=auto requires the &quot;concurrent-ruby&quot; gem to be installed.
+<span class='ignored_sp'>    </span><span class='tstring_content'>WEB_CONCURRENCY=auto or workers(:auto) requires the &quot;concurrent-ruby&quot; gem to be installed.
 </span><span class='ignored_sp'>    </span><span class='tstring_content'>Please add &quot;concurrent-ruby&quot; to your Gemfile.
 </span><span class='heredoc_end'>  MESSAGE
 </span>  <span class='id identifier rubyid_raise'>raise</span>
@@ -1053,11 +1104,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L341-L358'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L337-L354'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='341' data-end='358'></pre>
+  <pre class='lines_num' data-start='337' data-end='354'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 341</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 337</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run_hooks'>run_hooks</span>(<span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_arg'>arg</span><span class='comma'>,</span> <span class='id identifier rubyid_log_writer'>log_writer</span><span class='comma'>,</span> <span class='id identifier rubyid_hook_data'>hook_data</span> <span class='op'>=</span> <span class='kw'>nil</span>)
@@ -1087,11 +1138,11 @@
   <h3 class='signature priv'>
     #<strong>set_conditional_default_options</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L429-L432'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L436-L439'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='429' data-end='432'></pre>
+  <pre class='lines_num' data-start='436' data-end='439'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 429</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 436</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_conditional_default_options'>set_conditional_default_options</span>
@@ -1107,11 +1158,11 @@
   <h3 class='signature priv'>
     #<strong>warn_hooks</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L434-L451'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/lib/puma/configuration.rb#L441-L458'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='434' data-end='451'></pre>
+  <pre class='lines_num' data-start='441' data-end='458'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/configuration.rb', line 434</span></pre>
+<pre><span class='info file'># File 'lib/puma/configuration.rb', line 441</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_warn_hooks'>warn_hooks</span>
