@@ -4,8 +4,8 @@
 
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
-<meta name='apple-touch-fullscreen'       content='yes'>
-<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
 <title>File: History &mdash; Puma-7.1.0</title>
@@ -61,6 +61,56 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
+<h2>7.2.0 / 2026-01-20</h2>
+
+<ul>
+<li><p>Features</p>
+
+<ul>
+<li>Add workers <code>:auto</code> (<a href="https://github.com/puma/puma/pull/3827" title="PR by Nate Berkopec, merged 2026-01-20">#3827</a>)</li>
+<li>Make it possible to restrict control server commands to stats (<a href="https://github.com/puma/puma/pull/3787" title="PR by Stan Hu, merged 2025-10-17">#3787</a>)</li>
+</ul></li>
+<li><p>Bugfixes</p>
+
+<ul>
+<li>Don&#39;t break if <code>WEB_CONCURRENCY</code> is set to a blank string (<a href="https://github.com/puma/puma/pull/3837" title="PR by John Bachir, merged 2026-01-09">#3837</a>)</li>
+<li>Don&#39;t share server between worker 0 and descendants on refork (<a href="https://github.com/puma/puma/pull/3602" title="PR by Joshua Young, merged 2025-11-28">#3602</a>)</li>
+<li>Fix phase check race condition in <a href="Puma/Cluster.html#check_workers-instance_method" title="Puma::Cluster#check_workers (method)">Puma::Cluster#check_workers</a> (<a href="https://github.com/puma/puma/pull/3690" title="PR by Joshua Young, merged 2025-11-18">#3690</a>)</li>
+<li>Fix advertising of CLI config before config files are loaded (<a href="https://github.com/puma/puma/pull/3823" title="PR by Joshua Young, merged 2025-11-18">#3823</a>)</li>
+</ul></li>
+<li><p>Performance</p>
+
+<ul>
+<li>17% faster HTTP parsing through pre-interning env keys (<a href="https://github.com/puma/puma/pull/3825" title="PR by Jean Boussier, merged 2025-11-19">#3825</a>)</li>
+<li>Implement <code>dsize</code> and <code>dcompact</code> functions for <a href="Puma/HttpParser.html" title="Puma::HttpParser (class)"><code>HttpParser</code></a>, which makes Puma&#39;s C-extension GC-compactible (<a href="https://github.com/puma/puma/pull/3828" title="PR by Jean Boussier, merged 2025-11-21">#3828</a>)</li>
+</ul></li>
+<li><p>Refactor</p>
+
+<ul>
+<li>Remove <code>NoMethodError</code> rescue in <a href="Puma/Reactor.html#select_loop-instance_method" title="Puma::Reactor#select_loop (method)">Puma::Reactor#select_loop</a> (<a href="https://github.com/puma/puma/pull/3831" title="PR by Joshua Young, merged 2025-11-25">#3831</a>)</li>
+<li>Various cleanups in the C extension (<a href="https://github.com/puma/puma/pull/3814" title="PR by Jean Boussier, merged 2025-11-17">#3814</a>)</li>
+<li>Monomorphize <code>handle_request</code> return (<a href="https://github.com/puma/puma/pull/3802" title="PR by Richard Schneeman, merged 2025-10-20">#3802</a>)</li>
+</ul></li>
+<li><p>Docs</p>
+
+<ul>
+<li>Change link to <code>docs/deployment.md</code> in <code>README.md</code> (<a href="https://github.com/puma/puma/pull/3848" title="PR by Miłosz Bieniek, merged 2025-12-27">#3848</a>)</li>
+<li>Fix formatting for each signal description in signals.md (<a href="https://github.com/puma/puma/pull/3813" title="PR by Masafumi Koba, merged 2025-11-17">#3813</a>)</li>
+<li>Update deployment and Kubernetes docs with Puma configuration tips (<a href="https://github.com/puma/puma/pull/3807" title="PR by Nate Berkopec, merged 2025-10-28">#3807</a>)</li>
+<li>Rename master to main (<a href="https://github.com/puma/puma/pull/3809" title="PR by Patrik Ragnarsson, merged 2025-10-26">#3809</a>, <a href="https://github.com/puma/puma/pull/3808" title="PR by Nymuxyzo, merged 2025-10-26">#3808</a>, <a href="https://github.com/puma/puma/pull/3800" title="PR by MSP-Greg, merged 2025-10-19">#3800</a>)</li>
+<li>Fix some minor typos in the docs (<a href="https://github.com/puma/puma/pull/3804" title="PR by Joe Rafaniello, merged 2025-10-21">#3804</a>)</li>
+<li>Add <code>GOVERNANCE.md</code>, <code>MAINTAINERS</code> (<a href="https://github.com/puma/puma/pull/3826" title="PR by Nate Berkopec, merged 2026-01-20">#3826</a>)</li>
+<li>Remove Code Climate badge (<a href="https://github.com/puma/puma/pull/3820" title="PR by Nate Berkopec, merged 2025-11-19">#3820</a>)</li>
+<li>Add @joshuay03 to the maintainer list</li>
+</ul></li>
+<li><p>CI</p>
+
+<ul>
+<li>Use Minitest 6 where applicable (<a href="https://github.com/puma/puma/pull/3859" title="PR by MSP-Greg, merged 2026-01-16">#3859</a>)</li>
+<li>Many test suite improvements and flake fixes (<a href="https://github.com/puma/puma/pull/3861" title="PR by MSP-Greg, merged 2026-01-20">#3861</a>, <a href="https://github.com/puma/puma/pull/3863" title="PR by Nate Berkopec, merged 2026-01-20">#3863</a>, <a href="https://github.com/puma/puma/pull/3860" title="PR by MSP-Greg, merged 2026-01-16">#3860</a>, <a href="https://github.com/puma/puma/pull/3852" title="PR by Miłosz Bieniek, merged 2026-01-14">#3852</a>, <a href="https://github.com/puma/puma/pull/3857" title="PR by Aaron Patterson, merged 2026-01-12">#3857</a>, <a href="https://github.com/puma/puma/pull/3856" title="PR by MSP-Greg, merged 2026-01-12">#3856</a>, <a href="https://github.com/puma/puma/pull/3845" title="PR by MSP-Greg, merged 2025-12-19">#3845</a>, <a href="https://github.com/puma/puma/pull/3843" title="PR by MSP-Greg, merged 2025-12-18">#3843</a>, <a href="https://github.com/puma/puma/pull/3842" title="PR by MSP-Greg, merged 2025-12-18">#3842</a>, <a href="https://github.com/puma/puma/pull/3841" title="PR by MSP-Greg, merged 2025-12-18">#3841</a>, <a href="https://github.com/puma/puma/pull/3822" title="PR by Nate Berkopec, merged 2025-11-17">#3822</a>, <a href="https://github.com/puma/puma/pull/3817" title="PR by Nate Berkopec, merged 2025-11-17">#3817</a>, <a href="https://github.com/puma/puma/pull/3764" title="PR by MSP-Greg, merged 2025-10-17">#3764</a>)</li>
+</ul></li>
+</ul>
+
 <h2>7.1.0 / 2025-10-16</h2>
 
 <ul>

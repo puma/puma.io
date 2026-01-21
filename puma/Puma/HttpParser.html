@@ -4,8 +4,8 @@
 
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
-<meta name='apple-touch-fullscreen'       content='yes'>
-<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
 <title>Class: Puma::HttpParser &mdash; Puma-7.1.0</title>
@@ -77,7 +77,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L481'>ext/puma_http11/puma_http11.c</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L473'>ext/puma_http11/puma_http11.c</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -178,17 +178,16 @@
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L319-L326'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L322-L328'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='319' data-end='326'></pre>
+  <pre class='lines_num' data-start='322' data-end='328'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 319</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 322</span></pre>
 <pre class='code cpp'>
 
-VALUE HttpParser_init(VALUE self)
+static VALUE HttpParser_init(VALUE self)
 {
-  puma_parser *http = NULL;
-  DATA_GET(self, puma_parser, &amp;HttpParser_data_type, http);
+  puma_parser *http = HttpParser_unwrap(self);
   puma_parser_init(http);
 
   return self;
@@ -209,17 +208,16 @@ VALUE HttpParser_init(VALUE self)
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L418-L424'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L414-L419'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='418' data-end='424'></pre>
+  <pre class='lines_num' data-start='414' data-end='419'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 418</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 414</span></pre>
 <pre class='code cpp'>
 
-VALUE HttpParser_has_error(VALUE self)
+static VALUE HttpParser_has_error(VALUE self)
 {
-  puma_parser *http = NULL;
-  DATA_GET(self, puma_parser, &amp;HttpParser_data_type, http);
+  puma_parser *http = HttpParser_unwrap(self);
 
   return puma_parser_has_error(http) ? Qtrue : Qfalse;
 }
@@ -238,17 +236,16 @@ VALUE HttpParser_has_error(VALUE self)
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L433-L439'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L428-L433'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='433' data-end='439'></pre>
+  <pre class='lines_num' data-start='428' data-end='433'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 433</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 428</span></pre>
 <pre class='code cpp'>
 
-VALUE HttpParser_is_finished(VALUE self)
+static VALUE HttpParser_is_finished(VALUE self)
 {
-  puma_parser *http = NULL;
-  DATA_GET(self, puma_parser, &amp;HttpParser_data_type, http);
+  puma_parser *http = HttpParser_unwrap(self);
 
   return puma_parser_is_finished(http) ? Qtrue : Qfalse;
 }
@@ -268,16 +265,15 @@ VALUE HttpParser_is_finished(VALUE self)
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L463-L468'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L456-L460'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='463' data-end='468'></pre>
+  <pre class='lines_num' data-start='456' data-end='460'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 463</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 456</span></pre>
 <pre class='code cpp'>
 
-VALUE HttpParser_body(VALUE self) {
-  puma_parser *http = NULL;
-  DATA_GET(self, puma_parser, &amp;HttpParser_data_type, http);
+static VALUE HttpParser_body(VALUE self) {
+  puma_parser *http = HttpParser_unwrap(self);
 
   return http-&gt;body;
 }
@@ -300,33 +296,29 @@ VALUE HttpParser_body(VALUE self) {
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L380-L408'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L380-L404'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='380' data-end='408'></pre>
+  <pre class='lines_num' data-start='380' data-end='404'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 380</span></pre>
 <pre class='code cpp'>
 
-VALUE HttpParser_execute(VALUE self, VALUE req_hash, VALUE data, VALUE start)
+static VALUE HttpParser_execute(VALUE self, VALUE req_hash, VALUE data, VALUE start)
 {
-  puma_parser *http = NULL;
+  puma_parser *http = HttpParser_unwrap(self);
   int from = 0;
   char *dptr = NULL;
   long dlen = 0;
 
-  DATA_GET(self, puma_parser, &amp;HttpParser_data_type, http);
-
   from = FIX2INT(start);
-  dptr = rb_extract_chars(data, &amp;dlen);
+  RSTRING_GETMEM(data, dptr, dlen);
 
   if(from &gt;= dlen) {
-    rb_free_chars(dptr);
     rb_raise(eHttpParserError, &quot;%s&quot;, &quot;Requested start is after data buffer end.&quot;);
   } else {
     http-&gt;request = req_hash;
     puma_parser_execute(http, dptr, dlen, from);
 
-    rb_free_chars(dptr);
     VALIDATE_MAX_LENGTH(puma_parser_nread(http), HEADER);
 
     if(puma_parser_has_error(http)) {
@@ -351,17 +343,16 @@ VALUE HttpParser_execute(VALUE self, VALUE req_hash, VALUE data, VALUE start)
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L353-L360'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L354-L360'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='353' data-end='360'></pre>
+  <pre class='lines_num' data-start='354' data-end='360'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 353</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 354</span></pre>
 <pre class='code cpp'>
 
-VALUE HttpParser_finish(VALUE self)
+static VALUE HttpParser_finish(VALUE self)
 {
-  puma_parser *http = NULL;
-  DATA_GET(self, puma_parser, &amp;HttpParser_data_type, http);
+  puma_parser *http = HttpParser_unwrap(self);
   puma_parser_finish(http);
 
   return puma_parser_is_finished(http) ? Qtrue : Qfalse;
@@ -381,17 +372,16 @@ VALUE HttpParser_finish(VALUE self)
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L449-L455'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L443-L448'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='449' data-end='455'></pre>
+  <pre class='lines_num' data-start='443' data-end='448'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 449</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 443</span></pre>
 <pre class='code cpp'>
 
-VALUE HttpParser_nread(VALUE self)
+static VALUE HttpParser_nread(VALUE self)
 {
-  puma_parser *http = NULL;
-  DATA_GET(self, puma_parser, &amp;HttpParser_data_type, http);
+  puma_parser *http = HttpParser_unwrap(self);
 
   return INT2FIX(http-&gt;nread);
 }
@@ -410,17 +400,16 @@ VALUE HttpParser_nread(VALUE self)
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L336-L343'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.1.0/ext/puma_http11/puma_http11.c#L338-L344'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='336' data-end='343'></pre>
+  <pre class='lines_num' data-start='338' data-end='344'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 336</span></pre>
+<pre><span class='info file'># File 'ext/puma_http11/puma_http11.c', line 338</span></pre>
 <pre class='code cpp'>
 
-VALUE HttpParser_reset(VALUE self)
+static VALUE HttpParser_reset(VALUE self)
 {
-  puma_parser *http = NULL;
-  DATA_GET(self, puma_parser, &amp;HttpParser_data_type, http);
+  puma_parser *http = HttpParser_unwrap(self);
   puma_parser_init(http);
 
   return Qnil;

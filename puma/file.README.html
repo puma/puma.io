@@ -4,8 +4,8 @@
 
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
-<meta name='apple-touch-fullscreen'       content='yes'>
-<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
 <title>File: README &mdash; Puma-7.1.0</title>
@@ -67,7 +67,7 @@
 
 <h1>Puma: A Ruby Web Server Built For Parallelism</h1>
 
-<p><a href="https://github.com/puma/puma/actions/workflows/tests.yml?query=branch%3Av7.1.0"><img src="https://github.com/puma/puma/actions/workflows/tests.yml/badge.svg?branch=v7.1.0" alt="Actions"></a>
+<p><a href="https://github.com/puma/puma/actions/workflows/tests.yml?query=branch%3Av7.2.0"><img src="https://github.com/puma/puma/actions/workflows/tests.yml/badge.svg?branch=v7.2.0" alt="Actions"></a>
 <a href="https://stackoverflow.com/questions/tagged/puma"><img src="https://img.shields.io/badge/stackoverflow-Puma-blue.svg" alt="StackOverflow"></a></p>
 
 <p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> is a <strong>simple, fast, multi-threaded, and highly parallel HTTP 1.1 server for Ruby/Rack applications</strong>.</p>
@@ -135,10 +135,10 @@ install/compile, but it will not allow ssl connections.</p>
 
 <h2>Configuration</h2>
 
-<p>Puma provides numerous options. Consult <code>puma -h</code> (or <code>puma --help</code>) for a full list of CLI options, or see <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/dsl.rb">dsl.rb</a>.</p>
+<p>Puma provides numerous options. Consult <code>puma -h</code> (or <code>puma --help</code>) for a full list of CLI options, or see <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> or <a href="https://github.com/puma/puma/blob/main/lib/puma/dsl.rb">dsl.rb</a>.</p>
 
 <p>You can also find several configuration examples as part of the
-<a href="https://github.com/puma/puma/tree/master/test/config">test</a> suite.</p>
+<a href="https://github.com/puma/puma/tree/main/test/config">test</a> suite.</p>
 
 <p>For debugging purposes, you can set the environment variable <code>PUMA_LOG_CONFIG</code> with a value
 and the loaded configuration will be printed as part of the boot process.</p>
@@ -163,11 +163,18 @@ and the loaded configuration will be printed as part of the boot process.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='gvar'>$ </span><span class='const'>WEB_CONCURRENCY</span><span class='op'>=</span><span class='int'>3</span> <span class='id identifier rubyid_puma'>puma</span> <span class='op'>-</span><span class='id identifier rubyid_t'>t</span> <span class='int'>8</span><span class='symbeg'>:</span><span class='int'>32</span></code></pre>
 
+<p>When using a config file, most applications can simply set <code>workers :auto</code> (requires the <code>concurrent-ruby</code> gem) to match the number of worker processes to the available processors:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
+</span><span class='id identifier rubyid_workers'>workers</span> <span class='symbeg'>:</span><span class='id identifier rubyid_auto'>auto</span></code></pre>
+
+<p>See <a href="lib/puma/dsl.rb"><code>workers :auto</code> gotchas</a>.</p>
+
 <p>Note that threads are still used in cluster mode, and the <code>-t</code> thread flag setting is per worker, so <code>-w 2 -t 16:16</code> will spawn 32 threads in total, with 16 in each worker process.</p>
 
-<p>If the <code>WEB_CONCURRENCY</code> environment variable is set to <code>&quot;auto&quot;</code> and the <code>concurrent-ruby</code> gem is available in your application, Puma will set the worker process count to the result of <a href="https://ruby-concurrency.github.io/concurrent-ruby/master/Concurrent.html#available_processor_count-class_method">available processors</a>.</p>
+<p>If <code>workers</code> is set to <code>:auto</code>, or the <code>WEB_CONCURRENCY</code> environment variable is set to <code>&quot;auto&quot;</code>, and the <code>concurrent-ruby</code> gem is available in your application, Puma will set the worker process count to the result of <a href="https://msp-greg.github.io/concurrent-ruby/Concurrent.html#available_processor_count-class_method">available processors</a>.</p>
 
-<p>For an in-depth discussion of the tradeoffs of thread and process count settings, [see our docs]#workers-per-pod-and-other-config-issues).</p>
+<p>For an in-depth discussion of the tradeoffs of thread and process count settings, <a href="file.deployment.html">see our docs</a>.</p>
 
 <p>In cluster mode, Puma can &quot;preload&quot; your application. This loads all the application code <em>prior</em> to forking. Preloading reduces total memory usage of your application via an operating system feature called <a href="https://en.wikipedia.org/wiki/Copy-on-write">copy-on-write</a>.</p>
 
@@ -265,7 +272,7 @@ which may be used to specify code blocks to run on each event:</p>
 <h3>Error handling</h3>
 
 <p>If Puma encounters an error outside of the context of your application, it will respond with a 400/500 and a simple
-textual error message (see <a href="Puma/Server.html#lowlevel_error-instance_method" title="Puma::Server#lowlevel_error (method)">Puma::Server#lowlevel_error</a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/server.rb">server.rb</a>).
+textual error message (see <a href="Puma/Server.html#lowlevel_error-instance_method" title="Puma::Server#lowlevel_error (method)">Puma::Server#lowlevel_error</a> or <a href="https://github.com/puma/puma/blob/main/lib/puma/server.rb">server.rb</a>).
 You can specify custom behavior for this scenario. For example, you can report the error to your third-party
 error-tracking service (in this example, <a href="https://rollbar.com">rollbar</a>):</p>
 
@@ -394,7 +401,7 @@ is not encrypted, the executable will not be called.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='gvar'>$ </span><span class='id identifier rubyid_puma'>puma</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_control'>control</span><span class='op'>-</span><span class='id identifier rubyid_url'>url</span> <span class='label'>tcp:</span><span class='tstring'><span class='regexp_beg'>/</span><span class='regexp_end'>/</span></span><span class='float'>127.0</span><span class='op'>:</span><span class='int'>9293</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_control'>control</span><span class='op'>-</span><span class='id identifier rubyid_token'>token</span> <span class='id identifier rubyid_foo'>foo</span></code></pre>
 
-<p>Puma will start the control server on localhost port 9293. All requests to the control server will need to include control token (in this case, <code>token=foo</code>) as a query parameter. This allows for simple authentication. Check out <a href="Puma/App/Status.html" title="Puma::App::Status (class)"><code>App::Status</code></a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/app/status.rb">status.rb</a> to see what the status app has available.</p>
+<p>Puma will start the control server on localhost port 9293. All requests to the control server will need to include control token (in this case, <code>token=foo</code>) as a query parameter. This allows for simple authentication. Check out <a href="Puma/App/Status.html" title="Puma::App::Status (class)"><code>App::Status</code></a> or <a href="https://github.com/puma/puma/blob/main/lib/puma/app/status.rb">status.rb</a> to see what the status app has available.</p>
 
 <p>You can also interact with the control server via <code>pumactl</code>. This command will restart Puma:</p>
 
@@ -420,7 +427,7 @@ is not encrypted, the executable will not be called.</p>
 
 <p>The other side-effects of setting the environment are whether to show stack traces (in <code>development</code> or <code>test</code>), and setting RACK_ENV may potentially affect middleware looking for this value to change their behavior. The default puma RACK_ENV value is <code>development</code>. You can see all config default values in <a href="Puma/Configuration.html#puma_default_options-instance_method" title="Puma::Configuration#puma_default_options (method)">Puma::Configuration#puma_default_options</a> or <a href="https://github.com/puma/puma/blob/61c6213fbab/lib/puma/configuration.rb#L182-L204">configuration.rb</a>.</p>
 
-<p>Check out <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> or <a href="https://github.com/puma/puma/blob/master/lib/puma/dsl.rb">dsl.rb</a> to see all available options.</p>
+<p>Check out <a href="Puma/DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> or <a href="https://github.com/puma/puma/blob/main/lib/puma/dsl.rb">dsl.rb</a> to see all available options.</p>
 
 <h2>Restart</h2>
 

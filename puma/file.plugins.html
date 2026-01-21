@@ -4,8 +4,8 @@
 
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
-<meta name='apple-touch-fullscreen'       content='yes'>
-<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
 <title>File: Plugins &mdash; Puma-7.1.0</title>
@@ -69,14 +69,14 @@ operations.</p>
 <p>There are two canonical plugins to aid in the development of new plugins:</p>
 
 <ul>
-<li><a href="https://github.com/puma/puma/blob/master/lib/puma/plugin/tmp_restart.rb">tmp_restart</a>:
+<li><a href="https://github.com/puma/puma/blob/main/lib/puma/plugin/tmp_restart.rb">tmp_restart</a>:
 Restarts the server if the file <code>tmp/restart.txt</code> is touched</li>
 <li><a href="https://github.com/puma/puma-heroku/blob/master/lib/puma/plugin/heroku.rb">heroku</a>:
 Packages up the default configuration used by Puma on Heroku (being sunset
 with the release of Puma 5.0)</li>
 </ul>
 
-<p>Plugins are activated in a <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> configuration file (such as <code>config/puma.rb&#39;</code>)
+<p>Plugins are activated in a <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> configuration file (such as <code>config/puma.rb</code>)
 by adding <code>plugin &quot;name&quot;</code>, such as <code>plugin &quot;heroku&quot;</code>.</p>
 
 <p>Plugins are activated based on path requirements so, activating the <code>heroku</code>

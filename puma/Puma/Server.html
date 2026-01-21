@@ -4,8 +4,8 @@
 
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
-<meta name='apple-touch-fullscreen'       content='yes'>
-<meta name='apple-mobile-web-app-capable' content='yes'>
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
 <title>Class: Puma::Server &mdash; Puma-7.1.0</title>
@@ -2006,10 +2006,10 @@
       <span class='id identifier rubyid_can_loop'>can_loop</span> <span class='op'>=</span> <span class='kw'>false</span>
       <span class='ivar'>@requests_count</span> <span class='op'>+=</span> <span class='int'>1</span>
       <span class='kw'>case</span> <span class='id identifier rubyid_handle_request'>handle_request</span>(<span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_requests'>requests</span> <span class='op'>+</span> <span class='int'>1</span>)
-      <span class='kw'>when</span> <span class='kw'>false</span>
+      <span class='kw'>when</span> <span class='symbeg'>:</span><span class='id identifier rubyid_close'>close</span>
       <span class='kw'>when</span> <span class='symbeg'>:</span><span class='id identifier rubyid_async'>async</span>
         <span class='id identifier rubyid_close_socket'>close_socket</span> <span class='op'>=</span> <span class='kw'>false</span>
-      <span class='kw'>when</span> <span class='kw'>true</span>
+      <span class='kw'>when</span> <span class='symbeg'>:</span><span class='id identifier rubyid_keep_alive'>keep_alive</span>
         <span class='id identifier rubyid_requests'>requests</span> <span class='op'>+=</span> <span class='int'>1</span>
 
         <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_reset'>reset</span>
@@ -2068,7 +2068,7 @@
 
 <p>It is responsible for ensuring that a request has been completely received before it starts to be processed by the <a href="ThreadPool.html" title="Puma::ThreadPool (class)"><code>ThreadPool</code></a>. This may be known as read buffering. If read buffering is not done, and no other read buffering is performed (such as by an application server such as nginx) then the application would be subject to a slow client attack.</p>
 
-<p>For a graphical representation of how the request buffer works see <a href="../<a.html" title="href=&quot;https://github.com/puma/puma/blob/master/docs/architecture.md#connection-pipeline&quot;&gt;github.com/puma/puma/blob/master/docs/architecture.md#connection-pipeline&lt;/a&gt; architecture.md">href="https://github.com/puma/puma/blob/master/docs/architecture.md#connection-pipeline">github.com/puma/puma/blob/master/docs/architecture.md#connection-pipeline</a> architecture.md</a>.</p>
+<p>For a graphical representation of how the request buffer works see <a href="../file._3Ca.html" title="href=&quot;https://github.com/puma/puma/blob/main/docs/architecture.md&quot;&gt;github.com/puma/puma/blob/main/docs/architecture.md&lt;/a&gt; architecture.md">href="https://github.com/puma/puma/blob/main/docs/architecture.md">github.com/puma/puma/blob/main/docs/architecture.md</a> architecture.md</a>.</p>
 
 <p>The method checks to see if it has the full header and body with the <a href="Client.html#try_to_finish-instance_method" title="Puma::Client#try_to_finish (method)">Client#try_to_finish</a> method. If the full request has been sent, then the request is passed to the <a href="ThreadPool.html" title="Puma::ThreadPool (class)"><code>ThreadPool</code></a> (‘@thread_pool &lt;&lt; client`) so that a “worker thread” can pick up the request and begin to execute application logic. The Client is then removed from the reactor (return <code>true</code>).</p>
 
