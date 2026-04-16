@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'>
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name='mobile-web-app-capable' content='yes'>
+<meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
+
+<title>File: Welcome to Puma 8.0: Into the Arena. &mdash; Puma-8.0.0</title>
+
+<link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
+<link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_style.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_list.css' />
+<link rel='stylesheet'  type='text/css' href='css/y_color.css' />
+
+<script type='text/javascript'>
+  var pathId = "8.0-Upgrade",
+    relpath = '';
+
+  var t2Info = {
+    CSEP: '.',
+    ISEP: '#',
+    NSEP: '::'
+  };
+</script>
+
+<script type='text/javascript' charset='utf-8' src='js/highlight.pack.js'></script>
+<script type='text/javascript' charset='utf-8' src='js/y_app.js'></script>
+
+</head>
+<body>
+<svg id='y_wait' class viewBox='0 0 90 90'></svg>
+<div id='settings' class='hidden'></div>
+<div id='y_list' class='d h'>
+  <header id='list_header'></header>
+  <nav id= 'list_nav' class='y_nav l_nav'>
+    <ul id='list_items'></ul>
+  </nav>
+</div>
+<div id='y_toc' class='f h'>
+  <header id='toc_header'></header>
+  <nav id= 'toc_nav' class='y_nav t_nav'>
+  <ol id='toc_items'></ol>
+  </nav>
+</div>
+<div id='y_main' tabindex='-1'>
+  <header id='y_header'>
+    <div id='y_menu'>
+      <a id='home_no_xhr' href='/'>Home</a> &raquo; 
+      <a href='.'>Puma-8.0.0</a> &raquo; 
+      <a href='_index.html'>Index</a> &raquo; 
+      <span class='title'><a id='t2_doc_top' href='#'>File: Welcome to Puma 8.0: Into the Arena.&nbsp;&#x25B2;</a></span>
+          </div>
+
+    <a id='list_href' href="class_list.html"></a>
+    <div id='y_measure_em' class='y_measure'></div>
+    <div id='y_measure_vh' class='y_measure'></div>
+    <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
+  </header>
+<div id='content' class='file'>
+<h1>Welcome to <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 8.0: Into the Arena.</h1>
+
+<p><a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 8 brings IPv6 by default, increased control over the threadpool, and more.</p>
+
+<p>Here&#39;s what you should do:</p>
+
+<ol>
+<li>Review the Upgrade section below to look for breaking changes that could affect you.</li>
+<li>Upgrade to version 8.0 in your Gemfile and deploy.</li>
+<li>Open up a new bug issue if you find any problems.</li>
+<li>Join us in building Puma! We welcome first-timers. See <a href="file.CONTRIBUTING.html">CONTRIBUTING.md</a>.</li>
+</ol>
+
+<p>For a complete list of changes, see <a href="file.History.html">History.md</a>.</p>
+
+<h2>What&#39;s New</h2>
+
+<h3>Smarter concurrency controls</h3>
+
+<p><strong>IO-bound requests can now go past your normal thread ceiling.</strong> <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> 8 adds <code>max_io_threads</code> and injects <code>env[&quot;puma.mark_as_io_bound&quot;]</code> into the <a href="Rack.html" title="Rack (module)"><code>Rack</code></a> env so your app or middleware can tell <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> when a request has become mostly I/O wait. That helps mixed workloads a lot: slow API calls, report generation, and similar wait-heavy requests no longer need to crowd out CPU-bound work as aggressively. This landed in <a href="https://github.com/puma/puma/pull/3816">#3816</a> and was refined in <a href="https://github.com/puma/puma/pull/3894">#3894</a>.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
+</span><span class='id identifier rubyid_threads'>threads</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>5</span>
+<span class='id identifier rubyid_max_io_threads'>max_io_threads</span> <span class='int'>5</span></code></pre>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># config.ru
+</span><span class='id identifier rubyid_run'>run</span> <span class='id identifier rubyid_lambda'>lambda</span> { <span class='op'>|</span><span class='id identifier rubyid_env'>env</span><span class='op'>|</span>
+  <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puma.mark_as_io_bound</span><span class='tstring_end'>&#39;</span></span>].<span class='id identifier rubyid_call'>call</span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>=</span> <span class='const'>SlowReportService</span>.<span class='id identifier rubyid_fetch'>fetch</span>
+
+  [<span class='int'>200</span><span class='comma'>,</span> { <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>content-type</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>application/json</span><span class='tstring_end'>&#39;</span></span> }<span class='comma'>,</span> [<span class='id identifier rubyid_report'>report</span>]]
+}</code></pre>
+
+<p>We anticipate this will mainly by used by framework authors who have threads or types of requests they know are extremely IO-bound, and don&#39;t recommend it for use at the application level.</p>
+
+<p><strong>Thread pool limits can be changed at runtime.</strong> Puma now exposes <a href="Puma/Server.html#update_thread_pool_min_max-instance_method" title="Puma::Server#update_thread_pool_min_max (method)">Puma::Server#update_thread_pool_min_max</a>, and hook/plugin code can do the same through <a href="Puma/ServerPluginControl.html" title="Puma::ServerPluginControl (class)"><code>ServerPluginControl</code></a>.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># from a plugin or other trusted in-process integration
+</span><span class='id identifier rubyid_server'>server</span>.<span class='id identifier rubyid_update_thread_pool_min_max'>update_thread_pool_min_max</span>(<span class='label'>min:</span> <span class='int'>2</span><span class='comma'>,</span> <span class='label'>max:</span> <span class='int'>12</span>)</code></pre>
+
+<p>If you already use <code>before_thread_start</code>, note that hook behavior changed in this release; see the Upgrade section below.</p>
+
+<h3>Cleaner config for single and cluster mode</h3>
+
+<p><strong>New <code>single</code> and <code>cluster</code> blocks let one config file express both modes cleanly.</strong> These blocks run after config files are loaded, so you can keep the mode-specific settings in one obvious place instead of scattering <code>if</code> logic through <code>config/puma.rb</code>. This makes shared configs much easier to read and reuse across development, review apps, and production. See <a href="https://github.com/puma/puma/pull/3621">#3621</a>.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_workers'>workers</span> <span class='const'>ENV</span>.<span class='id identifier rubyid_fetch'>fetch</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>WEB_CONCURRENCY</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='int'>0</span>)
+
+<span class='id identifier rubyid_single'>single</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_silence_fork_callback_warning'>silence_fork_callback_warning</span>
+<span class='kw'>end</span>
+
+<span class='comment'># Only runs if workers &gt; 0
+</span><span class='id identifier rubyid_cluster'>cluster</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_preload_app!'>preload_app!</span>
+  <span class='id identifier rubyid_before_worker_boot'>before_worker_boot</span> <span class='kw'>do</span>
+    <span class='comment'># Do a thing
+</span>  <span class='kw'>end</span>
+<span class='kw'>end</span></code></pre>
+
+<h3>Better debugging and operations</h3>
+
+<p><strong><code>shutdown_debug</code> can now be limited to forced shutdowns.</strong> If you want thread backtraces only when a graceful shutdown turns into a forced one, use <code>shutdown_debug on_force: true</code>. That keeps normal deploy logs quieter while still giving you the &quot;what is hanging?&quot; escape hatch when you need it. See <a href="https://github.com/puma/puma/pull/3671">#3671</a>.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_shutdown_debug'>shutdown_debug</span> <span class='label'>on_force:</span> <span class='kw'>true</span>
+<span class='id identifier rubyid_force_shutdown_after'>force_shutdown_after</span> <span class='int'>30</span></code></pre>
+
+<p><strong>Thread backtrace via signal works on more platforms.</strong> On systems without <code>SIGINFO</code>, Puma now uses <code>SIGPWR</code> for thread backtrace dumps. See <a href="https://github.com/puma/puma/pull/3829">#3829</a>.</p>
+
+<p><strong>Phased restart is safer with <code>fork_worker</code>.</strong> Puma no longer reforks from a stale worker 0 during phased restarts in <code>fork_worker</code> mode. There is nothing new to configure, but if you have tooling that watches worker order, check the Upgrade section because the rollout sequence changed. See <a href="https://github.com/puma/puma/pull/3853">#3853</a>.</p>
+
+<h3>Networking and performance</h3>
+
+<p><strong>Puma now prefers IPv6 wildcard binds when the host supports them.</strong> When Puma detects a non-loopback IPv6 interface, the default TCP host becomes <code>::</code> and the default bind becomes <code>tcp://[::]:PORT</code>. That lines Puma up better with modern dual-stack hosts, while still falling back to IPv4 when IPv6 is unavailable. See <a href="https://github.com/puma/puma/pull/3847">#3847</a>. If you need IPv4-only behavior, pin the bind explicitly.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bind'>bind</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tcp://0.0.0.0:9292</span><span class='tstring_end'>&#39;</span></span></code></pre>
+
+<p><strong>There are also a couple of hot-path performance wins.</strong> JRuby gets a faster HTTP parser with fewer copies and cheaper lookups, and Puma now avoids redundant header key downcasing when building responses. See <a href="https://github.com/puma/puma/pull/3838">#3838</a> and <a href="https://github.com/puma/puma/pull/3874">#3874</a>.</p>
+
+<h2>Upgrade</h2>
+
+<p>Check the following list to see if you&#39;re depending on any of these behaviors:</p>
+
+<ol>
+<li>If you rely on Puma&#39;s default bind from <code>bin/puma</code>, Rack handler startup, <code>port</code>, or an implicit config file bind, Puma may now listen on <code>::</code> and advertise <code>tcp://[::]:PORT</code> whenever a non-loopback IPv6 interface is present. If you need the old IPv4 wildcard behavior, set <code>bind &#39;tcp://0.0.0.0:9292&#39;</code>, <code>port ENV.fetch(&#39;PORT&#39;, 9292), &#39;0.0.0.0&#39;</code>, or <code>set_default_host &#39;0.0.0.0&#39;</code> explicitly, and review any firewall rules, health checks, deploy scripts, or host-string parsing code that assumed <code>0.0.0.0</code> or unbracketed <code>HOST:PORT</code> formatting.</li>
+<li>If you explicitly configure <code>bind &#39;tcp://[::]:...&#39;</code>, <code>bind &#39;ssl://[::]:...&#39;</code>, or equivalent <code>ssl_bind &#39;::&#39;, ...</code>, Puma will now rewrite that unspecified IPv6 bind to <code>0.0.0.0</code> when the host has no non-loopback IPv6 interface, and it will warn on boot. If you were using <code>::</code> to force IPv6-only behavior or to detect IPv6 availability, switch to a concrete IPv6 address instead of <code>::</code>, or ensure the machine actually has a usable IPv6 interface before Puma starts.</li>
+<li><code>before_thread_start</code> hooks now receive a <a href="Puma/ServerPluginControl.html" title="Puma::ServerPluginControl (class)"><code>ServerPluginControl</code></a> argument. Update any zero-arity lambdas, method objects, or other strict-arity hook code to accept one argument, for example <code>before_thread_start { |_control| ... }</code>, or Puma can raise <code>ArgumentError</code> when the hook runs.</li>
+<li>On platforms without <code>SIGINFO</code>, Puma now traps <code>SIGPWR</code>, and <code>pumactl info</code> sends <code>SIGPWR</code> there. If your supervisor, init script, or container tooling already uses <code>SIGPWR</code> for something else, change that wiring before upgrading and update any runbooks that assumed Puma would ignore <code>SIGPWR</code>.</li>
+<li>Requests rejected by <code>supported_http_methods</code> are now treated as parser/client errors earlier in request processing. If you use <code>supported_http_methods</code>, re-test unsupported-method requests and do not depend on the old 501 timing, connection handling, or <code>lowlevel_error_handler</code> behavior; if your error handler still sees these requests, make sure it tolerates a less-normalized Rack <code>env</code>.</li>
+<li><code>http_content_length_limit</code> enforcement is stricter now. A <code>413</code> on an HTTP/1.1 keep-alive request now forces <code>connection: close</code>, and chunked request bodies are rejected as soon as they cross the limit during parsing. Update clients, proxies, and tests not to reuse the socket after a <code>413</code>, and re-test any upload flows or custom error handling that depended on Puma&#39;s previous oversized-body behavior.</li>
+<li>If you use <code>fork_worker</code>, phased restart order changed. During <code>USR1</code> or <code>pumactl phased-restart</code>, worker <code>0</code> is now reinserted and restarted/reforked first after replacement. Update deployment scripts, canary logic, or monitoring that assumed the old worker sequence or keyed rollout steps off worker index order.</li>
+</ol>
+
+<div id='footer'></div>
+</div> <!-- content  -->
+</div> <!-- y_main   -->
+</body>
+</html>
