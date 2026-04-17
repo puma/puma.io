@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: CONTRIBUTING &mdash; Puma-7.1.0</title>
+<title>File: CONTRIBUTING &mdash; Puma-8.0.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-7.1.0</a> &raquo; 
+      <a href='.'>Puma-8.0.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: CONTRIBUTING&nbsp;&#x25B2;</a></span>
           </div>
@@ -257,9 +257,13 @@ help.</p>
 
 <p>Puma uses <a href="https://docs.github.com/en/actions">GitHub Actions</a> for CI testing. Please consider running the workflows in your fork before creating a PR. It is possible to enable GitHub Actions on your fork in the repositories&#39; <code>Actions</code> tab.</p>
 
+<p>CI runs against the latest patch release of each supported Ruby minor version. When reporting bugs or reproducing issues, please use the latest patch release for your Ruby minor version so your environment matches CI coverage.</p>
+
 <h2>Backports</h2>
 
 <p>Puma does not have a backport &quot;policy&quot; - maintainers will not consistently backport bugfixes to previous minor or major versions (we do treat security differently, see <a href="file.SECURITY.html"><code>SECURITY.md</code></a>.</p>
+
+<p>For Ruby patch-level bugs, we may add targeted workarounds. When we do, we keep those workarounds in place for the lifetime of the affected Ruby minor series, even if a later patch release fixes the underlying issue.</p>
 
 <p>As a contributor, you may make pull requests against <code>-stable</code> branches to backport fixes, and maintainers will release them once they&#39;re merged. For example, if you&#39;d like to make a backport for 4.3.x, you can make a pull request against <code>4-3-stable</code>. If there is no appropriate branch for the release you&#39;d like to backport against, please just open an issue and we&#39;ll make one for you.</p>
 

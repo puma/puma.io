@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: History &mdash; Puma-7.1.0</title>
+<title>File: History &mdash; Puma-8.0.0</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-7.1.0</a> &raquo; 
+      <a href='.'>Puma-8.0.0</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: History&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,6 +61,50 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
+<h2>8.0.0 / 2026-03-27</h2>
+
+<ul>
+<li><p>Features</p>
+
+<ul>
+<li>Add <code>env[&quot;puma.mark_as_io_bound&quot;]</code> API and <code>max_io_threads</code> config to allow IO-bound requests to exceed the thread pool max, enabling better handling of mixed workloads (<a href="https://github.com/puma/puma/pull/3816" title="PR by Jean Boussier, merged 2026-03-07">#3816</a>, <a href="https://github.com/puma/puma/pull/3894" title="PR by Joshua Young, merged 2026-03-07">#3894</a>)</li>
+<li>Add <code>single</code> and <code>cluster</code> DSL hooks for mode-specific configuration (<a href="https://github.com/puma/puma/pull/3621" title="PR by Joshua Young, merged 2026-02-22">#3621</a>)</li>
+<li>Add <code>on_force</code> option to <code>shutdown_debug</code> to only dump thread backtraces on forced (non-graceful) shutdown (<a href="https://github.com/puma/puma/pull/3671" title="PR by Joshua Young, merged 2026-03-08">#3671</a>)</li>
+<li>Add API to dynamically update min and max thread counts at runtime via <code>update_thread_pool_min_max</code> and <a href="Puma/ServerPluginControl.html" title="Puma::ServerPluginControl (class)"><code>ServerPluginControl</code></a> (<a href="https://github.com/puma/puma/pull/3658" title="PR by Yuki Nishijima, merged 2026-02-18">#3658</a>)</li>
+<li>Use SIGPWR for thread backtrace dumps on Linux/JRuby where SIGINFO is unavailable (<a href="https://github.com/puma/puma/pull/3829" title="PR by Nate Berkopec, merged 2026-01-27">#3829</a>)</li>
+</ul></li>
+<li><p>Bugfixes</p>
+
+<ul>
+<li>Fix phased restart for <code>fork_worker</code> to avoid forking from stale worker 0 when it has been replaced (<a href="https://github.com/puma/puma/pull/3853" title="PR by Krzysztof Jablonski, merged 2026-03-09">#3853</a>)</li>
+</ul></li>
+<li><p>Performance</p>
+
+<ul>
+<li>JRuby HTTP parser improvements: pre-allocated header keys, perfect hash lookup, reduced memory copies (<a href="https://github.com/puma/puma/pull/3838" title="PR by Charles Oliver Nutter, merged 2026-01-31">#3838</a>)</li>
+<li>Cache downcased header key in <code>str_headers</code> to avoid redundant <code>String#downcase</code> calls, reducing allocations by ~50% per response (<a href="https://github.com/puma/puma/pull/3874" title="PR by Hadrien Blanc, merged 2026-01-28">#3874</a>)</li>
+</ul></li>
+<li><p>Refactor</p>
+
+<ul>
+<li>Collect <code>env</code> processing into dedicated <code>client_env.rb</code> module (<a href="https://github.com/puma/puma/pull/3582" title="PR by MSP-Greg, merged 2026-02-22">#3582</a>)</li>
+<li>Move event to default configuration (<a href="https://github.com/puma/puma/pull/3872" title="PR by Nate Berkopec, merged 2026-01-27">#3872</a>)</li>
+</ul></li>
+<li><p>Docs</p>
+
+<ul>
+<li>Add gRPC guide for configuring gRPC lifecycle hooks in clustered mode (<a href="https://github.com/puma/puma/pull/3885" title="PR by Joshua Young, merged 2026-02-18">#3885</a>)</li>
+<li>Add 7.0 upgrade guide, move 5.0/6.0 upgrade guides to docs directory (<a href="https://github.com/puma/puma/pull/3900" title="PR by Nate Berkopec, merged 2026-03-26">#3900</a>)</li>
+<li>Correct default values for <code>persistent_timeout</code> and <code>worker_boot_timeout</code> in DSL docs (<a href="https://github.com/puma/puma/pull/3912" title="PR by Bengt-Ove Hollaender, merged 2026-03-26">#3912</a>)</li>
+<li>Add file descriptor limit warning in test helper for contributors (<a href="https://github.com/puma/puma/pull/3893" title="PR by Sasha Stadnyk, merged 2026-03-22">#3893</a>)</li>
+</ul></li>
+<li><p>Breaking changes</p>
+
+<ul>
+<li>Default production bind address changed from <code>0.0.0.0</code> to <code>::</code> (IPv6) when a non-loopback IPv6 interface is available; falls back to <code>0.0.0.0</code> if IPv6 is unavailable (<a href="https://github.com/puma/puma/pull/3847" title="PR by Richard Schneeman, merged 2026-03-26">#3847</a>)</li>
+</ul></li>
+</ul>
+
 <h2>7.2.0 / 2026-01-20</h2>
 
 <ul>
