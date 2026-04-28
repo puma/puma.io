@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::HttpParser &mdash; Puma-8.0.0</title>
+<title>Class: Puma::HttpParser &mdash; Puma-8.0.1</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-8.0.0</a> &raquo; 
+      <a href='../'>Puma-8.0.1</a> &raquo; 
       <a href='../_index.html#alpha_H'>Index (H)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>HttpParser&nbsp;&#x25B2;</a></span>
@@ -77,7 +77,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/ext/puma_http11/puma_http11.c#L473'>ext/puma_http11/puma_http11.c</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/ext/puma_http11/puma_http11.c#L473'>ext/puma_http11/puma_http11.c</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -145,7 +145,7 @@
       <a href="#finish-instance_method" title="#finish (instance method)">#<strong>finish</strong>  &#x21d2; Boolean </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>Finishes a parser early which could put in a “good” or bad state.</p></div>
+      <div class='inline'><p>Finishes a parser early which could put in a &quot;good&quot; or bad state.</p></div>
     </div>
   </li>
   <li>
@@ -161,7 +161,7 @@
       <a href="#reset-instance_method" title="#reset (instance method)">#<strong>reset</strong>  &#x21d2; nil </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>Resets the parser to it’s initial state so that you can reuse it rather than making new ones.</p></div>
+      <div class='inline'><p>Resets the parser to it's initial state so that you can reuse it rather than making new ones.</p></div>
     </div>
   </li>
 </ul>
@@ -173,12 +173,10 @@
     .<strong>new</strong>  &#x21d2; <code>parser</code>   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Creates a new parser.</p>
-
+    <p>Creates a new parser.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/ext/puma_http11/puma_http11.c#L322-L328'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/ext/puma_http11/puma_http11.c#L322-L328'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='322' data-end='328'></pre>
   <div class='lines_code'>
@@ -203,12 +201,10 @@ static VALUE HttpParser_init(VALUE self)
     #<strong>error?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>  </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Tells you whether the parser is in an error state.</p>
-
+    <p>Tells you whether the parser is in an error state.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/ext/puma_http11/puma_http11.c#L414-L419'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/ext/puma_http11/puma_http11.c#L414-L419'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='414' data-end='419'></pre>
   <div class='lines_code'>
@@ -231,12 +227,10 @@ static VALUE HttpParser_has_error(VALUE self)
     #<strong>finished?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>  </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Tells you whether the parser is finished or not and in a good state.</p>
-
+    <p>Tells you whether the parser is finished or not and in a good state.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/ext/puma_http11/puma_http11.c#L428-L433'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/ext/puma_http11/puma_http11.c#L428-L433'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='428' data-end='433'></pre>
   <div class='lines_code'>
@@ -260,12 +254,10 @@ static VALUE HttpParser_is_finished(VALUE self)
     #<strong>body</strong>  &#x21d2; <code>nil</code>, <code>String</code>   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>If the request included a body, returns it.</p>
-
+    <p>If the request included a body, returns it.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/ext/puma_http11/puma_http11.c#L456-L460'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/ext/puma_http11/puma_http11.c#L456-L460'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='456' data-end='460'></pre>
   <div class='lines_code'>
@@ -287,16 +279,19 @@ static VALUE HttpParser_body(VALUE self) {
     #<strong>execute</strong>(req_hash, data, start)  &#x21d2; <code>Integer</code>   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Takes a Hash and a String of data, parses the String of data filling in the Hash returning an Integer to indicate how much of the data has been read.  No matter what the return value, you should call <a href="#finished%3F-instance_method" title="Puma::HttpParser#finished? (method)">#finished?</a> and <a href="#error%3F-instance_method" title="Puma::HttpParser#error? (method)">#error?</a> to figure out if it’s done parsing or there was an error.</p>
-
-<p>This function now throws an exception when there is a parsing error.  This makes the logic for working with the parser much easier.  You can still test for an error, but now you need to wrap the parser with an exception handling block.</p>
-
-<p>The third argument allows for parsing a partial request and then continuing the parsing from that position.  It needs all of the original data as well so you have to append to the data buffer as you read.</p>
-
+    <p>Takes a Hash and a String of data, parses the String of data filling in the Hash
+returning an Integer to indicate how much of the data has been read.  No matter
+what the return value, you should call <a href="#finished%3F-instance_method" title="Puma::HttpParser#finished? (method)">#finished?</a> and <a href="#error%3F-instance_method" title="Puma::HttpParser#error? (method)">#error?</a>
+to figure out if it's done parsing or there was an error.</p>
+<p>This function now throws an exception when there is a parsing error.  This makes
+the logic for working with the parser much easier.  You can still test for an
+error, but now you need to wrap the parser with an exception handling block.</p>
+<p>The third argument allows for parsing a partial request and then continuing
+the parsing from that position.  It needs all of the original data as well
+so you have to append to the data buffer as you read.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/ext/puma_http11/puma_http11.c#L380-L404'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/ext/puma_http11/puma_http11.c#L380-L404'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='380' data-end='404'></pre>
   <div class='lines_code'>
@@ -338,12 +333,11 @@ static VALUE HttpParser_execute(VALUE self, VALUE req_hash, VALUE data, VALUE st
     #<strong>finish</strong>  &#x21d2; <code>Boolean</code>   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Finishes a parser early which could put in a “good” or bad state. You should call reset after finish it or bad things will happen.</p>
-
+    <p>Finishes a parser early which could put in a &quot;good&quot; or bad state.
+You should call reset after finish it or bad things will happen.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/ext/puma_http11/puma_http11.c#L354-L360'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/ext/puma_http11/puma_http11.c#L354-L360'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='354' data-end='360'></pre>
   <div class='lines_code'>
@@ -367,12 +361,11 @@ static VALUE HttpParser_finish(VALUE self)
     #<strong>nread</strong>  &#x21d2; <code>Integer</code>   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Returns the amount of data processed so far during this processing cycle.  It is set to 0 on initialize or reset calls and is incremented each time execute is called.</p>
-
+    <p>Returns the amount of data processed so far during this processing cycle.  It is
+set to 0 on initialize or reset calls and is incremented each time execute is called.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/ext/puma_http11/puma_http11.c#L443-L448'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/ext/puma_http11/puma_http11.c#L443-L448'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='443' data-end='448'></pre>
   <div class='lines_code'>
@@ -395,12 +388,11 @@ static VALUE HttpParser_nread(VALUE self)
     #<strong>reset</strong>  &#x21d2; <code>nil</code>   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Resets the parser to it’s initial state so that you can reuse it rather than making new ones.</p>
-
+    <p>Resets the parser to it's initial state so that you can reuse it
+rather than making new ones.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/ext/puma_http11/puma_http11.c#L338-L344'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/ext/puma_http11/puma_http11.c#L338-L344'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='338' data-end='344'></pre>
   <div class='lines_code'>

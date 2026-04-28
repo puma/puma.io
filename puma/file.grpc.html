@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Using gRPC with Puma in Clustered Mode &mdash; Puma-8.0.0</title>
+<title>File: Using gRPC with Puma in Clustered Mode &mdash; Puma-8.0.1</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-8.0.0</a> &raquo; 
+      <a href='.'>Puma-8.0.1</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Using gRPC with Puma in Clustered Mode&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,32 +61,21 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<h1>Using gRPC with <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> in Clustered Mode</h1>
-
-<p>This guide shows how to set up gRPC with <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> in a clustered environment using Puma&#39;s hooks to manage gRPC&#39;s lifecycle methods during forking.</p>
-
-<h2>The Problem</h2>
-
+<h1 id="Using_gRPC_with__Puma__in_Clustered_Mode">Using gRPC with <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> in Clustered Mode</h1>
+<p>This guide shows how to set up gRPC with <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> in a clustered environment using Puma's hooks to manage gRPC's lifecycle methods during forking.</p>
+<h2 id="The_Problem">The Problem</h2>
 <p>In a clustered <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> setup, you might encounter the following error when using gRPC:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_grpc'>grpc</span> <span class='id identifier rubyid_cannot'>cannot</span> <span class='id identifier rubyid_be'>be</span> <span class='id identifier rubyid_used'>used</span> <span class='id identifier rubyid_between'>between</span> <span class='id identifier rubyid_calls'>calls</span> <span class='id identifier rubyid_to'>to</span> <span class='const'>GRPC</span>.<span class='id identifier rubyid_prefork'>prefork</span> <span class='kw'>and</span> <span class='const'>GRPC</span>.<span class='id identifier rubyid_postfork_child'>postfork_child</span> <span class='kw'>or</span> <span class='const'>GRPC</span>.<span class='id identifier rubyid_postfork_parent'>postfork_parent</span></code></pre>
-
 <p>To work correctly, gRPC needs these methods called at specific points in the process lifecycle:</p>
-
 <ul>
 <li><code>GRPC.prefork</code>: Called before forking.</li>
 <li><code>GRPC.postfork_child</code>: Called in the child process after forking.</li>
 <li><code>GRPC.postfork_parent</code>: Called in the parent process after forking.</li>
 </ul>
-
-<p>Puma provides hooks such as <code>on_worker_fork</code>, <code>after_worker_fork</code>, and <code>on_worker_boot</code> to execute code during these lifecycle events. Understanding the behavior of these hooks is key to ensuring gRPC operates correctly in a clustered setup.</p>
-
-<h2>The Solution</h2>
-
-<h3>Example Configuration</h3>
-
-<p>This configuration integrates gRPC&#39;s lifecycle methods in a clustered Puma setup and works whether preloading is enabled or not.</p>
-
+<p>Puma provides hooks such as <code>before_worker_fork</code>, <code>after_worker_fork</code>, and <code>before_worker_boot</code> to execute code during these lifecycle events. Understanding the behavior of these hooks is key to ensuring gRPC operates correctly in a clustered setup.</p>
+<h2 id="The_Solution">The Solution</h2>
+<h3 id="Example_Configuration">Example Configuration</h3>
+<p>This configuration integrates gRPC's lifecycle methods in a clustered Puma setup and works whether preloading is enabled or not.</p>
 <pre class="code ruby"><code class="ruby"><span class='comment'># config/puma.rb
 </span>
 <span class='id identifier rubyid_is_mac'>is_mac</span> <span class='op'>=</span> <span class='const'>RUBY_PLATFORM</span>.<span class='id identifier rubyid_include?'>include?</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>darwin</span><span class='tstring_end'>&quot;</span></span>)
@@ -102,36 +91,34 @@
 <span class='id identifier rubyid_before_worker_boot'>before_worker_boot</span> <span class='kw'>do</span>
   <span class='const'>GRPC</span>.<span class='id identifier rubyid_postfork_child'>postfork_child</span> <span class='kw'>unless</span> <span class='id identifier rubyid_is_mac'>is_mac</span>
 <span class='kw'>end</span></code></pre>
-
-<h3>Understanding the Lifecycle and Hooks</h3>
-
-<p>Puma&#39;s hooks determine when to call gRPC&#39;s lifecycle methods. Each hook plays a specific role in managing the lifecycle during forking:</p>
-
+<h3 id="Understanding_the_Lifecycle_and_Hooks">Understanding the Lifecycle and Hooks</h3>
+<p>Puma's hooks determine when to call gRPC's lifecycle methods. Each hook plays a specific role in managing the lifecycle during forking:</p>
 <ul>
-<li><p><strong><code>on_worker_fork</code></strong>:</p>
-
+<li>
+<p><strong><code>before_worker_fork</code></strong>:</p>
 <ul>
 <li>This hook runs before forking workers and is where you call <code>GRPC.prefork</code>.</li>
 <li>In preloading setups (default in Puma v7), it runs in the <strong>master process</strong> before workers are forked, as the application is preloaded in the master process.</li>
 <li>Without preloading, it still runs in the <strong>master process</strong> before forking workers, but the application is not preloaded.</li>
 <li><code>GRPC.prefork</code> is called here to prepare GRPC for the forking process.</li>
-</ul></li>
-<li><p><strong><code>after_worker_fork</code></strong>:</p>
-
+</ul>
+</li>
+<li>
+<p><strong><code>after_worker_fork</code></strong>:</p>
 <ul>
 <li>This hook always runs in the <strong>master process</strong> after a worker is forked, regardless of whether preloading is enabled.</li>
-<li>Call <code>GRPC.postfork_parent</code> here to finalize the master process&#39;s state after forking.</li>
-</ul></li>
-<li><p><strong><code>on_worker_boot</code></strong>:</p>
-
+<li>Call <code>GRPC.postfork_parent</code> here to finalize the master process's state after forking.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>before_worker_boot</code></strong>:</p>
 <ul>
 <li>This hook always runs in the <strong>worker process</strong> after it is forked, regardless of whether preloading is enabled.</li>
-<li>Call <code>GRPC.postfork_child</code> here to finalize the worker&#39;s state.</li>
-</ul></li>
+<li>Call <code>GRPC.postfork_child</code> here to finalize the worker's state.</li>
 </ul>
-
+</li>
+</ul>
 <p><strong>Note</strong>: On macOS, these methods are skipped because gRPC does not require them due to differences in how forking works.</p>
-
 <div id='footer'></div>
 </div> <!-- content  -->
 </div> <!-- y_main   -->

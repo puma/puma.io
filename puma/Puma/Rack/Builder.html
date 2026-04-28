@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::Rack::Builder &mdash; Puma-8.0.0</title>
+<title>Class: Puma::Rack::Builder &mdash; Puma-8.0.1</title>
 
 <link rel='stylesheet'  type='text/css' href='../../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../../'>Puma-8.0.0</a> &raquo; 
+      <a href='../../'>Puma-8.0.1</a> &raquo; 
       <a href='../../_index.html#alpha_B'>Index (B)</a> &raquo; 
         <a href="../../Puma.html" title="Puma (module)">Puma</a> &raquo; 
         <a href="../Rack.html" title="Puma::Rack (module)">Rack</a> &raquo; 
@@ -78,7 +78,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/rack/builder.rb#L154'>lib/puma/rack/builder.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/rack/builder.rb#L154'>lib/puma/rack/builder.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -87,34 +87,27 @@
 <div id='overview_ds'>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p><code>Builder</code> implements a small <a href="../DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> to iteratively construct <a href="../Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> applications.</p>
-
+    <p><code>Builder</code> implements a small <a href="../DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> to iteratively construct <a href="../Rack.html" title="Puma::Rack (module)"><code>Rack</code></a>
+applications.</p>
 <p>Example:</p>
-
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>rack/lobster</span><span class='tstring_end'>&#39;</span></span>
-<span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span> <span class='op'>=</span> <span class='const'><a href="../Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'>Builder</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Rack::Builder.new (method)">new</a></span> <span class='kw'>do</span>
-  <span class='id identifier rubyid_use'><a href="#use-instance_method" title="Puma::Rack::Builder#use (method)">use</a></span> <span class='const'><a href="../Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'><a href="../CommonLogger.html" title="Puma::CommonLogger (class)">CommonLogger</a></span>
-  <span class='id identifier rubyid_use'><a href="#use-instance_method" title="Puma::Rack::Builder#use (method)">use</a></span> <span class='const'><a href="../Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'>ShowExceptions</span>
-  <span class='id identifier rubyid_map'><a href="#map-instance_method" title="Puma::Rack::Builder#map (method)">map</a></span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lobster</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_use'><a href="#use-instance_method" title="Puma::Rack::Builder#use (method)">use</a></span> <span class='const'><a href="../Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'>Lint</span>
-    <span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Rack::Builder#run (method)">run</a></span> <span class='const'><a href="../Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'>Lobster</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Rack::Builder.new (method)">new</a></span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span>
-
-<span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Rack::Builder#run (method)">run</a></span> <span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span></code></pre>
-
+<p>require 'rack/lobster'
+app = Rack::Builder.new do
+use Rack::CommonLogger
+use Rack::ShowExceptions
+map &quot;/lobster&quot; do
+use Rack::Lint
+run Rack::Lobster.new
+end
+end</p>
+<p>run app</p>
 <p>Or</p>
-
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span> <span class='op'>=</span> <span class='const'><a href="../Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'>Builder</span>.<span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span> <span class='kw'>do</span>
-  <span class='id identifier rubyid_use'><a href="#use-instance_method" title="Puma::Rack::Builder#use (method)">use</a></span> <span class='const'><a href="../Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'><a href="../CommonLogger.html" title="Puma::CommonLogger (class)">CommonLogger</a></span>
-  <span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Rack::Builder#run (method)">run</a></span> <span class='id identifier rubyid_lambda'>lambda</span> { <span class='op'>|</span><span class='id identifier rubyid_env'>env</span><span class='op'>|</span> [<span class='int'>200</span><span class='comma'>,</span> {<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>text/plain</span><span class='tstring_end'>&#39;</span></span>}<span class='comma'>,</span> [<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>OK</span><span class='tstring_end'>&#39;</span></span>]] }
-<span class='kw'>end</span>
-
-<span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Rack::Builder#run (method)">run</a></span> <span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span></code></pre>
-
-<p><a href="#use-instance_method" title="Puma::Rack::Builder#use (method)">#use</a> adds middleware to the stack, <a href="#run-instance_method" title="Puma::Rack::Builder#run (method)">#run</a> dispatches to an application. You can use <a href="#map-instance_method" title="Puma::Rack::Builder#map (method)">#map</a> to construct a <a href="URLMap.html" title="Puma::Rack::URLMap (class)"><code>URLMap</code></a> in a convenient way.</p>
-
+<p>app = Rack::Builder.app do
+use Rack::CommonLogger
+run lambda { |env| [200, <code>=> 'text/plain'</code>, ['OK']] }
+end</p>
+<p>run app</p>
+<p><a href="#use-instance_method" title="Puma::Rack::Builder#use (method)">#use</a> adds middleware to the stack, <a href="#run-instance_method" title="Puma::Rack::Builder#run (method)">#run</a> dispatches to an application.
+You can use <a href="#map-instance_method" title="Puma::Rack::Builder#map (method)">#map</a> to construct a <a href="URLMap.html" title="Puma::Rack::URLMap (class)"><code>URLMap</code></a> in a convenient way.</p>
   </div>
 </div>
 </div>
@@ -212,7 +205,7 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/rack/builder.rb#L176-L187'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/rack/builder.rb#L176-L187'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='176' data-end='187'></pre>
   <div class='lines_code'>
@@ -241,7 +234,7 @@
   <h3 class='signature  first'>
     .<strong>app</strong>(default_app = nil, &amp;block)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/rack/builder.rb#L189-L191'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/rack/builder.rb#L189-L191'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='189' data-end='191'></pre>
   <div class='lines_code'>
@@ -260,7 +253,7 @@
   <h3 class='signature '>
     .<strong>new_from_string</strong>(builder_script, file = &quot;(rackup)&quot;)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/rack/builder.rb#L171-L174'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/rack/builder.rb#L171-L174'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='171' data-end='174'></pre>
   <div class='lines_code'>
@@ -280,7 +273,7 @@
   <h3 class='signature '>
     .<strong>parse_file</strong>(config, opts = Options.new)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/rack/builder.rb#L155-L169'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/rack/builder.rb#L155-L169'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='155' data-end='169'></pre>
   <div class='lines_code'>
@@ -312,7 +305,7 @@
   <h3 class='signature  first'>
     #<strong>call</strong>(env)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/rack/builder.rb#L283-L285'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/rack/builder.rb#L283-L285'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='283' data-end='285'></pre>
   <div class='lines_code'>
@@ -331,7 +324,7 @@
   <h3 class='signature priv'>
     #<strong>generate_map</strong>(default_app, mapping)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/rack/builder.rb#L289-L295'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/rack/builder.rb#L289-L295'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='289' data-end='295'></pre>
   <div class='lines_code'>
@@ -356,29 +349,23 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Creates a route within the application.</p>
-
+    <p>Creates a route within the application.</p>
 <pre class="code ruby"><code class="ruby"><span class='const'><a href="../Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'>Builder</span>.<span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span> <span class='kw'>do</span>
-  <span class='id identifier rubyid_map'>map</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Rack::Builder#run (method)">run</a></span> <span class='const'>Heartbeat</span>
-  <span class='kw'>end</span>
+<span class='id identifier rubyid_map'>map</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Rack::Builder#run (method)">run</a></span> <span class='const'>Heartbeat</span>
+<span class='kw'>end</span>
 <span class='kw'>end</span></code></pre>
-
 <p>The <a href="#use-instance_method" title="Puma::Rack::Builder#use (method)">#use</a> method can also be used here to specify middleware to run under a specific path:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='const'><a href="../Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'>Builder</span>.<span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span> <span class='kw'>do</span>
-  <span class='id identifier rubyid_map'>map</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_use'><a href="#use-instance_method" title="Puma::Rack::Builder#use (method)">use</a></span> <span class='const'>Middleware</span>
-    <span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Rack::Builder#run (method)">run</a></span> <span class='const'>Heartbeat</span>
-  <span class='kw'>end</span>
+<span class='id identifier rubyid_map'>map</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_use'><a href="#use-instance_method" title="Puma::Rack::Builder#use (method)">use</a></span> <span class='const'>Middleware</span>
+  <span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Rack::Builder#run (method)">run</a></span> <span class='const'>Heartbeat</span>
+<span class='kw'>end</span>
 <span class='kw'>end</span></code></pre>
-
 <p>This example includes a piece of middleware which will run before requests hit <code>Heartbeat</code>.</p>
-
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/rack/builder.rb#L270-L273'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/rack/builder.rb#L270-L273'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='270' data-end='273'></pre>
   <div class='lines_code'>
@@ -400,24 +387,20 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Takes an argument that is an object that responds to <a href="#call-instance_method" title="Puma::Rack::Builder#call (method)">#call</a> and returns a <a href="../Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> response. The simplest form of this is a lambda object:</p>
-
+    <p>Takes an argument that is an object that responds to <a href="#call-instance_method" title="Puma::Rack::Builder#call (method)">#call</a> and returns a <a href="../Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> response.
+The simplest form of this is a lambda object:</p>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_run'>run</span> <span class='id identifier rubyid_lambda'>lambda</span> { <span class='op'>|</span><span class='id identifier rubyid_env'>env</span><span class='op'>|</span> [<span class='int'>200</span><span class='comma'>,</span> { <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text/plain</span><span class='tstring_end'>&quot;</span></span> }<span class='comma'>,</span> [<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OK</span><span class='tstring_end'>&quot;</span></span>]] }</code></pre>
-
 <p>However this could also be a class:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>Heartbeat</span>
-  <span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_call'><a href="#call-instance_method" title="Puma::Rack::Builder#call (method)">call</a></span>(<span class='id identifier rubyid_env'>env</span>)
-   [<span class='int'>200</span><span class='comma'>,</span> { <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text/plain</span><span class='tstring_end'>&quot;</span></span> }<span class='comma'>,</span> [<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OK</span><span class='tstring_end'>&quot;</span></span>]]
- <span class='kw'>end</span>
+<span class='kw'>def</span> <span class='kw'>self</span>.<span class='id identifier rubyid_call'><a href="#call-instance_method" title="Puma::Rack::Builder#call (method)">call</a></span>(<span class='id identifier rubyid_env'>env</span>)
+ [<span class='int'>200</span><span class='comma'>,</span> { <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text/plain</span><span class='tstring_end'>&quot;</span></span> }<span class='comma'>,</span> [<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OK</span><span class='tstring_end'>&quot;</span></span>]]
+<span class='kw'>end</span>
 <span class='kw'>end</span>
 
 <span class='id identifier rubyid_run'>run</span> <span class='const'>Heartbeat</span></code></pre>
-
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/rack/builder.rb#L234-L236'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/rack/builder.rb#L234-L236'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='234' data-end='236'></pre>
   <div class='lines_code'>
@@ -436,7 +419,7 @@
   <h3 class='signature '>
     #<strong>to_app</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/rack/builder.rb#L275-L281'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/rack/builder.rb#L275-L281'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='275' data-end='281'></pre>
   <div class='lines_code'>
@@ -461,28 +444,26 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Specifies middleware to use in a stack.</p>
-
+    <p>Specifies middleware to use in a stack.</p>
 <pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>Middleware</span>
-  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span>)
-    <span class='ivar'>@app</span> <span class='op'>=</span> <span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span>
-  <span class='kw'>end</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>(<span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span>)
+  <span class='ivar'>@app</span> <span class='op'>=</span> <span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span>
+<span class='kw'>end</span>
 
-  <span class='kw'>def</span> <span class='id identifier rubyid_call'><a href="#call-instance_method" title="Puma::Rack::Builder#call (method)">call</a></span>(<span class='id identifier rubyid_env'>env</span>)
-    <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rack.some_header</span><span class='tstring_end'>&quot;</span></span>] <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>setting an example</span><span class='tstring_end'>&quot;</span></span>
-    <span class='ivar'>@app</span>.<span class='id identifier rubyid_call'><a href="#call-instance_method" title="Puma::Rack::Builder#call (method)">call</a></span>(<span class='id identifier rubyid_env'>env</span>)
-  <span class='kw'>end</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_call'><a href="#call-instance_method" title="Puma::Rack::Builder#call (method)">call</a></span>(<span class='id identifier rubyid_env'>env</span>)
+  <span class='id identifier rubyid_env'>env</span>[<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rack.some_header</span><span class='tstring_end'>&quot;</span></span>] <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>setting an example</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@app</span>.<span class='id identifier rubyid_call'><a href="#call-instance_method" title="Puma::Rack::Builder#call (method)">call</a></span>(<span class='id identifier rubyid_env'>env</span>)
+<span class='kw'>end</span>
 <span class='kw'>end</span>
 
 <span class='id identifier rubyid_use'>use</span> <span class='const'>Middleware</span>
 <span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Rack::Builder#run (method)">run</a></span> <span class='id identifier rubyid_lambda'>lambda</span> { <span class='op'>|</span><span class='id identifier rubyid_env'>env</span><span class='op'>|</span> [<span class='int'>200</span><span class='comma'>,</span> { <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text/plain</span><span class='tstring_end'>&quot;</span></span> }<span class='comma'>,</span> [<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OK</span><span class='tstring_end'>&quot;</span></span>]] }</code></pre>
-
-<p>All requests through to this application will first be processed by the middleware class. The <a href="#call-instance_method" title="Puma::Rack::Builder#call (method)">#call</a> method in this example sets an additional environment key which then can be referenced in the application if required.</p>
-
+<p>All requests through to this application will first be processed by the middleware class.
+The <a href="#call-instance_method" title="Puma::Rack::Builder#call (method)">#call</a> method in this example sets an additional environment key which then can be
+referenced in the application if required.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/rack/builder.rb#L212-L218'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/rack/builder.rb#L212-L218'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='212' data-end='218'></pre>
   <div class='lines_code'>
@@ -507,20 +488,17 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Takes a lambda or block that is used to warm-up the application.</p>
-
+    <p>Takes a lambda or block that is used to warm-up the application.</p>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_warmup'>warmup</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span><span class='op'>|</span>
-  <span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><a href="../Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'>MockRequest</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Rack::Builder.new (method)">new</a></span>(<span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span>)
-  <span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_get'>get</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span>)
+<span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><a href="../Rack.html" title="Puma::Rack (module)">Rack</a></span><span class='op'>::</span><span class='const'>MockRequest</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Rack::Builder.new (method)">new</a></span>(<span class='id identifier rubyid_app'><a href="#app-class_method" title="Puma::Rack::Builder.app (method)">app</a></span>)
+<span class='id identifier rubyid_client'>client</span>.<span class='id identifier rubyid_get'>get</span>(<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span>)
 <span class='kw'>end</span>
 
 <span class='id identifier rubyid_use'><a href="#use-instance_method" title="Puma::Rack::Builder#use (method)">use</a></span> <span class='const'>SomeMiddleware</span>
 <span class='id identifier rubyid_run'><a href="#run-instance_method" title="Puma::Rack::Builder#run (method)">run</a></span> <span class='const'>MyApp</span></code></pre>
-
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/rack/builder.rb#L247-L249'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/rack/builder.rb#L247-L249'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='247' data-end='249'></pre>
   <div class='lines_code'>

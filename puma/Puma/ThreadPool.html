@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::ThreadPool &mdash; Puma-8.0.0</title>
+<title>Class: Puma::ThreadPool &mdash; Puma-8.0.1</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-8.0.0</a> &raquo; 
+      <a href='../'>Puma-8.0.1</a> &raquo; 
       <a href='../_index.html#alpha_T'>Index (T)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>ThreadPool&nbsp;&#x25B2;</a></span>
@@ -89,7 +89,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L24'>lib/puma/thread_pool.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L24'>lib/puma/thread_pool.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -98,15 +98,14 @@
 <div id='overview_ds'>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Internal Docs for A simple thread pool management object.</p>
-
-<p>Each Puma “worker” has a thread pool to process requests.</p>
-
-<p>First a connection to a client is made in <a href="Server.html" title="Puma::Server (class)"><code>Server</code></a>. It is wrapped in a <a href="Client.html" title="Puma::Client (class)"><code>Client</code></a> instance and then passed to the <a href="Reactor.html" title="Puma::Reactor (class)"><code>Reactor</code></a> to ensure the whole request is buffered into memory. Once the request is ready, it is passed into a thread pool via the <a href="#<<-instance_method" title="Puma::ThreadPool#&lt;&lt; (method)">#&lt;&lt;</a> operator where it is stored in a <code>@todo</code> array.</p>
-
-<p>Each thread in the pool has an internal loop where it pulls a request from the <code>@todo</code> array and processes it.</p>
-
+    <p>Internal Docs for A simple thread pool management object.</p>
+<p>Each Puma &quot;worker&quot; has a thread pool to process requests.</p>
+<p>First a connection to a client is made in <a href="Server.html" title="Puma::Server (class)"><code>Server</code></a>. It is wrapped in a
+<a href="Client.html" title="Puma::Client (class)"><code>Client</code></a> instance and then passed to the <a href="Reactor.html" title="Puma::Reactor (class)"><code>Reactor</code></a> to ensure
+the whole request is buffered into memory. Once the request is ready, it is passed into
+a thread pool via the <a href="#<<-instance_method" title="Puma::ThreadPool#&lt;&lt; (method)">#&lt;&lt;</a> operator where it is stored in a <code>@todo</code> array.</p>
+<p>Each thread in the pool has an internal loop where it pulls a request from the <code>@todo</code> array
+and processes it.</p>
   </div>
 </div>
 </div>
@@ -117,12 +116,12 @@
     <span id='SHUTDOWN_GRACE_TIME-constant' class='summary_signature'>SHUTDOWN_GRACE_TIME =</span>
     <div class='docstring'>
   <div class='discussion'>
-    
-<p>How long, after raising the <a href="ThreadPool/ForceShutdown.html" title="Puma::ThreadPool::ForceShutdown (class)"><code>ThreadPool::ForceShutdown</code></a> of a thread during forced shutdown mode, to wait for the thread to try and finish up its work before leaving the thread to die on the vine.</p>
-
+    <p>How long, after raising the <a href="ThreadPool/ForceShutdown.html" title="Puma::ThreadPool::ForceShutdown (class)"><code>ThreadPool::ForceShutdown</code></a> of a thread during
+forced shutdown mode, to wait for the thread to try and finish
+up its work before leaving the thread to die on the vine.</p>
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L76-L76'># File 'lib/puma/thread_pool.rb', line 76</a>    <pre class='code ruby'><span class='int'>5</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L76-L76'># File 'lib/puma/thread_pool.rb', line 76</a>    <pre class='code ruby'><span class='int'>5</span></pre>
   </li>
 </ul>
 </div>
@@ -351,17 +350,16 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Maintain a minimum of <a href="#min-instance_method" title="Puma::ThreadPool#min (method)">#min</a> and maximum of <a href="#max-instance_method" title="Puma::ThreadPool#max (method)">#max</a> threads in the pool.</p>
-
-<p>The block passed is the work that will be performed in each thread.</p>
-
+    <p>Maintain a minimum of <a href="#min-instance_method" title="Puma::ThreadPool#min (method)">#min</a> and maximum of <a href="#max-instance_method" title="Puma::ThreadPool#max (method)">#max</a> threads
+in the pool.</p>
+<p>The block passed is the work that will be performed in each
+thread.</p>
   </div>
 </div>
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L86-L136'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L86-L136'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='86' data-end='136'></pre>
   <div class='lines_code'>
@@ -438,14 +436,12 @@
   <p class='tag_title'>Version:</p>
 <ul class='version'>
   <li>
-    <div class='inline'>
-<p>5.0.0</p>
-</div>
+    <div class='inline'><p>5.0.0</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L180-L182'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L180-L182'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='180' data-end='182'></pre>
   <div class='lines_code'>
@@ -469,15 +465,13 @@
   </div><div></div>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Must be called with @mutex held!</p>
-
+    <p>Must be called with @mutex held!</p>
   </div>
 </div>
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L328-L332'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L328-L332'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='328' data-end='332'></pre>
   <div class='lines_code'>
@@ -498,7 +492,7 @@
   <h3 class='signature rw'>
     #<strong>max</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L139-L139'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L139-L139'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='139' data-end='139'></pre>
   <div class='lines_code'>
@@ -515,7 +509,7 @@
   <h3 class='signature rw'>
     #<strong>min</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L139-L139'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L139-L139'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='139' data-end='139'></pre>
   <div class='lines_code'>
@@ -534,12 +528,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>seconds</p>
-
+    <p>seconds</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L78-L78'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L78-L78'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='78' data-end='78'></pre>
   <div class='lines_code'>
@@ -556,7 +548,7 @@
   <h3 class='signature ro'>
     #<strong>pool_capacity</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L174-L176'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L174-L176'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='174' data-end='176'></pre>
   <div class='lines_code'>
@@ -575,7 +567,7 @@
   <h3 class='signature ro'>
     #<strong>spawned</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L138-L138'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L138-L138'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='138' data-end='138'></pre>
   <div class='lines_code'>
@@ -592,7 +584,7 @@
   <h3 class='signature ro'>
     #<strong>trim_requested</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L138-L138'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L138-L138'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='138' data-end='138'></pre>
   <div class='lines_code'>
@@ -609,7 +601,7 @@
   <h3 class='signature ro'>
     #<strong>waiting</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L138-L138'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L138-L138'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='138' data-end='138'></pre>
   <div class='lines_code'>
@@ -629,12 +621,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Add <code>work</code> to the todo list for a Thread to pickup and process.</p>
-
+    <p>Add <code>work</code> to the todo list for a Thread to pickup and process.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L335-L352'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L335-L352'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='335' data-end='352'></pre>
   <div class='lines_code'>
@@ -668,7 +658,7 @@
   <h3 class='signature '>
     #<strong>auto_reap!</strong>(timeout = @reaping_time)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L421-L424'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L421-L424'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='421' data-end='424'></pre>
   <div class='lines_code'>
@@ -688,7 +678,7 @@
   <h3 class='signature '>
     #<strong>auto_trim!</strong>(timeout = @auto_trim_time)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L416-L419'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L416-L419'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='416' data-end='419'></pre>
   <div class='lines_code'>
@@ -710,12 +700,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>How many objects have yet to be processed by the pool?</p>
-
+    <p>How many objects have yet to be processed by the pool?</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L163-L165'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L163-L165'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='163' data-end='165'></pre>
   <div class='lines_code'>
@@ -736,12 +724,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>The maximum size of the backlog</p>
-
+    <p>The maximum size of the backlog</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L169-L171'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L169-L171'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='169' data-end='171'></pre>
   <div class='lines_code'>
@@ -762,12 +748,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>If there are dead threads in the pool make them go away while decreasing spawned counter so that new healthy threads could be created again.</p>
-
+    <p>If there are dead threads in the pool make them go away while decreasing
+spawned counter so that new healthy threads could be created again.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L378-L387'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L378-L387'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='378' data-end='387'></pre>
   <div class='lines_code'>
@@ -793,7 +778,7 @@
   <h3 class='signature '>
     #<strong>reset_max</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L157-L159'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L157-L159'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='157' data-end='159'></pre>
   <div class='lines_code'>
@@ -814,12 +799,13 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Tell all threads in the pool to exit and wait for them to finish. Wait <code>timeout</code> seconds then raise <a href="ThreadPool/ForceShutdown.html" title="Puma::ThreadPool::ForceShutdown (class)"><code>ThreadPool::ForceShutdown</code></a> in remaining threads. Next, wait an extra <code>@shutdown_grace_time</code> seconds then force-kill remaining threads. Finally, wait 1 second for remaining threads to exit.</p>
-
+    <p>Tell all threads in the pool to exit and wait for them to finish.
+Wait <code>timeout</code> seconds then raise <a href="ThreadPool/ForceShutdown.html" title="Puma::ThreadPool::ForceShutdown (class)"><code>ThreadPool::ForceShutdown</code></a> in remaining threads.
+Next, wait an extra <code>@shutdown_grace_time</code> seconds then force-kill remaining
+threads. Finally, wait 1 second for remaining threads to exit.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L444-L498'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L444-L498'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='444' data-end='498'></pre>
   <div class='lines_code'>
@@ -890,7 +876,7 @@
   <h3 class='signature priv'>
     #<strong>shutdown_debug</strong>(message)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L502-L515'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L502-L515'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='502' data-end='515'></pre>
   <div class='lines_code'>
@@ -925,12 +911,10 @@
   </div><div></div>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Must be called with @mutex held!</p>
-
+    <p>Must be called with @mutex held!</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L188-L256'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L188-L256'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='188' data-end='256'></pre>
   <div class='lines_code'>
@@ -1018,7 +1002,7 @@
   <div class='note nodoc inline-block'>
     <strong>This method is for internal use only.</strong>
   </div><div></div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L354-L360'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L354-L360'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='354' data-end='360'></pre>
   <div class='lines_code'>
@@ -1043,9 +1027,7 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>generate stats hash so as not to perform multiple locks</p>
-
+    <p>generate stats hash so as not to perform multiple locks</p>
   </div>
 </div>
 <div class='tags'>
@@ -1053,14 +1035,12 @@
 <ul class='return'>
   <li>
     <span class='type'>(<code>Hash</code>)</span>
-&mdash;    <div class='inline'>
-<p>hash containing stat info from <code>ThreadPool</code></p>
-</div>
+&mdash;    <div class='inline'><p>hash containing stat info from <code>ThreadPool</code></p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L143-L155'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L143-L155'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='143' data-end='155'></pre>
   <div class='lines_code'>
@@ -1089,7 +1069,7 @@
   <h3 class='signature priv'>
     #<strong>trigger_before_thread_exit_hooks</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L275-L286'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L275-L286'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='275' data-end='286'></pre>
   <div class='lines_code'>
@@ -1117,7 +1097,7 @@
   <h3 class='signature priv'>
     #<strong>trigger_before_thread_start_hooks</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L260-L271'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L260-L271'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='260' data-end='271'></pre>
   <div class='lines_code'>
@@ -1154,14 +1134,12 @@
   <p class='tag_title'>Version:</p>
 <ul class='version'>
   <li>
-    <div class='inline'>
-<p>5.0.0</p>
-</div>
+    <div class='inline'><p>5.0.0</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L291-L305'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L291-L305'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='291' data-end='305'></pre>
   <div class='lines_code'>
@@ -1194,12 +1172,12 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>If there are any free threads in the pool, tell one to go ahead and exit. If <code>force</code> is true, then a trim request is requested even if all threads are being utilized.</p>
-
+    <p>If there are any free threads in the pool, tell one to go ahead
+and exit. If <code>force</code> is true, then a trim request is requested
+even if all threads are being utilized.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L366-L374'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L366-L374'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='366' data-end='374'></pre>
   <div class='lines_code'>
@@ -1224,7 +1202,7 @@
   <h3 class='signature '>
     #<strong>wait_while_out_of_band_running</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L309-L315'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L309-L315'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='309' data-end='315'></pre>
   <div class='lines_code'>
@@ -1249,12 +1227,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Allows <a href="ThreadPool/ForceShutdown.html" title="Puma::ThreadPool::ForceShutdown (class)"><code>ThreadPool::ForceShutdown</code></a> to be raised within the provided block if the thread is forced to shutdown during execution.</p>
-
+    <p>Allows <a href="ThreadPool/ForceShutdown.html" title="Puma::ThreadPool::ForceShutdown (class)"><code>ThreadPool::ForceShutdown</code></a> to be raised within the
+provided block if the thread is forced to shutdown during execution.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L428-L437'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L428-L437'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='428' data-end='437'></pre>
   <div class='lines_code'>
@@ -1289,14 +1266,12 @@
   <p class='tag_title'>Version:</p>
 <ul class='version'>
   <li>
-    <div class='inline'>
-<p>5.0.0</p>
-</div>
+    <div class='inline'><p>5.0.0</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/thread_pool.rb#L318-L322'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/thread_pool.rb#L318-L322'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='318' data-end='322'></pre>
   <div class='lines_code'>

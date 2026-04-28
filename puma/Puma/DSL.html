@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::DSL &mdash; Puma-8.0.0</title>
+<title>Class: Puma::DSL &mdash; Puma-8.0.1</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-8.0.0</a> &raquo; 
+      <a href='../'>Puma-8.0.1</a> &raquo; 
       <a href='../_index.html#alpha_D'>Index (D)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>DSL&nbsp;&#x25B2;</a></span>
@@ -77,7 +77,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L52'>lib/puma/dsl.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L52'>lib/puma/dsl.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -86,44 +86,39 @@
 <div id='overview_ds'>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>The methods that are available for use inside the configuration file. These same methods are used in <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> cli and the rack handler internally.</p>
-
+    <p>The methods that are available for use inside the configuration file.
+These same methods are used in <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> cli and the rack handler
+internally.</p>
 <p>Used manually (via <a href="CLI.html" title="Puma::CLI (class)"><code>CLI</code></a> class):</p>
-
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='const'><a href="Configuration.html" title="Puma::Configuration (class)">Configuration</a></span>.<span class='id identifier rubyid_new'><a href="Configuration.html#new-class_method" title="Puma::Configuration.new (method)">new</a></span>({}) <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user_config'>user_config</span><span class='op'>|</span>
-  <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_port'><a href="#port-instance_method" title="Puma::DSL#port (method)">port</a></span> <span class='int'>3001</span>
+<span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_port'><a href="#port-instance_method" title="Puma::DSL#port (method)">port</a></span> <span class='int'>3001</span>
 <span class='kw'>end</span>
 <span class='id identifier rubyid_config'>config</span>.<span class='id identifier rubyid_clamp'>clamp</span>
 
 <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_config'>config</span>.<span class='id identifier rubyid_options'>options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_binds'>binds</span>] <span class='comment'># =&gt; &quot;tcp://127.0.0.1:3001&quot;</span></code></pre>
-
 <p>Used to load file:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='gvar'>$ </span><span class='id identifier rubyid_cat'>cat</span> <span class='id identifier rubyid_puma_config'>puma_config</span>.<span class='id identifier rubyid_rb'>rb</span>
 <span class='id identifier rubyid_port'><a href="#port-instance_method" title="Puma::DSL#port (method)">port</a></span> <span class='int'>3002</span></code></pre>
-
 <p>Resulting configuration:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='const'><a href="Configuration.html" title="Puma::Configuration (class)">Configuration</a></span>.<span class='id identifier rubyid_new'><a href="Configuration.html#new-class_method" title="Puma::Configuration.new (method)">new</a></span>(<span class='label'>config_file:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puma_config.rb</span><span class='tstring_end'>&quot;</span></span>)
 <span class='id identifier rubyid_config'>config</span>.<span class='id identifier rubyid_clamp'>clamp</span>
 
 <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_config'>config</span>.<span class='id identifier rubyid_options'>options</span>[<span class='symbeg'>:</span><span class='id identifier rubyid_binds'>binds</span>] <span class='comment'># =&gt; &quot;tcp://127.0.0.1:3002&quot;</span></code></pre>
-
-<p>You can also find many examples being used by the test suite in <code>test/config</code>.</p>
-
-<p><a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> v6 adds the option to specify a key name (String or Symbol) to the hooks that run inside the forked workers.  All the hooks run inside the <a href="Cluster/Worker.html#run-instance_method" title="Puma::Cluster::Worker#run (method)">Cluster::Worker#run</a> method.</p>
-
-<p>Previously, the worker index and the <a href="LogWriter.html" title="Puma::LogWriter (class)"><code>LogWriter</code></a> instance were passed to the hook blocks/procs.  If a key name is specified, a hash is passed as the last parameter.  This allows storage of data, typically objects that are created before the worker that need to be passed to the hook when the worker is shutdown.</p>
-
+<p>You can also find many examples being used by the test suite in
+<code>test/config</code>.</p>
+<p><a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> v6 adds the option to specify a key name (String or Symbol) to the
+hooks that run inside the forked workers.  All the hooks run inside the
+<a href="Cluster/Worker.html#run-instance_method" title="Puma::Cluster::Worker#run (method)">Cluster::Worker#run</a> method.</p>
+<p>Previously, the worker index and the <a href="LogWriter.html" title="Puma::LogWriter (class)"><code>LogWriter</code></a> instance were passed to the
+hook blocks/procs.  If a key name is specified, a hash is passed as the last
+parameter.  This allows storage of data, typically objects that are created
+before the worker that need to be passed to the hook when the worker is shutdown.</p>
 <p>The following hooks have been updated:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='op'>|</span> <span class='const'>DSL</span> <span class='const'>Method</span>             <span class='op'>|</span>  <span class='const'>Options</span> <span class='const'>Key</span>            <span class='op'>|</span> <span class='const'>Fork</span> <span class='const'>Block</span> <span class='const'>Location</span> <span class='op'>|</span>
 <span class='op'>|</span> <span class='id identifier rubyid_before_worker_boot'><a href="#before_worker_boot-instance_method" title="Puma::DSL#before_worker_boot (method)">before_worker_boot</a></span>     <span class='op'>|</span> <span class='symbeg'>:</span><span class='id identifier rubyid_before_worker_boot'><a href="#before_worker_boot-instance_method" title="Puma::DSL#before_worker_boot (method)">before_worker_boot</a></span>     <span class='op'>|</span> <span class='id identifier rubyid_inside'>inside</span><span class='comma'>,</span> <span class='id identifier rubyid_before'>before</span>      <span class='op'>|</span>
 <span class='op'>|</span> <span class='id identifier rubyid_before_worker_shutdown'><a href="#before_worker_shutdown-instance_method" title="Puma::DSL#before_worker_shutdown (method)">before_worker_shutdown</a></span> <span class='op'>|</span> <span class='symbeg'>:</span><span class='id identifier rubyid_before_worker_shutdown'><a href="#before_worker_shutdown-instance_method" title="Puma::DSL#before_worker_shutdown (method)">before_worker_shutdown</a></span> <span class='op'>|</span> <span class='id identifier rubyid_inside'>inside</span><span class='comma'>,</span> <span class='id identifier rubyid_after'>after</span>       <span class='op'>|</span>
 <span class='op'>|</span> <span class='id identifier rubyid_before_refork'><a href="#before_refork-instance_method" title="Puma::DSL#before_refork (method)">before_refork</a></span>          <span class='op'>|</span> <span class='symbeg'>:</span><span class='id identifier rubyid_before_refork'><a href="#before_refork-instance_method" title="Puma::DSL#before_refork (method)">before_refork</a></span>          <span class='op'>|</span> <span class='id identifier rubyid_inside'>inside</span>              <span class='op'>|</span>
 <span class='op'>|</span> <span class='id identifier rubyid_after_refork'><a href="#after_refork-instance_method" title="Puma::DSL#after_refork (method)">after_refork</a></span>           <span class='op'>|</span> <span class='symbeg'>:</span><span class='id identifier rubyid_after_refork'><a href="#after_refork-instance_method" title="Puma::DSL#after_refork (method)">after_refork</a></span>           <span class='op'>|</span> <span class='id identifier rubyid_inside'>inside</span>              <span class='op'>|</span></code></pre>
-
   </div>
 </div>
 </div>
@@ -133,7 +128,7 @@
   <li>
     <span id='ON_WORKER_KEY-constant' class='summary_signature'>ON_WORKER_KEY =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L53-L53'># File 'lib/puma/dsl.rb', line 53</a>    <pre class='code ruby'>[<span class='const'>String</span><span class='comma'>,</span> <span class='const'>Symbol</span>].<span class='id identifier rubyid_freeze'>freeze</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L53-L53'># File 'lib/puma/dsl.rb', line 53</a>    <pre class='code ruby'>[<span class='const'>String</span><span class='comma'>,</span> <span class='const'>Symbol</span>].<span class='id identifier rubyid_freeze'>freeze</span></pre>
   </li>
 </ul>
 </div>
@@ -404,7 +399,7 @@
       <a href="#environment-instance_method" title="#environment (instance method)">#<strong>environment</strong>(environment)  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>Set the environment in which the rack’s app will run.</p></div>
+      <div class='inline'><p>Set the environment in which the rack's app will run.</p></div>
     </div>
   </li>
   <li>
@@ -517,9 +512,7 @@
     </span>
     <span class='deprecated note title'>deprecated</span>
     <span class='summary_desc'><strong>Deprecated.</strong>
-      <div class='inline'>
-<p>Use <a href="#max_keep_alive-instance_method" title="Puma::DSL#max_keep_alive (method)">#max_keep_alive</a> instead.</p>
-</div>    </span>
+      <div class='inline'><p>Use <a href="#max_keep_alive-instance_method" title="Puma::DSL#max_keep_alive (method)">#max_keep_alive</a> instead.</p></div>    </span>
   </li>
   <li>
     <span class='summary_signature '>
@@ -638,7 +631,7 @@
       <a href="#pidfile-instance_method" title="#pidfile (instance method)">#<strong>pidfile</strong>(path)  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>Store the pid of the server in the file at “path”.</p></div>
+      <div class='inline'><p>Store the pid of the server in the file at &quot;path&quot;.</p></div>
     </div>
   </li>
   <li>
@@ -694,7 +687,7 @@
       <a href="#rack_url_scheme-instance_method" title="#rack_url_scheme (instance method)">#<strong>rack_url_scheme</strong>(scheme = nil)  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>Allows setting <code>'rack.url_scheme'</code>.</p></div>
+      <div class='inline'><p>Allows setting <code>env['rack.url_scheme']</code>.</p></div>
     </div>
   </li>
   <li>
@@ -909,7 +902,7 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L126-L131'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L126-L131'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='126' data-end='131'></pre>
   <div class='lines_code'>
@@ -934,9 +927,7 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Convenience method so logic can be used in CI.</p>
-
+    <p>Convenience method so logic can be used in CI.</p>
   </div>
 </div>
 <div class='tags'>
@@ -946,7 +937,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L59-L124'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L59-L124'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='59' data-end='124'></pre>
   <div class='lines_code'>
@@ -1029,7 +1020,7 @@
   <h3 class='signature  first'>
     #<strong>_load_from</strong>(path)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L133-L140'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L133-L140'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='133' data-end='140'></pre>
   <div class='lines_code'>
@@ -1053,7 +1044,7 @@
   <h3 class='signature '>
     #<strong>_offer_plugins</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L142-L151'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L142-L151'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='142' data-end='151'></pre>
   <div class='lines_code'>
@@ -1081,11 +1072,12 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Start the <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> control rack application on <code>url</code>. This application can be communicated with to control the main server. Additionally, you can provide an authentication token, so all requests to the control server will need to include that token as a query parameter. This allows for simple authentication.</p>
-
+    <p>Start the <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> control rack application on <code>url</code>. This application can
+be communicated with to control the main server. Additionally, you can
+provide an authentication token, so all requests to the control server
+will need to include that token as a query parameter. This allows for
+simple authentication.</p>
 <p>Check out <a href="App/Status.html" title="Puma::App::Status (class)"><code>App::Status</code></a> to see what the app has available.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -1098,7 +1090,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L222-L246'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L222-L246'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='222' data-end='246'></pre>
   <div class='lines_code'>
@@ -1141,12 +1133,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>To avoid adding cert_pem and key_pem as URI params, we store them on the <a href=":store">options</a> from where <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> binder knows how to find and extract them.</p>
-
+    <p>To avoid adding cert_pem and key_pem as URI params, we store them on the
+<a href=":store">options</a> from where <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> binder knows how to find and extract them.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1529-L1543'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1529-L1543'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1529' data-end='1543'></pre>
   <div class='lines_code'>
@@ -1180,9 +1171,7 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Code to run after puma is booted (works for both single and cluster modes).</p>
-
+    <p>Code to run after puma is booted (works for both single and cluster modes).</p>
   </div>
 </div>
 <div class='tags'>
@@ -1194,7 +1183,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L914-L918'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L914-L918'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='914' data-end='918'></pre>
   <div class='lines_code'>
@@ -1220,18 +1209,16 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode with <a href="#fork_worker-instance_method" title="Puma::DSL#fork_worker (method)">#fork_worker</a> enabled only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode with <a href="#fork_worker-instance_method" title="Puma::DSL#fork_worker (method)">#fork_worker</a> enabled only.</p></div>
   </div>
 
-
-<p>When <a href="#fork_worker-instance_method" title="Puma::DSL#fork_worker (method)">#fork_worker</a> is enabled, code to run in Worker 0 after all other workers are re-forked from this process, after the server has temporarily stopped serving requests (once per complete refork cycle).</p>
-
-<p>This can be used to re-open any connections to remote servers (database, Redis, …) that were closed via before_refork.</p>
-
+<p>When <a href="#fork_worker-instance_method" title="Puma::DSL#fork_worker (method)">#fork_worker</a> is enabled, code to run in Worker 0
+after all other workers are re-forked from this process,
+after the server has temporarily stopped serving requests
+(once per complete refork cycle).</p>
+<p>This can be used to re-open any connections to remote servers
+(database, Redis, ...) that were closed via before_refork.</p>
 <p>This can be called multiple times to add several hooks.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -1243,7 +1230,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L981-L983'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L981-L983'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='981' data-end='983'></pre>
   <div class='lines_code'>
@@ -1265,9 +1252,7 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Code to run after puma is stopped (works for both: single and clustered)</p>
-
+    <p>Code to run after puma is stopped (works for both: single and clustered)</p>
   </div>
 </div>
 <div class='tags'>
@@ -1279,7 +1264,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L929-L933'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L929-L933'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='929' data-end='933'></pre>
   <div class='lines_code'>
@@ -1302,12 +1287,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#after_worker_fork-instance_method" title="Puma::DSL#after_worker_fork (method)">#after_worker_fork</a>.</p>
-
+    <p>Alias for <a href="#after_worker_fork-instance_method" title="Puma::DSL#after_worker_fork (method)">#after_worker_fork</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L891-L891'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L891-L891'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='891' data-end='891'></pre>
   <div class='lines_code'>
@@ -1330,16 +1313,12 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
-<p>Code to run in the master after a worker has been started. The worker’s index is passed as an argument.</p>
-
+<p>Code to run in the master after a worker has been started. The worker's
+index is passed as an argument.</p>
 <p>This is called everytime a worker is to be started.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -1351,7 +1330,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L887-L889'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L887-L889'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='887' data-end='889'></pre>
   <div class='lines_code'>
@@ -1375,14 +1354,11 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
-<p>Code to run in the master right after a worker has stopped. The worker’s index and <code>Process::Status</code> are passed as arguments.</p>
-
+<p>Code to run in the master right after a worker has stopped. The worker's
+index and <code>Process::Status</code> are passed as arguments.</p>
   </div>
 </div>
 <div class='tags'>
@@ -1394,7 +1370,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L903-L905'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L903-L905'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='903' data-end='905'></pre>
   <div class='lines_code'>
@@ -1415,9 +1391,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Use an object or block as the rack application. This allows the configuration file to be the application itself.</p>
-
+    <p>Use an object or block as the rack application. This allows the
+configuration file to be the application itself.</p>
   </div>
 </div>
 <div class='tags'>
@@ -1442,7 +1417,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L197-L203'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L197-L203'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='197' data-end='203'></pre>
   <div class='lines_code'>
@@ -1470,16 +1445,16 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
-<p>Code to run immediately before master process forks workers (once on boot). These hooks can block if necessary to wait for background operations unknown to <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> to finish before the process terminates. This can be used to close any connections to remote servers (database, Redis, …) that were opened when preloading the code.</p>
-
+<p>Code to run immediately before master process
+forks workers (once on boot). These hooks can block if necessary
+to wait for background operations unknown to <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> to finish before
+the process terminates.
+This can be used to close any connections to remote servers (database,
+Redis, ...) that were opened when preloading the code.</p>
 <p>This can be called multiple times to add several hooks.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -1491,7 +1466,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L808-L810'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L808-L810'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='808' data-end='810'></pre>
   <div class='lines_code'>
@@ -1516,18 +1491,17 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode with <a href="#fork_worker-instance_method" title="Puma::DSL#fork_worker (method)">#fork_worker</a> enabled only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode with <a href="#fork_worker-instance_method" title="Puma::DSL#fork_worker (method)">#fork_worker</a> enabled only.</p></div>
   </div>
 
-
-<p>When <a href="#fork_worker-instance_method" title="Puma::DSL#fork_worker (method)">#fork_worker</a> is enabled, code to run in Worker 0 before all other workers are re-forked from this process, after the server has temporarily stopped serving requests (once per complete refork cycle).</p>
-
-<p>This can be used to trigger extra garbage-collection to maximize copy-on-write efficiency, or close any connections to remote servers (database, Redis, …) that were opened while the server was running.</p>
-
+<p>When <a href="#fork_worker-instance_method" title="Puma::DSL#fork_worker (method)">#fork_worker</a> is enabled, code to run in Worker 0
+before all other workers are re-forked from this process,
+after the server has temporarily stopped serving requests
+(once per complete refork cycle).</p>
+<p>This can be used to trigger extra garbage-collection to maximize
+copy-on-write efficiency, or close any connections to remote servers
+(database, Redis, ...) that were opened while the server was running.</p>
 <p>This can be called multiple times to add several hooks.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -1540,14 +1514,12 @@
 <p class='tag_title'>Version:</p>
 <ul class='version'>
   <li>
-    <div class='inline'>
-<p>5.0.0</p>
-</div>
+    <div class='inline'><p>5.0.0</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L956-L960'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L956-L960'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='956' data-end='960'></pre>
   <div class='lines_code'>
@@ -1571,11 +1543,9 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Code to run before doing a restart. This code should close log files, database connections, etc.</p>
-
+    <p>Code to run before doing a restart. This code should
+close log files, database connections, etc.</p>
 <p>This can be called multiple times to add code each time.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -1587,7 +1557,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L448-L452'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L448-L452'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='448' data-end='452'></pre>
   <div class='lines_code'>
@@ -1611,17 +1581,16 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Provide a block to be executed after a thread is trimmed from the thread pool. Be careful: while this block executes, Puma’s main loop is blocked, so no new requests will be picked up.</p>
-
-<p>This hook only runs when a thread in the threadpool is trimmed by <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a>. It does not run when a thread dies due to exceptions or any other cause.</p>
-
-<p>Return values are ignored. Raising an exception will log a warning.</p>
-
-<p>This hook is useful for cleaning up thread local resources when a thread is trimmed.</p>
-
+    <p>Provide a block to be executed after a thread is trimmed from the thread
+pool. Be careful: while this block executes, Puma's main loop is
+blocked, so no new requests will be picked up.</p>
+<p>This hook only runs when a thread in the threadpool is trimmed by <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a>.
+It does not run when a thread dies due to exceptions or any other cause.</p>
+<p>Return values are ignored.
+Raising an exception will log a warning.</p>
+<p>This hook is useful for cleaning up thread local resources when a thread
+is trimmed.</p>
 <p>This can be called multiple times to add several hooks.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -1633,7 +1602,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1030-L1034'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1030-L1034'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1030' data-end='1034'></pre>
   <div class='lines_code'>
@@ -1657,15 +1626,14 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Provide a block to be executed just before a thread is added to the thread pool. Be careful: while the block executes, thread creation is delayed, and probably a request will have to wait too! The new thread will not be added to the threadpool until the provided block returns.</p>
-
-<p>Return values are ignored. Raising an exception will log a warning.</p>
-
+    <p>Provide a block to be executed just before a thread is added to the thread
+pool. Be careful: while the block executes, thread creation is delayed, and
+probably a request will have to wait too! The new thread will not be added to
+the threadpool until the provided block returns.</p>
+<p>Return values are ignored.
+Raising an exception will log a warning.</p>
 <p>This hook is useful for doing something when the thread pool grows.</p>
-
 <p>This can be called multiple times to add several hooks.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -1677,7 +1645,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1002-L1006'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1002-L1006'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1002' data-end='1006'></pre>
   <div class='lines_code'>
@@ -1704,16 +1672,12 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
-<p>Code to run in a worker when it boots to setup the process before booting the app.</p>
-
+<p>Code to run in a worker when it boots to setup
+the process before booting the app.</p>
 <p>This can be called multiple times to add several hooks.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -1725,7 +1689,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L824-L828'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L824-L828'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='824' data-end='828'></pre>
   <div class='lines_code'>
@@ -1752,16 +1716,12 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
-<p>Code to run in the master right before a worker is started. The worker’s index is passed as an argument.</p>
-
+<p>Code to run in the master right before a worker is started. The worker's
+index is passed as an argument.</p>
 <p>This can be called multiple times to add several hooks.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -1773,7 +1733,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L867-L871'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L867-L871'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='867' data-end='871'></pre>
   <div class='lines_code'>
@@ -1800,16 +1760,15 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
-<p>Code to run immediately before a worker shuts down (after it has finished processing HTTP requests). The worker’s index is passed as an argument. These hooks can block if necessary to wait for background operations unknown to <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> to finish before the process terminates.</p>
-
+<p>Code to run immediately before a worker shuts
+down (after it has finished processing HTTP requests). The worker's
+index is passed as an argument. These hooks
+can block if necessary to wait for background operations unknown
+to <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> to finish before the process terminates.</p>
 <p>This can be called multiple times to add several hooks.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -1821,7 +1780,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L847-L851'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L847-L851'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='847' data-end='851'></pre>
   <div class='lines_code'>
@@ -1844,48 +1803,35 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Bind the server to <code>url</code>. “tcp://”, “unix://” and “ssl://” are the only accepted protocols. Multiple urls can be bound to, calling <code>bind</code> does not overwrite previous bindings.</p>
-
-<p>The default is “<a href="::">tcp://</a>:9292” when IPv6 interfaces are available, otherwise “tcp://0.0.0.0:9292”.</p>
-
+    <p>Bind the server to <code>url</code>. &quot;tcp://&quot;, &quot;unix://&quot; and &quot;ssl://&quot; are the only
+accepted protocols. Multiple urls can be bound to, calling <code>bind</code> does
+not overwrite previous bindings.</p>
+<p>The default is &quot;tcp://[::]:9292&quot; when IPv6 interfaces are available,
+otherwise &quot;tcp://0.0.0.0:9292&quot;.</p>
 <p>You can use query parameters within the url to specify options:</p>
-<ul><li>
-<p>Set the socket backlog depth with <code>backlog</code>, default is 1024.</p>
-</li><li>
-<p>Set up an SSL certificate with <code>key</code> &amp; <code>cert</code>.</p>
-</li><li>
-<p>Set up an SSL certificate for mTLS with <code>key</code>, <code>cert</code>, <code>ca</code> and <code>verify_mode</code>.</p>
-</li><li>
-<p>Set whether to optimize for low latency instead of throughput with <code>low_latency</code>, default is to not optimize for low latency. This is done via <code>Socket::TCP_NODELAY</code>.</p>
-</li><li>
-<p>Set socket permissions with <code>umask</code>.</p>
-</li></ul>
-
+<ul>
+<li>Set the socket backlog depth with <code>backlog</code>, default is 1024.</li>
+<li>Set up an SSL certificate with <code>key</code> &amp; <code>cert</code>.</li>
+<li>Set up an SSL certificate for mTLS with <code>key</code>, <code>cert</code>, <code>ca</code> and <code>verify_mode</code>.</li>
+<li>Set whether to optimize for low latency instead of throughput with
+<code>low_latency</code>, default is to not optimize for low latency. This is done
+via <code>Socket::TCP_NODELAY</code>.</li>
+<li>Set socket permissions with <code>umask</code>.</li>
+</ul>
   </div>
 </div>
 <div class='tags'>
     <div class='examples'>
     <p class='tag_title'>Examples:</p>
-        <p class='example_title'><div class='inline'>
-<p>Backlog depth</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>Backlog depth</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_bind'>bind</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unix:///var/run/puma.sock?backlog=512</span><span class='tstring_end'>&#39;</span></span></code></pre>
-        <p class='example_title'><div class='inline'>
-<p>SSL cert</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>SSL cert</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_bind'>bind</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ssl://127.0.0.1:9292?key=key.key&amp;cert=cert.pem</span><span class='tstring_end'>&#39;</span></span></code></pre>
-        <p class='example_title'><div class='inline'>
-<p>SSL cert for mutual TLS (mTLS)</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>SSL cert for mutual TLS (mTLS)</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_bind'>bind</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ssl://127.0.0.1:9292?key=key.key&amp;cert=cert.pem&amp;ca=ca.pem&amp;verify_mode=force_peer</span><span class='tstring_end'>&#39;</span></span></code></pre>
-        <p class='example_title'><div class='inline'>
-<p>Disable optimization for low latency</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>Disable optimization for low latency</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_bind'>bind</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tcp://[::]:9292?low_latency=false</span><span class='tstring_end'>&#39;</span></span></code></pre>
-        <p class='example_title'><div class='inline'>
-<p>Socket permissions</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>Socket permissions</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_bind'>bind</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>unix:///var/run/puma.sock?umask=0111</span><span class='tstring_end'>&#39;</span></span></code></pre>
   </div>
   <p class='tag_title'>See Also:</p>
@@ -1895,7 +1841,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L290-L293'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L290-L293'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='290' data-end='293'></pre>
   <div class='lines_code'>
@@ -1917,34 +1863,31 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Bind to (systemd) activated sockets, regardless of configured binds.</p>
-
-<p>Systemd can present sockets as file descriptors that are already opened. By default <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> will use these but only if it was explicitly told to bind to the socket. If not, it will close the activated sockets. This means all configuration is duplicated.</p>
-
-<p>Binds can contain additional configuration, but only SSL config is really relevant since the unix and TCP socket options are ignored.</p>
-
-<p>This means there is a lot of duplicated configuration for no additional value in most setups. This method tells the launcher to bind to all activated sockets, regardless of existing bind.</p>
-
-<p>To clear configured binds, the value only can be passed. This will clear out any binds that may have been configured.</p>
-
+    <p>Bind to (systemd) activated sockets, regardless of configured binds.</p>
+<p>Systemd can present sockets as file descriptors that are already opened.
+By default <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> will use these but only if it was explicitly told to bind
+to the socket. If not, it will close the activated sockets. This means
+all configuration is duplicated.</p>
+<p>Binds can contain additional configuration, but only SSL config is really
+relevant since the unix and TCP socket options are ignored.</p>
+<p>This means there is a lot of duplicated configuration for no additional
+value in most setups. This method tells the launcher to bind to all
+activated sockets, regardless of existing bind.</p>
+<p>To clear configured binds, the value only can be passed. This will clear
+out any binds that may have been configured.</p>
   </div>
 </div>
 <div class='tags'>
     <div class='examples'>
     <p class='tag_title'>Examples:</p>
-        <p class='example_title'><div class='inline'>
-<p>Use any systemd activated sockets as well as configured binds</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>Use any systemd activated sockets as well as configured binds</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_bind_to_activated_sockets'>bind_to_activated_sockets</span></code></pre>
-        <p class='example_title'><div class='inline'>
-<p>Only bind to systemd activated sockets, ignoring other binds</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>Only bind to systemd activated sockets, ignoring other binds</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_bind_to_activated_sockets'>bind_to_activated_sockets</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>only</span><span class='tstring_end'>&#39;</span></span></code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L322-L324'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L322-L324'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='322' data-end='324'></pre>
   <div class='lines_code'>
@@ -1965,12 +1908,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#fiber_per_request-instance_method" title="Puma::DSL#fiber_per_request (method)">#fiber_per_request</a>.</p>
-
+    <p>Alias for <a href="#fiber_per_request-instance_method" title="Puma::DSL#fiber_per_request (method)">#fiber_per_request</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L390-L390'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L390-L390'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='390' data-end='390'></pre>
   <div class='lines_code'>
@@ -1987,7 +1928,7 @@
   <h3 class='signature '>
     #<strong>clear_binds!</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L295-L297'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L295-L297'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='295' data-end='297'></pre>
   <div class='lines_code'>
@@ -2011,16 +1952,12 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
-<p>Code to run only in cluster mode. Runs after all config files are loaded.</p>
-
+<p>Code to run only in cluster mode.
+Runs after all config files are loaded.</p>
 <p>This can be called multiple times.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2038,7 +1975,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L785-L790'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L785-L790'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='785' data-end='790'></pre>
   <div class='lines_code'>
@@ -2062,9 +1999,7 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Pass in a custom logging class instance</p>
-
+    <p>Pass in a custom logging class instance</p>
   </div>
 </div>
 <div class='tags'>
@@ -2074,7 +2009,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L503-L505'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L503-L505'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='503' data-end='505'></pre>
   <div class='lines_code'>
@@ -2095,11 +2030,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Show debugging info</p>
-
+    <p>Show debugging info</p>
 <p>The default is <code>false</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2109,7 +2041,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L514-L516'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L514-L516'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='514' data-end='516'></pre>
   <div class='lines_code'>
@@ -2128,7 +2060,7 @@
   <h3 class='signature '>
     #<strong>default_host</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L157-L159'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L157-L159'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='157' data-end='159'></pre>
   <div class='lines_code'>
@@ -2149,11 +2081,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>The directory to operate out of.</p>
-
+    <p>The directory to operate out of.</p>
 <p>The default is the current directory.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2163,7 +2092,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1059-L1061'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1059-L1061'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1059' data-end='1061'></pre>
   <div class='lines_code'>
@@ -2184,9 +2113,9 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>When shutting down, drain the accept socket of pending connections and process them. This loops over the accept socket until there are no more read events and then stops looking and waits for the requests to finish.</p>
-
+    <p>When shutting down, drain the accept socket of pending connections and
+process them. This loops over the accept socket until there are no more
+read events and then stops looking and waits for the requests to finish.</p>
   </div>
 </div>
 <div class='tags'>
@@ -2196,7 +2125,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L398-L400'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L398-L400'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='398' data-end='400'></pre>
   <div class='lines_code'>
@@ -2217,11 +2146,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Enable HTTP 103 Early Hints responses.</p>
-
+    <p>Enable HTTP 103 Early Hints responses.</p>
 <p>The default is <code>nil</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2231,7 +2157,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L544-L546'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L544-L546'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='544' data-end='546'></pre>
   <div class='lines_code'>
@@ -2252,15 +2178,21 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>When <code>true</code>, keep-alive connections are maintained on inbound requests. Enabling this setting reduces the number of TCP operations, reducing response times for connections that can send multiple requests in a single connection.</p>
-
-<p>When Puma receives more incoming connections than available <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> threads, enabling the keep-alive behavior may result in processing requests out-of-order, increasing overall response time variance. Increased response time variance means that the overall average of response times might not change, but more outliers will exist. Those long-tail outliers may significantly affect response times for some processed requests.</p>
-
-<p>When <code>false</code>, <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> closes the connection after each request, requiring the client to open a new request. Disabling this setting guarantees that requests will be processed in the order they are fully received, decreasing response variance and eliminating long-tail outliers caused by keep-alive behavior. The trade-off is that the number of TCP operations required will increase.</p>
-
+    <p>When <code>true</code>, keep-alive connections are maintained on inbound requests.
+Enabling this setting reduces the number of TCP operations, reducing response
+times for connections that can send multiple requests in a single connection.</p>
+<p>When Puma receives more incoming connections than available <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> threads,
+enabling the keep-alive behavior may result in processing requests out-of-order,
+increasing overall response time variance. Increased response time variance
+means that the overall average of response times might not change, but more
+outliers will exist. Those long-tail outliers may significantly affect response
+times for some processed requests.</p>
+<p>When <code>false</code>, <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> closes the connection after each request, requiring the
+client to open a new request. Disabling this setting guarantees that requests
+will be processed in the order they are fully received, decreasing response
+variance and eliminating long-tail outliers caused by keep-alive behavior.
+The trade-off is that the number of TCP operations required will increase.</p>
 <p>The default is <code>true</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2270,7 +2202,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1440-L1442'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1440-L1442'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1440' data-end='1442'></pre>
   <div class='lines_code'>
@@ -2291,11 +2223,9 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Set the environment in which the rack’s app will run. The value must be a string.</p>
-
-<p>The default is “development”.</p>
-
+    <p>Set the environment in which the rack's app will run. The value must be
+a string.</p>
+<p>The default is &quot;development&quot;.</p>
   </div>
 </div>
 <div class='tags'>
@@ -2305,7 +2235,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L410-L412'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L410-L412'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='410' data-end='412'></pre>
   <div class='lines_code'>
@@ -2326,11 +2256,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>When using prune_bundler, if extra runtime dependencies need to be loaded to initialize your app, then this setting can be used. This includes any <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> plugins.</p>
-
-<p>Before bundler is pruned, the gem names supplied will be looked up in the bundler context and then loaded again after bundler is pruned. Only applies if prune_bundler is used.</p>
-
+    <p>When using prune_bundler, if extra runtime dependencies need to be loaded to
+initialize your app, then this setting can be used. This includes any <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> plugins.</p>
+<p>Before bundler is pruned, the gem names supplied will be looked up in the bundler
+context and then loaded again after bundler is pruned.
+Only applies if prune_bundler is used.</p>
   </div>
 </div>
 <div class='tags'>
@@ -2345,7 +2275,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1147-L1149'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1147-L1149'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1147' data-end='1149'></pre>
   <div class='lines_code'>
@@ -2367,11 +2297,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Use a clean fiber per request which ensures a clean slate for fiber locals and fiber storage. Also provides a cleaner backtrace with less <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> internal stack frames.</p>
-
+    <p>Use a clean fiber per request which ensures a clean slate for fiber
+locals and fiber storage. Also provides a cleaner backtrace with less
+<a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> internal stack frames.</p>
 <p>The default is <code>false</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2381,7 +2310,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L386-L388'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L386-L388'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='386' data-end='388'></pre>
   <div class='lines_code'>
@@ -2402,11 +2331,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Define how long the tcp socket stays open, if no data has been received.</p>
-
+    <p>Define how long the tcp socket stays open, if no data has been received.</p>
 <p>The default is 30 seconds.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2420,7 +2346,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L347-L349'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L347-L349'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='347' data-end='349'></pre>
   <div class='lines_code'>
@@ -2441,13 +2367,12 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>How long to wait for threads to stop when shutting them down. Specifying <code>:immediately</code> will cause <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> to kill the threads immediately. Otherwise the value is the number of seconds to wait.</p>
-
-<p><a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> always waits a few seconds after killing a thread for it to try to finish up it’s work, even in <code>:immediately</code> mode.</p>
-
+    <p>How long to wait for threads to stop when shutting them down.
+Specifying <code>:immediately</code> will cause <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> to kill the threads immediately.
+Otherwise the value is the number of seconds to wait.</p>
+<p><a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> always waits a few seconds after killing a thread for it to try
+to finish up it's work, even in <code>:immediately</code> mode.</p>
 <p>The default is <code>:forever</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2457,7 +2382,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L425-L436'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L425-L436'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='425' data-end='436'></pre>
   <div class='lines_code'>
@@ -2490,28 +2415,24 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>This is experimental.</p>
-</div>
+    <div class='inline'><p>This is experimental.</p></div>
   </div>
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
-<p>When enabled, workers will be forked from worker 0 instead of from the master process. This option is similar to <code>preload_app</code> because the app is preloaded before forking, but it is compatible with phased restart.</p>
-
-<p>This option also enables the <code>refork</code> command (SIGURG), which optimizes copy-on-write performance in a running app.</p>
-
-<p>A refork will automatically trigger once after the specified number of requests (default 1000), or pass 0 to disable auto refork.</p>
-
+<p>When enabled, workers will be forked from worker 0 instead of from the master process.
+This option is similar to <code>preload_app</code> because the app is preloaded before forking,
+but it is compatible with phased restart.</p>
+<p>This option also enables the <code>refork</code> command (SIGURG), which optimizes copy-on-write performance
+in a running app.</p>
+<p>A refork will automatically trigger once after the specified number of requests
+(default 1000), or pass 0 to disable auto refork.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1394-L1396'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1394-L1396'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1394' data-end='1396'></pre>
   <div class='lines_code'>
@@ -2530,7 +2451,7 @@
   <h3 class='signature '>
     #<strong>get</strong>(key, default = nil)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L165-L167'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L165-L167'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='165' data-end='167'></pre>
   <div class='lines_code'>
@@ -2551,18 +2472,17 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Specify how big the request payload should be, in bytes. This limit is compared against Content-Length HTTP header. If the payload size (CONTENT_LENGTH) is larger than http_content_length_limit, HTTP 413 status code is returned.</p>
-
-<p>When no Content-Length http header is present, it is compared against the size of the body of the request.</p>
-
+    <p>Specify how big the request payload should be, in bytes.
+This limit is compared against Content-Length HTTP header.
+If the payload size (CONTENT_LENGTH) is larger than http_content_length_limit,
+HTTP 413 status code is returned.</p>
+<p>When no Content-Length http header is present, it is compared against the
+size of the body of the request.</p>
 <p>The default is <code>nil</code>.</p>
-
 <p>http_content_length_limit 2_000_000_000</p>
-
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1488-L1490'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1488-L1490'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1488' data-end='1490'></pre>
   <div class='lines_code'>
@@ -2583,11 +2503,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>If a new request is not received within this number of seconds, begin shutting down.</p>
-
+    <p>If a new request is not received within this number of seconds, begin shutting down.</p>
 <p>The default is <code>nil</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2601,7 +2518,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L373-L375'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L373-L375'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='373' data-end='375'></pre>
   <div class='lines_code'>
@@ -2620,7 +2537,7 @@
   <h3 class='signature '>
     #<strong>inject</strong>(&amp;blk)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L161-L163'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L161-L163'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='161' data-end='163'></pre>
   <div class='lines_code'>
@@ -2641,15 +2558,15 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Specify the backend for the IO selector.</p>
-
-<p>Provided values will be passed directly to <code>NIO::Selector.new</code>, with the exception of <code>:auto</code> which will let nio4r choose the backend.</p>
-
-<p>Check the documentation of <code>NIO::Selector.backends</code> for the list of valid options. Note that the available options on your system will depend on the operating system. If you want to use the pure Ruby backend (not recommended due to its comparatively low performance), set environment variable <code>NIO4R_PURE</code> to <code>true</code>.</p>
-
+    <p>Specify the backend for the IO selector.</p>
+<p>Provided values will be passed directly to <code>NIO::Selector.new</code>, with the
+exception of <code>:auto</code> which will let nio4r choose the backend.</p>
+<p>Check the documentation of <code>NIO::Selector.backends</code> for the list of valid
+options. Note that the available options on your system will depend on the
+operating system. If you want to use the pure Ruby backend (not
+recommended due to its comparatively low performance), set environment
+variable <code>NIO4R_PURE</code> to <code>true</code>.</p>
 <p>The default is <code>:auto</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2659,7 +2576,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1459-L1461'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1459-L1461'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1459' data-end='1461'></pre>
   <div class='lines_code'>
@@ -2680,9 +2597,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Load additional configuration from a file. Files get loaded later via <a href="Configuration.html#load-instance_method" title="Puma::Configuration#load (method)">Configuration#load</a>.</p>
-
+    <p>Load additional configuration from a file.
+Files get loaded later via <a href="Configuration.html#load-instance_method" title="Puma::Configuration#load (method)">Configuration#load</a>.</p>
   </div>
 </div>
 <div class='tags'>
@@ -2692,7 +2608,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L254-L257'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L254-L257'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='254' data-end='257'></pre>
   <div class='lines_code'>
@@ -2712,7 +2628,7 @@
   <h3 class='signature '>
     #<strong>log_formatter</strong>(&amp;block)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L564-L566'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L564-L566'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='564' data-end='566'></pre>
   <div class='lines_code'>
@@ -2733,11 +2649,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Enable request logging, the inverse of <a href="#quiet-instance_method" title="Puma::DSL#quiet (method)">#quiet</a>.</p>
-
+    <p>Enable request logging, the inverse of <a href="#quiet-instance_method" title="Puma::DSL#quiet (method)">#quiet</a>.</p>
 <p>The default is <code>false</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2747,7 +2660,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L494-L496'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L494-L496'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='494' data-end='496'></pre>
   <div class='lines_code'>
@@ -2768,9 +2681,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Use <code>obj</code> or <code>block</code> as the low level error handler. This allows the configuration file to change the default error on the server.</p>
-
+    <p>Use <code>obj</code> or <code>block</code> as the low level error handler. This allows the
+configuration file to change the default error on the server.</p>
   </div>
 </div>
 <div class='tags'>
@@ -2782,7 +2694,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1086-L1090'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1086-L1090'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1086' data-end='1090'></pre>
   <div class='lines_code'>
@@ -2805,13 +2717,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'>
-<p>Use <a href="#max_keep_alive-instance_method" title="Puma::DSL#max_keep_alive (method)">#max_keep_alive</a> instead.</p>
-</div></div>
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Use <a href="#max_keep_alive-instance_method" title="Puma::DSL#max_keep_alive (method)">#max_keep_alive</a> instead.</p></div></div>
 
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1400-L1403'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1400-L1403'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1400' data-end='1403'></pre>
   <div class='lines_code'>
@@ -2833,15 +2743,13 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Configure the max number of IO threads.</p>
-
-<p>When request handlers know the current requests will no longer use a significant amount of CPU, they can mark the current request as IO bound using <code>env[&quot;puma.mark_as_io_bound&quot;]</code>.</p>
-
+    <p>Configure the max number of IO threads.</p>
+<p>When request handlers know the current requests will no longer use a significant amount
+of CPU, they can mark the current request as IO bound using <tt><a href="%22puma.mark_as_io_bound%22">env</a></tt>.</p>
 <p>Threads marked as IO bound are allowed to go over the max thread limit.</p>
-
-<p>The above example allows for 5 regular threads and 5 IO threads to process requests concurrently. Any IO thread over the limit is counted as a regular thread, hence the above configuration also allows for 3 regular threads and 7 IO threads for example.</p>
-
+<p>The above example allows for 5 regular threads and 5 IO threads to process requests concurrently.
+Any IO thread over the limit is counted as a regular thread, hence the above configuration also
+allows for 3 regular threads and 7 IO threads for example.</p>
   </div>
 </div>
 <div class='tags'>
@@ -2852,7 +2760,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L613-L620'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L613-L620'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='613' data-end='620'></pre>
   <div class='lines_code'>
@@ -2878,11 +2786,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>The number of requests a keep-alive client can submit before being closed. Note that some applications (server to server) may benefit from a very high number or <code>Float::INFINITY</code>.</p>
-
+    <p>The number of requests a keep-alive client can submit before being closed.
+Note that some applications (server to server) may benefit from a very high
+number or <code>Float::INFINITY</code>.</p>
 <p>The default is 999.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2892,7 +2799,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1414-L1416'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1414-L1416'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1414' data-end='1416'></pre>
   <div class='lines_code'>
@@ -2913,11 +2820,9 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Ensures <code>STDOUT</code> and <code>STDERR</code> is immediately flushed to the underlying operating system and is not buffered internally</p>
-
+    <p>Ensures <code>STDOUT</code> and <code>STDERR</code> is immediately flushed to the underlying
+operating system and is not buffered internally</p>
 <p>The default is <code>true</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -2927,7 +2832,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1471-L1473'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1471-L1473'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1471' data-end='1473'></pre>
   <div class='lines_code'>
@@ -2948,12 +2853,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#after_booted-instance_method" title="Puma::DSL#after_booted (method)">#after_booted</a>.</p>
-
+    <p>Alias for <a href="#after_booted-instance_method" title="Puma::DSL#after_booted (method)">#after_booted</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L920-L920'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L920-L920'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='920' data-end='920'></pre>
   <div class='lines_code'>
@@ -2972,12 +2875,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#before_refork-instance_method" title="Puma::DSL#before_refork (method)">#before_refork</a>.</p>
-
+    <p>Alias for <a href="#before_refork-instance_method" title="Puma::DSL#before_refork (method)">#before_refork</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L962-L962'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L962-L962'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='962' data-end='962'></pre>
   <div class='lines_code'>
@@ -2996,12 +2897,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#before_restart-instance_method" title="Puma::DSL#before_restart (method)">#before_restart</a>.</p>
-
+    <p>Alias for <a href="#before_restart-instance_method" title="Puma::DSL#before_restart (method)">#before_restart</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L454-L454'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L454-L454'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='454' data-end='454'></pre>
   <div class='lines_code'>
@@ -3020,12 +2919,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#after_stopped-instance_method" title="Puma::DSL#after_stopped (method)">#after_stopped</a>.</p>
-
+    <p>Alias for <a href="#after_stopped-instance_method" title="Puma::DSL#after_stopped (method)">#after_stopped</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L934-L934'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L934-L934'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='934' data-end='934'></pre>
   <div class='lines_code'>
@@ -3044,12 +2941,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#before_thread_exit-instance_method" title="Puma::DSL#before_thread_exit (method)">#before_thread_exit</a>.</p>
-
+    <p>Alias for <a href="#before_thread_exit-instance_method" title="Puma::DSL#before_thread_exit (method)">#before_thread_exit</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1036-L1036'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1036-L1036'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1036' data-end='1036'></pre>
   <div class='lines_code'>
@@ -3068,12 +2963,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#before_thread_start-instance_method" title="Puma::DSL#before_thread_start (method)">#before_thread_start</a>.</p>
-
+    <p>Alias for <a href="#before_thread_start-instance_method" title="Puma::DSL#before_thread_start (method)">#before_thread_start</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1008-L1008'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1008-L1008'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1008' data-end='1008'></pre>
   <div class='lines_code'>
@@ -3092,12 +2985,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#before_worker_boot-instance_method" title="Puma::DSL#before_worker_boot (method)">#before_worker_boot</a>.</p>
-
+    <p>Alias for <a href="#before_worker_boot-instance_method" title="Puma::DSL#before_worker_boot (method)">#before_worker_boot</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L830-L830'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L830-L830'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='830' data-end='830'></pre>
   <div class='lines_code'>
@@ -3116,12 +3007,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#before_worker_fork-instance_method" title="Puma::DSL#before_worker_fork (method)">#before_worker_fork</a>.</p>
-
+    <p>Alias for <a href="#before_worker_fork-instance_method" title="Puma::DSL#before_worker_fork (method)">#before_worker_fork</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L873-L873'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L873-L873'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='873' data-end='873'></pre>
   <div class='lines_code'>
@@ -3140,12 +3029,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#before_worker_shutdown-instance_method" title="Puma::DSL#before_worker_shutdown (method)">#before_worker_shutdown</a>.</p>
-
+    <p>Alias for <a href="#before_worker_shutdown-instance_method" title="Puma::DSL#before_worker_shutdown (method)">#before_worker_shutdown</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L853-L853'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L853-L853'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='853' data-end='853'></pre>
   <div class='lines_code'>
@@ -3164,16 +3051,16 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Code to run out-of-band when the worker is idle. These hooks run immediately after a request has finished processing and there are no busy threads on the worker. The worker doesn’t accept new requests until this code finishes.</p>
-
-<p>This hook is useful for running out-of-band garbage collection or scheduling asynchronous tasks to execute after a response.</p>
-
+    <p>Code to run out-of-band when the worker is idle.
+These hooks run immediately after a request has finished
+processing and there are no busy threads on the worker.
+The worker doesn't accept new requests until this code finishes.</p>
+<p>This hook is useful for running out-of-band garbage collection
+or scheduling asynchronous tasks to execute after a response.</p>
 <p>This can be called multiple times to add several hooks.</p>
-
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1048-L1050'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1048-L1050'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1048' data-end='1050'></pre>
   <div class='lines_code'>
@@ -3194,11 +3081,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Define how long persistent connections can be idle before <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> closes them.</p>
-
+    <p>Define how long persistent connections can be idle before <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> closes them.</p>
 <p>The default is 65 seconds.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -3212,7 +3096,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L360-L362'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L360-L362'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='360' data-end='362'></pre>
   <div class='lines_code'>
@@ -3233,9 +3117,7 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Store the pid of the server in the file at “path”.</p>
-
+    <p>Store the pid of the server in the file at &quot;path&quot;.</p>
   </div>
 </div>
 <div class='tags'>
@@ -3245,7 +3127,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L472-L474'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L472-L474'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='472' data-end='474'></pre>
   <div class='lines_code'>
@@ -3266,9 +3148,7 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Load the named plugin for use by this configuration.</p>
-
+    <p>Load the named plugin for use by this configuration.</p>
   </div>
 </div>
 <div class='tags'>
@@ -3278,7 +3158,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L174-L176'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L174-L176'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='174' data-end='176'></pre>
   <div class='lines_code'>
@@ -3299,11 +3179,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Define the TCP port to bind to. Use <a href="#bind-instance_method" title="Puma::DSL#bind (method)">#bind</a> for more advanced options.</p>
-
+    <p>Define the TCP port to bind to. Use <a href="#bind-instance_method" title="Puma::DSL#bind (method)">#bind</a> for more advanced options.</p>
 <p>The default is <code>9292</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -3313,7 +3190,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L333-L336'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L333-L336'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='333' data-end='336'></pre>
   <div class='lines_code'>
@@ -3338,23 +3215,17 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>When using <a href="#fork_worker-instance_method" title="Puma::DSL#fork_worker (method)">#fork_worker</a>, this only applies to worker 0.</p>
-</div>
+    <div class='inline'><p>When using <a href="#fork_worker-instance_method" title="Puma::DSL#fork_worker (method)">#fork_worker</a>, this only applies to worker 0.</p></div>
   </div>
 
-
-<p>Preload the application before forking the workers; this conflicts with the phased restart feature.</p>
-
+<p>Preload the application before forking the workers; this conflicts with
+the phased restart feature.</p>
 <p>The default is <code>true</code> if your app uses more than 1 worker.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -3364,7 +3235,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1074-L1076'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1074-L1076'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1074' data-end='1076'></pre>
   <div class='lines_code'>
@@ -3397,7 +3268,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1545-L1560'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1545-L1560'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1545' data-end='1560'></pre>
   <div class='lines_code'>
@@ -3434,32 +3305,29 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>This is incompatible with <a href="#preload_app!-instance_method" title="Puma::DSL#preload_app! (method)">#preload_app!</a>.</p>
-</div>
+    <div class='inline'><p>This is incompatible with <a href="#preload_app!-instance_method" title="Puma::DSL#preload_app! (method)">#preload_app!</a>.</p></div>
   </div>
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>This is only supported for RubyGems 2.2+</p>
-</div>
+    <div class='inline'><p>This is only supported for RubyGems 2.2+</p></div>
   </div>
 
-
-<p>This option is used to allow your app and its gems to be properly reloaded when not using preload.</p>
-
-<p>When set, if <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> detects that it’s been invoked in the context of Bundler, it will cleanup the environment and re-run itself outside the Bundler environment, but directly using the files that Bundler has setup.</p>
-
-<p>This means that <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> is now decoupled from your Bundler context and when each worker loads, it will be loading a new Bundler context and thus can float around as the release dictates.</p>
-
+<p>This option is used to allow your app and its gems to be
+properly reloaded when not using preload.</p>
+<p>When set, if <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> detects that it's been invoked in the
+context of Bundler, it will cleanup the environment and
+re-run itself outside the Bundler environment, but directly
+using the files that Bundler has setup.</p>
+<p>This means that <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> is now decoupled from your Bundler
+context and when each worker loads, it will be loading a
+new Bundler context and thus can float around as the release
+dictates.</p>
   </div>
 </div>
 <div class='tags'>
@@ -3469,7 +3337,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1111-L1113'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1111-L1113'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1111' data-end='1113'></pre>
   <div class='lines_code'>
@@ -3490,15 +3358,18 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>When set to true, workers accept all requests and queue them before passing them to the handlers. When set to false, each worker process accepts exactly as many requests as it is configured to simultaneously handle.</p>
-
-<p>Queueing requests generally improves performance. In some cases, such as a single threaded application, it may be better to ensure requests get balanced across workers.</p>
-
-<p>Note that setting this to false disables HTTP keepalive and slow clients will occupy a handler thread while the request is being sent. A reverse proxy, such as nginx, can handle slow clients and queue requests before they reach <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a>.</p>
-
+    <p>When set to true, workers accept all requests
+and queue them before passing them to the handlers.
+When set to false, each worker process accepts exactly as
+many requests as it is configured to simultaneously handle.</p>
+<p>Queueing requests generally improves performance. In some
+cases, such as a single threaded application, it may be
+better to ensure requests get balanced across workers.</p>
+<p>Note that setting this to false disables HTTP keepalive and
+slow clients will occupy a handler thread while the request
+is being sent. A reverse proxy, such as nginx, can handle
+slow clients and queue requests before they reach <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a>.</p>
 <p>The default is <code>true</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -3508,7 +3379,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1285-L1287'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1285-L1287'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1285' data-end='1287'></pre>
   <div class='lines_code'>
@@ -3529,11 +3400,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Disable request logging, the inverse of <a href="#log_requests-instance_method" title="Puma::DSL#log_requests (method)">#log_requests</a>.</p>
-
+    <p>Disable request logging, the inverse of <a href="#log_requests-instance_method" title="Puma::DSL#log_requests (method)">#log_requests</a>.</p>
 <p>The default is <code>true</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -3543,7 +3411,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L483-L485'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L483-L485'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='483' data-end='485'></pre>
   <div class='lines_code'>
@@ -3564,12 +3432,12 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Allows setting <code>'rack.url_scheme'</code>. Only necessary if X-Forwarded-Proto is not being set by your proxy Normal values are ‘http’ or ‘https’.</p>
-
+    <p>Allows setting <code>env['rack.url_scheme']</code>.
+Only necessary if X-Forwarded-Proto is not being set by your proxy
+Normal values are 'http' or 'https'.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L533-L535'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L533-L535'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='533' data-end='535'></pre>
   <div class='lines_code'>
@@ -3590,11 +3458,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Load <code>path</code> as a rackup file.</p>
-
-<p>The default is “config.ru”.</p>
-
+    <p>Load <code>path</code> as a rackup file.</p>
+<p>The default is &quot;config.ru&quot;.</p>
   </div>
 </div>
 <div class='tags'>
@@ -3604,7 +3469,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L525-L527'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L525-L527'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='525' data-end='527'></pre>
   <div class='lines_code'>
@@ -3625,13 +3490,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Raises a SignalException when SIGTERM is received. In environments where SIGTERM is something expected, you can suppress these with this option.</p>
-
-<p>This can be useful for example in Kubernetes, where rolling restart is guaranteed usually on the infrastructure level.</p>
-
+    <p>Raises a SignalException when SIGTERM is received. In environments where
+SIGTERM is something expected, you can suppress these with this option.</p>
+<p>This can be useful for example in Kubernetes, where rolling restart is
+guaranteed usually on the infrastructure level.</p>
 <p>The default is <code>true</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -3646,7 +3509,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1129-L1131'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1129-L1131'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1129' data-end='1131'></pre>
   <div class='lines_code'>
@@ -3667,9 +3530,9 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Command to use to restart <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a>. This should be just how to load <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> itself (ie. ‘ruby -Ilib bin/puma’), not the arguments to <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a>, as those are the same as the original process.</p>
-
+    <p>Command to use to restart <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a>. This should be just how to
+load <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> itself (ie. 'ruby -Ilib bin/puma'), not the arguments
+to <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a>, as those are the same as the original process.</p>
   </div>
 </div>
 <div class='tags'>
@@ -3679,7 +3542,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L463-L465'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L463-L465'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='463' data-end='465'></pre>
   <div class='lines_code'>
@@ -3698,7 +3561,7 @@
   <h3 class='signature '>
     #<strong>set_default_host</strong>(host)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L153-L155'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L153-L155'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='153' data-end='155'></pre>
   <div class='lines_code'>
@@ -3719,24 +3582,31 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Control how the remote address of the connection is set. This is configurable because to calculate the true socket peer address a kernel syscall is required which for very fast rack handlers slows down the handling significantly.</p>
-
+    <p>Control how the remote address of the connection is set. This
+is configurable because to calculate the true socket peer address
+a kernel syscall is required which for very fast rack handlers
+slows down the handling significantly.</p>
 <p>There are 5 possible values:</p>
-<ol><li>
-<p><strong>:socket</strong> - read the peername from the socket using the syscall. This is the normal behavior. If this fails for any reason (e.g., if the peer disconnects between the connection being accepted and the getpeername system call), Puma will return “0.0.0.0”</p>
-</li><li>
-<p><strong>:localhost</strong> - set the remote address to “127.0.0.1”</p>
-</li><li>
-<p>**header: &lt;http_header&gt;**- set the remote address to the value of the provided http header. For instance: ‘set_remote_address header: “X-Real-IP”`. Only the first word (as separated by spaces or comma) is used, allowing headers such as X-Forwarded-For to be used as well. If this header is absent, Puma will fall back to the behavior of :socket</p>
-</li><li>
-<p>**proxy_protocol: :v1**- set the remote address to the value read from the HAproxy PROXY protocol, version 1. If the request does not have the PROXY protocol attached to it, will fall back to :socket</p>
-</li><li>
-<p>**&lt;Any string&gt;** - this allows you to hardcode remote address to any value you wish. Because Puma never uses this field anyway, it’s format is entirely in your hands.</p>
-</li></ol>
-
+<ol>
+<li><strong>:socket</strong> - read the peername from the socket using the
+syscall. This is the normal behavior. If this fails for any reason (e.g.,
+if the peer disconnects between the connection being accepted and the getpeername
+system call), Puma will return &quot;0.0.0.0&quot;</li>
+<li><strong>:localhost</strong> - set the remote address to &quot;127.0.0.1&quot;</li>
+<li><strong>header: &lt;http_header&gt;</strong>- set the remote address to the value of the
+provided http header. For instance:
+<code>set_remote_address header: &quot;X-Real-IP&quot;</code>.
+Only the first word (as separated by spaces or comma) is used, allowing
+headers such as X-Forwarded-For to be used as well. If this header is absent,
+Puma will fall back to the behavior of :socket</li>
+<li><strong>proxy_protocol: :v1</strong>- set the remote address to the value read from the
+HAproxy PROXY protocol, version 1. If the request does not have the PROXY
+protocol attached to it, will fall back to :socket</li>
+<li><strong>&lt;Any string&gt;</strong> - this allows you to hardcode remote address to any value
+you wish. Because Puma never uses this field anyway, it's format is
+entirely in your hands.</li>
+</ol>
 <p>The default is <code>:socket</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -3746,7 +3616,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1352-L1379'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1352-L1379'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1352' data-end='1379'></pre>
   <div class='lines_code'>
@@ -3792,11 +3662,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>When a shutdown is requested, the backtraces of all the threads will be written to $stdout. This can help figure out why shutdown is hanging.</p>
-
-<p>If <code>on_force</code> is true, the backtraces will be written only when the shutdown is forced i.e. not graceful.</p>
-
+    <p>When a shutdown is requested, the backtraces of all the
+threads will be written to $stdout. This can help figure
+out why shutdown is hanging.</p>
+<p>If <code>on_force</code> is true, the backtraces will be written only
+when the shutdown is forced i.e. not graceful.</p>
   </div>
 </div>
 <div class='tags'>
@@ -3806,7 +3676,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1297-L1299'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1297-L1299'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1297' data-end='1299'></pre>
   <div class='lines_code'>
@@ -3827,11 +3697,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Disable warning message when running single mode with callback hook defined.</p>
-
+    <p>Disable warning message when running single mode with callback hook defined.</p>
 <p>The default is <code>false</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -3841,7 +3708,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L750-L752'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L750-L752'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='750' data-end='752'></pre>
   <div class='lines_code'>
@@ -3865,22 +3732,19 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
 <p>Disable warning message when running in cluster mode with a single worker.</p>
-
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode has some overhead of running an additional ‘control’ process in order to manage the cluster. If only running a single worker it is likely not worth paying that overhead vs running in single mode with additional threads instead.</p>
-
-<p>There are some scenarios where running cluster mode with a single worker may still be warranted and valid under certain deployment scenarios, see <a href="https://github.com/puma/puma/issues/2534">github.com/puma/puma/issues/2534</a></p>
-
+<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode has some overhead of running an additional 'control' process
+in order to manage the cluster. If only running a single worker it is
+likely not worth paying that overhead vs running in single mode with
+additional threads instead.</p>
+<p>There are some scenarios where running cluster mode with a single worker
+may still be warranted and valid under certain deployment scenarios, see
+<a href="https://github.com/puma/puma/issues/2534">https://github.com/puma/puma/issues/2534</a></p>
 <p>Moving from workers = 1 to workers = 0 will save 10-30% of memory use.</p>
-
 <p>The default is <code>false</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -3890,7 +3754,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L739-L741'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L739-L741'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='739' data-end='741'></pre>
   <div class='lines_code'>
@@ -3914,16 +3778,12 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Single.html" title="Puma::Single (class)"><code>Single</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Single.html" title="Puma::Single (class)"><code>Single</code></a> mode only.</p></div>
   </div>
 
-
-<p>Code to run only in single mode. Runs after all config files are loaded.</p>
-
+<p>Code to run only in single mode.
+Runs after all config files are loaded.</p>
 <p>This can be called multiple times.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -3941,7 +3801,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L766-L771'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L766-L771'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='766' data-end='771'></pre>
   <div class='lines_code'>
@@ -3965,21 +3825,19 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Instead of using <a href="#bind-instance_method" title="Puma::DSL#bind (method)">#bind</a> and manually constructing a URI like:</p>
-
+    <p>Instead of using <a href="#bind-instance_method" title="Puma::DSL#bind (method)">#bind</a> and manually constructing a URI like:</p>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bind'><a href="#bind-instance_method" title="Puma::DSL#bind (method)">bind</a></span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ssl://127.0.0.1:9292?key=key_path&amp;cert=cert_path</span><span class='tstring_end'>&#39;</span></span></code></pre>
-
 <p>you can use the this method.</p>
-
-<p>When binding on localhost you don’t need to specify <code>cert</code> and <code>key</code>, <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> will assume you are using the <code>localhost</code> gem and try to load the appropriate files.</p>
-
-<p>When using the options hash parameter, the <code>reuse:</code> value is either <code>true</code>, which sets reuse ‘on’ with default values, or a hash, with <code>:size</code> and/or <code>:timeout</code> keys, each with integer values.</p>
-
-<p>The <code>cert:</code> options hash parameter can be the path to a certificate file including all intermediate certificates in PEM format.</p>
-
-<p>The <code>cert_pem:</code> options hash parameter can be String containing the cerificate and all intermediate certificates in PEM format.</p>
-
+<p>When binding on localhost you don't need to specify <code>cert</code> and <code>key</code>,
+<a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> will assume you are using the <code>localhost</code> gem and try to load the
+appropriate files.</p>
+<p>When using the options hash parameter, the <code>reuse:</code> value is either
+<code>true</code>, which sets reuse 'on' with default values, or a hash, with <code>:size</code>
+and/or <code>:timeout</code> keys, each with integer values.</p>
+<p>The <code>cert:</code> options hash parameter can be the path to a certificate
+file including all intermediate certificates in PEM format.</p>
+<p>The <code>cert_pem:</code> options hash parameter can be String containing the
+cerificate and all intermediate certificates in PEM format.</p>
   </div>
 </div>
 <div class='tags'>
@@ -3994,21 +3852,15 @@
 </span>  <span class='label'>verification_flags:</span> <span class='id identifier rubyid_flags'>flags</span><span class='comma'>,</span>        <span class='comment'># optional, not supported by JRuby
 </span>  <span class='label'>reuse:</span> <span class='kw'>true</span>                       <span class='comment'># optional
 </span>}</code></pre>
-        <p class='example_title'><div class='inline'>
-<p>Using self-signed certificate with the <code>localhost</code> gem:</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>Using self-signed certificate with the <code>localhost</code> gem:</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_ssl_bind'>ssl_bind</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>127.0.0.1</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>9292</span><span class='tstring_end'>&#39;</span></span></code></pre>
-        <p class='example_title'><div class='inline'>
-<p>Alternatively, you can provide <code>cert_pem</code> and <code>key_pem</code>:</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>Alternatively, you can provide <code>cert_pem</code> and <code>key_pem</code>:</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_ssl_bind'>ssl_bind</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>127.0.0.1</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>9292</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> {
   <span class='label'>cert_pem:</span> <span class='const'>File</span>.<span class='id identifier rubyid_read'>read</span>(<span class='id identifier rubyid_path_to_cert'>path_to_cert</span>)<span class='comma'>,</span>
   <span class='label'>key_pem:</span> <span class='const'>File</span>.<span class='id identifier rubyid_read'>read</span>(<span class='id identifier rubyid_path_to_key'>path_to_key</span>)<span class='comma'>,</span>
   <span class='label'>reuse:</span> {<span class='label'>size:</span> <span class='int'>2_000</span><span class='comma'>,</span> <span class='label'>timeout:</span> <span class='int'>20</span>} <span class='comment'># optional
 </span>}</code></pre>
-        <p class='example_title'><div class='inline'>
-<p>For JRuby, two keys are required: <code>keystore</code> &amp; <code>keystore_pass</code></p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>For JRuby, two keys are required: <code>keystore</code> &amp; <code>keystore_pass</code></p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_ssl_bind'>ssl_bind</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>127.0.0.1</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>9292</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> {
   <span class='label'>keystore:</span> <span class='id identifier rubyid_path_to_keystore'>path_to_keystore</span><span class='comma'>,</span>
   <span class='label'>keystore_pass:</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span>
@@ -4018,7 +3870,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L671-L674'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L671-L674'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='671' data-end='674'></pre>
   <div class='lines_code'>
@@ -4040,9 +3892,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Use <code>path</code> as the file to store the server info state. This is used by <code>pumactl</code> to query and control the server.</p>
-
+    <p>Use <code>path</code> as the file to store the server info state. This is
+used by <code>pumactl</code> to query and control the server.</p>
   </div>
 </div>
 <div class='tags'>
@@ -4052,7 +3903,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L682-L684'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L682-L684'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='682' data-end='684'></pre>
   <div class='lines_code'>
@@ -4073,9 +3924,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Use <code>permission</code> to restrict permissions for the state file.  By convention, <code>permission</code> is an octal number (e.g. <code>0640</code> or <code>0o640</code>).</p>
-
+    <p>Use <code>permission</code> to restrict permissions for the state file.  By convention,
+<code>permission</code> is an octal number (e.g. <code>0640</code> or <code>0o640</code>).</p>
   </div>
 </div>
 <div class='tags'>
@@ -4085,7 +3935,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L692-L694'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L692-L694'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='692' data-end='694'></pre>
   <div class='lines_code'>
@@ -4106,11 +3956,9 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Redirect <code>STDOUT</code> and <code>STDERR</code> to files specified. The <code>append</code> parameter specifies whether the output is appended.</p>
-
+    <p>Redirect <code>STDOUT</code> and <code>STDERR</code> to files specified. The <code>append</code> parameter
+specifies whether the output is appended.</p>
 <p>The default is <code>false</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -4121,7 +3969,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L558-L562'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L558-L562'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='558' data-end='562'></pre>
   <div class='lines_code'>
@@ -4147,41 +3995,34 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>If the <code>methods</code> value is <code>:any</code>, no method check with be performed, similar to <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> v5 and earlier.</p>
-</div>
+    <div class='inline'><p>If the <code>methods</code> value is <code>:any</code>, no method check with be performed,
+similar to <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> v5 and earlier.</p></div>
   </div>
 
-
-<p>Supported http methods, which will replace <a href="Const.html#SUPPORTED_HTTP_METHODS-constant" title="Puma::Const::SUPPORTED_HTTP_METHODS (constant)">Const::SUPPORTED_HTTP_METHODS</a>. The value of <code>:any</code> will allows all methods, otherwise, the value must be an array of strings.  Note that methods are all uppercase.</p>
-
-<p><a href="Const.html#SUPPORTED_HTTP_METHODS-constant" title="Puma::Const::SUPPORTED_HTTP_METHODS (constant)">Const::SUPPORTED_HTTP_METHODS</a> is conservative, if you want a complete set of methods, the methods defined by the <a href="https://www.iana.org/assignments/http-methods/http-methods.xhtml" target="_parent" title="IANA Method Registry">IANA Method Registry</a> are pre-defined as the constant <a href="Const.html#IANA_HTTP_METHODS-constant" title="Puma::Const::IANA_HTTP_METHODS (constant)">Const::IANA_HTTP_METHODS</a>.</p>
-
+<p>Supported http methods, which will replace <a href="Const.html#SUPPORTED_HTTP_METHODS-constant" title="Puma::Const::SUPPORTED_HTTP_METHODS (constant)">Const::SUPPORTED_HTTP_METHODS</a>.
+The value of <code>:any</code> will allows all methods, otherwise, the value must be
+an array of strings.  Note that methods are all uppercase.</p>
+<p><a href="Const.html#SUPPORTED_HTTP_METHODS-constant" title="Puma::Const::SUPPORTED_HTTP_METHODS (constant)">Const::SUPPORTED_HTTP_METHODS</a> is conservative, if you want a
+complete set of methods, the methods defined by the
+<a href="https://www.iana.org/assignments/http-methods/http-methods.xhtml" target="_parent" title="IANA Method Registry">IANA Method Registry</a>
+are pre-defined as the constant <a href="Const.html#IANA_HTTP_METHODS-constant" title="Puma::Const::IANA_HTTP_METHODS (constant)">Const::IANA_HTTP_METHODS</a>.</p>
   </div>
 </div>
 <div class='tags'>
     <div class='examples'>
     <p class='tag_title'>Examples:</p>
-        <p class='example_title'><div class='inline'>
-<p>Adds ‘PROPFIND’ to existing supported methods</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>Adds 'PROPFIND' to existing supported methods</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_supported_http_methods'>supported_http_methods</span>(<span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#SUPPORTED_HTTP_METHODS-constant" title="Puma::Const::SUPPORTED_HTTP_METHODS (constant)">SUPPORTED_HTTP_METHODS</a></span> <span class='op'>+</span> [<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PROPFIND</span><span class='tstring_end'>&#39;</span></span>])</code></pre>
-        <p class='example_title'><div class='inline'>
-<p>Restricts methods to the array elements</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>Restricts methods to the array elements</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_supported_http_methods'>supported_http_methods</span> <span class='qwords'><span class='qwords_beg'>%w[</span><span class='tstring_content'>HEAD</span><span class='words_sep'> </span><span class='tstring_content'>GET</span><span class='words_sep'> </span><span class='tstring_content'>POST</span><span class='words_sep'> </span><span class='tstring_content'>PUT</span><span class='words_sep'> </span><span class='tstring_content'>DELETE</span><span class='words_sep'> </span><span class='tstring_content'>OPTIONS</span><span class='words_sep'> </span><span class='tstring_content'>PROPFIND</span><span class='tstring_end'>]</span></span></code></pre>
-        <p class='example_title'><div class='inline'>
-<p>Restricts methods to the methods in the IANA Registry</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>Restricts methods to the methods in the IANA Registry</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_supported_http_methods'>supported_http_methods</span> <span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="Const.html" title="Puma::Const (module)">Const</a></span><span class='op'>::</span><span class='const'><a href="Const.html#IANA_HTTP_METHODS-constant" title="Puma::Const::IANA_HTTP_METHODS (constant)">IANA_HTTP_METHODS</a></span></code></pre>
-        <p class='example_title'><div class='inline'>
-<p>Allows any method</p>
-</div></p>
+        <p class='example_title'><div class='inline'><p>Allows any method</p></div></p>
       <pre class='example code ruby'><code><span class='id identifier rubyid_supported_http_methods'>supported_http_methods</span> <span class='symbeg'>:</span><span class='id identifier rubyid_any'>any</span></code></pre>
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1513-L1522'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1513-L1522'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1513' data-end='1522'></pre>
   <div class='lines_code'>
@@ -4209,13 +4050,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Additional text to display in process listing.</p>
-
-<p>If you do not specify a tag, <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> will infer it. If you do not want <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> to add a tag, use an empty string.</p>
-
+    <p>Additional text to display in process listing.</p>
+<p>If you do not specify a tag, <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> will infer it. If you do not want <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a>
+to add a tag, use an empty string.</p>
 <p>The default is the current file or directory base name.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -4226,7 +4064,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1163-L1165'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1163-L1165'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1163' data-end='1165'></pre>
   <div class='lines_code'>
@@ -4247,15 +4085,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Configure the number of threads to use to answer requests.</p>
-
+    <p>Configure the number of threads to use to answer requests.</p>
 <p>It can be a single fixed number, or a <code>min</code> and a <code>max</code>.</p>
-
-<p>The default is the environment variables <code>PUMA_MIN_THREADS</code> / <code>PUMA_MAX_THREADS</code> (or <code>MIN_THREADS</code> / <code>MAX_THREADS</code> if the <code>PUMA_</code> variables aren’t set).</p>
-
-<p>If these environment variables aren’t set, the default is “0, 5” in MRI or “0, 16” for other interpreters.</p>
-
+<p>The default is the environment variables <code>PUMA_MIN_THREADS</code> / <code>PUMA_MAX_THREADS</code>
+(or <code>MIN_THREADS</code> / <code>MAX_THREADS</code> if the <code>PUMA_</code> variables aren't set).</p>
+<p>If these environment variables aren't set, the default is &quot;0, 5&quot; in MRI or &quot;0, 16&quot; for other interpreters.</p>
   </div>
 </div>
 <div class='tags'>
@@ -4267,7 +4101,7 @@
   </div>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L584-L597'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L584-L597'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='584' data-end='597'></pre>
   <div class='lines_code'>
@@ -4302,27 +4136,20 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode with &gt;= 2 workers only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode with &gt;= 2 workers only.</p></div>
   </div>
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>Interpreters with forking support only.</p>
-</div>
+    <div class='inline'><p>Interpreters with forking support only.</p></div>
   </div>
 
-
 <p>Maximum delay of worker accept loop.</p>
-
-<p>Attempts to route traffic to less-busy workers by causing a busy worker to delay listening on the socket, allowing workers which are not processing as many requests to pick up new requests first.</p>
-
+<p>Attempts to route traffic to less-busy workers by causing a busy worker to delay
+listening on the socket, allowing workers which are not processing as many
+requests to pick up new requests first.</p>
 <p>The default is 0.005 seconds.</p>
-
 <p>To turn off this feature, set the value to 0.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -4333,7 +4160,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1318-L1320'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1318-L1320'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1318' data-end='1320'></pre>
   <div class='lines_code'>
@@ -4357,16 +4184,11 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
 <p>Change the default worker timeout for booting.</p>
-
 <p>The default is 60 seconds.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -4380,7 +4202,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1220-L1222'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1220-L1222'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1220' data-end='1222'></pre>
   <div class='lines_code'>
@@ -4404,16 +4226,11 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
 <p>Change the default interval for checking workers.</p>
-
 <p>The default is 5 seconds.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -4427,7 +4244,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1178-L1180'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1178-L1180'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1178' data-end='1180'></pre>
   <div class='lines_code'>
@@ -4451,23 +4268,18 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
 <p>Set the strategy for worker culling.</p>
-
 <p>There are two possible values:</p>
-<ol><li>
-<p><strong>:youngest</strong> - the youngest workers (i.e. the workers that were the most recently started) will be culled.</p>
-</li><li>
-<p><strong>:oldest</strong> - the oldest workers (i.e. the workers that were started the longest time ago) will be culled.</p>
-</li></ol>
-
+<ol>
+<li><strong>:youngest</strong> - the youngest workers (i.e. the workers that were
+the most recently started) will be culled.</li>
+<li><strong>:oldest</strong> - the oldest workers (i.e. the workers that were started
+the longest time ago) will be culled.</li>
+</ol>
 <p>The default is <code>:youngest</code>.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -4481,7 +4293,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1257-L1265'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1257-L1265'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1257' data-end='1265'></pre>
   <div class='lines_code'>
@@ -4511,16 +4323,11 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
 <p>Set the timeout for worker shutdown.</p>
-
 <p>The default is 30 seconds.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -4534,7 +4341,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1235-L1237'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1235-L1237'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1235' data-end='1237'></pre>
   <div class='lines_code'>
@@ -4558,18 +4365,15 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p>
-</div>
+    <div class='inline'><p><a href="Cluster.html" title="Puma::Cluster (class)"><code>Cluster</code></a> mode only.</p></div>
   </div>
 
-
-<p>Verifies that all workers have checked in to the master process within the given timeout. If not the worker process will be restarted. This is not a request timeout, it is to protect against a hung or dead process. Setting this value will not protect against slow requests.</p>
-
+<p>Verifies that all workers have checked in to the master process within
+the given timeout. If not the worker process will be restarted. This is
+not a request timeout, it is to protect against a hung or dead process.
+Setting this value will not protect against slow requests.</p>
 <p>This value must be greater than worker_check_interval.</p>
-
 <p>The default is 60 seconds.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -4583,7 +4387,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L1198-L1207'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L1198-L1207'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='1198' data-end='1207'></pre>
   <div class='lines_code'>
@@ -4611,13 +4415,16 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>How many worker processes to run. Typically this is set to the number of available cores.</p>
-
-<p>The default is the value of the environment variable <code>WEB_CONCURRENCY</code> if set, otherwise 0. Passing <code>:auto</code> will set the value to <code>Concurrent.available_processor_count</code> (requires the concurrent-ruby gem). On some platforms (e.g. under CPU quotas) this may be fractional, and <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> will round down. If it rounds down to 0, <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> will run in single mode and cluster-only hooks like <a href="#before_worker_boot-instance_method" title="Puma::DSL#before_worker_boot (method)">#before_worker_boot</a> will not execute. If you rely on cluster-only hooks, set an explicit worker count.</p>
-
+    <p>How many worker processes to run. Typically this is set to the number of
+available cores.</p>
+<p>The default is the value of the environment variable <code>WEB_CONCURRENCY</code> if
+set, otherwise 0. Passing <code>:auto</code> will set the value to
+<code>Concurrent.available_processor_count</code> (requires the concurrent-ruby gem).
+On some platforms (e.g. under CPU quotas) this may be fractional, and <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a>
+will round down. If it rounds down to 0, <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> will run in single mode and
+cluster-only hooks like <a href="#before_worker_boot-instance_method" title="Puma::DSL#before_worker_boot (method)">#before_worker_boot</a> will not execute.
+If you rely on cluster-only hooks, set an explicit worker count.</p>
 <p>A value of 0 or nil means run in single mode.</p>
-
   </div>
 </div>
 <div class='tags'>
@@ -4632,7 +4439,7 @@
       </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/dsl.rb#L715-L717'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/dsl.rb#L715-L717'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='715' data-end='717'></pre>
   <div class='lines_code'>

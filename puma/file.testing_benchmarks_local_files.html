@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Testing - benchmark/local files &mdash; Puma-8.0.0</title>
+<title>File: Testing - benchmark/local files &mdash; Puma-8.0.1</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-8.0.0</a> &raquo; 
+      <a href='.'>Puma-8.0.1</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Testing - benchmark/local files&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,22 +61,17 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<h1>Testing - benchmark/local files</h1>
-
-<p>These files generate data that shows request-per-second (RPS), etc. Typically, files are in 
-pairs, a shell script and a Ruby script. The shell script starts the server, then runs the 
+<h1 id="Testing___benchmark_local_files">Testing - benchmark/local files</h1>
+<p>These files generate data that shows request-per-second (RPS), etc. Typically, files are in
+pairs, a shell script and a Ruby script. The shell script starts the server, then runs the
 Ruby file, which starts client request stream(s), then collects and logs metrics.</p>
-
-<h2>response_time_wrk.sh</h2>
-
-<p>This uses <a href="https://github.com/ioquatix/wrk">wrk</a> for generating data. One or more wrk runs are performed. Summarizes RPS and 
-wrk latency times. The default for the <code>-b</code> argument runs 28 different client request streams, 
-and takes a bit over 5 minutes.  See &#39;Request Stream Configuration&#39; below for <code>-b</code> argument
+<h2 id="response_time_wrk_sh">response_time_wrk.sh</h2>
+<p>This uses <a href="https://github.com/ioquatix/wrk">wrk</a> for generating data. One or more wrk runs are performed. Summarizes RPS and
+wrk latency times. The default for the <code>-b</code> argument runs 28 different client request streams,
+and takes a bit over 5 minutes.  See 'Request Stream Configuration' below for <code>-b</code> argument
 description.</p>
-
-<p><details>
-  <summary>Summary output for<br/><code>benchmarks/local/response_time_wrk.sh -w2 -t5:5 -s tcp6</code>:</summary></p>
-
+<details>
+  <summary>Summary output for<br/><code>benchmarks/local/response_time_wrk.sh -w2 -t5:5 -s tcp6</code>:</summary>
 <pre class="code ruby"><code class="ruby"><span class='const'>Type</span>   <span class='id identifier rubyid_req'>req</span><span class='op'>/</span><span class='id identifier rubyid_sec'>sec</span>    <span class='int'>50</span><span class='tstring'><span class='tstring_beg'>% </span><span class='tstring_end'> </span></span>   <span class='int'>75</span><span class='tstring'><span class='tstring_beg'>% </span><span class='tstring_end'> </span></span>   <span class='int'>90</span><span class='tstring'><span class='tstring_beg'>% </span><span class='tstring_end'> </span></span>   <span class='int'>99</span><span class='tstring'><span class='tstring_beg'>% </span><span class='tstring_end'> </span></span>  <span class='int'>100</span><span class='tstring'><span class='tstring_beg'>% </span><span class='tstring_end'> </span></span><span class='const'>Resp</span> <span class='const'>Size</span>
 <span class='id identifier rubyid_─────────────────────────────────────────────────────────────────'>─────────────────────────────────────────────────────────────────</span>    <span class='int'>1</span><span class='id identifier rubyid_kB'>kB</span>
 <span class='id identifier rubyid_array'>array</span>   <span class='int'>13710</span>    <span class='float'>0.74</span>    <span class='float'>2.52</span>    <span class='float'>5.23</span>    <span class='float'>7.76</span>   <span class='float'>37.45</span>      <span class='int'>1024</span>
@@ -135,84 +130,64 @@ description.</p>
 [<span class='int'>2136</span>] <span class='op'>-</span> <span class='id identifier rubyid_Goodbye!'>Goodbye!</span>
 
  <span class='int'>5</span><span class='op'>:</span><span class='int'>15</span> <span class='const'>Total</span> <span class='const'>Time</span></code></pre>
-
-<p></details><br/></p>
-
-<h2>bench_base.sh, bench_base.rb</h2>
-
-<p>These two files setup parameters for the Puma server, which is normally started in a shell 
-script. It then starts a Ruby file (a subclass of BenchBase), passing arguments to it. The 
+</details><br/>
+<h2 id="bench_base_sh__bench_base_rb">bench_base.sh, bench_base.rb</h2>
+<p>These two files setup parameters for the Puma server, which is normally started in a shell
+script. It then starts a Ruby file (a subclass of BenchBase), passing arguments to it. The
 Ruby file is normally used to generate a client request stream(s).</p>
-
-<h3>Puma Configuration</h3>
-
+<h3 id="Puma_Configuration">Puma Configuration</h3>
 <p>The following arguments are used for the Puma server:</p>
-
 <ul>
 <li><strong><code>-C</code></strong> - configuration file</li>
 <li><strong><code>-d</code></strong> - app delay</li>
 <li><strong><code>-r</code></strong> - rackup file, often defaults to test/rackup/ci_select.ru</li>
 <li><strong><code>-s</code></strong> - bind socket type, default is tcp/tcp4, also tcp6, ssl/ssl4, ssl6, unix, or aunix
 (unix &amp; abstract unix are not available with wrk).</li>
-<li><strong><code>-t</code></strong> - threads, expressed as &#39;5:5&#39;, same as Puma --thread</li>
+<li><strong><code>-t</code></strong> - threads, expressed as '5:5', same as Puma --thread</li>
 <li><strong><code>-w</code></strong> - workers, same as Puma --worker</li>
 <li><strong><code>-Y</code></strong> - enable Ruby YJIT</li>
 </ul>
-
-<h3>Request Stream Configuration</h3>
-
+<h3 id="Request_Stream_Configuration">Request Stream Configuration</h3>
 <p>The following arguments are used for request streams:</p>
-
 <ul>
 <li><strong><code>-b</code></strong> - response body configuration. Body type options are a array, c chunked, s string,
 and i for File/IO. None or any combination can be specified, they should start the option.
 Then, any combination of comma separated integers can be used for the response body size
-in kB. The string &#39;ac50,100&#39; would create four runs, 50kb array, 50kB chunked, 100kB array,
-and 100kB chunked. See &#39;Testing - test/rackup/ci-*.ru files&#39; for more info.</li>
+in kB. The string 'ac50,100' would create four runs, 50kb array, 50kB chunked, 100kB array,
+and 100kB chunked. See 'Testing - test/rackup/ci-*.ru files' for more info.</li>
 <li><strong><code>-c</code></strong> - connections per client request stream thread, defaults to 2 for wrk.</li>
 <li><strong><code>-D</code></strong> - duration of client request stream in seconds.</li>
 <li><strong><code>-T</code></strong> - number of threads in the client request stream. For wrk, this defaults to
 80% of Puma workers * max_threads.</li>
 </ul>
-
-<h3>Notes - Configuration</h3>
-
+<h3 id="Notes___Configuration">Notes - Configuration</h3>
 <p>The above lists script arguments.</p>
-
 <p><code>bench_base.sh</code> contains most server defaults. Many can be set via ENV variables.</p>
-
 <p><code>bench_base.rb</code> contains the client request stream defaults. The default value for
 <code>-b</code> is <code>acsi1,10,100,256,512,1024,2048</code>, which is a 4 x 7 matrix, and hence, runs
 28 jobs. Also, the i body type (File/IO) generates files, they are placed in the
 <code>&quot;#{Dir.tmpdir}/.puma_response_body_io&quot;</code> directory, which is created.</p>
-
-<h3>Notes - wrk</h3>
-
-<p>The shell scripts use <code>-T</code> for wrk&#39;s thread count, since <code>-t</code> is used for Puma
+<h3 id="Notes___wrk">Notes - wrk</h3>
+<p>The shell scripts use <code>-T</code> for wrk's thread count, since <code>-t</code> is used for Puma
 server threads.  Regarding the <code>-c</code> argument, wrk has an interesting behavior.
 The total number of connections is set by <code>(connections/threads).to_i</code>. The scripts
 here use <code>-c</code> as connections per thread.  Hence, using <code>-T4 -c2</code> will yield a total
 of eight wrk connections, two per thread. The equivalent wrk arguments would be <code>-t4 -c8</code>.</p>
-
 <p>Puma can only process so many requests, and requests will queue in the backlog
 until Puma can respond to them. With wrk, if the number of total connections is
 too high, one will see the upper latency times increase, pushing into the lower
-latency times as the connections are increased. The default values for wrk&#39;s
-threads and connections were chosen to minimize requests&#39; time in the backlog.</p>
-
+latency times as the connections are increased. The default values for wrk's
+threads and connections were chosen to minimize requests' time in the backlog.</p>
 <p>An example with four wrk runs using <code>-b s10</code>.  Notice that <code>req/sec</code> varies by
 less than 1%, but the <code>75%</code> times increase by an order of magnitude:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_req'>req</span><span class='op'>/</span><span class='id identifier rubyid_sec'>sec</span>    <span class='int'>50</span><span class='tstring'><span class='tstring_beg'>% </span><span class='tstring_end'> </span></span>   <span class='int'>75</span><span class='tstring'><span class='tstring_beg'>% </span><span class='tstring_end'> </span></span>   <span class='int'>90</span><span class='tstring'><span class='tstring_beg'>% </span><span class='tstring_end'> </span></span>   <span class='int'>99</span><span class='tstring'><span class='tstring_beg'>% </span><span class='tstring_end'> </span></span>  <span class='int'>100</span><span class='tstring'><span class='tstring_beg'>% </span><span class='tstring_end'> </span></span><span class='const'>Resp</span> <span class='const'>Size</span>   <span class='id identifier rubyid_wrk'>wrk</span> <span class='id identifier rubyid_cmd'>cmd</span> <span class='id identifier rubyid_line'>line</span>
 <span class='id identifier rubyid_─────────────────────────────────────────────────────────────────────────────'>─────────────────────────────────────────────────────────────────────────────</span>
  <span class='int'>13597</span>   <span class='float'>0.755</span>   <span class='float'>2.550</span>   <span class='float'>5.260</span>   <span class='float'>7.800</span>  <span class='float'>13.310</span>     <span class='int'>12040</span>    <span class='id identifier rubyid_wrk'>wrk</span> <span class='op'>-</span><span class='id identifier rubyid_t8'>t8</span>  <span class='op'>-</span><span class='id identifier rubyid_c16'>c16</span> <span class='op'>-</span><span class='id identifier rubyid_d10'>d10</span>
  <span class='int'>13549</span>   <span class='float'>0.793</span>   <span class='float'>4.430</span>   <span class='float'>8.140</span>  <span class='float'>11.220</span>  <span class='float'>16.600</span>     <span class='int'>12002</span>    <span class='id identifier rubyid_wrk'>wrk</span> <span class='op'>-</span><span class='id identifier rubyid_t10'>t10</span> <span class='op'>-</span><span class='id identifier rubyid_c20'>c20</span> <span class='op'>-</span><span class='id identifier rubyid_d10'>d10</span>
  <span class='int'>13570</span>   <span class='float'>1.040</span>  <span class='float'>25.790</span>  <span class='float'>40.010</span>  <span class='float'>49.070</span>  <span class='float'>58.300</span>     <span class='int'>11982</span>    <span class='id identifier rubyid_wrk'>wrk</span> <span class='op'>-</span><span class='id identifier rubyid_t8'>t8</span>  <span class='op'>-</span><span class='id identifier rubyid_c64'>c64</span> <span class='op'>-</span><span class='id identifier rubyid_d10'>d10</span>
  <span class='int'>13684</span>   <span class='float'>1.050</span>  <span class='float'>25.820</span>  <span class='float'>40.080</span>  <span class='float'>49.160</span>  <span class='float'>66.190</span>     <span class='int'>12033</span>    <span class='id identifier rubyid_wrk'>wrk</span> <span class='op'>-</span><span class='id identifier rubyid_t16'>t16</span> <span class='op'>-</span><span class='id identifier rubyid_c64'>c64</span> <span class='op'>-</span><span class='id identifier rubyid_d10'>d10</span></code></pre>
-
-<p>Finally, wrk&#39;s output may cause rounding errors, so the response body size calculation is
+<p>Finally, wrk's output may cause rounding errors, so the response body size calculation is
 imprecise.</p>
-
 <div id='footer'></div>
 </div> <!-- content  -->
 </div> <!-- y_main   -->
