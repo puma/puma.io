@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::LogWriter &mdash; Puma-8.0.0</title>
+<title>Class: Puma::LogWriter &mdash; Puma-8.0.1</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-8.0.0</a> &raquo; 
+      <a href='../'>Puma-8.0.1</a> &raquo; 
       <a href='../_index.html#alpha_L'>Index (L)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>LogWriter&nbsp;&#x25B2;</a></span>
@@ -84,7 +84,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L12'>lib/puma/log_writer.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L12'>lib/puma/log_writer.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -93,9 +93,8 @@
 <div id='overview_ds'>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Handles logging concerns for both standard messages (<a href="#stdout-instance_method" title="Puma::LogWriter#stdout (method)">#stdout</a>) and errors (<a href="#stderr-instance_method" title="Puma::LogWriter#stderr (method)">#stderr</a>).</p>
-
+    <p>Handles logging concerns for both standard messages
+(<a href="#stdout-instance_method" title="Puma::LogWriter#stdout (method)">#stdout</a>) and errors (<a href="#stderr-instance_method" title="Puma::LogWriter#stderr (method)">#stderr</a>).</p>
   </div>
 </div>
 </div>
@@ -105,12 +104,12 @@
   <li>
     <span id='DEFAULT-constant' class='summary_signature'>DEFAULT =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L44-L44'># File 'lib/puma/log_writer.rb', line 44</a>    <pre class='code ruby'><span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::LogWriter.new (method)">new</a></span>(<span class='const'>STDOUT</span><span class='comma'>,</span> <span class='const'>STDERR</span>)</pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L44-L44'># File 'lib/puma/log_writer.rb', line 44</a>    <pre class='code ruby'><span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::LogWriter.new (method)">new</a></span>(<span class='const'>STDOUT</span><span class='comma'>,</span> <span class='const'>STDERR</span>)</pre>
   </li>
   <li>
     <span id='LOG_QUEUE-constant' class='summary_signature'>LOG_QUEUE =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L26-L26'># File 'lib/puma/log_writer.rb', line 26</a>    <pre class='code ruby'><span class='const'>Queue</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::LogWriter.new (method)">new</a></span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L26-L26'># File 'lib/puma/log_writer.rb', line 26</a>    <pre class='code ruby'><span class='const'>Queue</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::LogWriter.new (method)">new</a></span></pre>
   </li>
 </ul>
 </div>
@@ -197,7 +196,7 @@
   </li>
   <li>
     <span class='summary_signature ro'>
-      <a href="#debug-instance_method" title="#debug (instance method)">#<strong>debug</strong>(str)  </a>
+      <a href="#debug-instance_method" title="#debug (instance method)">#<strong>debug</strong>(str = nil, &amp;block)  </a>
     </span>
     <span class='note title readonly'>readonly</span>
   </li>
@@ -214,7 +213,7 @@
       <a href="#error-instance_method" title="#error (instance method)">#<strong>error</strong>(str)  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>Write <code>str</code> to <tt>@stderr</tt>.</p></div>
+      <div class='inline'><p>Write <code>str</code> to <code>@stderr</code>.</p></div>
     </div>
   </li>
   <li>
@@ -227,7 +226,7 @@
       <a href="#log-instance_method" title="#log (instance method)">#<strong>log</strong>(str)  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>Write <code>str</code> to <tt>@stdout</tt>.</p></div>
+      <div class='inline'><p>Write <code>str</code> to <code>@stdout</code>.</p></div>
     </div>
   </li>
   <li>
@@ -275,15 +274,13 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Create a <code>LogWriter</code> that prints to <a href="#stdout-instance_method" title="Puma::LogWriter#stdout (method)">#stdout</a> and <a href="#stderr-instance_method" title="Puma::LogWriter#stderr (method)">#stderr</a>.</p>
-
+    <p>Create a <code>LogWriter</code> that prints to <a href="#stdout-instance_method" title="Puma::LogWriter#stdout (method)">#stdout</a> and <a href="#stderr-instance_method" title="Puma::LogWriter#stderr (method)">#stderr</a>.</p>
   </div>
 </div>
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L34-L42'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L34-L42'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='34' data-end='42'></pre>
   <div class='lines_code'>
@@ -309,7 +306,7 @@
   <h3 class='signature  first'>
     .<strong>null</strong>(env: ENV)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L56-L59'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L56-L59'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='56' data-end='59'></pre>
   <div class='lines_code'>
@@ -329,7 +326,7 @@
   <h3 class='signature '>
     .<strong>stdio</strong>(env: ENV)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L52-L54'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L52-L54'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='52' data-end='54'></pre>
   <div class='lines_code'>
@@ -350,12 +347,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Returns an <code>LogWriter</code> object which writes its status to two StringIO objects.</p>
-
+    <p>Returns an <code>LogWriter</code> object which writes its status to
+two StringIO objects.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L48-L50'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L48-L50'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='48' data-end='50'></pre>
   <div class='lines_code'>
@@ -375,7 +371,7 @@
   <h3 class='signature rw first'>
     #<strong>custom_logger</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L31-L31'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L31-L31'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='31' data-end='31'></pre>
   <div class='lines_code'>
@@ -392,7 +388,7 @@
   <h3 class='signature ro'>
     #<strong>debug?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L89-L91'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L89-L91'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='89' data-end='91'></pre>
   <div class='lines_code'>
@@ -411,7 +407,7 @@
   <h3 class='signature rw'>
     #<strong>formatter</strong>   <span class="extras">(<span class='rw'>rw</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L31-L31'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L31-L31'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='31' data-end='31'></pre>
   <div class='lines_code'>
@@ -428,7 +424,7 @@
   <h3 class='signature ro'>
     #<strong>stderr</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L28-L29'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L28-L29'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='28' data-end='29'></pre>
   <div class='lines_code'>
@@ -446,7 +442,7 @@
   <h3 class='signature ro'>
     #<strong>stdout</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L28-L29'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L28-L29'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='28' data-end='29'></pre>
   <div class='lines_code'>
@@ -467,27 +463,25 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>An HTTP connection error has occurred. <a href="#error-instance_method" title="Puma::LogWriter#error (method)">#error</a> a connection exception, <code>req</code> the request, and <code>text</code> additional info</p>
-
+    <p>An HTTP connection error has occurred.
+<a href="#error-instance_method" title="Puma::LogWriter#error (method)">#error</a> a connection exception, <code>req</code> the request,
+and <code>text</code> additional info</p>
   </div>
 </div>
 <div class='tags'>
   <p class='tag_title'>Version:</p>
 <ul class='version'>
   <li>
-    <div class='inline'>
-<p>5.0.0</p>
-</div>
+    <div class='inline'><p>5.0.0</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L111-L113'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L117-L119'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='111' data-end='113'></pre>
+  <pre class='lines_num' data-start='117' data-end='119'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 111</span></pre>
+<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 117</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_connection_error'>connection_error</span>(<span class='id identifier rubyid_error'><a href="#error-instance_method" title="Puma::LogWriter#error (method)">error</a></span><span class='comma'>,</span> <span class='id identifier rubyid_req'>req</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HTTP connection error</span><span class='tstring_end'>&quot;</span></span>)
@@ -500,17 +494,23 @@
 
 <section class='method_details' id="debug-instance_method">
   <h3 class='signature ro'>
-    #<strong>debug</strong>(str)   <span class="extras">(<span class='readonly'>readonly</span>)</span>
+    #<strong>debug</strong>(str = nil, &amp;block)   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L93-L95'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L93-L101'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='93' data-end='95'></pre>
+  <pre class='lines_num' data-start='93' data-end='101'></pre>
   <div class='lines_code'>
 <pre><span class='info file'># File 'lib/puma/log_writer.rb', line 93</span></pre>
 <pre class='code ruby'>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_debug'>debug</span>(<span class='id identifier rubyid_str'>str</span>)
-  <span class='id identifier rubyid_log'><a href="#log-instance_method" title="Puma::LogWriter#log (method)">log</a></span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>% </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>) <span class='kw'>if</span> <span class='ivar'>@debug</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_debug'>debug</span>(<span class='id identifier rubyid_str'>str</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>)
+  <span class='kw'>if</span> <span class='ivar'>@debug</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+      <span class='id identifier rubyid_log'><a href="#log-instance_method" title="Puma::LogWriter#log (method)">log</a></span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>% </span><span class='embexpr_beg'>#{</span><span class='kw'>yield</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>)
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_log'><a href="#log-instance_method" title="Puma::LogWriter#log (method)">log</a></span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>% </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>)
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span>
 </pre>
   </div>
@@ -523,27 +523,25 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Log occurred error debug dump. <a href="#error-instance_method" title="Puma::LogWriter#error (method)">#error</a> an exception object, <code>req</code> the request, and <code>text</code> additional info</p>
-
+    <p>Log occurred error debug dump.
+<a href="#error-instance_method" title="Puma::LogWriter#error (method)">#error</a> an exception object, <code>req</code> the request,
+and <code>text</code> additional info</p>
   </div>
 </div>
 <div class='tags'>
   <p class='tag_title'>Version:</p>
 <ul class='version'>
   <li>
-    <div class='inline'>
-<p>5.0.0</p>
-</div>
+    <div class='inline'><p>5.0.0</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L143-L145'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L149-L151'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='143' data-end='145'></pre>
+  <pre class='lines_num' data-start='149' data-end='151'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 143</span></pre>
+<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 149</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_debug_error'>debug_error</span>(<span class='id identifier rubyid_error'><a href="#error-instance_method" title="Puma::LogWriter#error (method)">error</a></span><span class='comma'>,</span> <span class='id identifier rubyid_req'>req</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>)
@@ -560,16 +558,14 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Write <code>str</code> to <tt>@stderr</tt></p>
-
+    <p>Write <code>str</code> to <code>@stderr</code></p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L98-L101'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L104-L107'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='98' data-end='101'></pre>
+  <pre class='lines_num' data-start='104' data-end='107'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 98</span></pre>
+<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 104</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_error'>error</span>(<span class='id identifier rubyid_str'>str</span>)
@@ -585,11 +581,11 @@
   <h3 class='signature '>
     #<strong>format</strong>(str)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L103-L105'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L109-L111'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='103' data-end='105'></pre>
+  <pre class='lines_num' data-start='109' data-end='111'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 103</span></pre>
+<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 109</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format'>format</span>(<span class='id identifier rubyid_str'>str</span>)
@@ -604,7 +600,7 @@
   <h3 class='signature priv'>
     #<strong>internal_write</strong>(str)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L74-L86'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L74-L86'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='74' data-end='86'></pre>
   <div class='lines_code'>
@@ -635,12 +631,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Write <code>str</code> to <tt>@stdout</tt></p>
-
+    <p>Write <code>str</code> to <code>@stdout</code></p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L62-L68'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L62-L68'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='62' data-end='68'></pre>
   <div class='lines_code'>
@@ -665,16 +659,16 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>An HTTP parse error has occurred. <a href="#error-instance_method" title="Puma::LogWriter#error (method)">#error</a> a parsing exception, and <code>req</code> the request.</p>
-
+    <p>An HTTP parse error has occurred.
+<a href="#error-instance_method" title="Puma::LogWriter#error (method)">#error</a> a parsing exception,
+and <code>req</code> the request.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L118-L120'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L124-L126'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='118' data-end='120'></pre>
+  <pre class='lines_num' data-start='124' data-end='126'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 118</span></pre>
+<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 124</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parse_error'>parse_error</span>(<span class='id identifier rubyid_error'><a href="#error-instance_method" title="Puma::LogWriter#error (method)">error</a></span><span class='comma'>,</span> <span class='id identifier rubyid_req'>req</span>)
@@ -691,9 +685,7 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>An SSL error has occurred.</p>
-
+    <p>An SSL error has occurred.</p>
   </div>
 </div>
 <div class='tags'>
@@ -710,11 +702,11 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L125-L130'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L131-L136'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='125' data-end='130'></pre>
+  <pre class='lines_num' data-start='131' data-end='136'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 125</span></pre>
+<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 131</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ssl_error'>ssl_error</span>(<span class='id identifier rubyid_error'><a href="#error-instance_method" title="Puma::LogWriter#error (method)">error</a></span><span class='comma'>,</span> <span class='id identifier rubyid_ssl_socket'>ssl_socket</span>)
@@ -734,16 +726,16 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>An unknown error has occurred. <a href="#error-instance_method" title="Puma::LogWriter#error (method)">#error</a> an exception object, <code>req</code> the request, and <code>text</code> additional info</p>
-
+    <p>An unknown error has occurred.
+<a href="#error-instance_method" title="Puma::LogWriter#error (method)">#error</a> an exception object, <code>req</code> the request,
+and <code>text</code> additional info</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L135-L137'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L141-L143'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
-  <pre class='lines_num' data-start='135' data-end='137'></pre>
+  <pre class='lines_num' data-start='141' data-end='143'></pre>
   <div class='lines_code'>
-<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 135</span></pre>
+<pre><span class='info file'># File 'lib/puma/log_writer.rb', line 141</span></pre>
 <pre class='code ruby'>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unknown_error'>unknown_error</span>(<span class='id identifier rubyid_error'><a href="#error-instance_method" title="Puma::LogWriter#error (method)">error</a></span><span class='comma'>,</span> <span class='id identifier rubyid_req'>req</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unknown error</span><span class='tstring_end'>&quot;</span></span>)
@@ -758,7 +750,7 @@
   <h3 class='signature '>
     #<strong>write</strong>(str)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/log_writer.rb#L70-L72'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/log_writer.rb#L70-L72'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='70' data-end='72'></pre>
   <div class='lines_code'>

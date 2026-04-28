@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Module: Puma::Response &mdash; Puma-8.0.0</title>
+<title>Module: Puma::Response &mdash; Puma-8.0.1</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-8.0.0</a> &raquo; 
+      <a href='../'>Puma-8.0.1</a> &raquo; 
       <a href='../_index.html#alpha_R'>Index (R)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a class='nodoc' id='t2_doc_top' href='#'>Response&nbsp;&#x25B2;</a></span>
@@ -91,7 +91,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L15'>lib/puma/response.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L15'>lib/puma/response.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -100,20 +100,18 @@
 <div id='overview_ds'>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>The methods here are included in <a href="Server.html" title="Puma::Server (class)"><code>Server</code></a>, but are separated into this file. All the methods here pertain to passing the request to the app, then writing the response back to the client.</p>
-
-<p>None of the methods here are called externally, with the exception of <a href="#handle_request-instance_method" title="Puma::Response#handle_request (method)">#handle_request</a>, which is called in <a href="Server.html#process_client-instance_method" title="Puma::Server#process_client (method)">Server#process_client</a>.</p>
-
+    <p>The methods here are included in <a href="Server.html" title="Puma::Server (class)"><code>Server</code></a>, but are separated into this file.
+All the methods here pertain to passing the request to the app, then
+writing the response back to the client.</p>
+<p>None of the methods here are called externally, with the exception of
+<a href="#handle_request-instance_method" title="Puma::Response#handle_request (method)">#handle_request</a>, which is called in <a href="Server.html#process_client-instance_method" title="Puma::Server#process_client (method)">Server#process_client</a>.</p>
   </div>
 </div>
 <div class='tags'>
   <p class='tag_title'>Version:</p>
 <ul class='version'>
   <li>
-    <div class='inline'>
-<p>5.0.3</p>
-</div>
+    <div class='inline'><p>5.0.3</p></div>
   </li>
 </ul>
 
@@ -126,44 +124,42 @@
     <span id='BODY_LEN_MAX-constant' class='summary_signature nodoc'>BODY_LEN_MAX =</span>
     <div class='docstring'>
   <div class='discussion'>
-    
-<p><a href="Single.html" title="Puma::Single (class)"><code>Single</code></a> element array body: smaller bodies are written to io_buffer first, then a single write from io_buffer. Larger sizes are written separately. Also fixes max size of chunked file body read.</p>
-
+    <p><a href="Single.html" title="Puma::Single (class)"><code>Single</code></a> element array body: smaller bodies are written to io_buffer first,
+then a single write from io_buffer. Larger sizes are written separately.
+Also fixes max size of chunked file body read.</p>
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L20-L20'># File 'lib/puma/response.rb', line 20</a>    <pre class='code ruby'><span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>256</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L20-L20'># File 'lib/puma/response.rb', line 20</a>    <pre class='code ruby'><span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>256</span></pre>
   </li>
   <li>
     <span id='CUSTOM_STAT-constant' class='summary_signature nodoc'>CUSTOM_STAT =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L32-L32'># File 'lib/puma/response.rb', line 32</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CUSTOM</span><span class='tstring_end'>&#39;</span></span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L32-L32'># File 'lib/puma/response.rb', line 32</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CUSTOM</span><span class='tstring_end'>&#39;</span></span></pre>
   </li>
   <li>
     <span id='IO_BODY_MAX-constant' class='summary_signature nodoc'>IO_BODY_MAX =</span>
     <div class='docstring'>
   <div class='discussion'>
-    
-<p>File body: smaller bodies are combined with io_buffer, then written to socket.  Larger bodies are written separately using <code>copy_stream</code></p>
-
+    <p>File body: smaller bodies are combined with io_buffer, then written to
+socket.  Larger bodies are written separately using <code>copy_stream</code></p>
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L24-L24'># File 'lib/puma/response.rb', line 24</a>    <pre class='code ruby'><span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>64</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L24-L24'># File 'lib/puma/response.rb', line 24</a>    <pre class='code ruby'><span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>64</span></pre>
   </li>
   <li>
     <span id='IO_BUFFER_LEN_MAX-constant' class='summary_signature nodoc'>IO_BUFFER_LEN_MAX =</span>
     <div class='docstring'>
   <div class='discussion'>
-    
-<p>Array body: elements are collected in io_buffer.  When io_buffer’s size exceeds value, they are written to the socket.</p>
-
+    <p>Array body: elements are collected in io_buffer.  When io_buffer's size
+exceeds value, they are written to the socket.</p>
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L28-L28'># File 'lib/puma/response.rb', line 28</a>    <pre class='code ruby'><span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>512</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L28-L28'># File 'lib/puma/response.rb', line 28</a>    <pre class='code ruby'><span class='int'>1_024</span> <span class='op'>*</span> <span class='int'>512</span></pre>
   </li>
   <li>
     <span id='SOCKET_WRITE_ERR_MSG-constant' class='summary_signature nodoc'>SOCKET_WRITE_ERR_MSG =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L30-L30'># File 'lib/puma/response.rb', line 30</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Socket timeout writing data</span><span class='tstring_end'>&quot;</span></span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L30-L30'># File 'lib/puma/response.rb', line 30</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Socket timeout writing data</span><span class='tstring_end'>&quot;</span></span></pre>
   </li>
 </ul>
   <h3 class='inherited'><a href="Const.html" title="Puma::Const (module)"><code>Const</code></a> - Included</h3>
@@ -298,7 +294,7 @@
     </span>
     <span class='note title private'>private</span>
     <div class='summary_desc'>
-      <div class='inline'><p>Used to write ‘early hints’, ‘no body’ responses, ‘hijacked’ responses, and body segments (called by <a href="#fast_write_response-instance_method" title="Puma::Response#fast_write_response (method)">#fast_write_response</a>).</p></div>
+      <div class='inline'><p>Used to write 'early hints', 'no body' responses, 'hijacked' responses, and body segments (called by <a href="#fast_write_response-instance_method" title="Puma::Response#fast_write_response (method)">#fast_write_response</a>).</p></div>
     </div>
   </li>
   <li>
@@ -334,9 +330,9 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Used to write headers and body. Writes to a socket (normally <a href="Client.html#io-instance_method" title="Puma::Client#io (method)">Client#io</a>) using <a href="#fast_write_str-instance_method" title="Puma::Response#fast_write_str (method)">#fast_write_str</a>. Accumulates <code>body</code> items into <code>io_buffer</code>, then writes to socket.</p>
-
+    <p>Used to write headers and body.
+Writes to a socket (normally <a href="Client.html#io-instance_method" title="Puma::Client#io (method)">Client#io</a>) using <a href="#fast_write_str-instance_method" title="Puma::Response#fast_write_str (method)">#fast_write_str</a>.
+Accumulates <code>body</code> items into <code>io_buffer</code>, then writes to socket.</p>
   </div>
 </div>
 <div class='tags'>
@@ -345,23 +341,17 @@
   <li>
     <span class='name'>socket</span>
     <span class='type'>(#<code>write</code>)</span>
-&mdash;    <div class='inline'>
-<p>the response socket</p>
-</div>
+&mdash;    <div class='inline'><p>the response socket</p></div>
   </li>
   <li>
     <span class='name'>body</span>
     <span class='type'>(<code>Enumerable</code>, <code>File</code>)</span>
-&mdash;    <div class='inline'>
-<p>the body object</p>
-</div>
+&mdash;    <div class='inline'><p>the body object</p></div>
   </li>
   <li>
     <span class='name'>io_buffer</span>
     <span class='type'>(<a href="IOBuffer.html" title="Puma::IOBuffer (class)">Puma::IOBuffer</a>)</span>
-&mdash;    <div class='inline'>
-<p>contains headers</p>
-</div>
+&mdash;    <div class='inline'><p>contains headers</p></div>
   </li>
   <li>
     <span class='name'>chunked</span>
@@ -376,7 +366,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L287-L370'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L287-L370'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='287' data-end='370'></pre>
   <div class='lines_code'>
@@ -478,9 +468,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Used to write ‘early hints’, ‘no body’ responses, ‘hijacked’ responses, and body segments (called by <a href="#fast_write_response-instance_method" title="Puma::Response#fast_write_response (method)">#fast_write_response</a>). Writes a string to a socket (normally <a href="Client.html#io-instance_method" title="Puma::Client#io (method)">Client#io</a>) using <code>write_nonblock</code>. Large strings may not be written in one pass, especially if <code>io</code> is a <a href="MiniSSL/Socket.html" title="Puma::MiniSSL::Socket (class)"><code>MiniSSL::Socket</code></a>.</p>
-
+    <p>Used to write 'early hints', 'no body' responses, 'hijacked' responses,
+and body segments (called by <a href="#fast_write_response-instance_method" title="Puma::Response#fast_write_response (method)">#fast_write_response</a>).
+Writes a string to a socket (normally <a href="Client.html#io-instance_method" title="Puma::Client#io (method)">Client#io</a>) using <code>write_nonblock</code>.
+Large strings may not be written in one pass, especially if <code>io</code> is a
+<a href="MiniSSL/Socket.html" title="Puma::MiniSSL::Socket (class)"><code>MiniSSL::Socket</code></a>.</p>
   </div>
 </div>
 <div class='tags'>
@@ -489,16 +481,12 @@
   <li>
     <span class='name'>socket</span>
     <span class='type'>(#<code>write_nonblock</code>)</span>
-&mdash;    <div class='inline'>
-<p>the request/response socket</p>
-</div>
+&mdash;    <div class='inline'><p>the request/response socket</p></div>
   </li>
   <li>
     <span class='name'>str</span>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>the string written to the io</p>
-</div>
+&mdash;    <div class='inline'><p>the string written to the io</p></div>
   </li>
 </ul>
 <p class='tag_title'>Raises:</p>
@@ -509,7 +497,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L260-L275'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L260-L275'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='260' data-end='275'></pre>
   <div class='lines_code'>
@@ -552,23 +540,19 @@
   <li>
     <span class='name'>status</span>
     <span class='type'>(<code>Integer</code>)</span>
-&mdash;    <div class='inline'>
-<p>status from the app</p>
-</div>
+&mdash;    <div class='inline'><p>status from the app</p></div>
   </li>
 </ul>
 <p class='tag_title'>Returns:</p>
 <ul class='return'>
   <li>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>the text description from <a href="../Puma.html#HTTP_STATUS_CODES-constant" title="Puma::HTTP_STATUS_CODES (constant)">HTTP_STATUS_CODES</a></p>
-</div>
+&mdash;    <div class='inline'><p>the text description from <a href="../Puma.html#HTTP_STATUS_CODES-constant" title="Puma::HTTP_STATUS_CODES (constant)">HTTP_STATUS_CODES</a></p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L414-L416'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L414-L416'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='414' data-end='416'></pre>
   <div class='lines_code'>
@@ -589,17 +573,15 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Takes the request contained in <code>client</code>, invokes the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application to construct the response and writes it back to <code>client.io</code>.</p>
-
-<p>It’ll return <code>:close</code> when the connection is closed, this doesn’t mean that the response wasn’t successful.</p>
-
-<p>It’ll return <code>:keep_alive</code> if the connection is a pipeline or keep-alive connection. Which may contain additional requests.</p>
-
-<p>It’ll return <code>:async</code> if the connection remains open but will be handled elsewhere, i.e. the connection has been hijacked by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application.</p>
-
-<p>Finally, it’ll return <code>true</code> on keep-alive connections.</p>
-
+    <p>Takes the request contained in <code>client</code>, invokes the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application to construct
+the response and writes it back to <code>client.io</code>.</p>
+<p>It'll return <code>:close</code> when the connection is closed, this doesn't mean
+that the response wasn't successful.</p>
+<p>It'll return <code>:keep_alive</code> if the connection is a pipeline or keep-alive connection.
+Which may contain additional requests.</p>
+<p>It'll return <code>:async</code> if the connection remains open but will be handled
+elsewhere, i.e. the connection has been hijacked by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application.</p>
+<p>Finally, it'll return <code>true</code> on keep-alive connections.</p>
   </div>
 </div>
 <div class='tags'>
@@ -620,7 +602,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L53-L132'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L53-L132'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='53' data-end='132'></pre>
   <div class='lines_code'>
@@ -731,7 +713,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L377-L379'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L377-L379'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='377' data-end='379'></pre>
   <div class='lines_code'>
@@ -765,7 +747,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L384-L386'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L384-L386'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='384' data-end='386'></pre>
   <div class='lines_code'>
@@ -786,9 +768,8 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Assembles the headers and prepares the body for actually sending the response via <a href="#fast_write_response-instance_method" title="Puma::Response#fast_write_response (method)">#fast_write_response</a>.</p>
-
+    <p>Assembles the headers and prepares the body for actually sending the
+response via <a href="#fast_write_response-instance_method" title="Puma::Response#fast_write_response (method)">#fast_write_response</a>.</p>
   </div>
 </div>
 <div class='tags'>
@@ -797,30 +778,23 @@
   <li>
     <span class='name'>status</span>
     <span class='type'>(<code>Integer</code>)</span>
-&mdash;    <div class='inline'>
-<p>the status returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application</p>
-</div>
+&mdash;    <div class='inline'><p>the status returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application</p></div>
   </li>
   <li>
     <span class='name'>headers</span>
     <span class='type'>(<code>Hash</code>)</span>
-&mdash;    <div class='inline'>
-<p>the headers returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application</p>
-</div>
+&mdash;    <div class='inline'><p>the headers returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application</p></div>
   </li>
   <li>
     <span class='name'>res_body</span>
     <span class='type'>(<code>Array</code>)</span>
-&mdash;    <div class='inline'>
-<p>the body returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application or a call to <a href="Server.html#lowlevel_error-instance_method" title="Puma::Server#lowlevel_error (method)">Server#lowlevel_error</a></p>
-</div>
+&mdash;    <div class='inline'><p>the body returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application or
+a call to <a href="Server.html#lowlevel_error-instance_method" title="Puma::Server#lowlevel_error (method)">Server#lowlevel_error</a></p></div>
   </li>
   <li>
     <span class='name'>requests</span>
     <span class='type'>(<code>Integer</code>)</span>
-&mdash;    <div class='inline'>
-<p>number of inline requests handled</p>
-</div>
+&mdash;    <div class='inline'><p>number of inline requests handled</p></div>
   </li>
   <li>
     <span class='name'>client</span>
@@ -829,7 +803,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L144-L249'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L144-L249'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='144' data-end='249'></pre>
   <div class='lines_code'>
@@ -953,9 +927,7 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Used in the lambda for env[ <a href="Const.html#EARLY_HINTS-constant" title="Puma::Const::EARLY_HINTS (constant)">Const::EARLY_HINTS</a> ]</p>
-
+    <p>Used in the lambda for env[ <a href="Const.html#EARLY_HINTS-constant" title="Puma::Const::EARLY_HINTS (constant)">Const::EARLY_HINTS</a> ]</p>
   </div>
 </div>
 <div class='tags'>
@@ -964,22 +936,18 @@
   <li>
     <span class='name'>headers</span>
     <span class='type'>(<code>Hash</code>)</span>
-&mdash;    <div class='inline'>
-<p>the headers returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application</p>
-</div>
+&mdash;    <div class='inline'><p>the headers returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application</p></div>
   </li>
 </ul>
 <p class='tag_title'>Version:</p>
 <ul class='version'>
   <li>
-    <div class='inline'>
-<p>5.0.3</p>
-</div>
+    <div class='inline'><p>5.0.3</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L393-L408'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L393-L408'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='393' data-end='408'></pre>
   <div class='lines_code'>
@@ -1013,9 +981,7 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Processes and write headers to the <a href="IOBuffer.html" title="Puma::IOBuffer (class)"><code>IOBuffer</code></a>.</p>
-
+    <p>Processes and write headers to the <a href="IOBuffer.html" title="Puma::IOBuffer (class)"><code>IOBuffer</code></a>.</p>
   </div>
 </div>
 <div class='tags'>
@@ -1024,66 +990,52 @@
   <li>
     <span class='name'>env</span>
     <span class='type'>(<code>Hash</code>)</span>
-&mdash;    <div class='inline'>
-<p>see <a href="Client.html#env-instance_method" title="Puma::Client#env (method)">Client#env</a>, from request</p>
-</div>
+&mdash;    <div class='inline'><p>see <a href="Client.html#env-instance_method" title="Puma::Client#env (method)">Client#env</a>, from request</p></div>
   </li>
   <li>
     <span class='name'>status</span>
     <span class='type'>(<code>Integer</code>)</span>
-&mdash;    <div class='inline'>
-<p>the status returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application</p>
-</div>
+&mdash;    <div class='inline'><p>the status returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application</p></div>
   </li>
   <li>
     <span class='name'>headers</span>
     <span class='type'>(<code>Hash</code>)</span>
-&mdash;    <div class='inline'>
-<p>the headers returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application</p>
-</div>
+&mdash;    <div class='inline'><p>the headers returned by the <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> application</p></div>
   </li>
   <li>
     <span class='name'>content_length</span>
     <span class='type'>(<code>Integer</code>, <code>nil</code>)</span>
-&mdash;    <div class='inline'>
-<p>content length if it can be determined from the response body</p>
-</div>
+&mdash;    <div class='inline'><p>content length if it can be determined from the
+response body</p></div>
   </li>
   <li>
     <span class='name'>io_buffer</span>
     <span class='type'>(<a href="IOBuffer.html" title="Puma::IOBuffer (class)">Puma::IOBuffer</a>)</span>
-&mdash;    <div class='inline'>
-<p>modified inn place</p>
-</div>
+&mdash;    <div class='inline'><p>modified inn place</p></div>
   </li>
   <li>
     <span class='name'>force_keep_alive</span>
     <span class='type'>(<code>Boolean</code>)</span>
-&mdash;    <div class='inline'>
-<p>‘anded’ with keep_alive, based on system status and <code>@max_keep_alive</code></p>
-</div>
+&mdash;    <div class='inline'><p>'anded' with keep_alive, based on system
+status and <code>@max_keep_alive</code></p></div>
   </li>
 </ul>
 <p class='tag_title'>Returns:</p>
 <ul class='return'>
   <li>
     <span class='type'>(<code>Hash</code>)</span>
-&mdash;    <div class='inline'>
-<p>resp_info</p>
-</div>
+&mdash;    <div class='inline'><p>resp_info</p></div>
   </li>
 </ul>
 <p class='tag_title'>Version:</p>
 <ul class='version'>
   <li>
-    <div class='inline'>
-<p>5.0.3</p>
-</div>
+    <div class='inline'><p>5.0.3</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.0/lib/puma/response.rb#L431-L529'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v8.0.1/lib/puma/response.rb#L431-L529'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='431' data-end='529'></pre>
   <div class='lines_code'>
