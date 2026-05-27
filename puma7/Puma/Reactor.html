@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::Reactor &mdash; Puma-7.2.0</title>
+<title>Class: Puma::Reactor &mdash; Puma-7.2.1</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-7.2.0</a> &raquo; 
+      <a href='../'>Puma-7.2.1</a> &raquo; 
       <a href='../_index.html#alpha_R'>Index (R)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>Reactor&nbsp;&#x25B2;</a></span>
@@ -77,7 +77,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/reactor.rb#L17'>lib/puma/reactor.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/reactor.rb#L17'>lib/puma/reactor.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -86,15 +86,14 @@
 <div id='overview_ds'>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Monitors a collection of IO objects, calling a block whenever any monitored object either receives data or times out, or when the <code>Reactor</code> shuts down.</p>
-
-<p>The waiting/wake up is performed with nio4r, which will use the appropriate backend (libev, Java NIO or just plain <code>IO#select</code>). The call to <code>NIO::Selector#select</code> will ‘wakeup’ any IO object that receives data.</p>
-
-<p>This class additionally tracks a timeout for every added object, and wakes up any object when its timeout elapses.</p>
-
+    <p>Monitors a collection of IO objects, calling a block whenever
+any monitored object either receives data or times out, or when the <code>Reactor</code> shuts down.</p>
+<p>The waiting/wake up is performed with nio4r, which will use the appropriate backend (libev,
+Java NIO or just plain <code>IO#select</code>). The call to <code>NIO::Selector#select</code> will
+'wakeup' any IO object that receives data.</p>
+<p>This class additionally tracks a timeout for every added object,
+and wakes up any object when its timeout elapses.</p>
 <p>The implementation uses a Queue to synchronize adding new objects from the internal select loop.</p>
-
   </div>
 </div>
 </div>
@@ -182,7 +181,7 @@
     </span>
     <span class='note title private'>private</span>
     <div class='summary_desc'>
-      <div class='inline'><p>‘Wake up’ a monitored object by calling the provided block.</p></div>
+      <div class='inline'><p>'Wake up' a monitored object by calling the provided block.</p></div>
     </div>
   </li>
 </ul>
@@ -195,15 +194,15 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Create a new <code>Reactor</code> to monitor IO objects added by <a href="#add-instance_method" title="Puma::Reactor#add (method)">#add</a>. The provided block will be invoked when an IO has data available to read, its timeout elapses, or when the <code>Reactor</code> shuts down.</p>
-
+    <p>Create a new <code>Reactor</code> to monitor IO objects added by <a href="#add-instance_method" title="Puma::Reactor#add (method)">#add</a>.
+The provided block will be invoked when an IO has data available to read,
+its timeout elapses, or when the <code>Reactor</code> shuts down.</p>
   </div>
 </div>
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/reactor.rb#L27-L40'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/reactor.rb#L27-L40'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='27' data-end='40'></pre>
   <div class='lines_code'>
@@ -236,12 +235,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Maximum number of clients in the selector.  Reset with calls to <a href="Server.html#stats-instance_method" title="Puma::Server#stats (method)">Server#stats</a>.</p>
-
+    <p>Maximum number of clients in the selector.  Reset with calls to <a href="Server.html#stats-instance_method" title="Puma::Server#stats (method)">Server#stats</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/reactor.rb#L21-L21'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/reactor.rb#L21-L21'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='21' data-end='21'></pre>
   <div class='lines_code'>
@@ -258,7 +255,7 @@
   <h3 class='signature ro'>
     #<strong>reactor_size</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/reactor.rb#L22-L22'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/reactor.rb#L22-L22'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='22' data-end='22'></pre>
   <div class='lines_code'>
@@ -278,12 +275,12 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Add a new client to monitor. The object must respond to <code>#timeout</code> and <code>#timeout_at</code>. Returns false if the reactor is already shut down.</p>
-
+    <p>Add a new client to monitor.
+The object must respond to <code>#timeout</code> and <code>#timeout_at</code>.
+Returns false if the reactor is already shut down.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/reactor.rb#L57-L63'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/reactor.rb#L57-L63'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='57' data-end='63'></pre>
   <div class='lines_code'>
@@ -308,12 +305,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Start monitoring the object.</p>
-
+    <p>Start monitoring the object.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/reactor.rb#L112-L119'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/reactor.rb#L112-L119'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='112' data-end='119'></pre>
   <div class='lines_code'>
@@ -339,12 +334,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Run the internal select loop, using a background thread by default.</p>
-
+    <p>Run the internal select loop, using a background thread by default.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/reactor.rb#L43-L52'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/reactor.rb#L43-L52'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='43' data-end='52'></pre>
   <div class='lines_code'>
@@ -370,7 +363,7 @@
   <h3 class='signature priv'>
     #<strong>select_loop</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/reactor.rb#L77-L109'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/reactor.rb#L77-L109'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='77' data-end='109'></pre>
   <div class='lines_code'>
@@ -421,12 +414,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Shutdown the reactor, blocking until the background thread is finished.</p>
-
+    <p>Shutdown the reactor, blocking until the background thread is finished.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/reactor.rb#L66-L73'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/reactor.rb#L66-L73'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='66' data-end='73'></pre>
   <div class='lines_code'>
@@ -452,12 +443,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>‘Wake up’ a monitored object by calling the provided block. Stop monitoring the object if the block returns <code>true</code>.</p>
-
+    <p>'Wake up' a monitored object by calling the provided block.
+Stop monitoring the object if the block returns <code>true</code>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/reactor.rb#L123-L129'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/reactor.rb#L123-L129'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='123' data-end='129'></pre>
   <div class='lines_code'>
