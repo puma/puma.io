@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::Configuration &mdash; Puma-7.2.0</title>
+<title>Class: Puma::Configuration &mdash; Puma-7.2.1</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-7.2.0</a> &raquo; 
+      <a href='../'>Puma-7.2.1</a> &raquo; 
       <a href='../_index.html#alpha_C'>Index (C)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>Configuration&nbsp;&#x25B2;</a></span>
@@ -89,7 +89,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L128'>lib/puma/configuration.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L128'>lib/puma/configuration.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -98,30 +98,33 @@
 <div id='overview_ds'>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>The main configuration class of <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a>.</p>
-
-<p>It can be initialized with a set of “user” options and “default” options. Defaults will be merged with <a href="#puma_default_options-instance_method" title="Puma::Configuration#puma_default_options (method)">#puma_default_options</a>.</p>
-
-<p>This class works together with 2 main other classes the <a href="UserFileDefaultOptions.html" title="Puma::UserFileDefaultOptions (class)"><code>UserFileDefaultOptions</code></a> which stores configuration options in order so the precedence is that user set configuration wins over “file” based configuration wins over “default” configuration. These configurations are set via the <a href="DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> class. This class powers the <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> config file syntax and does double duty as a configuration <a href="DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> used by the <a href="CLI.html" title="Puma::CLI (class)"><code>CLI</code></a> and <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> rack handler.</p>
-
+    <p>The main configuration class of <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a>.</p>
+<p>It can be initialized with a set of &quot;user&quot; options and &quot;default&quot; options.
+Defaults will be merged with <a href="#puma_default_options-instance_method" title="Puma::Configuration#puma_default_options (method)">#puma_default_options</a>.</p>
+<p>This class works together with 2 main other classes the <a href="UserFileDefaultOptions.html" title="Puma::UserFileDefaultOptions (class)"><code>UserFileDefaultOptions</code></a>
+which stores configuration options in order so the precedence is that user
+set configuration wins over &quot;file&quot; based configuration wins over &quot;default&quot;
+configuration. These configurations are set via the <a href="DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> class. This
+class powers the <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> config file syntax and does double duty as a configuration
+<a href="DSL.html" title="Puma::DSL (class)"><code>DSL</code></a> used by the <a href="CLI.html" title="Puma::CLI (class)"><code>CLI</code></a> and <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> rack handler.</p>
 <p>It also handles loading plugins.</p>
-<dl class="rdoc-list label-list"><dt>Note:</dt>
-<dd>
-<p><code>:port</code> and <code>:host</code> are not valid keys. By the time they make it to the configuration options they are expected to be incorporated into a <code>:binds</code> key. Under the hood the DSL maps <code>port</code> and <code>host</code> calls to <code>:binds</code></p>
-
+<p>[Note:]
+<code>:port</code> and <code>:host</code> are not valid keys. By the time they make it to the
+configuration options they are expected to be incorporated into a <code>:binds</code> key.
+Under the hood the DSL maps <code>port</code> and <code>host</code> calls to <code>:binds</code></p>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='const'>Configuration</span>.<span class='id identifier rubyid_new'><a href="#new-class_method" title="Puma::Configuration.new (method)">new</a></span>({}) <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_user_config'>user_config</span><span class='comma'>,</span> <span class='id identifier rubyid_file_config'>file_config</span><span class='comma'>,</span> <span class='id identifier rubyid_default_config'>default_config</span><span class='op'>|</span>
   <span class='id identifier rubyid_user_config'>user_config</span>.<span class='id identifier rubyid_port'>port</span> <span class='int'>3003</span>
 <span class='kw'>end</span>
 <span class='id identifier rubyid_config'>config</span>.<span class='id identifier rubyid_clamp'><a href="#clamp-instance_method" title="Puma::Configuration#clamp (method)">clamp</a></span>
 <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_config'>config</span>.<span class='id identifier rubyid_options'><a href="#options-instance_method" title="Puma::Configuration#options (method)">options</a></span>[<span class='symbeg'>:</span><span class='id identifier rubyid_port'>port</span>]
 <span class='comment'># =&gt; 3003</span></code></pre>
-</dd></dl>
-
-<p>It is expected that <a href="#load-instance_method" title="Puma::Configuration#load (method)">#load</a> is called on the configuration instance after setting config. This method expands any values in <code>config_file</code> and puts them into the correct configuration option hash.</p>
-
-<p>Once all configuration is complete it is expected that <a href="#clamp-instance_method" title="Puma::Configuration#clamp (method)">#clamp</a> will be called on the instance. This will expand any procs stored under “default” values. This is done because an environment variable may have been modified while loading configuration files.</p>
-
+<p>It is expected that <a href="#load-instance_method" title="Puma::Configuration#load (method)">#load</a> is called on the configuration instance after setting
+config. This method expands any values in <code>config_file</code> and puts them into the
+correct configuration option hash.</p>
+<p>Once all configuration is complete it is expected that <a href="#clamp-instance_method" title="Puma::Configuration#clamp (method)">#clamp</a> will be called
+on the instance. This will expand any procs stored under &quot;default&quot; values. This
+is done because an environment variable may have been modified while loading
+configuration files.</p>
   </div>
 </div>
 </div>
@@ -131,7 +134,7 @@
   <li>
     <span id='DEFAULTS-constant' class='summary_signature'>DEFAULTS =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L132-L177'># File 'lib/puma/configuration.rb', line 132</a>    <pre class='code ruby'>{
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L132-L177'># File 'lib/puma/configuration.rb', line 132</a>    <pre class='code ruby'>{
   <span class='label'>auto_trim_time:</span> <span class='int'>30</span><span class='comma'>,</span>
   <span class='label'>binds:</span> [<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tcp://0.0.0.0:9292</span><span class='tstring_end'>&#39;</span></span>.<span class='id identifier rubyid_freeze'>freeze</span>]<span class='comma'>,</span>
   <span class='label'>fiber_per_request:</span> <span class='op'>!</span><span class='op'>!</span><span class='const'>ENV</span>.<span class='id identifier rubyid_fetch'>fetch</span>(<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PUMA_FIBER_PER_REQUEST</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='kw'>false</span>)<span class='comma'>,</span>
@@ -276,7 +279,7 @@
       <a href="#environment-instance_method" title="#environment (instance method)">#<strong>environment</strong>  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>Return which environment we’re running in.</p></div>
+      <div class='inline'><p>Return which environment we're running in.</p></div>
     </div>
   </li>
   <li>
@@ -389,7 +392,7 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L179-L198'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L179-L198'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='179' data-end='198'></pre>
   <div class='lines_code'>
@@ -426,7 +429,7 @@
   <h3 class='signature  first'>
     .<strong>random_token</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L367-L371'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L367-L371'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='367' data-end='371'></pre>
   <div class='lines_code'>
@@ -447,7 +450,7 @@
   <h3 class='signature '>
     .<strong>temp_path</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L360-L365'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L360-L365'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='360' data-end='365'></pre>
   <div class='lines_code'>
@@ -470,7 +473,7 @@
   <h3 class='signature ro first'>
     #<strong>_options</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L200-L200'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L200-L200'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='200' data-end='200'></pre>
   <div class='lines_code'>
@@ -489,15 +492,13 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Indicate if there is a properly configured app</p>
-
+    <p>Indicate if there is a properly configured app</p>
   </div>
 </div>
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L302-L304'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L302-L304'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='302' data-end='304'></pre>
   <div class='lines_code'>
@@ -516,7 +517,7 @@
   <h3 class='signature ro'>
     #<strong>events</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L200-L200'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L200-L200'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='200' data-end='200'></pre>
   <div class='lines_code'>
@@ -533,7 +534,7 @@
   <h3 class='signature ro'>
     #<strong>hooks</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L200-L200'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L200-L200'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='200' data-end='200'></pre>
   <div class='lines_code'>
@@ -550,7 +551,7 @@
   <h3 class='signature ro'>
     #<strong>plugins</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L200-L200'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L200-L200'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='200' data-end='200'></pre>
   <div class='lines_code'>
@@ -570,12 +571,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Load the specified rackup file, pull options from the rackup file, and set @app.</p>
-
+    <p>Load the specified rackup file, pull options from
+the rackup file, and set @app.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L313-L323'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L313-L323'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='313' data-end='323'></pre>
   <div class='lines_code'>
@@ -604,14 +604,12 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Call once all configuration (included from rackup files) is loaded to finalize defaults and lock in the configuration.</p>
-
-<p>This also calls load if it hasn’t been called yet.</p>
-
+    <p>Call once all configuration (included from rackup files)
+is loaded to finalize defaults and lock in the configuration.</p>
+<p>This also calls load if it hasn't been called yet.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L278-L285'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L278-L285'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='278' data-end='285'></pre>
   <div class='lines_code'>
@@ -649,7 +647,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L259-L272'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L259-L272'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='259' data-end='272'></pre>
   <div class='lines_code'>
@@ -679,7 +677,7 @@
   <h3 class='signature '>
     #<strong>configure</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L208-L214'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L208-L214'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='208' data-end='214'></pre>
   <div class='lines_code'>
@@ -704,12 +702,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Return which environment we’re running in</p>
-
+    <p>Return which environment we're running in</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L326-L328'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L326-L328'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='326' data-end='328'></pre>
   <div class='lines_code'>
@@ -728,7 +724,7 @@
   <h3 class='signature '>
     #<strong>final_options</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L356-L358'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L356-L358'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='356' data-end='358'></pre>
   <div class='lines_code'>
@@ -747,7 +743,7 @@
   <h3 class='signature '>
     #<strong>flatten</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L222-L224'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L222-L224'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='222' data-end='224'></pre>
   <div class='lines_code'>
@@ -766,7 +762,7 @@
   <h3 class='signature '>
     #<strong>flatten!</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L226-L229'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L226-L229'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='226' data-end='229'></pre>
   <div class='lines_code'>
@@ -786,7 +782,7 @@
   <h3 class='signature '>
     #<strong>initialize_copy</strong>(other)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L216-L220'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L216-L220'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='216' data-end='220'></pre>
   <div class='lines_code'>
@@ -807,7 +803,7 @@
   <h3 class='signature '>
     #<strong>load</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L253-L257'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L253-L257'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='253' data-end='257'></pre>
   <div class='lines_code'>
@@ -828,7 +824,7 @@
   <h3 class='signature '>
     #<strong>load_plugin</strong>(name)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L330-L332'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L330-L332'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='330' data-end='332'></pre>
   <div class='lines_code'>
@@ -847,7 +843,7 @@
   <h3 class='signature priv'>
     #<strong>load_rackup</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L418-L434'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L418-L434'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='418' data-end='434'></pre>
   <div class='lines_code'>
@@ -894,7 +890,7 @@
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L202-L206'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L202-L206'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='202' data-end='206'></pre>
   <div class='lines_code'>
@@ -915,7 +911,7 @@
   <h3 class='signature priv'>
     #<strong>parse_workers</strong>(value)   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L385-L394'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L385-L394'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='385' data-end='394'></pre>
   <div class='lines_code'>
@@ -941,7 +937,7 @@
   <h3 class='signature '>
     #<strong>puma_default_options</strong>(env = ENV)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L231-L235'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L231-L235'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='231' data-end='235'></pre>
   <div class='lines_code'>
@@ -962,7 +958,7 @@
   <h3 class='signature '>
     #<strong>puma_options_from_env</strong>(env = ENV)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L237-L251'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L237-L251'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='237' data-end='251'></pre>
   <div class='lines_code'>
@@ -995,12 +991,11 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Load and use the normal <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> builder if we can, otherwise fallback to our minimal version.</p>
-
+    <p>Load and use the normal <a href="Rack.html" title="Puma::Rack (module)"><code>Rack</code></a> builder if we can, otherwise
+fallback to our minimal version.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L398-L416'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L398-L416'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='398' data-end='416'></pre>
   <div class='lines_code'>
@@ -1035,7 +1030,7 @@
   <h3 class='signature '>
     #<strong>rackup</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L306-L308'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L306-L308'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='306' data-end='308'></pre>
   <div class='lines_code'>
@@ -1054,7 +1049,7 @@
   <h3 class='signature priv'>
     #<strong>require_processor_counter</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L375-L383'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L375-L383'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='375' data-end='383'></pre>
   <div class='lines_code'>
@@ -1090,21 +1085,17 @@
   <li>
     <span class='name'>key</span>
     <span class='type'>(<code>:Symbol</code>)</span>
-&mdash;    <div class='inline'>
-<p>hook to run</p>
-</div>
+&mdash;    <div class='inline'><p>hook to run</p></div>
   </li>
   <li>
     <span class='name'>arg</span>
     <span class='type'>(<a href="Launcher.html" title="Puma::Launcher (class)">Launcher</a>, <code>Int</code>)</span>
-&mdash;    <div class='inline'>
-<p><code>:before_restart</code> passes <a href="Launcher.html" title="Puma::Launcher (class)"><code>Launcher</code></a></p>
-</div>
+&mdash;    <div class='inline'><p><code>:before_restart</code> passes <a href="Launcher.html" title="Puma::Launcher (class)"><code>Launcher</code></a></p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L337-L354'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L337-L354'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='337' data-end='354'></pre>
   <div class='lines_code'>
@@ -1138,7 +1129,7 @@
   <h3 class='signature priv'>
     #<strong>set_conditional_default_options</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L436-L439'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L436-L439'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='436' data-end='439'></pre>
   <div class='lines_code'>
@@ -1158,7 +1149,7 @@
   <h3 class='signature priv'>
     #<strong>warn_hooks</strong>   <span class="extras">(<span class='priv'>private</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/configuration.rb#L441-L458'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/configuration.rb#L441-L458'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='441' data-end='458'></pre>
   <div class='lines_code'>

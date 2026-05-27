@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>File: Java Options &mdash; Puma-7.2.0</title>
+<title>File: Java Options &mdash; Puma-7.2.1</title>
 
 <link rel='stylesheet'  type='text/css' href='css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='.'>Puma-7.2.0</a> &raquo; 
+      <a href='.'>Puma-7.2.1</a> &raquo; 
       <a href='_index.html'>Index</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>File: Java Options&nbsp;&#x25B2;</a></span>
           </div>
@@ -61,63 +61,56 @@
     <span id='y_measure_50pre' class='y_measure'><code>123456789_123456789_123456789_123456789_123456789_</code></span>
   </header>
 <div id='content' class='file'>
-<h1>Java Options</h1>
-
-<p><code>System Properties</code> or <code>Environment Variables</code> can be used to change Puma&#39;s
+<h1 id="Java_Options">Java Options</h1>
+<p><code>System Properties</code> or <code>Environment Variables</code> can be used to change Puma's
 default configuration for its Java extension. The provided values are evaluated
 during initialization, and changes while running the app have no effect.
 Moreover, default values may be used in case of invalid inputs.</p>
-
-<h2>Supported Options</h2>
-
-<table><thead>
+<h2 id="Supported_Options">Supported Options</h2>
+<table>
+<thead>
 <tr>
 <th>ENV Name</th>
-<th style="text-align: center">Default Value</th>
-<th style="text-align: center">Validation</th>
+<th align="center">Default Value</th>
+<th align="center">Validation</th>
 </tr>
-</thead><tbody>
+</thead>
+<tbody>
 <tr>
 <td>PUMA_QUERY_STRING_MAX_LENGTH</td>
-<td style="text-align: center">1024 * 10</td>
-<td style="text-align: center">Positive natural number</td>
+<td align="center">1024 * 10</td>
+<td align="center">Positive natural number</td>
 </tr>
 <tr>
 <td>PUMA_REQUEST_PATH_MAX_LENGTH</td>
-<td style="text-align: center">8192</td>
-<td style="text-align: center">Positive natural number</td>
+<td align="center">8192</td>
+<td align="center">Positive natural number</td>
 </tr>
 <tr>
 <td>PUMA_REQUEST_URI_MAX_LENGTH</td>
-<td style="text-align: center">1024 * 12</td>
-<td style="text-align: center">Positive natural number</td>
+<td align="center">1024 * 12</td>
+<td align="center">Positive natural number</td>
 </tr>
 <tr>
 <td>PUMA_SKIP_SIGUSR2</td>
-<td style="text-align: center">nil</td>
-<td style="text-align: center">n/a</td>
+<td align="center">nil</td>
+<td align="center">n/a</td>
 </tr>
-</tbody></table>
-
-<h2>Examples</h2>
-
-<h3>Invalid inputs</h3>
-
+</tbody>
+</table>
+<h2 id="Examples">Examples</h2>
+<h3 id="Invalid_inputs">Invalid inputs</h3>
 <p>An empty string will be handled as missing, and the default value will be used instead.
 <a href="Puma.html" title="Puma (module)"><code>Puma</code></a> will print an error message for other invalid values.</p>
-
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_foo'>foo</span><span class='ivar'>@bar</span><span class='op'>:</span><span class='op'>~</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>puma$ PUMA_QUERY_STRING_MAX_LENGTH=abc PUMA_REQUEST_PATH_MAX_LENGTH=&#39;&#39; PUMA_REQUEST_URI_MAX_LENGTH=0 bundle exec bin</span><span class='regexp_end'>/puma</span></span> <span class='id identifier rubyid_test'>test</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>rackup</span><span class='regexp_end'>/hello</span></span>.<span class='id identifier rubyid_ru'>ru</span>
 
 <span class='const'>The</span> <span class='id identifier rubyid_value'>value</span> <span class='int'>0</span> <span class='kw'>for</span> <span class='const'>PUMA_REQUEST_URI_MAX_LENGTH</span> <span class='id identifier rubyid_is'>is</span> <span class='id identifier rubyid_invalid'>invalid</span>. <span class='const'>Using</span> <span class='id identifier rubyid_default'>default</span> <span class='id identifier rubyid_value'>value</span> <span class='int'>12288</span> <span class='id identifier rubyid_instead'>instead</span>.
 <span class='const'>The</span> <span class='id identifier rubyid_value'>value</span> <span class='id identifier rubyid_abc'>abc</span> <span class='kw'>for</span> <span class='const'>PUMA_QUERY_STRING_MAX_LENGTH</span> <span class='id identifier rubyid_is'>is</span> <span class='id identifier rubyid_invalid'>invalid</span>. <span class='const'>Using</span> <span class='id identifier rubyid_default'>default</span> <span class='id identifier rubyid_value'>value</span> <span class='int'>10240</span> <span class='id identifier rubyid_instead'>instead</span>.
 <span class='const'><a href="Puma.html" title="Puma (module)">Puma</a></span> <span class='id identifier rubyid_starting'>starting</span> <span class='kw'>in</span> <span class='id identifier rubyid_single'>single</span> <span class='id identifier rubyid_mode'>mode</span><span class='op'>...</span></code></pre>
-
-<h3>Valid inputs</h3>
-
+<h3 id="Valid_inputs">Valid inputs</h3>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_foo'>foo</span><span class='ivar'>@bar</span><span class='op'>:</span><span class='op'>~</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>puma$ PUMA_REQUEST_PATH_MAX_LENGTH=9 bundle exec bin</span><span class='regexp_end'>/puma</span></span> <span class='id identifier rubyid_test'>test</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>rackup</span><span class='regexp_end'>/hello</span></span>.<span class='id identifier rubyid_ru'>ru</span>
 
 <span class='const'><a href="Puma.html" title="Puma (module)">Puma</a></span> <span class='id identifier rubyid_starting'>starting</span> <span class='kw'>in</span> <span class='id identifier rubyid_single'>single</span> <span class='id identifier rubyid_mode'>mode</span><span class='op'>...</span></code></pre>
-
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_foo'>foo</span><span class='ivar'>@bar</span><span class='op'>:</span><span class='op'>~</span> <span class='id identifier rubyid_export'>export</span> <span class='id identifier rubyid_path'>path</span><span class='op'>=</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>123456789 # 10 chars
 foo@bar:~ curl &quot;http:</span><span class='regexp_end'>/</span></span><span class='op'>/</span><span class='id identifier rubyid_localhost'>localhost</span><span class='symbeg'>:</span><span class='int'>9292</span><span class='gvar'>$</span>{<span class='id identifier rubyid_path'>path</span>}<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>
 
@@ -126,13 +119,10 @@ Puma caught this error: HTTP element REQUEST_PATH is longer than the 9 allowed l
 foo@bar:~ export path=/12345678 # 9 chars
 foo@bar:~ curl </span><span class='tstring_end'>&quot;</span></span><span class='id identifier rubyid_http'>http</span><span class='symbeg'>:</span><span class='op'>/</span><span class='op'>/</span><span class='id identifier rubyid_localhost'>localhost</span><span class='symbeg'>:</span><span class='int'>9292</span><span class='gvar'>$</span>{<span class='id identifier rubyid_path'>path</span>}<span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>
 Hello World</span></code></pre>
-
-<h3>Java Flight Recorder Compatibility</h3>
-
-<p>Unfortunately Java Flight Recorder uses <code>SIGUSR2</code> internally. If you wish to 
-use JFR, turn off Puma&#39;s trapping of <code>SIGUSR2</code> by setting the environment variable
+<h3 id="Java_Flight_Recorder_Compatibility">Java Flight Recorder Compatibility</h3>
+<p>Unfortunately Java Flight Recorder uses <code>SIGUSR2</code> internally. If you wish to
+use JFR, turn off Puma's trapping of <code>SIGUSR2</code> by setting the environment variable
 <code>PUMA_SKIP_SIGUSR2</code> to any value.</p>
-
 <div id='footer'></div>
 </div> <!-- content  -->
 </div> <!-- y_main   -->

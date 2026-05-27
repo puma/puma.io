@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::MiniSSL::Socket &mdash; Puma-7.2.0</title>
+<title>Class: Puma::MiniSSL::Socket &mdash; Puma-7.2.1</title>
 
 <link rel='stylesheet'  type='text/css' href='../../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../../'>Puma-7.2.0</a> &raquo; 
+      <a href='../../'>Puma-7.2.1</a> &raquo; 
       <a href='../../_index.html#alpha_S'>Index (S)</a> &raquo; 
         <a href="../../Puma.html" title="Puma (module)">Puma</a> &raquo; 
         <a href="../MiniSSL.html" title="Puma::MiniSSL (module)">MiniSSL</a> &raquo; 
@@ -78,7 +78,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L22'>lib/puma/minissl.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L22'>lib/puma/minissl.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -125,7 +125,7 @@
     </span>
     <span class='note title readonly'>readonly</span>
     <div class='summary_desc'>
-      <div class='inline'><p>Returns a two element array, first is protocol version (SSL_get_version), second is ‘handshake’ state (SSL_state_string).</p></div>
+      <div class='inline'><p>Returns a two element array, first is protocol version (SSL_get_version), second is 'handshake' state (SSL_state_string).</p></div>
     </div>
   </li>
   <li>
@@ -202,7 +202,7 @@
       <a href="#write_nonblock-instance_method" title="#write_nonblock (instance method)">#<strong>write_nonblock</strong>(data, *_)  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>The problem with implementing it properly is that it means we’d have to have the ability to rewind an engine because after we write+extract, the socket write_nonblock call might raise an exception and later code would pass the same data in, but the engine would think it had already written the data in.</p></div>
+      <div class='inline'><p>The problem with implementing it properly is that it means we'd have to have the ability to rewind an engine because after we write+extract, the socket write_nonblock call might raise an exception and later code would pass the same data in, but the engine would think it had already written the data in.</p></div>
     </div>
   </li>
 </ul>
@@ -221,7 +221,7 @@
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L23-L28'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L23-L28'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='23' data-end='28'></pre>
   <div class='lines_code'>
@@ -246,23 +246,20 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Used to check the handshake status, in particular when a TCP connection is made with <code>TLSv1.3</code> as an available protocol</p>
-
+    <p>Used to check the handshake status, in particular when a TCP connection
+is made with <code>TLSv1.3</code> as an available protocol</p>
   </div>
 </div>
 <div class='tags'>
   <p class='tag_title'>Version:</p>
 <ul class='version'>
   <li>
-    <div class='inline'>
-<p>5.0.0</p>
-</div>
+    <div class='inline'><p>5.0.0</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L55-L57'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L55-L57'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='55' data-end='57'></pre>
   <div class='lines_code'>
@@ -281,7 +278,7 @@
   <h3 class='signature ro'>
     #<strong>closed?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L35-L37'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L35-L37'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='35' data-end='37'></pre>
   <div class='lines_code'>
@@ -300,7 +297,7 @@
   <h3 class='signature ro'>
     #<strong>peeraddr</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L182-L184'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L182-L184'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='182' data-end='184'></pre>
   <div class='lines_code'>
@@ -321,15 +318,16 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>OpenSSL is loaded in <a href="ContextBuilder.html" title="Puma::MiniSSL::ContextBuilder (class)"><code>ContextBuilder</code></a> when <a href="Context.html#verify_mode-instance_method" title="Puma::MiniSSL::Context#verify_mode (method)">Context#verify_mode</a> is not <a href="../MiniSSL.html#VERIFY_NONE-constant" title="Puma::MiniSSL::VERIFY_NONE (constant)">VERIFY_NONE</a>. When <a href="../MiniSSL.html#VERIFY_NONE-constant" title="Puma::MiniSSL::VERIFY_NONE (constant)">VERIFY_NONE</a>, <a href="Engine.html#peercert-instance_method" title="Puma::MiniSSL::Engine#peercert (method)">Engine#peercert</a> is nil, regardless of whether the client sends a cert.</p>
-
+    <p>OpenSSL is loaded in <a href="ContextBuilder.html" title="Puma::MiniSSL::ContextBuilder (class)"><code>ContextBuilder</code></a> when
+<a href="Context.html#verify_mode-instance_method" title="Puma::MiniSSL::Context#verify_mode (method)">Context#verify_mode</a> is not <a href="../MiniSSL.html#VERIFY_NONE-constant" title="Puma::MiniSSL::VERIFY_NONE (constant)">VERIFY_NONE</a>.
+When <a href="../MiniSSL.html#VERIFY_NONE-constant" title="Puma::MiniSSL::VERIFY_NONE (constant)">VERIFY_NONE</a>, <a href="Engine.html#peercert-instance_method" title="Puma::MiniSSL::Engine#peercert (method)">Engine#peercert</a> is nil, regardless of
+whether the client sends a cert.</p>
   </div>
 </div>
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L192-L199'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L192-L199'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='192' data-end='199'></pre>
   <div class='lines_code'>
@@ -355,25 +353,23 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Returns a two element array, first is protocol version (SSL_get_version), second is ‘handshake’ state (SSL_state_string)</p>
-
-<p>Used for dropping tcp connections to ssl. See OpenSSL ssl/ssl_stat.c SSL_state_string for info</p>
-
+    <p>Returns a two element array,
+first is protocol version (SSL_get_version),
+second is 'handshake' state (SSL_state_string)</p>
+<p>Used for dropping tcp connections to ssl.
+See OpenSSL ssl/ssl_stat.c SSL_state_string for info</p>
   </div>
 </div>
 <div class='tags'>
   <p class='tag_title'>Version:</p>
 <ul class='version'>
   <li>
-    <div class='inline'>
-<p>5.0.0</p>
-</div>
+    <div class='inline'><p>5.0.0</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L48-L50'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L48-L50'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='48' data-end='50'></pre>
   <div class='lines_code'>
@@ -392,7 +388,7 @@
   <h3 class='signature ro'>
     #<strong>to_io</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L31-L33'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L31-L33'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='31' data-end='33'></pre>
   <div class='lines_code'>
@@ -414,12 +410,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#write-instance_method" title="Puma::MiniSSL::Socket#write (method)">#write</a>.</p>
-
+    <p>Alias for <a href="#write-instance_method" title="Puma::MiniSSL::Socket#write (method)">#write</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L144-L144'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L144-L144'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='144' data-end='144'></pre>
   <div class='lines_code'>
@@ -436,7 +430,7 @@
   <h3 class='signature '>
     #<strong>close</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L167-L179'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L167-L179'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='167' data-end='179'></pre>
   <div class='lines_code'>
@@ -465,7 +459,7 @@
   <h3 class='signature '>
     #<strong>engine_read_all</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L77-L83'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L77-L83'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='77' data-end='83'></pre>
   <div class='lines_code'>
@@ -488,7 +482,7 @@
   <h3 class='signature '>
     #<strong>flush</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L163-L165'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L163-L165'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='163' data-end='165'></pre>
   <div class='lines_code'>
@@ -507,7 +501,7 @@
   <h3 class='signature '>
     #<strong>read_nonblock</strong>(size, *_)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L85-L118'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L85-L118'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='85' data-end='118'></pre>
   <div class='lines_code'>
@@ -557,7 +551,7 @@
   <h3 class='signature '>
     #<strong>readpartial</strong>(size)  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L60-L75'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L60-L75'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='60' data-end='75'></pre>
   <div class='lines_code'>
@@ -591,12 +585,10 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Alias for <a href="#write-instance_method" title="Puma::MiniSSL::Socket#write (method)">#write</a>.</p>
-
+    <p>Alias for <a href="#write-instance_method" title="Puma::MiniSSL::Socket#write (method)">#write</a>.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L143-L143'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L143-L143'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='143' data-end='143'></pre>
   <div class='lines_code'>
@@ -614,7 +606,7 @@
     #<strong>write</strong>(data)  
     <span class='aliases'>Also known as: <span class='names'>#syswrite, #&lt;&lt;</span></span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L120-L141'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L120-L141'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='120' data-end='141'></pre>
   <div class='lines_code'>
@@ -654,14 +646,17 @@
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>The problem with implementing it properly is that it means we’d have to have the ability to rewind an engine because after we write+extract, the socket write_nonblock call might raise an exception and later code would pass the same data in, but the engine would think it had already written the data in.</p>
-
-<p>So for the time being (and since write blocking is quite rare), go ahead and actually block in write_nonblock.</p>
-
+    <p>The problem with implementing it properly
+is that it means we'd have to have the ability to rewind
+an engine because after we write+extract, the socket
+write_nonblock call might raise an exception and later
+code would pass the same data in, but the engine would think
+it had already written the data in.</p>
+<p>So for the time being (and since write blocking is quite rare),
+go ahead and actually block in write_nonblock.</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/minissl.rb#L159-L161'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/minissl.rb#L159-L161'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='159' data-end='161'></pre>
   <div class='lines_code'>

@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Module: TestPuma::PumaSocket &mdash; Puma-7.2.0</title>
+<title>Module: TestPuma::PumaSocket &mdash; Puma-7.2.1</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-7.2.0</a> &raquo; 
+      <a href='../'>Puma-7.2.1</a> &raquo; 
       <a href='../_index.html#alpha_P'>Index (P)</a> &raquo; 
         <a href="../TestPuma.html" title="TestPuma (module)">TestPuma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>PumaSocket&nbsp;&#x25B2;</a></span>
@@ -71,7 +71,7 @@
   <tbody>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L59'>test/helpers/test_puma/puma_socket.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L59'>test/helpers/test_puma/puma_socket.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -85,21 +85,16 @@ client sockets.  Normally, the socket parameters are defined by the code
 creating the <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> server (in-process or spawned), so they do not need to be
 specified.  Regardless, many of the less frequently used parameters still
 have keyword arguments and they can be set to whatever is required.</p>
-
 <p>This module closes all sockets and performs all reads non-blocking and all
 writes using syswrite.  These are helpful for reliable tests.  Please do not
 use native Ruby sockets except if absolutely necessary.</p>
-
-<h4>Methods that return a socket or sockets:</h4>
-
+<h4 id="Methods_that_return_a_socket_or_sockets_">Methods that return a socket or sockets:</h4>
 <ul>
 <li><a href="#new_socket-instance_method" title="TestPuma::PumaSocket#new_socket (method)">#new_socket</a> - Opens a socket</li>
 <li><a href="#send_http-instance_method" title="TestPuma::PumaSocket#send_http (method)">#send_http</a> - Opens a socket and sends a request, which defaults to <a href="#GET_11-constant" title="TestPuma::PumaSocket::GET_11 (constant)">GET_11</a></li>
 <li><a href="#send_http_array-instance_method" title="TestPuma::PumaSocket#send_http_array (method)">#send_http_array</a> - Creates an array of sockets. It opens each and sends a request on each</li>
 </ul>
-
 <p>All methods that create a socket have the following optional keyword parameters:</p>
-
 <ul>
 <li><code>host:</code> - tcp/ssl host (<code>String</code>)</li>
 <li><code>port:</code> - tcp/ssl port (<code>Integer</code>, <code>String</code>)</li>
@@ -107,30 +102,23 @@ use native Ruby sockets except if absolutely necessary.</p>
 <li><code>ctx:</code> - ssl context (<code>OpenSSL::SSL::SSLContext</code>)</li>
 <li><code>session:</code> - ssl session (<code>OpenSSL::SSL::Session</code>)</li>
 </ul>
-
-<h4>Methods that process the response:</h4>
-
+<h4 id="Methods_that_process_the_response_">Methods that process the response:</h4>
 <ul>
 <li><a href="#send_http_read_response-instance_method" title="TestPuma::PumaSocket#send_http_read_response (method)">#send_http_read_response</a> - sends a request and returns the whole response</li>
 <li><a href="#send_http_read_resp_body-instance_method" title="TestPuma::PumaSocket#send_http_read_resp_body (method)">#send_http_read_resp_body</a> - sends a request and returns the response body</li>
 <li><a href="#send_http_read_resp_headers-instance_method" title="TestPuma::PumaSocket#send_http_read_resp_headers (method)">#send_http_read_resp_headers</a> - sends a request and returns the response with the body removed as an array of lines</li>
 </ul>
-
 <p>All methods that process the response have the following optional keyword parameters:</p>
-
 <ul>
 <li><code>timeout:</code> - total socket read timeout, defaults to <a href="#RESP_READ_TIMEOUT-constant" title="TestPuma::PumaSocket::RESP_READ_TIMEOUT (constant)">RESP_READ_TIMEOUT</a> (<code>Float</code>)</li>
 <li><code>len:</code> - the <code>read_nonblock</code> maxlen, defaults to <a href="#RESP_READ_LEN-constant" title="TestPuma::PumaSocket::RESP_READ_LEN (constant)">RESP_READ_LEN</a> (<code>Integer</code>)</li>
 </ul>
-
-<h4>Methods added to socket instances:</h4>
-
+<h4 id="Methods_added_to_socket_instances_">Methods added to socket instances:</h4>
 <ul>
 <li><code>read_response</code> - reads the response and returns it, uses <a href="#READ_RESPONSE-constant" title="TestPuma::PumaSocket::READ_RESPONSE (constant)">READ_RESPONSE</a></li>
 <li><code>read_body</code> - reads the response and returns the body, uses <a href="#READ_BODY-constant" title="TestPuma::PumaSocket::READ_BODY (constant)">READ_BODY</a></li>
 <li><code><<</code> - overrides the standard method, writes to the socket with <code>syswrite</code>, returns the socket</li>
 </ul>
-
   </div>
 </div>
 </div>
@@ -140,38 +128,38 @@ use native Ruby sockets except if absolutely necessary.</p>
   <li>
     <span id='EMPTY_200-constant' class='summary_signature'>EMPTY_200 =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L69-L69'># File 'test/helpers/test_puma/puma_socket.rb', line 69</a>    <pre class='code ruby'>[<span class='int'>200</span><span class='comma'>,</span> {}<span class='comma'>,</span> [<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>]]</pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L69-L69'># File 'test/helpers/test_puma/puma_socket.rb', line 69</a>    <pre class='code ruby'>[<span class='int'>200</span><span class='comma'>,</span> {}<span class='comma'>,</span> [<span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>]]</pre>
   </li>
   <li>
     <span id='GET_10-constant' class='summary_signature'>GET_10 =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L60-L60'># File 'test/helpers/test_puma/puma_socket.rb', line 60</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GET / HTTP/1.0\r\n\r\n</span><span class='tstring_end'>&quot;</span></span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L60-L60'># File 'test/helpers/test_puma/puma_socket.rb', line 60</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GET / HTTP/1.0\r\n\r\n</span><span class='tstring_end'>&quot;</span></span></pre>
   </li>
   <li>
     <span id='GET_11-constant' class='summary_signature'>GET_11 =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L61-L61'># File 'test/helpers/test_puma/puma_socket.rb', line 61</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GET / HTTP/1.1\r\n\r\n</span><span class='tstring_end'>&quot;</span></span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L61-L61'># File 'test/helpers/test_puma/puma_socket.rb', line 61</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GET / HTTP/1.1\r\n\r\n</span><span class='tstring_end'>&quot;</span></span></pre>
   </li>
   <li>
     <span id='HAS_APPEND_AS_BYTES-constant' class='summary_signature'>HAS_APPEND_AS_BYTES =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L71-L71'># File 'test/helpers/test_puma/puma_socket.rb', line 71</a>    <pre class='code ruby'><span class='op'>::</span><span class='const'>String</span>.<span class='id identifier rubyid_new'>new</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_append_as_bytes'>append_as_bytes</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L71-L71'># File 'test/helpers/test_puma/puma_socket.rb', line 71</a>    <pre class='code ruby'><span class='op'>::</span><span class='const'>String</span>.<span class='id identifier rubyid_new'>new</span>.<span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbeg'>:</span><span class='id identifier rubyid_append_as_bytes'>append_as_bytes</span></pre>
   </li>
   <li>
     <span id='HELLO_11-constant' class='summary_signature'>HELLO_11 =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L63-L64'># File 'test/helpers/test_puma/puma_socket.rb', line 63</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HTTP/1.1 200 OK\r\ncontent-type: text/plain\r\n</span><span class='tstring_end'>&quot;</span></span> \
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L63-L64'># File 'test/helpers/test_puma/puma_socket.rb', line 63</a>    <pre class='code ruby'><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>HTTP/1.1 200 OK\r\ncontent-type: text/plain\r\n</span><span class='tstring_end'>&quot;</span></span> \
 <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Length: 11\r\n\r\nHello World</span><span class='tstring_end'>&quot;</span></span></pre>
   </li>
   <li>
     <span id='NO_ENTITY_BODY-constant' class='summary_signature'>NO_ENTITY_BODY =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L68-L68'># File 'test/helpers/test_puma/puma_socket.rb', line 68</a>    <pre class='code ruby'><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="../Puma.html#STATUS_WITH_NO_ENTITY_BODY-constant" title="Puma::STATUS_WITH_NO_ENTITY_BODY (constant)">STATUS_WITH_NO_ENTITY_BODY</a></span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L68-L68'># File 'test/helpers/test_puma/puma_socket.rb', line 68</a>    <pre class='code ruby'><span class='const'><a href="../Puma.html" title="Puma (module)">Puma</a></span><span class='op'>::</span><span class='const'><a href="../Puma.html#STATUS_WITH_NO_ENTITY_BODY-constant" title="Puma::STATUS_WITH_NO_ENTITY_BODY (constant)">STATUS_WITH_NO_ENTITY_BODY</a></span></pre>
   </li>
   <li>
     <span id='READ_BODY-constant' class='summary_signature'>READ_BODY =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L209-L212'># File 'test/helpers/test_puma/puma_socket.rb', line 209</a>    <pre class='code ruby'><span class='comment'>#=&gt; (timeout: nil, len: nil) {
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L209-L212'># File 'test/helpers/test_puma/puma_socket.rb', line 209</a>    <pre class='code ruby'><span class='comment'>#=&gt; (timeout: nil, len: nil) {
 </span>  <span class='kw'>self</span>.<span class='id identifier rubyid_read_response'>read_response</span>(<span class='label'>timeout:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>len:</span> <span class='kw'>nil</span>)
     .<span class='id identifier rubyid_split'>split</span>(<span class='const'><a href="../TestPuma.html#RESP_SPLIT-constant" title="TestPuma::RESP_SPLIT (constant)">RESP_SPLIT</a></span><span class='comma'>,</span> <span class='int'>2</span>).<span class='id identifier rubyid_last'>last</span>
 <span class='embexpr_end'>}</span></pre>
@@ -179,7 +167,7 @@ use native Ruby sockets except if absolutely necessary.</p>
   <li>
     <span id='READ_RESPONSE-constant' class='summary_signature'>READ_RESPONSE =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L214-L283'># File 'test/helpers/test_puma/puma_socket.rb', line 214</a>    <pre class='code ruby'><span class='comment'>#=&gt; (timeout: nil, len: nil) do
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L214-L283'># File 'test/helpers/test_puma/puma_socket.rb', line 214</a>    <pre class='code ruby'><span class='comment'>#=&gt; (timeout: nil, len: nil) do
 </span>  <span class='id identifier rubyid_content_length'>content_length</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='id identifier rubyid_chunked'>chunked</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -257,15 +245,13 @@ use native Ruby sockets except if absolutely necessary.</p>
     
   <div class="note todo">
     <strong>TODO:</strong>
-    <div class='inline'>
-<p>verify whole string is written</p>
-</div>
+    <div class='inline'><p>verify whole string is written</p></div>
   </div>
 
 
   </div>
 </div>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L286-L291'># File 'test/helpers/test_puma/puma_socket.rb', line 286</a>    <pre class='code ruby'><span class='comment'>#=&gt; (str) do
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L286-L291'># File 'test/helpers/test_puma/puma_socket.rb', line 286</a>    <pre class='code ruby'><span class='comment'>#=&gt; (str) do
 </span>  <span class='id identifier rubyid_sent'>sent</span> <span class='op'>=</span> <span class='int'>0</span>
   <span class='id identifier rubyid_size'>size</span> <span class='op'>=</span> <span class='id identifier rubyid_str'>str</span>.<span class='id identifier rubyid_bytesize'>bytesize</span>
   <span class='id identifier rubyid_sent'>sent</span> <span class='op'>+=</span> <span class='kw'>self</span>.<span class='id identifier rubyid_syswrite'>syswrite</span>(<span class='id identifier rubyid_str'>str</span>.<span class='id identifier rubyid_byteslice'>byteslice</span>(<span class='id identifier rubyid_sent'>sent</span><span class='comma'>,</span> <span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='id identifier rubyid_sent'>sent</span>)) <span class='kw'>while</span> <span class='id identifier rubyid_sent'>sent</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_size'>size</span>
@@ -275,22 +261,22 @@ use native Ruby sockets except if absolutely necessary.</p>
   <li>
     <span id='RESP_READ_LEN-constant' class='summary_signature'>RESP_READ_LEN =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L66-L66'># File 'test/helpers/test_puma/puma_socket.rb', line 66</a>    <pre class='code ruby'><span class='int'>65_536</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L66-L66'># File 'test/helpers/test_puma/puma_socket.rb', line 66</a>    <pre class='code ruby'><span class='int'>65_536</span></pre>
   </li>
   <li>
     <span id='RESP_READ_TIMEOUT-constant' class='summary_signature'>RESP_READ_TIMEOUT =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L67-L67'># File 'test/helpers/test_puma/puma_socket.rb', line 67</a>    <pre class='code ruby'><span class='int'>10</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L67-L67'># File 'test/helpers/test_puma/puma_socket.rb', line 67</a>    <pre class='code ruby'><span class='int'>10</span></pre>
   </li>
   <li>
     <span id='SET_TCP_NODELAY-constant' class='summary_signature'>SET_TCP_NODELAY =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L75-L75'># File 'test/helpers/test_puma/puma_socket.rb', line 75</a>    <pre class='code ruby'><span class='const'>Socket</span>.<span class='id identifier rubyid_const_defined?'>const_defined?</span>(<span class='symbeg'>:</span><span class='const'>IPPROTO_TCP</span>) <span class='op'>&amp;&amp;</span> <span class='op'>::</span><span class='const'>Socket</span>.<span class='id identifier rubyid_const_defined?'>const_defined?</span>(<span class='symbeg'>:</span><span class='const'>TCP_NODELAY</span>)</pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L75-L75'># File 'test/helpers/test_puma/puma_socket.rb', line 75</a>    <pre class='code ruby'><span class='const'>Socket</span>.<span class='id identifier rubyid_const_defined?'>const_defined?</span>(<span class='symbeg'>:</span><span class='const'>IPPROTO_TCP</span>) <span class='op'>&amp;&amp;</span> <span class='op'>::</span><span class='const'>Socket</span>.<span class='id identifier rubyid_const_defined?'>const_defined?</span>(<span class='symbeg'>:</span><span class='const'>TCP_NODELAY</span>)</pre>
   </li>
   <li>
     <span id='UTF8-constant' class='summary_signature'>UTF8 =</span>
     <br/>
-    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L73-L73'># File 'test/helpers/test_puma/puma_socket.rb', line 73</a>    <pre class='code ruby'><span class='op'>::</span><span class='const'>Encoding</span><span class='op'>::</span><span class='const'>UTF_8</span></pre>
+    <a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L73-L73'># File 'test/helpers/test_puma/puma_socket.rb', line 73</a>    <pre class='code ruby'><span class='op'>::</span><span class='const'>Encoding</span><span class='op'>::</span><span class='const'>UTF_8</span></pre>
   </li>
 </ul>
 </div>
@@ -303,7 +289,7 @@ use native Ruby sockets except if absolutely necessary.</p>
       <a href="#after_teardown-instance_method" title="#after_teardown (instance method)">#<strong>after_teardown</strong>  </a>
     </span>
     <div class='summary_desc'>
-      <div class='inline'><p>Closes all io’s in <code>@ios_to_close</code>, also deletes them if they are files.</p></div>
+      <div class='inline'><p>Closes all io's in <code>@ios_to_close</code>, also deletes them if they are files.</p></div>
     </div>
   </li>
   <li>
@@ -400,12 +386,10 @@ use native Ruby sockets except if absolutely necessary.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Closes all io’s in <code>@ios_to_close</code>, also deletes them if they are files</p>
-
+    <p>Closes all io's in <code>@ios_to_close</code>, also deletes them if they are files</p>
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L87-L110'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L87-L110'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='87' data-end='110'></pre>
   <div class='lines_code'>
@@ -445,7 +429,7 @@ use native Ruby sockets except if absolutely necessary.</p>
   <h3 class='signature '>
     #<strong>before_setup</strong>  
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L77-L84'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L77-L84'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='77' data-end='84'></pre>
   <div class='lines_code'>
@@ -471,9 +455,7 @@ use native Ruby sockets except if absolutely necessary.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Helper for creating an <code>OpenSSL::SSL::SSLContext</code>.</p>
-
+    <p>Helper for creating an <code>OpenSSL::SSL::SSLContext</code>.</p>
   </div>
 </div>
 <div class='tags'>
@@ -482,9 +464,7 @@ use native Ruby sockets except if absolutely necessary.</p>
   <li>
     <span class='name'>&amp;blk</span>
     <span class='type'>(<code>Block</code>)</span>
-&mdash;    <div class='inline'>
-<p>Passed the SSLContext.</p>
-</div>
+&mdash;    <div class='inline'><p>Passed the SSLContext.</p></div>
   </li>
 </ul>
 <p class='tag_title'>Yields:</p>
@@ -497,14 +477,12 @@ use native Ruby sockets except if absolutely necessary.</p>
 <ul class='return'>
   <li>
     <span class='type'>(<code>OpenSSL::SSL::SSLContext</code>)</span>
-&mdash;    <div class='inline'>
-<p>The new socket</p>
-</div>
+&mdash;    <div class='inline'><p>The new socket</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L297-L305'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L297-L305'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='297' data-end='305'></pre>
   <div class='lines_code'>
@@ -531,9 +509,7 @@ use native Ruby sockets except if absolutely necessary.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Creates a new client socket.  TCP, SSL, and UNIX are supported</p>
-
+    <p>Creates a new client socket.  TCP, SSL, and UNIX are supported</p>
   </div>
 </div>
 <div class='tags'>
@@ -542,23 +518,19 @@ use native Ruby sockets except if absolutely necessary.</p>
   <li>
     <span class='name'>req</span>
     <span class='type'>(<code>String</code>, <a href="#GET_11-constant" title="TestPuma::PumaSocket::GET_11 (constant)">GET_11</a>)</span>
-&mdash;    <div class='inline'>
-<p>request path</p>
-</div>
+&mdash;    <div class='inline'><p>request path</p></div>
   </li>
 </ul>
 <p class='tag_title'>Returns:</p>
 <ul class='return'>
   <li>
     <span class='type'>(<code>OpenSSL::SSL::SSLSocket</code>, <code>TCPSocket</code>, <code>UNIXSocket</code>)</span>
-&mdash;    <div class='inline'>
-<p>the created socket</p>
-</div>
+&mdash;    <div class='inline'><p>the created socket</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L311-L343'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L311-L343'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='311' data-end='343'></pre>
   <div class='lines_code'>
@@ -609,9 +581,7 @@ use native Ruby sockets except if absolutely necessary.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Reads an array of sockets that have already had requests sent.</p>
-
+    <p>Reads an array of sockets that have already had requests sent.</p>
   </div>
 </div>
 <div class='tags'>
@@ -620,23 +590,21 @@ use native Ruby sockets except if absolutely necessary.</p>
   <li>
     <span class='name'>skts</span>
     <span class='type'>(<code>Array</code>&lt;<code>Sockets</code>])</span>
-&mdash;    <div class='inline'>
-<p>an array of sockets that have already had requests sent</p>
-</div>
+&mdash;    <div class='inline'><p>an array of sockets that have already had
+requests sent</p></div>
   </li>
 </ul>
 <p class='tag_title'>Returns:</p>
 <ul class='return'>
   <li>
     <span class='type'>(<code>Array</code>&lt;<code>String</code>, <code>Class</code>&gt;)</span>
-&mdash;    <div class='inline'>
-<p>an array matching the order of the parameter <code>skts</code>, contains the response or the error class generated by the socket.</p>
-</div>
+&mdash;    <div class='inline'><p>an array matching the order of the parameter
+<code>skts</code>, contains the response or the error class generated by the socket.</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L374-L413'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L374-L413'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='374' data-end='413'></pre>
   <div class='lines_code'>
@@ -694,9 +662,7 @@ use native Ruby sockets except if absolutely necessary.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Sends a request and returns the socket</p>
-
+    <p>Sends a request and returns the socket</p>
   </div>
 </div>
 <div class='tags'>
@@ -706,67 +672,51 @@ use native Ruby sockets except if absolutely necessary.</p>
     <span class='name'>req</span>
     <span class='type'>(<code>String</code>, <code>nil</code>)</span>
     <em class='default'>(defaults to: <tt>GET_11</tt>)</em>
-&mdash;    <div class='inline'>
-<p>The request stirng.</p>
-</div>
+&mdash;    <div class='inline'><p>The request stirng.</p></div>
   </li>
   <li>
     <span class='name'>req</span>
     <span class='type'>(<code>String</code>, <a href="#GET_11-constant" title="TestPuma::PumaSocket::GET_11 (constant)">GET_11</a>)</span>
     <em class='default'>(defaults to: <tt>GET_11</tt>)</em>
-&mdash;    <div class='inline'>
-<p>request path</p>
-</div>
+&mdash;    <div class='inline'><p>request path</p></div>
   </li>
   <li>
     <span class='name'>host</span>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>tcp/ssl host</p>
-</div>
+&mdash;    <div class='inline'><p>tcp/ssl host</p></div>
   </li>
   <li>
     <span class='name'>port</span>
     <span class='type'>(<code>Integer</code>/<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>tcp/ssl port</p>
-</div>
+&mdash;    <div class='inline'><p>tcp/ssl port</p></div>
   </li>
   <li>
     <span class='name'>path</span>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>unix socket, full path</p>
-</div>
+&mdash;    <div class='inline'><p>unix socket, full path</p></div>
   </li>
   <li>
     <span class='name'>ctx</span>
     <span class='type'>(<code>OpenSSL::SSL::SSLContext</code>)</span>
-&mdash;    <div class='inline'>
-<p>ssl context</p>
-</div>
+&mdash;    <div class='inline'><p>ssl context</p></div>
   </li>
   <li>
     <span class='name'>session:</span>
     <span class='type'>(<code>OpenSSL::SSL::Session</code>)</span>
     <em class='default'>(defaults to: <tt>nil</tt>)</em>
-&mdash;    <div class='inline'>
-<p>ssl session</p>
-</div>
+&mdash;    <div class='inline'><p>ssl session</p></div>
   </li>
 </ul>
 <p class='tag_title'>Returns:</p>
 <ul class='return'>
   <li>
     <span class='type'>(<code>OpenSSL::SSL::SSLSocket</code>, <code>TCPSocket</code>, <code>UNIXSocket</code>)</span>
-&mdash;    <div class='inline'>
-<p>the created socket</p>
-</div>
+&mdash;    <div class='inline'><p>the created socket</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L183-L186'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L183-L186'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='183' data-end='186'></pre>
   <div class='lines_code'>
@@ -788,9 +738,7 @@ use native Ruby sockets except if absolutely necessary.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Creates an array of sockets, sending a request on each</p>
-
+    <p>Creates an array of sockets, sending a request on each</p>
   </div>
 </div>
 <div class='tags'>
@@ -800,21 +748,17 @@ use native Ruby sockets except if absolutely necessary.</p>
     <span class='name'>req</span>
     <span class='type'>(<code>String</code>)</span>
     <em class='default'>(defaults to: <tt>GET_11</tt>)</em>
-&mdash;    <div class='inline'>
-<p>the request</p>
-</div>
+&mdash;    <div class='inline'><p>the request</p></div>
   </li>
   <li>
     <span class='name'>len</span>
     <span class='type'>(<code>Integer</code>)</span>
-&mdash;    <div class='inline'>
-<p>the number of requests to send</p>
-</div>
+&mdash;    <div class='inline'><p>the number of requests to send</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L350-L366'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L350-L366'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='350' data-end='366'></pre>
   <div class='lines_code'>
@@ -849,9 +793,8 @@ use native Ruby sockets except if absolutely necessary.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Sends a request and returns whatever can be read.  Use when multiple responses are sent by the server</p>
-
+    <p>Sends a request and returns whatever can be read.  Use when multiple
+responses are sent by the server</p>
   </div>
 </div>
 <div class='tags'>
@@ -861,73 +804,55 @@ use native Ruby sockets except if absolutely necessary.</p>
     <span class='name'>req</span>
     <span class='type'>(<code>String</code>, <a href="#GET_11-constant" title="TestPuma::PumaSocket::GET_11 (constant)">GET_11</a>)</span>
     <em class='default'>(defaults to: <tt>GET_11</tt>)</em>
-&mdash;    <div class='inline'>
-<p>request path</p>
-</div>
+&mdash;    <div class='inline'><p>request path</p></div>
   </li>
   <li>
     <span class='name'>host</span>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>tcp/ssl host</p>
-</div>
+&mdash;    <div class='inline'><p>tcp/ssl host</p></div>
   </li>
   <li>
     <span class='name'>port</span>
     <span class='type'>(<code>Integer</code>/<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>tcp/ssl port</p>
-</div>
+&mdash;    <div class='inline'><p>tcp/ssl port</p></div>
   </li>
   <li>
     <span class='name'>path</span>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>unix socket, full path</p>
-</div>
+&mdash;    <div class='inline'><p>unix socket, full path</p></div>
   </li>
   <li>
     <span class='name'>ctx</span>
     <span class='type'>(<code>OpenSSL::SSL::SSLContext</code>)</span>
-&mdash;    <div class='inline'>
-<p>ssl context</p>
-</div>
+&mdash;    <div class='inline'><p>ssl context</p></div>
   </li>
   <li>
     <span class='name'>session:</span>
     <span class='type'>(<code>OpenSSL::SSL::Session</code>)</span>
     <em class='default'>(defaults to: <tt>nil</tt>)</em>
-&mdash;    <div class='inline'>
-<p>ssl session</p>
-</div>
+&mdash;    <div class='inline'><p>ssl session</p></div>
   </li>
   <li>
     <span class='name'>timeout</span>
     <span class='type'>(<code>Float</code>, <code>nil</code>)</span>
-&mdash;    <div class='inline'>
-<p>total socket read timeout, defaults to <a href="#RESP_READ_TIMEOUT-constant" title="TestPuma::PumaSocket::RESP_READ_TIMEOUT (constant)">RESP_READ_TIMEOUT</a></p>
-</div>
+&mdash;    <div class='inline'><p>total socket read timeout, defaults to <a href="#RESP_READ_TIMEOUT-constant" title="TestPuma::PumaSocket::RESP_READ_TIMEOUT (constant)">RESP_READ_TIMEOUT</a></p></div>
   </li>
   <li>
     <span class='name'>len</span>
     <span class='type'>(<code>Integer</code>, <code>nil</code>)</span>
-&mdash;    <div class='inline'>
-<p>the <code>read_nonblock</code> maxlen, defaults to <a href="#RESP_READ_LEN-constant" title="TestPuma::PumaSocket::RESP_READ_LEN (constant)">RESP_READ_LEN</a></p>
-</div>
+&mdash;    <div class='inline'><p>the <code>read_nonblock</code> maxlen, defaults to <a href="#RESP_READ_LEN-constant" title="TestPuma::PumaSocket::RESP_READ_LEN (constant)">RESP_READ_LEN</a></p></div>
   </li>
 </ul>
 <p class='tag_title'>Returns:</p>
 <ul class='return'>
   <li>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>socket read string</p>
-</div>
+&mdash;    <div class='inline'><p>socket read string</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L144-L165'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L144-L165'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='144' data-end='165'></pre>
   <div class='lines_code'>
@@ -967,9 +892,7 @@ use native Ruby sockets except if absolutely necessary.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Sends a request and returns the HTTP response body.</p>
-
+    <p>Sends a request and returns the HTTP response body.</p>
   </div>
 </div>
 <div class='tags'>
@@ -979,73 +902,55 @@ use native Ruby sockets except if absolutely necessary.</p>
     <span class='name'>req</span>
     <span class='type'>(<code>String</code>, <a href="#GET_11-constant" title="TestPuma::PumaSocket::GET_11 (constant)">GET_11</a>)</span>
     <em class='default'>(defaults to: <tt>GET_11</tt>)</em>
-&mdash;    <div class='inline'>
-<p>request path</p>
-</div>
+&mdash;    <div class='inline'><p>request path</p></div>
   </li>
   <li>
     <span class='name'>host</span>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>tcp/ssl host</p>
-</div>
+&mdash;    <div class='inline'><p>tcp/ssl host</p></div>
   </li>
   <li>
     <span class='name'>port</span>
     <span class='type'>(<code>Integer</code>/<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>tcp/ssl port</p>
-</div>
+&mdash;    <div class='inline'><p>tcp/ssl port</p></div>
   </li>
   <li>
     <span class='name'>path</span>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>unix socket, full path</p>
-</div>
+&mdash;    <div class='inline'><p>unix socket, full path</p></div>
   </li>
   <li>
     <span class='name'>ctx</span>
     <span class='type'>(<code>OpenSSL::SSL::SSLContext</code>)</span>
-&mdash;    <div class='inline'>
-<p>ssl context</p>
-</div>
+&mdash;    <div class='inline'><p>ssl context</p></div>
   </li>
   <li>
     <span class='name'>session:</span>
     <span class='type'>(<code>OpenSSL::SSL::Session</code>)</span>
     <em class='default'>(defaults to: <tt>nil</tt>)</em>
-&mdash;    <div class='inline'>
-<p>ssl session</p>
-</div>
+&mdash;    <div class='inline'><p>ssl session</p></div>
   </li>
   <li>
     <span class='name'>timeout</span>
     <span class='type'>(<code>Float</code>, <code>nil</code>)</span>
-&mdash;    <div class='inline'>
-<p>total socket read timeout, defaults to <a href="#RESP_READ_TIMEOUT-constant" title="TestPuma::PumaSocket::RESP_READ_TIMEOUT (constant)">RESP_READ_TIMEOUT</a></p>
-</div>
+&mdash;    <div class='inline'><p>total socket read timeout, defaults to <a href="#RESP_READ_TIMEOUT-constant" title="TestPuma::PumaSocket::RESP_READ_TIMEOUT (constant)">RESP_READ_TIMEOUT</a></p></div>
   </li>
   <li>
     <span class='name'>len</span>
     <span class='type'>(<code>Integer</code>, <code>nil</code>)</span>
-&mdash;    <div class='inline'>
-<p>the <code>read_nonblock</code> maxlen, defaults to <a href="#RESP_READ_LEN-constant" title="TestPuma::PumaSocket::RESP_READ_LEN (constant)">RESP_READ_LEN</a></p>
-</div>
+&mdash;    <div class='inline'><p>the <code>read_nonblock</code> maxlen, defaults to <a href="#RESP_READ_LEN-constant" title="TestPuma::PumaSocket::RESP_READ_LEN (constant)">RESP_READ_LEN</a></p></div>
   </li>
 </ul>
 <p class='tag_title'>Returns:</p>
 <ul class='return'>
   <li>
     <span class='type'>(<a href="Response.html" title="TestPuma::Response (class)">Response</a>)</span>
-&mdash;    <div class='inline'>
-<p>the body portion of the HTTP response</p>
-</div>
+&mdash;    <div class='inline'><p>the body portion of the HTTP response</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L132-L136'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L132-L136'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='132' data-end='136'></pre>
   <div class='lines_code'>
@@ -1068,9 +973,8 @@ use native Ruby sockets except if absolutely necessary.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Sends a request and returns the response header lines as an array of strings. Includes the status line.</p>
-
+    <p>Sends a request and returns the response header lines as an array of strings.
+Includes the status line.</p>
   </div>
 </div>
 <div class='tags'>
@@ -1080,73 +984,55 @@ use native Ruby sockets except if absolutely necessary.</p>
     <span class='name'>req</span>
     <span class='type'>(<code>String</code>, <a href="#GET_11-constant" title="TestPuma::PumaSocket::GET_11 (constant)">GET_11</a>)</span>
     <em class='default'>(defaults to: <tt>GET_11</tt>)</em>
-&mdash;    <div class='inline'>
-<p>request path</p>
-</div>
+&mdash;    <div class='inline'><p>request path</p></div>
   </li>
   <li>
     <span class='name'>host</span>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>tcp/ssl host</p>
-</div>
+&mdash;    <div class='inline'><p>tcp/ssl host</p></div>
   </li>
   <li>
     <span class='name'>port</span>
     <span class='type'>(<code>Integer</code>/<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>tcp/ssl port</p>
-</div>
+&mdash;    <div class='inline'><p>tcp/ssl port</p></div>
   </li>
   <li>
     <span class='name'>path</span>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>unix socket, full path</p>
-</div>
+&mdash;    <div class='inline'><p>unix socket, full path</p></div>
   </li>
   <li>
     <span class='name'>ctx</span>
     <span class='type'>(<code>OpenSSL::SSL::SSLContext</code>)</span>
-&mdash;    <div class='inline'>
-<p>ssl context</p>
-</div>
+&mdash;    <div class='inline'><p>ssl context</p></div>
   </li>
   <li>
     <span class='name'>session:</span>
     <span class='type'>(<code>OpenSSL::SSL::Session</code>)</span>
     <em class='default'>(defaults to: <tt>nil</tt>)</em>
-&mdash;    <div class='inline'>
-<p>ssl session</p>
-</div>
+&mdash;    <div class='inline'><p>ssl session</p></div>
   </li>
   <li>
     <span class='name'>timeout</span>
     <span class='type'>(<code>Float</code>, <code>nil</code>)</span>
-&mdash;    <div class='inline'>
-<p>total socket read timeout, defaults to <a href="#RESP_READ_TIMEOUT-constant" title="TestPuma::PumaSocket::RESP_READ_TIMEOUT (constant)">RESP_READ_TIMEOUT</a></p>
-</div>
+&mdash;    <div class='inline'><p>total socket read timeout, defaults to <a href="#RESP_READ_TIMEOUT-constant" title="TestPuma::PumaSocket::RESP_READ_TIMEOUT (constant)">RESP_READ_TIMEOUT</a></p></div>
   </li>
   <li>
     <span class='name'>len</span>
     <span class='type'>(<code>Integer</code>, <code>nil</code>)</span>
-&mdash;    <div class='inline'>
-<p>the <code>read_nonblock</code> maxlen, defaults to <a href="#RESP_READ_LEN-constant" title="TestPuma::PumaSocket::RESP_READ_LEN (constant)">RESP_READ_LEN</a></p>
-</div>
+&mdash;    <div class='inline'><p>the <code>read_nonblock</code> maxlen, defaults to <a href="#RESP_READ_LEN-constant" title="TestPuma::PumaSocket::RESP_READ_LEN (constant)">RESP_READ_LEN</a></p></div>
   </li>
 </ul>
 <p class='tag_title'>Returns:</p>
 <ul class='return'>
   <li>
     <span class='type'>(<code>Array</code>&lt;<code>String</code>&gt;)</span>
-&mdash;    <div class='inline'>
-<p>array of header lines in the response</p>
-</div>
+&mdash;    <div class='inline'><p>array of header lines in the response</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L120-L125'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L120-L125'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='120' data-end='125'></pre>
   <div class='lines_code'>
@@ -1170,9 +1056,7 @@ use native Ruby sockets except if absolutely necessary.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Sends a request and returns the HTTP response.  Assumes one response is sent</p>
-
+    <p>Sends a request and returns the HTTP response.  Assumes one response is sent</p>
   </div>
 </div>
 <div class='tags'>
@@ -1182,73 +1066,55 @@ use native Ruby sockets except if absolutely necessary.</p>
     <span class='name'>req</span>
     <span class='type'>(<code>String</code>, <a href="#GET_11-constant" title="TestPuma::PumaSocket::GET_11 (constant)">GET_11</a>)</span>
     <em class='default'>(defaults to: <tt>GET_11</tt>)</em>
-&mdash;    <div class='inline'>
-<p>request path</p>
-</div>
+&mdash;    <div class='inline'><p>request path</p></div>
   </li>
   <li>
     <span class='name'>host</span>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>tcp/ssl host</p>
-</div>
+&mdash;    <div class='inline'><p>tcp/ssl host</p></div>
   </li>
   <li>
     <span class='name'>port</span>
     <span class='type'>(<code>Integer</code>/<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>tcp/ssl port</p>
-</div>
+&mdash;    <div class='inline'><p>tcp/ssl port</p></div>
   </li>
   <li>
     <span class='name'>path</span>
     <span class='type'>(<code>String</code>)</span>
-&mdash;    <div class='inline'>
-<p>unix socket, full path</p>
-</div>
+&mdash;    <div class='inline'><p>unix socket, full path</p></div>
   </li>
   <li>
     <span class='name'>ctx</span>
     <span class='type'>(<code>OpenSSL::SSL::SSLContext</code>)</span>
-&mdash;    <div class='inline'>
-<p>ssl context</p>
-</div>
+&mdash;    <div class='inline'><p>ssl context</p></div>
   </li>
   <li>
     <span class='name'>session:</span>
     <span class='type'>(<code>OpenSSL::SSL::Session</code>)</span>
     <em class='default'>(defaults to: <tt>nil</tt>)</em>
-&mdash;    <div class='inline'>
-<p>ssl session</p>
-</div>
+&mdash;    <div class='inline'><p>ssl session</p></div>
   </li>
   <li>
     <span class='name'>timeout</span>
     <span class='type'>(<code>Float</code>, <code>nil</code>)</span>
-&mdash;    <div class='inline'>
-<p>total socket read timeout, defaults to <a href="#RESP_READ_TIMEOUT-constant" title="TestPuma::PumaSocket::RESP_READ_TIMEOUT (constant)">RESP_READ_TIMEOUT</a></p>
-</div>
+&mdash;    <div class='inline'><p>total socket read timeout, defaults to <a href="#RESP_READ_TIMEOUT-constant" title="TestPuma::PumaSocket::RESP_READ_TIMEOUT (constant)">RESP_READ_TIMEOUT</a></p></div>
   </li>
   <li>
     <span class='name'>len</span>
     <span class='type'>(<code>Integer</code>, <code>nil</code>)</span>
-&mdash;    <div class='inline'>
-<p>the <code>read_nonblock</code> maxlen, defaults to <a href="#RESP_READ_LEN-constant" title="TestPuma::PumaSocket::RESP_READ_LEN (constant)">RESP_READ_LEN</a></p>
-</div>
+&mdash;    <div class='inline'><p>the <code>read_nonblock</code> maxlen, defaults to <a href="#RESP_READ_LEN-constant" title="TestPuma::PumaSocket::RESP_READ_LEN (constant)">RESP_READ_LEN</a></p></div>
   </li>
 </ul>
 <p class='tag_title'>Returns:</p>
 <ul class='return'>
   <li>
     <span class='type'>(<a href="Response.html" title="TestPuma::Response (class)">Response</a>)</span>
-&mdash;    <div class='inline'>
-<p>the HTTP response</p>
-</div>
+&mdash;    <div class='inline'><p>the HTTP response</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L172-L176'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L172-L176'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='172' data-end='176'></pre>
   <div class='lines_code'>
@@ -1271,9 +1137,8 @@ use native Ruby sockets except if absolutely necessary.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Determines whether the socket has been closed by the server.  Only works when <code>Socket::TCP_INFO is defined</code>, linux/Ubuntu</p>
-
+    <p>Determines whether the socket has been closed by the server.  Only works when
+<code>Socket::TCP_INFO is defined</code>, linux/Ubuntu</p>
   </div>
 </div>
 <div class='tags'>
@@ -1288,14 +1153,13 @@ use native Ruby sockets except if absolutely necessary.</p>
 <ul class='return'>
   <li>
     <span class='type'>(<code>Boolean</code>)</span>
-&mdash;    <div class='inline'>
-<p>true if closed by server, false is indeterminate, as it may not be writable</p>
-</div>
+&mdash;    <div class='inline'><p>true if closed by server, false is indeterminate, as
+it may not be writable</p></div>
   </li>
 </ul>
 
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/test/helpers/test_puma/puma_socket.rb#L194-L207'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/test/helpers/test_puma/puma_socket.rb#L194-L207'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='194' data-end='207'></pre>
   <div class='lines_code'>

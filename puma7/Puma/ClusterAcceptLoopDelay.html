@@ -8,7 +8,7 @@
 <meta name='mobile-web-app-capable' content='yes'>
 <meta name='apple-mobile-web-app-status-bar-style' content='rgba(228,228,228,1.0)'>
 
-<title>Class: Puma::ClusterAcceptLoopDelay &mdash; Puma-7.2.0</title>
+<title>Class: Puma::ClusterAcceptLoopDelay &mdash; Puma-7.2.1</title>
 
 <link rel='stylesheet'  type='text/css' href='../css/y_fonts.css' />
 <link rel='stylesheet'  type='text/css' href='../css/highlight.github.css' />
@@ -50,7 +50,7 @@
   <header id='y_header'>
     <div id='y_menu'>
       <a id='home_no_xhr' href='/'>Home</a> &raquo; 
-      <a href='../'>Puma-7.2.0</a> &raquo; 
+      <a href='../'>Puma-7.2.1</a> &raquo; 
       <a href='../_index.html#alpha_C'>Index (C)</a> &raquo; 
         <a href="../Puma.html" title="Puma (module)">Puma</a> &raquo; 
       <span class='title'><a id='t2_doc_top' href='#'>ClusterAcceptLoopDelay&nbsp;&#x25B2;</a></span>
@@ -77,7 +77,7 @@
     </tr>
     <tr class='single'>
       <td id='t2_defined_in' class='box_2'>Defined in:</td>
-      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/cluster_accept_loop_delay.rb#L54'>lib/puma/cluster_accept_loop_delay.rb</a>      </td>
+      <td class='box_rel'><a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/cluster_accept_loop_delay.rb#L54'>lib/puma/cluster_accept_loop_delay.rb</a>      </td>
     </tr>
   </tbody>
 </table>
@@ -87,63 +87,46 @@
 <div class='docstring'>
   <div class='discussion'>
     <p>Calculate a delay value for sleeping when running in clustered mode</p>
-
 <p>The main reason this is a class is so it can be unit tested independently.
 This makes modification easier in the future if we can encode properties of the
 delay into a test instead of relying on end-to-end testing only.</p>
-
 <p>This is an imprecise mechanism to address specific goals:</p>
-
 <ul>
 <li>Evenly distribute requests across all workers at start</li>
 <li>Evenly distribute CPU resources across all workers</li>
 </ul>
-
-<h3>Goal: Distribute requests across workers at start</h3>
-
+<h3 id="Goal__Distribute_requests_across_workers_at_start">Goal: Distribute requests across workers at start</h3>
 <p>There was a perf bug in <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> where one worker would wake up slightly before the rest and accept
-all the requests on the socket even though it didn&#39;t have enough resources to process all of them.
+all the requests on the socket even though it didn't have enough resources to process all of them.
 This was originally fixed by never calling accept when a worker had more requests than threads
 already <a href="https://github.com/puma/puma/pull/3678/files/2736ebddb3fc8528e5150b5913fba251c37a8bf7#diff-a95f46e7ce116caddc9b9a9aa81004246d5210d5da5f4df90a818c780630166bL251-L291">https://github.com/puma/puma/pull/3678/files/2736ebddb3fc8528e5150b5913fba251c37a8bf7#diff-a95f46e7ce116caddc9b9a9aa81004246d5210d5da5f4df90a818c780630166bL251-L291</a></p>
-
 <p>With the introduction of true keepalive support, there are two ways a request can come in:</p>
-
 <ul>
 <li>A new request from a new client comes into the socket and it must be &quot;accept&quot;-ed</li>
 <li>A keepalive request is served and the connection is retained. Another request is then accepted</li>
 </ul>
-
-<p>Ideally the server handles requests in the order they come in, and ideally it doesn&#39;t accept more requests than it can handle.
+<p>Ideally the server handles requests in the order they come in, and ideally it doesn't accept more requests than it can handle.
 These goals are contradictory, because when the server is at maximum capacity due to keepalive connections, it could mean we
 block all new requests, even if those came in before the new request on the older keepalive connection.</p>
-
-<h3>Goal: Distribute CPU resources across all workers</h3>
-
+<h3 id="Goal__Distribute_CPU_resources_across_all_workers">Goal: Distribute CPU resources across all workers</h3>
 <ul>
 <li>This issue was opened <a href="https://github.com/puma/puma/issues/2078">https://github.com/puma/puma/issues/2078</a></li>
 </ul>
-
-<p>There are several entangled issues and it&#39;s not exactly clear what the root cause is, but the observable outcome
+<p>There are several entangled issues and it's not exactly clear what the root cause is, but the observable outcome
 was that performance was better with a small sleep, and that eventually became the default.</p>
-
 <p>An attempt to describe why this works is here: <a href="https://github.com/puma/puma/issues/2078#issuecomment-3287032470">https://github.com/puma/puma/issues/2078#issuecomment-3287032470</a>.</p>
-
 <p>Summarizing: The delay is for tuning the rate at which &quot;accept&quot; is called on the socket.
 <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> works by calling &quot;accept&quot; nonblock on the socket in a loop. When there are multiple workers
 (processes), they will &quot;race&quot; to accept a request at roughly the same rate. However, if one
 worker has all threads busy processing requests, then accepting a new request might &quot;steal&quot; it from
 a less busy worker. If a worker has no work to do, it should loop as fast as possible.</p>
-
-<h3>Solution: Distribute requests across workers at start</h3>
-
+<h3 id="Solution__Distribute_requests_across_workers_at_start">Solution: Distribute requests across workers at start</h3>
 <p>For now, both goals are framed as &quot;load balancing&quot; across workers (processes) and achieved through
 the same mechanism of sleeping longer to delay busier workers. Rather than the prior <a href="../Puma.html" title="Puma (module)"><code>::Puma</code></a> 6.x
 and earlier behavior of using a binary on/off sleep value, we increase it an amount proportional
 to the load the server is under, capping the maximum delay to the scenario where all threads are busy
 and the todo list has reached a multiplier of the maximum number of threads.</p>
-
 <p>Private: API may change unexpectedly</p>
-
   </div>
 </div>
 </div>
@@ -201,15 +184,13 @@ and the todo list has reached a multiplier of the maximum number of threads.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>Initialize happens once, <code>call</code> happens often. Perform global calculations here.</p>
-
+    <p>Initialize happens once, <code>call</code> happens often. Perform global calculations here.</p>
   </div>
 </div>
 <div class='tags'>
   
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/cluster_accept_loop_delay.rb#L58-L69'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/cluster_accept_loop_delay.rb#L58-L69'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='58' data-end='69'></pre>
   <div class='lines_code'>
@@ -238,7 +219,7 @@ and the todo list has reached a multiplier of the maximum number of threads.</p>
   <h3 class='signature ro first'>
     #<strong>max_delay</strong>   <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/cluster_accept_loop_delay.rb#L55-L55'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/cluster_accept_loop_delay.rb#L55-L55'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='55' data-end='55'></pre>
   <div class='lines_code'>
@@ -255,7 +236,7 @@ and the todo list has reached a multiplier of the maximum number of threads.</p>
   <h3 class='signature ro'>
     #<strong>on?</strong>  &#x21d2; <code>Boolean</code>  <span class="extras">(<span class='readonly'>readonly</span>)</span>
   </h3>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/cluster_accept_loop_delay.rb#L71-L73'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/cluster_accept_loop_delay.rb#L71-L73'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='71' data-end='73'></pre>
   <div class='lines_code'>
@@ -277,14 +258,12 @@ and the todo list has reached a multiplier of the maximum number of threads.</p>
   </h3>
 <div class='docstring'>
   <div class='discussion'>
-    
-<p>We want the extreme values of this delay to be known (minimum and maximum) as well as a predictable curve between the two. i.e. no step functions or hard cliffs.</p>
-
+    <p>We want the extreme values of this delay to be known (minimum and maximum) as well as
+a predictable curve between the two. i.e. no step functions or hard cliffs.</p>
 <p>Return value is always numeric. Returns 0 if there should be no delay.</p>
-
   </div>
 </div>
-  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.0/lib/puma/cluster_accept_loop_delay.rb#L79-L89'>GitHub</a>&#8202;]</span>
+  <span class='link_repo'>[&#8202;<a class='repo' href='https://github.com/puma/puma/blob/v7.2.1/lib/puma/cluster_accept_loop_delay.rb#L79-L89'>GitHub</a>&#8202;]</span>
 <div class='source_code h'>
   <pre class='lines_num' data-start='79' data-end='89'></pre>
   <div class='lines_code'>
